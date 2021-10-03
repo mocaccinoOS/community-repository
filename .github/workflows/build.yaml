@@ -1,7 +1,6 @@
 name: Build
 
-on:
-  push:
+on: [push, pull_request]
 
 jobs:
 
@@ -105,6 +104,7 @@ jobs:
         ls -liah
         ls -liah build
     - name: Fetch metadata of packages 🔧
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       run: |
         ls -liah
         export PATH=$PATH:/usr/local/go/bin
@@ -117,6 +117,7 @@ jobs:
         sudo chmod -R 777 $PWD/build
 
     - name: Create repo 🔧
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
       run: |
           sudo -E luet create-repo \
           --push-images \
