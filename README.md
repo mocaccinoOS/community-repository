@@ -1,4 +1,4 @@
-# community-repository
+# [![Packages](https://labs.mocaccino.org/badge/mocaccino-community.svg "List of packages")](https://labs.mocaccino.org/mocaccino-community) community-repository
 
 Community repository
 
