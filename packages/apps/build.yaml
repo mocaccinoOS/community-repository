@@ -1,21 +1,23 @@
 package_dir: "/package"
+
+prelude:
+- |
+  [ -e "package.use/{{.Values.category}}-{{.Values.name}}.use" ] && \
+  cp -rf package.use/{{.Values.category}}-{{.Values.name}} /etc/portage/package.use/{{.Values.category}}-{{.Values.name}}.use
+- |
+  [ -e "package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords" ] && \
+  cp -rf package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords /etc/portage/package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords
+
 steps:
-- emerge --root /package {{.Values.atom}}
-requires:
-- category: "layers"
-  name: "system-x"
-  version: ">=0"
+{{ if .Values.pre_emerge }}
+- emerge -1 -j ${JOBS} {{.Values.pre_emerge}}
+{{end}}
+- emerge -j ${JOBS} --root /package {{.Values.atom}}
+
+requires: {{.Values.build_requires | toYaml | nindent 1}}
+
+env:
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
 
 excludes:
-- ^/var/cache/distfiles
-- ^/usr/portage/distfiles
-- ^/var/db/repos
-- ^/var/cache/edb
-- ^/usr/portage
-- ^/var/db/pkg
-- ^/var/lib/portage
-- ^/var/log
-- ^/etc/ld.so.conf
-- ^/etc/csh.env
-- ^/etc/environment.d/10-gentoo-env.conf
-- ^/etc/profile.env
+{{ template "portage_excludes" }}

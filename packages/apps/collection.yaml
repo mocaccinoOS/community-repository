@@ -1,9 +1,49 @@
 packages:
-- category: "apps"
+- &default
+  category: "apps"
   name: "tree"
   version: "0.3"
+  labels:
+    emerge.jobs: "3"
   atom: "app-text/tree"
-- category: "apps"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+- <<: *default
   name: "w_scan"
   version: "0.2"
   atom: "media-tv/w_scan"
+- <<: *default
+  category: "fonts"
+  name: "fontawesome"
+  version: "0.1"
+  atom: "media-fonts/fontawesome"
+- <<: *default
+  category: "layer"
+  name: "wayfire"
+  version: 0.7.1+28
+  pre_emerge: >-
+        dev-lang/rust-bin
+  atom: >-
+        gui-apps/grim 
+        gui-apps/gtkgreet 
+        gui-apps/waybar 
+        gui-apps/wcm 
+        gui-apps/wf-shell 
+        gui-wm/wayfire 
+        x11-terms/alacritty
+  requires:
+    - category: "layers"
+      name: "gnome-common"
+      version: ">=0"
+    - category: "entity"
+      name: "greetd"
+      version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "gnome-common"
+    version: ">=0"
+  - category: "fonts"
+    name: "fontawesome"
+    version: ">=0"
