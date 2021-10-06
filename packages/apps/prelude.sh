@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 
 if [ -e "package.use/$PACKAGE_CATEGORY-$PACKAGE_NAME.use" ]; then
   cp -rf package.use/$PACKAGE_CATEGORY-$PACKAGE_NAME.use /etc/portage/package.use/$PACKAGE_CATEGORY-$PACKAGE_NAME.use
