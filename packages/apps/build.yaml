@@ -1,12 +1,7 @@
 package_dir: "/package"
 
 prelude:
-- |
-  [ -e "package.use/{{.Values.category}}-{{.Values.name}}.use" ] && \
-  cp -rf package.use/{{.Values.category}}-{{.Values.name}} /etc/portage/package.use/{{.Values.category}}-{{.Values.name}}.use
-- |
-  [ -e "package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords" ] && \
-  cp -rf package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords /etc/portage/package.accept_keywords/{{.Values.category}}-{{.Values.name}}.accept_keywords
+- bash prelude.sh
 
 steps:
 {{ if .Values.pre_emerge }}
