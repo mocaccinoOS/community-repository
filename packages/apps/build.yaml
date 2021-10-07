@@ -1,18 +1,17 @@
-package_dir: "/package"
-
 prelude:
 - bash prelude.sh
-
-steps:
 {{ if .Values.pre_emerge }}
 - emerge -1 -j ${JOBS} {{.Values.pre_emerge}}
 {{end}}
-- emerge -j ${JOBS} --root /package {{.Values.atom}}
+
+steps:
+- emerge -j ${JOBS} {{.Values.atom}}
 
 requires: {{.Values.build_requires | toYaml | nindent 1}}
 
 env:
 - JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 excludes:
 - ^/var/cache/distfiles
