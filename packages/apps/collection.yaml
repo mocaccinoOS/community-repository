@@ -23,6 +23,63 @@ packages:
     category: "app-shells"
     version: ">=0"
 - <<: *default
+  name: "kate"
+  version: "21.04.3+7"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kate
+  provides:
+  - name: "kate"
+    category: "kde-apps"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "plasma"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "plasma"
+    version: ">=0"
+- <<: *default
+  name: "kdiff3"
+  version: "1.9.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/kdiff3
+  provides:
+  - name: "kdiff3"
+    category: "kde-misc"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
+  name: "krusader"
+  version: "2.7.2+34"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/krusader
+  provides:
+  - name: "krusader"
+    category: "kde-misc"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "plasma"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "plasma"
+    version: ">=0"
+- <<: *default
   name: "latte-dock"
   version: "3.1.2+25"
   labels:
@@ -41,6 +98,18 @@ packages:
   requires:
   - category: "layers"
     name: "plasma"
+    version: ">=0"
+- <<: *default
+  name: "lm-sensors"
+  version: "3.6.0+4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/lm-sensors
+  atom: "sys-apps/lm-sensors"
+  provides:
+  - name: "lm-sensors"
+    category: "sys-apps"
     version: ">=0"
 - <<: *default
   name: "mc"
