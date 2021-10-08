@@ -107,8 +107,68 @@ packages:
     name: "qt"
     version: ">=0"
 - <<: *default
+  name: "plasma-firewall"
+  version: "5.23.49"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-plasma/plasma-firewall
+  atom: "kde-plasma/plasma-firewall"
+  provides:
+  - name: "plasma-firewall"
+    category: "kde-plasma"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
+  name: "pulseaudio-qt"
+  version: "1.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/pulseaudio-qt
+  atom: "media-libs/pulseaudio-qt"
+  provides:
+  - name: "pulseaudio-qt"
+    category: "media-libs"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
+  name: "systemdgenie"
+  version: "0.99.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-admin/systemdgenie
+  atom: "app-admin/systemdgenie"
+  provides:
+  - name: "systemdgenie"
+    category: "app-admin"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
   name: "ufw"
-  version: "0.1"
+  version: "0.36"
   atom: "net-firewall/ufw"
   pre_emerge: >-
     dev-lang/rust-bin
@@ -136,6 +196,26 @@ packages:
   name: "w_scan"
   version: "0.3"
   atom: "media-tv/w_scan"
+- <<: *default
+  name: "wacomtablet"
+  version: "3.2.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/wacomtablet
+  atom: "kde-misc/wacomtablet"
+  provides:
+  - name: "wacomtablet"
+    category: "kde-misc"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
 - <<: *default
   name: "weechat"
   version: "3.1+26"
