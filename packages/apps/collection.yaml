@@ -11,6 +11,26 @@ packages:
     name: "system-x"
     version: ">=0"
 - <<: *default
+  name: "filelight"
+  version: "21.08.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/filelight
+  atom: "kde-apps/filelight"
+  provides:
+  - name: "filelight"
+    category: "kde-apps"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
   name: "fish"
   version: "3.1.2+24"
   labels:
@@ -43,6 +63,26 @@ packages:
     name: "plasma"
     version: ">=0"
 - <<: *default
+  name: "kcron"
+  version: "21.08.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kcron
+  atom: "kde-apps/kcron"
+  provides:
+  - name: "kcron"
+    category: "kde-apps"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
   name: "kdiff3"
   version: "1.9.3+1"
   labels:
@@ -62,6 +102,26 @@ packages:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
+# - <<: *default
+#   name: "kolourpaint"
+#   version: "21.08.2"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       kde-apps/kolourpaint
+#   atom: "kde-apps/kolourpaint"
+#   provides:
+#   - name: "kolourpaint"
+#     category: "kde-apps"
+#     version: ">=0"
+#   build_requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
+#   requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
 - <<: *default
   name: "krusader"
   version: "2.7.2+35"
@@ -224,26 +284,26 @@ packages:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
-- <<: *default
-  name: "subtitlecomposer"
-  version: "0.7.1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/subtitlecomposer
-  atom: "media-video/subtitlecomposer"
-  provides:
-  - name: "subtitlecomposer"
-    category: "media-video"
-    version: ">=0"
-  build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
-  requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+# - <<: *default
+#   name: "subtitlecomposer"
+#   version: "0.7.1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-video/subtitlecomposer
+#   atom: "media-video/subtitlecomposer"
+#   provides:
+#   - name: "subtitlecomposer"
+#     category: "media-video"
+#     version: ">=0"
+#   build_requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
+#   requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
 - <<: *default
   name: "systemdgenie"
   version: "0.99.0+1"
