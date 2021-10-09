@@ -1,18 +1,68 @@
 packages:
 - &default
   category: "apps"
-  name: "tree"
-  version: "0.4"
+  name: "dolphin-plugins-git"
+  version: "21.04.3"
   labels:
-    emerge.jobs: "3"
-  atom: "app-text/tree"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/dolphin-plugins-git
+  atom: "kde-apps/dolphin-plugins-git"
+  provides:
+  - name: "dolphin-plugins-git"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
   build_requires:
   - category: "layers"
-    name: "system-x"
+    name: "kde-apps-minimal"
+    version: ">=0"
+- <<: *default
+  name: "dolphin-plugins-mountiso"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/dolphin-plugins-mountiso
+  atom: "app-cdr/dolphin-plugins-mountiso"
+  provides:
+  - name: "dolphin-plugins-mountiso"
+    category: "app-cdr"
+    version: '>=0'
+  requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
+- <<: *default
+  name: "ffmpegthumbs"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/ffmpegthumbs
+  atom: "kde-apps/ffmpegthumbs"
+  provides:
+  - name: "ffmpegthumbs"
+    category: "kde-apps"
+    version: '>=0'
+  requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
     version: ">=0"
 - <<: *default
   name: "filelight"
-  version: "21.08.2"
+  version: "21.08.2+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -22,17 +72,17 @@ packages:
   - name: "filelight"
     category: "kde-apps"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
 - <<: *default
   name: "fish"
-  version: "3.1.2+24"
+  version: "3.1.2+25"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -42,9 +92,17 @@ packages:
   - name: "fish"
     category: "app-shells"
     version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "kate"
-  version: "21.04.3+8"
+  version: "21.04.3+9"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -54,17 +112,17 @@ packages:
   - name: "kate"
     category: "kde-apps"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
 - <<: *default
   name: "kdiff3"
-  version: "1.9.3+1"
+  version: "1.9.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -74,11 +132,11 @@ packages:
   - name: "kdiff3"
     category: "kde-misc"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
@@ -94,17 +152,37 @@ packages:
 #   - name: "kolourpaint"
 #     category: "kde-apps"
 #     version: ">=0"
-#   build_requires:
-#   - category: "layers"
-#     name: "kde-common"
-#     version: ">=0"
 #   requires:
 #   - category: "layers"
 #     name: "kde-common"
 #     version: ">=0"
+#   build_requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
+- <<: *default
+  name: "kompare"
+  version: "21.04.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kompare
+  atom: "kde-apps/kompare"
+  provides:
+  - name: "kompare"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
 - <<: *default
   name: "krusader"
-  version: "2.7.2+35"
+  version: "2.7.2+36"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -114,17 +192,17 @@ packages:
   - name: "krusader"
     category: "kde-misc"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
 - <<: *default
   name: "latte-dock"
-  version: "3.1.2+25"
+  version: "3.1.2+26"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -134,17 +212,17 @@ packages:
   - name: "latte-dock"
     category: "kde-misc"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
 - <<: *default
   name: "lm-sensors"
-  version: "3.6.0+4"
+  version: "3.6.0+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -154,9 +232,17 @@ packages:
   - name: "lm-sensors"
     category: "sys-apps"
     version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "mc"
-  version: "4.8.26+56"
+  version: "4.8.26+57"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -166,9 +252,17 @@ packages:
   - name: "mc"
     category: "app-misc"
     version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "nnn"
-  version: "4.0+36"
+  version: "4.0+37"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -178,9 +272,17 @@ packages:
   - name: "nnn"
     category: "app-misc"
     version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "opera"
-  version: "77.0.4054.90+35"
+  version: "77.0.4054.90+36"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -190,11 +292,11 @@ packages:
   - name: "opera"
     category: "www-client"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "X"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "X"
     version: ">=0"
@@ -210,17 +312,17 @@ packages:
 #   - name: "pavucontrol-qt"
 #     category: "media-sound"
 #     version: ">=0"
-#   build_requires:
+#   requires:
 #   - category: "layers"
 #     name: "qt"
 #     version: ">=0"
-#   requires:
+#   build_requires:
 #   - category: "layers"
 #     name: "qt"
 #     version: ">=0"
 - <<: *default
   name: "plasma-firewall"
-  version: "5.23.49+1"
+  version: "5.23.49+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -230,13 +332,6 @@ packages:
   - name: "plasma-firewall"
     category: "kde-plasma"
     version: ">=0"
-  build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
-  - category: "apps"
-    name: "ufw"
-    version: ">=0"
   requires:
   - category: "apps"
     name: "ufw"
@@ -244,9 +339,16 @@ packages:
   - category: "layers"
     name: "plasma"
     version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "plasma"
+    version: ">=0"
+  - category: "apps"
+    name: "ufw"
+    version: ">=0"
 - <<: *default
   name: "pulseaudio-qt"
-  version: "1.3+1"
+  version: "1.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -256,11 +358,11 @@ packages:
   - name: "pulseaudio-qt"
     category: "media-libs"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
@@ -276,17 +378,37 @@ packages:
 #   - name: "subtitlecomposer"
 #     category: "media-video"
 #     version: ">=0"
-#   build_requires:
-#   - category: "layers"
-#     name: "kde-common"
-#     version: ">=0"
 #   requires:
 #   - category: "layers"
 #     name: "kde-common"
 #     version: ">=0"
+#   build_requires:
+#   - category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
+- <<: *default
+  name: "tree"
+  version: "0.4+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/tree
+  atom: "app-text/tree"
+  provides:
+  - name: "tree"
+    category: "app-text"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "systemdgenie"
-  version: "0.99.0+1"
+  version: "0.99.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -296,23 +418,59 @@ packages:
   - name: "systemdgenie"
     category: "app-admin"
     version: ">=0"
-  build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
   requires:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+- <<: *default
+  name: "tmux"
+  version: "3.1+29"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/tmux
+  atom: "app-misc/tmux"
+  provides:
+  - name: "tmux"
+    category: "app-misc"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "ufw"
-  version: "0.36+1"
+  version: "0.36+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-firewall/ufw
   atom: "net-firewall/ufw"
+  provides:
+  - name: "ufw"
+    category: "net-firewall"
+    version: ">=0"
   pre_emerge: >-
     dev-lang/rust-bin
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "vivaldi"
-  version: "4.1.2369.21+7"
+  version: "4.1.2369.21+8"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -322,21 +480,37 @@ packages:
   - name: "vivaldi"
     category: "www-client"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "X"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "X"
     version: ">=0"
 - <<: *default
   name: "w_scan"
-  version: "0.3"
+  version: "0.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/w_scan
   atom: "media-tv/w_scan"
+  provides:
+  - name: "w_scan"
+    category: "media-tv"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
 - <<: *default
   name: "wacomtablet"
-  version: "3.2.0+1"
+  version: "3.2.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -346,17 +520,17 @@ packages:
   - name: "wacomtablet"
     category: "kde-misc"
     version: ">=0"
-  build_requires:
+  requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
-  requires:
+  build_requires:
   - category: "layers"
     name: "plasma"
     version: ">=0"
 - <<: *default
   name: "weechat"
-  version: "3.1+26"
+  version: "3.1+27"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -365,6 +539,34 @@ packages:
   provides:
   - name: "weechat"
     category: "net-irc"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+- <<: *default
+  name: "zsh"
+  version: "5.8+50"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/zsh
+  atom: "app-shells/zsh"
+  provides:
+  - name: "zsh"
+    category: "app-shells"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
     version: ">=0"
 # - <<: *default
 #   category: "fonts"
