@@ -1,6 +1,52 @@
 packages:
 - &default
   category: "apps"
+  name: "cue2tracks"
+  version: "0.2.11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cue2tracks
+  atom: "app-cdr/cue2tracks"
+  provides:
+  - name: "cue2tracks"
+    category: "app-cdr"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  - category: "apps"
+    name: "shntools"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  - category: "apps"
+    name: "shntools"
+    version: ">=0"
+- <<: *default
+  name: "cuetools"
+  version: "1.4.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cuetools
+  atom: "app-cdr/cuetools"
+  provides:
+  - name: "cuetools"
+    category: "app-cdr"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+- <<: *default
   name: "dolphin-plugins-git"
   version: "21.04.3"
   labels:
@@ -426,6 +472,26 @@ packages:
   provides:
   - name: "tree"
     category: "app-text"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "system-x"
+    version: ">=0"
+- <<: *default
+  name: "shntool"
+  version: "3.0.10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/shntool
+  atom: "media-sound/shntool"
+  provides:
+  - name: "shntool"
+    category: "media-sound"
     version: ">=0"
   requires:
   - category: "layers"
