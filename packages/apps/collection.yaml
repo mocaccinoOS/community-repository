@@ -160,6 +160,8 @@ packages:
 #   - category: "layers"
 #     name: "kde-common"
 #     version: ">=0"
+#
+# TO BE BUMPED WHEN kde-apps/libkomparediff2 IS ADDED TO kde-common layer 
 - <<: *default
   name: "kompare"
   version: "21.04.3+1"
@@ -179,6 +181,26 @@ packages:
   build_requires:
   - category: "layers"
     name: "kde-apps-minimal"
+    version: ">=0"
+- <<: *default
+  name: "krename"
+  version: "5.0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/krename
+  atom: "kde-misc/krename"
+  provides:
+  - name: "krename"
+    category: "kde-misc"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "kde-common"
     version: ">=0"
 - <<: *default
   name: "krusader"
@@ -366,6 +388,7 @@ packages:
   - category: "layers"
     name: "kde-common"
     version: ">=0"
+# TO BE ENABLED WHEN kross IS ADDED TO STABLE kde-common layer
 # - <<: *default
 #   name: "subtitlecomposer"
 #   version: "0.7.1"
@@ -380,11 +403,17 @@ packages:
 #     version: ">=0"
 #   requires:
 #   - category: "layers"
-#     name: "kde-common"
+#     name: "plasma"
+#     version: ">=0"
+#   - category: "media-video"
+#     name: "vlc"
 #     version: ">=0"
 #   build_requires:
 #   - category: "layers"
-#     name: "kde-common"
+#     name: "plasma"
+#     version: ">=0"
+#   - category: "media-video"
+#     name: "vlc"
 #     version: ">=0"
 - <<: *default
   name: "tree"
