@@ -1,5 +1,9 @@
 prelude:
 - bash prelude.sh
+- USE="-subversion -mercurial" emerge app-portage/layman
+- layman -L
+- echo "y" | layman -a lmiphay
+- echo "y" | layman -a 4nykey
 {{ if .Values.pre_emerge }}
 - emerge -1 -j ${JOBS} {{.Values.pre_emerge}}
 {{end}}
