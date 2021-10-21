@@ -10,7 +10,11 @@ prelude:
 {{end}}
 
 steps:
+{{ if .Values.emerge_env_overrides }}
+- {{.Values.emerge_env_overrides}} emerge -j ${JOBS} {{.Values.atom}}
+{{else}}
 - emerge -j ${JOBS} {{.Values.atom}}
+{{end}}
 
 requires: {{.Values.build_requires | toYaml | nindent 1}}
 
