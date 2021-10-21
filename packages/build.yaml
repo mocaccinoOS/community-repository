@@ -1,9 +1,10 @@
 prelude:
 - bash prelude.sh
+{{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L
-- echo "y" | layman -a lmiphay
-- echo "y" | layman -a 4nykey
+- echo "y" | layman -a {{.Values.overlay}}
+{{end}}
 {{ if .Values.pre_emerge }}
 - emerge -1 -j ${JOBS} {{.Values.pre_emerge}}
 {{end}}
@@ -14,7 +15,11 @@ steps:
 requires: {{.Values.build_requires | toYaml | nindent 1}}
 
 env:
+{{ if .Values.labels }}
 - JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{else}}
+- JOBS=3
+{{end}}
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 excludes:
