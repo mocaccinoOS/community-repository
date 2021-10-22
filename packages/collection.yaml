@@ -1,6 +1,27 @@
 packages:
 - &apps
   category: "apps"
+  name: "clementine"
+  version: "1.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/clementine
+  atom: "media-sound/clementine"
+  provides:
+  - name: "clementine"
+    category: "media-sound"
+    version: ">=0"
+  requires:
+  - category: "layers"
+    name: "qt"
+    version: ">=0"
+  build_requires:
+  - category: "layers"
+    name: "qt"
+    version: ">=0"
+- <<: *apps
+  category: "apps"
   name: "cuetools"
   version: "1.4.1"
   labels:
