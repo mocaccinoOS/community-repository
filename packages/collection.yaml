@@ -25,7 +25,7 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
   finalize:
-  - &finalize_gnome
+  - &finalize-gnome
     glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
 # - <<: *apps
 #   name: "clementine"
@@ -40,13 +40,12 @@ packages:
 #     category: "media-sound"
 #     version: ">=0"
 #   requires:
-#   - category: "layers"
+#   - &layers-plasma 
+#     category: "layers"
 #     name: "plasma"
 #     version: ">=0"
 #   build_requires:
-#   - category: "layers"
-#     name: "plasma"
-#     version: ">=0"
+#   - <<: *layers-plasma
 - &apps
   category: "apps"
   name: "cuetools"
@@ -61,13 +60,12 @@ packages:
     category: "app-cdr"
     version: ">=0"
   requires:
-  - category: "layers"
+  - &layers-system-x
+    category: "layers"
     name: "system-x"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "dolphin-plugins-git"
   version: "21.04.3"
@@ -81,13 +79,12 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - category: "layers"
+  - &layers-kde-apps-minimal
+    category: "layers"
     name: "kde-apps-minimal"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
 - <<: *apps
   name: "dolphin-plugins-mountiso"
   version: "21.04.3"
@@ -101,13 +98,9 @@ packages:
     category: "app-cdr"
     version: '>=0'
   requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
   build_requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
 - <<: *apps
   name: "ffmpegthumbs"
   version: "21.04.3"
@@ -121,16 +114,12 @@ packages:
     category: "kde-apps"
     version: '>=0'
   requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
   build_requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
 - <<: *apps
   name: "filelight"
-  version: "21.08.2+1"
+  version: "21.04.3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -141,13 +130,12 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - category: "layers"
+  - &layers-kde-common
+    category: "layers"
     name: "kde-common"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
 - <<: *apps
   name: "fish"
   version: "3.1.2+25"
@@ -161,13 +149,45 @@ packages:
     category: "app-shells"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
+- <<: *apps
+  name: "gnumeric"
+  version: "1.12.48+52"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/gnumeric
+  atom: "app-office/gnumeric"
+  provides:
+  - name: "gnumeric"
+    category: "app-office"
+    version: '>=0'
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+  finalize:
+  - *finalize-gnome
+- <<: *apps
+  name: "hexchat"
+  version: "2.14.3+64"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/hexchat
+  atom: "net-irc/hexchat"
+  provides:
+  - name: "hexchat"
+    category: "net-irc"
+    version: '>=0'
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+  finalize:
+  - *finalize-gnome
 - <<: *apps
   name: "kate"
   version: "21.04.3+9"
@@ -181,13 +201,12 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - category: "layers"
+  - &layers-plasma
+    category: "layers"
     name: "plasma"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 - <<: *apps
   name: "kdiff3"
   version: "1.9.3+2"
@@ -201,13 +220,9 @@ packages:
     category: "kde-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
 # - <<: *apps
 #   name: "kolourpaint"
 #   version: "21.08.2"
@@ -221,13 +236,9 @@ packages:
 #     category: "kde-apps"
 #     version: ">=0"
 #   requires:
-#   - category: "layers"
-#     name: "kde-common"
-#     version: ">=0"
+#   - <<: *layers-kde-common
 #   build_requires:
-#   - category: "layers"
-#     name: "kde-common"
-#     version: ">=0"
+#   - <<: *layers-kde-common
 - <<: *apps
   name: "kompare"
   version: "21.04.3+2"
@@ -241,13 +252,9 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
   build_requires:
-  - category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
 - <<: *apps
   name: "krename"
   version: "5.0.1"
@@ -261,13 +268,9 @@ packages:
     category: "kde-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
 - <<: *apps
   name: "krusader"
   version: "2.7.2+36"
@@ -281,13 +284,9 @@ packages:
     category: "kde-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 - <<: *apps
   name: "latte-dock"
   version: "3.1.2+26"
@@ -301,13 +300,9 @@ packages:
     category: "kde-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 - <<: *apps
   name: "lm-sensors"
   version: "3.6.0+5"
@@ -321,13 +316,9 @@ packages:
     category: "sys-apps"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "mc"
   version: "4.8.26+57"
@@ -341,13 +332,9 @@ packages:
     category: "app-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "nnn"
   version: "4.0+37"
@@ -361,13 +348,9 @@ packages:
     category: "app-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "opera"
   version: "77.0.4054.90+36"
@@ -381,13 +364,12 @@ packages:
     category: "www-client"
     version: ">=0"
   requires:
-  - category: "layers"
+  - &layers-X
+    category: "layers"
     name: "X"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
 - <<: *apps
   name: "plasma-firewall"
   version: "5.23.49+2"
@@ -401,19 +383,14 @@ packages:
     category: "kde-plasma"
     version: ">=0"
   requires:
-  - category: "apps"
+  - <<: *layers-plasma
+  - &apps-ufw
+    category: "apps"
     name: "ufw"
-    version: ">=0"
-  - category: "layers"
-    name: "plasma"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
-  - category: "apps"
-    name: "ufw"
-    version: ">=0"
+  - <<: *layers-plasma
+  - <<: *apps-ufw
 - <<: *apps
   name: "plasma-sdk"
   version: "1.3+2"
@@ -427,13 +404,9 @@ packages:
     category: "kde-plasma"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 - <<: *apps
   name: "pulseaudio-qt"
   version: "1.3+2"
@@ -447,13 +420,9 @@ packages:
     category: "media-libs"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
 - <<: *apps
   name: "solaar"
   version: "1.0.5-r2"
@@ -467,13 +436,9 @@ packages:
     category: "app-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
 - <<: *apps
   name: "subtitlecomposer"
   version: "0.7.1"
@@ -487,19 +452,14 @@ packages:
     category: "media-video"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
-  - category: "media-video"
+  - <<: *layers-plasma
+  - &apps-vlc
+    category: "media-video"
     name: "vlc"
     version: ">=0"
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
-  - category: "media-video"
-    name: "vlc"
-    version: ">=0"
+  - <<: *layers-plasma
+  - <<: *apps-vlc
 - <<: *apps
   name: "tree"
   version: "0.4+1"
@@ -513,13 +473,9 @@ packages:
     category: "app-text"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "shntool"
   version: "3.0.10"
@@ -533,13 +489,9 @@ packages:
     category: "media-sound"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "systemdgenie"
   version: "0.99.0+2"
@@ -553,13 +505,9 @@ packages:
     category: "app-admin"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
-  - category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
 - <<: *apps
   name: "tmux"
   version: "3.1+29"
@@ -573,13 +521,9 @@ packages:
     category: "app-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "ufw"
   version: "0.36+3"
@@ -595,13 +539,9 @@ packages:
   pre_emerge: >-
     dev-lang/rust-bin
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "vivaldi"
   version: "4.1.2369.21+8"
@@ -615,13 +555,9 @@ packages:
     category: "www-client"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
 - <<: *apps
   name: "w_scan"
   version: "0.3+1"
@@ -635,13 +571,9 @@ packages:
     category: "media-tv"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "wacomtablet"
   version: "3.2.0+2"
@@ -655,13 +587,9 @@ packages:
     category: "kde-misc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
-  - category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 - <<: *apps
   name: "weechat"
   version: "3.1+27"
@@ -675,13 +603,9 @@ packages:
     category: "net-irc"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - <<: *apps
   name: "zsh"
   version: "5.8+50"
@@ -695,13 +619,9 @@ packages:
     category: "app-shells"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
-  - category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
 - &fonts
   category: "fonts"
   name: "fontawesome"
@@ -712,13 +632,9 @@ packages:
     category: "media-fonts"
     version: ">=0"
   requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
-  - category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
 - <<: *fonts
   name: "roboto"
   version: "0.1"
@@ -760,16 +676,12 @@ packages:
 #         gui-wm/wayfire 
 #         x11-terms/alacritty
 #   requires:
-#     - category: "layers"
-#       name: "gnome-common"
-#       version: ">=0"
-#     - category: "entity"
-#       name: "greetd"
-#       version: ">=0"
-#   build_requires:
-#   - category: "layers"
-#     name: "gnome-common"
+#   - <<: *layers-gnome-common
+#   - category: "entity"
+#     name: "greetd"
 #     version: ">=0"
+#   build_requires:
+#   - <<: *layers-gnome-common
 #   - category: "fonts"
 #     name: "fontawesome"
 #     version: ">=0" 
