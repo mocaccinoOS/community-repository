@@ -3,23 +3,23 @@ prelude:
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L
-- echo "y" | layman -a {{.Values.overlay}}
-{{end}}
+- echo "y" | layman -a {{ .Values.overlay }}
+{{ end }}
 {{ if .Values.pre_emerge }}
-- emerge -1 -j ${JOBS} {{.Values.pre_emerge}}
-{{end}}
+- emerge -1 -j ${JOBS} {{ .Values.pre_emerge }}
+{{ end }}
 
 steps:
-- emerge -j ${JOBS} {{.Values.atom}}
+- emerge -j ${JOBS} {{ .Values.atom }}
 
-requires: {{.Values.build_requires | toYaml | nindent 1}}
+requires: {{ .Values.build_requires | toYaml | nindent 1 }}
 
 env:
 {{ if .Values.labels }}
 - JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
-{{else}}
+{{ else }}
 - JOBS=3
-{{end}}
+{{ end }}
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 excludes:

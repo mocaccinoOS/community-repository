@@ -1,6 +1,33 @@
 packages:
-- &apps
-  category: "apps"
+- category: "apps"
+  name: "abiword"
+  version: "3.0.4+54"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/abiword
+  atom: "app-office/abiword"
+  provides:
+  - name: "abiword"
+    category: "app-office"
+    version: '>=0'
+  - name: "wv"
+    category: "app-text"
+    version: '>=0'
+  requires:
+  - &layers-gnome-common
+    category: "layers"
+    name: "gnome-common"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-gnome-common
+#   steps:
+#     # Workaround upstream dropping patchsets
+#     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
+  finalize:
+  - &finalize_gnome
+    glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
+# - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
 #   labels:
@@ -20,7 +47,8 @@ packages:
 #   - category: "layers"
 #     name: "plasma"
 #     version: ">=0"
-# - <<: *apps
+- &apps
+  category: "apps"
   name: "cuetools"
   version: "1.4.1"
   labels:
