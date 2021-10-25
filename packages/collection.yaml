@@ -352,6 +352,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 - <<: *apps
+  name: "nx"
+  version: "3.5.99.26"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/nx
+  atom: "net-misc/nx"
+  provides:
+  - name: "nx"
+    category: "net-misc"
+    version: ">=0"
+  requires:
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+- <<: *apps
   name: "opera"
   version: "77.0.4054.90+36"
   labels:
@@ -364,10 +383,7 @@ packages:
     category: "www-client"
     version: ">=0"
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 - <<: *apps
