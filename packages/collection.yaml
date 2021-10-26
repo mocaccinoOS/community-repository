@@ -646,6 +646,22 @@ packages:
   build_requires:
   - <<: *layers-system-x
 - <<: *apps
+  name: "wxGTK"
+  version: "3.0.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/wxGTK
+  atom: "x11-libs/wxGTK"
+  provides:
+  - name: "wxGTK"
+    category: "x11-libs"
+    version: ">=0"
+  requires:
+  - <<: *gnome-common
+  build_requires:
+  - <<: *gnome-common
+- <<: *apps
   name: "zsh"
   version: "5.8+50"
   labels:
