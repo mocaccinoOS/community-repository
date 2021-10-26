@@ -153,6 +153,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 - <<: *apps
+  name: "flacon"
+  version: "5.5.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/flacon
+  atom: "media-sound/flacon"
+  provides:
+  - name: "flacon"
+    category: "media-sound"
+    version: ">=0"
+  requires:
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt
+- <<: *apps
   name: "gnumeric"
   version: "1.12.48+52"
   labels:
