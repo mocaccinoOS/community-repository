@@ -11,7 +11,9 @@ prelude:
 
 steps:
 - emerge -j ${JOBS} {{ .Values.atom }}
+{{ if .Values.bdeps }}
 - emerge -C {{ .Values.bdeps }}
+{{ end }}
 
 requires: {{ .Values.build_requires | toYaml | nindent 1 }}
 
