@@ -201,22 +201,22 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-- <<: *apps
-  name: "hwinfo"
-  version: "21.76"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwinfo
-  atom: "sys-apps/hwinfo"
-  provides:
-  - name: "hwinfo"
-    category: "sys-apps"
-    version: '>=0'
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - <<: *apps
+#   name: "hwinfo"
+#   version: "21.76"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-apps/hwinfo
+#   atom: "sys-apps/hwinfo"
+#   provides:
+#   - name: "hwinfo"
+#     category: "sys-apps"
+#     version: '>=0'
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 - <<: *apps
   name: "kate"
   version: "21.04.3+9"
@@ -380,25 +380,29 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-# - <<: *apps
-#   name: "nx"
-#   version: "3.5.99.26"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/nx
-#   atom: "net-misc/nx"
-#   provides:
-#   - name: "nx"
-#     category: "net-misc"
-#     version: ">=0"
-#   requires:
-#   - &layers-X
-#     category: "layers"
-#     name: "X"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-X
+- <<: *apps
+  name: "nx"
+  version: "3.5.99.26"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/nx
+  atom: "net-misc/nx"
+  provides:
+  - name: "nx"
+    category: "net-misc"
+    version: ">=0"
+  requires:
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+  bdeps: >-
+    x11-misc/gccmakedep
+    x11-misc/xorg-cf-files
+    x11-misc/imake
 - <<: *apps
   name: "opera"
   version: "77.0.4054.90+36"
