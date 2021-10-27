@@ -201,22 +201,27 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-# - <<: *apps
-#   name: "hwinfo"
-#   version: "21.76"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sys-apps/hwinfo
-#   atom: "sys-apps/hwinfo"
-#   provides:
-#   - name: "hwinfo"
-#     category: "sys-apps"
-#     version: '>=0'
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- <<: *apps
+  name: "hwinfo"
+  version: "21.76"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwinfo
+  atom: "sys-apps/hwinfo"
+  provides:
+  - name: "hwinfo"
+    category: "sys-apps"
+    version: '>=0'
+  - name: "libx86emu"
+    category: "dev-libs"
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  bdeps: >-
+    app-arch/rpm2targz
 - <<: *apps
   name: "kate"
   version: "21.04.3+9"
