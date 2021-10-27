@@ -1,6 +1,7 @@
 install:
-{{ if .Values.finalize }}
-{{ .Values.finalize | toYaml | nindent 0 }}
+
+{{ if ( index .Values.requires "gnome-common" ) }}
+- glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
 {{ end }}
 - update-mime-database /usr/share/mime/
 - ldconfig

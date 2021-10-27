@@ -24,9 +24,7 @@ packages:
 #   steps:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
-  finalize:
-  - &finalize-gnome
-    glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
+#
 # - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
@@ -187,8 +185,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  finalize:
-  - *finalize-gnome
 - <<: *apps
   name: "hexchat"
   version: "2.14.3+64"
@@ -205,8 +201,22 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  finalize:
-  - *finalize-gnome
+- <<: *apps
+  name: "hwinfo"
+  version: "21.76"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwinfo
+  atom: "sys-apps/hwinfo"
+  provides:
+  - name: "hwinfo"
+    category: "sys-apps"
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 - <<: *apps
   name: "kate"
   version: "21.04.3+9"
