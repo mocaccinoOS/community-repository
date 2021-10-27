@@ -306,6 +306,25 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 - <<: *apps
+  name: "krfb"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/krfb
+  atom: "kde-apps/krfb"
+  provides:
+  - name: "krfb"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - &layers-plasma
+    category: "layers"
+    name: "plasma"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+- <<: *apps
   name: "krusader"
   version: "2.7.2+36"
   labels:
@@ -512,7 +531,7 @@ packages:
   requires:
   - <<: *layers-plasma
   - &apps-vlc
-    category: "media-video"
+    category: "apps"
     name: "vlc"
     version: ">=0"
   build_requires:
@@ -665,6 +684,64 @@ packages:
   build_requires:
   - <<: *layers-system-x
 - <<: *apps
+  name: "x2goclient"
+  version: "4.1.2.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/x2goclient
+  atom: "net-misc/x2goclient"
+  provides:
+  - name: "x2goclient"
+    category: "net-misc"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - &apps-nx
+    category: "apps"
+    name: "nx"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+  - <<: *apps-nx
+  bdeps: >-
+    dev-qt/linguist-tools
+#     
+# - <<: *apps
+#   name: "x2goserver"
+#   version: "4.1.2.2"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/x2goserver
+#   atom: "net-misc/x2goserver"
+#   provides:
+#   - name: "x2goserver"
+#     category: "net-misc"
+#     version: ">=0"
+#   - name: "x2gouser"
+#     category: "acct-user"
+#     version: ">=0"
+#   - name: "x2goprint"
+#     category: "acct-user"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   - &apps-nx
+#     category: "apps"
+#     name: "nx"
+#     version: ">=0"
+#   - category: "entity"
+#     name: "x2gouser"
+#     version: ">=0"
+#   - category: "entity"
+#     name: "x2goprint"
+#     version: ">=0"
+#   build_requires:
+#   - <<: *layers-plasma
+#   - <<: *apps-nx
+# 
+- <<: *apps
   name: "zsh"
   version: "5.8+50"
   labels:
@@ -680,6 +757,7 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+### FONTS
 - &fonts
   category: "fonts"
   name: "fontawesome"
