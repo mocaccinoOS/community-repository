@@ -1,7 +1,8 @@
 install:
-
-{{ if ( index .Values.requires "gnome-common" ) }}
+{{- range .Values.requires | uniq -}}
+  {{- if eq .name "gnome-common" -}}
 - glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
-{{ end }}
+  {{- end }}
+{{- end}}
 - update-mime-database /usr/share/mime/
 - ldconfig
