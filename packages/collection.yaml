@@ -24,7 +24,7 @@ packages:
 #   steps:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
-#
+# 
 # - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
@@ -44,6 +44,9 @@ packages:
 #     version: ">=0"
 #   build_requires:
 #   - <<: *layers-plasma
+#   bdeps: >-
+#     dev-cpp/gtest
+# #     dev-qt/linguist-tools
 - &apps
   category: "apps"
   name: "cuetools"
@@ -318,10 +321,7 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
 - <<: *apps
@@ -704,8 +704,8 @@ packages:
   build_requires:
   - <<: *layers-plasma
   - <<: *apps-nx
-  bdeps: >-
-    dev-qt/linguist-tools
+#   bdeps: >-
+#     dev-qt/linguist-tools
 #     
 # - <<: *apps
 #   name: "x2goserver"
