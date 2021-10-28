@@ -413,7 +413,8 @@ packages:
       net-misc/nx
   atom: "net-misc/nx"
   provides:
-  - name: "nx"
+  - &apps-nx
+    name: "nx"
     category: "net-misc"
     version: ">=0"
   requires:
@@ -423,7 +424,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
-  bdeps: >-
+  bdeps: &apps-nx-bdeps >-
     x11-misc/gccmakedep
     x11-misc/xorg-cf-files
     x11-misc/imake
@@ -693,14 +694,13 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-plasma
-  - &apps-nx
-    category: "net-misc"
-    name: "nx"
-    version: ">=0"
+  - <<: *apps-nx
   build_requires:
   - <<: *layers-plasma
-#  - <<: *apps-nx
-#   bdeps: >-
+#   - <<: *apps-nx
+  bdeps: >-
+    <<: *apps-nx-bdeps
+    <<: *apps-nx
 #     dev-qt/linguist-tools
 #     
 # - <<: *apps
