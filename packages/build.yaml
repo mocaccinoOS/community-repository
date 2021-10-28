@@ -6,7 +6,9 @@ prelude:
 - echo "y" | layman -a {{ .Values.overlay }}
 {{ end }}
 {{ if .Values.pre_emerge }}
-- emerge -1 -j ${JOBS} {{ .Values.pre_emerge }}
+{{ range .Values.pre_emerge }}
+- emerge -1 -j ${JOBS} {{ . }}
+{{ end }}
 {{ end }}
 
 steps:

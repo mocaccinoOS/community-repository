@@ -38,6 +38,9 @@ packages:
 #   - name: "clementine"
 #     category: "media-sound"
 #     version: ">=0"
+#   pre_emerge:
+#   - dev-cpp/gtest
+#   # - dev-qt/linguist-tools
 #   requires:
 #   - &layers-plasma 
 #     category: "layers"
@@ -45,9 +48,6 @@ packages:
 #     version: ">=0"
 #   build_requires:
 #   - <<: *layers-plasma
-#   bdeps:
-#   - dev-cpp/gtest
-# #     dev-qt/linguist-tools
 
 - &apps
   category: "apps"
@@ -223,6 +223,8 @@ packages:
     emerge.packages: >-
       sys-apps/hwinfo
   atom: "sys-apps/hwinfo"
+  pre_emerge:
+  - app-arch/rpm2targz
   provides:
   - name: "hwinfo"
     category: "sys-apps"
@@ -234,8 +236,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  bdeps:
-  - app-arch/rpm2targz
 
 - <<: *apps
   name: "kate"
@@ -440,6 +440,11 @@ packages:
     name: "nx"
     category: "net-misc"
     version: ">=0"
+  pre_emerge:
+  - &apps-nx-bdeps >-
+    x11-misc/gccmakedep
+    x11-misc/xorg-cf-files
+    x11-misc/imake
   requires:
   - &layers-X
     category: "layers"
@@ -447,11 +452,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
-  bdeps:
-  - &apps-nx-bdeps >-
-    x11-misc/gccmakedep
-    x11-misc/xorg-cf-files
-    x11-misc/imake
 
 - <<: *apps
   name: "opera"
@@ -645,8 +645,8 @@ packages:
   - name: "ufw"
     category: "net-firewall"
     version: ">=0"
-  pre_emerge: >-
-    dev-lang/rust-bin
+  pre_emerge:
+  - dev-lang/rust-bin
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -732,16 +732,16 @@ packages:
   - name: "x2goclient"
     category: "net-misc"
     version: ">=0"
+  pre_emerge:
+  - *apps-nx-bdeps
+  - *apps-nx-packages
+  # - dev-qt/linguist-tools
   requires:
   - <<: *layers-plasma
   - <<: *apps-nx
   build_requires:
   - <<: *layers-plasma
-#   - <<: *apps-nx
-  bdeps:
-  - *apps-nx-bdeps
-  - *apps-nx-packages
-#  - dev-qt/linguist-tools
+  # - <<: *apps-nx
 
 - <<: *apps
   name: "x2goserver"
@@ -773,8 +773,11 @@ packages:
   - name: "Switch"
     category: "dev-perl"
     version: ">=0"
+  pre_emerge:
+  - *apps-nx-bdeps
+  - *apps-nx-packages
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-X
   - <<: *apps-nx
   - category: "entity"
     name: "x2gouser"
@@ -783,11 +786,8 @@ packages:
     name: "x2goprint"
     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
-#  - <<: *apps-nx
-  bdeps:
-  - *apps-nx-bdeps
-  - *apps-nx-packages
+  - <<: *layers-X
+  # - <<: *apps-nx
 
 - <<: *apps
   name: "zsh"
@@ -855,8 +855,6 @@ packages:
 #   category: "layer"
 #   name: "wayfire"
 #   version: 0.7.1+28
-#   pre_emerge: >-
-#         dev-lang/rust-bin
 #   atom: >-
 #         gui-apps/grim 
 #         gui-apps/gtkgreet 
@@ -865,6 +863,8 @@ packages:
 #         gui-apps/wf-shell 
 #         gui-wm/wayfire 
 #         x11-terms/alacritty
+#   pre_emerge:
+#   - dev-lang/rust-bin
 #   requires:
 #   - <<: *layers-gnome-common
 #   - category: "entity"
