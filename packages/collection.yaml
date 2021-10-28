@@ -741,41 +741,54 @@ packages:
   bdeps:
   - *apps-nx-bdeps
   - *apps-nx-packages
-#    dev-qt/linguist-tools
+#  - dev-qt/linguist-tools
 
-# - <<: *apps
-#   name: "x2goserver"
-#   version: "4.1.2.2"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/x2goserver
-#   atom: "net-misc/x2goserver"
-#   provides:
-#   - name: "x2goserver"
-#     category: "net-misc"
-#     version: ">=0"
-#   - name: "x2gouser"
-#     category: "acct-user"
-#     version: ">=0"
-#   - name: "x2goprint"
-#     category: "acct-user"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-plasma
-#   - &apps-nx
-#     category: "apps"
-#     name: "nx"
-#     version: ">=0"
-#   - category: "entity"
-#     name: "x2gouser"
-#     version: ">=0"
-#   - category: "entity"
-#     name: "x2goprint"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-plasma
-#   - <<: *apps-nx
+- <<: *apps
+  name: "x2goserver"
+  version: "4.1.2.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/x2goserver
+      dev-perl/Config-Simple
+      dev-perl/File-ReadBackwards
+      dev-perl/Switch
+  atom: "net-misc/x2goserver"
+  provides:
+  - name: "x2goserver"
+    category: "net-misc"
+    version: ">=0"
+  - name: "x2gouser"
+    category: "acct-user"
+    version: ">=0"
+  - name: "x2goprint"
+    category: "acct-user"
+    version: ">=0"
+  - name: "Config-Simple"
+    category: "dev-perl"
+    version: ">=0"
+  - name: "File-ReadBackwards"
+    category: "dev-perl"
+    version: ">=0"
+  - name: "Switch"
+    category: "dev-perl"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-nx
+  - category: "entity"
+    name: "x2gouser"
+    version: ">=0"
+  - category: "entity"
+    name: "x2goprint"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+#  - <<: *apps-nx
+  bdeps:
+  - *apps-nx-bdeps
+  - *apps-nx-packages
+
 - <<: *apps
   name: "zsh"
   version: "5.8+50"
