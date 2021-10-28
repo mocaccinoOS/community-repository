@@ -429,7 +429,7 @@ packages:
 
 - <<: *apps
   name: "nx"
-  version: "3.5.99.26+1"
+  version: "3.5.99.26+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-nx-packages >-
@@ -722,7 +722,7 @@ packages:
 
 - <<: *apps
   name: "x2goclient"
-  version: "4.1.2.2+1"
+  version: "4.1.2.2+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -735,17 +735,15 @@ packages:
   pre_emerge:
   - *apps-nx-bdeps
   - *apps-nx-packages
-  # - dev-qt/linguist-tools
   requires:
   - <<: *layers-plasma
   - <<: *apps-nx
   build_requires:
   - <<: *layers-plasma
-  # - <<: *apps-nx
 
 - <<: *apps
   name: "x2goserver"
-  version: "4.1.2.2"
+  version: "4.1.2.2+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -787,7 +785,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
-  # - <<: *apps-nx
 
 - <<: *apps
   name: "zsh"
