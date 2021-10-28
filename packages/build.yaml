@@ -12,7 +12,9 @@ prelude:
 steps:
 - emerge -j ${JOBS} {{ .Values.atom }}
 {{ if .Values.bdeps }}
-- emerge -C {{ .Values.bdeps }}
+{{ range .Values.bdeps }}
+- emerge -C {{ . }}
+{{ end}}
 {{ end }}
 
 requires: {{ .Values.build_requires | toYaml | nindent 1 }}
