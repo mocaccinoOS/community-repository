@@ -1,6 +1,7 @@
 packages:
 
-- category: "apps"
+- &apps
+  category: "apps"
   name: "abiword"
   version: "3.0.4+54"
   labels:
@@ -49,8 +50,7 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
-- &apps
-  category: "apps"
+- <<: *apps
   name: "cuetools"
   version: "1.4.1"
   labels:
@@ -452,6 +452,25 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
+
+- <<: *apps
+  name: "okular"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/okular
+  atom: "kde-apps/okular"
+  provides:
+  - name: "okular"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+#  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-plasma
+#  - <<: *layers-gnome-common
 
 - <<: *apps
   name: "opera"
