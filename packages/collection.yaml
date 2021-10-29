@@ -453,24 +453,41 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# - <<: *apps
+#   name: "okular"
+#   version: "21.04.3"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       kde-apps/okular
+#   atom: "kde-apps/okular"
+#   provides:
+#   - name: "okular"
+#     category: "kde-apps"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+# #  - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-plasma
+# #  - <<: *layers-gnome-common
+
 - <<: *apps
-  name: "okular"
-  version: "21.04.3"
+  name: "onedrive"
+  version: "2.4.9"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/okular
-  atom: "kde-apps/okular"
+      net-misc/onedrive
+  atom: "net-misc/onedrive"
   provides:
-  - name: "okular"
-    category: "kde-apps"
+  - name: "onedrive"
+    category: "net-misc"
     version: ">=0"
   requires:
-  - <<: *layers-plasma
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-plasma
-#  - <<: *layers-gnome-common
+  - <<: *layers-gnome-common
 
 - <<: *apps
   name: "opera"
