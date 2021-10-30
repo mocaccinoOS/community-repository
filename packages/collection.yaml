@@ -83,7 +83,8 @@ packages:
   - name: "eselect-dlang"
     category: "app-eselect"
     version: ">=0"
-  - name: "dmd"
+  - &apps-dmd
+    name: "dmd"
     category: "dev-lang"
     version: "2.094.2"
   requires:
@@ -528,7 +529,7 @@ packages:
   - *apps-dmd-packages
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-dmd-packages
+  - <<: *apps-dmd
   build_requires:
   - <<: *layers-gnome-common
 
