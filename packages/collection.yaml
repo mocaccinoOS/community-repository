@@ -71,6 +71,27 @@ packages:
   - <<: *layers-system-x
 
 - <<: *apps
+  name: "dmd"
+  version: "2.094.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-dmd-packages >-
+      dev-lang/dmd-2.094.2
+  atom: "dev-lang/dmd-2.094.2"
+  overlay: "dlang"
+  provides:
+  - name: "eselect-dlang"
+    category: "app-eselect"
+    version: ">=0"
+  - name: "dmd"
+    category: "dev-lang"
+    version: "2.094.2"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- <<: *apps
   name: "dolphin-plugins-git"
   version: "21.04.3"
   labels:
@@ -472,6 +493,24 @@ packages:
 #   - <<: *layers-plasma
 # #  - <<: *layers-gnome-common
 
+# - <<: *apps
+#   name: "onedrive"
+#   version: "2.4.9"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/onedrive
+#   atom: "net-misc/onedrive"
+#   overlay: "dlang"
+#   provides:
+#   - name: "onedrive"
+#     category: "net-misc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
+
 - <<: *apps
   name: "onedrive"
   version: "2.4.9"
@@ -485,8 +524,11 @@ packages:
   - name: "onedrive"
     category: "net-misc"
     version: ">=0"
+  pre_emerge:
+  - *apps-dmd-packages
   requires:
   - <<: *layers-gnome-common
+  - <<: *apps-dmd-packages
   build_requires:
   - <<: *layers-gnome-common
 
