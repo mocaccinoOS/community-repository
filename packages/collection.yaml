@@ -402,6 +402,23 @@ packages:
   - <<: *layers-plasma
 
 - <<: *apps
+  name: "kstars"
+  version: "3.5.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/kstars
+  atom: "sci-astronomy/kstars"
+  provides:
+  - name: "kstars"
+    category: "sci-astronomy"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+  
+- <<: *apps
   name: "latte-dock"
   version: "3.1.2+26"
   labels:
