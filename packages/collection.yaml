@@ -27,6 +27,29 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
+- <<: *apps
+  name: "cdparanoia"
+  version: "3.10.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/cdparanoia
+  atom: "media-sound/cdparanoia"
+  provides:
+  - name: "cdparanoia"
+    category: "media-sound"
+    version: ">=0"
+  - name: "eselect-cdparanoia"
+    category: "app-eselect"
+    version: ">=0"
+  requires:
+  - &layers-system-x
+    category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
+
 # - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
@@ -63,10 +86,7 @@ packages:
     category: "app-cdr"
     version: ">=0"
   requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -493,27 +513,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 # #  - <<: *layers-gnome-common
-
-# - <<: *apps
-#   name: "onedrive"
-#   version: "2.4.9"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/onedrive
-#   atom: "net-misc/onedrive"
-#   overlay: "dlang"
-#   provides:
-#   - name: "eselect-dlang"
-#     category: "app-eselect"
-#     version: ">=0"
-#   - name: "onedrive"
-#     category: "net-misc"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
 
 - <<: *apps
   name: "onedrive"
