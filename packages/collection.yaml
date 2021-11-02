@@ -27,29 +27,6 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
-- <<: *apps
-  name: "cdparanoia"
-  version: "3.10.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/cdparanoia
-  atom: "media-sound/cdparanoia"
-  provides:
-  - name: "cdparanoia"
-    category: "media-sound"
-    version: ">=0"
-  - name: "eselect-cdparanoia"
-    category: "app-eselect"
-    version: ">=0"
-  requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-system-x
-
 # - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
@@ -948,28 +925,3 @@ packages:
   - name: "robotoslab"
     category: "media-fonts"
     version: ">=0"
-
-# - <<: *layers
-#   category: "layer"
-#   name: "wayfire"
-#   version: 0.7.1+28
-#   atom: >-
-#         gui-apps/grim 
-#         gui-apps/gtkgreet 
-#         gui-apps/waybar 
-#         gui-apps/wcm 
-#         gui-apps/wf-shell 
-#         gui-wm/wayfire 
-#         x11-terms/alacritty
-#   pre_emerge:
-#   - dev-lang/rust-bin
-#   requires:
-#   - <<: *layers-gnome-common
-#   - category: "entity"
-#     name: "greetd"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-gnome-common
-#   - category: "fonts"
-#     name: "fontawesome"
-#     version: ">=0" 
