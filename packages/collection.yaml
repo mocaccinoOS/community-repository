@@ -27,6 +27,26 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
+- <<: *apps
+  name: "celestia"
+  version: "1.7.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/celestia
+  atom: "sci-astronomy/celestia"
+  provides:
+  - name: "celestia"
+    category: "sci-astronomy"
+    version: ">=0"
+  requires:
+  - &layers-plasma
+    category: "layers"
+    name: "plasma"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+
 # - <<: *apps
 #   name: "clementine"
 #   version: "1.4.0"
@@ -166,6 +186,26 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# - <<: *apps
+#   name: "filezilla"
+#   version: "3.53.1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-ftp/filezilla
+#   atom: "net-ftp/filezilla"
+#   provides:
+#   - name: "filezilla"
+#     category: "net-ftp"
+#     version: ">=0"
+#   requires:
+#   - &layers-kde-common
+#     category: "layers"
+#     name: "kde-common"
+#     version: ">=0"
+#   build_requires:
+#   - <<: *layers-kde-common
+
 - <<: *apps
   name: "fish"
   version: "3.1.2+25"
@@ -272,10 +312,7 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
 
@@ -381,24 +418,24 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
-  name: "kstars"
-  version: "3.5.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-astronomy/kstars
-  atom: "sci-astronomy/kstars"
-  pre_emerge:
-  - dev-cpp/eigen
-  provides:
-  - name: "kstars"
-    category: "sci-astronomy"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
+# - <<: *apps
+#   name: "kstars"
+#   version: "3.5.3"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       sci-astronomy/kstars
+#   atom: "sci-astronomy/kstars"
+#   pre_emerge:
+#   - dev-cpp/eigen
+#   provides:
+#   - name: "kstars"
+#     category: "sci-astronomy"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   build_requires:
+#   - <<: *layers-plasma
   
 - <<: *apps
   name: "latte-dock"
