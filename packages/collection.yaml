@@ -27,6 +27,7 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
+# TO BUMP WHEN DEPS AVAILABLE
 - <<: *apps
   name: "celestia"
   version: "1.7.0+1"
@@ -150,6 +151,31 @@ packages:
   - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
+
+- <<: *apps
+  name: "easytag"
+  version: "2.4.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easytag
+  atom: "media-sound/easytag"
+  provides:
+  - name: "easytag"
+    category: "media-sound"
+    version: ">=0"
+  requires:
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
+#   - &layers-gnome
+#     category: "layers"
+#     name: "gnome"
+#     version: ">=0"
+  build_requires:
+  - <<: layers-X
+#   - <<: *layers-gnome
 
 - <<: *apps
   name: "ffmpegthumbs"
@@ -526,10 +552,7 @@ packages:
     x11-misc/xorg-cf-files
     x11-misc/imake
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
