@@ -165,16 +165,13 @@ packages:
     category: "media-sound"
     version: ">=0"
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-gnome-common
 #   - &layers-gnome
 #     category: "layers"
 #     name: "gnome"
 #     version: ">=0"
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 #   - <<: *layers-gnome
 
 - <<: *apps
