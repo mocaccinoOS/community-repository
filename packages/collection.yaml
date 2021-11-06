@@ -50,6 +50,29 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &libs
+  category: "libs"
+  name: "chromaprint"
+  version: "1.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/chromaprint
+  atom: "media-libs/chromaprint"
+  provides:
+  - name: "chromaprint"
+    category: "media-libs"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+  requires:
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+  
 - <<: *apps
   name: "clementine"
   version: "1.4.0"
@@ -66,8 +89,13 @@ packages:
   - dev-cpp/gtest
   requires:
   - <<: *layers-plasma
+  - &libs-chromaprint
+    category: "libs"
+    name: "chromaprint"
+    version: ">=0"
   build_requires:
   - <<: *layers-plasma
+  - <<: *libs-chromaprint
 
 - <<: *apps
   name: "cuetools"
@@ -548,10 +576,11 @@ packages:
     x11-misc/xorg-cf-files
     x11-misc/imake
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
+#   - &layers-X
+#     category: "layers"
+#     name: "X"
+#     version: ">=0"
   build_requires:
   - <<: *layers-X
 
