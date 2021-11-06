@@ -154,7 +154,7 @@ packages:
 
 - <<: *apps
   name: "easytag"
-  version: "2.4.3"
+  version: "2.4.3+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -171,7 +171,11 @@ packages:
 #     name: "gnome"
 #     version: ">=0"
   build_requires:
-  - <<: *layers-gnome-common
+#  - <<: *layers-gnome-common
+  - &layers-gnome
+    category: "layers"
+    name: "gnome"
+    version: ">=0"
 #   - <<: *layers-gnome
 
 - <<: *apps
