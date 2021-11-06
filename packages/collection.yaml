@@ -73,29 +73,29 @@ packages:
   build_requires:
   - <<: *layers-X
   
-- <<: *apps
-  name: "clementine"
-  version: "1.4.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/clementine
-  atom: "media-sound/clementine"
-  provides:
-  - name: "clementine"
-    category: "media-sound"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/gtest
-  requires:
-  - <<: *layers-plasma
-  - &libs-chromaprint
-    category: "libs"
-    name: "chromaprint"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-plasma
-  - <<: *libs-chromaprint
+# - <<: *apps
+#   name: "clementine"
+#   version: "1.4.0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/clementine
+#   atom: "media-sound/clementine"
+#   provides:
+#   - name: "clementine"
+#     category: "media-sound"
+#     version: ">=0"
+#   pre_emerge:
+#   - dev-cpp/gtest
+#   requires:
+#   - <<: *layers-plasma
+#   - &libs-chromaprint
+#     category: "libs"
+#     name: "chromaprint"
+#     version: ">=0"
+#   build_requires:
+#   - <<: *layers-plasma
+#   - <<: *libs-chromaprint
 
 - <<: *apps
   name: "cuetools"
