@@ -50,6 +50,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+#TO BE MOVED IN A LAYER
 - &libs
   category: "libs"
   name: "chromaprint"
@@ -87,6 +88,7 @@ packages:
     version: ">=0"
   pre_emerge:
   - dev-cpp/gtest
+  - media-libs/chromaprint
   requires:
   - <<: *layers-plasma
   - &libs-chromaprint
@@ -95,7 +97,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
-  - <<: *libs-chromaprint
 
 - <<: *apps
   name: "cuetools"
