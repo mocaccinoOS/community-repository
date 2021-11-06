@@ -164,6 +164,9 @@ packages:
   - name: "easytag"
     category: "media-sound"
     version: ">=0"
+  pre_emerge:
+  - media-libs/id3lib
+  - media-libs/opusfile  
   requires:
   - <<: *layers-gnome-common
 #   - &layers-gnome
@@ -171,12 +174,8 @@ packages:
 #     name: "gnome"
 #     version: ">=0"
   build_requires:
-#  - <<: *layers-gnome-common
-  - &layers-gnome
-    category: "layers"
-    name: "gnome"
-    version: ">=0"
-#   - <<: *layers-gnome
+  - <<: *layers-gnome-common
+#  - <<: *layers-gnome
 
 - <<: *apps
   name: "ffmpegthumbs"
