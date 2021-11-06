@@ -50,28 +50,24 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# - <<: *apps
-#   name: "clementine"
-#   version: "1.4.0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/clementine
-#   atom: "media-sound/clementine"
-#   provides:
-#   - name: "clementine"
-#     category: "media-sound"
-#     version: ">=0"
-#   pre_emerge:
-#   - dev-cpp/gtest
-#   # - dev-qt/linguist-tools
-#   requires:
-#   - &layers-plasma 
-#     category: "layers"
-#     name: "plasma"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-plasma
+- <<: *apps
+  name: "clementine"
+  version: "1.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/clementine
+  atom: "media-sound/clementine"
+  provides:
+  - name: "clementine"
+    category: "media-sound"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
 
 - <<: *apps
   name: "cuetools"
