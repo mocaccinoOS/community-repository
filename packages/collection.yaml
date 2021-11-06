@@ -549,7 +549,10 @@ packages:
     x11-misc/xorg-cf-files
     x11-misc/imake
   requires:
-  - <<: *layers-X
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
