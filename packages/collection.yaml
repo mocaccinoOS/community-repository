@@ -3,8 +3,7 @@ packages:
 # libs
 
 # To be moved to X layer
-- &libs
-  category: "libs"
+- category: "libs"
   name: "chromaprint"
   version: "1.5.0"
   labels:
@@ -26,7 +25,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *libs
+- category: "libs"
   name: "libmygpo-qt"
   version: "1.1.0"
   labels:
@@ -49,7 +48,7 @@ packages:
   - <<: *layers-qt
   
 # To be moved to qt layer
-- <<: *libs
+- category: "libs"
   name: "PyQt5"
   version: "5.15.4"
   labels:
@@ -95,7 +94,7 @@ packages:
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
 # TO BUMP WHEN DEPS AVAILABLE
-- <<: *apps
+- category: "apps"
   name: "celestia"
   version: "1.7.0+1"
   labels:
@@ -151,7 +150,7 @@ packages:
 #   - <<: *libs-libmygpo-qt
 #   requires_final_images: true
   
-- <<: *apps
+- category: "apps"
   name: "cuetools"
   version: "1.4.1"
   labels:
@@ -171,7 +170,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "dmd"
   version: "2.094.2+1"
   labels:
@@ -193,7 +192,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "dolphin-plugins-git"
   version: "21.04.3"
   labels:
@@ -213,7 +212,7 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-- <<: *apps
+- category: "apps"
   name: "dolphin-plugins-mountiso"
   version: "21.04.3"
   labels:
@@ -230,7 +229,7 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-- <<: *apps
+- category: "apps"
   name: "easytag"
   version: "2.4.3+1"
   labels:
@@ -255,7 +254,7 @@ packages:
   - <<: *layers-gnome-common
 #  - <<: *layers-gnome
 
-- <<: *apps
+- category: "apps"
   name: "ffmpegthumbs"
   version: "21.04.3"
   labels:
@@ -272,7 +271,7 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-- <<: *apps
+- category: "apps"
   name: "filelight"
   version: "21.04.3"
   labels:
@@ -312,7 +311,7 @@ packages:
 #   build_requires:
 #   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "fish"
   version: "3.1.2+25"
   labels:
@@ -329,7 +328,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "flacon"
   version: "5.5.1"
   labels:
@@ -350,7 +349,7 @@ packages:
 #   build_requires:
   - <<: *layers-qt
 
-- <<: *apps
+- category: "apps"
   name: "gnumeric"
   version: "1.12.48+52"
   labels:
@@ -367,7 +366,7 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- <<: *apps
+- category: "apps"
   name: "hexchat"
   version: "2.14.3+64"
   labels:
@@ -384,7 +383,7 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- <<: *apps
+- category: "apps"
   name: "hwinfo"
   version: "21.76+1"
   labels:
@@ -406,7 +405,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "kate"
   version: "21.04.3+9"
   labels:
@@ -423,7 +422,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "kdiff3"
   version: "1.9.3+2"
   labels:
@@ -440,7 +439,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "kolourpaint"
   version: "21.04.3"
   labels:
@@ -457,7 +456,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "kompare"
   version: "21.04.3+2"
   labels:
@@ -474,7 +473,7 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-- <<: *apps
+- category: "apps"
   name: "krename"
   version: "5.0.1"
   labels:
@@ -491,7 +490,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "krfb"
   version: "21.04.3"
   labels:
@@ -508,7 +507,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "krusader"
   version: "2.7.2+36"
   labels:
@@ -544,7 +543,7 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
   
-- <<: *apps
+- category: "apps"
   name: "latte-dock"
   version: "3.1.2+26"
   labels:
@@ -561,7 +560,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "lm-sensors"
   version: "3.6.0+5"
   labels:
@@ -578,7 +577,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "mc"
   version: "4.8.26+57"
   labels:
@@ -595,7 +594,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "nnn"
   version: "4.0+37"
   labels:
@@ -612,7 +611,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "nx"
   version: "3.5.99.26+2"
   labels:
@@ -658,7 +657,7 @@ packages:
 #   - <<: *layers-plasma
 # #  - <<: *layers-gnome-common
 
-- <<: *apps
+- category: "apps"
   name: "onedrive"
   version: "2.4.9+2"
   labels:
@@ -679,7 +678,7 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- <<: *apps
+- category: "apps"
   name: "opera"
   version: "77.0.4054.90+36"
   labels:
@@ -696,7 +695,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *apps
+- category: "apps"
   name: "plasma-firewall"
   version: "5.23.49+2"
   labels:
@@ -718,7 +717,7 @@ packages:
   - <<: *layers-plasma
   - <<: *apps-ufw
 
-- <<: *apps
+- category: "apps"
   name: "plasma-sdk"
   version: "1.3+2"
   labels:
@@ -735,7 +734,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "pulseaudio-qt"
   version: "1.3+2"
   labels:
@@ -752,7 +751,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "solaar"
   version: "1.0.5-r2"
   labels:
@@ -769,7 +768,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *apps
+- category: "apps"
   name: "subtitlecomposer"
   version: "0.7.1"
   labels:
@@ -791,7 +790,7 @@ packages:
   - <<: *layers-plasma  
   - <<: *apps-vlc
 
-- <<: *apps
+- category: "apps"
   name: "tree"
   version: "0.4+1"
   labels:
@@ -808,7 +807,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "shntool"
   version: "3.0.10"
   labels:
@@ -825,7 +824,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "systemdgenie"
   version: "0.99.0+2"
   labels:
@@ -842,7 +841,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- <<: *apps
+- category: "apps"
   name: "tmux"
   version: "3.1+29"
   labels:
@@ -859,7 +858,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "ufw"
   version: "0.36+3"
   labels:
@@ -878,7 +877,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "vivaldi"
   version: "4.1.2369.21+8"
   labels:
@@ -895,7 +894,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *apps
+- category: "apps"
   name: "w_scan"
   version: "0.3+1"
   labels:
@@ -912,7 +911,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "wacomtablet"
   version: "3.2.0+2"
   labels:
@@ -929,7 +928,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "weechat"
   version: "3.1+27"
   labels:
@@ -946,7 +945,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *apps
+- category: "apps"
   name: "x2goclient"
   version: "4.1.2.2+2"
   labels:
@@ -967,7 +966,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "x2goserver"
   version: "4.1.2.2+1"
   labels:
@@ -1012,7 +1011,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *apps
+- category: "apps"
   name: "zsh"
   version: "5.8+50"
   labels:
