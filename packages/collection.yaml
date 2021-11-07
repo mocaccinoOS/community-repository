@@ -49,25 +49,22 @@ packages:
   - <<: *layers-qt
   
 # To be moved to qt layer
-# - <<: *libs
-#   name: "PyQt5"
-#   version: "5.15.4"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/PyQt5
-#   atom: "dev-python/PyQt5"
-#   provides:
-#   - name: "PyQt5"
-#     category: "dev-python"
-#     version: ">=0"
-#   requires:
-#   - &layers-qt
-#     category: "layers"
-#     name: "qt"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-qt
+- <<: *libs
+  name: "PyQt5"
+  version: "5.15.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/PyQt5
+  atom: "dev-python/PyQt5"
+  provides:
+  - name: "PyQt5"
+    category: "dev-python"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 # apps
 - &apps
@@ -120,39 +117,39 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
-  name: "clementine"
-  version: "1.4.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/clementine
-  atom: "media-sound/clementine"
-  provides:
-  - name: "clementine"
-    category: "media-sound"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/gtest
-#   - media-libs/chromaprint
-#   - media-libs/libmygpo-qt
-  requires:
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
-  - &libs-chromaprint
-    category: "libs"
-    name: "chromaprint"
-    version: ">=0"
-  - &libs-libmygpo-qt
-    category: "libs"
-    name: "libmygpo-qt"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
-  - <<: *libs-chromaprint
-  - <<: *libs-libmygpo-qt
-  requires_final_images: true
+# - <<: *apps
+#   name: "clementine"
+#   version: "1.4.0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/clementine
+#   atom: "media-sound/clementine"
+#   provides:
+#   - name: "clementine"
+#     category: "media-sound"
+#     version: ">=0"
+#   pre_emerge:
+#   - dev-cpp/gtest
+# #   - media-libs/chromaprint
+# #   - media-libs/libmygpo-qt
+#   requires:
+#   - <<: *layers-plasma
+#   - <<: *layers-gnome-common
+#   - &libs-chromaprint
+#     category: "libs"
+#     name: "chromaprint"
+#     version: ">=0"
+#   - &libs-libmygpo-qt
+#     category: "libs"
+#     name: "libmygpo-qt"
+#     version: ">=0"
+#   build_requires:
+#   - <<: *layers-plasma
+#   - <<: *layers-gnome-common
+#   - <<: *libs-chromaprint
+#   - <<: *libs-libmygpo-qt
+#   requires_final_images: true
   
 - <<: *apps
   name: "cuetools"
