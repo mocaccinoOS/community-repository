@@ -1,7 +1,8 @@
 packages:
 
+# libs
 
-#TO BE MOVED IN A LAYER
+# To be moved to X layer
 - &libs
   category: "libs"
   name: "chromaprint"
@@ -47,6 +48,30 @@ packages:
   build_requires:
   - <<: *layers-qt
   
+# To be moved to qt layer
+- <<: *libs
+  name: "PyQt5"
+  version: "5.15.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/PyQt5
+  atom: "dev-python/PyQt5"
+  provides:
+  - name: "PyQt5"
+    category: "dev-python"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+  requires:
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt
+
+# apps
 - &apps
   category: "apps"
   name: "abiword"
@@ -97,37 +122,36 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-  - <<: *apps
-  name: "clementine"
-  version: "1.4.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/clementine
-  atom: "media-sound/clementine"
-  provides:
-  - name: "clementine"
-    category: "media-sound"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/gtest
-  - media-libs/chromaprint
-  - media-libs/libmygpo-qt
-  requires:
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
-  - &libs-chromaprint
-    category: "libs"
-    name: "chromaprint"
-    version: ">=0"
-  - &libs-libmygpo-qt
-    category: "libs"
-    name: "libmygpo-qt"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-qt
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
+# - <<: *apps
+#   name: "clementine"
+#   version: "1.4.0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/clementine
+#   atom: "media-sound/clementine"
+#   provides:
+#   - name: "clementine"
+#     category: "media-sound"
+#     version: ">=0"
+#   pre_emerge:
+#   - dev-cpp/gtest
+#   - media-libs/chromaprint
+#   - media-libs/libmygpo-qt
+#   requires:
+#   - <<: *layers-plasma
+#   - <<: *layers-gnome-common
+#   - &libs-chromaprint
+#     category: "libs"
+#     name: "chromaprint"
+#     version: ">=0"
+#   - &libs-libmygpo-qt
+#     category: "libs"
+#     name: "libmygpo-qt"
+#     version: ">=0"
+#   build_requires:
+#   - <<: *layers-plasma
+#   - <<: *layers-gnome-common
   
 - <<: *apps
   name: "cuetools"
