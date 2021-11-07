@@ -50,16 +50,22 @@ packages:
 # To be moved to qt layer
 - category: "libs"
   name: "PyQt5"
-  version: "5.15.4"
+  version: "5.15.4+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/PyQt5
+      dev-python/PyQt5-sip
   atom: "dev-python/PyQt5"
   provides:
   - name: "PyQt5"
     category: "dev-python"
     version: ">=0"
+  - name: "PyQt5-sip"
+    category: "dev-python"
+    version: ">=0"
+  pre_emerge:
+  - dev-python/sip
   requires:
   - <<: *layers-qt
   build_requires:
