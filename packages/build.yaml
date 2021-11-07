@@ -21,6 +21,8 @@ steps:
 
 requires: {{ .Values.build_requires | toYaml | nindent 1 }}
 
+requires_final_images: {{ .Values.requires_final_images }}
+
 env:
 {{ if .Values.labels }}
 - JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
