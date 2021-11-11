@@ -122,39 +122,39 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# - <<: *apps
-#   name: "clementine"
-#   version: "1.4.0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/clementine
-#   atom: "media-sound/clementine"
-#   provides:
-#   - name: "clementine"
-#     category: "media-sound"
-#     version: ">=0"
-#   pre_emerge:
-#   - dev-cpp/gtest
-# #   - media-libs/chromaprint
-# #   - media-libs/libmygpo-qt
-#   requires:
-#   - <<: *layers-plasma
-#   - <<: *layers-gnome-common
-#   - &libs-chromaprint
-#     category: "libs"
-#     name: "chromaprint"
-#     version: ">=0"
-#   - &libs-libmygpo-qt
-#     category: "libs"
-#     name: "libmygpo-qt"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-plasma
-#   - <<: *layers-gnome-common
-#   - <<: *libs-chromaprint
-#   - <<: *libs-libmygpo-qt
-#   requires_final_images: true
+- <<: *apps
+  name: "clementine"
+  version: "1.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/clementine
+  atom: "media-sound/clementine"
+  provides:
+  - name: "clementine"
+    category: "media-sound"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+#   - media-libs/chromaprint
+#   - media-libs/libmygpo-qt
+  requires:
+  - <<: *layers-plasma
+  - <<: *layers-gnome-common
+  - &libs-chromaprint
+    category: "libs"
+    name: "chromaprint"
+    version: ">=0"
+  - &libs-libmygpo-qt
+    category: "libs"
+    name: "libmygpo-qt"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+  - <<: *layers-gnome-common
+  - <<: *libs-chromaprint
+  - <<: *libs-libmygpo-qt
+  requires_final_images: true
   
 - category: "apps"
   name: "cuetools"
