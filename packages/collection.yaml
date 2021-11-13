@@ -143,9 +143,10 @@ packages:
   - dev-cpp/gtest
   - media-libs/chromaprint
   - media-libs/libmygpo-qt
+  - gnome-base/gvfs
   requires:
   - <<: *layers-plasma
-#   - <<: *layers-gnome-common
+  - <<: *layers-gnome-common
   - &libs-chromaprint
     category: "libs"
     name: "chromaprint"
@@ -156,9 +157,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
-#   - <<: *layers-gnome-common
-#  - <<: *libs-chromaprint
-#  - <<: *libs-libmygpo-qt
+  - <<: *layers-gnome-common
 #   requires_final_images: true
   
 - category: "apps"
