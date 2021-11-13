@@ -520,6 +520,23 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "kcharselect"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kcharselect
+  atom: "kde-apps/kcharselect"
+  provides:
+  - name: "kcharselect"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "kdiff3"
   version: "1.9.3+2"
   labels:
