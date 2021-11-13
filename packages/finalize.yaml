@@ -1,6 +1,6 @@
 install:
 {{ range .Values.requires | uniq }}
-  {{ if eq .name "gnome-common" }}
+  {{ if or (eq .name "gnome-common") (eq .name "gnome") }}
 - glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
   {{ end }}
 {{ end }}
