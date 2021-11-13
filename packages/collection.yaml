@@ -1,6 +1,8 @@
 packages:
 
-# libs
+##########
+### libs
+##########
 
 # To be moved to X layer
 - category: "libs"
@@ -71,7 +73,10 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# apps
+##########
+### apps
+##########
+
 - &apps
   category: "apps"
   name: "abiword"
@@ -365,7 +370,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "5.5.1"
+  version: "5.5.1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -381,8 +386,31 @@ packages:
 #     category: "layers"
 #     name: "qt"
 #     version: ">=0"
-#   build_requires:
+  build_requires:
   - <<: *layers-qt
+  
+- category: "apps"
+  name: "fontforge"
+  version: "20201107"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libuninameslist
+      media-gfx/fontforge
+  atom: "media-gfx/fontforge"
+  pre_emerge:
+  - python/sphinx
+  provides:
+  - name: "media-libs/libuninameslist"
+    category: "media-libs"
+    version: ">=0"
+  - name: "fontforge"
+    category: "media-gfx"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "gnumeric"
@@ -1063,7 +1091,9 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-### FONTS
+###########
+### fonts
+###########
 
 - &fonts
   category: "fonts"
@@ -1075,13 +1105,43 @@ packages:
     category: "media-fonts"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
 - <<: *fonts
+  name: "cantarell"
+  version: "0.301"
+  atom: "media-fonts/cantarell"
+  provides:
+  - name: "cantarell"
+    category: "media-fonts"
+    version: ">=0"
+
+- <<: *fonts
+  name: "inconsolata"
+  version: "20140821"
+  atom: "media-fonts/inconsolata"
+  provides:
+  - name: "inconsolata"
+    category: "media-fonts"
+    version: ">=0"
+
+- <<: *fonts
+  name: "inconsolata-hellenic"
+  version: "1.19"
+  atom: "media-fonts/inconsolata-hellenic"
+  provides:
+  - name: "inconsolata-hellenic"
+    category: "media-fonts"
+    version: ">=0"
+
+- <<: *fonts
   name: "roboto"
-  version: "0.1"
+  version: "2.138"
   atom: "media-fonts/roboto"
   provides:
   - name: "roboto"
@@ -1090,7 +1150,7 @@ packages:
 
 - <<: *fonts
   name: "robotomono"
-  version: "0.1"
+  version: "3.000"
   atom: "media-fonts/robotomono"
   overlay: "4nykey"
   provides:
@@ -1100,7 +1160,7 @@ packages:
 
 - <<: *fonts
   name: "robotoslab"
-  version: "0.1"
+  version: "2.000"
   atom: "media-fonts/robotoslab"
   overlay: "4nykey"
   provides:
