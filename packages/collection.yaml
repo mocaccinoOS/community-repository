@@ -331,25 +331,26 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - <<: *apps
-#   name: "filezilla"
-#   version: "3.53.1"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-ftp/filezilla
-#   atom: "net-ftp/filezilla"
-#   provides:
-#   - name: "filezilla"
-#     category: "net-ftp"
-#     version: ">=0"
-#   requires:
-#   - &layers-kde-common
-#     category: "layers"
-#     name: "kde-common"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-kde-common
+- <<: *apps
+  name: "filezilla"
+  version: "3.53.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-libs/libfilezilla
+      net-ftp/filezilla
+  atom: "net-ftp/filezilla"
+  provides:
+  - name: "libfilezilla"
+    category: "dev-libs"
+    version: ">=0"
+  - name: "filezilla"
+    category: "net-ftp"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "fish"
