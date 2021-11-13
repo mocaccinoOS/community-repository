@@ -155,6 +155,7 @@ packages:
     name: "libmygpo-qt"
     version: ">=0"
   build_requires:
+  - <<: *layers-qt
   - <<: *layers-plasma
 #   - <<: *layers-gnome-common
   - <<: *libs-chromaprint
@@ -257,13 +258,8 @@ packages:
   - media-libs/opusfile  
   requires:
   - <<: *layers-gnome-common
-#   - &layers-gnome
-#     category: "layers"
-#     name: "gnome"
-#     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
-#  - <<: *layers-gnome
 
 - category: "apps"
   name: "emacs"
