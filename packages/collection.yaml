@@ -117,7 +117,10 @@ packages:
     category: "app-cdr"
     version: ">=0"
   requires:
-  - <<: *layers-gnome
+  - &layers-gnome
+    category: "layers"
+    name: "gnome"
+    version: ">=0"
   build_requires:
   - <<: *layers-gnome
 
@@ -972,6 +975,32 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "transmission"
+  version: "3.00+73"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/transmission
+  atom: "net-p2p/transmission"
+  provides:
+  - name: "transmission"
+    category: "acct-group"
+    version: '>=0'
+  - name: "transmission"
+    category: "acct-user"
+    version: '>=0'
+  - name: "transmission"
+    category: "net-p2p"
+    version: '>=0'
+  requires:
+  - <<: *layers-gnome-common
+  - name: "transmission"
+    category: "entity"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-gnome-common
+  
+- category: "apps"
   name: "ufw"
   version: "0.36+4"
   labels:
@@ -1155,10 +1184,7 @@ packages:
     category: "media-fonts"
     version: ">=0"
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
