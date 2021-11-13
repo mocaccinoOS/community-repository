@@ -261,6 +261,35 @@ packages:
 #  - <<: *layers-gnome
 
 - category: "apps"
+  name: "emacs"
+  version: "27.1+61"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/emacs
+  atom: "app-editors/emacs"
+  provides:
+    - name: emacs
+      category: app-editors
+      version: '>=0'
+    - name: emacs-common
+      category: app-emacs
+      version: '>=0'
+    - name: eselect-ctags
+      category: app-eselect
+      version: '>=0'
+    - name: eselect-emacs
+      category: app-eselect
+      version: '>=0'
+    - name: liblockfile
+      category: net-libs
+      version: '>=0'
+  requires:
+    - <<: *layers-X
+  build_requires:
+    - <<: *layers-X
+
+- category: "apps"
   name: "ffmpegthumbs"
   version: "21.04.3"
   labels:
