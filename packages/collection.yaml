@@ -104,25 +104,22 @@ packages:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
-# - category: "apps"
-#   name: "brasero"
-#   version: "3.12.2"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-cdr/brasero
-#   atom: "app-cdr/brasero"
-#   provides:
-#   - name: "brasero"
-#     category: "app-cdr"
-#     version: ">=0"
-#   pre_emerge:
-#   - media-libs/id3lib
-#   - media-libs/opusfile  
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "brasero"
+  version: "3.12.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/brasero
+  atom: "app-cdr/brasero"
+  provides:
+  - name: "brasero"
+    category: "app-cdr"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
 
 - category: "apps"
   name: "brave"
