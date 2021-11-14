@@ -51,7 +51,7 @@ packages:
 # To be moved to qt layer
 - category: "libs"
   name: "kplotting"
-  version: "5.85.0"
+  version: "5.85.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -214,6 +214,8 @@ packages:
   atom: "sci-astronomy/celestia"
   pre_emerge:
   - dev-cpp/eigen
+#   - dev-libs/libfmt
+#   - media-libs/glew
   provides:
   - name: "celestia"
     category: "sci-astronomy"
@@ -616,13 +618,14 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      net-libs/libktorrent
       kde-apps/kget
   atom: "kde-apps/kget"
   provides:
   - name: "kget"
     category: "kde-apps"
     version: ">=0"
+  pre_emerge:
+  - net-libs/libktorrent  
   requires:
   - <<: *layers-plasma
   - &libs-libktorrent
@@ -725,12 +728,12 @@ packages:
 #     emerge.packages: >-
 #       sci-astronomy/kstars
 #   atom: "sci-astronomy/kstars"
-#   pre_emerge:
-#   - dev-cpp/eigen
 #   provides:
 #   - name: "kstars"
 #     category: "sci-astronomy"
 #     version: ">=0"
+#   pre_emerge:
+#   - dev-cpp/eigen
 #   requires:
 #   - <<: *layers-plasma
 #   build_requires:
@@ -742,15 +745,16 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      net-libs/libktorrent
-      dev-libs/geoip
-      kde-frameworks/kplotting
       net-p2p/ktorrent
   atom: "net-p2p/ktorrent"
   provides:
   - name: "ktorrent"
     category: "net-p2p"
     version: ">=0"
+  pre_emerge:
+  - net-libs/libktorrent
+  - dev-libs/geoip
+  - kde-frameworks/kplotting
   requires:
   - <<: *layers-plasma
   - <<: *libs-libktorrent
