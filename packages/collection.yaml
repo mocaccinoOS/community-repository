@@ -170,7 +170,7 @@ packages:
 # TO BUMP WHEN DEPS AVAILABLE
 - category: "apps"
   name: "celestia"
-  version: "1.7.0+3"
+  version: "1.7.0+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -183,12 +183,14 @@ packages:
     category: "sci-astronomy"
     version: ">=0"
   requires:
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-X
+#   - &layers-plasma
+#     category: "layers"
+#     name: "plasma"
+#     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-X
+#  - <<: *layers-plasma
 
 - category: "apps"
   name: "clementine"
@@ -208,7 +210,10 @@ packages:
   - media-libs/libmygpo-qt
   - gnome-base/gvfs
   requires:
-  - <<: *layers-plasma
+  - &layers-plasma
+    category: "layers"
+    name: "plasma"
+    version: ">=0"
   - <<: *layers-gnome-common
   - &libs-chromaprint
     category: "libs"
