@@ -190,7 +190,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- <<: *apps
+- category: "apps"
   name: "clementine"
   version: "1.4.0"
   labels:
@@ -384,7 +384,7 @@ packages:
   - <<: *layers-kde-common
 
 # TO BUMP WHEN DEPS AVAILABLE
-- <<: *apps
+- category: "apps"
   name: "filezilla"
   version: "3.53.1"
   labels:
@@ -574,6 +574,28 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "kget"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-libs/libktorrent
+      kde-apps/kget
+  atom: "kde-apps/kget"
+  provides:
+  - name: "kget"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - &libs-libktorrent
+    name: "libktorrent"
+    category: "libs"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "kolourpaint"
   version: "21.04.3"
   labels:
@@ -658,7 +680,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# - <<: *apps
+# - category: "apps"
 #   name: "kstars"
 #   version: "3.5.3"
 #   labels:
@@ -793,7 +815,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - <<: *apps
+# - category: "apps"
 #   name: "okular"
 #   version: "21.04.3"
 #   labels:
