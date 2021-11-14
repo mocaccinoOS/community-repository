@@ -104,7 +104,10 @@ packages:
   pre_emerge:
   - dev-cpp/gtest
   requires:
-  - <<: *layers-qt
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
   build_requires:
   - <<: *layers-qt
   
@@ -475,10 +478,7 @@ packages:
     category: "media-sound"
     version: ">=0"
   requires:
-  - &layers-qt
-    category: "layers"
-    name: "qt"
-    version: ">=0"
+  - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
   
