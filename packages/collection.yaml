@@ -6,7 +6,7 @@ packages:
 
 - category: "libs"
   name: "chmlib"
-  version: "1.5.0"
+  version: "0.40"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -16,7 +16,14 @@ packages:
   - name: "chmlib"
     category: "dev-libs"
     version: ">=0"
-
+  requires:
+  - &layers-system-x
+    category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
+  
 # To be moved to X layer
 - category: "libs"
   name: "chromaprint"
@@ -54,10 +61,7 @@ packages:
     category: "dev-libs"
     version: ">=0"
   requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
