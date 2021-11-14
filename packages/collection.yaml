@@ -26,6 +26,48 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
+  
+# To be moved to system-x layer
+- category: "libs"
+  name: "geoip"
+  version: "1.6.12"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/geoip
+  atom: "dev-libs/geoip"
+  provides:
+  - name: "geoip"
+    category: "dev-libs"
+    version: ">=0"
+  requires:
+  - &layers-system-x
+    category: "layers"
+    name: "system-x"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
+
+# To be moved to qt layer
+- category: "libs"
+  name: "kplotting"
+  version: "5.85.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-frameworks/kplotting
+  atom: "kde-frameworks/kplotting"
+  provides:
+  - name: "kplotting"
+    category: "kde-frameworks"
+    version: ">=0"
+  requires:
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt
 
 # to be bumped when app-crypt/qca is moved to layer qt
 - category: "libs"
@@ -65,10 +107,7 @@ packages:
   pre_emerge:
   - dev-cpp/gtest
   requires:
-  - &layers-qt
-    category: "layers"
-    name: "qt"
-    version: ">=0"
+  - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
   
@@ -239,10 +278,7 @@ packages:
     category: "app-cdr"
     version: ">=0"
   requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -703,7 +739,36 @@ packages:
 #   - <<: *layers-plasma
 #   build_requires:
 #   - <<: *layers-plasma
-  
+
+- category: "apps"
+  name: "ktorrent"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-libs/libktorrent
+      dev-libs/geoip
+      kde-frameworks/kplotting
+      net-p2p/ktorrent
+  atom: "net-p2p/ktorrent"
+  provides:
+  - name: "ktorrent"
+    category: "net-p2p"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-libktorrent
+  - &libs-geoip
+    name: "geoip"
+    category: "libs"
+    version: ">=0"
+  - &libs-kplotting
+    name: "kplotting"
+    category: "libs"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+
 - category: "apps"
   name: "latte-dock"
   version: "3.1.2+26"
