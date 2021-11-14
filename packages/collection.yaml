@@ -209,7 +209,7 @@ packages:
 # TO BUMP WHEN DEPS AVAILABLE
 - category: "apps"
   name: "celestia"
-  version: "1.7.0+4"
+  version: "1.7.0+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -217,21 +217,17 @@ packages:
   atom: "sci-astronomy/celestia"
   pre_emerge:
   - dev-cpp/eigen
-#   - dev-libs/libfmt
-#   - media-libs/glew
+# to remove when available in layers:
+  - dev-libs/libfmt
+  - media-libs/glew
   provides:
   - name: "celestia"
     category: "sci-astronomy"
     version: ">=0"
   requires:
   - <<: *layers-X
-#   - &layers-plasma
-#     category: "layers"
-#     name: "plasma"
-#     version: ">=0"
   build_requires:
   - <<: *layers-X
-#  - <<: *layers-plasma
 
 - category: "apps"
   name: "clementine"
