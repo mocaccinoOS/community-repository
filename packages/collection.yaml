@@ -28,6 +28,26 @@ packages:
   - <<: *layers-X
 
 - category: "libs"
+  name: "libktorrent"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libktorrent
+  atom: "net-libs/libktorrent"
+  provides:
+  - name: "libktorrent"
+    category: "net-libs"
+    version: ">=0"
+  requires:
+  - &layers-kde-common
+    category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "libs"
   name: "libmygpo-qt"
   version: "1.1.0"
   labels:
@@ -356,10 +376,7 @@ packages:
     category: "kde-apps"
     version: ">=0"
   requires:
-  - &layers-kde-common
-    category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
 
