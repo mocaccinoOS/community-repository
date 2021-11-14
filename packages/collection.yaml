@@ -62,17 +62,17 @@ packages:
     category: "kde-frameworks"
     version: ">=0"
   requires:
-  - &layers-qt
+  - &layers-kde-common
     category: "layers"
-    name: "qt"
+    name: "kde-common"
     version: ">=0"
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
 
 # to be bumped when app-crypt/qca is moved to layer qt
 - category: "libs"
   name: "libktorrent"
-  version: "21.04.3+1"
+  version: "21.04.3+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -85,10 +85,7 @@ packages:
   pre_emerge:
   - app-crypt/qca
   requires:
-  - &layers-kde-common
-    category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
 
@@ -476,11 +473,10 @@ packages:
     category: "media-sound"
     version: ">=0"
   requires:
-  - <<: *layers-qt
-#   - &layers-qt
-#     category: "layers"
-#     name: "qt"
-#     version: ">=0"
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
   build_requires:
   - <<: *layers-qt
   
