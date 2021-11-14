@@ -27,9 +27,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# to be bumped when app-crypt/qca is moved to layer qt
 - category: "libs"
   name: "libktorrent"
-  version: "21.04.3"
+  version: "21.04.3+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -39,6 +40,8 @@ packages:
   - name: "libktorrent"
     category: "net-libs"
     version: ">=0"
+  pre_emerge:
+  - app-crypt/qca
   requires:
   - &layers-kde-common
     category: "layers"
