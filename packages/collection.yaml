@@ -65,6 +65,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# To be moved to kde-common layer
+- category: "libs"
+  name: "kdegraphics-mobipocket"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kdegraphics-mobipocket
+  atom: "kde-apps/kdegraphics-mobipocket"
+  provides:
+  - name: "kdegraphics-mobipocket"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - &layers-kde-common
+    category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-kde-common
+
 # To be moved to qt layer
 - category: "libs"
   name: "kplotting"
@@ -79,10 +100,25 @@ packages:
     category: "kde-frameworks"
     version: ">=0"
   requires:
-  - &layers-kde-common
-    category: "layers"
-    name: "kde-common"
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+# to be bumped when app-crypt/qca is moved to layer qt
+- category: "libs"
+  name: "libkexiv2"
+  version: "21.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/libkexiv2
+  atom: "kde-apps/libkexiv2"
+  provides:
+  - name: "libkexiv2"
+    category: "kde-apps"
     version: ">=0"
+  requires:
+  - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
 
@@ -380,6 +416,23 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "discount"
+  version: "2.2.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/discount
+  atom: "app-text/discount"
+  provides:
+  - name: "discount"
+    category: "app-text"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
 - category: "apps"
   name: "dmd"
   version: "2.094.2+1"
