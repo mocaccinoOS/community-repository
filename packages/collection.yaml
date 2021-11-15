@@ -143,26 +143,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- category: "libs"
-  name: "libksysguard"
-  version: "5.22.5+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-plasma/libksysguard
-  atom: "kde-plasma/libksysguard"
-  provides:
-  - name: "libksysguard"
-    category: "kde-plasma"
-    version: ">=0"
-  requires:
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-plasma
-
 # to be bumped when app-crypt/qca is moved to layer qt
 - category: "libs"
   name: "libktorrent"
@@ -381,7 +361,10 @@ packages:
   - media-libs/libmygpo-qt
   - gnome-base/gvfs
   requires:
-  - <<: *layers-plasma
+  - &layers-plasma
+    category: "layers"
+    name: "plasma"
+    version: ">=0"
   - <<: *layers-gnome-common
   - &libs-chromaprint
     category: "libs"
@@ -1029,6 +1012,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "ksysguard"
+  version: "5.22.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/ksysguard
+  atom: "kde-plasma/ksysguard"
+  provides:
+  - name: "ksysguard"
+    category: "kde-plasma"
+    version: ">=0"
+  pre_emerge:
+  - sys-apps/lm-sensors
+  requires:
+  - <<: *layers-plasma
+  - category: "apps"
+    name: "lm-sensors"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "nnn"
