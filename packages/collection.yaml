@@ -1348,7 +1348,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
-  
+
 - category: "apps"
   name: "ufw"
   version: "0.36+4"
@@ -1363,6 +1363,24 @@ packages:
     version: ">=0"
   pre_emerge:
   - dev-lang/rust-bin
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# should be in system-x layer
+- category: "apps"
+  name: "usbutils"
+  version: "014"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-apps/usbutils
+  atom: "sys-apps/usbutils"
+  provides:
+  - name: "usbutils"
+    category: "sys-apps"
+    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
