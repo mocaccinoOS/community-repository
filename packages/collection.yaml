@@ -86,7 +86,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# To be moved to qt layer
+# To be moved to kde-common layer
 - category: "libs"
   name: "kplotting"
   version: "5.85.0+1"
@@ -310,9 +310,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-qt
-  - name: "mesa-progs"
-    category: "apps"
-    version: ">=0"
   build_requires:
   - <<: *layers-qt
 
@@ -388,7 +385,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
+
+- category: "apps"
+  name: "dia"
+  version: "0.97.3-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/dia
+  atom: "app-office/dia"
+  provides:
+  - name: "dia"
+    category: "app-office"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "dmd"
   version: "2.094.2+1"
@@ -611,7 +625,7 @@ packages:
   
 - category: "apps"
   name: "fontforge"
-  version: "20201107"
+  version: "20201107+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -932,7 +946,7 @@ packages:
 
 - category: "apps"
   name: "mc"
-  version: "4.8.26+58"
+  version: "4.8.26+59"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1048,8 +1062,6 @@ packages:
 #   - app-text/ebook-tools
 #   - kde-apps/libkexiv2
 #   - kde-apps/kdegraphics-mobipocket
-#   # layers kde-apps-minimal
-#   - kde-frameworks/kimageformats
 #   # layers/gnome-common
 #   - app-text/djvu
 #   - app-text/libspectre
@@ -1314,24 +1326,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# should be in system-x layer
-# - category: "apps"
-#   name: "usbutils"
-#   version: "014"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       sys-apps/usbutils
-#   atom: "sys-apps/usbutils"
-#   provides:
-#   - name: "usbutils"
-#     category: "sys-apps"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
-
 - category: "apps"
   name: "vivaldi"
   version: "4.1.2369.21+8"
@@ -1428,9 +1422,6 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/x2goserver
-#       dev-perl/Config-Simple
-#       dev-perl/File-ReadBackwards
-#       dev-perl/Switch
   atom: "net-misc/x2goserver"
   provides:
   - name: "x2goserver"
@@ -1442,15 +1433,6 @@ packages:
   - name: "x2goprint"
     category: "acct-user"
     version: ">=0"
-#   - name: "Config-Simple"
-#     category: "dev-perl"
-#     version: ">=0"
-#   - name: "File-ReadBackwards"
-#     category: "dev-perl"
-#     version: ">=0"
-#   - name: "Switch"
-#     category: "dev-perl"
-#     version: ">=0"
   pre_emerge:
   - *apps-nx-bdeps
   - *apps-nx-packages
