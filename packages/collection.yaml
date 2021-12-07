@@ -221,6 +221,24 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+  
+# To be moved to system-x or codecs
+- category: "libs"
+  name: "libv4l"
+  version: "1.20.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libv4l
+  atom: "media-libs/libv4l"
+  provides:
+  - name: "libv4l"
+    category: "media-libs"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 ##########
 ### apps
