@@ -1004,6 +1004,23 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "marble"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/marble
+  atom: "kde-apps/marble"
+  provides:
+  - name: "marble"
+    category: "kde-apps"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "nnn"
   version: "4.0+37"
   labels:
