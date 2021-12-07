@@ -1463,6 +1463,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "wine-staging"
+  version: "6.23"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-emulation/wine-staging
+  atom: "app-emulation/wine-staging"
+  provides:
+  - name: "vkd3d"
+    category: "app-emulation"
+    version: ">=0"
+  - name: "wine-staging"
+    category: "app-emulation"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
+- category: "apps"
   name: "x2goclient"
   version: "4.1.2.2+2"
   labels:
