@@ -1316,6 +1316,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "stellarium"
+  version: "0.21.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/stellarium
+  atom: "sci-astronomy/stellarium"
+  provides:
+  - category: "dev-libs"
+    name: "qtcompress"
+    version: ">=0"
+  - category: "sci-astronomy"
+    name: "stellarium"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "systemdgenie"
   version: "0.99.0+2"
   labels:
