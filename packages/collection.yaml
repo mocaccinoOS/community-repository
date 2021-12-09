@@ -739,6 +739,27 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "isomaster"
+  version: "1.3.15"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/iniparser
+      app-cdr/isomaster
+  atom: "app-cdr/isomaster"
+  provides:
+  - category: "dev-libs"
+    name: "iniparser"
+    version: ">=0"
+  - category: "app-cdr"
+    name: "isomaster"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "kate"
   version: "21.08.3+9"
   labels:
@@ -917,6 +938,28 @@ packages:
 #   - <<: *layers-plasma
 
 - category: "apps"
+  name: "ksysguard"
+  version: "5.22.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/ksysguard
+  atom: "kde-plasma/ksysguard"
+  provides:
+  - category: "kde-plasma"
+    name: "ksysguard"
+    version: ">=0"
+  pre_emerge:
+  - sys-apps/lm-sensors
+  requires:
+  - <<: *layers-plasma
+  - category: "apps"
+    name: "lm-sensors"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
   name: "ktorrent"
   version: "21.08.3+1"
   labels:
@@ -981,66 +1024,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "mc"
-  version: "4.8.26+59"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/mc
-  atom: "app-misc/mc"
-  provides:
-  - category: "app-misc"
-    name: "mc"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "isomaster"
-  version: "1.3.15"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/iniparser
-      app-cdr/isomaster
-  atom: "app-cdr/isomaster"
-  provides:
-  - category: "dev-libs"
-    name: "iniparser"
-    version: ">=0"
-  - category: "app-cdr"
-    name: "isomaster"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "ksysguard"
-  version: "5.22.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-plasma/ksysguard
-  atom: "kde-plasma/ksysguard"
-  provides:
-  - category: "kde-plasma"
-    name: "ksysguard"
-    version: ">=0"
-  pre_emerge:
-  - sys-apps/lm-sensors
-  requires:
-  - <<: *layers-plasma
-  - category: "apps"
-    name: "lm-sensors"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
   name: "marble"
   version: "21.08.3"
   labels:
@@ -1056,6 +1039,23 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
+
+- category: "apps"
+  name: "mc"
+  version: "4.8.26+59"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/mc
+  atom: "app-misc/mc"
+  provides:
+  - category: "app-misc"
+    name: "mc"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "nnn"
@@ -1177,27 +1177,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "q4wine"
-  version: "1.3.12"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-emulation/q4wine
-  atom: "app-emulation/q4wine"
-  provides:
-  - category: "app-emulation"
-    name: "q4wine"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - &apps-icoutils
-    category: "apps"
-    name: "icoutils"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "plasma-firewall"
   version: "5.22.5"
   labels:
@@ -1252,6 +1231,32 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- category: "apps"
+  name: "q4wine"
+  version: "1.3.12+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/q4wine
+  atom: "app-emulation/q4wine"
+  pre_emerhe:
+  - media-gfx/icoutils
+  provides:
+  - category: "app-emulation"
+    name: "q4wine"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "fuseiso"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - &apps-icoutils
+    category: "apps"
+    name: "icoutils"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "solaar"
