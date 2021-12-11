@@ -547,9 +547,33 @@ packages:
       name: liblockfile
       version: '>=0'
   requires:
-    - <<: *layers-X
+  - <<: *layers-X
   build_requires:
-    - <<: *layers-X
+  - <<: *layers-X
+    
+- category: "apps"
+  name: "exfat"
+  version: "0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-fs/fuse-exfat
+      sys-fs/exfat-utils
+  atom: "sys-fs/fuse-exfat sys-fs/exfat-utils"
+  provides:
+    - category: sys-fs
+      name: fuse-exfat
+      version: '>=0'
+    - category: sys-fs
+      name: exfat-utils
+      version: '>=0'
+  requires:
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "ffmpegthumbs"
