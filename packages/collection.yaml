@@ -1219,7 +1219,6 @@ packages:
     name: "ufw"
     version: ">=0"
   build_requires:
-  - <<: *layers-X
   - <<: *layers-plasma
   - <<: *apps-ufw
 
@@ -1486,7 +1485,7 @@ packages:
 
 - category: "apps"
   name: "ufw"
-  version: "0.36+4"
+  version: "0.36+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1501,7 +1500,11 @@ packages:
   requires:
   - <<: *layers-system-x
   build_requires:
-  - <<: *layers-system-x
+#   - <<: *buildbase-system-x
+#  - <<: *buildbase-X
+  - category: "buildbase"
+    name: "X"
+    version: ">=0"
 
 - category: "apps"
   name: "vivaldi"
