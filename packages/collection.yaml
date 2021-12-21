@@ -1208,6 +1208,8 @@ packages:
     emerge.packages: >-
       kde-plasma/plasma-firewall
   atom: "kde-plasma/plasma-firewall"
+  pre_emerge:
+  - net-firewall/ufw
   provides:
   - category: "kde-plasma"
     name: "plasma-firewall"
@@ -1220,8 +1222,8 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
-  - <<: *apps-ufw
-  requires_final_images: true
+#   - <<: *apps-ufw
+#   requires_final_images: true
 
 - category: "apps"
   name: "plasma-sdk"
@@ -1284,7 +1286,7 @@ packages:
     emerge.packages: >-
       app-emulation/q4wine
   atom: "app-emulation/q4wine"
-  pre_emerhe:
+  pre_emerge:
   - media-gfx/icoutils
   provides:
   - category: "app-emulation"
@@ -1501,11 +1503,11 @@ packages:
   requires:
   - <<: *layers-system-x
   build_requires:
-#   - <<: *buildbase-system-x
-#  - <<: *buildbase-X
-  - category: "buildbase"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-system-x
+#   - <<: *buildbase-X
+#   - category: "buildbase"
+#     name: "X"
+#     version: ">=0"
 
 - category: "apps"
   name: "vivaldi"
