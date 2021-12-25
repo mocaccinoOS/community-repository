@@ -40,9 +40,15 @@ packages:
   pre_emerge:
   - app-crypt/qca
   requires:
-  - <<: *layers-kde-common
+  - &layers-kde-common
+    category: "layers"
+    name: "kde-common"
+    version: ">=0"
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *buildbase-kde-common
+    category: "buildbase"
+    name: "kde-common"
+    version: ">=0"
 
 - category: "libs"
   name: "libmygpo-qt"
