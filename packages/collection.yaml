@@ -46,7 +46,7 @@ packages:
 
 - category: "libs"
   name: "libmygpo-qt"
-  version: "1.1.0"
+  version: "1.1.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -64,7 +64,10 @@ packages:
     name: "qt"
     version: ">=0"
   build_requires:
-  - <<: *layers-qt
+  - &buildbase-qt
+    category: "buildbase"
+    name: "qt"
+    version: ">=0"
 
 - category: "libs"
   name: "libtommath"
@@ -201,7 +204,7 @@ packages:
     name: "libmygpo-qt"
     version: ">=0"
   build_requires:
-  - <<: &buildbase-plasma
+  - &buildbase-plasma
     category: "layers"
     name: "buildbase"
     version: ">=0"
