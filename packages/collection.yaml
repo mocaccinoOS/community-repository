@@ -27,7 +27,7 @@ packages:
 # to be bumped
 - category: "libs"
   name: "libktorrent"
-  version: "21.08.3+2"
+  version: "21.08.3+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -52,7 +52,7 @@ packages:
 
 - category: "libs"
   name: "libmygpo-qt"
-  version: "1.1.0+1"
+  version: "1.1.0+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -211,8 +211,8 @@ packages:
     version: ">=0"
   build_requires:
   - &buildbase-plasma
-    category: "layers"
-    name: "buildbase"
+    category: "buildbase"
+    name: "plasma"
     version: ">=0"
 
 - category: "apps"
@@ -256,7 +256,7 @@ packages:
 
 - category: "apps"
   name: "dia"
-  version: "0.97.3-r1"
+  version: "0.97.3-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -267,9 +267,15 @@ packages:
     name: "dia"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
   build_requires:
-  - <<: *layers-X
+  - &buildbase-X
+    category: "buildbase"
+    name: "X"
+    version: ">=0"
 
 - category: "apps"
   name: "dmd"
