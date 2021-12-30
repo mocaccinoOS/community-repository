@@ -185,7 +185,7 @@ packages:
 # to bump
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc1"
+  version: "1.4.0_rc1" # buildbase-plasma
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -211,7 +211,7 @@ packages:
     version: ">=0"
   build_requires:
   - &buildbase-plasma
-    category: "buildbase"
+    category: "layers" # buildbase-plasma
     name: "plasma"
     version: ">=0"
 
@@ -641,7 +641,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "21.08.3+9"
+  version: "21.08.3+9" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -654,7 +654,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "kcharselect"
@@ -692,7 +692,7 @@ packages:
 
 - category: "apps"
   name: "kget"
-  version: "21.08.3+1"
+  version: "21.08.3+1" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -711,7 +711,7 @@ packages:
     name: "libktorrent"
     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "kolourpaint"
@@ -766,7 +766,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "21.08.3"
+  version: "21.08.3" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -779,11 +779,11 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "krusader"
-  version: "2.7.2+36"
+  version: "2.7.2+36" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -796,7 +796,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 # - category: "apps"
 #   name: "kstars"
@@ -815,11 +815,11 @@ packages:
 #   requires:
 #   - <<: *layers-plasma
 #   build_requires:
-#   - <<: *layers-plasma
+#   - <<: *buildbase-plasma
 
 - category: "apps"
   name: "ksysguard"
-  version: "5.22.0"
+  version: "5.22.0" # buildbase-plasma
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -837,12 +837,12 @@ packages:
     name: "lm-sensors"
     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 # to bump
 - category: "apps"
   name: "ktorrent"
-  version: "21.08.3+1"
+  version: "21.08.3+1" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -858,11 +858,11 @@ packages:
   - <<: *layers-plasma
   - <<: *libs-libktorrent
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "latte-dock"
-  version: "3.1.2+26"
+  version: "3.1.2+26" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -875,7 +875,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "lm-sensors"
@@ -896,7 +896,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "21.08.3"
+  version: "21.08.3" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -909,7 +909,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "mc"
@@ -970,7 +970,7 @@ packages:
 
 - category: "apps"
   name: "okular"
-  version: "21.08.3"
+  version: "21.08.3" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -992,7 +992,7 @@ packages:
     name: "ebook-tools"
     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "onedrive"
@@ -1034,7 +1034,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "5.23.4"
+  version: "5.23.4" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1053,13 +1053,13 @@ packages:
     name: "ufw"
     version: ">=0"
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 #   - <<: *apps-ufw
 #   requires_final_images: true
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "1.3+2"
+  version: "1.3+2" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1072,7 +1072,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "pulseaudio-dlna"
@@ -1172,7 +1172,7 @@ packages:
 
 - category: "apps"
   name: "soundkonverter"
-  version: "3.0.1-r2"
+  version: "3.0.1-r2" # buildbase-plasma
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1185,11 +1185,11 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.7.1+3"
+  version: "0.7.1+3" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1202,7 +1202,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "tree"
@@ -1373,7 +1373,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "3.2.0+2"
+  version: "3.2.0+2" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1386,7 +1386,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "weechat"
@@ -1455,7 +1455,7 @@ packages:
   
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2+2"
+  version: "4.1.2.2+2" # buildbase-plasma
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1472,7 +1472,7 @@ packages:
   - <<: *layers-plasma
   - <<: *apps-nx
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-plasma
 
 - category: "apps"
   name: "x2goserver"
