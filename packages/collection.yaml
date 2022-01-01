@@ -118,10 +118,7 @@ packages:
     name: "gnome-common"
     version: ">=0"
   build_requires:
-  - &buildbase-gnome-common
-    category: "buildbase"
-    name: "gnome-common"
-    version: ">=0"
+  - <<: *layers-gnome-common
 #   steps:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
@@ -164,7 +161,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "celestia"
@@ -188,7 +185,7 @@ packages:
 # to bump
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc1" # buildbase-plasma
+  version: "1.4.0_rc1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -213,10 +210,7 @@ packages:
     name: "libmygpo-qt"
     version: ">=0"
   build_requires:
-  - &buildbase-plasma
-    category: "layers" # buildbase-plasma
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "convertlit"
@@ -357,7 +351,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "ebook-tools"
@@ -432,10 +426,7 @@ packages:
     name: "sys-fs"
     version: ">=0"
   build_requires:
-  - &buildbase-sys-fs
-    category: "buildbase"
-    name: "sys-fs"
-    version: ">=0"
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "ffmpegthumbs"
@@ -490,7 +481,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "fish"
@@ -564,7 +555,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "hexchat"
@@ -581,7 +572,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "hwinfo"
@@ -647,7 +638,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "21.08.3+9" # buildbase-plasma
+  version: "21.08.3+10"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -660,7 +651,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "kcharselect"
@@ -698,7 +689,7 @@ packages:
 
 - category: "apps"
   name: "kget"
-  version: "21.08.3+1" # buildbase-plasma
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -717,7 +708,7 @@ packages:
     name: "libktorrent"
     version: ">=0"
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "kolourpaint"
@@ -772,7 +763,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "21.08.3" # buildbase-plasma
+  version: "21.08.3+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -785,11 +776,11 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "krusader"
-  version: "2.7.2+36" # buildbase-plasma
+  version: "2.7.2+37"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -802,7 +793,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 # - category: "apps"
 #   name: "kstars"
@@ -821,11 +812,11 @@ packages:
 #   requires:
 #   - <<: *layers-plasma
 #   build_requires:
-#   - <<: *buildbase-plasma
+#   - <<: *layers-plasma
 
 - category: "apps"
   name: "ksysguard"
-  version: "5.22.0" # buildbase-plasma
+  version: "5.22.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -843,12 +834,12 @@ packages:
     name: "lm-sensors"
     version: ">=0"
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 # to bump
 - category: "apps"
   name: "ktorrent"
-  version: "21.08.3+1" # buildbase-plasma
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -864,11 +855,11 @@ packages:
   - <<: *layers-plasma
   - <<: *libs-libktorrent
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "latte-dock"
-  version: "3.1.2+26" # buildbase-plasma
+  version: "3.1.2+27"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -881,7 +872,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "lm-sensors"
@@ -902,7 +893,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "21.08.3" # buildbase-plasma
+  version: "21.08.3+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -915,7 +906,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "mc"
@@ -974,31 +965,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "okular"
-#   version: "21.08.3" # buildbase-plasma
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       kde-apps/okular
-#   atom: "kde-apps/okular"
-#   provides:
-#   - category: "kde-apps"
-#     name: "okular"
-#     version: ">=0"
-#   pre_emerge:
-#   - dev-libs/chmlib
-#   - app-text/ebook-tools
-#   requires:
-#   - <<: *layers-plasma
-#   - category: "libs"
-#     name: "chmlib"
-#     version: ">=0"
-#   - category: "apps"
-#     name: "ebook-tools"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *buildbase-plasma
+- category: "apps"
+  name: "okular"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/okular
+  atom: "kde-apps/okular"
+  provides:
+  - category: "kde-apps"
+    name: "okular"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/chmlib
+  - app-text/ebook-tools
+  requires:
+  - <<: *layers-plasma
+  - category: "libs"
+    name: "chmlib"
+    version: ">=0"
+  - category: "apps"
+    name: "ebook-tools"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "onedrive"
@@ -1019,7 +1010,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *apps-dmd
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "opera"
@@ -1040,7 +1031,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "5.23.4" # buildbase-plasma
+  version: "5.23.4+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1059,13 +1050,13 @@ packages:
     name: "ufw"
     version: ">=0"
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 #   - <<: *apps-ufw
 #   requires_final_images: true
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "1.3+2" # buildbase-plasma
+  version: "1.3+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1078,7 +1069,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "pulseaudio-dlna"
@@ -1097,7 +1088,7 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
 #   - <<: *layers-X
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
   
 - category: "apps"
   name: "pulseaudio-qt"
@@ -1174,11 +1165,11 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "soundkonverter"
-  version: "3.0.1-r2" # buildbase-plasma
+  version: "3.0.1-r2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1191,11 +1182,11 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.7.1+3" # buildbase-plasma
+  version: "0.7.1+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1208,7 +1199,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "tree"
@@ -1322,7 +1313,7 @@ packages:
     name: "transmission"
     version: ">=0"
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "ufw"
@@ -1379,7 +1370,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "3.2.0+2" # buildbase-plasma
+  version: "3.2.0+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1392,7 +1383,7 @@ packages:
   requires:
   - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "weechat"
@@ -1461,7 +1452,7 @@ packages:
   
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2+2" # buildbase-plasma
+  version: "4.1.2.2+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1478,7 +1469,7 @@ packages:
   - <<: *layers-plasma
   - <<: *apps-nx
   build_requires:
-  - <<: *buildbase-plasma
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "x2goserver"
