@@ -1,32 +1,12 @@
 packages:
 
-################
-### buildbases
-################
-
-- &buildbase
-  category: "buildbase"
-  name: "sys-fs"
-  version: "0"
-  hidden: true
-  build_requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
-  unpack: true
-
 ##########
 ### libs
 ##########
 
 - category: "libs"
   name: "chmlib"
-  version: "0.40+1"
+  version: "0.40+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -110,7 +90,7 @@ packages:
 
 - category: "libs"
   name: "libtommath"
-  version: "1.2.0+2"
+  version: "1.2.0+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -266,7 +246,7 @@ packages:
 
 - category: "apps"
   name: "convertlit"
-  version: "1.8+2"
+  version: "1.8+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -276,6 +256,8 @@ packages:
   - category: "app-text"
     name: "convertlit"
     version: ">=0"
+  pre_emerge:
+  - dev-libs/libtommath
   requires:
   - <<: *layers-system-x
   - &libs-libtommath
@@ -284,7 +266,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-system-x
-  - <<: *libs-libtommath
 
 - category: "apps"
   name: "cuetools"
@@ -387,7 +368,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3+3"
+  version: "2.4.3+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -397,6 +378,9 @@ packages:
   - category: "media-sound"
     name: "easytag"
     version: ">=0"
+  pre_emerge:
+  - media-libs/id3lib
+  - media-libs/opusfile 
   requires:
   - <<: *layers-gnome-common
   - &libs-id3lib
@@ -409,12 +393,10 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
-  - <<: *libs-id3lib
-  - <<: *libs-opusfile
 
 - category: "apps"
   name: "ebook-tools"
-  version: "0.2.2+4"
+  version: "0.2.2+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -424,6 +406,8 @@ packages:
   - category: "app-text"
     name: "ebook-tools"
     version: ">=0"
+  pre_emerge:
+  - app-text/convertlit
   requires:
   - <<: *layers-sys-fs
   - &apps-convertlit
@@ -431,11 +415,7 @@ packages:
     name: "convertlit"
     version: ">=0"
   build_requires:
-  - &buildbase-sys-fs
-    category: "buildbase"
-    name: "sys-fs"
-    version: ">=0"
-  - <<: *apps-convertlit
+  - <<: *layers-sys-fs
   
 - category: "apps"
   name: "emacs"
@@ -1025,7 +1005,7 @@ packages:
 
 - category: "apps"
   name: "okular"
-  version: "21.08.3+2"
+  version: "21.08.3+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1035,6 +1015,9 @@ packages:
   - category: "kde-apps"
     name: "okular"
     version: ">=0"
+  pre_emerge:
+  - dev-libs/chmlib
+  - app-text/ebook-tools
   requires:
   - <<: *layers-plasma
   - &libs-chmlib
@@ -1047,8 +1030,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
-  - <<: *libs-chmlib
-  - <<: *apps-ebook-tools
 
 - category: "apps"
   name: "onedrive"
@@ -1110,8 +1091,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
-#   - <<: *apps-ufw
-#   requires_final_images: true
 
 - category: "apps"
   name: "plasma-sdk"
@@ -1143,10 +1122,8 @@ packages:
     name: "pulseaudio-dlna"
     version: ">=0"
   requires:
-#   - <<: *layers-X
   - <<: *layers-gnome-common
   build_requires:
-#   - <<: *layers-X
   - <<: *layers-gnome-common
   
 - category: "apps"
