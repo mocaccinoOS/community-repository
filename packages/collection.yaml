@@ -1,5 +1,25 @@
 packages:
 
+################
+### buildbases
+################
+
+- &buildbase
+  category: "buildbase"
+  name: "sys-fs"
+  version: "0"
+  hidden: true
+  build_requires:
+  - &layers-system-x
+    category: "layers"
+    name: "system-x"
+    version: ">=0"
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
+  unpack: true
+
 ##########
 ### libs
 ##########
@@ -17,10 +37,24 @@ packages:
     name: "chmlib"
     version: ">=0"
   requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
+  name: "id3lib"
+  version: "3.8.3-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/id3lib
+  atom: "media-libs/id3lib"
+  provides:
+  - category: "media-libs"
+    name: "id3lib"
     version: ">=0"
+  requires:
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -90,6 +124,23 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+  
+- category: "libs"
+  name: "opusfile"
+  version: "3.8.3-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opusfile
+  atom: "media-libs/opusfile"
+  provides:
+  - category: "media-libs"
+    name: "opusfile"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 ##########
 ### apps
@@ -343,13 +394,20 @@ packages:
   - category: "media-sound"
     name: "easytag"
     version: ">=0"
-  pre_emerge:
-  - media-libs/id3lib
-  - media-libs/opusfile
   requires:
   - <<: *layers-gnome-common
+  - &libs-id3lib
+    category: "libs"
+    name: "id3lib"
+    version: ">=0"
+  - &libs-opusfile
+    category: "libs"
+    name: "opusfile"
+    version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
+  - <<: *libs-id3lib
+  - <<: *libs-opusfile
 
 - category: "apps"
   name: "ebook-tools"
@@ -364,16 +422,16 @@ packages:
     name: "ebook-tools"
     version: ">=0"
   requires:
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
+  - <<: *layers-sys-fs
   - &apps-convertlit
     category: "apps"
     name: "convertlit"
     version: ">=0"
   build_requires:
-  - <<: *layers-sys-fs
+  - &buildbase-sys-fs
+    category: "buildbase"
+    name: "sys-fs"
+    version: ">=0"
   - <<: *apps-convertlit
   
 - category: "apps"
