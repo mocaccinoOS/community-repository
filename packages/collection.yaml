@@ -76,7 +76,7 @@ packages:
 
 - category: "libs"
   name: "libtommath"
-  version: "1.2.0+1"
+  version: "1.2.0+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -212,7 +212,7 @@ packages:
 
 - category: "apps"
   name: "convertlit"
-  version: "1.8+1"
+  version: "1.8+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -365,17 +365,16 @@ packages:
     name: "ebook-tools"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
   - &apps-convertlit
     category: "apps"
     name: "convertlit"
     version: ">=0"
   build_requires:
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *apps-convertlit
   unpack: true
   
@@ -967,7 +966,7 @@ packages:
 
 - category: "apps"
   name: "okular"
-  version: "21.08.3+1"
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -982,14 +981,18 @@ packages:
   - app-text/ebook-tools
   requires:
   - <<: *layers-plasma
-  - category: "libs"
+  - &libs-chmlib
+    category: "libs"
     name: "chmlib"
     version: ">=0"
-  - category: "apps"
+  - &apps-ebook-tools
+    category: "apps"
     name: "ebook-tools"
     version: ">=0"
   build_requires:
   - <<: *layers-plasma
+  - <<: *libs-chmlib
+  - <<: *apps-ebook-tools
   unpack: true
 
 - category: "apps"
