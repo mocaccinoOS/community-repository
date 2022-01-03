@@ -17,7 +17,9 @@ prelude:
 {{ end }}
 
 steps:
+{{ if .Values.atom }}
 - emerge -j ${JOBS} {{ .Values.atom }}
+{{ end }}
 {{ if .Values.bdeps }}
 {{ range .Values.bdeps }}
 - emerge -C {{ . }}
