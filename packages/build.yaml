@@ -1,5 +1,7 @@
 
+{{ if .Values.unpack }}
 unpack: {{ .Values.unpack }}
+{{ end }}
 
 prelude:
 - bash prelude.sh
@@ -19,12 +21,14 @@ steps:
 {{ if .Values.bdeps }}
 {{ range .Values.bdeps }}
 - emerge -C {{ . }}
-{{ end}}
+{{ end }}
 {{ end }}
 
 requires: {{ .Values.build_requires | toYaml | nindent 1 }}
 
+{{ if .Values.requires_final_images }}
 requires_final_images: {{ .Values.requires_final_images }}
+{{ end }}
 
 env:
 {{ if .Values.labels }}
