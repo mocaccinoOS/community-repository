@@ -412,7 +412,10 @@ packages:
   pre_emerge:
   - app-text/convertlit
   requires:
-  - <<: *layers-sys-fs
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
   - &apps-convertlit
     category: "apps"
     name: "convertlit"
