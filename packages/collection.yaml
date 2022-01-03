@@ -371,7 +371,10 @@ packages:
     name: "convertlit"
     version: ">=0"
   build_requires:
-  - <<: *layers-sysfs
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
   - <<: *layers-system-x
   - <<: *apps-convertlit
   unpack: true
@@ -422,10 +425,7 @@ packages:
       name: exfat-utils
       version: '>=0'
   requires:
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
+  - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
 
