@@ -374,10 +374,9 @@ packages:
     name: "convertlit"
     version: ">=0"
   build_requires:
-  - <<: *layers-system-x
+#   - <<: *layers-system-x
   - <<: *layers-sys-fs
   - <<: *apps-convertlit
-  requires_final_images: true
   
 - category: "apps"
   name: "emacs"
@@ -977,9 +976,6 @@ packages:
   - category: "kde-apps"
     name: "okular"
     version: ">=0"
-  pre_emerge:
-  - dev-libs/chmlib
-  - app-text/ebook-tools
   requires:
   - <<: *layers-plasma
   - &libs-chmlib
