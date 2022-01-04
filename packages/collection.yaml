@@ -643,7 +643,7 @@ packages:
 
 - category: "apps"
   name: "icoutils"
-  version: "0.32.3+2"
+  version: "0.32.3+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -656,9 +656,9 @@ packages:
     name: "icoutils"
     version: '>=0'
   requires:
-  - <<: *layers-X
+  - <<: *layers-system-x
   build_requires:
-  - <<: *buildbase-X
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "isomaster"
@@ -1052,6 +1052,23 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "okteta"
+  version: "0.26.6"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/okteta
+  atom: "app-editors/okteta"
+  provides:
+  - category: "app-editors"
+    name: "okteta"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "okular"
