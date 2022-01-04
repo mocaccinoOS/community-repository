@@ -43,7 +43,7 @@ packages:
 
 - category: "libs"
   name: "libktorrent"
-  version: "21.08.3+3"
+  version: "21.08.3+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -65,10 +65,11 @@ packages:
     category: "buildbase"
     name: "kde-common"
     version: ">=0"
+  requires_final_images: true
 
 - category: "libs"
   name: "libmygpo-qt"
-  version: "1.1.0+2"
+  version: "1.1.0+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -90,7 +91,8 @@ packages:
     category: "buildbase"
     name: "qt"
     version: ">=0"
-
+  requires_final_images: true
+  
 - category: "libs"
   name: "libtommath"
   version: "1.2.0+3"
@@ -201,7 +203,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0+9"
+  version: "1.7.0+10"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -217,7 +219,8 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *buildbase-qt
-
+  requires_final_images: true
+  
 - category: "apps"
   name: "clementine"
   version: "1.4.0_rc1+1"
@@ -289,7 +292,7 @@ packages:
 
 - category: "apps"
   name: "dia"
-  version: "0.97.3-r1+1"
+  version: "0.97.3-r1+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -309,6 +312,7 @@ packages:
     category: "buildbase"
     name: "X"
     version: ">=0"
+  requires_final_images: true
 
 - category: "apps"
   name: "dmd"
@@ -425,7 +429,7 @@ packages:
   
 - category: "apps"
   name: "emacs"
-  version: "27.1+62"
+  version: "27.1+63"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -451,6 +455,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
     
 - category: "apps"
   name: "exfat"
@@ -492,7 +497,7 @@ packages:
 
 - category: "apps"
   name: "filelight"
-  version: "21.08.3+1"
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -506,6 +511,7 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "filezilla"
@@ -547,7 +553,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "5.5.1+2"
+  version: "5.5.1+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -561,10 +567,11 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
   
 - category: "apps"
   name: "fontforge"
-  version: "20201107+2"
+  version: "20201107+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -584,7 +591,8 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
-
+  requires_final_images: true
+  
 - category: "apps"
   name: "gnumeric"
   version: "1.12.48+53"
@@ -663,7 +671,7 @@ packages:
 
 - category: "apps"
   name: "isomaster"
-  version: "1.3.15+1"
+  version: "1.3.15+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -681,6 +689,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "kate"
@@ -701,7 +710,7 @@ packages:
 
 - category: "apps"
   name: "kcharselect"
-  version: "21.08.3+1"
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -715,10 +724,11 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.9.3+3"
+  version: "1.9.3+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -732,6 +742,7 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "kget"
@@ -758,7 +769,7 @@ packages:
 
 - category: "apps"
   name: "kolourpaint"
-  version: "21.08.3+1"
+  version: "21.08.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -772,6 +783,7 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "kompare"
@@ -792,7 +804,7 @@ packages:
 
 - category: "apps"
   name: "krename"
-  version: "5.0.1+1"
+  version: "5.0.1+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -806,6 +818,7 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "krfb"
@@ -990,7 +1003,7 @@ packages:
   
 - category: "apps"
   name: "mkvtoolnix"
-  version: "61.0.0"
+  version: "61.0.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1013,6 +1026,7 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "nnn"
@@ -1122,7 +1136,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "77.0.4054.90+37"
+  version: "77.0.4054.90+38"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1136,6 +1150,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "plasma-firewall"
@@ -1196,7 +1211,7 @@ packages:
   
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.3+3"
+  version: "1.3+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1210,10 +1225,11 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "q4wine"
-  version: "1.3.12+2"
+  version: "1.3.12+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1236,10 +1252,11 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "solaar"
-  version: "1.0.5-r2+2"
+  version: "1.0.5-r2+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1253,6 +1270,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "soundconverter"
@@ -1341,7 +1359,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "0.21.2+1"
+  version: "0.21.2+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1358,10 +1376,11 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *buildbase-qt
-
+  requires_final_images: true
+  
 - category: "apps"
   name: "systemdgenie"
-  version: "0.99.0+3"
+  version: "0.99.0+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1375,6 +1394,7 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "tmux"
@@ -1440,7 +1460,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "4.1.2369.21+9"
+  version: "4.1.2369.21+10"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1454,6 +1474,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "w_scan"
@@ -1508,7 +1529,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "6.23+4"
+  version: "6.23+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1557,6 +1578,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
   
 - category: "apps"
   name: "x2goclient"
@@ -1581,7 +1603,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.2.2+3"
+  version: "4.1.2.2+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1611,6 +1633,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "zsh"
@@ -1636,7 +1659,7 @@ packages:
 - &fonts
   category: "fonts"
   name: "fontawesome"
-  version: "5.15.1+1"
+  version: "5.15.1+3"
   atom: "media-fonts/fontawesome"
   provides:
   - category: "media-fonts"
@@ -1646,10 +1669,11 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
 
 - <<: *fonts
   name: "cantarell"
-  version: "0.301+2"
+  version: "0.301+3"
   atom: "media-fonts/cantarell"
   provides:
   - category: "media-fonts"
@@ -1658,7 +1682,7 @@ packages:
 
 - <<: *fonts
   name: "inconsolata"
-  version: "20140821+2"
+  version: "20140821+3"
   atom: "media-fonts/inconsolata"
   provides:
   - category: "media-fonts"
@@ -1667,7 +1691,7 @@ packages:
 
 - <<: *fonts
   name: "inconsolata-hellenic"
-  version: "1.19+2"
+  version: "1.19+3"
   atom: "media-fonts/inconsolata-hellenic"
   provides:
   - category: "media-fonts"
@@ -1676,7 +1700,7 @@ packages:
 
 - <<: *fonts
   name: "roboto"
-  version: "2.138+2"
+  version: "2.138+3"
   atom: "media-fonts/roboto"
   provides:
   - category: "media-fonts"
@@ -1685,7 +1709,7 @@ packages:
 
 - <<: *fonts
   name: "robotomono"
-  version: "3.000+2"
+  version: "3.000+3"
   atom: "media-fonts/robotomono"
   overlay: "4nykey"
   provides:
@@ -1695,7 +1719,7 @@ packages:
 
 - <<: *fonts
   name: "robotoslab"
-  version: "2.000+2"
+  version: "2.000+3"
   atom: "media-fonts/robotoslab"
   overlay: "4nykey"
   provides:
