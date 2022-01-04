@@ -840,6 +840,26 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- category: "apps"
+  name: "ksnip"
+  version: "1.9.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/ksnip
+  atom: "x11-misc/ksnip"
+  overlay: "guru"
+  provides:
+  - category: "x11-misc"
+    name: "ksnip"
+    version: '>=0'
+  pre_emerge:
+  - gnome-base/gconf
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
 # - category: "apps"
 #   name: "kstars"
 #   version: "3.5.3"
@@ -968,6 +988,23 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+  
+- category: "apps"
+  name: "mkvtoolnix"
+  version: "61.0.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/mkvtoolnix
+  atom: "media-video/mkvtoolnix"
+  provides:
+  - category: "media-video"
+    name: "mkvtoolnix"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
 
 - category: "apps"
   name: "nnn"
