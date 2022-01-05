@@ -709,7 +709,24 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-
+  
+# - category: "apps"
+#   name: "k3b"
+#   version: "21.08.3"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       kde-apps/k3b
+#   atom: "kde-apps/k3b"
+#   provides:
+#   - category: "kde-apps"
+#     name: "k3b"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   build_requires:
+#   - <<: *layers-plasma
+  
 - category: "apps"
   name: "kate"
   version: "21.08.3+10"
@@ -891,24 +908,24 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-# - category: "apps"
-#   name: "kstars"
-#   version: "3.5.3"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       sci-astronomy/kstars
-#   atom: "sci-astronomy/kstars"
-#   provides:
-#   - category: "sci-astronomy"
-#     name: "kstars"
-#     version: ">=0"
-#   pre_emerge:
-#   - dev-cpp/eigen
-#   requires:
-#   - <<: *layers-plasma
-#   build_requires:
-#   - <<: *layers-plasma
+- category: "apps"
+  name: "kstars"
+  version: "3.5.6"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/kstars
+  atom: "sci-astronomy/kstars"
+  provides:
+  - category: "sci-astronomy"
+    name: "kstars"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "ksysguard"
@@ -1455,12 +1472,6 @@ packages:
       app-admin/testdisk
   atom: "app-admin/testdisk"
   provides:
-  - category: "sys-fs"
-    name: "progsreiserfs"
-    version: ">=0"
-  - category: "app-forensics"
-    name: "libewf"
-    version: ">=0"
   - category: "app-admin"
     name: "testdisk"
     version: ">=0"
