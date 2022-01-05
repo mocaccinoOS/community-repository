@@ -1447,6 +1447,36 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "testdisk"
+  version: "7.1-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-admin/testdisk
+  atom: "app-admin/testdisk"
+  provides:
+  - category: "sys-fs"
+    name: "progsreiserfs"
+    version: ">=0"
+  - category: "app-forensics"
+    name: "libewf"
+    version: ">=0"
+  - category: "app-admin"
+    name: "testdisk"
+    version: ">=0"
+  requires:
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
+  build_requires:
+  - &buildbase-qt
+    category: "buildbase"
+    name: "qt"
+    version: ">=0"
+  requires_final_images: true
+
+- category: "apps"
   name: "tmux"
   version: "3.1+30"
   labels:
