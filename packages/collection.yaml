@@ -1153,6 +1153,27 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "pdfarranger"
+  version: "1.7.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/pdfarranger
+  atom: "app-text/pdfarranger"
+  provides:
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  - category: "app-text"
+    name: "pdfarranger"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
   name: "plasma-firewall"
   version: "5.23.4+1"
   labels:
