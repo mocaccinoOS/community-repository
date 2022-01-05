@@ -456,7 +456,26 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-    
+
+# should be in main repo
+- category: "apps"
+  name: "extundelete"
+  version: "0.2.4-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-fs/extundelete
+  atom: "sys-fs/extundelete"
+  provides:
+  - category: "sys-fs"
+    name: "extundelete"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# should be in main repo
 - category: "apps"
   name: "exfat"
   version: "0.1+1"
