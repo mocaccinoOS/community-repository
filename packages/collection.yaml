@@ -328,6 +328,30 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "darktable"
+  version: "3.6.1-r2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/darktable
+  atom: "media-gfx/darktable"
+  provides:
+  - category: "media-libs"
+    name: "libiptcdata"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "darktable"
+    version: ">=0"
+  pre_emerge: >-
+    dev-python/jsonschema
+    dev-util/intltool
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
   name: "dia"
   version: "0.97.3-r1+2"
   labels:
@@ -1382,7 +1406,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.8"
+  version: "5.8-r1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1395,9 +1419,6 @@ packages:
   - category: "media-gfx"
     name: "rawtherapee"
     version: ">=0"
-#  pre_emerge:
-#  - *apps-nx-bdeps
-#  - *apps-nx-packages
   requires:
   - <<: *layers-X
   build_requires:
