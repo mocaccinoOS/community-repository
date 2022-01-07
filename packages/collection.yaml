@@ -336,15 +336,12 @@ packages:
       media-gfx/darktable
   atom: "media-gfx/darktable"
   provides:
-  - category: "media-libs"
-    name: "libiptcdata"
-    version: ">=0"
   - category: "media-gfx"
     name: "darktable"
     version: ">=0"
-  pre_emerge: >-
-    dev-python/jsonschema
-    dev-util/intltool
+  pre_emerge:
+  - dev-python/jsonschema
+  - dev-util/intltool
   requires:
   - <<: *layers-X
   build_requires:
