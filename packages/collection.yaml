@@ -240,12 +240,18 @@ packages:
     name: "clamav"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
   - category: "entity"
     name: "clamav"
     version: ">=0"
   build_requires:
-  - <<: *buildbase-X
+  - &buildbase-X
+    category: "buildbase"
+    name: "X"
+    version: ">=0"
   requires_final_images: true
 
 - category: "apps"
@@ -330,15 +336,9 @@ packages:
     name: "dia"
     version: ">=0"
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   build_requires:
-  - &buildbase-X
-    category: "buildbase"
-    name: "X"
-    version: ">=0"
+  - <<: *buildbase-X
   requires_final_images: true
 
 - category: "apps"
