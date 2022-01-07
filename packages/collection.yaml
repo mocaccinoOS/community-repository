@@ -230,6 +230,10 @@ packages:
       app-antivirus/clamav
   atom: "app-antivirus/clamav"
   provides:
+  # up to the next version: dev-libs/tomsfastmath
+  - category: "dev-libs"
+    name: "tomsfastmath"
+    version: ">=0"
   - category: "acct-group"
     name: "clamav"
     version: ">=0"
@@ -1094,22 +1098,23 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
-- category: "libs"
-  name: "libgdiplus"
-  version: "6.0.2-r1"
+- category: "apps"
+  name: "mono"
+  version: "6.12.0.122"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/libgdiplus
-  atom: "dev-dotnet/libgdiplus"
+      dev-lang/mono
+  atom: "dev-lang/mono"
   provides:
   - category: "dev-dotnet"
     name: "libgdiplus"
     version: ">=0"
-#  pre_emerge:
-#  - x11-misc/gccmakedep
-#  - x11-misc/xorg-cf-files
-#  - x11-misc/imake
+  - category: "dev-lang"
+    name: "mono"
+    version: ">=0"
+  pre_emerge:
+  - sys-apps/elfix
   requires:
   - <<: *layers-X
   build_requires:
