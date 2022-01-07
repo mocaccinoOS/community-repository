@@ -220,7 +220,34 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
-  
+
+- category: "apps"
+  name: "clamav"
+  version: "0.103.4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-antivirus/clamav
+  atom: "app-antivirus/clamav"
+  provides:
+  - category: "acct-group"
+    name: "clamav"
+    version: ">=0"
+  - category: "acct-user"
+    name: "clamav"
+    version: ">=0"
+  - category: "app-antivirus"
+    name: "clamav"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "clamav"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - category: "apps"
   name: "clementine"
   version: "1.4.0_rc1+1"
@@ -1067,6 +1094,28 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
+- category: "libs"
+  name: "libgdiplus"
+  version: "6.0.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/libgdiplus
+  atom: "dev-dotnet/libgdiplus"
+  provides:
+  - category: "dev-dotnet"
+    name: "libgdiplus"
+    version: ">=0"
+#  pre_emerge:
+#  - x11-misc/gccmakedep
+#  - x11-misc/xorg-cf-files
+#  - x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - category: "apps"
   name: "nnn"
   version: "4.3"
@@ -1105,7 +1154,8 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "okteta"
