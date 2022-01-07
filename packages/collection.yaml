@@ -1381,6 +1381,30 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "rawtherapee"
+  version: "5.8"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/rawtherapee
+  atom: "media-gfx/rawtherapee"
+  provides:
+  - category: "media-libs"
+    name: "libiptcdata"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "rawtherapee"
+    version: ">=0"
+#  pre_emerge:
+#  - *apps-nx-bdeps
+#  - *apps-nx-packages
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
   name: "solaar"
   version: "1.0.5-r2+3"
   labels:
