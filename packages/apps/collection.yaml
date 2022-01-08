@@ -122,6 +122,24 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
+  name: "hdf5"
+  version: "1.10.5-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/hdf5
+  atom: "sci-libs/hdf5"
+  provides:
+  - category: "sci-libs"
+    name: "hdf5"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "libs"
   name: "id3lib"
   version: "3.8.3-r8"
   labels:
@@ -177,7 +195,24 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
-  
+
+- category: "libs"
+  name: "libpano13"
+  version: "1.2.0+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libpano13
+  atom: "media-libs/libpano13"
+  provides:
+  - category: "media-libs"
+    name: "libpano13"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - category: "libs"
   name: "libtommath"
   version: "1.2.0+3"
