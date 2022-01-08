@@ -85,6 +85,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+  
+- category: "libs"
+  name: "exiftool"
+  version: "12.30"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/exiftool
+  atom: "media-libs/exiftool"
+  provides:
+  - category: "media-libs"
+    name: "exiftool"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "libs"
   name: "id3lib"
