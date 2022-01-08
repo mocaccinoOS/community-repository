@@ -178,21 +178,22 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
-  name: "jbigkit"
-  version: "2.1"
+  name: "netpbm"
+  version: "10.86.24-r1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/jbigkit
-  atom: "media-libs/jbigkit"
+      media-libs/netpbm
+  atom: "media-libs/netpbm"
   provides:
   - category: "media-libs"
-    name: "jbigkit"
+    name: "netpbm"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "libs"
   name: "libktorrent"
