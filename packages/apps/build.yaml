@@ -1,14 +1,32 @@
 
+env:
+{{ if .Values.labels }}
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{ else }}
+- JOBS=3
+{{ end }}
+- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
+
+requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+
+{{ if .Values.requires_final_images }}
+requires_final_images: {{ .Values.requires_final_images }}
+{{ end }}
+
 {{ if .Values.unpack }}
 unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-- bash prelude.sh
+- bash prelude.sh ###
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L
-- echo "y" | layman -a {{ .Values.overlay }}
+{{ if .Values.overlay.url }}
+- echo "y" | layman -o {{ .Values.overlay.url }} -f -a {{ .Values.overlay.name }}
+{{ else }}
+- echo "y" | layman -a {{ .Values.overlay.name }}
+{{ end }}
 {{ end }}
 {{ if .Values.pre_emerge }}
 {{ range .Values.pre_emerge }}
@@ -25,20 +43,11 @@ steps:
 - emerge -C {{ . }}
 {{ end }}
 {{ end }}
-
-requires: {{ .Values.build_requires | toYaml | nindent 1 }}
-
-{{ if .Values.requires_final_images }}
-requires_final_images: {{ .Values.requires_final_images }}
+{{ if .Values.etc_update }}
+{{ if .Values.etc_update.mode }}
+- etc-update -q --automode {{ .Values.etc_update.mode }}
 {{ end }}
-
-env:
-{{ if .Values.labels }}
-- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
-{{ else }}
-- JOBS=3
 {{ end }}
-- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 excludes:
 - ^/etc/csh.env

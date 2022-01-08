@@ -7,5 +7,10 @@
 {{ end }}
 - update-mime-database /usr/share/mime/
 - ldconfig
+{{ range .Values.requires | uniq }}
+  {{ if eq .category "layer" }}
+- source /etc/profile && env-update
+  {{ end }}
+{{ end }}
 
 {{ end }}

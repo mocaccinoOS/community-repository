@@ -1,3 +1,68 @@
+#{{ define "anchors" }}
+anchors:
+
+  - &layers-system-x
+    category: "layers"
+    name: "system-x"
+    version: ">=0"
+
+  - &layers-codecs
+    category: "layers"
+    name: "codecs"
+    version: ">=0"
+
+  - &layers-sys-fs
+    category: "layers"
+    name: "sys-fs"
+    version: ">=0"
+
+  - &layers-X
+    category: "layers"
+    name: "X"
+    version: ">=0"
+  - &buildbase-X
+    category: "buildbase"
+    name: "X"
+    version: ">=0"
+
+  - &layers-qt
+    category: "layers"
+    name: "qt"
+    version: ">=0"
+  - &buildbase-qt
+    category: "buildbase"
+    name: "qt"
+    version: ">=0"
+    
+  - &layers-kde-common
+    category: "layers"
+    name: "kde-common"
+    version: ">=0"
+  - &buildbase-kde-common
+    category: "buildbase"
+    name: "kde-common"
+    version: ">=0"
+
+  - &layers-kde-apps-minimal
+    category: "layers"
+    name: "kde-apps-minimal"
+    version: ">=0"
+
+  - &layers-plasma
+    category: "layers"
+    name: "plasma"
+    version: ">=0"
+
+  - &layers-gnome-common
+    category: "layers"
+    name: "gnome-common"
+    version: ">=0"
+
+  - &layers-gnome
+    category: "layers"
+    name: "gnome"
+    version: ">=0"
+
 packages:
 
 ##########
@@ -17,10 +82,7 @@ packages:
     name: "chmlib"
     version: ">=0"
   requires:
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -56,15 +118,9 @@ packages:
   pre_emerge:
   - app-crypt/qca
   requires:
-  - &layers-kde-common
-    category: "layers"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *layers-kde-common
   build_requires:
-  - &buildbase-kde-common
-    category: "buildbase"
-    name: "kde-common"
-    version: ">=0"
+  - <<: *buildbase-kde-common
   requires_final_images: true
 
 - category: "libs"
@@ -82,15 +138,9 @@ packages:
   pre_emerge:
   - dev-cpp/gtest
   requires:
-  - &layers-qt
-    category: "layers"
-    name: "qt"
-    version: ">=0"
+  - <<: *layers-qt
   build_requires:
-  - &buildbase-qt
-    category: "buildbase"
-    name: "qt"
-    version: ">=0"
+  - <<: *buildbase-qt
   requires_final_images: true
   
 - category: "libs"
@@ -123,10 +173,7 @@ packages:
     name: "opusfile"
     version: ">=0"
   requires:
-  - &layers-codecs
-    category: "layers"
-    name: "codecs"
-    version: ">=0"
+  - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
 
@@ -151,10 +198,7 @@ packages:
     name: "wv"
     version: '>=0'
   requires:
-  - &layers-gnome-common
-    category: "layers"
-    name: "gnome-common"
-    version: ">=0"
+  - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
 #   steps:
@@ -174,10 +218,7 @@ packages:
     name: "brasero"
     version: ">=0"
   requires:
-  - &layers-gnome
-    category: "layers"
-    name: "gnome"
-    version: ">=0"
+  - <<: *layers-gnome
   build_requires:
   - <<: *layers-gnome
 
@@ -244,18 +285,12 @@ packages:
     name: "clamav"
     version: ">=0"
   requires:
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
+  - <<: *layers-X
   - category: "entity"
     name: "clamav"
     version: ">=0"
   build_requires:
-  - &buildbase-X
-    category: "buildbase"
-    name: "X"
-    version: ">=0"
+  - <<: *buildbase-X
   requires_final_images: true
 
 - category: "apps"
@@ -275,10 +310,7 @@ packages:
   - media-libs/libmygpo-qt
   - gnome-base/gvfs
   requires:
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
+  - <<: *layers-plasma
   - <<: *layers-gnome-common
   - &libs-libmygpo-qt
     category: "libs"
@@ -401,10 +433,7 @@ packages:
     name: "dolphin-plugins-git"
     version: ">=0"
   requires:
-  - &layers-kde-apps-minimal
-    category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
+  - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
 
@@ -468,10 +497,7 @@ packages:
   pre_emerge:
   - app-text/convertlit
   requires:
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
+  - <<: *layers-sys-fs
   - &apps-convertlit
     category: "apps"
     name: "convertlit"
