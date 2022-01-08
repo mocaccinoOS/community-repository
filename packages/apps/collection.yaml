@@ -178,24 +178,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
-  name: "netpbm"
-  version: "10.86.24-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/netpbm
-  atom: "media-libs/netpbm"
-  provides:
-  - category: "media-libs"
-    name: "netpbm"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
   name: "libktorrent"
   version: "21.08.3+4"
   labels:
@@ -268,6 +250,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "libs"
+  name: "netpbm"
+  version: "10.86.24-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/netpbm
+  atom: "media-libs/netpbm"
+  provides:
+  - category: "media-libs"
+    name: "netpbm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 # moved
 - category: "libs"
