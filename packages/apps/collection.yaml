@@ -259,10 +259,15 @@ packages:
   - category: "media-libs"
     name: "vigra"
     version: ">=0"
+  pre_emerge:
+  - sci-libs/hdf5
   requires:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  - category: "libs"
+    name: "hdf5"
+    version: ">=0"
   requires_final_images: true
 
 ##########
