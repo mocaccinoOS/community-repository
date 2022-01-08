@@ -1,0 +1,58 @@
+
+{{ if .Values.unpack }}
+unpack: {{ .Values.unpack }}
+{{ end }}
+
+prelude:
+- bash prelude.sh
+{{ if .Values.overlay }}
+- USE="-subversion -mercurial" emerge app-portage/layman
+- layman -L
+- echo "y" | layman -a {{ .Values.overlay }}
+{{ end }}
+{{ if .Values.pre_emerge }}
+{{ range .Values.pre_emerge }}
+- emerge -1 -j ${JOBS} {{ . }}
+{{ end }}
+{{ end }}
+
+steps:
+{{ if .Values.atom }}
+- emerge -j ${JOBS} {{ .Values.atom }}
+{{ end }}
+{{ if .Values.bdeps }}
+{{ range .Values.bdeps }}
+- emerge -C {{ . }}
+{{ end }}
+{{ end }}
+
+requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+
+{{ if .Values.requires_final_images }}
+requires_final_images: {{ .Values.requires_final_images }}
+{{ end }}
+
+env:
+{{ if .Values.labels }}
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{ else }}
+- JOBS=3
+{{ end }}
+- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
+
+excludes:
+- ^/etc/csh.env
+- ^/etc/environment.d/10-gentoo-env.conf
+- ^/etc/ld.so.conf
+- ^/etc/profile.env
+- ^/luetbuild
+- ^/usr/portage
+- ^/usr/portage/distfiles
+- ^/usr/share/applications/mimeinfo.cache
+- ^/var/cache/edb
+- ^/var/cache/distfiles
+- ^/var/cache/fontconfig
+- ^/var/db/pkg
+- ^/var/db/repos
+- ^/var/lib/portage
+- ^/var/log
