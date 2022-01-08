@@ -105,6 +105,23 @@ packages:
   requires_final_images: true
 
 - category: "libs"
+  name: "flann"
+  version: "1.9.1-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/flann
+  atom: "sci-libs/flann"
+  provides:
+  - category: "sci-libs"
+    name: "flann"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "id3lib"
   version: "3.8.3-r8"
   labels:
