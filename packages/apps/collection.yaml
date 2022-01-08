@@ -178,6 +178,23 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
+  name: "jbigkit"
+  version: "2.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/jbigkit
+  atom: "media-libs/jbigkit"
+  provides:
+  - category: "media-libs"
+    name: "jbigkit"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "libktorrent"
   version: "21.08.3+4"
   labels:
@@ -268,23 +285,6 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
-
-- category: "libs"
-  name: "svgalib"
-  version: "1.9.25-r8"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/svgalib
-  atom: "media-libs/svgalib"
-  provides:
-  - category: "media-libs"
-    name: "svgalib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "libs"
   name: "vigra"
