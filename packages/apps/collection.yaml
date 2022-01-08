@@ -85,7 +85,7 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
+
 - category: "libs"
   name: "exiftool"
   version: "12.30"
@@ -211,6 +211,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- category: "libs"
+  name: "vigra"
+  version: "1.11.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/vigra
+  atom: "media-libs/vigra"
+  provides:
+  - category: "media-libs"
+    name: "vigra"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 ##########
 ### apps
