@@ -139,10 +139,9 @@ packages:
     name: "hdf5"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - <<: *layers-system-x
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "id3lib"
@@ -267,13 +266,12 @@ packages:
   pre_emerge:
   - sci-libs/hdf5
   requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
+  - <<: *layers-system-x
   - category: "libs"
     name: "hdf5"
     version: ">=0"
-  requires_final_images: true
+  build_requires:
+  - <<: *layers-system-x
 
 ##########
 ### apps
