@@ -250,7 +250,8 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
+
+# moved
 - category: "libs"
   name: "opusfile"
   version: "3.8.3-r8"
@@ -267,6 +268,23 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- category: "libs"
+  name: "svgalib"
+  version: "1.9.25-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/svgalib
+  atom: "media-libs/svgalib"
+  provides:
+  - category: "media-libs"
+    name: "svgalib"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "vigra"
