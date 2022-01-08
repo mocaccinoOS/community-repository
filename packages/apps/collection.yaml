@@ -266,12 +266,13 @@ packages:
   pre_emerge:
   - sci-libs/hdf5
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - category: "libs"
     name: "hdf5"
     version: ">=0"
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 ##########
 ### apps
