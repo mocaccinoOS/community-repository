@@ -890,6 +890,58 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "hugin"
+  version: "2020.0.0-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/hugin
+  atom: "media-gfx/hugin"
+  provides:
+  - category: "dev-cpp"
+    name: "tclap"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "zthread"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "autopano-sift-C"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "hugin"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libpano13
+  - media-libs/exiftool
+  - media-libs/vigra
+  - sci-libs/flann
+  requires:
+#   - <<: *layers-X
+  - <<: *layers-gnome-common
+  - category: "libs"
+    name: "libpano13"
+    version: ">=0"
+  - category: "libs"
+    name: "exiftool"
+    version: ">=0"
+  - category: "libs"
+    name: "vigra"
+    version: ">=0"
+  - category: "libs"
+    name: "flann"
+    version: ">=0"
+  - category: "apps"
+    name: "enblend"
+    version: ">=0"
+  - category: "apps"
+    name: "dcraw"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-gnome-common
+#   - <<: *buildbase-X
+#   requires_final_images: true
+
+- category: "apps"
   name: "hwinfo"
   version: "21.76+1+1"
   labels:
