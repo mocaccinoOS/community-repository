@@ -1,0 +1,70 @@
+{{ define "collection_build" }}
+
+env:
+{{ if .Values.labels }}
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{ else }}
+- JOBS=3
+{{ end }}
+- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
+
+requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+
+{{ if .Values.requires_final_images }}
+requires_final_images: {{ .Values.requires_final_images }}
+{{ end }}
+
+{{ if .Values.unpack }}
+unpack: {{ .Values.unpack }}
+{{ end }}
+
+prelude:
+- bash prelude.sh ###
+{{ if .Values.overlay }}
+- USE="-subversion -mercurial" emerge app-portage/layman
+- layman -L
+{{ if .Values.overlay.url }}
+- echo "y" | layman -o {{ .Values.overlay.url }} -f -a {{ .Values.overlay.name }}
+{{ else }}
+- echo "y" | layman -a {{ .Values.overlay.name }}
+{{ end }}
+{{ end }}
+{{ if .Values.pre_emerge }}
+{{ range .Values.pre_emerge }}
+- emerge -1 -j ${JOBS} {{ . }}
+{{ end }}
+{{ end }}
+
+steps:
+{{ if .Values.atom }}
+- emerge -j ${JOBS} {{ .Values.atom }}
+{{ end }}
+{{ if .Values.bdeps }}
+{{ range .Values.bdeps }}
+- emerge -C {{ . }}
+{{ end }}
+{{ end }}
+{{ if .Values.etc_update }}
+{{ if .Values.etc_update.mode }}
+- etc-update -q --automode {{ .Values.etc_update.mode }}
+{{ end }}
+{{ end }}
+
+excludes:
+- ^/etc/csh.env
+- ^/etc/environment.d/10-gentoo-env.conf
+- ^/etc/ld.so.conf
+- ^/etc/profile.env
+- ^/luetbuild
+- ^/usr/portage
+- ^/usr/portage/distfiles
+- ^/usr/share/applications/mimeinfo.cache
+- ^/var/cache/edb
+- ^/var/cache/distfiles
+- ^/var/cache/fontconfig
+- ^/var/db/pkg
+- ^/var/db/repos
+- ^/var/lib/portage
+- ^/var/log
+
+{{ end }}

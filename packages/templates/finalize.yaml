@@ -1,0 +1,16 @@
+{{ define "collection_finalize_install" }}
+
+{{ range .Values.requires | uniq }}
+  {{ if or (eq .name "X") (eq .name "gnome-common") (eq .name "gnome") }}
+- glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
+  {{ end }}
+{{ end }}
+- update-mime-database /usr/share/mime/
+- ldconfig
+{{ range .Values.requires | uniq }}
+  {{ if eq .category "layer" }}
+- source /etc/profile && env-update
+  {{ end }}
+{{ end }}
+
+{{ end }}
