@@ -251,41 +251,23 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "libs"
-  name: "netpbm"
-  version: "10.86.24-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/netpbm
-  atom: "media-libs/netpbm"
-  provides:
-  - category: "media-libs"
-    name: "netpbm"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-# moved
-- category: "libs"
-  name: "opusfile"
-  version: "3.8.3-r8"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/opusfile
-  atom: "media-libs/opusfile"
-  provides:
-  - category: "media-libs"
-    name: "opusfile"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
+# - category: "libs"
+#   name: "netpbm"
+#   version: "10.86.24-r1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/netpbm
+#   atom: "media-libs/netpbm"
+#   provides:
+#   - category: "media-libs"
+#     name: "netpbm"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *buildbase-X
+#   requires_final_images: true
 
 - category: "libs"
   name: "vigra"
@@ -591,7 +573,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3+4"
+  version: "2.4.3+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -603,7 +585,6 @@ packages:
     version: ">=0"
   pre_emerge:
   - media-libs/id3lib
-  - media-libs/opusfile 
   requires:
   - <<: *layers-gnome-common
   - &libs-id3lib
@@ -1173,7 +1154,7 @@ packages:
 
 - category: "apps"
   name: "ksysguard"
-  version: "5.22.0+2"
+  version: "5.22.0+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1183,13 +1164,8 @@ packages:
   - category: "kde-plasma"
     name: "ksysguard"
     version: ">=0"
-  pre_emerge:
-  - sys-apps/lm-sensors
   requires:
   - <<: *layers-plasma
-  - category: "apps"
-    name: "lm-sensors"
-    version: ">=0"
   build_requires:
   - <<: *layers-plasma
 
@@ -1229,23 +1205,6 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
-
-- category: "apps"
-  name: "lm-sensors"
-  version: "3.6.0+5"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/lm-sensors
-  atom: "sys-apps/lm-sensors"
-  provides:
-  - category: "sys-apps"
-    name: "lm-sensors"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "marble"
