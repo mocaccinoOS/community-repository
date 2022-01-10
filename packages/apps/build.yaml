@@ -21,11 +21,15 @@ prelude:
 
 #- bash prelude.sh
 
-{{ $list := list }}
+{{ $items := list }}
+{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+{{ append $items $item }}
+{{ if .Values.requires }}
 {{ range .Values.requires }}
-{{ $item := printf "%s-%s" .category .name | append $list }}
+{{ $items = printf "%s-%s" .category .name | append $items }}
 {{ end }}
-- echo {{ join " " $list }}
+{{ end }}
+- echo {{ join " " $items }}
 
 - |
   set -x; \
