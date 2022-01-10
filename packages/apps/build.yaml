@@ -18,7 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-- bash prelude.sh ###
+- bash prelude.sh
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L

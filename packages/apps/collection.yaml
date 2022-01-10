@@ -160,6 +160,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# 
 - category: "libs"
   name: "id3lib"
   version: "3.8.3-r8"
@@ -196,6 +197,24 @@ packages:
   build_requires:
   - <<: *buildbase-kde-common
   requires_final_images: true
+
+# should be in main repo
+- category: "libs"
+  name: "libmad"
+  version: "0.15.1b-r10"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/libmad
+  atom: "media-libs/libmad"
+  provides:
+  - category: "media-libs"
+    name: "libmad"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "libmygpo-qt"
@@ -359,6 +378,25 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "cdrtools"
+  version: "3.02_alpha09-r3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/cdrtools
+  atom: "app-cdr/cdrtools"
+  pre_emerge:
+  - x11-misc/makedepend
+  provides:
+  - category: "app-cdr"
+    name: "cdrtools"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "celestia"
   version: "1.7.0+10"
   labels:
@@ -411,7 +449,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc1+1"
+  version: "1.4.0_rc1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -424,7 +462,6 @@ packages:
   pre_emerge:
   - dev-cpp/gtest
   - media-libs/libmygpo-qt
-  - gnome-base/gvfs
   requires:
   - <<: *layers-plasma
   - <<: *layers-gnome-common
