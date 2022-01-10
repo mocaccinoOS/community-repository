@@ -21,7 +21,7 @@ prelude:
 
 #- bash prelude.sh
 
-- echo ({{ (list .Values.requires (printf "%s-%s" .category .name | quote) | join " ") }})
+- echo {{ .Values.requires | printf "%s-%s" .category .name | quote | join " " }}
 
 - |
   set -x; \
