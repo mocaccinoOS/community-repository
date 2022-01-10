@@ -21,7 +21,7 @@ prelude:
 
 #- bash prelude.sh
 
-- echo {{ join " " .Values.requires.category }}
+- echo {{ join " " printf "%s-%s" .Values.requires.category  .Values.requires.name }}
 
 - |
   set -x; \
