@@ -23,7 +23,6 @@ prelude:
 
 {{ $items := list }}
 {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-{{ append $items $item }}
 {{ if .Values.requires }}
 {{ range .Values.requires }}
 {{ $items = printf "%s-%s" .category .name | append $items }}
