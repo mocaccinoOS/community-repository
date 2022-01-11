@@ -1,9 +1,14 @@
-#{{ define "anchors" }}
+#{{ template "anchors" }}
 anchors:
 
   - &layers-system-x
     category: "layers"
     name: "system-x"
+    version: ">=0"
+
+  - &layers-net-tools
+    category: "layers"
+    name: "net-tools"
     version: ">=0"
 
   - &layers-codecs
@@ -75,6 +80,23 @@ packages:
 ##########
 
 - category: "libs"
+  name: "libwww-perl"
+  version: "6.550.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/libwww-perl
+  atom: "dev-perl/libwww-perl"
+  provides:
+  - category: "dev-perl"
+    name: "libwww-perl"
+    version: ">=0"
+  requires:
+  - <<: *layers-net-tools
+  build_requires:
+  - <<: *layers-net-tools
+
+- category: "libs"
   name: "chmlib"
   version: "0.40+2"
   labels:
@@ -91,6 +113,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+#:
 - category: "libs"
   name: "exiftool"
   version: "12.30"
@@ -160,7 +183,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# 
+# should be in main repo
 - category: "libs"
   name: "id3lib"
   version: "3.8.3-r8"
@@ -198,6 +221,7 @@ packages:
   - <<: *buildbase-kde-common
   requires_final_images: true
 
+#:
 # should be in main repo
 - category: "libs"
   name: "libmad"
@@ -644,6 +668,7 @@ packages:
     name: "easytag"
     version: ">=0"
   pre_emerge:
+  #:
   - media-libs/id3lib
   requires:
   - <<: *layers-gnome-common
@@ -946,6 +971,7 @@ packages:
     version: ">=0"
   pre_emerge:
   - media-libs/libpano13
+  #:
   - media-libs/exiftool
   - media-libs/vigra
   - sci-libs/flann
@@ -1551,6 +1577,9 @@ packages:
   - category: "app-text"
     name: "pdfarranger"
     version: ">=0"
+  - category: "dev-python"
+    name: "pybind11"
+    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2032,6 +2061,9 @@ packages:
     version: ">=0"
   - category: "app-eselect"
     name: "eselect-wine"
+    version: ">=0"
+  - category: "dev-python"
+    name: "vdf"
     version: ">=0"
   requires:
   - <<: *layers-X
