@@ -19,52 +19,17 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 
-#- bash prelude.sh
-
-{{ $items := list }}
+{{{ if .Values.requires }}
+{ $items := list }}
 {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-{{ if .Values.requires }}
 {{ range .Values.requires }}
-{{ $items = printf "%s-%s" .category .name | append $items }}
+{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
+{{ end }}
+{{ $packages = join " " $items }}
+{{ if $pqackages }}
+- bash prelude.sh {{ $packages }}
 {{ end }}
 {{ end }}
-- echo {{ join " " $items }}
-
-- |
-  set -x; \
-  if [ -e "package.use/{{ .Values.category }}-{{ .Values.name }}.use" ]; then \
-    cp -rf package.use/{{ .Values.category }}-{{ .Values.name }}.use /etc/portage/package.use/{{ .Values.category }}-{{ .Values.name }}.use; \
-  fi
-- |
-  set -x; \
-  if [ -e "package.accept_keywords/{{ .Values.category }}-{{ .Values.name }}.accept_keywords" ]; then \
-    cp -rf package.accept_keywords/{{ .Values.category }}-{{ .Values.name }}.accept_keywords /etc/portage/package.accept_keywords/{{ .Values.category }}-{{ .Values.name }}.accept_keywords; \
-  fi
-- |
-  set -x; \
-  if [ -e "package.license/{{ .Values.category }}-{{ .Values.name }}.license" ]; then \
-    cp -rf package.license/{{ .Values.category }}-{{ .Values.name }}.license /etc/portage/package.license/{{ .Values.category }}-{{ .Values.name }}.license; \
-  fi
-
-{{ if .Values.requires }}
-{{ range .Values.requires }}
-- |
-  set -x; \
-  if [ -e "package.use/{{ .category }}-{{ .name }}.use" ]; then \
-    cp -rf package.use/{{ .category }}-{{ .name }}.use /etc/portage/package.use/{{ .category }}-{{ .name }}.use; \
-  fi
-- |
-  set -x; \
-  if [ -e "package.accept_keywords/{{ .category }}-{{ .name }}.accept_keywords" ]; then \
-    cp -rf package.accept_keywords/{{ .category }}-{{ .name }}.accept_keywords /etc/portage/package.accept_keywords/{{ .category }}-{{ .name }}.accept_keywords; \
-  fi
-- |
-  set -x; \
-  if [ -e "package.license/{{ .category }}-{{ .name }}.license" ]; then \
-    cp -rf package.license/{{ .category }}-{{ .name }}.license /etc/portage/package.license/{{ .category }}-{{ .name }}.license; \
-  fi
-{{ end }}
-{{ end }} 
 
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
