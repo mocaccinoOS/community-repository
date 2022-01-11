@@ -351,10 +351,10 @@ packages:
   provides:
   - category: "app-office"
     name: "abiword"
-    version: '>=0'
+    version: ">=0"
   - category: "app-text"
     name: "wv"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -393,7 +393,7 @@ packages:
   provides:
   - category: "www-client"
     name: "brave-bin"
-    version: '>=0'
+    version: ">=0"
   pre_emerge:
   - gnome-base/gconf
   requires:
@@ -649,7 +649,7 @@ packages:
   provides:
   - category: "app-cdr"
     name: "dolphin-plugins-mountiso"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -713,19 +713,19 @@ packages:
   provides:
     - category: app-editors
       name: emacs
-      version: '>=0'
+      version: ">=0"
     - category: app-emacs
       name: emacs-common
-      version: '>=0'
+      version: ">=0"
     - category: app-eselect
       name: eselect-ctags
-      version: '>=0'
+      version: ">=0"
     - category: app-eselect
       name: eselect-emacs
-      version: '>=0'
+      version: ">=0"
     - category: net-libs
       name: liblockfile
-      version: '>=0'
+      version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -790,10 +790,10 @@ packages:
   provides:
     - category: sys-fs
       name: fuse-exfat
-      version: '>=0'
+      version: ">=0"
     - category: sys-fs
       name: exfat-utils
-      version: '>=0'
+      version: ">=0"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -810,7 +810,7 @@ packages:
   provides:
   - category: "kde-apps"
     name: "ffmpegthumbs"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -925,11 +925,34 @@ packages:
   provides:
   - category: "app-office"
     name: "gnumeric"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+  
+- category: "apps"
+  name: "guvcview"
+  version: "2.0.6-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/guvcview
+  atom: "media-video/guvcview"
+  provides:
+  - category: "media-video"
+    name: "guvcview"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/gsl
+  requires:
+  - <<: *layers-qt
+  - category: "libs"
+    name: "gsl"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "hexchat"
@@ -942,7 +965,7 @@ packages:
   provides:
   - category: "net-irc"
     name: "hexchat"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -1015,10 +1038,10 @@ packages:
   provides:
   - category: "sys-apps"
     name: "hwinfo"
-    version: '>=0'
+    version: ">=0"
   - category: "dev-libs"
     name: "libx86emu"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -1037,7 +1060,7 @@ packages:
   provides:
   - category: "media-gfx"
     name: "icoutils"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -1259,7 +1282,7 @@ packages:
   provides:
   - category: "x11-misc"
     name: "ksnip"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -1894,13 +1917,13 @@ packages:
   provides:
   - category: "acct-group"
     name: "transmission"
-    version: '>=0'
+    version: ">=0"
   - category: "acct-user"
     name: "transmission"
-    version: '>=0'
+    version: ">=0"
   - category: "net-p2p"
     name: "transmission"
-    version: '>=0'
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
   - category: "entity"
