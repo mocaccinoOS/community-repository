@@ -25,7 +25,7 @@ prelude:
 {{ range .Values.requires }}
 {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
 {{ end }}
-{{ $packages := join " " $items | string }}
+{{ $packages := join " " $items }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
