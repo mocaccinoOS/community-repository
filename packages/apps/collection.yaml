@@ -434,6 +434,32 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "clamtk"
+  version: "6.14"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-antivirus/clamtk
+  atom: "app-antivirus/clamtk"
+  provides:
+  - category: "dev-perl"
+    name: "File-chdir"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "LWP-UserAgent-Cached"
+    version: ">=0"
+  pre_emerge:
+  - app-antivirus/clamav
+  requires:
+  - <<: *layers-X
+  - category: "apps"
+    name: "clamav"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+  
+- category: "apps"
   name: "clementine"
   version: "1.4.0_rc1+2"
   labels:
@@ -1004,7 +1030,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# bump next cycle
 - category: "apps"
   name: "icoutils"
   version: "0.32.3+6"
