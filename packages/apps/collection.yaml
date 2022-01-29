@@ -130,6 +130,11 @@ anchors:
     category: "libs"
     name: "nlohmann_json"
     version: ">=0"
+
+  - &libs-qscintilla
+    category: "libs"
+    name: "qscintilla"
+    version: ">=0"
     
   #########
   ## apps
@@ -438,6 +443,24 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "libs"
+  name: "qscintilla"
+  version: "2.11.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/qscintilla
+  atom: "x11-libs/qscintilla"
+  provides:
+  - category: "x11-libs"
+    name: "qscintilla"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - category: "libs"
@@ -2030,6 +2053,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "sqliteman"
+  version: "1.2.2-r4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-db/sqliteman
+  atom: "dev-db/sqliteman"
+  pre_emerge:
+  - x11-libs/qscintilla
+  provides:
+  - category: "dev-db"
+    name: "sqliteman"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-qscintilla
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "stellarium"
