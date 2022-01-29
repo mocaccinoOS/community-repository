@@ -491,11 +491,12 @@ packages:
     name: "cdrdao"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *apps-cdrtools
   - <<: *libs-libao
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
   
 - category: "apps"
   name: "cdrtools"
@@ -770,6 +771,27 @@ packages:
   - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
+
+- category: "apps"
+  name: "dvd+rw-tools"
+  version: "7.1-r4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvd+rw-tools
+  atom: "app-cdr/dvd+rw-tools"
+  pre_emerge:
+  - x11-misc/makedepend
+  - app-cdr/cdrtools
+  provides:
+  - category: "app-cdr"
+    name: "dvd+rw-tools"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-cdrtools
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "easytag"
