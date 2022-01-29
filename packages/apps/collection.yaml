@@ -91,6 +91,11 @@ anchors:
     name: "chmlib"
     version: ">=0"
 
+  - &libs-hidapi
+    category: "libs"
+    name: "hidapi"
+    version: ">=0"
+
   - &libs-http-parser
     category: "libs"
     name: "http-parser"
@@ -275,6 +280,23 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "libs"
+  name: "hidapi"
+  version: "0.8.0_rc1_p20140719-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/hidapi
+  atom: "dev-libs/hidapi"
+  provides:
+  - category: "dev-libs"
+    name: "hidapi"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x 
 
 - category: "libs"
   name: "http-parser"
