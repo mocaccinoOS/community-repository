@@ -1232,7 +1232,25 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
+- category: "apps"
+  name: "graphviz"
+  version: "2.49.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/graphviz
+  atom: "media-gfx/graphviz"
+  provides:
+  - category: "media-gfx"
+    name: "graphviz"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - category: "apps"
   name: "gnumeric"
   version: "1.12.48+53"
