@@ -126,6 +126,11 @@ anchors:
     name: "libtommath"
     version: ">=0"
 
+  - &libs-mbedtls
+    category: "libs"
+    name: "mbedtls"
+    version: ">=0"
+
   - &libs-nlohmann_json
     category: "libs"
     name: "nlohmann_json"
@@ -431,6 +436,23 @@ packages:
   provides:
   - category: "dev-libs"
     name: "libtommath"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
+  name: "mbedtls"
+  version: "2.28.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/mbedtls
+  atom: "net-libs/mbedtls"
+  provides:
+  - category: "net-libs"
+    name: "mbedtls"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2051,7 +2073,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.12.2"
+  version: "3.12.2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
