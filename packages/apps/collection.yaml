@@ -91,9 +91,19 @@ anchors:
     name: "chmlib"
     version: ">=0"
 
+  - &libs-http-parser
+    category: "libs"
+    name: "http-parser"
+    version: ">=0"
+    
   - &libs-id3lib
     category: "libs"
     name: "id3lib"
+    version: ">=0"
+
+  - &libs-libgit2
+    category: "libs"
+    name: "libgit2"
     version: ">=0"
 
   - &libs-libktorrent
@@ -104,6 +114,11 @@ anchors:
   - &libs-libmygpo-qt
     category: "libs"
     name: "libmygpo-qt"
+    version: ">=0"
+
+  - &libs-libssh2
+    category: "libs"
+    name: "libssh2"
     version: ">=0"
 
   - &libs-libtommath
@@ -241,6 +256,23 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "libs"
+  name: "http-parser"
+  version: "2.9.4-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/http-parser
+  atom: "net-libs/http-parser"
+  provides:
+  - category: "net-libs"
+    name: "http-parser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x  
+
 # should be in main repo
 - category: "libs"
   name: "id3lib"
@@ -276,7 +308,29 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
+- category: "libs"
+  name: "libgit2"
+  version: "1.3.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libgit2
+  atom: "dev-libs/libgit2"
+  provides:
+  - category: "dev-libs"
+    name: "libgit2"
+    version: ">=0"
+  pre_emerge:
+  - net-libs/http-parser
+  - net-libs/libssh2
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-http-parser
+  - <<: *libs-libssh2
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "libs"
   name: "libktorrent"
   version: "21.08.3+4"
@@ -333,6 +387,23 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
+
+- category: "libs"
+  name: "libssh2"
+  version: "1.10.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libssh2
+  atom: "net-libs/libssh2"
+  provides:
+  - category: "net-libs"
+    name: "libssh2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "libtommath"
@@ -435,6 +506,27 @@ packages:
 #   steps:
 #     # Workaround upstream dropping patchsets
 #     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
+
+- category: "apps"
+  name: "bat"
+  version: "0.18.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/bat
+  atom: "sys-apps/bat"
+  provides:
+  - category: "sys-apps"
+    name: "bat"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libgit2
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs/libgit2
+  build_requires:
+  # due to dev-libs/oniguruma
+  - <<: *layers-gnome
 
 - category: "apps"
   name: "brasero"
