@@ -1857,6 +1857,31 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "openrgb"
+  version: "0.7"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/openrgb
+  atom: "app-misc/openrgb"
+  pre_emerge:
+  - dev-cpp/nlohmann_json
+  - dev-libs/hidapi
+  - net-libs/mbedtls
+  provides:
+  - category: "app-misc"
+    name: "openrgb"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-nlohmann_json
+  - <<: *libs-hidapi
+  - <<: *libs-mbedtls
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
   name: "opera"
   version: "77.0.4054.90+38"
   labels:
