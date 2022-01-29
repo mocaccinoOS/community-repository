@@ -1997,30 +1997,7 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- category: "apps"
-  name: "sqlitebrowser"
-  version: "3.12.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-db/sqlitebrowser
-  atom: "dev-db/sqlitebrowser"
-  provides:
-  - category: "dev-db"
-    name: "sqlitebrowser"
-    version: ">=0"
-  pre_emerge:
-  - app-editors/qhexedit2
-  - dev-libs/qcustomplot
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-qhexedit2
-  - <<: *libs-qcustomplot
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "apps"
+  - category: "apps"
   name: "solaar"
   version: "1.0.5-r2+3"
   labels:
@@ -2073,6 +2050,52 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "sqlitebrowser"
+  version: "3.12.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/sqlitebrowser
+  atom: "dev-db/sqlitebrowser"
+  provides:
+  - category: "dev-db"
+    name: "sqlitebrowser"
+    version: ">=0"
+  pre_emerge:
+  - app-editors/qhexedit2
+  - dev-libs/qcustomplot
+  - x11-libs/qscintilla
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-qhexedit2
+  - <<: *libs-qcustomplot
+  - <<: *libs-qscintilla
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
+  name: "sqliteman"
+  version: "1.2.2-r4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-db/sqliteman
+  atom: "dev-db/sqliteman"
+  pre_emerge:
+  - x11-libs/qscintilla
+  provides:
+  - category: "dev-db"
+    name: "sqliteman"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-qscintilla
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
   name: "subtitlecomposer"
   version: "0.7.1+4"
   labels:
@@ -2123,28 +2146,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "sqliteman"
-  version: "1.2.2-r4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-db/sqliteman
-  atom: "dev-db/sqliteman"
-  pre_emerge:
-  - x11-libs/qscintilla
-  provides:
-  - category: "dev-db"
-    name: "sqliteman"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-qscintilla
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "apps"
+  - category: "apps"
   name: "stellarium"
   version: "0.21.2+2"
   labels:
