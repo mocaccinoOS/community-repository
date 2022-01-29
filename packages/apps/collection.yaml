@@ -131,6 +131,11 @@ anchors:
     name: "nlohmann_json"
     version: ">=0"
 
+  - &libs-qcustomplot
+    category: "libs"
+    name: "qcustomplot"
+    version: ">=0"
+
   - &libs-qscintilla
     category: "libs"
     name: "qscintilla"
@@ -181,6 +186,11 @@ anchors:
   - &apps-nx-packages >-
       net-misc/nx
     
+  - &apps-qhexedit2
+    category: "apps"
+    name: "qhexedit2"
+    version: ">=0"
+
   - &apps-ufw
     category: "apps"
     name: "ufw"
@@ -443,6 +453,24 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "libs"
+  name: "qcustomplot"
+  version: "2.0.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/qcustomplot
+  atom: "dev-libs/qcustomplot"
+  provides:
+  - category: "dev-libs"
+    name: "qcustomplot"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - category: "libs"
@@ -1931,6 +1959,24 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "qhexedit2"
+  version: "0.8.6_p20190316"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/qhexedit2
+  atom: "app-editors/qhexedit2"
+  provides:
+  - category: "app-editors"
+    name: "qhexedit2"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
   name: "rawtherapee"
   version: "5.8-r1"
   labels:
@@ -1949,6 +1995,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "sqlitebrowser"
+  version: "3.12.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/sqlitebrowser
+  atom: "dev-db/sqlitebrowser"
+  provides:
+  - category: "dev-db"
+    name: "sqlitebrowser"
+    version: ">=0"
+  pre_emerge:
+  - app-editors/qhexedit2
+  - dev-libs/qcustomplot
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-sqlitebrowser
+  - <<: *libs-qcustomplot
+  build_requires:
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - category: "apps"
