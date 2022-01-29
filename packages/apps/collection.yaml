@@ -81,6 +81,11 @@ anchors:
   ## libs
   #########
 
+  - &libs-libao
+    category: "libs"
+    name: "libao"
+    version: ">=0"
+    
   - &libs-chmlib
     category: "libs"
     name: "chmlib"
@@ -115,6 +120,11 @@ anchors:
   ## apps
   #########
 
+  - &apps-cdrtools
+    category: "apps"
+    name: "cdrtools"
+    version: ">=0"
+  
   - &apps-convertlit
     category: "apps"
     name: "convertlit"
@@ -403,8 +413,7 @@ packages:
 ### apps
 ##########
 
-- &apps
-  category: "apps"
+- category: "apps"
   name: "abiword"
   version: "3.0.4+55"
   labels:
@@ -465,6 +474,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "cdrdao"
+  version: "1.2.4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/cdrdao
+  atom: "app-cdr/cdrdao"
+  pre_emerge:
+  - app-cdr/cdrtools
+  - media-libs/libao
+  provides:
+  - category: "app-cdr"
+    name: "cdrdao"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-cdrtools
+  - <<: *libs-libao
+  build_requires:
+  - <<: *layers-system-x
+  
 - category: "apps"
   name: "cdrtools"
   version: "3.02_alpha09-r3"
