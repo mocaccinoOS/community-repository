@@ -1233,27 +1233,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-#- category: "apps"
-#  name: "graphviz"
-#  version: "2.49.0+1"
-#  labels:
-#    emerge.jobs: "3"
-#    emerge.packages: >-
-#      media-gfx/graphviz
-#  atom: "media-gfx/graphviz"
-#  provides:
-#  - category: "media-gfx"
-#    name: "graphviz"
-#    version: ">=0"
-#  requires:
-#  - <<: *layers-qt
-#  - <<: *layers-java
-#  - <<: *layers-gnome-common
-#  build_requires:
-#  - <<: *buildbase-qt
-#  - <<: *layers-java
-#  - <<: *layers-gnome-common
-#  requires_final_images: true
+- category: "apps"
+  name: "graphviz"
+  version: "2.49.0+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/graphviz
+  atom: "media-gfx/graphviz"
+  provides:
+  - category: "media-gfx"
+    name: "graphviz"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-java
 
 - category: "apps"
   name: "gnumeric"
