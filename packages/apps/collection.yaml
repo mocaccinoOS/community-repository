@@ -1246,13 +1246,15 @@ packages:
     name: "graphviz"
     version: ">=0"
   requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-qt
   - <<: *layers-java
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-qt
   - <<: *layers-java
+  - <<: *layers-gnome-common
   unpack: true
-
+  
 - category: "apps"
   name: "gnumeric"
   version: "1.12.48+53"
