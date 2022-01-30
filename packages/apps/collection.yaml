@@ -1245,12 +1245,13 @@ packages:
   - category: "media-gfx"
     name: "graphviz"
     version: ">=0"
+  pre_emerge:
+  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
   requires:
   - <<: *layers-qt
   - <<: *layers-java
   build_requires:
   - <<: *buildbase-qt
-  - <<: *layers-java
   requires_final_images: true
    
 - category: "apps"
