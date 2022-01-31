@@ -1,5 +1,11 @@
 # [![Packages](https://labs.mocaccino.org/badge/mocaccino-community.svg "List of packages")](https://labs.mocaccino.org/mocaccino-community) community-repository
 
+This is the repository containing various apps and libs that can be used with mocaccinoOS.
+
+It's state is `under construction`.
+
+To consume it with `luet`, add the following content as `mocaccino-community.yml` configuration file in `/etc/luet/repos.conf.d/`:
+
 Community repository
 
 ```yaml
