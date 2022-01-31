@@ -9,11 +9,10 @@ To consume it with `luet`, add the following content as `mocaccino-community.yml
 Community repository
 
 ```yaml
-repositories:
-- name: "mocaccino-community"
-  type: "docker"
-  enable: true
-  priority: 50
-  urls:
-  - "quay.io/mocaccino/mocaccino-community"
+name: "mocaccino-community"
+type: "docker"
+enable: true
+priority: 50
+urls:
+- "quay.io/mocaccino/mocaccino-community"
 ```
