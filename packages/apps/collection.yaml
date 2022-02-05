@@ -1,210 +1,215 @@
 #{{ template "anchors" }}
 anchors:
 
-  ###########
-  ## layers
-  ###########
+###########
+## layers
+###########
+
+- &layers-system-x
+  category: "layers"
+  name: "system-x"
+  version: ">=0"
+
+- &layers-net-tools
+  category: "layers"
+  name: "net-tools"
+  version: ">=0"
+
+- &layers-codecs
+  category: "layers"
+  name: "codecs"
+  version: ">=0"
+
+- &layers-sys-fs
+  category: "layers"
+  name: "sys-fs"
+  version: ">=0"
+
+- &layers-X
+  category: "layers"
+  name: "X"
+  version: ">=0"
+- &buildbase-X
+  category: "buildbase"
+  name: "X"
+  version: ">=0"
+
+- &layers-java
+  category: "layers"
+  name: "java"
+  version: ">=0"
+
+- &layers-qt
+  category: "layers"
+  name: "qt"
+  version: ">=0"
+- &buildbase-qt
+  category: "buildbase"
+  name: "qt"
+  version: ">=0"
   
-  - &layers-system-x
-    category: "layers"
-    name: "system-x"
-    version: ">=0"
+- &layers-kde-common
+  category: "layers"
+  name: "kde-common"
+  version: ">=0"
+- &buildbase-kde-common
+  category: "buildbase"
+  name: "kde-common"
+  version: ">=0"
 
-  - &layers-net-tools
-    category: "layers"
-    name: "net-tools"
-    version: ">=0"
+- &layers-kde-apps-minimal
+  category: "layers"
+  name: "kde-apps-minimal"
+  version: ">=0"
 
-  - &layers-codecs
-    category: "layers"
-    name: "codecs"
-    version: ">=0"
+- &layers-plasma
+  category: "layers"
+  name: "plasma"
+  version: ">=0"
 
-  - &layers-sys-fs
-    category: "layers"
-    name: "sys-fs"
-    version: ">=0"
+- &layers-gnome-common
+  category: "layers"
+  name: "gnome-common"
+  version: ">=0"
 
-  - &layers-X
-    category: "layers"
-    name: "X"
-    version: ">=0"
-  - &buildbase-X
-    category: "buildbase"
-    name: "X"
-    version: ">=0"
+- &layers-gnome
+  category: "layers"
+  name: "gnome"
+  version: ">=0"
 
-  - &layers-java
-    category: "layers"
-    name: "java"
-    version: ">=0"
+#########
+## libs
+#########
 
-  - &layers-qt
-    category: "layers"
-    name: "qt"
-    version: ">=0"
-  - &buildbase-qt
-    category: "buildbase"
-    name: "qt"
-    version: ">=0"
-    
-  - &layers-kde-common
-    category: "layers"
-    name: "kde-common"
-    version: ">=0"
-  - &buildbase-kde-common
-    category: "buildbase"
-    name: "kde-common"
-    version: ">=0"
-
-  - &layers-kde-apps-minimal
-    category: "layers"
-    name: "kde-apps-minimal"
-    version: ">=0"
-
-  - &layers-plasma
-    category: "layers"
-    name: "plasma"
-    version: ">=0"
-
-  - &layers-gnome-common
-    category: "layers"
-    name: "gnome-common"
-    version: ">=0"
-
-  - &layers-gnome
-    category: "layers"
-    name: "gnome"
-    version: ">=0"
-
-  #########
-  ## libs
-  #########
-
-  - &libs-libao
-    category: "libs"
-    name: "libao"
-    version: ">=0"
-    
-  - &libs-chmlib
-    category: "libs"
-    name: "chmlib"
-    version: ">=0"
-
-  - &libs-hidapi
-    category: "libs"
-    name: "hidapi"
-    version: ">=0"
-
-  - &libs-http-parser
-    category: "libs"
-    name: "http-parser"
-    version: ">=0"
-    
-  - &libs-id3lib
-    category: "libs"
-    name: "id3lib"
-    version: ">=0"
-
-  - &libs-libgit2
-    category: "libs"
-    name: "libgit2"
-    version: ">=0"
-
-  - &libs-libktorrent
-    category: "libs"
-    name: "libktorrent"
-    version: ">=0"
-
-  - &libs-libmygpo-qt
-    category: "libs"
-    name: "libmygpo-qt"
-    version: ">=0"
-
-  - &libs-libssh2
-    category: "libs"
-    name: "libssh2"
-    version: ">=0"
-
-  - &libs-libtommath
-    category: "libs"
-    name: "libtommath"
-    version: ">=0"
-
-  - &libs-mbedtls
-    category: "libs"
-    name: "mbedtls"
-    version: ">=0"
-
-  - &libs-nlohmann_json
-    category: "libs"
-    name: "nlohmann_json"
-    version: ">=0"
-
-  - &libs-qcustomplot
-    category: "libs"
-    name: "qcustomplot"
-    version: ">=0"
-
-  - &libs-qscintilla
-    category: "libs"
-    name: "qscintilla"
-    version: ">=0"
-    
-  #########
-  ## apps
-  #########
-
-  - &apps-cdrtools
-    category: "apps"
-    name: "cdrtools"
-    version: ">=0"
+- &libs-libao
+  category: "libs"
+  name: "libao"
+  version: ">=0"
   
-  - &apps-convertlit
-    category: "apps"
-    name: "convertlit"
-    version: ">=0"
-    
-  - &apps-dmd
-    category: "dev-lang"
-    name: "dmd"
-    version: "2.094.2"
+- &libs-chmlib
+  category: "libs"
+  name: "chmlib"
+  version: ">=0"
 
-  - &apps-dmd-packages >-
-      =dev-lang/dmd-2.094.2
+- &libs-hidapi
+  category: "libs"
+  name: "hidapi"
+  version: ">=0"
+
+- &libs-http-parser
+  category: "libs"
+  name: "http-parser"
+  version: ">=0"
   
-  - &apps-ebook-tools
-    category: "apps"
-    name: "ebook-tools"
-    version: ">=0"
-    
-  - &apps-icoutils
-    category: "apps"
-    name: "icoutils"
-    version: ">=0"
+- &libs-id3lib
+  category: "libs"
+  name: "id3lib"
+  version: ">=0"
 
-  - &apps-nx
-    category: "net-misc"
-    name: "nx"
-    version: ">=0"
+- &libs-libgit2
+  category: "libs"
+  name: "libgit2"
+  version: ">=0"
 
-  - &apps-nx-bdeps >-
-    x11-misc/gccmakedep
-    x11-misc/xorg-cf-files
-    x11-misc/imake
+- &libs-libktorrent
+  category: "libs"
+  name: "libktorrent"
+  version: ">=0"
 
-  - &apps-nx-packages >-
-      net-misc/nx
-    
-  - &apps-qhexedit2
-    category: "apps"
-    name: "qhexedit2"
-    version: ">=0"
+- &libs-liblqr
+  category: "libs"
+  name: "liblqr"
+  version: ">=0"
+  
+- &libs-libmygpo-qt
+  category: "libs"
+  name: "libmygpo-qt"
+  version: ">=0"
 
-  - &apps-ufw
-    category: "apps"
-    name: "ufw"
-    version: ">=0"
+- &libs-libssh2
+  category: "libs"
+  name: "libssh2"
+  version: ">=0"
+
+- &libs-libtommath
+  category: "libs"
+  name: "libtommath"
+  version: ">=0"
+
+- &libs-mbedtls
+  category: "libs"
+  name: "mbedtls"
+  version: ">=0"
+
+- &libs-nlohmann_json
+  category: "libs"
+  name: "nlohmann_json"
+  version: ">=0"
+
+- &libs-qcustomplot
+  category: "libs"
+  name: "qcustomplot"
+  version: ">=0"
+
+- &libs-qscintilla
+  category: "libs"
+  name: "qscintilla"
+  version: ">=0"
+  
+#########
+## apps
+#########
+
+- &apps-cdrtools
+  category: "apps"
+  name: "cdrtools"
+  version: ">=0"
+
+- &apps-convertlit
+  category: "apps"
+  name: "convertlit"
+  version: ">=0"
+  
+- &apps-dmd
+  category: "dev-lang"
+  name: "dmd"
+  version: "2.094.2"
+
+- &apps-dmd-packages >-
+    =dev-lang/dmd-2.094.2
+
+- &apps-ebook-tools
+  category: "apps"
+  name: "ebook-tools"
+  version: ">=0"
+  
+- &apps-icoutils
+  category: "apps"
+  name: "icoutils"
+  version: ">=0"
+
+- &apps-nx
+  category: "net-misc"
+  name: "nx"
+  version: ">=0"
+
+- &apps-nx-bdeps >-
+  x11-misc/gccmakedep
+  x11-misc/xorg-cf-files
+  x11-misc/imake
+
+- &apps-nx-packages >-
+    net-misc/nx
+  
+- &apps-qhexedit2
+  category: "apps"
+  name: "qhexedit2"
+  version: ">=0"
+
+- &apps-ufw
+  category: "apps"
+  name: "ufw"
+  version: ">=0"
 
 
 packages:
@@ -394,6 +399,23 @@ packages:
   requires_final_images: true
 
 - category: "libs"
+  name: "liblqr"
+  version: "0.4.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/liblqr
+  atom: "media-libs/liblqr"
+  provides:
+  - category: "media-libs"
+    name: "liblqr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "libmygpo-qt"
   version: "1.1.0+3"
   labels:
@@ -498,6 +520,30 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "libs"
+  name: "opencv"
+  version: "4.5.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opencv
+  atom: "media-libs/opencv"
+  provides:
+  - category: "media-libs"
+    name: "opencv"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
+  - sci-libs/hdf5
+  requires:
+  - <<: *layers-qt
+  - category: "libs"
+    name: "hdf5"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true  
 
 - category: "libs"
   name: "qcustomplot"
@@ -1233,27 +1279,27 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- category: "apps"
-  name: "graphviz"
-  version: "2.49.0+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/graphviz
-  atom: "media-gfx/graphviz"
-  provides:
-  - category: "media-gfx"
-    name: "graphviz"
-    version: ">=0"
-  pre_emerge:
-  - x11-libs/gdk-pixbuf
-  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-java
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
+# - category: "apps"
+#   name: "graphviz"
+#   version: "2.49.0+1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-gfx/graphviz
+#   atom: "media-gfx/graphviz"
+#   provides:
+#   - category: "media-gfx"
+#     name: "graphviz"
+#     version: ">=0"
+#   pre_emerge:
+#   - x11-libs/gdk-pixbuf
+#   - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-java
+#   build_requires:
+#   - <<: *buildbase-qt
+#   requires_final_images: true
    
 - category: "apps"
   name: "gnumeric"
