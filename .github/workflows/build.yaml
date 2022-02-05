@@ -56,6 +56,7 @@ jobs:
           go-version: '^1.16'
     - name: Build packages 🔧
       run: |
+        sudo luet install -y repository/mocaccino-desktop-stable
         export PATH=$PATH:/usr/local/go/bin
         mkdir build || true
         pushd ./.github
