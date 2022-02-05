@@ -187,6 +187,11 @@ anchors:
   category: "apps"
   name: "ebook-tools"
   version: ">=0"
+
+- &apps-hugin
+  category: "apps"
+  name: "hugin"
+  version: ">=0"
   
 - &apps-icoutils
   category: "apps"
@@ -975,10 +980,12 @@ packages:
   - dev-cpp/eigen
   - media-libs/liblqr
   - media-libs/opencv
+  - media-gfx/hugin
   requires:
   - <<: *layers-kde-common
   - <<: *libs-liblqr
-  - <<: *libs-opencv  
+  - <<: *libs-opencv
+  - <<: *apps-hugin
   build_requires:
   - <<: *buildbase-kde-common
   requires_final_images: true
