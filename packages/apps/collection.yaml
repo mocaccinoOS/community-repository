@@ -486,6 +486,26 @@ packages:
   - <<: *layers-java
 
 - category: "libs"
+  name: "libsodium"
+  version: "1.0.18_p20210617"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/minisign dev-libs/libsodium
+  atom: "dev-libs/libsodium"
+  provides:
+  - category: "dev-libs"
+    name: "libsodium"
+    version: ">=0"
+  - category: "app-crypt"
+    name: "minisign"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "libssh2"
   version: "1.10.0"
   labels:
