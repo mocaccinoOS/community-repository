@@ -91,6 +91,11 @@ anchors:
   name: "chmlib"
   version: ">=0"
 
+- &libs-gdk-pixbuf
+  category: "libs"
+  name: "gdk-pixbuf"
+  version: ">=0"
+
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
@@ -256,6 +261,23 @@ packages:
   provides:
   - category: "sci-libs"
     name: "flann"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
+- category: "libs"
+  name: "gdk-pixbuf"
+  version: "2.42.6-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gdk-pixbuf
+  atom: "x11-libs/gdk-pixbuf"
+  provides:
+  - category: "x11-libs"
+    name: "gdk-pixbuf"
     version: ">=0"
   requires:
   - <<: *layers-system-x
