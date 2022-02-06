@@ -140,7 +140,12 @@ anchors:
   category: "libs"
   name: "libtommath"
   version: ">=0"
-
+  
+- &libs-libvisio
+  category: "libs"
+  name: "libvisio"
+  version: ">=0
+  
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
@@ -543,6 +548,23 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "libs"
+  name: "libvisio"
+  version: "0.1.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libvisio
+  atom: "media-libs/libvisio"
+  provides:
+  - category: "media-libs"
+    name: "libvisio"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 - category: "libs"
   name: "mbedtls"
@@ -1011,7 +1033,7 @@ packages:
   
 - category: "apps"
   name: "digikam"
-  version: "7.4.0-r1+1"
+  version: "7.5.0"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
