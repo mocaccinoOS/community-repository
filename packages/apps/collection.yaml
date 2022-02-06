@@ -165,7 +165,12 @@ anchors:
   category: "libs"
   name: "qscintilla"
   version: ">=0"
-  
+
+- &libs-libsodium
+  category: "libs"
+  name: "libsodium"
+  version: ">=0"
+
 #########
 ## apps
 #########
@@ -1006,7 +1011,7 @@ packages:
   
 - category: "apps"
   name: "digikam"
-  version: "7.4.0-r1"
+  version: "7.4.0-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2213,6 +2218,28 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "apps"
+  name: "remmina"
+  version: "1.4.23-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/remmina
+  atom: "net-misc/remmina"
+  provides:
+  - category: "net-misc"
+    name: "remmina"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libsodium
+  - x11-libs/gdk-pixbuf
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libsodium"
+  - <<: *libs-gdk-pixbuf
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "solaar"
