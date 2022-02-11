@@ -91,11 +91,6 @@ anchors:
   name: "chmlib"
   version: ">=0"
 
-- &libs-gdk-pixbuf
-  category: "libs"
-  name: "gdk-pixbuf"
-  version: ">=0"
-
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
@@ -272,24 +267,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
-- category: "libs"
-  name: "gdk-pixbuf"
-  version: "2.42.6-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gdk-pixbuf
-  atom: "x11-libs/gdk-pixbuf"
-  provides:
-  - category: "x11-libs"
-    name: "gdk-pixbuf"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
   
 - category: "libs"
   name: "gsl"
@@ -1354,7 +1331,6 @@ packages:
 #     name: "graphviz"
 #     version: ">=0"
 #   pre_emerge:
-#   - x11-libs/gdk-pixbuf
 #   - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
 #   requires:
 #   - <<: *layers-qt
@@ -2208,11 +2184,8 @@ packages:
   - category: "net-misc"
     name: "remmina"
     version: ">=0"
-  pre_emerge:
-  - x11-libs/gdk-pixbuf
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gdk-pixbuf
   build_requires:
   - <<: *layers-gnome-common
 
