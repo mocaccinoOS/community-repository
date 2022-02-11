@@ -227,6 +227,11 @@ anchors:
   name: "qhexedit2"
   version: ">=0"
 
+- &apps-transcode
+  category: "apps"
+  name: "transcode"
+  version: ">=0"
+
 - &apps-ufw
   category: "apps"
   name: "ufw"
@@ -2434,6 +2439,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "transcode"
+  version: "1.1.7-r6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/transcode
+  atom: "media-video/transcode"
+  provides:
+  - category: "media-video"
+    name: "transcode"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libdv
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libdv
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "transmission"
