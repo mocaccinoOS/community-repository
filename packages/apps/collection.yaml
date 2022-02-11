@@ -1560,22 +1560,33 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
   
-# - category: "apps"
-#   name: "k3b"
-#   version: "21.08.3+1"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       kde-apps/k3b
-#   atom: "kde-apps/k3b"
-#   provides:
-#   - category: "kde-apps"
-#     name: "k3b"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-plasma
-#   build_requires:
-#   - <<: *layers-plasma
+- category: "apps"
+  name: "k3b"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/k3b
+  atom: "kde-apps/k3b"
+  pre_emerge:
+  - app-cdr/dvd+rw-tools
+  - app-cdr/cdrtools
+  - app-cdr/cdrdao
+  - media-video/vcdimager
+  - media-video/transcode
+  provides:
+  - category: "kde-apps"
+    name: "k3b"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-dvd+rw-tools
+  - <<: *apps-cdrtools
+  - <<: *apps-cdrdao
+  - <<: *apps-vcdimager
+  - <<: *apps-transcode
+  build_requires:
+  - <<: *layers-plasma
   
 - category: "apps"
   name: "kate"
@@ -1778,22 +1789,23 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- category: "apps"
-  name: "ksysguard"
-  version: "5.22.0+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-plasma/ksysguard
-  atom: "kde-plasma/ksysguard"
-  provides:
-  - category: "kde-plasma"
-    name: "ksysguard"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
+# Replaced by Plasma System Monitor
+# - category: "apps"
+#   name: "ksysguard"
+#   version: "5.22.0+3"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-plasma/ksysguard
+#   atom: "kde-plasma/ksysguard"
+#   provides:
+#   - category: "kde-plasma"
+#     name: "ksysguard"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   build_requires:
+#   - <<: *layers-plasma
 
 - category: "apps"
   name: "ktorrent"
