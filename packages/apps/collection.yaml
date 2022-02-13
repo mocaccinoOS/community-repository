@@ -220,6 +220,11 @@ anchors:
   category: "libs"
   name: "websocketpp"
   version: ">=0"
+  
+- &libs-wcslib
+  category: "libs"
+  name: "wcslib"
+  version: ">=0"
 
 #########
 ## apps
@@ -864,6 +869,26 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "libs"
+  name: "wcslib"
+  version: "7.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/wcslib
+  atom: "sci-astronomy/wcslib"
+  provides:
+  - category: "sci-astronomy"
+    name: "wcslib"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/cfitsio
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-cfitsio
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "websocketpp"
@@ -1968,10 +1993,12 @@ packages:
   - dev-cpp/eigen
   - sci-libs/cfitsio
   - sci-libs/indilib
+  - sci-astronomy/wcslib
   requires:
   - <<: *layers-plasma
   - <<: *libs-cfitsio
   - <<: *libs-indilib
+  - <<: *libs-wcslib
   build_requires:
   - <<: *layers-plasma
 
