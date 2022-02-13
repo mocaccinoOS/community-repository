@@ -81,11 +81,11 @@ anchors:
 ## libs
 #########
 
-- &libs-libao
+- &libs-cfitsio
   category: "libs"
-  name: "libao"
+  name: "cfitsio"
   version: ">=0"
-  
+
 - &libs-chmlib
   category: "libs"
   name: "chmlib"
@@ -104,6 +104,11 @@ anchors:
 - &libs-id3lib
   category: "libs"
   name: "id3lib"
+  version: ">=0"
+
+- &libs-libao
+  category: "libs"
+  name: "libao"
   version: ">=0"
 
 - &libs-libdv
@@ -270,6 +275,28 @@ packages:
 ##########
 ### libs
 ##########
+
+- category: "apps"
+  name: "cfitsio"
+  version: "3.490"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-libs/cfitsio
+  atom: "sci-libs/cfitsio"
+  provides:
+  - category: "sci-libs"
+    name: "cfitsio"
+    version: ">=0"
+  pre_emerge: >-
+    =dev-lang/cfortran-20110621
+    sys-devel/bison
+    sys-devel/flex
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-cfortran
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "chmlib"
@@ -884,8 +911,6 @@ packages:
     emerge.packages: >-
       =dev-lang/cfortran-20110621
   atom: "dev-lang/cfortran"
-  pre_emerge:
-  - x11-misc/makedepend
   provides:
   - category: "dev-lang"
     name: "cfortran"
