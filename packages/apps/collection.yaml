@@ -90,6 +90,16 @@ anchors:
   category: "libs"
   name: "chmlib"
   version: ">=0"
+  
+- &libs-flann
+  category: "libs"
+  name: "flann"
+  version: ">=0"
+
+- &libs-gsl
+  category: "libs"
+  name: "gsl"
+  version: ">=0"
 
 - &libs-hidapi
   category: "libs"
@@ -150,6 +160,11 @@ anchors:
   category: "libs"
   name: "libnova"
   version: ">=0"
+  
+- &libs-libpano13
+  category: "libs"
+  name: "libpano13"
+  version: ">=0"
 
 - &libs-libssh2
   category: "libs"
@@ -196,6 +211,11 @@ anchors:
   name: "rtl-sdr"
   version: ">=0"
   
+- &libs-vigra
+  category: "libs"
+  name: "vigra"
+  version: ">=0"
+
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
@@ -227,7 +247,12 @@ anchors:
   category: "apps"
   name: "convertlit"
   version: ">=0"
-  
+
+- &apps-dcraw
+  category: "apps"
+  name: "dcraw"
+  version: ">=0"
+
 - &apps-dmd
   category: "dev-lang"
   name: "dmd"
@@ -244,6 +269,11 @@ anchors:
 - &apps-ebook-tools
   category: "apps"
   name: "ebook-tools"
+  version: ">=0"
+
+- &apps-enblend
+  category: "apps"
+  name: "enblend"
   version: ">=0"
 
 - &apps-hugin
@@ -470,12 +500,14 @@ packages:
   - dev-cpp/websocketpp
   - net-wireless/rtl-sdr
   - sci-libs/cfitsio
+  - sci-libs/gsl
   - sci-libs/libnova
   requires:
   - <<: *layers-X
   - <<: *libs-websocketpp
   - <<: *libs-rtl-sdr
   - <<: *libs-cfitsio
+  - <<: *libs-gsl
   - <<: *libs-libnova
   build_requires:
   - <<: *buildbase-X
@@ -1372,7 +1404,7 @@ packages:
 
 - category: "apps"
   name: "enblend"
-  version: "4.2.0_p20161007-r1"
+  version: "4.2.0_p20161007-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1387,12 +1419,8 @@ packages:
   - sci-libs/gsl
   requires:
   - <<: *layers-X
-  - category: "libs"
-    name: "vigra"
-    version: ">=0"
-  - category: "libs"
-    name: "gsl"
-    version: ">=0"
+  - <<: *libs-vigra
+  - <<: *libs-gsl
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -1570,7 +1598,7 @@ packages:
   
 - category: "apps"
   name: "guvcview"
-  version: "2.0.6-r2"
+  version: "2.0.6-r2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1584,9 +1612,7 @@ packages:
   - sci-libs/gsl
   requires:
   - <<: *layers-qt
-  - category: "libs"
-    name: "gsl"
-    version: ">=0"
+  - <<: *libs-gsl
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
@@ -1610,7 +1636,7 @@ packages:
 
 - category: "apps"
   name: "hugin"
-  version: "2021.0.0+1"
+  version: "2021.0.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1637,21 +1663,11 @@ packages:
   requires:
 #   - <<: *layers-X
   - <<: *layers-gnome-common
-  - category: "libs"
-    name: "libpano13"
-    version: ">=0"
-  - category: "libs"
-    name: "vigra"
-    version: ">=0"
-  - category: "libs"
-    name: "flann"
-    version: ">=0"
-  - category: "apps"
-    name: "enblend"
-    version: ">=0"
-  - category: "apps"
-    name: "dcraw"
-    version: ">=0"
+  - <<: *libs-libpano13
+  - <<: *libs-vigra
+  - <<: *libs-flann
+  - <<: *apps-enblend
+  - <<: *apps-dcraw
   build_requires:
   - <<: *layers-gnome-common
 #   - <<: *buildbase-X
