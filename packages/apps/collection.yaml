@@ -1948,7 +1948,7 @@ packages:
 # flags
 - category: "apps"
   name: "kstars"
-  version: "3.5.5"
+  version: "3.5.6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1961,10 +1961,17 @@ packages:
   - category: "sci-astronomy"
     name: "kstars"
     version: ">=0"
+  - category: "sci-libs"
+    name: "stellarsolver"
+    version: ">=0"
   pre_emerge:
   - dev-cpp/eigen
+  - sci-libs/cfitsio
+  - sci-libs/indilib
   requires:
   - <<: *layers-plasma
+  - <<: *libs-cfitsio
+  - <<: *libs-indilib
   build_requires:
   - <<: *layers-plasma
 
@@ -2582,7 +2589,7 @@ packages:
 
   - category: "apps"
   name: "stellarium"
-  version: "0.21.2+2"
+  version: "0.21.3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2595,8 +2602,11 @@ packages:
   - category: "sci-astronomy"
     name: "stellarium"
     version: ">=0"
+  pre_emerge:
+  - sci-libs/indilib
   requires:
   - <<: *layers-qt
+  - <<: *libs-indilib
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
