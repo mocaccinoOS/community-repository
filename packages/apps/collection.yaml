@@ -181,6 +181,11 @@ anchors:
   name: "qscintilla"
   version: ">=0"
 
+- &libs-websocketpp
+  category: "libs"
+  name: "websocketpp"
+  version: ">=0"
+
 #########
 ## apps
 #########
@@ -753,6 +758,23 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "libs"
+  name: "websocketpp"
+  version: "0.8.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/websocketpp
+  atom: "dev-cpp/websocketpp"
+  provides:
+  - category: "dev-cpp"
+    name: "websocketpp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 ##########
 ### apps
