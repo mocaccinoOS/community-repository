@@ -190,6 +190,14 @@ anchors:
   name: "cdrtools"
   version: ">=0"
 
+- &apps-dmd
+  category: "dev-lang"
+  name: "cfortran"
+  version: "20110621"
+
+- &apps-cfortran-packages >-
+    =dev-lang/cfortran-20110621
+
 - &apps-convertlit
   category: "apps"
   name: "convertlit"
@@ -867,6 +875,25 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
+
+- category: "apps"
+  name: "cfortran"
+  version: "20110621"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      =dev-lang/cfortran-20110621
+  atom: "dev-lang/cfortran"
+  pre_emerge:
+  - x11-misc/makedepend
+  provides:
+  - category: "dev-lang"
+    name: "cfortran"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "clamav"
