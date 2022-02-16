@@ -1660,6 +1660,23 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "httrack"
+  version: "3.49.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/httrack
+  atom: "www-client/httrack"
+  provides:
+  - category: "www-client"
+    name: "httrack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "hugin"
   version: "2021.0.0+2"
   labels:
