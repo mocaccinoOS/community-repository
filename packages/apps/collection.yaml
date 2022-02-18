@@ -310,6 +310,11 @@ anchors:
   name: "qhexedit2"
   version: ">=0"
 
+- &apps-pypy3
+  category: "apps"
+  name: "pypy3"
+  version: ">=0"
+
 - &apps-transcode
   category: "apps"
   name: "transcode"
@@ -2442,6 +2447,23 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
+
+- category: "apps"
+  name: "pypy3"
+  version: "7.3.7-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/pypy3
+  atom: "dev-python/pypy3"
+  provides:
+  - category: "dev-python"
+    name: "pypy3"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "rawtherapee"
