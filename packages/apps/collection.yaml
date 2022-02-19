@@ -868,7 +868,7 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- category: "apps"
+- category: "libs"
   name: "tix"
   version: "8.4.3-r2"
   labels:
@@ -2392,11 +2392,9 @@ packages:
   - dev-python/werkzeug
   - dev-python/wheel
   - dev-python/pypy3
-#  - dev-python/setuptools
   requires:
   - <<: *layers-X
   - <<: *apps-pypy3
-#  - <<: *apps-setuptools
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -2579,6 +2577,24 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "scapy"
+  version: "2.4.5"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-analyzer/scapy
+  atom: "net-analyzer/scapy"
+  provides:
+  - category: "net-analyzer"
+    name: "scapy"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "solaar"
