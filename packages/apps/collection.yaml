@@ -310,14 +310,19 @@ anchors:
 - &apps-nx-packages >-
     net-misc/nx
 
-- &apps-qhexedit2
+- &apps-pip
   category: "apps"
-  name: "qhexedit2"
+  name: "pip"
   version: ">=0"
 
 - &apps-pypy3
   category: "apps"
   name: "pypy3"
+  version: ">=0"
+
+- &apps-qhexedit2
+  category: "apps"
+  name: "qhexedit2"
   version: ">=0"
 
 - &apps-tk
@@ -2361,6 +2366,37 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "pip"
+  version: "21.3.1-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/pip
+  atom: "dev-python/pip"
+  provides:
+  - category: "dev-python"
+    name: "pip"
+    version: ">=0"
+  pre_emerge:
+  - dev-python/cryptography
+  - dev-python/freezegun
+  - dev-python/pretend
+  - dev-python/pytest
+  - dev-python/scripttest
+  - dev-python/tomli-w
+  - dev-python/werkzeug
+  - dev-python/wheel
+  - dev-python/pypy3
+  - dev-python/setuptools
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  - <<: *apps-setuptools
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
