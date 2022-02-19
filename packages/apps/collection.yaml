@@ -210,7 +210,12 @@ anchors:
   category: "libs"
   name: "rtl-sdr"
   version: ">=0"
-  
+
+- &libs-tix
+  category: "libs"
+  name: "tix"
+  version: ">=0"
+
 - &libs-vigra
   category: "libs"
   name: "vigra"
@@ -313,6 +318,11 @@ anchors:
 - &apps-pypy3
   category: "apps"
   name: "pypy3"
+  version: ">=0"
+
+- &apps-tk
+  category: "apps"
+  name: "tk"
   version: ">=0"
 
 - &apps-transcode
@@ -852,6 +862,27 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- category: "apps"
+  name: "tix"
+  version: "8.4.3-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-tcltk/tix
+  atom: "dev-tcltk/tix"
+  provides:
+  - category: "dev-tcltk"
+    name: "tix"
+    version: ">=0"
+  pre_emerge:
+  - dev-lang/tk
+  requires:
+  - <<: *layers-X
+  - <<: *apps-tk
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "libs"
   name: "vigra"
@@ -2460,8 +2491,16 @@ packages:
   - category: "dev-python"
     name: "pypy3"
     version: ">=0"
+  - category: "dev-python"
+    name: "pypy3-exe"
+    version: ">=0"
+  pre_emerge:
+  - dev-lang/tk
+  - dev-tcltk/tix
   requires:
   - <<: *layers-X
+  - <<: *apps-tk
+  - <<: *libs-tix
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -2619,6 +2658,25 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
+
+# should be in desktop repo  
+- category: "apps"
+  name: "tk"
+  version: "8.6.12"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/tk
+  atom: "dev-lang/tk"
+  provides:
+  - category: "dev-lang"
+    name: "tk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "tree"
