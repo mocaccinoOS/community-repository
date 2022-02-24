@@ -136,6 +136,11 @@ anchors:
   name: "libgit2"
   version: ">=0"
 
+- &libs-Gtk3
+  category: "libs"
+  name: "Gtk3"
+  version: ">=0"
+
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -254,6 +259,11 @@ anchors:
 - &apps-cfortran-packages >-
     =dev-lang/cfortran-4.4-r3
 
+- &apps-clamav
+  category: "apps"
+  name: "clamav"
+  version: ">=0"
+    
 - &apps-convertlit
   category: "apps"
   name: "convertlit"
@@ -440,6 +450,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "libs"
+  name: "Gtk3"
+  version: "0.38.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/Gtk3
+  atom: "dev-perl/Gtk3"
+  provides:
+  - category: "dev-perl"
+    name: "Gtk3"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "libs"
   name: "hdf5"
@@ -1165,15 +1193,15 @@ packages:
     version: ">=0"
   pre_emerge:
   - app-antivirus/clamav
+  - dev-perl/Gtk3
   requires:
   - <<: *layers-X
-  - category: "apps"
-    name: "clamav"
-    version: ">=0"
+  - <<: *apps-clamav
+  - <<: *libs-Gtk3
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
 - category: "apps"
   name: "clementine"
   version: "1.4.0_rc1+4"
