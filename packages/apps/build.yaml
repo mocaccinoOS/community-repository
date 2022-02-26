@@ -25,8 +25,7 @@ prelude:
 #{{ range .Values.requires }}
 #{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
 #{{ end }}
-{{ $items := list }}
-{{ $items = include "requires" $ . }}
+{{ $items := include "requires" $ . }}
 {{ $packages := join " " $items }}
 
 {{ if $packages }}

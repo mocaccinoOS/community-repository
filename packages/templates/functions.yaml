@@ -11,11 +11,11 @@
     #{{ cat $stringArg $.Values.key .Values.key }}
         
     {{ if .Values.requires }}
-    {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-    {{ range .Values.requires }}
-    {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
+      {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+      {{ range .Values.requires }}
+      {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
     {{ end }}
-    {{ $packages := join " " $items }}
+    #{{ $packages := join " " $items }}
     
   {{ end }}
   
