@@ -18,13 +18,6 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-
-#{{ if .Values.requires }}
-#{{ $items := list }}
-#{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-#{{ range .Values.requires }}
-#{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
-#{{ end }}
 {{ $items := list }}
 {{ $items = (include "requires" $ .) | append $items }}
 {{ $packages := join " " $items }}
