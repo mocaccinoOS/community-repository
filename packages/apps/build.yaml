@@ -18,7 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages := ( include "requires" ( list $ . ) ) }}
+{{ $packages := (include "requires" (list $ .) | fromJson) }}
 
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
