@@ -1,19 +1,19 @@
 {{ define "requires" }} 
 
-  {{ $items := list }}
+{{ $items := list }}
 
-  {{ $ := index . 0 }}
+{{ $ := index . 0 }}
 
-  {{ with index . 1 }}
+{{ with index . 1 }}
 
-    {{ if .Values.requires }}
-      {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-      {{ range .Values.requires }}
-      {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
-    {{ end }}
-    
-  {{ end }}
-  
-  {{ $items | toJson }}
+{{ if .Values.requires }}
+{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+{{ range .Values.requires }}
+{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
+{{ end }}
+
+{{ end }}
+
+{{ $items | toJson }}
 
 {{ end }}
