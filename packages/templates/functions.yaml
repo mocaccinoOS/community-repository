@@ -6,7 +6,7 @@
 
 {{ with index . 1 }}
 
-{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+{{ $items = printf "\"%s-%s\"" .Values.category .Values.name | append $items }}
 
 {{ if .Values.requires }}
 {{ range .Values.requires }}
@@ -16,8 +16,6 @@
 
 {{ end }}
 
-{{ $result := join " " $items }}
-
-{{ $result }}
+{{ join " " $items }}
 
 {{ end }}
