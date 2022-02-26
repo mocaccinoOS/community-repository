@@ -19,7 +19,7 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 {{ $items := list }}
-{{ $items = (include "requires" $ .) | append $items }}
+{{ $items = include "requires" $ . | append $items }}
 {{ $packages := join " " $items }}
 
 {{ if $packages }}
