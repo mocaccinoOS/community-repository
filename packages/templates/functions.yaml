@@ -6,8 +6,9 @@
 
 {{ with index . 1 }}
 
-{{ if .Values.requires }}
 {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+
+{{ if .Values.requires }}
 {{ range .Values.requires }}
 {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
 {{ end }}
@@ -15,7 +16,7 @@
 
 {{ end }}
 
-{{ $packages := join " " $items | default "" }}
+{{ $packages := join " " $items }}
 
 {{ $packages }}
 
