@@ -195,7 +195,12 @@ anchors:
   category: "libs"
   name: "libmygpo-qt"
   version: ">=0"
-  
+
+- &libs-libmypaint
+  category: "libs"
+  name: "libmypaint"
+  version: ">=0"
+
 - &libs-libnova
   category: "libs"
   name: "libnova"
@@ -360,6 +365,11 @@ anchors:
 - &apps-icoutils
   category: "apps"
   name: "icoutils"
+  version: ">=0"
+
+- &apps-mypaint-brushes
+  category: "apps"
+  name: "mypaint-brushes"
   version: ">=0"
 
 - &apps-nx
@@ -886,6 +896,29 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "libs"
+  name: "libmypaint"
+  version: "1.6.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmypaint
+  atom: "media-libs/libmypaint"
+  provides:
+  - category: "media-libs"
+    name: "libmypaint"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/babl
+  - media-libs/gegl
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *libs-babl
+  - <<: *libs-gegl
   requires_final_images: true
 
 - category: "libs"
@@ -1559,7 +1592,6 @@ packages:
     version: ">=0"
   pre_emerge:
   - dev-python/jsonschema
-  - dev-util/intltool
   requires:
   - <<: *layers-X
   build_requires:
@@ -2510,6 +2542,45 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "apps"
+  name: "mypaint"
+  version: "2.0.1-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint
+  atom: "media-gfx/mypaint"
+  provides:
+  - category: "media-gfx"
+    name: "mypaint"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libmypaint
+  - media-gfx/mypaint-brushes
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-libmypaint
+  - <<: *apps-mypaint-brushes
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "mypaint-brushes"
+  version: "2.0.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint-brushes
+  atom: "media-gfx/mypaint-brushes"
+  provides:
+  - category: "media-gfx"
+    name: "mypaint-brushes"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "nnn"
