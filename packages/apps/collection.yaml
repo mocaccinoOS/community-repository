@@ -220,6 +220,11 @@ anchors:
   category: "libs"
   name: "rtl-sdr"
   version: ">=0"
+  
+- &libs-suitesparseconfig
+  category: "libs"
+  name: "suitesparseconfig"
+  version: ">=0"
 
 - &libs-tix
   category: "libs"
@@ -723,6 +728,25 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
+  name: "libnsgif"
+  version: "0.2.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libnsgif
+  atom: "media-libs/libnsgif"
+  provides:
+  - category: "media-libs"
+    name: "libnsgif"
+    version: ">=0"
+  pre_emerge:
+  - dev-util/netsurf-buildsystem
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "libpano13"
   version: "2.9.21"
   labels:
@@ -918,6 +942,23 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- category: "libs"
+  name: "suitesparseconfig"
+  version: "5.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/suitesparseconfig
+  atom: "sci-libs/suitesparseconfig"
+  provides:
+  - category: "sci-libs"
+    name: "suitesparseconfig"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "tix"
