@@ -18,7 +18,8 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $items := include "requires" (list $ .) | fromJson }}
+{{ $items := list }}
+{{ $items = (include "requires" (list $ .) | fromJson) | concat $items }}
 {{ $packages := join " " $items }}
 
 {{ if $packages }}
