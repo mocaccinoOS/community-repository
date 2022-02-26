@@ -3,19 +3,14 @@
   {{ $items := list }}
 
   {{ $ := index . 0 }}
-  #{{- $stringArg := index . 2 }}
 
   {{ with index . 1 }}
-    # Now we have access to the "real" root and current contexts
-    # just as if we were outside of include/define:
-    #{{ cat $stringArg $.Values.key .Values.key }}
-        
+
     {{ if .Values.requires }}
       {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
       {{ range .Values.requires }}
       {{ $items = printf "\"%s-%s\"" .category .name | append $items }}
     {{ end }}
-    #{{ $packages := join " " $items }}
     
   {{ end }}
   
