@@ -231,6 +231,11 @@ anchors:
   name: "mbedtls"
   version: ">=0"
 
+- &libs-metis
+  category: "libs"
+  name: "metis"
+  version: ">=0"
+
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
@@ -544,12 +549,14 @@ packages:
   - sci-libs/camd
   - sci-libs/ccolamd
   - sci-libs/colamd
+  - sci-libs/metis
   requires:
   - <<: *layers-system-x
   - <<: *libs-amd
   - <<: *libs-camd
   - <<: *libs-ccolamd
   - <<: *libs-colamd
+  - <<: *libs-metis
   build_requires:
   - <<: *layers-system-x
 
@@ -996,6 +1003,23 @@ packages:
   provides:
   - category: "net-libs"
     name: "mbedtls"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
+  name: "metis"
+  version: "5.1.0-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/metis
+  atom: "net-libs/metis"
+  provides:
+  - category: "net-libs"
+    name: "metis"
     version: ">=0"
   requires:
   - <<: *layers-system-x
