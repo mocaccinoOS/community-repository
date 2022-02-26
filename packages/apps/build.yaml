@@ -19,7 +19,7 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 {{ $items := list }}
-{{ $items = include "requires" ( list $ . ) | splitList " " | concat $items }}
+{{ $items = ( include "requires" ( list $ . ) | splitList " " ) | concat $items }}
 {{ $packages := join " " $items }}
 - echo {{ $packages }}
 {{ if $packages }}
