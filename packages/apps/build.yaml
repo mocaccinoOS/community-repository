@@ -18,11 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages := include "requires" (list $ .) }}
-
-{{ if $packages }}
-- bash prelude.sh {{ $packages }}
-{{ end }}
+- bash prelude.sh {{ include "requires" (list $ .) }}
 
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
