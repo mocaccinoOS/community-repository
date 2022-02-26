@@ -19,13 +19,16 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 
-{{ if .Values.requires }}
+#{{ if .Values.requires }}
+#{{ $items := list }}
+#{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+#{{ range .Values.requires }}
+#{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
+#{{ end }}
 {{ $items := list }}
-{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
-{{ range .Values.requires }}
-{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
-{{ end }}
+{{ $items = include "requires" $ . }}
 {{ $packages := join " " $items }}
+
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
