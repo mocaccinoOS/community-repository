@@ -2559,11 +2559,12 @@ packages:
   - media-libs/libmypaint
   - media-gfx/mypaint-brushes
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *libs-libmypaint
   - <<: *apps-mypaint-brushes
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "mypaint-brushes"
