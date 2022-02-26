@@ -121,6 +121,11 @@ anchors:
   name: "indilib"
   version: ">=0"
 
+- &libs-json-c
+  category: "libs"
+  name: "json-c"
+  version: ">=0"
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -566,6 +571,23 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- category: "libs"
+  name: "json-c"
+  version: "0.15"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/json-c
+  atom: "dev-libs/json-c"
+  provides:
+  - category: "dev-libs"
+    name: "json-c"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "libs"
   name: "libao"
