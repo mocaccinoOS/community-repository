@@ -121,9 +121,9 @@ anchors:
   name: "indilib"
   version: ">=0"
 
-- &libs-json-c
+- &libs-babl
   category: "libs"
-  name: "json-c"
+  name: "babl"
   version: ">=0"
 
 - &libs-libao
@@ -573,21 +573,22 @@ packages:
   requires_final_images: true
 
 - category: "libs"
-  name: "json-c"
-  version: "0.15"
+  name: "babl"
+  version: "0.1.88"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-libs/json-c
-  atom: "dev-libs/json-c"
+      media-libs/babl
+  atom: "media-libs/babl"
   provides:
-  - category: "dev-libs"
-    name: "json-c"
+  - category: "media-libs"
+    name: "babl"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "libs"
   name: "libao"
