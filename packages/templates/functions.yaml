@@ -2,9 +2,9 @@
 
 {{ $ := index . 0 }}
 
-{{ with index . 1 }}
-
 {{ $items := list }}
+
+{{ with index . 1 }}
 
 {{ if .Values.requires }}
 {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
