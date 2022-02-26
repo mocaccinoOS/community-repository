@@ -18,9 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $items := list }}
-{{ $items = include "requires" ( list $ . ) | splitList " " | concat $items }}
-{{ $packages := join " " $items }}
+{{ $packages := include "requires" ( list $ . ) }}
 
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
