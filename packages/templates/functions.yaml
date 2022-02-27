@@ -10,8 +10,8 @@
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- $category := .category }}
-{{- $name := .name }}
+{{- $category := .Values.category }}
+{{- $name := .Values.name }}
 
 {{- range $.packages }}
 {{- if and (eq .Values.category $category) (eq .Values.name $name) }}
