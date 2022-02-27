@@ -12,7 +12,7 @@
 
 {{- $category := .category }}
 {{- $name := .name }}
-{{- include "cr.dump" (Files.AsConfig collection.yaml) }}
+
 {{- range $.packages }}
 
 {{- if and (eq .category $category) (eq .name $name) }}
