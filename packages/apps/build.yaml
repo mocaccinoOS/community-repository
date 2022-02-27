@@ -20,7 +20,7 @@ unpack: {{ .Values.unpack }}
 prelude:
 {{ $collection := dict }}
 {{ $f := "" }}
-{{ range $path, $_ := .Files.Glob "*/packages/apps/collection.yaml" }}
+{{ range $path, $_ := .Files.Glob "**collection.yaml" }}
 {{ $f = $path }}
 {{ $collection = ($.Files.Get $path).AsConfig }}
 {{ end }}
