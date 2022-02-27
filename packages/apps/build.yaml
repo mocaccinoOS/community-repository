@@ -18,10 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages2 := include "packages" (list $ .) }}
-{{ if $packages2 }}
-- echo '{{ $packages2 }}'
-{{ end }}
+- echo '{{ include "packages.atoms" (list $ .) }}'
 
 {{ $items := list }}
 {{ $items = printf "\"%s-%s\"" .Values.category .Values.name | append $items }}
