@@ -18,24 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages2 := include "cr.packages" (list $ .) }}
-{{ if $packages2 }}
-- echo {{ $packages2 }}
-{{ end }}
-
-{{ $items := list }}
-{{ $items = printf "\"%s-%s\"" .Values.category .Values.name | append $items }}
-
-{{ if .Values.requires }}
-
-{{ range .Values.requires }}
-{{ $items = printf "\"%s-%s\"" .category .name | append $items }}
-{{ end }}
-
-{{ end }}
-
-{{ $packages := join " " $items }}
-
+{{ $packages := include "cr.packages" (list $ .) }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
