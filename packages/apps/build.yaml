@@ -18,9 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ range $path, $_ :=  .Files.Glob  "**.yaml" }}
-{{- include "cr.dump" $path }}
-{{ end }}
+{{- include "cr.dump" $ }}
 {{ $packages := include "cr.packages" (list $ .) }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
