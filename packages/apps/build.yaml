@@ -18,7 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages2 := include "cr.packages" (list $ .) | fromJson }}
+{{ $packages2 := include "cr.packages" (list $ .) }}
 {{ if $packages2 }}
 {{- include "cr.dump" $packages2 }}
 {{ end }}

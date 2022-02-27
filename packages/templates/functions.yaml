@@ -3,21 +3,21 @@
 
 {{- $ := index . 0 }}
 
-{{- $packages_list := list }}
+{{- $packages := list }}
 
 {{- with index . 1 }}
 
-{{- $packages_list = printf "\"%s-%s\"" .Values.category .Values.name | append $packages_list }}
+{{- $packages = printf "\"%s-%s\"" .Values.category .Values.name | append $packages }}
 
 {{- if .Values.requires }}
 {{- range .Values.requires }}
-{{- $packages_list = printf "\"%s-%s\"" .category .name | append $packages_list }}
+{{- $packages = printf "\"%s-%s\"" .category .name | append $packages }}
 {{- end }}
 {{- end }}
 
 {{- end }}
 
-{{- $packages_list }}
+{{- join " " $packages }}
 
 {{- end }}
 
