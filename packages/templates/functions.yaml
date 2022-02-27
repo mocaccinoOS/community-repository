@@ -23,5 +23,9 @@
 
 
 {{ define "cr.dump" }}
+{{ . | printf "\nThe output of the dumped var is: \n%s" | fail }}
+{{ end }}
+
+{{ define "cr.dumpJson" }}
 {{ . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
 {{ end }}
