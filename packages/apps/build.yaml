@@ -19,12 +19,10 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 {{ $collection := dict }}
-{{ $f := "" }}
-{{ range $path, $_ := .Files.Glob "**collection.yaml" }}
-{{ $f = $path }}
+{{ range $path, $_ := .Files.Glob "**.yaml" }}
 {{ $collection = ($.Files.Get $path).AsConfig }}
 {{ end }}
-{{- include "cr.dump" $f }}
+{{- include "cr.dump" $collection }}
 {{ $packages := include "cr.packages" (list $ .) }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
