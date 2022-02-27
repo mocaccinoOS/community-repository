@@ -12,10 +12,9 @@
 
 {{- $category := .category }}
 {{- $name := .name }}
-{{- include "cr.dump" .category }}
 
 {{- range $.packages }}
-
+{{- include "cr.dump" $ }}
 {{- if and (eq .category $category) (eq .name $name) }}
 
 
