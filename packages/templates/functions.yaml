@@ -6,16 +6,16 @@
 
 {{ with index . 1 }}
 
-{{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
+{{ $items = printf "%s-%s" (.Values.category | replace "\"" "") (.Values.name | replace "\"" "") | append $items }}
 
 {{ if .Values.requires }}
 {{ range .Values.requires }}
-{{ $items = printf "%s-%s" .category .name | append $items }}
+{{ $items = printf "%s-%s" (.category | replace "\"" "") (.name | replace "\"" "") | append $items }}
 {{ end }}
 {{ end }}
 
 {{ end }}
 
-{{ join " " $items | indent 0 }}
+{{ join " " $items }}
 
 {{ end }}
