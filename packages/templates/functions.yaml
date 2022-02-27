@@ -1,4 +1,5 @@
-{{ define "packages" }} 
+
+{{ define "cr.packages" }} 
 
 {{ $ := index . 0 }}
 
@@ -19,3 +20,8 @@
 {{ $items | toJson }}
 
 {{ end }}
+
+
+{{- define "cr.var_dump" -}}
+{{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
+{{- end -}}
