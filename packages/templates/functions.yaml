@@ -7,10 +7,10 @@
 
 {{- with index . 1 }}
 
-{{- include "cr.dump" .Values }}
-
 {{- if .Values.requires }}
 {{- range .Values.requires }}
+
+{{- include "cr.dump" .Values }}
 
 {{- $category := .category }}
 {{- $name := .name }}
