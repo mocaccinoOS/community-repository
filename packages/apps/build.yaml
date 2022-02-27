@@ -33,6 +33,7 @@ prelude:
 {{ $packages := join " " $items }}
 
 {{ if $packages }}
+- echo {{ $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
 
