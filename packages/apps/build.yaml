@@ -20,7 +20,7 @@ unpack: {{ .Values.unpack }}
 prelude:
 {{ $packages2 := include "packages" (list $ .) }}
 {{ if $packages2 }}
-- echo {{ $packages2 | fromJson }}
+- echo '{{ $packages2 }}'
 {{ end }}
 
 {{ $items := list }}
