@@ -11,7 +11,12 @@
 
 {{- if .Values.requires }}
 {{- range .Values.requires }}
-{{- $packages = printf "\"%s-%s\"" .category .name | append $packages }}
+
+{{- $package := printf "\"%s-%s\"" .category .name
+{{- if not has $package $packages }}
+{{- $packages = $package | append $packages }}
+{{- end }}
+
 {{- end }}
 {{- end }}
 
@@ -22,6 +27,9 @@
 {{- end }}
 
 
+#########
+# debug
+#########
 {{- define "cr.dump" }}
 {{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}
 {{- end }}
