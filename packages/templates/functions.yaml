@@ -7,19 +7,18 @@
 
 {{- with index . 1 }}
 
+{{- include "cr.dump" .Values }}
+
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- $category := .Values.category }}
-{{- $name := .Values.name }}
+{{- $category := .category }}
+{{- $name := .name }}
 
 {{- range $.packages }}
-{{- if and (eq .Values.category $category) (eq .Values.name $name) }}
+{{- if and (eq .category $category) (eq .name $name) }}
 
-{{- $deps := include "cr.packages" (list $ .) }}
-{{- if $deps }}
-{{- $packages = $deps | split " " | append $packages }}
-{{- end }}
+
 
 {{- end }}
 
