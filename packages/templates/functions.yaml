@@ -1,31 +1,31 @@
 
-{{ define "cr.packages" }} 
+{{- define "cr.packages" }} 
 
-{{ $ := index . 0 }}
+{{- $ := index . 0 }}
 
-{{ $packages_list := list }}
+{{- $packages_list := list }}
 
-{{ with index . 1 }}
+{{- with index . 1 }}
 
-{{ $packages_list = printf "\"%s-%s\"" .Values.category .Values.name | append $packages_list }}
+{{- $packages_list = printf "\"%s-%s\"" .Values.category .Values.name | append $packages_list }}
 
-{{ if .Values.requires }}
-{{ range .Values.requires }}
-{{ $packages_list = printf "\"%s-%s\"" .category .name | append $packages_list }}
-{{ end }}
-{{ end }}
+{{- if .Values.requires }}
+{{- range .Values.requires }}
+{{- $packages_list = printf "\"%s-%s\"" .category .name | append $packages_list }}
+{{- end }}
+{{- end }}
 
-{{ end }}
+{{- end }}
 
-{{ $packages_list }}
+{{- $packages_list }}
 
-{{ end }}
+{{- end }}
 
 
-{{ define "cr.dump" }}
-{{ . | printf "\nThe output of the dumped var is: \n%s" | fail }}
-{{ end }}
+{{- define "cr.dump" }}
+{{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}
+{{- end }}
 
-{{ define "cr.dumpJson" }}
-{{ . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
-{{ end }}
+{{- define "cr.dumpJson" }}
+{{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
+{{- end }}
