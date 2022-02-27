@@ -12,7 +12,7 @@
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- $package := printf "\"%s-%s\"" .category .name
+{{- $package := printf "\"%s-%s\"" .category .name }}
 {{- if not has $package $packages }}
 {{- $packages = $package | append $packages }}
 {{- end }}
