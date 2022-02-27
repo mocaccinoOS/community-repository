@@ -19,6 +19,11 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 
+{{ $packages2 := include "packages" (list $ .) }}
+{{ if $packages2 }}
+- echo {{ $packages2 }}
+{{ end }}
+
 {{ $items := list }}
 {{ $items = printf "%s-%s" .Values.category .Values.name | append $items }}
 
@@ -33,7 +38,6 @@ prelude:
 {{ $packages := join " " $items }}
 
 {{ if $packages }}
-- echo {{ $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
 
