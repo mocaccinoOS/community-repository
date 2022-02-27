@@ -18,7 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $collection := ($.Files.Get "collection.yaml").AsConfig }}
+{{ $collection := $.Files.Get "collection.yaml" }}
 {{- include "cr.dump" $collection }}
 {{ $packages := include "cr.packages" (list $ .) }}
 {{ if $packages }}
