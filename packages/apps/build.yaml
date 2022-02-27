@@ -20,7 +20,7 @@ unpack: {{ .Values.unpack }}
 prelude:
 {{ $packages2 := include "cr.packages" (list $ .) }}
 {{ if $packages2 }}
-{{ include "cr.var_dump" $packages2 }}
+{{ include "cr.dump" $packages2 }}
 {{ end }}
 
 {{ $items := list }}

@@ -22,6 +22,6 @@
 {{ end }}
 
 
-{{- define "cr.var_dump" -}}
-{{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
-{{- end -}}
+{{ define "cr.dump" }}
+{{ . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
+{{ end }}
