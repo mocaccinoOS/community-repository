@@ -7,12 +7,25 @@
 
 {{- with index . 1 }}
 
-{{- $packages = printf "\"%s-%s\"" .Values.category .Values.name | append $packages }}
-
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- $package := printf "\"%s-%s\"" .category .name }}
+{{- $category := .category }}
+{{- $name := .name }}
+
+{{- range $.packages }}
+{{- if and (eq .category $category) (eq .name $name) }}
+
+{{- $deps := include "cr.packages" (list $ .) }}
+{{- if $deps }}
+{{- $packages = $deps | split " " | append $packages }}
+{{- end }}
+
+{{- end }}
+
+{{- end }}
+
+{{- $package := printf "\"%s-%s\"" .Values.category .Values.name }}
 {{- if not (has $package $packages) }}
 {{- $packages = $package | append $packages }}
 {{- end }}
