@@ -14,7 +14,7 @@
 {{- $name := .name }}
 
 {{- range $.packages }}
-{{- if and (eq .category $category) (eq .name $name) }}
+{{- if and (eq .Values.category $category) (eq .Values.name $name) }}
 
 {{- $deps := include "cr.packages" (list $ .) }}
 {{- if $deps }}
