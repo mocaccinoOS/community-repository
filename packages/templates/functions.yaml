@@ -10,12 +10,11 @@
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- include "cr.dump" . }}
-
 {{- $category := .category }}
 {{- $name := .name }}
 
 {{- range $.packages }}
+{{- include "cr.dump" . }}
 {{- if and (eq .category $category) (eq .name $name) }}
 
 
