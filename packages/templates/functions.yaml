@@ -6,8 +6,7 @@
 {{- if .requires }}
 {{- range .requires }}
 
-{{- $deps := (include "cr.packages" . ) | split " " }}
-{{- include "cr.dump" $deps }}
+{{- $deps := (include "cr.packages" . ) | splitList " " }}
 {{- $packages = $packages | concat $deps }}
 
 {{- end }}
