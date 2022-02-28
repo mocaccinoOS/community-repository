@@ -7,14 +7,15 @@
 {{- range .requires }}
 
 {{- $deps := (include "cr.packages" . ) | split " " }}
+{{- include "cr.dump" $deps }}
 {{- $packages = $packages | concat $deps }}
+
+{{- end }}
+{{- end }}
 
 {{- $package := printf "\"%s-%s\"" .category .name }}
 {{- if not (has $package $packages) }}
 {{- $packages = $package | append $packages }}
-{{- end }}
-
-{{- end }}
 {{- end }}
 
 {{- join " " $packages }}
