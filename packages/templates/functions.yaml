@@ -3,13 +3,13 @@
 
 {{- $packages := list }}
 
-{{- if .Values.requires }}
-{{- range .Values.requires }}
-{{- include "cr.dump" . }}
+{{- if .requires }}
+{{- range .requires }}
+
 {{- $deps := (include "cr.packages" . ) | split " " }}
 {{- $packages = $packages | concat $deps }}
 
-{{- $package := printf "\"%s-%s\"" .Values.category .Values.name }}
+{{- $package := printf "\"%s-%s\"" .category .name }}
 {{- if not (has $package $packages) }}
 {{- $packages = $package | append $packages }}
 {{- end }}

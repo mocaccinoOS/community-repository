@@ -18,7 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages := include "cr.packages" . }}
+{{ $packages := include "cr.packages" .Values }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
