@@ -6,13 +6,8 @@
 {{- if .Values.requires }}
 {{- range .Values.requires }}
 
-{{- $category := .category }}
-{{- $name := .name }}
-
-{{- range .requires }}
-{{- $deps := (include "cr.packages" . | split " ") }}
+{{- $deps := (include "cr.packages" . ) | split " " }}
 {{- $packages = $packages | concat $deps }}
-{{- end }}
 
 {{- $package := printf "\"%s-%s\"" .Values.category .Values.name }}
 {{- if not (has $package $packages) }}
