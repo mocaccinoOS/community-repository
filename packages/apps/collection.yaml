@@ -78,180 +78,8 @@ anchors:
   version: ">=0"
 
 #########
-## libs
-#########
-
-- &libs-cfitsio
-  category: "libs"
-  name: "cfitsio"
-  version: ">=0"
-
-- &libs-chmlib
-  category: "libs"
-  name: "chmlib"
-  version: ">=0"
-  
-- &libs-flann
-  category: "libs"
-  name: "flann"
-  version: ">=0"
-
-- &libs-gsl
-  category: "libs"
-  name: "gsl"
-  version: ">=0"
-
-- &libs-hidapi
-  category: "libs"
-  name: "hidapi"
-  version: ">=0"
-
-- &libs-http-parser
-  category: "libs"
-  name: "http-parser"
-  version: ">=0"
-  
-- &libs-id3lib
-  category: "libs"
-  name: "id3lib"
-  version: ">=0"
-
-- &libs-indilib
-  category: "libs"
-  name: "indilib"
-  version: ">=0"
-
-- &libs-libao
-  category: "libs"
-  name: "libao"
-  version: ">=0"
-
-- &libs-libdv
-  category: "libs"
-  name: "libdv"
-  version: ">=0"
-
-- &libs-libgit2
-  category: "libs"
-  name: "libgit2"
-  version: ">=0"
-
-- &libs-Gtk3
-  category: "libs"
-  name: "Gtk3"
-  version: ">=0"
-
-- &libs-libktorrent
-  category: "libs"
-  name: "libktorrent"
-  version: ">=0"
-
-- &libs-liblqr
-  category: "libs"
-  name: "liblqr"
-  version: ">=0"
-
-- &libs-libmpeg2
-  category: "libs"
-  name: "libmpeg2"
-  version: ">=0"
-  
-- &libs-libmygpo-qt
-  category: "libs"
-  name: "libmygpo-qt"
-  version: ">=0"
-
-- &libs-libnova
-  category: "libs"
-  name: "libnova"
-  version: ">=0"
-
-- &libs-libpano13
-  category: "libs"
-  name: "libpano13"
-  version: ">=0"
-
-- &libs-libssh2
-  category: "libs"
-  name: "libssh2"
-  version: ">=0"
-
-- &libs-libtommath
-  category: "libs"
-  name: "libtommath"
-  version: ">=0"
-
-- &libs-libvisio
-  category: "libs"
-  name: "libvisio"
-  version: ">=0"
-  
-- &libs-mbedtls
-  category: "libs"
-  name: "mbedtls"
-  version: ">=0"
-
-- &libs-nlohmann_json
-  category: "libs"
-  name: "nlohmann_json"
-  version: ">=0"
-
-- &libs-opencv
-  category: "libs"
-  name: "opencv"
-  version: ">=0"
-  
-- &libs-qcustomplot
-  category: "libs"
-  name: "qcustomplot"
-  version: ">=0"
-
-- &libs-qscintilla
-  category: "libs"
-  name: "qscintilla"
-  version: ">=0"
-
-- &libs-rtl-sdr
-  category: "libs"
-  name: "rtl-sdr"
-  version: ">=0"
-  
-- &libs-tix
-  category: "libs"
-  name: "tix"
-  version: ">=0"
-  
-- &libs-vigra
-  category: "libs"
-  name: "vigra"
-  version: ">=0"
-
-- &libs-websocketpp
-  category: "libs"
-  name: "websocketpp"
-  version: ">=0"
-  
-- &libs-wcslib
-  category: "libs"
-  name: "wcslib"
-  version: ">=0"
-
-#########
 ## apps
 #########
-
-- &apps-cdrdao
-  category: "apps"
-  name: "cdrdao"
-  version: ">=0"
-
-- &apps-cfortran
-  category: "dev-lang"
-  name: "cfortran"
-  version: ">=0"
-
-- &apps-cfortran-packages >-
-    =dev-lang/cfortran-4.4-r3
 
 - &apps-clamav
   category: "apps"
@@ -275,11 +103,6 @@ anchors:
 
 - &apps-dmd-packages >-
     =dev-lang/dmd-2.094.2
-
-- &apps-dvd-rw-tools
-  category: "apps"
-  name: "dvd+rw-tools"
-  version: ">=0"
 
 - &apps-ebook-tools
   category: "apps"
@@ -329,24 +152,9 @@ anchors:
   name: "qhexedit2"
   version: ">=0"
 
-- &apps-tk
-  category: "apps"
-  name: "tk"
-  version: ">=0"
-
-- &apps-transcode
-  category: "apps"
-  name: "transcode"
-  version: ">=0"
-
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: ">=0"
-
-- &apps-vcdimager
-  category: "apps"
-  name: "vcdimager"
   version: ">=0"
 
 
@@ -375,6 +183,287 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-chmlib
+  category: "libs"
+  name: "chmlib"
+  version: "0.40+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/chmlib
+  atom: "dev-libs/chmlib"
+  provides:
+  - category: "dev-libs"
+    name: "chmlib"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-flann
+  category: "libs"
+  name: "flann"
+  version: "1.9.1-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/flann
+  atom: "sci-libs/flann"
+  provides:
+  - category: "sci-libs"
+    name: "flann"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libao
+  category: "libs"
+  name: "libao"
+  version: "1.2.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libao
+  atom: "media-libs/libao"
+  provides:
+  - category: "media-libs"
+    name: "libao"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-libdv
+  category: "libs"
+  name: "libdv"
+  version: "1.0.0-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libdv
+  atom: "media-libs/libdv"
+  provides:
+  - category: "media-libs"
+    name: "libdv"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+  
+- &libs-gsl
+  category: "libs"
+  name: "gsl"
+  version: "2.7.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/gsl
+  atom: "sci-libs/gsl"
+  provides:
+  - category: "sci-libs"
+    name: "gsl"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-Gtk3
+  category: "libs"
+  name: "Gtk3"
+  version: "0.38.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/Gtk3
+  atom: "dev-perl/Gtk3"
+  provides:
+  - category: "dev-perl"
+    name: "Gtk3"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-hdf5
+  category: "libs"
+  name: "hdf5"
+  version: "1.10.5-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/hdf5
+  atom: "sci-libs/hdf5"
+  provides:
+  - category: "sci-libs"
+    name: "hdf5"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-hidapi
+  category: "libs"
+  name: "hidapi"
+  version: "0.8.0_rc1_p20140719-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/hidapi
+  atom: "dev-libs/hidapi"
+  provides:
+  - category: "dev-libs"
+    name: "hidapi"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x 
+
+- &libs-http-parser
+  category: "libs"
+  name: "http-parser"
+  version: "2.9.4-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/http-parser
+  atom: "net-libs/http-parser"
+  provides:
+  - category: "net-libs"
+    name: "http-parser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x  
+
+# should be in main repo
+- &libs-id3lib
+  category: "libs"
+  name: "id3lib"
+  version: "3.8.3-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/id3lib
+  atom: "media-libs/id3lib"
+  provides:
+  - category: "media-libs"
+    name: "id3lib"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libktorrent
+  category: "libs"
+  name: "libktorrent"
+  version: "21.08.3+4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libktorrent
+  atom: "net-libs/libktorrent"
+  provides:
+  - category: "net-libs"
+    name: "libktorrent"
+    version: ">=0"
+  pre_emerge:
+  - app-crypt/qca
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- &libs-liblqr
+  category: "libs"
+  name: "liblqr"
+  version: "0.4.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/liblqr
+  atom: "media-libs/liblqr"
+  provides:
+  - category: "media-libs"
+    name: "liblqr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libmpeg2
+  category: "libs"
+  name: "libmpeg2"
+  version: "0.5.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmpeg2
+  atom: "media-libs/libmpeg2"
+  provides:
+  - category: "media-libs"
+    name: "libmpeg2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-libmygpo-qt
+  category: "libs"
+  name: "libmygpo-qt"
+  version: "1.1.0+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmygpo-qt
+  atom: "media-libs/libmygpo-qt"
+  provides:
+  - category: "media-libs"
+    name: "libmygpo-qt"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-libnova
+  category: "libs"
+  name: "libnova"
+  version: "0.16.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/libnova
+  atom: "sci-libs/libnova"
+  provides:
+  - category: "sci-libs"
+    name: "libnova"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libnsgif
   category: "libs"
   name: "libnsgif"
@@ -395,6 +484,189 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libpano13
+  category: "libs"
+  name: "libpano13"
+  version: "2.9.21"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libpano13
+  atom: "media-libs/libpano13"
+  provides:
+  - category: "media-libs"
+    name: "libpano13"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
+- &libs-libssh2
+  category: "libs"
+  name: "libssh2"
+  version: "1.10.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libssh2
+  atom: "net-libs/libssh2"
+  provides:
+  - category: "net-libs"
+    name: "libssh2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libtommath
+  category: "libs"
+  name: "libtommath"
+  version: "1.2.0+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libtommath
+  atom: "dev-libs/libtommath"
+  provides:
+  - category: "dev-libs"
+    name: "libtommath"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libvisio
+  category: "libs"
+  name: "libvisio"
+  version: "0.1.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libvisio
+  atom: "media-libs/libvisio"
+  provides:
+  - category: "media-libs"
+    name: "libvisio"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
+- &libs-mbedtls
+  category: "libs"
+  name: "mbedtls"
+  version: "2.28.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/mbedtls
+  atom: "net-libs/mbedtls"
+  provides:
+  - category: "net-libs"
+    name: "mbedtls"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-netpbm
+  category: "libs"
+  name: "netpbm"
+  version: "10.86.24-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/netpbm
+  atom: "media-libs/netpbm"
+  provides:
+  - category: "media-libs"
+    name: "netpbm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-qcustomplot
+  category: "libs"
+  name: "qcustomplot"
+  version: "2.0.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/qcustomplot
+  atom: "dev-libs/qcustomplot"
+  provides:
+  - category: "dev-libs"
+    name: "qcustomplot"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-qscintilla
+  category: "libs"
+  name: "qscintilla"
+  version: "2.11.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/qscintilla
+  atom: "x11-libs/qscintilla"
+  provides:
+  - category: "x11-libs"
+    name: "qscintilla"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-nlohmann_json
+  category: "libs"
+  name: "nlohmann_json"
+  version: "3.9.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/nlohmann_json
+  atom: "dev-cpp/nlohmann_json"
+  provides:
+  - category: "dev-cpp"
+    name: "nlohmann_json"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
+- &libs-rtl-sdr
+  category: "libs"
+  name: "rtl-sdr"
+  version: "0.6.0_p2020802"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/rtl-sdr
+  atom: "net-wireless/rtl-sdr"
+  provides:
+  - category: "net-wireless"
+    name: "rtl-sdr"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-suitesparseconfig
   category: "libs"
   name: "suitesparseconfig"
@@ -412,6 +684,155 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-websocketpp
+  category: "libs"
+  name: "websocketpp"
+  version: "0.8.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/websocketpp
+  atom: "dev-cpp/websocketpp"
+  provides:
+  - category: "dev-cpp"
+    name: "websocketpp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+################
+### dep I apps
+################
+
+- &apps-cdrdao
+  category: "apps"
+  name: "cdrdao"
+  version: "1.2.4+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/cdrdao
+  atom: "app-cdr/cdrdao"
+  pre_emerge:
+  - x11-misc/makedepend
+  - media-libs/libao
+  provides:
+  - category: "app-cdr"
+    name: "cdrdao"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libao
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+# - &apps-cfortran-packages >-
+#     =dev-lang/cfortran-4.4-r3
+- &apps-cfortran
+  category: "apps"
+  name: "cfortran"
+  version: "4.4-r3+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-cfortran-packages >-
+      =dev-lang/cfortran-4.4-r3 
+  atom: *apps-cfortran-packages
+  provides:
+  - category: "dev-lang"
+    name: "cfortran"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-dvd-rw-tools
+  category: "apps"
+  name: "dvd+rw-tools"
+  version: "7.1-r4+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvd+rw-tools
+  atom: "app-cdr/dvd+rw-tools"
+  pre_emerge:
+  - x11-misc/makedepend
+  provides:
+  - category: "app-cdr"
+    name: "dvd+rw-tools"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# should be in desktop repo  
+- &apps-tk
+  category: "apps"
+  name: "tk"
+  version: "8.6.12"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/tk
+  atom: "dev-lang/tk"
+  provides:
+  - category: "dev-lang"
+    name: "tk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &apps-transcode
+  category: "apps"
+  name: "transcode"
+  version: "1.1.7-r6+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/transcode
+  atom: "media-video/transcode"
+  provides:
+  - category: "media-video"
+    name: "transcode"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libdv
+  - media-libs/libmpeg2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libdv
+  - <<: *libs-libmpeg2
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &apps-vcdimager
+  category: "apps"
+  name: "vcdimager"
+  version: "2.0.1+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/vcdimager
+  atom: "media-video/vcdimager"
+  pre_emerge:
+  - x11-misc/makedepend
+  provides:
+  - category: "media-video"
+    name: "vcdimager"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 #################
 ### dep II libs
@@ -480,6 +901,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-cfitsio
+  category: "libs"
+  name: "cfitsio"
+  version: "3.490+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-libs/cfitsio
+  atom: "sci-libs/cfitsio"
+  provides:
+  - category: "sci-libs"
+    name: "cfitsio"
+    version: ">=0"
+  pre_emerge: 
+  - *apps-cfortran-packages
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-cfortran
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-colamd
   category: "libs"
   name: "colamd"
@@ -501,6 +943,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libgit2
+  category: "libs"
+  name: "libgit2"
+  version: "1.3.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libgit2
+  atom: "dev-libs/libgit2"
+  provides:
+  - category: "dev-libs"
+    name: "libgit2"
+    version: ">=0"
+  pre_emerge:
+  - net-libs/http-parser
+  - net-libs/libssh2
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-http-parser
+  - <<: *libs-libssh2
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-metis
   category: "libs"
   name: "metis"
@@ -518,6 +983,103 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-opencv
+  category: "libs"
+  name: "opencv"
+  version: "4.5.4+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opencv
+  atom: "media-libs/opencv"
+  provides:
+  - category: "media-libs"
+    name: "opencv"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
+  - sci-libs/hdf5
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-hdf5
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-tix
+  category: "libs"
+  name: "tix"
+  version: "8.4.3-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-tcltk/tix
+  atom: "dev-tcltk/tix"
+  provides:
+  - category: "dev-tcltk"
+    name: "tix"
+    version: ">=0"
+  pre_emerge:
+  - dev-lang/tk
+  requires:
+  - <<: *layers-X
+  - <<: *apps-tk
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-vigra
+  category: "libs"
+  name: "vigra"
+  version: "1.11.1-r3+4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/vigra
+  atom: "media-libs/vigra"
+  provides:
+  - category: "media-libs"
+    name: "vigra"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/hdf5
+  requires:
+  - <<: *layers-X
+  - <<: *libs-hdf5
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+#################
+### dep II apps
+#################
+  
+- category: "apps"
+  name: "k3b"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/k3b
+  atom: "kde-apps/k3b"
+  pre_emerge:
+  - app-cdr/dvd+rw-tools
+  - app-cdr/cdrdao
+  - media-video/vcdimager
+  - media-video/transcode
+  provides:
+  - category: "kde-apps"
+    name: "k3b"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-dvd-rw-tools
+  - <<: *apps-cdrdao
+  - <<: *apps-vcdimager
+  - <<: *apps-transcode
+  build_requires:
+  - <<: *layers-plasma
 
 ##################
 ### dep III libs
@@ -551,7 +1113,58 @@ packages:
   - <<: *libs-metis
   build_requires:
   - <<: *layers-system-x
+
+- &libs-indilib
+  category: "libs"
+  name: "indilib"
+  version: "1.9.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/indilib
+  atom: "sci-libs/indilib"
+  provides:
+  - category: "sci-libs"
+    name: "indilib"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/websocketpp
+  - net-wireless/rtl-sdr
+  - sci-libs/cfitsio
+  - sci-libs/gsl
+  - sci-libs/libnova
+  requires:
+  - <<: *layers-X
+  - <<: *libs-websocketpp
+  - <<: *libs-rtl-sdr
+  - <<: *libs-cfitsio
+  - <<: *libs-gsl
+  - <<: *libs-libnova
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
   
+- &libs-wcslib
+  category: "libs"
+  name: "wcslib"
+  version: "7.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/wcslib
+  atom: "sci-astronomy/wcslib"
+  provides:
+  - category: "sci-astronomy"
+    name: "wcslib"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/cfitsio
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-cfitsio
+  build_requires:
+  - <<: *layers-system-x
+
 #################
 ### dep IV libs
 #################
@@ -688,626 +1301,6 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
- 
-
-##########
-### libs
-########## 
-
-- category: "libs"
-  name: "cfitsio"
-  version: "3.490+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/cfitsio
-  atom: "sci-libs/cfitsio"
-  provides:
-  - category: "sci-libs"
-    name: "cfitsio"
-    version: ">=0"
-  pre_emerge: 
-  - *apps-cfortran-packages
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-cfortran
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "chmlib"
-  version: "0.40+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/chmlib
-  atom: "dev-libs/chmlib"
-  provides:
-  - category: "dev-libs"
-    name: "chmlib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "flann"
-  version: "1.9.1-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/flann
-  atom: "sci-libs/flann"
-  provides:
-  - category: "sci-libs"
-    name: "flann"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libdv"
-  version: "1.0.0-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libdv
-  atom: "media-libs/libdv"
-  provides:
-  - category: "media-libs"
-    name: "libdv"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-  
-- category: "libs"
-  name: "gsl"
-  version: "2.7.1-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gsl
-  atom: "sci-libs/gsl"
-  provides:
-  - category: "sci-libs"
-    name: "gsl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "Gtk3"
-  version: "0.38.0"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-perl/Gtk3
-  atom: "dev-perl/Gtk3"
-  provides:
-  - category: "dev-perl"
-    name: "Gtk3"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "hdf5"
-  version: "1.10.5-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/hdf5
-  atom: "sci-libs/hdf5"
-  provides:
-  - category: "sci-libs"
-    name: "hdf5"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "hidapi"
-  version: "0.8.0_rc1_p20140719-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/hidapi
-  atom: "dev-libs/hidapi"
-  provides:
-  - category: "dev-libs"
-    name: "hidapi"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x 
-
-- category: "libs"
-  name: "http-parser"
-  version: "2.9.4-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/http-parser
-  atom: "net-libs/http-parser"
-  provides:
-  - category: "net-libs"
-    name: "http-parser"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x  
-
-# should be in main repo
-- category: "libs"
-  name: "id3lib"
-  version: "3.8.3-r8"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/id3lib
-  atom: "media-libs/id3lib"
-  provides:
-  - category: "media-libs"
-    name: "id3lib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "indilib"
-  version: "1.9.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/indilib
-  atom: "sci-libs/indilib"
-  provides:
-  - category: "sci-libs"
-    name: "indilib"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/websocketpp
-  - net-wireless/rtl-sdr
-  - sci-libs/cfitsio
-  - sci-libs/gsl
-  - sci-libs/libnova
-  requires:
-  - <<: *layers-X
-  - <<: *libs-websocketpp
-  - <<: *libs-rtl-sdr
-  - <<: *libs-cfitsio
-  - <<: *libs-gsl
-  - <<: *libs-libnova
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "libao"
-  version: "1.2.2-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libao
-  atom: "media-libs/libao"
-  provides:
-  - category: "media-libs"
-    name: "libao"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "libgit2"
-  version: "1.3.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libgit2
-  atom: "dev-libs/libgit2"
-  provides:
-  - category: "dev-libs"
-    name: "libgit2"
-    version: ">=0"
-  pre_emerge:
-  - net-libs/http-parser
-  - net-libs/libssh2
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-http-parser
-  - <<: *libs-libssh2
-  build_requires:
-  - <<: *layers-sys-fs
-
-- category: "libs"
-  name: "libktorrent"
-  version: "21.08.3+4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libktorrent
-  atom: "net-libs/libktorrent"
-  provides:
-  - category: "net-libs"
-    name: "libktorrent"
-    version: ">=0"
-  pre_emerge:
-  - app-crypt/qca
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "libs"
-  name: "liblqr"
-  version: "0.4.2-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/liblqr
-  atom: "media-libs/liblqr"
-  provides:
-  - category: "media-libs"
-    name: "liblqr"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libmpeg2"
-  version: "0.5.1-r3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmpeg2
-  atom: "media-libs/libmpeg2"
-  provides:
-  - category: "media-libs"
-    name: "libmpeg2"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "libmygpo-qt"
-  version: "1.1.0+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmygpo-qt
-  atom: "media-libs/libmygpo-qt"
-  provides:
-  - category: "media-libs"
-    name: "libmygpo-qt"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/gtest
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "libs"
-  name: "libnova"
-  version: "0.16.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/libnova
-  atom: "sci-libs/libnova"
-  provides:
-  - category: "sci-libs"
-    name: "libnova"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libpano13"
-  version: "2.9.21"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libpano13
-  atom: "media-libs/libpano13"
-  provides:
-  - category: "media-libs"
-    name: "libpano13"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
-- category: "libs"
-  name: "libssh2"
-  version: "1.10.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libssh2
-  atom: "net-libs/libssh2"
-  provides:
-  - category: "net-libs"
-    name: "libssh2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libtommath"
-  version: "1.2.0+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libtommath
-  atom: "dev-libs/libtommath"
-  provides:
-  - category: "dev-libs"
-    name: "libtommath"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libvisio"
-  version: "0.1.7"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libvisio
-  atom: "media-libs/libvisio"
-  provides:
-  - category: "media-libs"
-    name: "libvisio"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
-- category: "libs"
-  name: "mbedtls"
-  version: "2.28.0-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/mbedtls
-  atom: "net-libs/mbedtls"
-  provides:
-  - category: "net-libs"
-    name: "mbedtls"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "netpbm"
-  version: "10.86.24-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/netpbm
-  atom: "media-libs/netpbm"
-  provides:
-  - category: "media-libs"
-    name: "netpbm"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "opencv"
-  version: "4.5.4+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/opencv
-  atom: "media-libs/opencv"
-  provides:
-  - category: "media-libs"
-    name: "opencv"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/eigen
-  - sci-libs/hdf5
-  requires:
-  - <<: *layers-qt
-  - category: "libs"
-    name: "hdf5"
-    version: ">=0"
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true  
-
-- category: "libs"
-  name: "qcustomplot"
-  version: "2.0.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/qcustomplot
-  atom: "dev-libs/qcustomplot"
-  provides:
-  - category: "dev-libs"
-    name: "qcustomplot"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "libs"
-  name: "qscintilla"
-  version: "2.11.6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/qscintilla
-  atom: "x11-libs/qscintilla"
-  provides:
-  - category: "x11-libs"
-    name: "qscintilla"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "libs"
-  name: "nlohmann_json"
-  version: "3.9.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/nlohmann_json
-  atom: "dev-cpp/nlohmann_json"
-  provides:
-  - category: "dev-cpp"
-    name: "nlohmann_json"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-  
-- category: "libs"
-  name: "rtl-sdr"
-  version: "0.6.0_p2020802"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/rtl-sdr
-  atom: "net-wireless/rtl-sdr"
-  provides:
-  - category: "net-wireless"
-    name: "rtl-sdr"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
-- category: "libs"
-  name: "tix"
-  version: "8.4.3-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-tcltk/tix
-  atom: "dev-tcltk/tix"
-  provides:
-  - category: "dev-tcltk"
-    name: "tix"
-    version: ">=0"
-  pre_emerge:
-  - dev-lang/tk
-  requires:
-  - <<: *layers-X
-  - <<: *apps-tk
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "vigra"
-  version: "1.11.1-r3+4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/vigra
-  atom: "media-libs/vigra"
-  provides:
-  - category: "media-libs"
-    name: "vigra"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/hdf5
-  requires:
-  - <<: *layers-X
-  - category: "libs"
-    name: "hdf5"
-    version: ">=0"
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
-  name: "wcslib"
-  version: "7.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-astronomy/wcslib
-  atom: "sci-astronomy/wcslib"
-  provides:
-  - category: "sci-astronomy"
-    name: "wcslib"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/cfitsio
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-cfitsio
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "websocketpp"
-  version: "0.8.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/websocketpp
-  atom: "dev-cpp/websocketpp"
-  provides:
-  - category: "dev-cpp"
-    name: "websocketpp"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 ##########
 ### apps
@@ -1394,28 +1387,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "cdrdao"
-  version: "1.2.4+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-cdr/cdrdao
-  atom: "app-cdr/cdrdao"
-  pre_emerge:
-  - x11-misc/makedepend
-  - media-libs/libao
-  provides:
-  - category: "app-cdr"
-    name: "cdrdao"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libao
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
   
 - category: "apps"
   name: "celestia"
@@ -1436,22 +1407,6 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
-
-- category: "apps"
-  name: "cfortran"
-  version: "4.4-r3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: *apps-cfortran-packages 
-  atom: *apps-cfortran-packages
-  provides:
-  - category: "dev-lang"
-    name: "cfortran"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "clamav"
@@ -1609,9 +1564,7 @@ packages:
   - media-libs/netpbm
   requires:
   - <<: *layers-system-x
-  - category: "libs"
-    name: "netpbm"
-    version: ">=0"
+  - <<: *libs-netpbm
   build_requires:
   - <<: *layers-system-x
 
@@ -1713,25 +1666,6 @@ packages:
   - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
-
-- category: "apps"
-  name: "dvd+rw-tools"
-  version: "7.1-r4+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-cdr/dvd+rw-tools
-  atom: "app-cdr/dvd+rw-tools"
-  pre_emerge:
-  - x11-misc/makedepend
-  provides:
-  - category: "app-cdr"
-    name: "dvd+rw-tools"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "easytag"
@@ -2156,33 +2090,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-# flags
-- category: "apps"
-  name: "k3b"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/k3b
-  atom: "kde-apps/k3b"
-  pre_emerge:
-  - app-cdr/dvd+rw-tools
-  - app-cdr/cdrdao
-  - media-video/vcdimager
-  - media-video/transcode
-  provides:
-  - category: "kde-apps"
-    name: "k3b"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  - <<: *apps-dvd-rw-tools
-  - <<: *apps-cdrdao
-  - <<: *apps-vcdimager
-  - <<: *apps-transcode
-  build_requires:
-  - <<: *layers-plasma
-  
 - category: "apps"
   name: "kate"
   version: "21.08.3+10"
@@ -2867,7 +2774,6 @@ packages:
   - dev-tcltk/tix
   requires:
   - <<: *layers-X
-  - <<: *apps-tk
   - <<: *libs-tix
   build_requires:
   - <<: *buildbase-X
@@ -3045,25 +2951,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# should be in desktop repo  
-- category: "apps"
-  name: "tk"
-  version: "8.6.12"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/tk
-  atom: "dev-lang/tk"
-  provides:
-  - category: "dev-lang"
-    name: "tk"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - category: "apps"
   name: "tree"
   version: "0.4+3"
@@ -3175,28 +3062,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "transcode"
-  version: "1.1.7-r6+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/transcode
-  atom: "media-video/transcode"
-  provides:
-  - category: "media-video"
-    name: "transcode"
-    version: ">=0"
-  pre_emerge:
-  - media-libs/libdv
-  - media-libs/libmpeg2
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libdv
-  - <<: *libs-libmpeg2
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
 
 - category: "apps"
   name: "transmission"
@@ -3242,25 +3107,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- category: "apps"
-  name: "vcdimager"
-  version: "2.0.1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/vcdimager
-  atom: "media-video/vcdimager"
-  pre_emerge:
-  - x11-misc/makedepend
-  provides:
-  - category: "media-video"
-    name: "vcdimager"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - category: "apps"
   name: "vivaldi"
