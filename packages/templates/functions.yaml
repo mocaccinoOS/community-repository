@@ -11,7 +11,7 @@
 
 {{- range .requires }}
 {{- $deps := (include "cr.packages" . | split " ") }}
-{{- $packages = $package | concat $packages }}
+{{- $packages = $packages | concat $deps }}
 {{- end }}
 
 {{- $package := printf "\"%s-%s\"" .Values.category .Values.name }}
