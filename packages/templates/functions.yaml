@@ -5,7 +5,7 @@
 
 {{- if .Values.requires }}
 {{- range .Values.requires }}
-
+{{- include "cr.dump" . }}
 {{- $deps := (include "cr.packages" . ) | split " " }}
 {{- $packages = $packages | concat $deps }}
 
