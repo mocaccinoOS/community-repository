@@ -1,11 +1,7 @@
 
 {{- define "cr.packages" }} 
 
-{{- $ := index . 0 }}
-
 {{- $packages := list }}
-
-{{- with index . 1 }}
 
 {{- if .Values.requires }}
 {{- range .Values.requires }}
@@ -13,14 +9,9 @@
 {{- $category := .category }}
 {{- $name := .name }}
 
-{{- range $.packages }}
-
-{{- if and (eq .category $category) (eq .name $name) }}
-
-
-
-{{- end }}
-
+{{- range .requires }}
+{{- $deps := (include "cr.packages" . | split " ") }}
+{{- $packages = $package | concat $packages }}
 {{- end }}
 
 {{- $package := printf "\"%s-%s\"" .Values.category .Values.name }}
@@ -31,16 +22,14 @@
 {{- end }}
 {{- end }}
 
-{{- end }}
-
 {{- join " " $packages }}
 
 {{- end }}
 
-
 #########
 # debug
 #########
+
 {{- define "cr.dump" }}
 {{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}
 {{- end }}

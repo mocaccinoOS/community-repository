@@ -81,26 +81,6 @@ anchors:
 ## libs
 #########
 
-- &libs-amd
-  category: "libs"
-  name: "amd"
-  version: ">=0"
-
-- &libs-babl
-  category: "libs"
-  name: "babl"
-  version: ">=0"
-
-- &libs-camd
-  category: "libs"
-  name: "camd"
-  version: ">=0"
-
-- &libs-ccolamd
-  category: "libs"
-  name: "ccolamd"
-  version: ">=0"
-
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
@@ -111,24 +91,9 @@ anchors:
   name: "chmlib"
   version: ">=0"
   
-- &libs-cholmod
-  category: "libs"
-  name: "cholmod"
-  version: ">=0"
-  
-- &libs-colamd
-  category: "libs"
-  name: "colamd"
-  version: ">=0"
-
 - &libs-flann
   category: "libs"
   name: "flann"
-  version: ">=0"
-
-- &libs-gegl
-  category: "libs"
-  name: "gegl"
   version: ">=0"
 
 - &libs-gsl
@@ -196,19 +161,9 @@ anchors:
   name: "libmygpo-qt"
   version: ">=0"
 
-- &libs-libmypaint
-  category: "libs"
-  name: "libmypaint"
-  version: ">=0"
-
 - &libs-libnova
   category: "libs"
   name: "libnova"
-  version: ">=0"
-
-- &libs-libnsgif
-  category: "libs"
-  name: "libnsgif"
   version: ">=0"
 
 - &libs-libpano13
@@ -236,11 +191,6 @@ anchors:
   name: "mbedtls"
   version: ">=0"
 
-- &libs-metis
-  category: "libs"
-  name: "metis"
-  version: ">=0"
-
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
@@ -266,21 +216,11 @@ anchors:
   name: "rtl-sdr"
   version: ">=0"
   
-- &libs-suitesparseconfig
-  category: "libs"
-  name: "suitesparseconfig"
-  version: ">=0"
-
 - &libs-tix
   category: "libs"
   name: "tix"
   version: ">=0"
   
-- &libs-umfpack
-  category: "libs"
-  name: "umfpack"
-  version: ">=0"
-
 - &libs-vigra
   category: "libs"
   name: "vigra"
@@ -367,11 +307,6 @@ anchors:
   name: "icoutils"
   version: ">=0"
 
-- &apps-mypaint-brushes
-  category: "apps"
-  name: "mypaint-brushes"
-  version: ">=0"
-
 - &apps-nx
   category: "net-misc"
   name: "nx"
@@ -423,11 +358,73 @@ anchors:
 
 packages:
 
-##########
-### libs
-##########
+###############
+## dep I libs
+###############
 
-- category: "libs"
+- &libs-babl
+  category: "libs"
+  name: "babl"
+  version: "0.1.88"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/babl
+  atom: "media-libs/babl"
+  provides:
+  - category: "media-libs"
+    name: "babl"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-libnsgif
+  category: "libs"
+  name: "libnsgif"
+  version: "0.2.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libnsgif
+  atom: "media-libs/libnsgif"
+  provides:
+  - category: "media-libs"
+    name: "libnsgif"
+    version: ">=0"
+  pre_emerge:
+  - dev-util/netsurf-buildsystem
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-suitesparseconfig
+  category: "libs"
+  name: "suitesparseconfig"
+  version: "5.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/suitesparseconfig
+  atom: "sci-libs/suitesparseconfig"
+  provides:
+  - category: "sci-libs"
+    name: "suitesparseconfig"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+#################
+### dep II libs
+#################
+
+- &libs-amd
+  category: "libs"
   name: "amd"
   version: "2.4.6-r1"
   labels:
@@ -447,25 +444,8 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "libs"
-  name: "babl"
-  version: "0.1.88"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/babl
-  atom: "media-libs/babl"
-  provides:
-  - category: "media-libs"
-    name: "babl"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
+- &libs-camd
+  category: "libs"
   name: "camd"
   version: "2.4.6-r1"
   labels:
@@ -485,7 +465,8 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "libs"
+- &libs-ccolamd
+  category: "libs"
   name: "ccolamd"
   version: "2.9.6"
   labels:
@@ -504,6 +485,220 @@ packages:
   - <<: *libs-suitesparseconfig
   build_requires:
   - <<: *layers-system-x
+
+- &libs-colamd
+  category: "libs"
+  name: "colamd"
+  version: "2.9.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/colamd
+  atom: "sci-libs/colamd"
+  provides:
+  - category: "sci-libs"
+    name: "colamd"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/suitesparseconfig
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-suitesparseconfig
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-metis
+  category: "libs"
+  name: "metis"
+  version: "5.1.0-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/metis
+  atom: "sci-libs/metis"
+  provides:
+  - category: "sci-libs"
+    name: "metis"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+##################
+### dep III libs
+##################
+
+- &libs-cholmod
+  category: "libs"
+  name: "cholmod"
+  version: "3.0.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/cholmod
+  atom: "sci-libs/cholmod"
+  provides:
+  - category: "sci-libs"
+    name: "cholmod"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/amd
+  - sci-libs/camd
+  - sci-libs/ccolamd
+  - sci-libs/colamd
+  - sci-libs/metis
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-amd
+  - <<: *libs-camd
+  - <<: *libs-ccolamd
+  - <<: *libs-colamd
+  - <<: *libs-metis
+  build_requires:
+  - <<: *layers-system-x
+  
+#################
+### dep IV libs
+#################
+
+- &libs-umfpack
+  category: "libs"
+  name: "umfpack"
+  version: "5.7.9"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/umfpack
+  atom: "sci-libs/umfpack"
+  provides:
+  - category: "sci-libs"
+    name: "umfpack"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/amd
+  - sci-libs/cholmod
+  - sci-libs/suitesparseconfig
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-amd
+  - <<: *libs-cholmod
+  - <<: *libs-suitesparseconfig
+  build_requires:
+  - <<: *layers-system-x
+  
+
+################
+### dep V libs
+################
+
+- &libs-gegl
+  category: "libs"
+  name: "gegl"
+  version: "0.4.32"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/gegl
+  atom: "media-libs/gegl"
+  provides:
+  - category: "media-libs"
+    name: "gegl"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/babl
+  - media-libs/libnsgif
+  - sci-libs/umfpack
+  requires:
+  - <<: *layers-X
+  - <<: *libs-babl
+  - <<: *libs-libnsgif
+  - <<: *libs-umfpack
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+  
+#################
+### dep VI libs
+#################
+
+- &libs-libmypaint
+  category: "libs"
+  name: "libmypaint"
+  version: "1.6.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmypaint
+  atom: "media-libs/libmypaint"
+  provides:
+  - category: "media-libs"
+    name: "libmypaint"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/babl
+  - media-libs/gegl
+  requires:
+  - <<: *layers-X
+  - <<: *libs-babl
+  - <<: *libs-gegl
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+################
+### dep I apps
+################
+
+- &apps-mypaint-brushes
+  category: "apps"
+  name: "mypaint-brushes"
+  version: "2.0.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint-brushes
+  atom: "media-gfx/mypaint-brushes"
+  provides:
+  - category: "media-gfx"
+    name: "mypaint-brushes"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+#################
+### dep II apps
+#################
+
+- category: "apps"
+  name: "mypaint"
+  version: "2.0.1-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint
+  atom: "media-gfx/mypaint"
+  provides:
+  - category: "media-gfx"
+    name: "mypaint"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libmypaint
+  - media-gfx/mypaint-brushes
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libmypaint
+  - <<: *apps-mypaint-brushes
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+ 
+
+##########
+### libs
+########## 
 
 - category: "libs"
   name: "cfitsio"
@@ -543,54 +738,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "libs"
-  name: "cholmod"
-  version: "3.0.14"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/cholmod
-  atom: "sci-libs/cholmod"
-  provides:
-  - category: "sci-libs"
-    name: "cholmod"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/amd
-  - sci-libs/camd
-  - sci-libs/ccolamd
-  - sci-libs/colamd
-  - sci-libs/metis
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-amd
-  - <<: *libs-camd
-  - <<: *libs-ccolamd
-  - <<: *libs-colamd
-  - <<: *libs-metis
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "colamd"
-  version: "2.9.6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/colamd
-  atom: "sci-libs/colamd"
-  provides:
-  - category: "sci-libs"
-    name: "colamd"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/suitesparseconfig
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
   name: "flann"
   version: "1.9.1-r4"
   labels:
@@ -606,31 +753,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- category: "libs"
-  name: "gegl"
-  version: "0.4.32"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/gegl
-  atom: "media-libs/gegl"
-  provides:
-  - category: "media-libs"
-    name: "gegl"
-    version: ">=0"
-  pre_emerge:
-  - media-libs/babl
-  - media-libs/libnsgif
-  - sci-libs/umfpack
-  requires:
-  - <<: *layers-X
-  - <<: *libs-babl
-  - <<: *libs-libnsgif
-  - <<: *libs-umfpack
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
 
 - category: "libs"
   name: "libdv"
@@ -899,29 +1021,6 @@ packages:
   requires_final_images: true
 
 - category: "libs"
-  name: "libmypaint"
-  version: "1.6.1-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmypaint
-  atom: "media-libs/libmypaint"
-  provides:
-  - category: "media-libs"
-    name: "libmypaint"
-    version: ">=0"
-  pre_emerge:
-  - media-libs/babl
-  - media-libs/gegl
-  requires:
-  - <<: *layers-X
-  - <<: *libs-babl
-  - <<: *libs-gegl
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "libs"
   name: "libnova"
   version: "0.16.0"
   labels:
@@ -933,25 +1032,6 @@ packages:
   - category: "sci-libs"
     name: "libnova"
     version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "libnsgif"
-  version: "0.2.1-r3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libnsgif
-  atom: "media-libs/libnsgif"
-  provides:
-  - category: "media-libs"
-    name: "libnsgif"
-    version: ">=0"
-  pre_emerge:
-  - dev-util/netsurf-buildsystem
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -1036,23 +1116,6 @@ packages:
   provides:
   - category: "net-libs"
     name: "mbedtls"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
-  name: "metis"
-  version: "5.1.0-r5"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/metis
-  atom: "sci-libs/metis"
-  provides:
-  - category: "sci-libs"
-    name: "metis"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1172,23 +1235,6 @@ packages:
   - <<: *layers-sys-fs
 
 - category: "libs"
-  name: "suitesparseconfig"
-  version: "5.4.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/suitesparseconfig
-  atom: "sci-libs/suitesparseconfig"
-  provides:
-  - category: "sci-libs"
-    name: "suitesparseconfig"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "libs"
   name: "tix"
   version: "8.4.3-r2"
   labels:
@@ -1208,30 +1254,6 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-
-- category: "libs"
-  name: "umfpack"
-  version: "5.7.9"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/umfpack
-  atom: "sci-libs/umfpack"
-  provides:
-  - category: "sci-libs"
-    name: "umfpack"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/amd
-  - sci-libs/cholmod
-  - sci-libs/suitesparseconfig
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-amd
-  - <<: *libs-cholmod
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "libs"
   name: "vigra"
@@ -2542,46 +2564,6 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-
-- category: "apps"
-  name: "mypaint"
-  version: "2.0.1-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/mypaint
-  atom: "media-gfx/mypaint"
-  provides:
-  - category: "media-gfx"
-    name: "mypaint"
-    version: ">=0"
-  pre_emerge:
-  - media-libs/libmypaint
-  - media-gfx/mypaint-brushes
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libmypaint
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "mypaint-brushes"
-  version: "2.0.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/mypaint-brushes
-  atom: "media-gfx/mypaint-brushes"
-  provides:
-  - category: "media-gfx"
-    name: "mypaint-brushes"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "nnn"

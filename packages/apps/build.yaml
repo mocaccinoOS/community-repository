@@ -18,9 +18,7 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $collection := $.Files.Get "apps/collection.yaml" }}
-{{- include "cr.dump" $collection }}
-{{ $packages := include "cr.packages" (list $ .) }}
+{{ $packages := include "cr.packages" . }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
