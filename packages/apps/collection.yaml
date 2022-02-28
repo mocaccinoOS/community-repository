@@ -245,12 +245,6 @@ anchors:
   name: "cdrdao"
   version: ">=0"
 
-# remove next cycle
-- &apps-cdrtools
-  category: "apps"
-  name: "cdrtools"
-  version: ">=0"
-
 - &apps-cfortran
   category: "dev-lang"
   name: "cfortran"
@@ -625,7 +619,7 @@ packages:
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
-  version: "1.6.1-r1"
+  version: "1.6.1-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -674,7 +668,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r2"
+  version: "2.0.1-r2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1743,7 +1737,7 @@ packages:
 
 - category: "apps"
   name: "dvd+rw-tools"
-  version: "7.1-r4"
+  version: "7.1-r4+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -1751,14 +1745,12 @@ packages:
   atom: "app-cdr/dvd+rw-tools"
   pre_emerge:
   - x11-misc/makedepend
-  - app-cdr/cdrtools
   provides:
   - category: "app-cdr"
     name: "dvd+rw-tools"
     version: ">=0"
   requires:
   - <<: *layers-system-x
-  - <<: *apps-cdrtools
   build_requires:
   - <<: *layers-system-x
 
@@ -2196,7 +2188,6 @@ packages:
   atom: "kde-apps/k3b"
   pre_emerge:
   - app-cdr/dvd+rw-tools
-  - app-cdr/cdrtools
   - app-cdr/cdrdao
   - media-video/vcdimager
   - media-video/transcode
@@ -2207,7 +2198,6 @@ packages:
   requires:
   - <<: *layers-plasma
   - <<: *apps-dvd-rw-tools
-  - <<: *apps-cdrtools
   - <<: *apps-cdrdao
   - <<: *apps-vcdimager
   - <<: *apps-transcode

@@ -17,6 +17,7 @@
 {{- $packages = $package | append $packages }}
 {{- end }}
 
+{{- $packages = $packages | uniq }}
 {{- join " " $packages }}
 
 {{- end }}
