@@ -884,23 +884,6 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
-
-- category: "apps"
-  name: "pulseaudio-dlna"
-  version: "9999+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/pulseaudio-dlna
-  atom: "net-misc/pulseaudio-dlna"
-  provides:
-  - category: "net-misc"
-    name: "pulseaudio-dlna"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
   
 - category: "apps"
   name: "pulseaudio-qt"
@@ -1734,6 +1717,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-namespace-google
+  category: "libs"
+  name: "namespace-google"
+  version: "1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/namespace-google
+  atom: "dev-python/namespace-google"
+  provides:
+  - category: "dev-python"
+    name: "namespace-google"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-netpbm
   category: "libs"
   name: "netpbm"
@@ -2542,6 +2543,25 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
+- &libs-protobuf-python
+  category: "libs"
+  name: "protobuf-python"
+  version: "3.19.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/protobuf-python
+  atom: "dev-python/protobuf-python"
+  provides:
+  - category: "dev-python"
+    name: "protobuf-python"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-namespace-google
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-tix
   category: "libs"
   name: "tix"
@@ -2752,6 +2772,24 @@ packages:
   - <<: *apps-ufw
   build_requires:
   - <<: *layers-plasma
+
+- category: "apps"
+  name: "pulseaudio-dlna"
+  version: "9999+3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/pulseaudio-dlna
+  atom: "net-misc/pulseaudio-dlna"
+  provides:
+  - category: "net-misc"
+    name: "pulseaudio-dlna"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-protobuf-python
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-pypy3
   category: "apps"
@@ -3241,7 +3279,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r2+1"
+  version: "2.0.1-r2+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3257,11 +3295,11 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libmypaint
+  - <<: *libs-protobuf-python
   - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-
 
 ###########
 ### fonts
