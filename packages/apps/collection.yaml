@@ -2556,6 +2556,8 @@ packages:
   - category: "dev-python"
     name: "protobuf-python"
     version: ">=0"
+  pre_emerge:
+  - dev-python/namespace-google
   requires:
   - <<: *layers-system-x
   - <<: *libs-namespace-google
@@ -2785,6 +2787,8 @@ packages:
   - category: "net-misc"
     name: "pulseaudio-dlna"
     version: ">=0"
+  pre_emerge:
+  - dev-python/protobuf-python
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-protobuf-python
@@ -3290,6 +3294,7 @@ packages:
     name: "mypaint"
     version: ">=0"
   pre_emerge:
+  - dev-python/protobuf-python
   - media-libs/libmypaint
   - media-gfx/mypaint-brushes
   requires:
