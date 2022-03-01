@@ -838,37 +838,6 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "pdfarranger"
-  version: "1.7.1+3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/pdfarranger
-  atom: "app-text/pdfarranger"
-  pre_emerge:
-  - dev-python/toml
-  - dev-python/setuptools_scm_git_archive
-  - dev-cpp/eigen
-  provides:
-  - category: "dev-python"
-    name: "python-distutils-extra"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pybind11"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
-  - category: "app-text"
-    name: "pdfarranger"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
   name: "plasma-sdk"
   version: "1.3+3"
   labels:
@@ -1510,27 +1479,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# should be in desktop repo
-- &libs-libaom
-  category: "libs"
-  name: "libaom"
-  version: "3.2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libaom
-  atom: "media-libs/libaom"
-  provides:
-  - category: "media-libs"
-    name: "libaom"
-    version: ">=0"
-  pre_emerge:
-  - dev-lang/yasm
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -1793,6 +1741,24 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
+
+- &libs-pybind11
+  category: "libs"
+  name: "pybind11"
+  version: "1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pybind11
+  atom: "dev-python/pybind11"
+  provides:
+  - category: "dev-python"
+    name: "pybind11"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-qscintilla
   category: "libs"
@@ -2265,6 +2231,36 @@ packages:
   - <<: *libs-mbedtls
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
+  name: "pdfarranger"
+  version: "1.8.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/pdfarranger
+  atom: "app-text/pdfarranger"
+  pre_emerge:
+  - dev-python/toml
+  - dev-python/setuptools_scm_git_archive
+  - dev-cpp/eigen
+  - dev-python/pybind11
+  provides:
+  - category: "dev-python"
+    name: "python-distutils-extra"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  - category: "app-text"
+    name: "pdfarranger"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-pybind11
+  build_requires:
+  - <<: *buildbase-X
   requires_final_images: true
 
 - &apps-qhexedit2
