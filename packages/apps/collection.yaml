@@ -2559,10 +2559,11 @@ packages:
   pre_emerge:
   - dev-python/namespace-google
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *libs-namespace-google
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-tix
   category: "libs"
