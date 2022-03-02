@@ -1758,9 +1758,10 @@ packages:
   pre_emerge:
   - dev-cpp/eigen
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-pybind11
   category: "libs"
