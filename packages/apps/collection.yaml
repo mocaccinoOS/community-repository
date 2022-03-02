@@ -1745,7 +1745,7 @@ packages:
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
-  version: "1-r1+3"
+  version: "1-r1+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1755,6 +1755,8 @@ packages:
   - category: "dev-python"
     name: "pybind11"
     version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2784,28 +2786,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "pdfarranger"
-  version: "1.8.2+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/pdfarranger
-  atom: "app-text/pdfarranger"
-  pre_emerge:
-  - dev-python/pikepdf
-  - dev-python/python-distutils-extra
-  provides:
-  - category: "app-text"
-    name: "pdfarranger"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pikepdf
-  - <<: *libs-python-distutils-extra
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+# - category: "apps"
+#   name: "pdfarranger"
+#   version: "1.8.2+2"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       app-text/pdfarranger
+#   atom: "app-text/pdfarranger"
+#   pre_emerge:
+#   - dev-python/pikepdf
+#   - dev-python/python-distutils-extra
+#   provides:
+#   - category: "app-text"
+#     name: "pdfarranger"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-pikepdf
+#   - <<: *libs-python-distutils-extra
+#   build_requires:
+#   - <<: *buildbase-X
+#   requires_final_images: true
 
 - category: "apps"
   name: "plasma-firewall"
