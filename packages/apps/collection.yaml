@@ -1742,6 +1742,26 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
+- &libs-pikepdf
+  category: "libs"
+  name: "pikepdf"
+  version: "1.5.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pikepdf
+  atom: "dev-python/pikepdf"
+  provides:
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
@@ -1754,6 +1774,26 @@ packages:
   provides:
   - category: "dev-python"
     name: "pybind11"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/eigen
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
+- &libs-python-distutils-extra
+  category: "libs"
+  name: "python-distutils-extra"
+  version: "2.45"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/python-distutils-extra
+  atom: "dev-python/python-distutils-extra"
+  provides:
+  - category: "dev-python"
+    name: "python-distutils-extra"
     version: ">=0"
   pre_emerge:
   - dev-cpp/eigen
@@ -2246,20 +2286,16 @@ packages:
   pre_emerge:
   - dev-python/toml
   - dev-python/setuptools_scm_git_archive
-  - dev-python/pybind11
+  - dev-python/pikepdf
+  - dev-python/python-distutils-extra
   provides:
-  - category: "dev-python"
-    name: "python-distutils-extra"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
   - category: "app-text"
     name: "pdfarranger"
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-pybind11
+  - <<: *libs-pikepdf
+  - <<: *libs-python-distutils-extra
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
