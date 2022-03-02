@@ -1745,7 +1745,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "1.5.0"
+  version: "1.5.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1756,9 +1756,11 @@ packages:
     name: "pikepdf"
     version: ">=0"
   pre_emerge:
+  - dev-python/pybind11
   - dev-python/setuptools_scm_git_archive
   requires:
   - <<: *layers-X
+  - <<: *libs-pybind11
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -1766,7 +1768,7 @@ packages:
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
-  version: "1-r1+2"
+  version: "1-r1+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1776,8 +1778,6 @@ packages:
   - category: "dev-python"
     name: "pybind11"
     version: ">=0"
-  pre_emerge:
-  - dev-cpp/eigen
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -1786,7 +1786,7 @@ packages:
 - &libs-python-distutils-extra
   category: "libs"
   name: "python-distutils-extra"
-  version: "2.45"
+  version: "2.45+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1796,8 +1796,6 @@ packages:
   - category: "dev-python"
     name: "python-distutils-extra"
     version: ">=0"
-  pre_emerge:
-  - dev-cpp/eigen
   requires:
   - <<: *layers-system-x
   build_requires:
