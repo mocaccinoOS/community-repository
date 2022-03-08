@@ -103,9 +103,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-#   steps:
-#     # Workaround upstream dropping patchsets
-#     - wget http://kacabenggala.uny.ac.id/gentoo/distfiles/ba/abiword-3.0.4-patchset-r2.tar.xz -O /var/cache/distfiles/abiword-3.0.4-patchset-r2.tar.xz
 
 - category: "apps"
   name: "brasero"
@@ -983,7 +980,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.7.1+4"
+  version: "0.7.1+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2563,6 +2560,11 @@ packages:
   - category: "dev-python"
     name: "pikepdf"
     version: ">=0"
+  #prepare:
+  # Workaround upstream dropping patchsets
+  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
+  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
+  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
   pre_emerge:
   - dev-python/pybind11
   - dev-python/toml

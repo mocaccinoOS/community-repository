@@ -39,6 +39,11 @@ prelude:
 {{ end }}
 
 steps:
+{{ if .Values.prepare }}
+{{ range .Values.prepare }}
+- {{ . }}
+{{ end }}
+{{ end }}
 {{ if .Values.atom }}
 - emerge -j ${JOBS} {{ .Values.atom }}
 {{ end }}
