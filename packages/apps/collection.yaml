@@ -1367,6 +1367,26 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-libde265
+  category: "libs"
+  name: "libde265"
+  version: "1.12.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libde265
+  atom: "media-libs/libde265"
+  provides:
+  - category: "media-libs"
+    name: "libde265"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libde265
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libdv
   category: "libs"
   name: "libdv"
@@ -1684,6 +1704,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-log4cplus
+  category: "libs"
+  name: "log4cplus"
+  version: "2.0.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/log4cplus
+  atom: "dev-libs/log4cplus"
+  provides:
+  - category: "dev-libs"
+    name: "log4cplus"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-mbedtls
   category: "libs"
@@ -3072,6 +3110,30 @@ packages:
 ### dep III libs ###
 ################################################################################
 
+- &libs-cargo-c
+  category: "libs"
+  name: "cargo-c"
+  version: "0.9.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/cargo-c
+  atom: "dev-util/cargo-c"
+  provides:
+  - category: "dev-util"
+    name: "cargo-c"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libgit2
+  - net-libs/libssh2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libgit2
+  - <<: *libs-libssh2
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-cholmod
   category: "libs"
   name: "cholmod"
@@ -3127,6 +3189,30 @@ packages:
   - <<: *libs-cfitsio
   - <<: *libs-gsl
   - <<: *libs-libnova
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-openvdb
+  category: "libs"
+  name: "openvdb"
+  version: "8.2.0-r7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/openvdb
+  atom: "media-gfx/openvdb"
+  provides:
+  - category: "media-gfx"
+    name: "openvdb"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/tbb
+  - dev-libs/log4cplus
+  requires:
+  - <<: *layers-X
+  - <<: *libs-tbb
+  - <<: *libs-log4cplus
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -3306,6 +3392,28 @@ packages:
 ################################################################################
 ### dep IV libs ###
 ################################################################################
+
+- &libs-rav1e
+  category: "libs"
+  name: "rav1e"
+  version: "0.5.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/rav1e
+  atom: "media-video/rav1e"
+  provides:
+  - category: "media-video"
+    name: "rav1e"
+    version: ">=0"
+  pre_emerge:
+  - dev-util/cargo-c
+  requires:
+  - <<: *layers-X
+  - <<: *libs-cargo-c
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-umfpack
   category: "libs"
