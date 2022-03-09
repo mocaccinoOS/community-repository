@@ -1386,6 +1386,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-glfw
+  category: "libs"
+  name: "glfw"
+  version: "3.3.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/glfw
+  atom: "media-libs/glfw"
+  provides:
+  - category: "media-libs"
+    name: "glfw"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -3249,11 +3268,13 @@ packages:
   - dev-cpp/tbb
   - dev-libs/c-blosc
   - dev-libs/log4cplus
+  - media-libs/glfw
   requires:
   - <<: *layers-qt
   - <<: *libs-c-blosc
   - <<: *libs-tbb
   - <<: *libs-log4cplus
+  - <<: *libs-glfw
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
