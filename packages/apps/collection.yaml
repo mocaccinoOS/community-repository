@@ -1293,6 +1293,24 @@ packages:
 ## dep I libs ###
 ################################################################################
 
+- &libs-libaom
+  category: "libs"
+  name: "libaom"
+  version: "3.2.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/libaom
+  atom: "media-libs/libaom"
+  provides:
+  - category: "media-libs"
+    name: "libaom"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-babl
   category: "libs"
   name: "babl"
@@ -1719,9 +1737,10 @@ packages:
     name: "log4cplus"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - &libs-mbedtls
   category: "libs"
@@ -3210,11 +3229,11 @@ packages:
   - dev-cpp/tbb
   - dev-libs/log4cplus
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   - <<: *libs-tbb
   - <<: *libs-log4cplus
   build_requires:
-  - <<: *buildbase-X
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - &libs-wcslib
@@ -3501,7 +3520,32 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
+- &libs-libheif
+  category: "libs"
+  name: "libheif"
+  version: "1.12.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libheif
+  atom: "media-libs/libheif"
+  provides:
+  - category: "media-libs"
+    name: "libheif"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libaom
+  - media-libs/libde265
+  - media-video/rav1e
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-libaom
+  - <<: *libs-libde265
+  - <<: *libs-rav1e
+  build_requires:
+  - <<: *layers-system-x
+
 ################################################################################
 ### dep VI libs ###
 ################################################################################
