@@ -1330,6 +1330,25 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-c-blosc
+  category: "libs"
+  name: "c-blosc"
+  version: "1.21.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/c-blosc
+  atom: "dev-libs/c-blosc"
+  provides:
+  - category: "dev-libs"
+    name: "c-blosc"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &libs-chmlib
   category: "libs"
   name: "chmlib"
@@ -3227,9 +3246,11 @@ packages:
     version: ">=0"
   pre_emerge:
   - dev-cpp/tbb
+  - dev-libs/c-blosc
   - dev-libs/log4cplus
   requires:
   - <<: *layers-qt
+  - <<: *libs-c-blosc
   - <<: *libs-tbb
   - <<: *libs-log4cplus
   build_requires:
