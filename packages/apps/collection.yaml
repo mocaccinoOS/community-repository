@@ -508,6 +508,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+
+- &apps-hwloc
+  category: "libs"
+  name: "hwloc"
+  version: "2.6.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwloc
+  atom: "sys-apps/hwloc"
+  provides:
+  - category: "sys-apps"
+    name: "hwloc"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - category: "apps"
   name: "isomaster"
   version: "1.3.15+2"
@@ -1327,25 +1347,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-hwloc
-  category: "libs"
-  name: "hwloc"
-  version: "2.6.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwloc
-  atom: "sys-apps/hwloc"
-  provides:
-  - category: "sys-apps"
-    name: "hwloc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
 
 - &libs-libao
   category: "libs"
@@ -2634,6 +2635,27 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- &libs-flann
+  category: "libs"
+  name: "tbb"
+  version: "2020.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tbb
+  atom: "dev-cpp/tbb"
+  provides:
+  - category: "dev-cpp"
+    name: "tbb"
+    version: ">=0"
+  pre_build:
+  - sys-apps/hwloc
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-hwloc
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-tix
   category: "libs"
