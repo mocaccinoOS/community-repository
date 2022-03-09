@@ -1293,23 +1293,23 @@ packages:
 ## dep I libs ###
 ################################################################################
 
-- &libs-libaom
-  category: "libs"
-  name: "libaom"
-  version: "3.2.0"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/libaom
-  atom: "media-libs/libaom"
-  provides:
-  - category: "media-libs"
-    name: "libaom"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-libaom
+#   category: "libs"
+#   name: "libaom"
+#   version: "3.2.0"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-libs/libaom
+#   atom: "media-libs/libaom"
+#   provides:
+#   - category: "media-libs"
+#     name: "libaom"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-babl
   category: "libs"
@@ -3535,12 +3535,12 @@ packages:
     name: "libheif"
     version: ">=0"
   pre_emerge:
-  - media-libs/libaom
+#   - media-libs/libaom
   - media-libs/libde265
   - media-video/rav1e
   requires:
   - <<: *layers-system-x
-  - <<: *libs-libaom
+#   - <<: *libs-libaom
   - <<: *libs-libde265
   - <<: *libs-rav1e
   build_requires:
