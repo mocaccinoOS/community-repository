@@ -1328,6 +1328,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-hwloc
+  category: "libs"
+  name: "hwloc"
+  version: "2.6.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/hwloc
+  atom: "media-libs/hwloc"
+  provides:
+  - category: "media-libs"
+    name: "hwloc"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -1844,6 +1863,24 @@ packages:
   provides:
   - category: "sci-libs"
     name: "suitesparseconfig"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-tinyxml
+  category: "libs"
+  name: "tinyxml"
+  version: "2.6.2-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tinyxml
+  atom: "dev-libs/tinyxml"
+  provides:
+  - category: "dev-libs"
+    name: "tinyxml"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3071,7 +3108,7 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
