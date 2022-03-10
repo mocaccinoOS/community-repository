@@ -3582,12 +3582,13 @@ packages:
   - media-libs/libde265
   - media-video/rav1e
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
 #   - <<: *libs-libaom
   - <<: *libs-libde265
   - <<: *libs-rav1e
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 ################################################################################
 ### dep VI libs ###
