@@ -3264,6 +3264,30 @@ packages:
 ### dep III libs ###
 ################################################################################
 
+- &libs-allegro
+  category: "libs"
+  name: "allegro"
+  version: "5.2.7.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/allegro
+  atom: "media-libs/allegro"
+  provides:
+  - category: "media-libs"
+    name: "allegro"
+    version: ">=0"
+  pre_emerge:
+  - dev-games/physfs
+  - media-libs/dumb
+  requires:
+  - <<: *layers-X
+  - <<: *libs-physfs
+  - <<: *libs-dumb
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-cargo-c
   category: "libs"
   name: "cargo-c"
