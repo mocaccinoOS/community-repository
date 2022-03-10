@@ -2633,6 +2633,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-gts
+  category: "apps"
+  name: "gts"
+  version: "20121130"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/gts
+  atom: "sci-libs/gts"
+  provides:
+  - category: "sci-libs"
+    name: "gts"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/netpbm
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-netpbm
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
