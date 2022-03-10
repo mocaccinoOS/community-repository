@@ -3575,6 +3575,28 @@ packages:
 ### dep IV libs ###
 ################################################################################
 
+- &libs-devil
+  category: "libs"
+  name: "devil"
+  version: "1.7.8-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/devil
+  atom: "media-libs/devil"
+  provides:
+  - category: "media-libs"
+    name: "devil"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/allegro
+  requires:
+  - <<: *layers-X
+  - <<: *libs-allegro
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-rav1e
   category: "libs"
   name: "rav1e"
