@@ -3301,7 +3301,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-physfs
-#   - <<: *libs-dumb
+  - <<: *libs-dumb
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -3725,6 +3725,27 @@ packages:
 ################################################################################
 ### dep V libs ###
 ################################################################################
+
+- &libs-dcmtk
+  category: "libs"
+  name: "dcmtk"
+  version: "3.6.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/dcmtk
+  atom: "sci-libs/dcmtk"
+  provides:
+  - category: "sci-libs"
+    name: "dcmtk"
+    version: ">=0"
+  pre_emerge:
+  - media-gfx/graphviz
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-graphviz
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-gegl
   category: "libs"
