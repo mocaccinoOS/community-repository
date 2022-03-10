@@ -3698,7 +3698,7 @@ packages:
 
 - category: "apps"
   name: "graphviz"
-  version: "2.49.0+2"
+  version: "2.49.0+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -3711,10 +3711,12 @@ packages:
   pre_emerge:
   - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
   - media-libs/devil
+  - sci-libs/gts
   - media-libs/lasi
   requires:
   - <<: *layers-qt
   - <<: *libs-devil
+  - <<: *libs-gts
   - <<: *libs-lasi
   build_requires:
   - <<: *buildbase-qt
