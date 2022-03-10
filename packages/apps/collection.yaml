@@ -3696,6 +3696,30 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- category: "apps"
+  name: "graphviz"
+  version: "2.49.0+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/graphviz
+  atom: "media-gfx/graphviz"
+  provides:
+  - category: "media-gfx"
+    name: "graphviz"
+    version: ">=0"
+  pre_emerge:
+  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
+  - media-libs/devil
+  - media-libs/lasi
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-devil
+  - <<: *libs-lasi
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 ################################################################################
 ### dep V libs ###
 ################################################################################
