@@ -1852,6 +1852,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-physfs
+  category: "libs"
+  name: "physfs"
+  version: "3.0.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-games/physfs
+  atom: "dev-games/physfs"
+  provides:
+  - category: "dev-games"
+    name: "physfs"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pystring
   category: "libs"
   name: "pystring"
