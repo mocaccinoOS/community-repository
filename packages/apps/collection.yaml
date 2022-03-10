@@ -3285,7 +3285,7 @@ packages:
 - &libs-allegro
   category: "libs"
   name: "allegro"
-  version: "4.4.3.1"
+  version: "4.4.3.1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: &libs-allegro-packages >-
@@ -3699,7 +3699,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "2.49.0+4"
+  version: "2.49.0+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -3743,10 +3743,11 @@ packages:
   pre_emerge:
   - media-gfx/graphviz
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-qt
   - <<: *apps-graphviz
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - &libs-gegl
   category: "libs"
