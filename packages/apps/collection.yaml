@@ -413,27 +413,6 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-
-# - category: "apps"
-#   name: "graphviz"
-#   version: "2.49.0+1"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/graphviz
-#   atom: "media-gfx/graphviz"
-#   provides:
-#   - category: "media-gfx"
-#     name: "graphviz"
-#     version: ">=0"
-#   pre_emerge:
-#   - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-java
-#   build_requires:
-#   - <<: *buildbase-qt
-#   requires_final_images: true
    
 - category: "apps"
   name: "gnumeric"
@@ -1405,6 +1384,25 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-lasi
+  category: "libs"
+  name: "lasi"
+  version: "1.1.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lasi
+  atom: "media-libs/lasi"
+  provides:
+  - category: "media-libs"
+    name: "lasi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -1835,6 +1833,24 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- &libs-pystring
+  category: "libs"
+  name: "pystring"
+  version: "1.1.3-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/pystring
+  atom: "dev-cpp/pystring"
+  provides:
+  - category: "dev-cpp"
+    name: "pystring"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-qcustomplot
   category: "libs"
