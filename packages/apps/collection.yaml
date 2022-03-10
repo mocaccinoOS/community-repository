@@ -1272,23 +1272,23 @@ packages:
 ## dep I libs ###
 ################################################################################
 
-# - &libs-libaom
-#   category: "libs"
-#   name: "libaom"
-#   version: "3.2.0"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-libs/libaom
-#   atom: "media-libs/libaom"
-#   provides:
-#   - category: "media-libs"
-#     name: "libaom"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &libs-argtable
+  category: "libs"
+  name: "argtable"
+  version: "2.13-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/argtable
+  atom: "dev-libs/argtable"
+  provides:
+  - category: "dev-libs"
+    name: "argtable"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-babl
   category: "libs"
@@ -1421,6 +1421,24 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+# - &libs-libaom
+#   category: "libs"
+#   name: "libaom"
+#   version: "3.2.0"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-libs/libaom
+#   atom: "media-libs/libaom"
+#   provides:
+#   - category: "media-libs"
+#     name: "libaom"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-libde265
   category: "libs"
@@ -2632,6 +2650,28 @@ packages:
   - <<: *libs-suitesparseconfig
   build_requires:
   - <<: *layers-system-x
+
+- &libs-dumb
+  category: "libs"
+  name: "dumb"
+  version: "2.0.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/dumb
+  atom: "media-libs/dumb"
+  provides:
+  - category: "media-libs"
+    name: "dumb"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/argtable
+  requires:
+  - <<: *layers-X
+  - <<: *libs-argtable
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-gts
   category: "apps"
