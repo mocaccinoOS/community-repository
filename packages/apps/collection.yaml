@@ -2649,10 +2649,11 @@ packages:
   pre_emerge:
   - media-libs/netpbm
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *libs-netpbm
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-libgit2
   category: "libs"
