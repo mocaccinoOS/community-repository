@@ -34,7 +34,7 @@ prelude:
 {{ end }}
 {{ if .Values.pre_emerge }}
 {{ range .Values.pre_emerge }}
-{{ $tokens := {{ . }} | splitList " " }}
+{{ $tokens := . | splitList " " }}
 {{ if index $tokens 1 }}
 - USE={{ index $tokens 1 | quote }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else }}
