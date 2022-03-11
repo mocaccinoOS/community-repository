@@ -3848,20 +3848,22 @@ packages:
     name: "robin-map"
     version: ">=0"
   pre_emerge:
+  - dev-cpp/pystring
   - dev-cpp/tbb
+  - dev-libs/tinyxml  
   - dev-python/pybind11
   - media-gfx/openvdb
-  - media-libs/openccv
+  - media-libs/opencv
   - sci-libs/dcmtk
-  - dev-cpp/pystring
-  - dev-libs/tinyxml  
   requires:
   - <<: *layers-qt
+  - <<: *libs-pystring
   - <<: *libs-tbb
+  - <<: *libs-tinyxml
   - <<: *libs-pybind11
   - <<: *libs-openvdb
   - <<: *libs-opencv
-  - <<: *libs-dcmtk
+  - <<: *libs-dcmtk  
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
