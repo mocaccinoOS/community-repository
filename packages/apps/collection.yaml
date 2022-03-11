@@ -3826,6 +3826,45 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+  
+- &libs-ocio-oiio
+  category: "libs"
+  name: "ocio-oiio"
+  version: "3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-ocio-oiio-packages >-
+      media-libs/opencolorio
+      media-libs/openimageio
+  atom: *libs-ocio-oiio-packages
+  provides:
+  - category: "media-libs"
+    name: "opencolorio"
+    version: ">=0"
+  - category: "media-libs"
+    name: "openimageio"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "robin-map"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/tbb
+  - dev-python/pybind11
+  - media-gfx/openvdb
+  - media-libs/openccv
+  - sci-libs/dcmtk
+  - dev-cpp/pystring
+  - dev-libs/tinyxml  
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-tbb
+  - <<: *libs-pybind11
+  - <<: *libs-openvdb
+  - <<: *libs-opencv
+  - <<: *libs-dcmtk
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 ################################################################################
 ### dep VI apps ###
