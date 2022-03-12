@@ -3856,10 +3856,11 @@ packages:
   - media-libs/opencv
   - media-libs/libheif
   - sci-libs/dcmtk
-  - media-libs/opencolorio "-opengl"
+  # add the following to the packages depending on this
+  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio "-opengl"
   requires:
   - <<: *layers-qt
-  - <<: *libs-dcmtk  
+  - <<: *libs-dcmtk
   - <<: *libs-libheif
   - <<: *libs-opencv
   - <<: *libs-openvdb
