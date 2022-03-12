@@ -3865,7 +3865,7 @@ packages:
   requires_final_images: true
 
 ################################################################################
-### dep VI apps ###
+### dep V apps ###
 ################################################################################
 
 - category: "apps"
@@ -3894,7 +3894,7 @@ packages:
   requires_final_images: true
 
 ################################################################################
-### dep V libs ###
+### dep VI libs ###
 ################################################################################
 
 - &libs-ocio-oiio
@@ -3929,7 +3929,7 @@ packages:
   - sci-libs/dcmtk
   pre_emerge:
   # add the following to the packages depending on this
-  - &libs-ocio-oiio-pre_reqs media-libs/opencolorio "-opengl"
+  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio "-opengl"
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
@@ -3943,6 +3943,41 @@ packages:
   - <<: *libs-tinyxml
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
+
+################################################################################
+### dep VI apps ###
+################################################################################
+
+- category: "apps"
+  name: "krita"
+  version: "5.0.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/krita
+  atom: "media-gfx/krita"
+  provides:
+  - category: "media-gfx"
+    name: "krita"
+    version: ">=0"
+  pre_reqs:
+  - dev-cpp/eigen
+  - dev-libs/quazip
+  - media-libs/libheif
+  - media-libs/libmypaint
+  - *libs-ocio-oiio-pre_emerge
+  - *libs-ocio-oiio-packages
+  - sci-libs/gsl
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-quazip
+  - <<: *libs-libheif
+  - <<: *libs-libmypaint
+  - <<: *libs-ocio-oiio
+  - <<: *libs-gsl
+  build_requires:
+  - <<: *buildbase-kde-common
   requires_final_images: true
 
 ###########
