@@ -32,8 +32,9 @@ prelude:
 - echo "y" | layman -a {{ .Values.overlay.name }}
 {{ end }}
 {{ end }}
-{{ if .Values.pre_emerge }}
-{{ range .Values.pre_emerge }}
+
+{{ if .Values.pre_reqs }}
+{{ range .Values.pre_reqs }}
 {{ $tokens := . | splitList " " }}
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
@@ -49,6 +50,18 @@ steps:
 - {{ . }}
 {{ end }}
 {{ end }}
+
+{{ if .Values.pre_emerge }}
+{{ range .Values.pre_emerge }}
+{{ $tokens := . | splitList " " }}
+{{ if eq (len $tokens) 1 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ else if eq (len $tokens) 2 }}
+- USE={{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ end }}
+{{ end }}
+{{ end }}
+
 {{ if .Values.atom }}
 - emerge -j ${JOBS} {{ .Values.atom }}
 {{ end }}
