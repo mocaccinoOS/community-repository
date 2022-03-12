@@ -81,1194 +81,7 @@ anchors:
 packages:
 
 ################################################################################
-### dep 0 apps ###
-################################################################################
-
-- category: "apps"
-  name: "abiword"
-  version: "3.0.4+55"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/abiword
-  atom: "app-office/abiword"
-  provides:
-  - category: "app-office"
-    name: "abiword"
-    version: ">=0"
-  - category: "app-text"
-    name: "wv"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "brasero"
-  version: "3.12.2+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/brasero
-  atom: "app-cdr/brasero"
-  provides:
-  - category: "app-cdr"
-    name: "brasero"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome
-  build_requires:
-  - <<: *layers-gnome
-
-- category: "apps"
-  name: "brave"
-  version: "1.31.84+17"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/brave-bin
-  atom: "www-client/brave-bin"
-  overlay:
-    name: "brave-overlay"
-  provides:
-  - category: "www-client"
-    name: "brave-bin"
-    version: ">=0"
-  pre_emerge:
-  - gnome-base/gconf
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-  
-- category: "apps"
-  name: "celestia"
-  version: "1.7.0_pre20220120"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-astronomy/celestia
-  atom: "sci-astronomy/celestia"
-  pre_emerge:
-  - dev-cpp/eigen
-  provides:
-  - category: "sci-astronomy"
-    name: "celestia"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "apps"
-  name: "cuetools"
-  version: "1.4.1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/cuetools
-  atom: "app-cdr/cuetools"
-  provides:
-  - category: "app-cdr"
-    name: "cuetools"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "darktable"
-  version: "3.8.0-r2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/darktable
-  atom: "media-gfx/darktable"
-  provides:
-  - category: "media-gfx"
-    name: "darktable"
-    version: ">=0"
-  pre_emerge:
-  - dev-python/jsonschema
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "dia"
-  version: "0.97.3-r1+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/dia
-  atom: "app-office/dia"
-  provides:
-  - category: "app-office"
-    name: "dia"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "dolphin-plugins-git"
-  version: "21.08.3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/dolphin-plugins-git
-  atom: "kde-apps/dolphin-plugins-git"
-  provides:
-  - category: "kde-apps"
-    name: "dolphin-plugins-git"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-
-- category: "apps"
-  name: "dolphin-plugins-mountiso"
-  version: "21.08.3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/dolphin-plugins-mountiso
-  atom: "app-cdr/dolphin-plugins-mountiso"
-  provides:
-  - category: "app-cdr"
-    name: "dolphin-plugins-mountiso"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-  
-- category: "apps"
-  name: "emacs"
-  version: "27.1+63"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-editors/emacs
-  atom: "app-editors/emacs"
-  provides:
-    - category: app-editors
-      name: emacs
-      version: ">=0"
-    - category: app-emacs
-      name: emacs-common
-      version: ">=0"
-    - category: app-eselect
-      name: eselect-ctags
-      version: ">=0"
-    - category: app-eselect
-      name: eselect-emacs
-      version: ">=0"
-    - category: net-libs
-      name: liblockfile
-      version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-# should be in main repo
-- category: "apps"
-  name: "extundelete"
-  version: "0.2.4-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sys-fs/extundelete
-  atom: "sys-fs/extundelete"
-  provides:
-  - category: "sys-fs"
-    name: "extundelete"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "ffmpegthumbs"
-  version: "21.08.3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/ffmpegthumbs
-  atom: "kde-apps/ffmpegthumbs"
-  provides:
-  - category: "kde-apps"
-    name: "ffmpegthumbs"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-
-- category: "apps"
-  name: "filelight"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/filelight
-  atom: "kde-apps/filelight"
-  provides:
-  - category: "kde-apps"
-    name: "filelight"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "filezilla"
-  version: "3.53.1+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-libs/libfilezilla
-      net-ftp/filezilla
-  atom: "net-ftp/filezilla"
-  provides:
-  - category: "dev-libs"
-    name: "libfilezilla"
-    version: ">=0"
-  - category: "net-ftp"
-    name: "filezilla"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "fish"
-  version: "3.1.2+26"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-shells/fish
-  atom: "app-shells/fish"
-  provides:
-  - category: "app-shells"
-    name: "fish"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "flacon"
-  version: "5.5.1+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/flacon
-  atom: "media-sound/flacon"
-  provides:
-  - category: "media-sound"
-    name: "flacon"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-  
-- category: "apps"
-  name: "fontforge"
-  version: "20201107+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libuninameslist
-      media-gfx/fontforge
-  atom: "media-gfx/fontforge"
-  pre_emerge:
-  - dev-python/sphinx
-  provides:
-  - category: "media-libs"
-    name: "media-libs/libuninameslist"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "fontforge"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-   
-- category: "apps"
-  name: "gnumeric"
-  version: "1.12.48+53"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/gnumeric
-  atom: "app-office/gnumeric"
-  provides:
-  - category: "app-office"
-    name: "gnumeric"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "hexchat"
-  version: "2.14.3+65"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-irc/hexchat
-  atom: "net-irc/hexchat"
-  provides:
-  - category: "net-irc"
-    name: "hexchat"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "httrack"
-  version: "3.49.2-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/httrack
-  atom: "www-client/httrack"
-  provides:
-  - category: "www-client"
-    name: "httrack"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "hwinfo"
-  version: "21.76+1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwinfo
-  atom: "sys-apps/hwinfo"
-  pre_emerge:
-  - app-arch/rpm2targz
-  provides:
-  - category: "sys-apps"
-    name: "hwinfo"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libx86emu"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &apps-hwloc
-  category: "libs"
-  name: "hwloc"
-  version: "2.6.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwloc
-  atom: "sys-apps/hwloc"
-  provides:
-  - category: "sys-apps"
-    name: "hwloc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "isomaster"
-  version: "1.3.15+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/iniparser
-      app-cdr/isomaster
-  atom: "app-cdr/isomaster"
-  provides:
-  - category: "dev-libs"
-    name: "iniparser"
-    version: ">=0"
-  - category: "app-cdr"
-    name: "isomaster"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "kate"
-  version: "21.08.3+10"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kate
-  atom: "kde-apps/kate"
-  provides:
-  - category: "kde-apps"
-    name: "kate"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "kcharselect"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kcharselect
-  atom: "kde-apps/kcharselect"
-  provides:
-  - category: "kde-apps"
-    name: "kcharselect"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "kdiff3"
-  version: "1.9.3+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/kdiff3
-  atom: "kde-misc/kdiff3"
-  provides:
-  - category: "kde-misc"
-    name: "kdiff3"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "kolourpaint"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kolourpaint
-  atom: "kde-apps/kolourpaint"
-  provides:
-  - category: "kde-apps"
-    name: "kolourpaint"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "kompare"
-  version: "21.08.3+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/kompare
-  atom: "kde-apps/kompare"
-  provides:
-  - category: "kde-apps"
-    name: "kompare"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-
-- category: "apps"
-  name: "krename"
-  version: "5.0.1+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/krename
-  atom: "kde-misc/krename"
-  provides:
-  - category: "kde-misc"
-    name: "krename"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "krfb"
-  version: "21.08.3+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/krfb
-  atom: "kde-apps/krfb"
-  provides:
-  - category: "kde-apps"
-    name: "krfb"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "krusader"
-  version: "2.7.2+37"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/krusader
-  atom: "kde-misc/krusader"
-  provides:
-  - category: "kde-misc"
-    name: "krusader"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "ksnip"
-  version: "1.9.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/ksnip
-  atom: "x11-misc/ksnip"
-  overlay:
-    name: "guru"
-  provides:
-  - category: "x11-misc"
-    name: "ksnip"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-
-# Replaced by Plasma System Monitor
-# - category: "apps"
-#   name: "ksysguard"
-#   version: "5.22.0+3"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-plasma/ksysguard
-#   atom: "kde-plasma/ksysguard"
-#   provides:
-#   - category: "kde-plasma"
-#     name: "ksysguard"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-plasma
-#   build_requires:
-#   - <<: *layers-plasma
-
-- category: "apps"
-  name: "latte-dock"
-  version: "3.1.2+27"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/latte-dock
-  atom: "kde-misc/latte-dock"
-  provides:
-  - category: "kde-misc"
-    name: "latte-dock"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "marble"
-  version: "21.08.3+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/marble
-  atom: "kde-apps/marble"
-  provides:
-  - category: "kde-apps"
-    name: "marble"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "mc"
-  version: "4.8.27"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/mc
-  atom: "app-misc/mc"
-  provides:
-  - category: "app-misc"
-    name: "mc"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "mono"
-  version: "6.12.0.122"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/mono
-      dev-dotnet/libgdiplus
-  atom: "dev-lang/mono dev-dotnet/libgdiplus"
-  provides:
-  - category: "dev-lang"
-    name: "mono"
-    version: ">=0"
-  - category: "dev-dotnet"
-    name: "libgdiplus"
-    version: ">=0"
-  pre_emerge:
-  - sys-apps/elfix
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "nnn"
-  version: "4.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/nnn
-  atom: "app-misc/nnn"
-  provides:
-  - category: "app-misc"
-    name: "nnn"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "okteta"
-  version: "0.26.6"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-editors/okteta
-  atom: "app-editors/okteta"
-  provides:
-  - category: "app-editors"
-    name: "okteta"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "opera"
-  version: "77.0.4054.90+38"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/opera
-  atom: "www-client/opera"
-  provides:
-  - category: "www-client"
-    name: "opera"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "plasma-sdk"
-  version: "1.3+3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-plasma/plasma-sdk
-  atom: "kde-plasma/plasma-sdk"
-  provides:
-  - category: "kde-plasma"
-    name: "plasma-sdk"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-  
-- category: "apps"
-  name: "pulseaudio-qt"
-  version: "1.3-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/pulseaudio-qt
-  atom: "media-libs/pulseaudio-qt"
-  provides:
-  - category: "media-libs"
-    name: "pulseaudio-qt"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "rawtherapee"
-  version: "5.8-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/rawtherapee
-  atom: "media-gfx/rawtherapee"
-  provides:
-  - category: "media-libs"
-    name: "libiptcdata"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "rawtherapee"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-# TODO: add x2go support
-- category: "apps"
-  name: "remmina"
-  version: "1.4.23-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/remmina
-  atom: "net-misc/remmina"
-  provides:
-  - category: "net-misc"
-    name: "remmina"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "scapy"
-  version: "2.4.5"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-analyzer/scapy
-  atom: "net-analyzer/scapy"
-  provides:
-  - category: "net-analyzer"
-    name: "scapy"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "solaar"
-  version: "1.1.1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-misc/solaar
-  atom: "app-misc/solaar"
-  provides:
-  - category: "app-misc"
-    name: "solaar"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "soundconverter"
-  version: "3.0.2-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/soundconverter
-  atom: "media-sound/soundconverter"
-  provides:
-  - category: "media-sound"
-    name: "soundconverter"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "soundkonverter"
-  version: "3.0.1-r2+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/soundkonverter
-  atom: "media-sound/soundkonverter"
-  provides:
-  - category: "media-sound"
-    name: "soundkonverter"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "subtitlecomposer"
-  version: "0.7.1+5"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/subtitlecomposer
-  atom: "media-video/subtitlecomposer"
-  provides:
-  - category: "media-video"
-    name: "subtitlecomposer"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "tree"
-  version: "0.4+3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/tree
-  atom: "app-text/tree"
-  provides:
-  - category: "app-text"
-    name: "tree"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "shntool"
-  version: "3.0.10+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/shntool
-  atom: "media-sound/shntool"
-  provides:
-  - category: "media-sound"
-    name: "shntool"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "systemdgenie"
-  version: "0.99.0+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-admin/systemdgenie
-  atom: "app-admin/systemdgenie"
-  provides:
-  - category: "app-admin"
-    name: "systemdgenie"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- category: "apps"
-  name: "testdisk"
-  version: "7.1-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-admin/testdisk
-  atom: "app-admin/testdisk"
-  provides:
-  - category: "app-admin"
-    name: "testdisk"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- category: "apps"
-  name: "tmux"
-  version: "3.1+30"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/tmux
-  atom: "app-misc/tmux"
-  provides:
-  - category: "app-misc"
-    name: "tmux"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-
-- category: "apps"
-  name: "transmission"
-  version: "3.00+74"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-p2p/transmission
-  atom: "net-p2p/transmission"
-  provides:
-  - category: "acct-group"
-    name: "transmission"
-    version: ">=0"
-  - category: "acct-user"
-    name: "transmission"
-    version: ">=0"
-  - category: "net-p2p"
-    name: "transmission"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - category: "entity"
-    name: "transmission"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "vivaldi"
-  version: "4.1.2369.21+10"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/vivaldi
-  atom: "www-client/vivaldi"
-  provides:
-  - category: "www-client"
-    name: "vivaldi"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "vulkan-tools"
-  version: "0.3+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/vulkan-tools
-  atom: "dev-util/vulkan-tools"
-  provides:
-  - category: "dev-util"
-    name: "vulkan-tools"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-  
-- category: "apps"
-  name: "w_scan"
-  version: "0.3+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-tv/w_scan
-  atom: "media-tv/w_scan"
-  provides:
-  - category: "media-tv"
-    name: "w_scan"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "wacomtablet"
-  version: "3.2.0+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/wacomtablet
-  atom: "kde-misc/wacomtablet"
-  provides:
-  - category: "kde-misc"
-    name: "wacomtablet"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "weechat"
-  version: "3.1+28"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-irc/weechat
-  atom: "net-irc/weechat"
-  provides:
-  - category: "net-irc"
-    name: "weechat"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
-  name: "wine-staging"
-  version: "7.1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-emulation/wine-staging
-      app-emulation/winetricks
-      app-emulation/protontricks
-  atom: "app-emulation/wine-staging app-emulation/winetricks app-emulation/protontricks"
-  provides:
-  - category: "acct-group"
-    name: "rtkit"
-    version: ">=0"
-  - category: "acct-user"
-    name: "rtkit"
-    version: ">=0"
-  - category: "sys-auth"
-    name: "rtkit"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "vkd3d"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-gecko"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-mono"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-desktop-common"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-staging"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "winetricks"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "protontricks"
-    version: ">=0"
-  - category: "app-eselect"
-    name: "eselect-wine"
-    version: ">=0"
-  - category: "dev-python"
-    name: "vdf"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - category: "entity"
-    name: "rtkit"
-    version: ">=0"
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- category: "apps"
-  name: "zsh"
-  version: "5.8+51"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-shells/zsh
-  atom: "app-shells/zsh"
-  provides:
-  - category: "app-shells"
-    name: "zsh"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-################################################################################
-## dep I libs ###
+### dep 0 libs ###
 ################################################################################
 
 - &libs-argtable
@@ -2111,30 +924,85 @@ packages:
   - <<: *layers-system-x
 
 ################################################################################
-### dep I apps ###
+### dep 0 apps ###
 ################################################################################
 
-- &apps-cdrdao
-  category: "apps"
-  name: "cdrdao"
-  version: "1.2.4+1"
+- category: "apps"
+  name: "abiword"
+  version: "3.0.4+55"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/abiword
+  atom: "app-office/abiword"
+  provides:
+  - category: "app-office"
+    name: "abiword"
+    version: ">=0"
+  - category: "app-text"
+    name: "wv"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "brasero"
+  version: "3.12.2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/brasero
+  atom: "app-cdr/brasero"
+  provides:
+  - category: "app-cdr"
+    name: "brasero"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
+
+- category: "apps"
+  name: "brave"
+  version: "1.31.84+17"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/brave-bin
+  atom: "www-client/brave-bin"
+  overlay:
+    name: "brave-overlay"
+  provides:
+  - category: "www-client"
+    name: "brave-bin"
+    version: ">=0"
+  pre_emerge:
+  - gnome-base/gconf
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+  
+- category: "apps"
+  name: "celestia"
+  version: "1.7.0_pre20220120"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      app-cdr/cdrdao
-  atom: "app-cdr/cdrdao"
+      sci-astronomy/celestia
+  atom: "sci-astronomy/celestia"
   pre_emerge:
-  - x11-misc/makedepend
-  - media-libs/libao
+  - dev-cpp/eigen
   provides:
-  - category: "app-cdr"
-    name: "cdrdao"
+  - category: "sci-astronomy"
+    name: "celestia"
     version: ">=0"
   requires:
-  - <<: *layers-X
-  - <<: *libs-libao
+  - <<: *layers-qt
   build_requires:
-  - <<: *buildbase-X
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - &apps-cfortran
@@ -2188,69 +1056,59 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "clementine"
-  version: "1.4.0_rc1+4"
+  name: "cuetools"
+  version: "1.4.1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/clementine
-  atom: "media-sound/clementine"
+      app-cdr/cuetools
+  atom: "app-cdr/cuetools"
   provides:
-  - category: "media-sound"
-    name: "clementine"
+  - category: "app-cdr"
+    name: "cuetools"
     version: ">=0"
-  pre_emerge:
-  - dev-cpp/gtest
-  - media-libs/libmygpo-qt
-  - gnome-base/gvfs
-  requires:
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
-  - <<: *libs-libmygpo-qt
-  build_requires:
-  - <<: *layers-plasma
-
-- &apps-convertlit
-  category: "apps"
-  name: "convertlit"
-  version: "1.8+4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/convertlit
-  atom: "app-text/convertlit"
-  provides:
-  - category: "app-text"
-    name: "convertlit"
-    version: ">=0"
-  pre_emerge:
-  - dev-libs/libtommath
   requires:
   - <<: *layers-system-x
-  - <<: *libs-libtommath
   build_requires:
   - <<: *layers-system-x
 
-- &apps-dcraw
-  category: "apps"
-  name: "dcraw"
-  version: "9.28.0-r2"
+- category: "apps"
+  name: "darktable"
+  version: "3.8.0-r2"
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
-      media-gfx/dcraw
-  atom: "media-gfx/dcraw"
+      media-gfx/darktable
+  atom: "media-gfx/darktable"
   provides:
   - category: "media-gfx"
-    name: "dcraw"
+    name: "darktable"
     version: ">=0"
   pre_emerge:
-  - media-libs/netpbm
+  - dev-python/jsonschema
   requires:
-  - <<: *layers-system-x
-  - <<: *libs-netpbm
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "dia"
+  version: "0.97.3-r1+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/dia
+  atom: "app-office/dia"
+  provides:
+  - category: "app-office"
+    name: "dia"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &apps-dmd
   category: "apps"
@@ -2275,6 +1133,40 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "dolphin-plugins-git"
+  version: "21.08.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/dolphin-plugins-git
+  atom: "kde-apps/dolphin-plugins-git"
+  provides:
+  - category: "kde-apps"
+    name: "dolphin-plugins-git"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
+- category: "apps"
+  name: "dolphin-plugins-mountiso"
+  version: "21.08.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/dolphin-plugins-mountiso
+  atom: "app-cdr/dolphin-plugins-mountiso"
+  provides:
+  - category: "app-cdr"
+    name: "dolphin-plugins-mountiso"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd+rw-tools"
@@ -2296,45 +1188,258 @@ packages:
   - <<: *layers-sys-fs
 
 - category: "apps"
-  name: "easytag"
-  version: "2.4.3+7"
+  name: "emacs"
+  version: "27.1+63"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/emacs
+  atom: "app-editors/emacs"
+  provides:
+    - category: app-editors
+      name: emacs
+      version: ">=0"
+    - category: app-emacs
+      name: emacs-common
+      version: ">=0"
+    - category: app-eselect
+      name: eselect-ctags
+      version: ">=0"
+    - category: app-eselect
+      name: eselect-emacs
+      version: ">=0"
+    - category: net-libs
+      name: liblockfile
+      version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+# should be in main repo
+- category: "apps"
+  name: "extundelete"
+  version: "0.2.4-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-fs/extundelete
+  atom: "sys-fs/extundelete"
+  provides:
+  - category: "sys-fs"
+    name: "extundelete"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "ffmpegthumbs"
+  version: "21.08.3+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/easytag
-  atom: "media-sound/easytag"
+      kde-apps/ffmpegthumbs
+  atom: "kde-apps/ffmpegthumbs"
   provides:
-  - category: "media-sound"
-    name: "easytag"
+  - category: "kde-apps"
+    name: "ffmpegthumbs"
     version: ">=0"
-  pre_emerge:
-  #:
-  - media-libs/id3lib
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
+- category: "apps"
+  name: "filelight"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/filelight
+  atom: "kde-apps/filelight"
+  provides:
+  - category: "kde-apps"
+    name: "filelight"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "filezilla"
+  version: "3.53.1+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-libs/libfilezilla
+      net-ftp/filezilla
+  atom: "net-ftp/filezilla"
+  provides:
+  - category: "dev-libs"
+    name: "libfilezilla"
+    version: ">=0"
+  - category: "net-ftp"
+    name: "filezilla"
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "guvcview"
-  version: "2.0.6-r2+1"
+  name: "fish"
+  version: "3.1.2+26"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/guvcview
-  atom: "media-video/guvcview"
+      app-shells/fish
+  atom: "app-shells/fish"
   provides:
-  - category: "media-video"
-    name: "guvcview"
+  - category: "app-shells"
+    name: "fish"
     version: ">=0"
-  pre_emerge:
-  - sci-libs/gsl
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "flacon"
+  version: "5.5.1+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/flacon
+  atom: "media-sound/flacon"
+  provides:
+  - category: "media-sound"
+    name: "flacon"
+    version: ">=0"
   requires:
   - <<: *layers-qt
-  - <<: *libs-gsl
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
+  
+- category: "apps"
+  name: "fontforge"
+  version: "20201107+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libuninameslist
+      media-gfx/fontforge
+  atom: "media-gfx/fontforge"
+  pre_emerge:
+  - dev-python/sphinx
+  provides:
+  - category: "media-libs"
+    name: "media-libs/libuninameslist"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "fontforge"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+   
+- category: "apps"
+  name: "gnumeric"
+  version: "1.12.48+53"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/gnumeric
+  atom: "app-office/gnumeric"
+  provides:
+  - category: "app-office"
+    name: "gnumeric"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "hexchat"
+  version: "2.14.3+65"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/hexchat
+  atom: "net-irc/hexchat"
+  provides:
+  - category: "net-irc"
+    name: "hexchat"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "httrack"
+  version: "3.49.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/httrack
+  atom: "www-client/httrack"
+  provides:
+  - category: "www-client"
+    name: "httrack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "hwinfo"
+  version: "21.76+1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwinfo
+  atom: "sys-apps/hwinfo"
+  pre_emerge:
+  - app-arch/rpm2targz
+  provides:
+  - category: "sys-apps"
+    name: "hwinfo"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libx86emu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-hwloc
+  category: "libs"
+  name: "hwloc"
+  version: "2.6.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwloc
+  atom: "sys-apps/hwloc"
+  provides:
+  - category: "sys-apps"
+    name: "hwloc"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
   requires_final_images: true
 
 - &apps-icoutils
@@ -2359,70 +1464,277 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "kget"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kget
-  atom: "kde-apps/kget"
-  provides:
-  - category: "kde-apps"
-    name: "kget"
-    version: ">=0"
-  pre_emerge:
-  - net-libs/libktorrent  
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-libktorrent
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "ktorrent"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-p2p/ktorrent
-  atom: "net-p2p/ktorrent"
-  provides:
-  - category: "net-p2p"
-    name: "ktorrent"
-    version: ">=0"
-  pre_emerge:
-  - net-libs/libktorrent
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-libktorrent
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "mkvtoolnix"
-  version: "61.0.0+2"
+  name: "isomaster"
+  version: "1.3.15+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/mkvtoolnix
-  atom: "media-video/mkvtoolnix"
+      dev-libs/iniparser
+      app-cdr/isomaster
+  atom: "app-cdr/isomaster"
   provides:
-  - category: "media-video"
-    name: "mkvtoolnix"
-    version: ">=0"
   - category: "dev-libs"
-    name: "utfcpp"
+    name: "iniparser"
     version: ">=0"
-  - category: "app-text"
-    name: "cmark"
+  - category: "app-cdr"
+    name: "isomaster"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "kate"
+  version: "21.08.3+10"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kate
+  atom: "kde-apps/kate"
+  provides:
+  - category: "kde-apps"
+    name: "kate"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "kcharselect"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kcharselect
+  atom: "kde-apps/kcharselect"
+  provides:
+  - category: "kde-apps"
+    name: "kcharselect"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "kdiff3"
+  version: "1.9.3+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/kdiff3
+  atom: "kde-misc/kdiff3"
+  provides:
+  - category: "kde-misc"
+    name: "kdiff3"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "kolourpaint"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kolourpaint
+  atom: "kde-apps/kolourpaint"
+  provides:
+  - category: "kde-apps"
+    name: "kolourpaint"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "kompare"
+  version: "21.08.3+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kompare
+  atom: "kde-apps/kompare"
+  provides:
+  - category: "kde-apps"
+    name: "kompare"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
+- category: "apps"
+  name: "krename"
+  version: "5.0.1+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/krename
+  atom: "kde-misc/krename"
+  provides:
+  - category: "kde-misc"
+    name: "krename"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "krfb"
+  version: "21.08.3+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/krfb
+  atom: "kde-apps/krfb"
+  provides:
+  - category: "kde-apps"
+    name: "krfb"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "krusader"
+  version: "2.7.2+37"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/krusader
+  atom: "kde-misc/krusader"
+  provides:
+  - category: "kde-misc"
+    name: "krusader"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "ksnip"
+  version: "1.9.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/ksnip
+  atom: "x11-misc/ksnip"
+  overlay:
+    name: "guru"
+  provides:
+  - category: "x11-misc"
+    name: "ksnip"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-apps-minimal
+  build_requires:
+  - <<: *layers-kde-apps-minimal
+
+# Replaced by Plasma System Monitor
+# - category: "apps"
+#   name: "ksysguard"
+#   version: "5.22.0+3"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-plasma/ksysguard
+#   atom: "kde-plasma/ksysguard"
+#   provides:
+#   - category: "kde-plasma"
+#     name: "ksysguard"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   build_requires:
+#   - <<: *layers-plasma
+
+- category: "apps"
+  name: "latte-dock"
+  version: "3.1.2+27"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/latte-dock
+  atom: "kde-misc/latte-dock"
+  provides:
+  - category: "kde-misc"
+    name: "latte-dock"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "marble"
+  version: "21.08.3+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/marble
+  atom: "kde-apps/marble"
+  provides:
+  - category: "kde-apps"
+    name: "marble"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "mc"
+  version: "4.8.27"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/mc
+  atom: "app-misc/mc"
+  provides:
+  - category: "app-misc"
+    name: "mc"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "mono"
+  version: "6.12.0.122"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/mono
+      dev-dotnet/libgdiplus
+  atom: "dev-lang/mono dev-dotnet/libgdiplus"
+  provides:
+  - category: "dev-lang"
+    name: "mono"
+    version: ">=0"
+  - category: "dev-dotnet"
+    name: "libgdiplus"
     version: ">=0"
   pre_emerge:
-  - dev-cpp/nlohmann_json
+  - sys-apps/elfix
   requires:
-  - <<: *layers-qt
-  - <<: *libs-nlohmann_json
+  - <<: *layers-X
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *buildbase-X
   requires_final_images: true
 
 - &apps-mypaint-brushes
@@ -2437,6 +1749,23 @@ packages:
   provides:
   - category: "media-gfx"
     name: "mypaint-brushes"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "nnn"
+  version: "4.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/nnn
+  atom: "app-misc/nnn"
+  provides:
+  - category: "app-misc"
+    name: "nnn"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2468,28 +1797,73 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "openrgb"
-  version: "0.7"
+  name: "okteta"
+  version: "0.26.6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      app-misc/openrgb
-  atom: "app-misc/openrgb"
-  pre_emerge:
-  - dev-cpp/nlohmann_json
-  - dev-libs/hidapi
-  - net-libs/mbedtls
+      app-editors/okteta
+  atom: "app-editors/okteta"
   provides:
-  - category: "app-misc"
-    name: "openrgb"
+  - category: "app-editors"
+    name: "okteta"
     version: ">=0"
   requires:
-  - <<: *layers-qt
-  - <<: *libs-nlohmann_json
-  - <<: *libs-hidapi
-  - <<: *libs-mbedtls
+  - <<: *layers-plasma
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "opera"
+  version: "77.0.4054.90+38"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/opera
+  atom: "www-client/opera"
+  provides:
+  - category: "www-client"
+    name: "opera"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "plasma-sdk"
+  version: "1.3+3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-plasma/plasma-sdk
+  atom: "kde-plasma/plasma-sdk"
+  provides:
+  - category: "kde-plasma"
+    name: "plasma-sdk"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+  
+- category: "apps"
+  name: "pulseaudio-qt"
+  version: "1.3-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/pulseaudio-qt
+  atom: "media-libs/pulseaudio-qt"
+  provides:
+  - category: "media-libs"
+    name: "pulseaudio-qt"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
   requires_final_images: true
 
 - &apps-qhexedit2
@@ -2512,22 +1886,197 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "sqliteman"
-  version: "1.2.2-r4"
+  name: "rawtherapee"
+  version: "5.8-r1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      dev-db/sqliteman
-  atom: "dev-db/sqliteman"
-  pre_emerge:
-  - x11-libs/qscintilla
+      media-gfx/rawtherapee
+  atom: "media-gfx/rawtherapee"
   provides:
-  - category: "dev-db"
-    name: "sqliteman"
+  - category: "media-libs"
+    name: "libiptcdata"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "rawtherapee"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+# TODO: add x2go support
+- category: "apps"
+  name: "remmina"
+  version: "1.4.23-r1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/remmina
+  atom: "net-misc/remmina"
+  provides:
+  - category: "net-misc"
+    name: "remmina"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "scapy"
+  version: "2.4.5"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-analyzer/scapy
+  atom: "net-analyzer/scapy"
+  provides:
+  - category: "net-analyzer"
+    name: "scapy"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "solaar"
+  version: "1.1.1+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/solaar
+  atom: "app-misc/solaar"
+  provides:
+  - category: "app-misc"
+    name: "solaar"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "soundconverter"
+  version: "3.0.2-r1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/soundconverter
+  atom: "media-sound/soundconverter"
+  provides:
+  - category: "media-sound"
+    name: "soundconverter"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "soundkonverter"
+  version: "3.0.1-r2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/soundkonverter
+  atom: "media-sound/soundkonverter"
+  provides:
+  - category: "media-sound"
+    name: "soundkonverter"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "subtitlecomposer"
+  version: "0.7.1+5"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/subtitlecomposer
+  atom: "media-video/subtitlecomposer"
+  provides:
+  - category: "media-video"
+    name: "subtitlecomposer"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "tree"
+  version: "0.4+3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/tree
+  atom: "app-text/tree"
+  provides:
+  - category: "app-text"
+    name: "tree"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "shntool"
+  version: "3.0.10+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/shntool
+  atom: "media-sound/shntool"
+  provides:
+  - category: "media-sound"
+    name: "shntool"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "systemdgenie"
+  version: "0.99.0+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-admin/systemdgenie
+  atom: "app-admin/systemdgenie"
+  provides:
+  - category: "app-admin"
+    name: "systemdgenie"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+
+- category: "apps"
+  name: "testdisk"
+  version: "7.1-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-admin/testdisk
+  atom: "app-admin/testdisk"
+  provides:
+  - category: "app-admin"
+    name: "testdisk"
     version: ">=0"
   requires:
   - <<: *layers-qt
-  - <<: *libs-qscintilla
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
@@ -2552,49 +2101,48 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &apps-transcode
-  category: "apps"
-  name: "transcode"
-  version: "1.1.7-r6+1"
+- category: "apps"
+  name: "tmux"
+  version: "3.1+30"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/transcode
-  atom: "media-video/transcode"
+      app-misc/tmux
+  atom: "app-misc/tmux"
   provides:
-  - category: "media-video"
-    name: "transcode"
+  - category: "app-misc"
+    name: "tmux"
     version: ">=0"
-  pre_emerge:
-  - media-libs/libdv
-  - media-libs/libmpeg2
   requires:
-  - <<: *layers-X
-  - <<: *libs-libdv
-  - <<: *libs-libmpeg2
+  - <<: *layers-system-x
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-system-x
 
-- &apps-vcdimager
-  category: "apps"
-  name: "vcdimager"
-  version: "2.0.1+1"
+- category: "apps"
+  name: "transmission"
+  version: "3.00+74"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
-      media-video/vcdimager
-  atom: "media-video/vcdimager"
-  pre_emerge:
-  - x11-misc/makedepend
+      net-p2p/transmission
+  atom: "net-p2p/transmission"
   provides:
-  - category: "media-video"
-    name: "vcdimager"
+  - category: "acct-group"
+    name: "transmission"
+    version: ">=0"
+  - category: "acct-user"
+    name: "transmission"
+    version: ">=0"
+  - category: "net-p2p"
+    name: "transmission"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-gnome-common
+  - category: "entity"
+    name: "transmission"
+    version: ">=0"
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-gnome-common
 
 - &apps-ufw
   category: "apps"
@@ -2616,8 +2164,188 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-vcdimager
+  category: "apps"
+  name: "vcdimager"
+  version: "2.0.1+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/vcdimager
+  atom: "media-video/vcdimager"
+  pre_emerge:
+  - x11-misc/makedepend
+  provides:
+  - category: "media-video"
+    name: "vcdimager"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
+- category: "apps"
+  name: "vivaldi"
+  version: "4.1.2369.21+10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/vivaldi
+  atom: "www-client/vivaldi"
+  provides:
+  - category: "www-client"
+    name: "vivaldi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "vulkan-tools"
+  version: "0.3+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/vulkan-tools
+  atom: "dev-util/vulkan-tools"
+  provides:
+  - category: "dev-util"
+    name: "vulkan-tools"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+  
+- category: "apps"
+  name: "w_scan"
+  version: "0.3+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/w_scan
+  atom: "media-tv/w_scan"
+  provides:
+  - category: "media-tv"
+    name: "w_scan"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "wacomtablet"
+  version: "3.2.0+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/wacomtablet
+  atom: "kde-misc/wacomtablet"
+  provides:
+  - category: "kde-misc"
+    name: "wacomtablet"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "weechat"
+  version: "3.1+28"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/weechat
+  atom: "net-irc/weechat"
+  provides:
+  - category: "net-irc"
+    name: "weechat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "wine-staging"
+  version: "7.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-emulation/wine-staging
+      app-emulation/winetricks
+      app-emulation/protontricks
+  atom: "app-emulation/wine-staging app-emulation/winetricks app-emulation/protontricks"
+  provides:
+  - category: "acct-group"
+    name: "rtkit"
+    version: ">=0"
+  - category: "acct-user"
+    name: "rtkit"
+    version: ">=0"
+  - category: "sys-auth"
+    name: "rtkit"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "vkd3d"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-gecko"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-mono"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-desktop-common"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-staging"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "winetricks"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "protontricks"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-wine"
+    version: ">=0"
+  - category: "dev-python"
+    name: "vdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "rtkit"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "zsh"
+  version: "5.8+51"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/zsh
+  atom: "app-shells/zsh"
+  provides:
+  - category: "app-shells"
+    name: "zsh"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 ################################################################################
-### dep II libs ###
+## dep I libs ###
 ################################################################################
 
 - &libs-amd
@@ -2948,6 +2676,437 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+################################################################################
+### dep I apps ###
+################################################################################
+
+- &apps-cdrdao
+  category: "apps"
+  name: "cdrdao"
+  version: "1.2.4+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/cdrdao
+  atom: "app-cdr/cdrdao"
+  pre_emerge:
+  - x11-misc/makedepend
+  - media-libs/libao
+  provides:
+  - category: "app-cdr"
+    name: "cdrdao"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libao
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- category: "apps"
+  name: "clementine"
+  version: "1.4.0_rc1+4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/clementine
+  atom: "media-sound/clementine"
+  provides:
+  - category: "media-sound"
+    name: "clementine"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/gtest
+  - media-libs/libmygpo-qt
+  - gnome-base/gvfs
+  requires:
+  - <<: *layers-plasma
+  - <<: *layers-gnome-common
+  - <<: *libs-libmygpo-qt
+  build_requires:
+  - <<: *layers-plasma
+
+- &apps-convertlit
+  category: "apps"
+  name: "convertlit"
+  version: "1.8+4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/convertlit
+  atom: "app-text/convertlit"
+  provides:
+  - category: "app-text"
+    name: "convertlit"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libtommath
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-libtommath
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-dcraw
+  category: "apps"
+  name: "dcraw"
+  version: "9.28.0-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/dcraw
+  atom: "media-gfx/dcraw"
+  provides:
+  - category: "media-gfx"
+    name: "dcraw"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/netpbm
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-netpbm
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "easytag"
+  version: "2.4.3+7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easytag
+  atom: "media-sound/easytag"
+  provides:
+  - category: "media-sound"
+    name: "easytag"
+    version: ">=0"
+  pre_emerge:
+  #:
+  - media-libs/id3lib
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-id3lib
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "guvcview"
+  version: "2.0.6-r2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/guvcview
+  atom: "media-video/guvcview"
+  provides:
+  - category: "media-video"
+    name: "guvcview"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/gsl
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-gsl
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
+  name: "kget"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kget
+  atom: "kde-apps/kget"
+  provides:
+  - category: "kde-apps"
+    name: "kget"
+    version: ">=0"
+  pre_emerge:
+  - net-libs/libktorrent  
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-libktorrent
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "ktorrent"
+  version: "21.08.3+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-p2p/ktorrent
+  atom: "net-p2p/ktorrent"
+  provides:
+  - category: "net-p2p"
+    name: "ktorrent"
+    version: ">=0"
+  pre_emerge:
+  - net-libs/libktorrent
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-libktorrent
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
+  name: "mkvtoolnix"
+  version: "61.0.0+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/mkvtoolnix
+  atom: "media-video/mkvtoolnix"
+  provides:
+  - category: "media-video"
+    name: "mkvtoolnix"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "utfcpp"
+    version: ">=0"
+  - category: "app-text"
+    name: "cmark"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/nlohmann_json
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-nlohmann_json
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
+  name: "openrgb"
+  version: "0.7"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/openrgb
+  atom: "app-misc/openrgb"
+  pre_emerge:
+  - dev-cpp/nlohmann_json
+  - dev-libs/hidapi
+  - net-libs/mbedtls
+  provides:
+  - category: "app-misc"
+    name: "openrgb"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-nlohmann_json
+  - <<: *libs-hidapi
+  - <<: *libs-mbedtls
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
+  name: "sqliteman"
+  version: "1.2.2-r4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-db/sqliteman
+  atom: "dev-db/sqliteman"
+  pre_emerge:
+  - x11-libs/qscintilla
+  provides:
+  - category: "dev-db"
+    name: "sqliteman"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-qscintilla
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &apps-transcode
+  category: "apps"
+  name: "transcode"
+  version: "1.1.7-r6+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/transcode
+  atom: "media-video/transcode"
+  provides:
+  - category: "media-video"
+    name: "transcode"
+    version: ">=0"
+  pre_emerge:
+  - media-libs/libdv
+  - media-libs/libmpeg2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libdv
+  - <<: *libs-libmpeg2
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+################################################################################
+### dep II libs ###
+################################################################################
+
+- &libs-allegro
+  category: "libs"
+  name: "allegro"
+  version: "4.4.3.1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &libs-allegro-packages >-
+      media-libs/allegro:0
+  atom: *libs-allegro-packages
+  provides:
+  - category: "media-libs"
+    name: "allegro"
+    version: ">=0"
+  pre_emerge:
+  - dev-games/physfs
+  - media-libs/dumb
+  requires:
+  - <<: *layers-X
+  - <<: *libs-physfs
+  - <<: *libs-dumb
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-cargo-c
+  category: "libs"
+  name: "cargo-c"
+  version: "0.9.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/cargo-c
+  atom: "dev-util/cargo-c"
+  provides:
+  - category: "dev-util"
+    name: "cargo-c"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libgit2
+  - net-libs/libssh2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libgit2
+  - <<: *libs-libssh2
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-cholmod
+  category: "libs"
+  name: "cholmod"
+  version: "3.0.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/cholmod
+  atom: "sci-libs/cholmod"
+  provides:
+  - category: "sci-libs"
+    name: "cholmod"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/amd
+  - sci-libs/camd
+  - sci-libs/ccolamd
+  - sci-libs/colamd
+  - sci-libs/metis
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-amd
+  - <<: *libs-camd
+  - <<: *libs-ccolamd
+  - <<: *libs-colamd
+  - <<: *libs-metis
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-indilib
+  category: "libs"
+  name: "indilib"
+  version: "1.9.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/indilib
+  atom: "sci-libs/indilib"
+  provides:
+  - category: "sci-libs"
+    name: "indilib"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/websocketpp
+  - net-wireless/rtl-sdr
+  - sci-libs/cfitsio
+  - sci-libs/gsl
+  - sci-libs/libnova
+  requires:
+  - <<: *layers-X
+  - <<: *libs-websocketpp
+  - <<: *libs-rtl-sdr
+  - <<: *libs-cfitsio
+  - <<: *libs-gsl
+  - <<: *libs-libnova
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-openvdb
+  category: "libs"
+  name: "openvdb"
+  version: "8.2.0-r7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/openvdb
+  atom: "media-gfx/openvdb"
+  provides:
+  - category: "media-gfx"
+    name: "openvdb"
+    version: ">=0"
+  pre_emerge:
+  - dev-cpp/tbb
+  - dev-libs/c-blosc
+  - dev-libs/log4cplus
+  - media-libs/glfw
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-c-blosc
+  - <<: *libs-tbb
+  - <<: *libs-log4cplus
+  - <<: *libs-glfw
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-wcslib
+  category: "libs"
+  name: "wcslib"
+  version: "7.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-astronomy/wcslib
+  atom: "sci-astronomy/wcslib"
+  provides:
+  - category: "sci-astronomy"
+    name: "wcslib"
+    version: ">=0"
+  pre_emerge:
+  - sci-libs/cfitsio
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-cfitsio
+  build_requires:
+  - <<: *layers-system-x
 
 ################################################################################
 ### dep II apps ###
@@ -3320,159 +3479,74 @@ packages:
 ### dep III libs ###
 ################################################################################
 
-- &libs-allegro
+- &libs-devil
   category: "libs"
-  name: "allegro"
-  version: "4.4.3.1+1"
+  name: "devil"
+  version: "1.7.8-r3+2"
   labels:
     emerge.jobs: "1"
-    emerge.packages: &libs-allegro-packages >-
-      media-libs/allegro:0
-  atom: *libs-allegro-packages
+    emerge.packages: >-
+      media-libs/devil
+  atom: "media-libs/devil"
   provides:
   - category: "media-libs"
-    name: "allegro"
+    name: "devil"
     version: ">=0"
   pre_emerge:
-  - dev-games/physfs
-  - media-libs/dumb
+  - *libs-allegro-packages
+  - media-libs/libmng
   requires:
   - <<: *layers-X
-  - <<: *libs-physfs
-  - <<: *libs-dumb
+  - <<: *libs-allegro
+  - <<: *libs-libmng
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-cargo-c
+- &libs-rav1e
   category: "libs"
-  name: "cargo-c"
-  version: "0.9.5"
+  name: "rav1e"
+  version: "0.5.1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-util/cargo-c
-  atom: "dev-util/cargo-c"
+      media-video/rav1e
+  atom: "media-video/rav1e"
   provides:
-  - category: "dev-util"
-    name: "cargo-c"
+  - category: "media-video"
+    name: "rav1e"
     version: ">=0"
   pre_emerge:
-  - dev-libs/libgit2
-  - net-libs/libssh2
+  - dev-util/cargo-c
   requires:
   - <<: *layers-X
-  - <<: *libs-libgit2
-  - <<: *libs-libssh2
+  - <<: *libs-cargo-c
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-cholmod
+- &libs-umfpack
   category: "libs"
-  name: "cholmod"
-  version: "3.0.14"
+  name: "umfpack"
+  version: "5.7.9"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sci-libs/cholmod
-  atom: "sci-libs/cholmod"
+      sci-libs/umfpack
+  atom: "sci-libs/umfpack"
   provides:
   - category: "sci-libs"
-    name: "cholmod"
+    name: "umfpack"
     version: ">=0"
   pre_emerge:
   - sci-libs/amd
-  - sci-libs/camd
-  - sci-libs/ccolamd
-  - sci-libs/colamd
-  - sci-libs/metis
+  - sci-libs/cholmod
+  - sci-libs/suitesparseconfig
   requires:
   - <<: *layers-system-x
   - <<: *libs-amd
-  - <<: *libs-camd
-  - <<: *libs-ccolamd
-  - <<: *libs-colamd
-  - <<: *libs-metis
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-indilib
-  category: "libs"
-  name: "indilib"
-  version: "1.9.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/indilib
-  atom: "sci-libs/indilib"
-  provides:
-  - category: "sci-libs"
-    name: "indilib"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/websocketpp
-  - net-wireless/rtl-sdr
-  - sci-libs/cfitsio
-  - sci-libs/gsl
-  - sci-libs/libnova
-  requires:
-  - <<: *layers-X
-  - <<: *libs-websocketpp
-  - <<: *libs-rtl-sdr
-  - <<: *libs-cfitsio
-  - <<: *libs-gsl
-  - <<: *libs-libnova
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- &libs-openvdb
-  category: "libs"
-  name: "openvdb"
-  version: "8.2.0-r7"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/openvdb
-  atom: "media-gfx/openvdb"
-  provides:
-  - category: "media-gfx"
-    name: "openvdb"
-    version: ">=0"
-  pre_emerge:
-  - dev-cpp/tbb
-  - dev-libs/c-blosc
-  - dev-libs/log4cplus
-  - media-libs/glfw
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-c-blosc
-  - <<: *libs-tbb
-  - <<: *libs-log4cplus
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-
-- &libs-wcslib
-  category: "libs"
-  name: "wcslib"
-  version: "7.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-astronomy/wcslib
-  atom: "sci-astronomy/wcslib"
-  provides:
-  - category: "sci-astronomy"
-    name: "wcslib"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/cfitsio
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-cfitsio
+  - <<: *libs-cholmod
+  - <<: *libs-suitesparseconfig
   build_requires:
   - <<: *layers-system-x
 
@@ -3631,77 +3705,58 @@ packages:
 ### dep IV libs ###
 ################################################################################
 
-- &libs-devil
+- &libs-gegl
   category: "libs"
-  name: "devil"
-  version: "1.7.8-r3+2"
+  name: "gegl"
+  version: "0.4.34"
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
-      media-libs/devil
-  atom: "media-libs/devil"
+      media-libs/gegl
+  atom: "media-libs/gegl"
   provides:
   - category: "media-libs"
-    name: "devil"
+    name: "gegl"
     version: ">=0"
   pre_emerge:
-  - *libs-allegro-packages
-  - media-libs/libmng
+  - media-libs/babl
+  - media-libs/libnsgif
+  - sci-libs/umfpack
   requires:
   - <<: *layers-X
-  - <<: *libs-allegro
-  - <<: *libs-libmng
+  - <<: *libs-babl
+  - <<: *libs-libnsgif
+  - <<: *libs-umfpack
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-rav1e
+- &libs-libheif
   category: "libs"
-  name: "rav1e"
-  version: "0.5.1"
+  name: "libheif"
+  version: "1.12.0-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/rav1e
-  atom: "media-video/rav1e"
+      media-libs/libheif
+  atom: "media-libs/libheif"
   provides:
-  - category: "media-video"
-    name: "rav1e"
+  - category: "media-libs"
+    name: "libheif"
     version: ">=0"
   pre_emerge:
-  - dev-util/cargo-c
+#   - media-libs/libaom
+  - media-libs/libde265
+  - media-video/rav1e
   requires:
   - <<: *layers-X
-  - <<: *libs-cargo-c
+#   - <<: *libs-libaom
+  - <<: *libs-libde265
+  - <<: *libs-rav1e
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-umfpack
-  category: "libs"
-  name: "umfpack"
-  version: "5.7.9"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/umfpack
-  atom: "sci-libs/umfpack"
-  provides:
-  - category: "sci-libs"
-    name: "umfpack"
-    version: ">=0"
-  pre_emerge:
-  - sci-libs/amd
-  - sci-libs/cholmod
-  - sci-libs/suitesparseconfig
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-amd
-  - <<: *libs-cholmod
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-  
 ################################################################################
 ### dep IV apps ###
 ################################################################################
@@ -3787,62 +3842,6 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
-- &libs-gegl
-  category: "libs"
-  name: "gegl"
-  version: "0.4.34"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/gegl
-  atom: "media-libs/gegl"
-  provides:
-  - category: "media-libs"
-    name: "gegl"
-    version: ">=0"
-  pre_emerge:
-  - media-libs/babl
-  - media-libs/libnsgif
-  - sci-libs/umfpack
-  requires:
-  - <<: *layers-X
-  - <<: *libs-babl
-  - <<: *libs-libnsgif
-  - <<: *libs-umfpack
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- &libs-libheif
-  category: "libs"
-  name: "libheif"
-  version: "1.12.0-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libheif
-  atom: "media-libs/libheif"
-  provides:
-  - category: "media-libs"
-    name: "libheif"
-    version: ">=0"
-  pre_emerge:
-#   - media-libs/libaom
-  - media-libs/libde265
-  - media-video/rav1e
-  requires:
-  - <<: *layers-X
-#   - <<: *libs-libaom
-  - <<: *libs-libde265
-  - <<: *libs-rav1e
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-################################################################################
-### dep VI libs ###
-################################################################################
-
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
@@ -3864,7 +3863,40 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
+
+################################################################################
+### dep VI apps ###
+################################################################################
+
+- category: "apps"
+  name: "mypaint"
+  version: "2.0.1-r2+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint
+  atom: "media-gfx/mypaint"
+  provides:
+  - category: "media-gfx"
+    name: "mypaint"
+    version: ">=0"
+  pre_emerge:
+  - dev-python/protobuf-python
+  - media-libs/libmypaint
+  - media-gfx/mypaint-brushes
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libmypaint
+  - <<: *libs-protobuf-python
+  - <<: *apps-mypaint-brushes
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+################################################################################
+### dep V libs ###
+################################################################################
+
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
@@ -3910,35 +3942,6 @@ packages:
   - <<: *libs-tinyxml
   build_requires:
   - <<: *buildbase-qt
-  requires_final_images: true
-
-################################################################################
-### dep VI apps ###
-################################################################################
-
-- category: "apps"
-  name: "mypaint"
-  version: "2.0.1-r2+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/mypaint
-  atom: "media-gfx/mypaint"
-  provides:
-  - category: "media-gfx"
-    name: "mypaint"
-    version: ">=0"
-  pre_emerge:
-  - dev-python/protobuf-python
-  - media-libs/libmypaint
-  - media-gfx/mypaint-brushes
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libmypaint
-  - <<: *libs-protobuf-python
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-X
   requires_final_images: true
 
 ###########
