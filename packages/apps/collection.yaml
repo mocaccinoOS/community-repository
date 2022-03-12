@@ -1940,9 +1940,10 @@ packages:
   pre_emerge:
   - app-doc/doxygen
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - &libs-pybind11
   category: "libs"
