@@ -2019,7 +2019,25 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
+
+- category: "libs"
+  name: "quazip"
+  version: "1.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/quazip
+  atom: "dev-libs/quazip"
+  provides:
+  - category: "dev-libs"
+    name: "quazip"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
