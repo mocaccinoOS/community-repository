@@ -590,6 +590,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-vc
+  category: "libs"
+  name: "vc"
+  version: "1.4.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/vc
+  atom: "dev-libs/vc"
+  provides:
+  - category: "sci-libs"
+    name: "vc"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
@@ -3952,7 +3970,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.0.2"
+  version: "5.0.2+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -3970,6 +3988,7 @@ packages:
   - *libs-ocio-oiio-pre_emerge
   - *libs-ocio-oiio-packages
   - sci-libs/gsl
+  - dev-libs/vc
   requires:
   - <<: *layers-kde-common
   - <<: *libs-quazip
@@ -3977,6 +3996,7 @@ packages:
   - <<: *libs-libmypaint
   - <<: *libs-ocio-oiio
   - <<: *libs-gsl
+  - <<: *libs-vc
   build_requires:
   - <<: *buildbase-kde-common
   requires_final_images: true
