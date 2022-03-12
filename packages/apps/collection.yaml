@@ -487,7 +487,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-
 - &apps-hwloc
   category: "libs"
   name: "hwloc"
@@ -1924,6 +1923,26 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
+
+- &libs-ptex
+  category: "libs"
+  name: "ptex"
+  version: "2.3.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/ptex
+  atom: "media-libs/ptex"
+  provides:
+  - category: "media-libs"
+    name: "ptex"
+    version: ">=0"
+  pre_emerge:
+  - app-doc/doxygen
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-pybind11
   category: "libs"
@@ -3854,6 +3873,7 @@ packages:
   - dev-python/pybind11
   - media-gfx/openvdb
   - media-libs/opencv
+  - media-libs/ptex
   - media-libs/libheif
   - sci-libs/dcmtk
   # add the following to the packages depending on this
@@ -3864,6 +3884,7 @@ packages:
   - <<: *libs-libheif
   - <<: *libs-opencv
   - <<: *libs-openvdb
+  - <<: *libs-ptex
   - <<: *libs-pybind11
   - <<: *libs-pystring
   - <<: *libs-tbb
