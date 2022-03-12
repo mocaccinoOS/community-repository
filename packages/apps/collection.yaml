@@ -3854,17 +3854,19 @@ packages:
   - dev-python/pybind11
   - media-gfx/openvdb
   - media-libs/opencv
+  - media-libs/libheif
   - sci-libs/dcmtk
   - media-libs/opencolorio "-opengl"
   requires:
   - <<: *layers-qt
+  - <<: *libs-dcmtk  
+  - <<: *libs-libheif
+  - <<: *libs-opencv
+  - <<: *libs-openvdb
+  - <<: *libs-pybind11
   - <<: *libs-pystring
   - <<: *libs-tbb
   - <<: *libs-tinyxml
-  - <<: *libs-pybind11
-  - <<: *libs-openvdb
-  - <<: *libs-opencv
-  - <<: *libs-dcmtk  
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
