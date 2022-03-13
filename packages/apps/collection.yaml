@@ -77,7 +77,6 @@ anchors:
   name: "gnome"
   version: ">=0"
 
-
 packages:
 
 ################################################################################
@@ -171,6 +170,24 @@ packages:
   provides:
   - category: "sci-libs"
     name: "flann"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-gavl
+  category: "libs"
+  name: "gavl"
+  version: "1.4.0-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/gavl
+  atom: "media-libs/gavl"
+  provides:
+  - category: "media-libs"
+    name: "gavl"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3026,6 +3043,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-frei0r-plugins
+  category: "libs"
+  name: "frei0r-plugins"
+  version: "1.7.0-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/frei0r-plugins
+  atom: "media-libs/frei0r-plugins"
+  provides:
+  - category: "media-libs"
+    name: "frei0r-plugins"
+    version: ">=0"
+  - media-libs/gavl
+  - media-libs/opencv
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gavl
+  - <<: *libs-opencv
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-indilib
   category: "libs"
   name: "indilib"
@@ -3889,26 +3929,6 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-  
-- category: "apps"
-  name: "plantuml"
-  version: "1.2022.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/plantuml
-  atom: "media-gfx/plantuml"
-  provides:
-  - category: "media-gfx"
-    name: "plantuml"
-    version: ">=0"
-  pre_reqs:
-  - media-gfx/graphviz
-  requires:
-  - <<: *layers-java
-  - <<: *apps-graphviz
-  build_requires:
-  - <<: *layers-java
 
 ################################################################################
 ### dep VI libs ###
