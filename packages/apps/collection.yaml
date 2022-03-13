@@ -34,11 +34,6 @@ anchors:
   name: "X"
   version: ">=0"
 
-- &layers-java
-  category: "layers"
-  name: "java"
-  version: ">=0"
-
 - &layers-qt
   category: "layers"
   name: "qt"
@@ -679,24 +674,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libpano13
-  category: "libs"
-  name: "libpano13"
-  version: "2.9.21"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libpano13
-  atom: "media-libs/libpano13"
-  provides:
-  - category: "media-libs"
-    name: "libpano13"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
 
 - &libs-libtommath
   category: "libs"
@@ -1679,6 +1656,45 @@ packages:
   - category: "app-cdr"
     name: "isomaster"
     version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+  
+- &apps-java
+  category: "apps"
+  name: "java"
+  version: "17"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-java-packages" >-
+      dev-java/openjdk-jre-bin
+      dev-java/openjdk-bin
+      virtual/jre
+      virtual/jdk
+  provides:
+  - name: eselect-java
+    category: app-eselect
+    version: '>=0'
+  - name: java-config
+    category: dev-java
+    version: '>=0'
+  - name: openjdk-bin
+    category: dev-java
+    version: '>=0'
+  - name: openjdk-jre-bin
+    category: dev-java
+    version: '>=0'
+  - name: libnet
+    category: net-libs
+    version: '>=0'
+  - name: baselayout-java
+    category: sys-apps
+    version: '>=0'
+  - name: jre
+    category: virtual
+    version: '>=0'
   requires:
   - <<: *layers-X
   build_requires:
@@ -2718,6 +2734,28 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-libpano13
+  category: "libs"
+  name: "libpano13"
+  version: "2.9.21"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libpano13
+  atom: "media-libs/libpano13"
+  provides:
+  - category: "media-libs"
+    name: "libpano13"
+    version: ">=0"
+  pre_reqs:
+  - *apps-java-packages
+  requires:
+  - <<: *layers-X
+  - <<: *apps-java
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-metis
   category: "libs"
   name: "metis"
@@ -2848,9 +2886,10 @@ packages:
   pre_reqs:
   - media-libs/ladspa-sdk
   - media-libs/vamp-plugin-sdk
-  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre virtual/jdk
+  - *apps-java-packages
   requires:
   - <<: *layers-X
+  - <<: *apps-java
   - <<: *libs-ladspa-sdk
   - <<: *libs-vamp-plugin-sdk
   build_requires:
@@ -4142,12 +4181,13 @@ packages:
     name: "graphviz"
     version: ">=0"
   pre_reqs:
-  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre virtual/jdk
+  - *apps-java-packages
   - media-libs/devil
   - sci-libs/gts
   - media-libs/lasi
   requires:
   - <<: *layers-qt
+  - <<: *apps-java
   - <<: *libs-devil
   - <<: *libs-gts
   - <<: *libs-lasi
