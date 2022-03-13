@@ -959,6 +959,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-vamp-plugin-sdk
+  category: "libs"
+  name: "vamp-plugin-sdk"
+  version: "2.10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/vamp-plugin-sdk
+  atom: "media-libs/vamp-plugin-sdk"
+  provides:
+  - category: "media-libs"
+    name: "vamp-plugin-sdk"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
