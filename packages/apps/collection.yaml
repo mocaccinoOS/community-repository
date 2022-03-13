@@ -208,6 +208,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-ftgl
+  category: "libs"
+  name: "ftgl"
+  version: "2.1.3_rc5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/ftgl
+  atom: "media-libs/ftgl"
+  provides:
+  - category: "media-libs"
+    name: "ftgl"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-gavl
   category: "libs"
   name: "gavl"
@@ -1693,6 +1712,9 @@ packages:
   - name: baselayout-java
     category: sys-apps
     version: '>=0'
+  - name: jdk
+    category: virtual
+    version: '>=0'
   - name: jre
     category: virtual
     version: '>=0'
@@ -1930,15 +1952,16 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
+- &apps-mono
+  category: "apps"
   name: "mono"
   version: "6.12.0.122"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
+    emerge.packages: &apps-mono-packages >-
       dev-lang/mono
       dev-dotnet/libgdiplus
-  atom: "dev-lang/mono dev-dotnet/libgdiplus"
+  atom: *apps-mono-packages
   provides:
   - category: "dev-lang"
     name: "mono"
@@ -2714,6 +2737,32 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-libcaca
+  category: "libs"
+  name: "libcaca"
+  version: "0.99_beta19-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libcaca
+  atom: "media-libs/libcaca"
+  provides:
+  - category: "media-libs"
+    name: "libcaca"
+    version: ">=0"
+  pre_reqs:
+  - *apps-java-packages
+  - *apps-mono-packages
+  - media-libs/ftgl
+  requires:
+  - <<: *layers-X
+  - <<: *apps-java
+  - <<: *apps-mono
+  - <<: *libs-ftgl
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
@@ -2965,7 +3014,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.11"
+  version: "1.2.11+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -2978,6 +3027,7 @@ packages:
   pre_reqs:
   - dev-libs/libxdg-basedir
   - media-libs/faad2
+  - media-libs/libcaca
   - media-libs/libdca
   - media-libs/libdvdcss
   - media-libs/libfame
@@ -2987,6 +3037,7 @@ packages:
   - <<: *layers-X
   - <<: *libs-libxdg-basedir
   - <<: *libs-faad2
+  - <<: *libs-libcaca
   - <<: *libs-libdca
   - <<: *libs-libdvdcss
   - <<: *libs-libfame
