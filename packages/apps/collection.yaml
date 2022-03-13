@@ -158,6 +158,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-eigen
+  category: "libs"
+  name: "eigen"
+  version: "3.4.0-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-cpp/eigen
+  atom: "dev-cpp/eigen"
+  provides:
+  - category: "dev-cpp"
+    name: "eigen"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-flann
   category: "libs"
   name: "flann"
