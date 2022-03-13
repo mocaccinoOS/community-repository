@@ -35,7 +35,7 @@ prelude:
 
 {{ if .Values.pre_reqs }}
 {{ range .Values.pre_reqs }}
-{{ $tokens := . | splitList " " }}
+{{ $tokens := . | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}
@@ -53,7 +53,7 @@ steps:
 
 {{ if .Values.pre_emerge }}
 {{ range .Values.pre_emerge }}
-{{ $tokens := . | splitList " " }}
+{{ $tokens := . | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}

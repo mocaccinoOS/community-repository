@@ -2685,7 +2685,7 @@ packages:
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
-  version: "2.0.2"
+  version: "2.0.2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4047,7 +4047,7 @@ packages:
   - sci-libs/dcmtk
   pre_emerge:
   # add the following to the packages depending on this
-  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio "-opengl"
+  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;"-opengl"
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
