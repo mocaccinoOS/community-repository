@@ -2646,6 +2646,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-movit
+  category: "libs"
+  name: "movit"
+  version: "1.6.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/movit
+  atom: "media-libs/movit"
+  provides:
+  - category: "media-libs"
+    name: "movit"
+    version: ">=0"
+  pre_reqs:
+  - dev-cpp/eigen
+  requires:
+  - <<: *layers-X
+  - <<: *libs-eigen
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-opencv
   category: "libs"
   name: "opencv"
