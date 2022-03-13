@@ -607,6 +607,25 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &libs-sdl2-image
+  category: "libs"
+  name: "sdl2-image"
+  version: "2.0.5_p20210328"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/sdl2-image
+  atom: "media-libs/sdl2-image"
+  provides:
+  - category: "media-libs"
+    name: "sdl2-image"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libtommath
   category: "libs"
   name: "libtommath"
