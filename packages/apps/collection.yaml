@@ -232,101 +232,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-lasi
-  category: "libs"
-  name: "lasi"
-  version: "1.1.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lasi
-  atom: "media-libs/lasi"
-  provides:
-  - category: "media-libs"
-    name: "lasi"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- &libs-libao
-  category: "libs"
-  name: "libao"
-  version: "1.2.2-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libao
-  atom: "media-libs/libao"
-  provides:
-  - category: "media-libs"
-    name: "libao"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-# - &libs-libaom
-#   category: "libs"
-#   name: "libaom"
-#   version: "3.2.0"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-libs/libaom
-#   atom: "media-libs/libaom"
-#   provides:
-#   - category: "media-libs"
-#     name: "libaom"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
-
-- &libs-libde265
-  category: "libs"
-  name: "libde265"
-  version: "1.12.0-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libde265
-  atom: "media-libs/libde265"
-  provides:
-  - category: "media-libs"
-    name: "libde265"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/libde265
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-libdv
-  category: "libs"
-  name: "libdv"
-  version: "1.0.0-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libdv
-  atom: "media-libs/libdv"
-  provides:
-  - category: "media-libs"
-    name: "libdv"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-  
 - &libs-gsl
   category: "libs"
   name: "gsl"
@@ -455,6 +360,101 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-lasi
+  category: "libs"
+  name: "lasi"
+  version: "1.1.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lasi
+  atom: "media-libs/lasi"
+  provides:
+  - category: "media-libs"
+    name: "lasi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-libao
+  category: "libs"
+  name: "libao"
+  version: "1.2.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libao
+  atom: "media-libs/libao"
+  provides:
+  - category: "media-libs"
+    name: "libao"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+# - &libs-libaom
+#   category: "libs"
+#   name: "libaom"
+#   version: "3.2.0"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-libs/libaom
+#   atom: "media-libs/libaom"
+#   provides:
+#   - category: "media-libs"
+#     name: "libaom"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
+
+- &libs-libde265
+  category: "libs"
+  name: "libde265"
+  version: "1.12.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libde265
+  atom: "media-libs/libde265"
+  provides:
+  - category: "media-libs"
+    name: "libde265"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/libde265
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libdv
+  category: "libs"
+  name: "libdv"
+  version: "1.0.0-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libdv
+  atom: "media-libs/libdv"
+  provides:
+  - category: "media-libs"
+    name: "libdv"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libebur128
   category: "libs"
   name: "libebur128"
@@ -472,6 +472,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-libfame
+  category: "libs"
+  name: "libfame"
+  version: "0.9.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libfame
+  atom: "media-libs/libfame"
+  provides:
+  - category: "media-libs"
+    name: "libfame"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-libktorrent
   category: "libs"
@@ -626,25 +644,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-sdl2-image
-  category: "libs"
-  name: "sdl2-image"
-  version: "2.0.5_p20210328"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/sdl2-image
-  atom: "media-libs/sdl2-image"
-  provides:
-  - category: "media-libs"
-    name: "sdl2-image"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-libtommath
   category: "libs"
   name: "libtommath"
@@ -657,24 +656,6 @@ packages:
   provides:
   - category: "dev-libs"
     name: "libtommath"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-vc
-  category: "libs"
-  name: "vc"
-  version: "1.4.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/vc
-  atom: "dev-libs/vc"
-  provides:
-  - category: "sci-libs"
-    name: "vc"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -698,6 +679,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-libxdg-basedir
+  category: "libs"
+  name: "libxdg-basedir"
+  version: "1.2.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libxdg-basedir
+  atom: "dev-libs/libxdg-basedir"
+  provides:
+  - category: "dev-libs"
+    name: "libxdg-basedir"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-log4cplus
   category: "libs"
@@ -773,6 +772,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-nlohmann_json
+  category: "libs"
+  name: "nlohmann_json"
+  version: "3.9.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/nlohmann_json
+  atom: "dev-cpp/nlohmann_json"
+  provides:
+  - category: "dev-cpp"
+    name: "nlohmann_json"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-physfs
   category: "libs"
   name: "physfs"
@@ -790,25 +807,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-qcustomplot
-  category: "libs"
-  name: "qcustomplot"
-  version: "2.0.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/qcustomplot
-  atom: "dev-libs/qcustomplot"
-  provides:
-  - category: "dev-libs"
-    name: "qcustomplot"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
 
 - &libs-ptex
   category: "libs"
@@ -887,6 +885,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-qcustomplot
+  category: "libs"
+  name: "qcustomplot"
+  version: "2.0.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/qcustomplot
+  atom: "dev-libs/qcustomplot"
+  provides:
+  - category: "dev-libs"
+    name: "qcustomplot"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &libs-qscintilla
   category: "libs"
   name: "qscintilla"
@@ -905,24 +922,6 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
-
-- &libs-nlohmann_json
-  category: "libs"
-  name: "nlohmann_json"
-  version: "3.9.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/nlohmann_json
-  atom: "dev-cpp/nlohmann_json"
-  provides:
-  - category: "dev-cpp"
-    name: "nlohmann_json"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-quazip
   category: "libs"
@@ -960,6 +959,25 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-sdl2-image
+  category: "libs"
+  name: "sdl2-image"
+  version: "2.0.5_p20210328"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/sdl2-image
+  atom: "media-libs/sdl2-image"
+  provides:
+  - category: "media-libs"
+    name: "sdl2-image"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-suitesparseconfig
   category: "libs"
@@ -1014,6 +1032,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-vc
+  category: "libs"
+  name: "vc"
+  version: "1.4.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/vc
+  atom: "dev-libs/vc"
+  provides:
+  - category: "sci-libs"
+    name: "vc"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-websocketpp
   category: "libs"
@@ -2832,6 +2868,32 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-xine-lib
+  category: "libs"
+  name: "xine-lib"
+  version: "1.2.11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/xine-lib
+  atom: "media-libs/xine-lib"
+  provides:
+  - category: "media-libs"
+    name: "xine-lib"
+    version: ">=0"
+  pre_reqs:
+  - dev-libs/libxdg-basedir
+  - media-libs/libfame
+  - media-libs/libmng
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libxdg-basedir
+  - <<: *libs-libfame
+  - <<: *libs-libmng
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 ################################################################################
 ### dep I apps ###
 ################################################################################
@@ -3700,18 +3762,18 @@ packages:
   pre_reqs:
   - media-libs/ladspa-sdk
   - media-libs/libebur128
-  - media-libs/rtaudio
   - media-libs/rubberband
   - media-libs/sdl2-image
+  - media-libs/xine-lib
   - media-plugins/frei0r-plugins
   - media-video/movit
   requires:
   - <<: *layers-qt
   - <<: *libs-ladspa-sdk
   - <<: *libs-libebur128
-  - <<: *libs-rtaudio
   - <<: *libs-rubberband
   - <<: *libs-sdl2-image
+  - <<: *libs-xine-lib
   - <<: *libs-frei0r-plugins
   - <<: *libs-movit
   build_requires:
@@ -3808,26 +3870,6 @@ packages:
   - <<: *layers-gnome-common
 #   - <<: *buildbase-X
 #   requires_final_images: true
-
-- category: "apps"
-  name: "kdenlive"
-  version: "21.08.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kdenlive
-  atom: "kde-apps/kdenlive"
-  provides:
-  - category: "kde-apps"
-    name: "kdenlive"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/mlt
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-mlt
-  build_requires:
-  - <<: *layers-plasma
 
 - category: "apps"
   name: "kstars"
