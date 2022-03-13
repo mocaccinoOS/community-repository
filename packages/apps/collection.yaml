@@ -2653,10 +2653,10 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      media-libs/movit
-  atom: "media-libs/movit"
+      media-video/movit
+  atom: "media-video/movit"
   provides:
-  - category: "media-libs"
+  - category: "media-video"
     name: "movit"
     version: ">=0"
   pre_reqs:
@@ -3679,6 +3679,41 @@ packages:
   - <<: *libs-libmng
   build_requires:
   - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-mlt
+  category: "libs"
+  name: "mlt"
+  version: "7.4.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/mlt
+  atom: "media-libs/mlt"
+  provides:
+  - category: "media-libs"
+    name: "mlt"
+    version: ">=0"
+  - category: "media-libs"
+    name: "rtaudio"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  - media-libs/libebur128
+  - media-libs/rubberband
+  - media-libs/sdl2-image
+  - media-plugins/frei0r-plugins
+  - media-video/movit
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-libebur128
+  - <<: *libs-rubberband
+  - <<: *libs-sdl2-image
+  - <<: *libs-frei0r-plugins
+  - <<: *libs-movit
+  build_requires:
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - &libs-rav1e
