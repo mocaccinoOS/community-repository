@@ -3043,29 +3043,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-frei0r-plugins
-  category: "libs"
-  name: "frei0r-plugins"
-  version: "1.7.0-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/frei0r-plugins
-  atom: "media-libs/frei0r-plugins"
-  provides:
-  - category: "media-libs"
-    name: "frei0r-plugins"
-    version: ">=0"
-  - media-libs/gavl
-  - media-libs/opencv
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gavl
-  - <<: *libs-opencv
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-indilib
   category: "libs"
   name: "indilib"
