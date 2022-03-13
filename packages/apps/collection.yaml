@@ -3889,6 +3889,26 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+  
+- category: "apps"
+  name: "plantuml"
+  version: "1.2022.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/plantuml
+  atom: "media-gfx/plantuml"
+  provides:
+  - category: "media-gfx"
+    name: "plantuml"
+    version: ">=0"
+  pre_reqs:
+  - media-gfx/graphviz
+  requires:
+  - <<: *layers-java
+  - <<: *apps-graphviz
+  build_requires:
+  - <<: *layers-java
 
 ################################################################################
 ### dep VI libs ###
