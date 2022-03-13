@@ -554,24 +554,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-libssh2
-  category: "libs"
-  name: "libssh2"
-  version: "1.10.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libssh2
-  atom: "net-libs/libssh2"
-  provides:
-  - category: "net-libs"
-    name: "libssh2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libtommath
   category: "libs"
   name: "libtommath"
@@ -2531,11 +2513,9 @@ packages:
     version: ">=0"
   pre_reqs:
   - net-libs/http-parser
-  - net-libs/libssh2
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-http-parser
-  - <<: *libs-libssh2
   build_requires:
   - <<: *layers-sys-fs
 
@@ -3010,11 +2990,9 @@ packages:
     version: ">=0"
   pre_reqs:
   - dev-libs/libgit2
-  - net-libs/libssh2
   requires:
   - <<: *layers-X
   - <<: *libs-libgit2
-  - <<: *libs-libssh2
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
