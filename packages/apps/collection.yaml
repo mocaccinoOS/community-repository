@@ -3684,7 +3684,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.4.0"
+  version: "7.4.0+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -3700,6 +3700,7 @@ packages:
   pre_reqs:
   - media-libs/ladspa-sdk
   - media-libs/libebur128
+  - media-libs/rtaudio
   - media-libs/rubberband
   - media-libs/sdl2-image
   - media-plugins/frei0r-plugins
@@ -3708,6 +3709,7 @@ packages:
   - <<: *layers-qt
   - <<: *libs-ladspa-sdk
   - <<: *libs-libebur128
+  - <<: *libs-rtaudio
   - <<: *libs-rubberband
   - <<: *libs-sdl2-image
   - <<: *libs-frei0r-plugins
@@ -3806,6 +3808,26 @@ packages:
   - <<: *layers-gnome-common
 #   - <<: *buildbase-X
 #   requires_final_images: true
+
+- category: "apps"
+  name: "kdenlive"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kdenlive
+  atom: "kde-apps/kdenlive"
+  provides:
+  - category: "kde-apps"
+    name: "kdenlive"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/mlt
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-mlt
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "kstars"
