@@ -2682,6 +2682,31 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-rubberband
+  category: "libs"
+  name: "rubberband"
+  version: "2.0.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/rubberband
+  atom: "media-libs/rubberband"
+  provides:
+  - category: "media-libs"
+    name: "rubberband"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  - media-libs/vamp-plugin-sdk
+  - dev-java/openjdk-jre-bin dev-java/openjdk-bin virtual/jre virtual/jdk
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-vamp-plugin-sdk
+  requires_final_images: true
+
 - &libs-tbb
   category: "libs"
   name: "tbb"
