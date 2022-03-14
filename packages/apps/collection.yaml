@@ -286,7 +286,7 @@ packages:
 - &libs-gmime
   category: "libs"
   name: "gmime"
-  version: "3.2.7"
+  version: "3.2.7+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -297,9 +297,10 @@ packages:
     name: "gmime"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-gsl
   category: "libs"
