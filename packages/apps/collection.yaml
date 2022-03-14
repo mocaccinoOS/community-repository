@@ -1564,6 +1564,25 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-gspell
+  category: "apps"
+  name: "gspell"
+  version: "1.9.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/gspell
+  atom: "app-text/gspell"
+  provides:
+  - category: "app-text"
+    name: "gspell"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - category: "apps"
   name: "hexchat"
   version: "2.14.3+65"
