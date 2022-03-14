@@ -283,6 +283,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-gmime
+  category: "libs"
+  name: "gmime"
+  version: "3.2.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/gmime
+  atom: "dev-libs/gmime"
+  provides:
+  - category: "dev-libs"
+    name: "gmime"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gsl
   category: "libs"
   name: "gsl"
@@ -3264,7 +3282,7 @@ packages:
 
 - category: "apps"
   name: "geary"
-  version: "40.0-r1"
+  version: "40.0-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -3278,10 +3296,12 @@ packages:
     version: ">=0"
   pre_reqs: 
   - app-text/gspell
+  - dev-libs/gmime
   - net-mail/ytnef
   requires:
   - <<: *layers-gnome
   - <<: *apps-gspell
+  - <<: *libs-gmime
   - <<: *libs-ytnef
   build_requires:
   - <<: *layers-gnome
