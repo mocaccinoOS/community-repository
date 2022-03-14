@@ -3014,7 +3014,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.11+1"
+  version: "1.2.11+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3033,6 +3033,8 @@ packages:
   - media-libs/libfame
   - media-libs/libmng
   - media-video/vcdimager
+  - net-fs/libnfs
+  - virtual/imagemagick-tools
   requires:
   - <<: *layers-X
   - <<: *libs-libxdg-basedir
@@ -3043,6 +3045,8 @@ packages:
   - <<: *libs-libfame
   - <<: *libs-libmng
   - <<: *apps-vcdimager
+  # for now, until net-fs/libnfs and virtual/imagemagick-tools moved from layers-gnome-common
+  - <<: *layers-gnome-common
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -4023,6 +4027,26 @@ packages:
   - <<: *layers-gnome-common
 #   - <<: *buildbase-X
 #   requires_final_images: true
+
+- category: "apps"
+  name: "kdenlive"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kdenlive
+  atom: "kde-apps/kdenlive"
+  provides:
+  - category: "kde-apps"
+    name: "kdenlive"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/mlt
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-mlt
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "kstars"
