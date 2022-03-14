@@ -1288,7 +1288,8 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- category: "apps"
+- &apps-dia
+  category: "apps"
   name: "dia"
   version: "0.97.3-r1+2"
   labels:
@@ -2181,6 +2182,24 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- &apps-scour
+  category: "libs"
+  name: "scour"
+  version: "0.38.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/scour
+  atom: "media-gfx/scour"
+  provides:
+  - category: "media-gfx"
+    name: "scour"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "solaar"
