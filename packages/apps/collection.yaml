@@ -245,6 +245,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-gdl
+  category: "apps"
+  name: "gdl"
+  version: "3.40.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/gdl
+  atom: "dev-libs/gdl"
+  provides:
+  - category: "dev-libs"
+    name: "gdl"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-glfw
   category: "libs"
   name: "glfw"
