@@ -804,6 +804,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-MIME-tools
+  category: "libs"
+  name: "MIME-tools"
+  version: "5.509.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/MIME-tools
+  atom: "dev-perl/MIME-tools"
+  provides:
+  - category: "dev-perl"
+    name: "plantuml"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-namespace-google
   category: "libs"
   name: "namespace-google"
@@ -3108,6 +3127,28 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-ytnef
+  category: "libs"
+  name: "ytnef"
+  version: "2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-mail/ytnef
+  atom: "net-mail/ytnef"
+  provides:
+  - category: "dev-perl"
+    name: "plantuml"
+    version: ">=0"
+  pre_reqs:
+  - dev-perl/MIME-tools
+  requires:
+  - <<: *layers-X
+  - <<: *libs-MIME-tools
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 ################################################################################
 ### dep I apps ###
 ################################################################################
@@ -3220,6 +3261,30 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "geary"
+  version: "40.0-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      mail-client/geary
+  atom: "mail-client/geary"
+  overlay:
+    name: "dlang"
+  provides:
+  - category: "mail-client"
+    name: "geary"
+    version: ">=0"
+  pre_reqs: 
+  - app-text/gspell
+  - net-mail/ytnef
+  requires:
+  - <<: *layers-gnome
+  - <<: *apps-gspell
+  - <<: *libs-ytnef
+  build_requires:
+  - <<: *layers-gnome
 
 - category: "apps"
   name: "guvcview"
