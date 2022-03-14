@@ -3242,6 +3242,36 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
+- &apps-inkscape
+  category: "apps"
+  name: "inkscape"
+  version: "1.1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/inkscape
+  atom: "media-gfx/inkscape"
+  provides:
+  - category: "media-gfx"
+    name: "inkscape"
+    version: ">=0"
+  pre_reqs:
+  - app-text/gspell
+  - dev-libs/gdl
+  - media-gfx/scour
+  - media-libs/libvisio
+  - sci-libs/gsl
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *apps-gspell
+  - <<: *libs-gdl
+  - <<: *apps-scour
+  - <<: *libs-libvisio
+  - <<: *libs-gsl
+  requires_final_images: true
+
 - category: "apps"
   name: "kget"
   version: "21.08.3+2"
