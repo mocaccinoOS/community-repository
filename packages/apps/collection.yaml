@@ -135,24 +135,6 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
-- &libs-chmlib
-  category: "libs"
-  name: "chmlib"
-  version: "0.40+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/chmlib
-  atom: "dev-libs/chmlib"
-  provides:
-  - category: "dev-libs"
-    name: "chmlib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-eigen
   category: "libs"
   name: "eigen"
@@ -1579,7 +1561,8 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
   
-- category: "apps"
+- &apps-fontforge
+  category: "apps"
   name: "fontforge"
   version: "20201107+3"
   labels:
@@ -3733,27 +3716,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &apps-ebook-tools
-  category: "apps"
-  name: "ebook-tools"
-  version: "0.2.2+6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/ebook-tools
-  atom: "app-text/ebook-tools"
-  provides:
-  - category: "app-text"
-    name: "ebook-tools"
-    version: ">=0"
-  pre_reqs:
-  - app-text/convertlit
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *apps-convertlit
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &apps-enblend
   category: "apps"
   name: "enblend"
@@ -4250,28 +4212,6 @@ packages:
   - <<: *libs-cfitsio
   - <<: *libs-indilib
   - <<: *libs-wcslib
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
-  name: "okular"
-  version: "21.08.3+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/okular
-  atom: "kde-apps/okular"
-  provides:
-  - category: "kde-apps"
-    name: "okular"
-    version: ">=0"
-  pre_reqs:
-  - dev-libs/chmlib
-  - app-text/ebook-tools
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-chmlib
-  - <<: *apps-ebook-tools
   build_requires:
   - <<: *layers-plasma
 
