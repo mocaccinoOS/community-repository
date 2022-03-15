@@ -749,6 +749,24 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- category: "libs"
+  name: "libwmf"
+  version: "0.2.8.4-r9"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libwmf
+  atom: "media-libs/libwmf"
+  provides:
+  - category: "media-libs"
+    name: "libwmf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
