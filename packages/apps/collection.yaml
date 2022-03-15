@@ -749,7 +749,8 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- category: "libs"
+- &libs-libwmf
+  category: "libs"
   name: "libwmf"
   version: "0.2.8.4-r9"
   labels:
@@ -4476,6 +4477,39 @@ packages:
 ################################################################################
 ### dep V apps ###
 ################################################################################
+
+- category: "apps"
+  name: "gimp"
+  version: "2.10.30"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/gimp
+  atom: "media-gfx/gimp"
+  provides:
+  - category: "media-gfx"
+    name: "gimp"
+    version: ">=0"
+  - category: "media-libs"
+    name: "gtk-mac-integration"
+    version: ">=0"
+  pre_reqs:
+  - media-gfx/mypaint-brushes
+  - media-libs/gegl
+  - media-libs/libheif
+  - media-libs/libmng
+  - media-libs/libmypaint
+  - media-libs/libwmf
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-mypaint-brushes
+  - <<: *libs-gegl
+  - <<: *libs-libheif
+  - <<: *libs-libmng
+  - <<: *libs-libmypaint
+  - <<: *libs-libwmf
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "mypaint"
