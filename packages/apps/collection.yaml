@@ -4226,6 +4226,28 @@ packages:
 ### dep III libs ###
 ################################################################################
 
+- &libs-bcrypt
+  category: "apps"
+  name: "bcrypt"
+  version: "3.2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/bcrypt
+  atom: "dev-python/bcrypt"
+  provides:
+  - category: "dev-python"
+    name: "bcrypt"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/pypy3
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-devil
   category: "libs"
   name: "devil"
