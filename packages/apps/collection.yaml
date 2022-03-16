@@ -4282,11 +4282,11 @@ packages:
     name: "cryptography"
     version: ">=0"
   pre_reqs:
+  - dev-python/pypy3
   - dev-python/hypothesis
   - dev-python/iso8601
   - dev-python/pretend
   - dev-python/pyasn1-modules
-  - dev-python/pypy3
   requires:
   - <<: *layers-X
   - <<: *apps-pypy3
@@ -4424,6 +4424,36 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-zope
+  category: "libs"
+  name: "zope"
+  version: "0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-zope-packages >-
+      dev-python/namespace-zope
+      dev-python/zope-event
+      dev-python/zope-interface
+  atom: *libs-zope-packages
+  provides:
+  - category: "dev-python"
+    name: "zope-event"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-interface"
+    version: ">=0"
+  - category: "dev-python"
+    name: "namespace-zope"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/pypy3
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 ################################################################################
 ### dep III apps ###
 ################################################################################
@@ -4533,6 +4563,7 @@ packages:
     name: "pip"
     version: ">=0"
   pre_reqs:
+  - dev-python/pypy3
   - dev-python/cryptography
   - dev-python/freezegun
   - dev-python/pretend
@@ -4541,7 +4572,6 @@ packages:
   - dev-python/tomli-w
   - dev-python/werkzeug
   - dev-python/wheel
-  - dev-python/pypy3
   requires:
   - <<: *layers-X
   - <<: *apps-pypy3
