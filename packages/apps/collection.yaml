@@ -1081,6 +1081,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pynacl
+  category: "libs"
+  name: "pynacl"
+  version: "1.5.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pynacl
+  atom: "dev-python/pynacl"
+  provides:
+  - category: "dev-python"
+    name: "pynacl"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/hypothesis
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pystring
   category: "libs"
   name: "pystring"
@@ -4248,6 +4268,32 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-cryptography
+  category: "libs"
+  name: "cryptography"
+  version: "3.4.7-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cryptography
+  atom: "dev-python/cryptography"
+  provides:
+  - category: "dev-python"
+    name: "cryptography"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/hypothesis
+  - dev-python/iso8601
+  - dev-python/pretend
+  - dev-python/pyasn1-modules
+  - dev-python/pypy3
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-devil
   category: "libs"
   name: "devil"
@@ -4307,6 +4353,28 @@ packages:
   - <<: *libs-movit
   build_requires:
   - <<: *buildbase-qt
+  requires_final_images: true
+
+- &libs-pyasn1
+  category: "libs"
+  name: "pyasn1"
+  version: "0.4.8-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyasn1
+  atom: "dev-python/pyasn1"
+  provides:
+  - category: "dev-python"
+    name: "pyasn1"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/pypy3
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *buildbase-X
   requires_final_images: true
 
 - &libs-rav1e
@@ -4557,6 +4625,35 @@ packages:
 #   - <<: *libs-libaom
   - <<: *libs-libde265
   - <<: *libs-rav1e
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-paramiko
+  category: "apps"
+  name: "paramiko"
+  version: "2.9.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/paramiko
+  atom: "dev-python/paramiko"
+  provides:
+  - category: "dev-python"
+    name: "paramiko"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/bcrypt
+  - dev-python/cryptography
+  - dev-python/mock
+  - dev-python/pyasn1
+  - dev-python/pynacl
+  requires:
+  - <<: *layers-X
+  - <<: *libs-bcrypt
+  - <<: *libs-cryptography
+  - <<: *libs-pyasn1
+  - <<: *libs-pynacl
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
