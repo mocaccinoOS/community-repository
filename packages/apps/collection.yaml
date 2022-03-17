@@ -2408,24 +2408,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-# TODO: add x2go support
-- category: "apps"
-  name: "remmina"
-  version: "1.4.23-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/remmina
-  atom: "net-misc/remmina"
-  provides:
-  - category: "net-misc"
-    name: "remmina"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - category: "apps"
   name: "scapy"
   version: "2.4.5"
@@ -5072,3 +5054,31 @@ packages:
   build_requires:
   - <<: *buildbase-kde-common
   requires_final_images: true
+
+- category: "apps"
+  name: "remmina"
+  version: "1.4.23-r1+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/remmina
+  atom: "net-misc/remmina"
+  provides:
+  - category: "net-misc"
+    name: "remmina"
+    version: ">=0"
+  prepare:
+  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/spice-gtk/package.use/01-spice-gtk.use -O /etc/portage/package.use/01-spice-gtk.use
+  pre_reqs:
+  - kde-frameworks/kwallet
+  - net-misc/pyhoca-cli
+  - net-misc/spice-gtk
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-kde-common
+  - <<: *apps-pyhoca-cli
+  - category: "apps"
+    name: "spice-gtk"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-gnome-common
