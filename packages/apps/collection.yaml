@@ -4318,6 +4318,34 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-greenlet
+  category: "libs"
+  name: "greenlet"
+  version: "0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-greenlet-packages >-
+      dev-python/greenlet
+      virtual/python-greenlet
+  atom: "*libs-greenlet-packages
+  provides:
+  - category: "dev-python"
+    name: "greenlet"
+    version: ">=0"
+  - category: "virtual"
+    name: "python-greenlet"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/pypy3
+  - *libs-zope-packages
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  - <<: *libs-zope
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-mlt
   category: "libs"
   name: "mlt"
@@ -4437,13 +4465,13 @@ packages:
   atom: *libs-zope-packages
   provides:
   - category: "dev-python"
+    name: "namespace-zope"
+    version: ">=0"
+  - category: "dev-python"
     name: "zope-event"
     version: ">=0"
   - category: "dev-python"
     name: "zope-interface"
-    version: ">=0"
-  - category: "dev-python"
-    name: "namespace-zope"
     version: ">=0"
   pre_reqs:
   - dev-python/pypy3
