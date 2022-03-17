@@ -4659,6 +4659,33 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-gevent
+  category: "libs"
+  name: "gevent"
+  version: "21.12.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/gevent
+  atom: "dev-python/gevent"
+  provides:
+  - category: "dev-python"
+    name: "gevent"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/dnspython
+  - dev-python/pypy3
+  - *libs-zope-packages
+  - *libs-greenlet-packages
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  - <<: *libs-zope
+  - <<: *libs-greenlet
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-libheif
   category: "libs"
   name: "libheif"
