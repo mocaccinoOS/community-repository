@@ -18,6 +18,12 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
+{{ if .Values.prepare }}
+{{ range .Values.prepare }}
+- {{ . }}
+{{ end }}
+{{ end }}
+
 {{ $packages := include "cr.packages" .Values }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
@@ -45,11 +51,6 @@ prelude:
 {{ end }}
 
 steps:
-{{ if .Values.prepare }}
-{{ range .Values.prepare }}
-- {{ . }}
-{{ end }}
-{{ end }}
 
 {{ if .Values.pre_emerge }}
 {{ range .Values.pre_emerge }}
