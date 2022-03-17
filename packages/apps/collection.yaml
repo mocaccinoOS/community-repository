@@ -4935,6 +4935,28 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &apps-pyhoca-cli
+  category: "apps"
+  name: "pyhoca-cli"
+  version: "0.6.1.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/pyhoca-cli
+  atom: "net-misc/pyhoca-cli"
+  provides:
+  - category: "net-misc"
+    name: "pyhoca-cli"
+    version: ">=0"
+  pre_reqs:
+  - net-misc/python-x2go
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-x2go
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 ################################################################################
 ### dep VI libs ###
 ################################################################################
