@@ -4425,6 +4425,29 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+# temporary
+- &libs-setproctitle
+  category: "libs"
+  name: "setproctitle"
+  version: "1.2.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/setproctitle
+  atom: "dev-python/setproctitle"
+  provides:
+  - category: "dev-python"
+    name: "setproctitle"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/pypy3
+  requires:
+  - <<: *layers-X
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-umfpack
   category: "libs"
   name: "umfpack"
@@ -4940,7 +4963,7 @@ packages:
 - &apps-pyhoca-cli
   category: "apps"
   name: "pyhoca-cli"
-  version: "0.6.1.2"
+  version: "0.6.1.2+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4951,10 +4974,12 @@ packages:
     name: "pyhoca-cli"
     version: ">=0"
   pre_reqs:
+  - dev-python/setproctitle
   - net-misc/python-x2go
   requires:
   - <<: *layers-X
   - <<: *libs-python-x2go
+  - <<: *libs-setproctitle
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
