@@ -315,6 +315,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-fluidsynth
+  category: "sound"
+  name: "fluidsynth"
+  version: "2.2.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluidsynth
+  atom: "media-sound/fluidsynth"
+  provides:
+  - category: "media-sound"
+    name: "fluidsynth"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
