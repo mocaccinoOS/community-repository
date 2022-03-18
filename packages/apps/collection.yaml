@@ -2214,6 +2214,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "milkytracker"
+  version: "1.03.00"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/milkytracker
+  atom: "media-sound/milkytracker"
+  provides:
+  - category: "media-sound"
+    name: "milkytracker"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &apps-mono
   category: "apps"
   name: "mono"
