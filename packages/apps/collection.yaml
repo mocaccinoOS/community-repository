@@ -316,7 +316,7 @@ packages:
   - <<: *layers-system-x
 
 - &libs-fluidsynth
-  category: "sound"
+  category: "libs"
   name: "fluidsynth"
   version: "2.2.5"
   labels:
@@ -352,6 +352,24 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
+
+- &libs-game-music-emu
+  category: "libs"
+  name: "game-music-emu"
+  version: "0.6.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/game-music-emu
+  atom: "media-libs/game-music-emu"
+  provides:
+  - category: "media-libs"
+    name: "game-music-emu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-gavl
   category: "libs"
@@ -649,6 +667,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libdiscid
+  category: "libs"
+  name: "libdiscid"
+  version: "0.6.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libdiscid
+  atom: "media-libs/libdiscid"
+  provides:
+  - category: "media-libs"
+    name: "libdiscid"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libdv
   category: "libs"
   name: "libdv"
@@ -857,6 +893,60 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libofa
+  category: "libs"
+  name: "libofa"
+  version: "0.9.3-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libofa
+  atom: "media-libs/libofa"
+  provides:
+  - category: "media-libs"
+    name: "libofa"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
+- &libs-libshout
+  category: "libs"
+  name: "libshout"
+  version: "2.4.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libshout
+  atom: "media-libs/libshout"
+  provides:
+  - category: "media-libs"
+    name: "libshout"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
+- &libs-libsidplay
+  category: "libs"
+  name: "libsidplay"
+  version: "2 2.1.1-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsidplay
+  atom: "media-libs/libsidplay"
+  provides:
+  - category: "media-libs"
+    name: "libsidplay"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libtommath
   category: "libs"
   name: "libtommath"
@@ -948,6 +1038,24 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
+
+- &libs-mac
+  category: "libs"
+  name: "mac"
+  version: "4.11.4.5.7-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/mac
+  atom: "media-sound/mac"
+  provides:
+  - category: "media-sound"
+    name: "mac"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-mbedtls
   category: "libs"
@@ -1304,6 +1412,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-tremor
+  category: "libs"
+  name: "tremor"
+  version: "0_pre20130223-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/tremor
+  atom: "media-libs/tremor"
+  provides:
+  - category: "media-libs"
+    name: "tremor"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 - &libs-vamp-plugin-sdk
   category: "libs"
