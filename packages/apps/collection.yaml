@@ -4869,12 +4869,13 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
-- category: "apps"
+- &apps-kdevelop
+  category: "apps"
   name: "kdevelop"
   version: "5.6.2"
   labels:
     emerge.jobs: "3"
-    emerge.packages: >-
+    emerge.packages: &apps-kdevelop-packages >-
       dev-util/kdevelop
       dev-util/kdevelop-php
       dev-util/kdevelop-pg-qt
