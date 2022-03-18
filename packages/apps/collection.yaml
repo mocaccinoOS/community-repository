@@ -4869,6 +4869,46 @@ packages:
   - <<: *buildbase-qt
   requires_final_images: true
 
+- category: "apps"
+  name: "kdevelop"
+  version: "5.6.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-util/kdevelop
+      dev-util/kdevelop-php
+      dev-util/kdevelop-pg-qt
+      dev-util/kdevelop-python
+  atom: "dev-util/kdevelop"
+  provides:
+  - category: "dev-util"
+    name: "kdevelop"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-php"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-pg-qt"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-python"
+    version: ">=0"
+  pre_reqs:
+  - dev-libs/apr
+  - app-editors/okteta
+  - dev-util/astyle
+  - dev-python/pycodestyle
+  - kde-apps/kapptemplate
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-apr
+  - <<: *apps-okteta
+  - <<: *apps-astyle 
+  - <<: *apps-pycodestyle
+  - <<: *apps-kapptemplate
+  build_requires:
+  - <<: *layers-plasma
+
 ################################################################################
 ### dep V libs ###
 ################################################################################
