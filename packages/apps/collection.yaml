@@ -978,6 +978,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-spidermonkey-60
+  category: "libs"
+  name: "spidermonkey"
+  version: "60.5.2_p0-r6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &libs-spidermonkey-60-packages >-
+      dev-lang/spidermonkey:60
+  atom: *libs-spidermonkey-60-packages
+  provides:
+  - category: "dev-lang"
+    name: "spidermonkey"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libtommath
   category: "libs"
   name: "libtommath"
