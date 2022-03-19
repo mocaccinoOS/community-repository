@@ -549,6 +549,25 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-lash
+  category: "libs"
+  name: "lash"
+  version: "0.5.4-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/lash
+  atom: "media-sound/lash"
+  provides:
+  - category: "media-sound"
+    name: "plantuml"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-lasi
   category: "libs"
   name: "lasi"
@@ -3093,6 +3112,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-cmt-plugins
+  category: "libs"
+  name: "cmt-plugins"
+  version: "1.17-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-plugins/cmt-plugins
+  atom: "media-plugins/cmt-plugins"
+  provides:
+  - category: "media-plugins"
+    name: "cmt-plugins"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  requires:
+  - <<: *layers-codecs
+  - <<: *libs-ladspa-sdk
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-colamd
   category: "libs"
   name: "colamd"
@@ -3132,28 +3172,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-argtable
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-- &libs-fluidsynth
-  category: "libs"
-  name: "fluidsynth"
-  version: "2.2.5+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/fluidsynth
-  atom: "media-sound/fluidsynth"
-  provides:
-  - category: "media-sound"
-    name: "fluidsynth"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/ladspa-sdk
-  requires:
-  - <<: *layers-X
-  - <<: *libs-ladspa-sdk
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -3887,46 +3905,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &apps-xmms2
-  category: "apps"
-  name: "xmms2"
-  version: "0.8_p20201016-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/xmms2
-  atom: "media-sound/xmms2"
-  provides:
-  - category: "media-sound"
-    name: "xmms2"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/faad2
-  - media-libs/game-music-emu
-  - media-libs/libao
-  - media-libs/libdiscid
-  - media-libs/libofa
-  - media-libs/libshout
-  - *libs-libsidplay-packages
-  - media-libs/tremor
-  - media-sound/fluidsynth
-  - media-sound/mac
-  requires:
-  - <<: *layers-X
-  - <<: *libs-faad2
-  - <<: *libs-game-music-emu
-  - <<: *libs-libao
-  - <<: *libs-libdiscid
-  - <<: *libs-libofa
-  - <<: *libs-libshout
-  - <<: *libs-libsidplay
-  - <<: *libs-tremor
-  - <<: *libs-fluidsynth
-  - <<: *libs-mac
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 ################################################################################
 ### dep II libs ###
 ################################################################################
@@ -4005,6 +3983,32 @@ packages:
   - <<: *libs-metis
   build_requires:
   - <<: *layers-system-x
+
+- &libs-fluidsynth
+  category: "libs"
+  name: "fluidsynth"
+  version: "2.2.5+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluidsynth
+  atom: "media-sound/fluidsynth"
+  provides:
+  - category: "media-sound"
+    name: "fluidsynth"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  - media-plugins/cmt-plugins
+  - media-sound/lash
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-cmt-plugins
+  - <<: *libs-lash
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-frei0r-plugins
   category: "libs"
@@ -4462,6 +4466,46 @@ packages:
   - <<: *libs-File-ReadBackwards
   - <<: *libs-Switch
   - <<: *libs-xwininfo
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &apps-xmms2
+  category: "apps"
+  name: "xmms2"
+  version: "0.8_p20201016-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/xmms2
+  atom: "media-sound/xmms2"
+  provides:
+  - category: "media-sound"
+    name: "xmms2"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/faad2
+  - media-libs/game-music-emu
+  - media-libs/libao
+  - media-libs/libdiscid
+  - media-libs/libofa
+  - media-libs/libshout
+  - *libs-libsidplay-packages
+  - media-libs/tremor
+  - media-sound/fluidsynth
+  - media-sound/mac
+  requires:
+  - <<: *layers-X
+  - <<: *libs-faad2
+  - <<: *libs-game-music-emu
+  - <<: *libs-libao
+  - <<: *libs-libdiscid
+  - <<: *libs-libofa
+  - <<: *libs-libshout
+  - <<: *libs-libsidplay
+  - <<: *libs-tremor
+  - <<: *libs-fluidsynth
+  - <<: *libs-mac
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
