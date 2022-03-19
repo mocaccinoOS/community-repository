@@ -829,6 +829,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-libmspub
+  category: "libs"
+  name: "libmspub"
+  version: "0.1.4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/libmspub
+  atom: "app-text/libmspub"
+  provides:
+  - category: "app-text"
+    name: "libmspub"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-libmygpo-qt
   category: "libs"
   name: "libmygpo-qt"
@@ -900,6 +918,24 @@ packages:
   provides:
   - category: "media-libs"
     name: "libofa"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
+- &libs-libqxp
+  category: "libs"
+  name: "libqxp"
+  version: "0.0.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/libqxp
+  atom: "app-text/libqxp"
+  provides:
+  - category: "app-text"
+    name: "libqxp"
     version: ">=0"
   requires:
   - <<: *layers-codecs
