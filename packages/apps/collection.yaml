@@ -66,7 +66,18 @@ anchors:
   category: "layers"
   name: "gnome"
   version: ">=0"
+  
+- &layers-java
+  category: "layers"
+  name: "java"
+  version: ">=0"
 
+- &layer-java-packages >-
+    dev-java/openjdk-jre-bin
+    dev-java/openjdk-bin
+    virtual/jre
+    virtual/jdk
+  
 packages:
 
 ###########
@@ -2136,48 +2147,48 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
   
-- &apps-java
-  category: "apps"
-  name: "java"
-  version: "17+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &apps-java-packages >-
-      dev-java/openjdk-jre-bin
-      dev-java/openjdk-bin
-      virtual/jre
-      virtual/jdk
-  atom: *apps-java-packages
-  provides:
-  - name: eselect-java
-    category: app-eselect
-    version: '>=0'
-  - name: java-config
-    category: dev-java
-    version: '>=0'
-  - name: openjdk-bin
-    category: dev-java
-    version: '>=0'
-  - name: openjdk-jre-bin
-    category: dev-java
-    version: '>=0'
-  - name: libnet
-    category: net-libs
-    version: '>=0'
-  - name: baselayout-java
-    category: sys-apps
-    version: '>=0'
-  - name: jdk
-    category: virtual
-    version: '>=0'
-  - name: jre
-    category: virtual
-    version: '>=0'
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+# - &apps-java
+#   category: "apps"
+#   name: "java"
+#   version: "17+1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: &apps-java-packages >-
+#       dev-java/openjdk-jre-bin
+#       dev-java/openjdk-bin
+#       virtual/jre
+#       virtual/jdk
+#   atom: *apps-java-packages
+#   provides:
+#   - name: eselect-java
+#     category: app-eselect
+#     version: '>=0'
+#   - name: java-config
+#     category: dev-java
+#     version: '>=0'
+#   - name: openjdk-bin
+#     category: dev-java
+#     version: '>=0'
+#   - name: openjdk-jre-bin
+#     category: dev-java
+#     version: '>=0'
+#   - name: libnet
+#     category: net-libs
+#     version: '>=0'
+#   - name: baselayout-java
+#     category: sys-apps
+#     version: '>=0'
+#   - name: jdk
+#     category: virtual
+#     version: '>=0'
+#   - name: jre
+#     category: virtual
+#     version: '>=0'
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *buildbase-X
+#   requires_final_images: true
 
 - &apps-kapptemplate
   category: "apps"
@@ -3289,12 +3300,12 @@ packages:
     name: "libcaca"
     version: ">=0"
   pre_reqs:
-  - *apps-java-packages
+  - *layer-java-packages
   - *apps-mono-packages
   - media-libs/ftgl
   requires:
   - <<: *layers-X
-  - <<: *apps-java
+  - <<: *layer-java
   - <<: *apps-mono
   - <<: *libs-ftgl
   build_requires:
@@ -3336,10 +3347,10 @@ packages:
     name: "libpano13"
     version: ">=0"
   pre_reqs:
-  - *apps-java-packages
+  - *layer-java-packages
   requires:
   - <<: *layers-X
-  - <<: *apps-java
+  - <<: *layer-java
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -3474,10 +3485,10 @@ packages:
   pre_reqs:
   - media-libs/ladspa-sdk
   - media-libs/vamp-plugin-sdk
-  - *apps-java-packages
+  - *layer-java-packages
   requires:
   - <<: *layers-X
-  - <<: *apps-java
+  - <<: *layer-java
   - <<: *libs-ladspa-sdk
   - <<: *libs-vamp-plugin-sdk
   build_requires:
@@ -3627,10 +3638,10 @@ packages:
     name: "astyle"
     version: ">=0"
   pre_reqs:
-  - *apps-java-packages
+  - *layer-java-packages
   requires:
   - <<: *layers-system-x
-  - <<: *apps-java
+  - <<: *layer-java
   build_requires:
   - <<: *layers-system-x
 
@@ -5152,13 +5163,13 @@ packages:
     name: "graphviz"
     version: ">=0"
   pre_reqs:
-  - *apps-java-packages
+  - *layer-java-packages
   - media-libs/devil
   - sci-libs/gts
   - media-libs/lasi
   requires:
   - <<: *layers-qt
-  - <<: *apps-java
+  - <<: *layer-java
   - <<: *libs-devil
   - <<: *libs-gts
   - <<: *libs-lasi
