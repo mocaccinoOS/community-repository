@@ -756,7 +756,7 @@ packages:
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
-  version: "21.08.3+4"
+  version: "21.08.3+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -766,8 +766,6 @@ packages:
   - category: "net-libs"
     name: "libktorrent"
     version: ">=0"
-  pre_reqs:
-  - app-crypt/qca
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -3531,7 +3529,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.11+2"
+  version: "1.2.11+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3550,8 +3548,6 @@ packages:
   - media-libs/libfame
   - media-libs/libmng
   - media-video/vcdimager
-  - net-fs/libnfs
-  - virtual/imagemagick-tools
   requires:
   - <<: *layers-X
   - <<: *libs-libxdg-basedir
@@ -3562,7 +3558,6 @@ packages:
   - <<: *libs-libfame
   - <<: *libs-libmng
   - <<: *apps-vcdimager
-  # for now, until net-fs/libnfs and virtual/imagemagick-tools moved from layers-gnome-common
   - <<: *layers-gnome-common
   build_requires:
   - <<: *buildbase-X
@@ -4749,29 +4744,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-# temporary
-- &libs-setproctitle
-  category: "libs"
-  name: "setproctitle"
-  version: "1.2.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/setproctitle
-  atom: "dev-python/setproctitle"
-  provides:
-  - category: "dev-python"
-    name: "setproctitle"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-umfpack
   category: "libs"
   name: "umfpack"
@@ -5289,7 +5261,7 @@ packages:
 
 - category: "apps"
   name: "gimp"
-  version: "2.10.30"
+  version: "2.10.30+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5348,7 +5320,7 @@ packages:
 - &apps-pyhoca-cli
   category: "apps"
   name: "pyhoca-cli"
-  version: "0.6.1.2+1"
+  version: "0.6.1.2+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5359,12 +5331,10 @@ packages:
     name: "pyhoca-cli"
     version: ">=0"
   pre_reqs:
-  - dev-python/setproctitle
   - net-misc/python-x2go
   requires:
   - <<: *layers-X
   - <<: *libs-python-x2go
-  - <<: *libs-setproctitle
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
