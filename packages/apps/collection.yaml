@@ -2451,6 +2451,29 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- category: "apps"
+  name: "mpv"
+  version: "0.33.1-r2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/mpv
+  provides:
+  - category: "media-libs"
+    name: "libplacebo"
+    version: '>=0'
+  - category: "media-video"
+    name: "mpv"
+    version: '>=0'
+  - category: "virtual"
+    name: "linuxtv-dvb-headers"
+    version: '>=0'
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
