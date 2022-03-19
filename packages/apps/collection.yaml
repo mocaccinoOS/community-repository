@@ -72,7 +72,7 @@ anchors:
   name: "java"
   version: ">=0"
 
-- &layer-java-packages >-
+- &layers-java-packages >-
     dev-java/openjdk-jre-bin
     dev-java/openjdk-bin
     virtual/jre
@@ -3300,12 +3300,12 @@ packages:
     name: "libcaca"
     version: ">=0"
   pre_reqs:
-  - *layer-java-packages
+  - *layers-java-packages
   - *apps-mono-packages
   - media-libs/ftgl
   requires:
   - <<: *layers-X
-  - <<: *layer-java
+  - <<: *layers-java
   - <<: *apps-mono
   - <<: *libs-ftgl
   build_requires:
@@ -3347,10 +3347,10 @@ packages:
     name: "libpano13"
     version: ">=0"
   pre_reqs:
-  - *layer-java-packages
+  - *layers-java-packages
   requires:
   - <<: *layers-X
-  - <<: *layer-java
+  - <<: *layers-java
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
@@ -3485,10 +3485,10 @@ packages:
   pre_reqs:
   - media-libs/ladspa-sdk
   - media-libs/vamp-plugin-sdk
-  - *layer-java-packages
+  - *layers-java-packages
   requires:
   - <<: *layers-X
-  - <<: *layer-java
+  - <<: *layers-java
   - <<: *libs-ladspa-sdk
   - <<: *libs-vamp-plugin-sdk
   build_requires:
@@ -3638,10 +3638,10 @@ packages:
     name: "astyle"
     version: ">=0"
   pre_reqs:
-  - *layer-java-packages
+  - *layers-java-packages
   requires:
   - <<: *layers-system-x
-  - <<: *layer-java
+  - <<: *layers-java
   build_requires:
   - <<: *layers-system-x
 
@@ -5163,13 +5163,13 @@ packages:
     name: "graphviz"
     version: ">=0"
   pre_reqs:
-  - *layer-java-packages
+  - *layers-java-packages
   - media-libs/devil
   - sci-libs/gts
   - media-libs/lasi
   requires:
   - <<: *layers-qt
-  - <<: *layer-java
+  - <<: *layers-java
   - <<: *libs-devil
   - <<: *libs-gts
   - <<: *libs-lasi
