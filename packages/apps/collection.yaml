@@ -310,25 +310,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-fluidsynth
-  category: "libs"
-  name: "fluidsynth"
-  version: "2.2.5"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/fluidsynth
-  atom: "media-sound/fluidsynth"
-  provides:
-  - category: "media-sound"
-    name: "fluidsynth"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
@@ -3151,6 +3132,28 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-argtable
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
+- &libs-fluidsynth
+  category: "libs"
+  name: "fluidsynth"
+  version: "2.2.5+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluidsynth
+  atom: "media-sound/fluidsynth"
+  provides:
+  - category: "media-sound"
+    name: "fluidsynth"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ladspa-sdk
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
