@@ -1,7 +1,7 @@
 
 env:
 {{ if .Values.labels }}
-{{ $jobs = ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{ $jobs := ( index .Values.labels "emerge.jobs" ) | default "3" }}
 - JOBS={{ $jobs }}
 {{ $load_average := ( index .Values.labels "emerge.load_average" ) | default 0 }}
 {{ if ne $load_average 0 }}
