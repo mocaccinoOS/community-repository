@@ -5457,7 +5457,8 @@ packages:
   - sci-libs/dcmtk
   pre_emerge:
   # add the following to the packages depending on this
-  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;USE=-opengl
+  - &libs-ocio-oiio-pre_emerge >-
+      media-libs/opencolorio;USE=-opengl
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
