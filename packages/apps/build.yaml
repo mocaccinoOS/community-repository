@@ -45,7 +45,6 @@ prelude:
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}
-{{ include "cr.dump" $tokens }}
 - {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ end }}
 {{ end }}
