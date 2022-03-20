@@ -3222,6 +3222,31 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-coin
+  category: "libs"
+  name: "coin"
+  version: "4.0.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/coin
+  atom: "media-libs/coin"
+  provides:
+  - category: "media-libs"
+    name: "coin"
+    version: ">=0"
+  - category: "media-libs"
+    name: "simage"
+    version: ">=0"
+  pre_reqs:
+#   - dev-lang/spidermonkey:60
+  requires:
+  - <<: *layers-qt
+#   - <<: *libs-spidermonkey-60  
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &libs-colamd
   category: "libs"
   name: "colamd"
