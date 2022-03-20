@@ -987,25 +987,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-spidermonkey-60
-#   category: "libs"
-#   name: "spidermonkey"
-#   version: "60.5.2.0-r6"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: &libs-spidermonkey-60-packages >-
-#       dev-lang/spidermonkey:60
-#   atom: *libs-spidermonkey-60-packages
-#   provides:
-#   - category: "dev-lang"
-#     name: "spidermonkey"
-#     version: ">=0"
-#   pre_reqs:
-#   - =dev-lang/python-2.7.18_p13
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &libs-spidermonkey-60
+  category: "libs"
+  name: "spidermonkey"
+  version: "60.5.2.0-r6"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-spidermonkey-60-packages >-
+      dev-lang/spidermonkey:60
+  atom: *libs-spidermonkey-60-packages
+  provides:
+  - category: "dev-lang"
+    name: "spidermonkey"
+    version: ">=0"
+  pre_reqs:
+  - =dev-lang/python-2.7.18_p13
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-libtommath
   category: "libs"
@@ -3222,30 +3222,30 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- &libs-coin
-  category: "libs"
-  name: "coin"
-  version: "4.0.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/coin
-  atom: "media-libs/coin"
-  provides:
-  - category: "media-libs"
-    name: "coin"
-    version: ">=0"
-  - category: "media-libs"
-    name: "simage"
-    version: ">=0"
-  pre_reqs:
-  - dev-lang/spidermonkey:60
-  requires:
-  - <<: *layers-qt
-#   - <<: *libs-spidermonkey-60  
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
+# - &libs-coin
+#   category: "libs"
+#   name: "coin"
+#   version: "4.0.0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/coin
+#   atom: "media-libs/coin"
+#   provides:
+#   - category: "media-libs"
+#     name: "coin"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "simage"
+#     version: ">=0"
+#   pre_reqs:
+#   - dev-lang/spidermonkey:60
+#   requires:
+#   - <<: *layers-qt
+#    - <<: *libs-spidermonkey-60  
+#   build_requires:
+#   - <<: *buildbase-qt
+#   requires_final_images: true
 
 - &libs-colamd
   category: "libs"
