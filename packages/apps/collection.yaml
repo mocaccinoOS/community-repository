@@ -1812,7 +1812,7 @@ packages:
 
 - &apps-dvd-rw-tools
   category: "apps"
-  name: "dvd-rw-tools"
+  name: "dvd+rw-tools"
   version: "7.1-r4+2"
   labels:
     emerge.jobs: "3"
@@ -5457,7 +5457,7 @@ packages:
   - sci-libs/dcmtk
   pre_emerge:
   # add the following to the packages depending on this
-  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;"USE=-opengl"
+  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;USE=-opengl
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
