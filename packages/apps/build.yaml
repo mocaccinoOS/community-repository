@@ -58,13 +58,18 @@ steps:
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}
-- USE={{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ end }}
 {{ end }}
 {{ end }}
 
 {{ if .Values.atom }}
-- emerge -j ${JOBS} {{ .Values.atom }}
+{{ $tokens := .Values.atom | splitList ";" }}
+{{ if eq (len $tokens) 1 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ else if eq (len $tokens) 2 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ end }}
 {{ end }}
 {{ if .Values.bdeps }}
 {{ range .Values.bdeps }}
