@@ -1,17 +1,9 @@
 
 env:
 {{ if .Values.labels }}
-{{ $jobs := ( index .Values.labels "emerge.jobs" ) | default "3" }}
-- JOBS={{ $jobs }}
-{{ $load_average := ( index .Values.labels "emerge.load_average" ) | default 0 }}
-{{ if ne $load_average 0 }}
-- LOAD_AVERAGE=-l {{ mul $load_average $jobs }}
-{{ else }}
-- LOAD_AVERAGE=""
-{{ end }}
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
 {{ else }}
 - JOBS=3
-- LOAD_AVERAGE=""
 {{ end }}
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
@@ -51,9 +43,9 @@ prelude:
 {{ range .Values.pre_reqs }}
 {{ $tokens := . | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
-- emerge -1 -j ${JOBS} ${LOAD_AVERAGE} {{ index $tokens 0 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}
-- USE={{ index $tokens 1 }} emerge -1 -j ${JOBS} ${LOAD_AVERAGE} {{ index $tokens 0 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ end }}
 {{ end }}
 {{ end }}

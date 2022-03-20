@@ -995,7 +995,7 @@ packages:
     emerge.jobs: "1"
     emerge.load_average: "0.9"
     emerge.packages: &libs-spidermonkey-60-packages >-
-      dev-lang/spidermonkey:60
+      dev-lang/spidermonkey:60;MAKEOPTS="-j1"
   atom: *libs-spidermonkey-60-packages
   provides:
   - category: "dev-lang"
@@ -5457,7 +5457,7 @@ packages:
   - sci-libs/dcmtk
   pre_emerge:
   # add the following to the packages depending on this
-  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;"-opengl"
+  - &libs-ocio-oiio-pre_emerge media-libs/opencolorio;"USE=-opengl"
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
