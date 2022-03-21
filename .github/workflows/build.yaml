@@ -20,16 +20,12 @@ jobs:
           sudo luet install utils/jq
       - name: Set matrix for build
         id: set-matrix
-        run: |
-          JSON="{\"include\":"
-          JSONline="$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
-          JSON="$JSON$JSONline"
-          JSON="$JSON}"
-          # Set output
-          echo "::set-output name=matrix::$( echo "$JSON" )"
+        run: echo "::set-output name=matrix::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
       - name: Set matrix id for build
         id: set-matrix-id
-        run: echo "::set-output name=matrix-id::$(echo "$JSON" | jq -rc 'to_entries | map(.key)')"
+        run: echo "::set-output name=matrix-id::$(echo $MATRIX | jq -rc 'to_entries | map(.key)')"
+        env:
+          MATRIX: ${{ steps.set-matrix.outputs.matrix }}
 
   build:
     name: build set ${{ needs.generate-matrix.outputs.matrix-id }}
