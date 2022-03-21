@@ -1790,7 +1790,7 @@ packages:
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd-rw-tools"
-  version: "7.1-r4+2"
+  version: "7.1-r4+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4332,15 +4332,15 @@ packages:
     emerge.packages: >-
       kde-apps/k3b
   atom: "kde-apps/k3b"
+  provides:
+  - category: "kde-apps"
+    name: "k3b"
+    version: ">=0"
   pre_reqs:
   - app-cdr/dvd+rw-tools
   - app-cdr/cdrdao
   - media-video/vcdimager
   - media-video/transcode
-  provides:
-  - category: "kde-apps"
-    name: "k3b"
-    version: ">=0"
   requires:
   - <<: *layers-plasma
   - <<: *apps-dvd-rw-tools
