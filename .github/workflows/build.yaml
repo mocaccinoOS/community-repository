@@ -31,10 +31,11 @@ jobs:
     name: build set ${{ needs.generate-matrix.outputs.matrix-id }}
     needs: generate-matrix
     strategy:
-      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix-id) }}
+      matrix: 
+        set: ${{ fromJson(needs.generate-matrix.outputs.matrix-id) }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
-      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
+      CURRENT_PACKAGE:  ${{ matrix.set.category }}/${{ matrix.set.name }}@${{ matrix.set.version }}
       PULL_REPOSITORY: quay.io/mocaccino/desktop
     runs-on: ubuntu-latest
     steps:
@@ -68,7 +69,7 @@ jobs:
         sudo chmod -R 777 $PWD/build
     - uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
+        name: ${{ matrix.set.category }}-${{ matrix.set.name }}-${{ matrix.set.version }}.zip
         path: |
           build/
 
