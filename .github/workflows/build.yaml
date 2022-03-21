@@ -10,8 +10,8 @@ jobs:
     name: Generate matrix for build
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps['set-matrix'].outputs['matrix'] }}
-      matrix-id: ${{ steps['set-matrix-id'].outputs['matrix-id'] }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+      matrix-id: ${{ steps.set-matrix-id.outputs.matrix-id }}
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
@@ -29,19 +29,16 @@ jobs:
           echo "::set-output name=matrix::$( echo "$JSON" )"
       - name: Set matrix id for build
         id: set-matrix-id
-        run: echo "::set-output name=matrix-id::$(echo $MATRIX | jq -rc 'to_entries | map(.key)')"
-        env:
-          MATRIX: ${{ steps['set-matrix'].outputs['matrix'] }}
+        run: echo "::set-output name=matrix-id::$(echo "$JSON" | jq -rc 'to_entries | map(.key)')"
 
   build:
-    name: build \# ${{ matrix.matrix }}
+    name: build set ${{ needs.generate-matrix.outputs.matrix-id }}
     needs: generate-matrix
     strategy:
-      matrix: 
-        matrix: ${{ fromJson(needs.generate-matrix.outputs['matrix-id']) }}
+      matrix: ${{ fromJson(needs.generate-matrix.outputs.matrix-id) }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
-      CURRENT_PACKAGE:  ${{ matrix.matrix.category }}/${{ matrix.matrix.name }}@${{ matrix.matrix.version }}
+      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
       PULL_REPOSITORY: quay.io/mocaccino/desktop
     runs-on: ubuntu-latest
     steps:
@@ -75,7 +72,7 @@ jobs:
         sudo chmod -R 777 $PWD/build
     - uses: actions/upload-artifact@v2
       with:
-        name: ${{ matrix.matrix.category }}-${{ matrix.matrix.name }}-${{ matrix.matrix.version }}.zip
+        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
         path: |
           build/
 
