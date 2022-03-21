@@ -244,9 +244,9 @@ packages:
     name: "bio2jack"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
 
 - &libs-Config-Simple
   category: "libs"
@@ -655,6 +655,24 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
+- &libs-libbs2b
+  category: "libs"
+  name: "libbs2b"
+  version: "3.1.0-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libbs2b
+  atom: "media-libs/libbs2b"
+  provides:
+  - category: "media-libs"
+    name: "libbs2b"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-libdca
   category: "libs"
   name: "libdca"
@@ -953,6 +971,24 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-libopenmpt
+  category: "libs"
+  name: "libopenmpt"
+  version: "0.5.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libopenmpt
+  atom: "media-libs/libopenmpt"
+  provides:
+  - category: "media-libs"
+    name: "libopenmpt"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-libqxp
   category: "libs"
   name: "libqxp"
@@ -1001,6 +1037,24 @@ packages:
   provides:
   - category: "media-libs"
     name: "libsidplay"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libsidplayfp
+  category: "libs"
+  name: "libsidplayfp"
+  version: "2.3.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsidplayfp
+  atom: "media-libs/libsidplayfp"
+  provides:
+  - category: "media-libs"
+    name: "libsidplayfp"
     version: ">=0"
   requires:
   - <<: *layers-system-x
