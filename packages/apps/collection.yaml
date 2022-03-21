@@ -171,6 +171,28 @@ packages:
 ### dep 0 libs ###
 ################################################################################
 
+- &libs-ampache_browser
+  category: "libs"
+  name: "ampache_browser"
+  version: "4.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/ampache_browser
+  atom: "media-libs/ampache_browser"
+  provides:
+  - category: "media-plugins"
+    name: "audacious"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "audacious-plugins"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -1945,7 +1967,7 @@ packages:
   build_requires:
   - <<: *buildbase-qt
   requires_final_images: true
-  
+
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
@@ -1970,7 +1992,7 @@ packages:
   build_requires:
   - <<: *buildbase-X
   requires_final_images: true
-   
+
 - category: "apps"
   name: "gnumeric"
   version: "1.12.48+53"
