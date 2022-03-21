@@ -230,6 +230,24 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-bio2jack
+  category: "libs"
+  name: "bio2jack"
+  version: "0.9-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/bio2jack
+  atom: "media-libs/bio2jack"
+  provides:
+  - category: "media-libs"
+    name: "bio2jack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
