@@ -39,6 +39,9 @@ jobs:
     with:
       build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
       set-id: 1
+    secrets:
+      QUAY_ROBOT_USERNAME: ${{ secrets.QUAY_ROBOT_USERNAME }}
+      QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
   create-repo:
     needs: [build-set-0, build-set-1]
