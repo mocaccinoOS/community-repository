@@ -20,6 +20,10 @@
 {{- $packages = $packages | uniq }}
 {{- join " " $packages }}
 
+{{ if $packages }}
+- bash prelude.sh {{ $packages }}
+{{ end }}
+
 {{- end }}
 
 #########
