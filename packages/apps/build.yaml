@@ -24,7 +24,10 @@ prelude:
 {{ end }}
 {{ end }}
 
-{{ template "cr.packages" .Values }} 
+{{ $packages := include "cr.packages" .Values }}
+{{ if $packages }}
+- bash prelude.sh {{ $packages }}
+{{ end }}
 
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
