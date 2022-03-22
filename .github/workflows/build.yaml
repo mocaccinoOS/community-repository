@@ -40,7 +40,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set matrix for build
         id: set-matrix
-        run: echo $MATRIX | jq '.[${{ matrix.set-id }}] | .[] | @text' | xargs npx set-matrix
+        run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}] | .[] | @text')"
         env:
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix }}
 
