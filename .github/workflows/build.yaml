@@ -42,7 +42,7 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets.set-id) }}
+          echo ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets.matrix.set-ids) }}
 
   build:
     needs: generate-matrix
