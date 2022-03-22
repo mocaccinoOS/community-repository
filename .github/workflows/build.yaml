@@ -42,7 +42,7 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo "::set-output name=matrix::${{ matrix }})"
+          echo "::set-output name=matrix::${{ matrix.include }})"
 
   build:
     needs: generate-matrix
