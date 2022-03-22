@@ -23,17 +23,17 @@ jobs:
 
   build-set-0:
     needs: generate-matrix-sets
-    uses: ./.github/workflows/build_set.yaml
-      with:
-        build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-        set-id: 0
+    uses: ./.github/workflows/build_set.yaml@main
+    with:
+      build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
+      set-id: 0
 
   build-set-1:
     needs: [generate-matrix-sets, build-set-0]
-    uses: ./.github/workflows/build_set.yaml
-      with:
-        build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-        set-id: 1
+    uses: ./.github/workflows/build_set.yaml@main
+    with:
+      build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
+      set-id: 1
 
   create-repo:
     needs: [build-set-0, build-set-1]
