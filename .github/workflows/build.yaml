@@ -20,10 +20,10 @@ jobs:
           sudo luet install utils/jq
       - name: Set matrix sets for build
         id: set-matrix-sets
-        run: echo "::set-output name=matrix::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
+        run: echo "::set-output name=matrix-sets::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
       - name: Set matrix ids for build
         id: set-matrix-set-ids
-        run: echo "::set-output name=matrix-id::$(echo $MATRIX_SETS | jq -rc 'to_entries | map(.key)')"
+        run: echo "::set-output name=matrix-set-ids::$(echo $MATRIX_SETS | jq -rc 'to_entries | map(.key)')"
         env:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
