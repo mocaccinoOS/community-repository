@@ -69,7 +69,7 @@ jobs:
           build/
 
   build-set-1:
-    needs: [generate-matrix-sets, build-set-1]
+    needs: [generate-matrix-sets, build-set-0]
     strategy:
       matrix:
         include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets)[1] }}
