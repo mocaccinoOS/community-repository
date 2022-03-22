@@ -30,6 +30,10 @@ jobs:
   generate-matrix:
     name: build set ${{ matrix.set-id }}
     needs: generate-matrix-sets
+    strategy:
+      matrix: 
+        set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
+        set: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets) }}
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     runs-on: ubuntu-latest
@@ -38,9 +42,9 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[$SET_ID]')"
+          echo ${{ matrix.set }}
+          echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}]')"
         env:
-          SET_ID: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
 
   build:
