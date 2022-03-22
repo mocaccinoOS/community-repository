@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix: 
         set-id: ${{ fromJson(needs.generate-matrix.outputs.matrix-id) }}
-        include: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+        include: ${{ fromJson(needs.generate-matrix.outputs.matrix.matrix-id) }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
