@@ -10,8 +10,8 @@ jobs:
     name: Generate matrix sets for build
     runs-on: ubuntu-latest
     outputs:
-      matrix-sets: ${{ steps.set-matrix.outputs.matrix-sets }}
-      matrix-set-ids: ${{ steps.set-matrix-id.outputs.matrix-set-ids }}
+      matrix-sets: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
+      matrix-set-ids: ${{ steps.set-matrix-set-ids.outputs.matrix-set-ids }}
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
