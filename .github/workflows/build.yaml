@@ -37,8 +37,8 @@ jobs:
       SET: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set matrix for build
+      - uses: actions/checkout@v2
+      - name: Set matrix for build
         id: set-matrix
         run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}] | .[] | @text')"
         env:
