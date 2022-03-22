@@ -10,8 +10,8 @@ jobs:
     name: Generate matrix sets for build
     runs-on: ubuntu-latest
     outputs:
-      matrix-sets-id: ${{ steps.set-matrix-id.outputs.matrix-sets-id }}
       matrix-sets: ${{ steps.set-matrix.outputs.matrix-sets }}
+      matrix-sets-id: ${{ steps.set-matrix-id.outputs.matrix-sets-id }}
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
@@ -28,19 +28,19 @@ jobs:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
   generate-matrix:
-    name: build set ${{ matrix.set-id }}
+    name: build set ${{ matrix.set }}
     needs: generate-matrix-sets
     strategy:
       matrix: 
-        set-id: ${{ needs.generate-matrix-sets.outputs.matrix-id }}
+        set: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-id) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set matrix for build
         id: set-matrix
-        run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}] | .[] | @text')"
+        run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set }}] | .[] | @text')"
         env:
-          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix }}
+          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
 
   build:
     needs: generate-matrix
