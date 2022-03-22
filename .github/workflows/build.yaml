@@ -41,7 +41,7 @@ jobs:
           echo ${{ matrix.set }}
           echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[0]')"
         env:
-          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets[0] }}
+          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
 
   build:
     needs: generate-matrix-0
