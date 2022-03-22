@@ -22,7 +22,7 @@ jobs:
         run: echo "::set-output name=matrix-sets::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(256)]')"
 
   build-set-0:
-    name: Build set 0
+    name: Set 0
     needs: generate-matrix-sets
     uses: ./.github/workflows/build_set.yaml
     with:
@@ -33,7 +33,7 @@ jobs:
       QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
   build-set-1:
-    name: Build set 1
+    name: Set 1
     needs: [generate-matrix-sets, build-set-0]
     uses: ./.github/workflows/build_set.yaml
     with:
