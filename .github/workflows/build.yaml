@@ -27,8 +27,8 @@ jobs:
         env:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
-  generate-matrix:
-    name: build set ${{ matrix.set-id }}
+  generate-matrix-0:
+    name: build set 0
     needs: generate-matrix-sets
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -39,12 +39,12 @@ jobs:
         id: set-matrix
         run: |
           echo ${{ matrix.set }}
-          echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}]')"
+          echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[0]')"
         env:
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets[0] }}
 
   build:
-    needs: generate-matrix
+    needs: generate-matrix-0
     strategy:
       matrix:
         include: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
