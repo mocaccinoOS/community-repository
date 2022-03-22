@@ -38,7 +38,6 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo ${{ matrix.set }}
           echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[0]')"
         env:
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
@@ -47,7 +46,7 @@ jobs:
     needs: generate-matrix-0
     strategy:
       matrix:
-        include: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+        include: ${{ fromJson(needs.generate-matrix-0.outputs.matrix) }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
