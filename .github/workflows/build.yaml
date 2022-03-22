@@ -6,34 +6,48 @@ on:
 
 jobs:
 
-  generate-matrix:
-    name: Generate matrix for build
+  generate-matrix-sets:
+    name: Generate matrix sets for build
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-      matrix-id: ${{ steps.set-matrix-id.outputs.matrix-id }}
+      matrix-sets-id: ${{ steps.set-matrix-id.outputs.matrix-sets-id }}
+      matrix-sets: ${{ steps.set-matrix.outputs.matrix-sets }}
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
         run: |
           curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
           sudo luet install utils/jq
-      - name: Set matrix for build
-        id: set-matrix
+      - name: Set matrix sets for build
+        id: set-matrix-sets
         run: echo "::set-output name=matrix::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
-      - name: Set matrix id for build
-        id: set-matrix-id
-        run: echo "::set-output name=matrix-id::$(echo $MATRIX | jq -rc 'to_entries | map(.key)')"
+      - name: Set matrix ids for build
+        id: set-matrix-sets-id
+        run: echo "::set-output name=matrix-id::$(echo $MATRIX_SETS | jq -rc 'to_entries | map(.key)')"
         env:
-          MATRIX: ${{ steps.set-matrix.outputs.matrix }}
+          MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
-  build:
+  generate-matrix:
     name: build set ${{ matrix.set-id }}
-    needs: generate-matrix
+    needs: generate-matrix-sets
     strategy:
       matrix: 
-        set-id: ${{ fromJson(needs.generate-matrix.outputs.matrix-id) }}
-        include: ${{ fromJson(needs.generate-matrix.outputs.matrix.matrix-id) }}
+        set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-id) }}
+    env:
+      SET: ${{ fromJson(needs.generate-matrix.outputs.matrix) }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set matrix for build
+        id: set-matrix
+        run: echo $MATRIX | jq '.[${{ matrix.set-id }}] | .[] | @text' | xargs npx set-matrix
+        env:
+          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix }}
+
+  build:
+    needs: generate-matrix
+    strategy:
+      matrix: ${{fromJson(needs.generate-matrix.outputs.matrix)}}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
