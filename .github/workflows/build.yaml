@@ -90,4 +90,70 @@ jobs:
         path: |
           build/
 
-  
+  create-repo:
+    needs: build
+    env:
+      FINAL_REPO: quay.io/mocaccino/mocaccino-community
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Release space from worker
+      run: |
+        sudo rm -rf /usr/local/lib/android # will release about 10 GB if you don't need Android
+        sudo rm -rf /usr/share/dotnet # will release about 20GB if you don't need .NET
+    - run: |
+        git fetch --prune --unshallow
+    - name: Login to Quay Registry
+      run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
+
+    - name: Install deps 🔧
+      run: |
+        curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+          go-version: '^1.16'
+
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v2
+    - name: Merge artifacts 🔧
+      run: |
+        mkdir build || true
+        for i in $(ls | grep zip); do
+          cp -rfv $i/* build
+        done
+        ls -liah
+        ls -liah build
+    - name: Fetch metadata of packages 🔧
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      run: |
+        ls -liah
+        export PATH=$PATH:/usr/local/go/bin
+
+        pushd ./.github
+        go build -o build
+        popd
+        sudo -E ./.github/build
+        ls -liah $PWD/build
+        sudo chmod -R 777 $PWD/build
+
+    - name: Create repo 🔧
+      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      run: |
+          sudo -E luet create-repo \
+          --push-images \
+          --type docker \
+          --output $FINAL_REPO \
+          --name "mocaccino-community" \
+          --packages ${PWD}/build \
+          --tree ${PWD}/packages
+
+    # - name: Deploy GH Pages 🚀
+    #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    #   uses: JamesIves/github-pages-deploy-action@3.6.2
+    #   with:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     BRANCH: gh-pages # The branch the action should deploy to.
+    #     FOLDER: build # The folder the action should deploy.
+    #     CLEAN: true # Automatically remove deleted files from the deploy branch
+    #     SINGLE_COMMIT: true
