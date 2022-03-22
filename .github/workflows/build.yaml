@@ -27,26 +27,11 @@ jobs:
         env:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
-  generate-matrix-0:
-    name: build set 0
+  build-0:
     needs: generate-matrix-sets
-    outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set matrix for build
-        id: set-matrix
-        run: |
-          echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[0]')"
-        env:
-          MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-
-  build:
-    needs: generate-matrix-0
     strategy:
       matrix:
-        include: ${{ fromJson(needs.generate-matrix-0.outputs.matrix) }}
+        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix)[0] }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
