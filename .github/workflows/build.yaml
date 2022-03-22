@@ -32,7 +32,6 @@ jobs:
     needs: generate-matrix-sets
     concurrency:
       group: set-${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: false    
     strategy:
       matrix: 
         set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
