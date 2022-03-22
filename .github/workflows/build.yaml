@@ -31,7 +31,7 @@ jobs:
     needs: generate-matrix-sets
     strategy:
       matrix:
-        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix)[0] }}
+        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets)[0] }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
