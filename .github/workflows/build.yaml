@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix-sets: ${{ steps.set-matrix.outputs.matrix-sets }}
-      matrix-sets-id: ${{ steps.set-matrix-id.outputs.matrix-sets-id }}
+      matrix-set-ids: ${{ steps.set-matrix-id.outputs.matrix-set-ids }}
     steps:
       - uses: actions/checkout@v2
       - name: Install deps
@@ -22,23 +22,23 @@ jobs:
         id: set-matrix-sets
         run: echo "::set-output name=matrix::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(16)]')"
       - name: Set matrix ids for build
-        id: set-matrix-sets-id
+        id: set-matrix-set-ids
         run: echo "::set-output name=matrix-id::$(echo $MATRIX_SETS | jq -rc 'to_entries | map(.key)')"
         env:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
   generate-matrix:
-    name: build set ${{ matrix.set }}
+    name: build set ${{ matrix.set-id }}
     needs: generate-matrix-sets
     strategy:
       matrix: 
-        set: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-id) }}
+        set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set matrix for build
         id: set-matrix
-        run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set }}] | .[] | @text')"
+        run: echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}] | .[] | @text')"
         env:
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
 
