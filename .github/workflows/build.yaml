@@ -28,9 +28,8 @@ jobs:
           MATRIX_SETS: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
 
   generate-matrix:
-    name: build set ${{ matrix.set-id }}
+    name: build set ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
     needs: generate-matrix-sets
-    concurrency: set-${{ github.workflow }}-${{ github.ref }}
     strategy:
       matrix: 
         set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
