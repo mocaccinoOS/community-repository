@@ -1,0 +1,60 @@
+name: Build Set
+
+on:
+  workflow_call:
+    inputs:
+      build-sets:
+        type: string
+        required: true
+        description: 'Stringified JSON object listing target build sets'
+      set-id:
+        type: int
+        required: true
+        description: 'Target build set id'
+
+jobs:
+  build-set:
+    strategy:
+      matrix:
+        include: ${{ fromJson(inputs.build-sets)[inputs.set-id] }}
+    outputs:
+      matrix-sets: ${{ inputs.build-sets }}
+    env:
+      FINAL_REPO: quay.io/mocaccino/mocaccino-community
+      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
+      PULL_REPOSITORY: quay.io/mocaccino/desktop
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Release space from worker
+      run: |
+        sudo rm -rf /usr/local/lib/android # will release about 10 GB if you don't need Android
+        sudo rm -rf /usr/share/dotnet # will release about 20GB if you don't need .NET
+    - run: |
+        git fetch --prune --unshallow
+    - name: Login to Quay Registry
+      run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
+
+    - name: Install deps 🔧
+      run: |
+        curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+          go-version: '^1.16'
+    - name: Build packages 🔧
+      run: |
+        sudo luet install -y repository/mocaccino-desktop-stable
+        export PATH=$PATH:/usr/local/go/bin
+        mkdir build || true
+        pushd ./.github
+        go build -o build
+        popd
+        sudo -E ./.github/build
+        ls -liah $PWD/build
+        sudo chmod -R 777 $PWD/build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
+        path: |
+          build/

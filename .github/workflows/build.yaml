@@ -23,97 +23,17 @@ jobs:
 
   build-set-0:
     needs: generate-matrix-sets
-    strategy:
-      matrix:
-        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets)[0] }}
-    outputs:
-      matrix-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-    env:
-      FINAL_REPO: quay.io/mocaccino/mocaccino-community
-      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
-      PULL_REPOSITORY: quay.io/mocaccino/desktop
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Release space from worker
-      run: |
-        sudo rm -rf /usr/local/lib/android # will release about 10 GB if you don't need Android
-        sudo rm -rf /usr/share/dotnet # will release about 20GB if you don't need .NET
-    - run: |
-        git fetch --prune --unshallow
-    - name: Login to Quay Registry
-      run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
-
-    - name: Install deps 🔧
-      run: |
-        curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
-    - name: Install Go
-      uses: actions/setup-go@v2
+    uses: ./.github/workflows/build_set.yaml
       with:
-          go-version: '^1.16'
-    - name: Build packages 🔧
-      run: |
-        sudo luet install -y repository/mocaccino-desktop-stable
-        export PATH=$PATH:/usr/local/go/bin
-        mkdir build || true
-        pushd ./.github
-        go build -o build
-        popd
-        sudo -E ./.github/build
-        ls -liah $PWD/build
-        sudo chmod -R 777 $PWD/build
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
-        path: |
-          build/
+        build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
+        set-id: 0
 
   build-set-1:
     needs: [generate-matrix-sets, build-set-0]
-    strategy:
-      matrix:
-        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets)[1] }}
-    outputs:
-      matrix-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-    env:
-      FINAL_REPO: quay.io/mocaccino/mocaccino-community
-      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
-      PULL_REPOSITORY: quay.io/mocaccino/desktop
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Release space from worker
-      run: |
-        sudo rm -rf /usr/local/lib/android # will release about 10 GB if you don't need Android
-        sudo rm -rf /usr/share/dotnet # will release about 20GB if you don't need .NET
-    - run: |
-        git fetch --prune --unshallow
-    - name: Login to Quay Registry
-      run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
-
-    - name: Install deps 🔧
-      run: |
-        curl https://get.mocaccino.org/luet/get_luet_root.sh | sudo sh
-    - name: Install Go
-      uses: actions/setup-go@v2
+    uses: ./.github/workflows/build_set.yaml
       with:
-          go-version: '^1.16'
-    - name: Build packages 🔧
-      run: |
-        sudo luet install -y repository/mocaccino-desktop-stable
-        export PATH=$PATH:/usr/local/go/bin
-        mkdir build || true
-        pushd ./.github
-        go build -o build
-        popd
-        sudo -E ./.github/build
-        ls -liah $PWD/build
-        sudo chmod -R 777 $PWD/build
-    - uses: actions/upload-artifact@v2
-      with:
-        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
-        path: |
-          build/
+        build-sets: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
+        set-id: 1
 
   create-repo:
     needs: [build-set-0, build-set-1]

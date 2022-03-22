@@ -985,9 +985,10 @@ packages:
     name: "libopenmpt"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-libqxp
   category: "libs"
