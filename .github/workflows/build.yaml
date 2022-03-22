@@ -4,10 +4,6 @@ on:
   push:
     branches: [ main ]
 
-jobs.generate-matrix.concurrency:
-  group: sets-${{ github.ref || github.run_id }}
-  cancel-in-progress: true    
-
 jobs:
 
   generate-matrix-sets:
@@ -34,6 +30,9 @@ jobs:
   generate-matrix:
     name: build set ${{ matrix.set-id }}
     needs: generate-matrix-sets
+    concurrency:
+      group: set-${{ github.ref || github.run_id }}
+      cancel-in-progress: true    
     strategy:
       matrix: 
         set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
