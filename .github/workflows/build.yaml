@@ -33,7 +33,7 @@ jobs:
     strategy:
       matrix: 
         set-id: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-set-ids) }}
-        include: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets) }}
+        set: ${{ fromJson(needs.generate-matrix-sets.outputs.matrix-sets) }}
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo "::set-output name=matrix::${{ matrix.include }})"
+          echo "::set-output name=matrix::${{ matrix.set.set-id }})"
 
   build:
     needs: generate-matrix
