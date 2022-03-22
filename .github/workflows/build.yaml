@@ -91,7 +91,7 @@ jobs:
           build/
 
   create-repo:
-    needs: build
+    needs: [generate-matrix, build]
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
     runs-on: ubuntu-latest
