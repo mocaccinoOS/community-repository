@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+jobs.generate-matrix.concurrency:
+  group: sets-${{ github.ref || github.run_id }}
+  cancel-in-progress: true    
+
 jobs:
 
   generate-matrix-sets:
@@ -41,8 +45,6 @@ jobs:
       - name: Set matrix for build
         id: set-matrix
         run: |
-          echo ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
-          echo $MATRIX
           echo "::set-output name=matrix::$(echo $MATRIX | jq -rc '.[${{ matrix.set-id }}]')"
         env:
           MATRIX: ${{ needs.generate-matrix-sets.outputs.matrix-sets }}
