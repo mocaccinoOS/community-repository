@@ -264,25 +264,6 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
-- &libs-eigen
-  category: "libs"
-  name: "eigen"
-  version: "3.4.0-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-cpp/eigen
-  atom: "dev-cpp/eigen"
-  provides:
-  - category: "dev-cpp"
-    name: "eigen"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-faad2
   category: "libs"
   name: "faad2"
@@ -691,7 +672,7 @@ packages:
 - &libs-libde265
   category: "libs"
   name: "libde265"
-  version: "1.12.0-r1+2"
+  version: "1.0.8"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1206,6 +1187,25 @@ packages:
   - <<: *buildbase-X
   requires_final_images: true
 
+- &libs-movit
+  category: "libs"
+  name: "movit"
+  version: "1.6.3+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/movit
+  atom: "media-video/movit"
+  provides:
+  - category: "media-video"
+    name: "movit"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
+
 - &libs-namespace-google
   category: "libs"
   name: "namespace-google"
@@ -1303,7 +1303,7 @@ packages:
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
-  version: "1-r1+4"
+  version: "2.9.1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1313,8 +1313,6 @@ packages:
   - category: "dev-python"
     name: "pybind11"
     version: ">=0"
-  pre_reqs:
-  - dev-cpp/eigen
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -1698,14 +1696,12 @@ packages:
   
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20220120"
+  version: "1.7.0_pre20220120+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-astronomy/celestia
   atom: "sci-astronomy/celestia"
-  pre_reqs:
-  - dev-cpp/eigen
   provides:
   - category: "sci-astronomy"
     name: "celestia"
@@ -3427,7 +3423,7 @@ packages:
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
-  version: "0.99_beta19-r8"
+  version: "0.99_beta19-r8+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3511,32 +3507,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-movit
-  category: "libs"
-  name: "movit"
-  version: "1.6.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/movit
-  atom: "media-video/movit"
-  provides:
-  - category: "media-video"
-    name: "movit"
-    version: ">=0"
-  pre_reqs:
-  - dev-cpp/eigen
-  requires:
-  - <<: *layers-X
-  - <<: *libs-eigen
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.5.5-r1+1"
+  version: "4.5.5-r1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3547,7 +3521,6 @@ packages:
     name: "opencv"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/eigen
   - sci-libs/hdf5
   requires:
   - <<: *layers-qt
@@ -4237,7 +4210,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.7.0-r1"
+  version: "1.7.0-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4248,7 +4221,6 @@ packages:
     name: "frei0r-plugins"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/eigen
   - media-libs/gavl
   - media-libs/opencv
   requires:
@@ -4344,15 +4316,15 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.1+1"
+  version: "4.1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-audacious-packages >-
-      media-plugins/audacious
+      media-sound/audacious
       media-plugins/audacious-plugins
   atom: *apps-audacious-packages
   provides:
-  - category: "media-plugins"
+  - category: "media-sound"
     name: "audacious"
     version: ">=0"
   - category: "media-plugins"
@@ -5075,7 +5047,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.5.6"
+  version: "3.5.7"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5092,7 +5064,6 @@ packages:
     name: "stellarsolver"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/eigen
   - sci-libs/cfitsio
   - sci-libs/indilib
   - sci-astronomy/wcslib
@@ -5240,7 +5211,7 @@ packages:
 - &libs-libheif
   category: "libs"
   name: "libheif"
-  version: "1.12.0-r1+3"
+  version: "1.12.0-r1+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5298,7 +5269,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "7.5.0"
+  version: "7.5.0+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5312,7 +5283,6 @@ packages:
     name: "digikam"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/eigen
   - media-libs/liblqr
   - media-libs/opencv
   - media-gfx/hugin
@@ -5628,7 +5598,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.0.2+1"
+  version: "5.0.2+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5639,7 +5609,6 @@ packages:
     name: "krita"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/eigen
   - dev-libs/quazip
   - media-libs/libheif
   - media-libs/libmypaint
