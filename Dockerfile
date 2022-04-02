@@ -2,10 +2,10 @@ FROM quay.io/mocaccino/desktop
 
 ENV LUET_YES=true
 ENV LUET_NOLOCK=true
-RUN luet install repository/mocaccino-extra
+RUN luet install --relax repository/mocaccino-extra mocaccino/cli
 RUN luet uninstall repository/mocaccino-desktop
-RUN luet install repository/mocaccino-desktop-stable
+RUN luet install --relax repository/mocaccino-desktop-stable
 
-RUN luet install -qy container/docker system/luet
+RUN luet install --relax -qy container/docker system/luet
 
 ENTRYPOINT /usr/bin/luet
