@@ -1591,6 +1591,23 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "ant-core"
+  version: "1.10.9-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/ant-core
+  atom: "dev-java/ant-core"
+  provides:
+  - category: "dev-java"
+    name: "ant-core"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
+- category: "apps"
   name: "brasero"
   version: "3.12.2+1"
   labels:
@@ -2176,7 +2193,24 @@ packages:
 #   - <<: *layers-X
 #   build_requires:
 #   - <<: *layers-X
-# 
+
+- category: "apps"
+  name: "javatoolkit"
+  version: "0.6.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/javatoolkit
+  atom: "dev-java/javatoolkit"
+  provides:
+  - category: "dev-java"
+    name: "javatoolkit"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-spidermonkey-60
   category: "libs"
   name: "spidermonkey"
