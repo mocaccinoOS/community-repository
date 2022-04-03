@@ -1021,24 +1021,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libtommath
-  category: "libs"
-  name: "libtommath"
-  version: "1.2.0+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libtommath
-  atom: "dev-libs/libtommath"
-  provides:
-  - category: "dev-libs"
-    name: "libtommath"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
@@ -3705,27 +3687,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- &apps-convertlit
-  category: "apps"
-  name: "convertlit"
-  version: "1.8+4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/convertlit
-  atom: "app-text/convertlit"
-  provides:
-  - category: "app-text"
-    name: "convertlit"
-    version: ">=0"
-  pre_reqs:
-  - dev-libs/libtommath
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-libtommath
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-dcraw
   category: "apps"
   name: "dcraw"
@@ -4314,7 +4275,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "21.08.3+2"
+  version: "21.08.3+3"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
