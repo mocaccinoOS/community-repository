@@ -19,7 +19,7 @@ on:
 
 jobs:
   build:
-    if: ${{ fromJson(inputs.build-sets)[inputs.set-id] }}
+    if: ${{ fromJson(inputs.build-sets)[inputs.set-id].empty_matrix == 'false' }}
     strategy:
       matrix:
         include: ${{ fromJson(inputs.build-sets)[inputs.set-id] }}
