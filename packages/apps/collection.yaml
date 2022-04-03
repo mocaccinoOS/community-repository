@@ -2217,7 +2217,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "21.08.3+10"
+  version: "21.08.3+11"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2228,9 +2228,9 @@ packages:
     name: "kate"
     version: ">=0"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "kcharselect"
@@ -2285,7 +2285,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "21.08.3+3"
+  version: "21.08.3+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -2296,9 +2296,9 @@ packages:
     name: "kompare"
     version: ">=0"
   requires:
-  - <<: *layers-kde-apps-minimal
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-apps-minimal
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "krfb"
@@ -2319,7 +2319,7 @@ packages:
 
 - category: "apps"
   name: "krusader"
-  version: "2.7.2+37"
+  version: "2.7.2+38"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2330,9 +2330,9 @@ packages:
     name: "krusader"
     version: ">=0"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "ksnip"
@@ -2757,7 +2757,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.7.1+5"
+  version: "0.7.1+6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2768,9 +2768,9 @@ packages:
     name: "subtitlecomposer"
     version: ">=0"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "tree"
@@ -3499,7 +3499,7 @@ packages:
 - &libs-tbb
   category: "libs"
   name: "tbb"
-  version: "2020.3"
+  version: "2021.5.0-r1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3509,7 +3509,7 @@ packages:
   - category: "dev-cpp"
     name: "tbb"
     version: ">=0"
-  pre_build:
+  pre_reqs:
   - sys-apps/hwloc
   requires:
   - <<: *layers-system-x
