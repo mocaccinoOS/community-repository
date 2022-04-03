@@ -1167,24 +1167,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-movit
-  category: "libs"
-  name: "movit"
-  version: "1.6.3+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/movit
-  atom: "media-video/movit"
-  provides:
-  - category: "media-video"
-    name: "movit"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-namespace-google
   category: "libs"
   name: "namespace-google"
@@ -4745,7 +4727,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.4.0+1"
+  version: "7.4.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4765,18 +4747,16 @@ packages:
   - media-libs/sdl2-image
   - media-libs/xine-lib
   - media-plugins/frei0r-plugins
-  - media-video/movit
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
   - <<: *libs-libebur128
   - <<: *libs-rubberband
   - <<: *libs-sdl2-image
   - <<: *libs-xine-lib
   - <<: *libs-frei0r-plugins
-  - <<: *libs-movit
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
 
 - &libs-pyasn1
   category: "libs"
