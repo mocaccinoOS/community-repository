@@ -5359,6 +5359,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "plantuml"
+  version: "1.2022.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/plantuml
+  atom: "media-gfx/plantuml"
+  provides:
+  - category: "media-gfx"
+    name: "plantuml"
+    version: ">=0"
+  pre_reqs:
+#   - *apps-java-packages
+  - dev-java/ant-core
+  - media-gfx/graphviz
+  requires:
+#   - <<: *apps-java
+  - <<: *layers-java
+  - <<: *layers-qt
+  - <<: *apps-ant-core
+  - <<: *apps-graphviz
+  build_requires:
+  - <<: *buildbase-java
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - &apps-pyhoca-cli
   category: "apps"
   name: "pyhoca-cli"
