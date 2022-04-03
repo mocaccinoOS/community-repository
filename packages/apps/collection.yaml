@@ -1591,23 +1591,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "ant-core"
-  version: "1.10.9-r3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/ant-core
-  atom: "dev-java/ant-core"
-  provides:
-  - category: "dev-java"
-    name: "ant-core"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
-- category: "apps"
   name: "brasero"
   version: "3.12.2+1"
   labels:
@@ -2194,7 +2177,8 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-- category: "apps"
+- &apps-javatoolkit
+  category: "apps"
   name: "javatoolkit"
   version: "0.6.7"
   labels:
@@ -3655,6 +3639,27 @@ packages:
 ################################################################################
 ### dep I apps ###
 ################################################################################
+
+- &apps-ant-core
+  category: "apps"
+  name: "ant-core"
+  version: "1.10.9-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/ant-core
+  atom: "dev-java/ant-core"
+  provides:
+  - category: "dev-java"
+    name: "ant-core"
+    version: ">=0"
+  pre_reqs:
+  - dev-java/javatoolkit
+  requires:
+  - <<: *layers-java
+  - <<: *apps-javatoolkit
+  build_requires:
+  - <<: *layers-java
 
 - &apps-astyle
   category: "apps"
