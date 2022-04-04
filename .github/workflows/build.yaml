@@ -57,7 +57,7 @@ jobs:
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Package}\t${Installed-Size}\n' | sort -n | tail -n 25
+        dpkg-query -Wf '${Package}\t\t${Installed-Size}\n' | sort -n | tail -n 100
         df -h
         sudo apt-get remove -y '^llvm-.*'
         sudo apt-get remove --auto-remove android-sdk-platform-tools
@@ -66,6 +66,8 @@ jobs:
         sudo apt-get remove -y '^dotnet-.*'
         sudo rm -rf /usr/share/dotnet # will release about 20GB if you don't need .NET
         sudo apt-get remove -y '^ghc-.*'
+        sudo apt-get remove -y '.*jdk.*'
+        sudo apt-get remove -y '.*jre.*'
         sudo apt-get remove -y 'php.*'
         sudo apt-get autoremove -y
         sudo apt-get clean
