@@ -57,7 +57,7 @@ jobs:
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Package}\t\t${Installed-Size}\n' | sort -n | tail -n 100
+        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
         df -h
         sudo apt-get remove -y '^llvm-.*'
         sudo apt-get remove --auto-remove android-sdk-platform-tools
