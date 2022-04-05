@@ -782,7 +782,25 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
+- &libs-libexttextcat
+  category: "libs"
+  name: "libexttextcat"
+  version: "3.4.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/libexttextcat
+  atom: "app-text/libexttextcat"
+  provides:
+  - category: "app-text"
+    name: "libexttextcat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libfame
   category: "libs"
   name: "libfame"
