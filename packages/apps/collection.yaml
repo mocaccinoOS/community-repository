@@ -837,6 +837,24 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &libs-liblangtag
+  category: "libs"
+  name: "liblangtag"
+  version: "0.6.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/liblangtag
+  atom: "app-text/liblangtag"
+  provides:
+  - category: "app-text"
+    name: "liblangtag"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -909,23 +927,23 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- &libs-liblangtag
+- &libs-libmwaw
   category: "libs"
-  name: "liblangtag"
-  version: "0.6.3+1"
+  name: "libmwaw"
+  version: "0.3.21"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-text/liblangtag
-  atom: "app-text/liblangtag"
+      app-text/libmwaw
+  atom: "app-text/libmwaw"
   provides:
   - category: "app-text"
-    name: "liblangtag"
+    name: "libmwaw"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
 
 - &libs-libmygpo-qt
   category: "libs"
@@ -2395,6 +2413,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# !
 - category: "apps"
   name: "kolourpaint"
   version: "21.08.3+2"
@@ -2540,9 +2559,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-#   - category: "kernel-modules"
-#     name: "nvidia-drivers-lts"
-#     version: ">=0"
 
 - category: "apps"
   name: "marble"
@@ -3901,7 +3917,6 @@ packages:
     name: "easytag"
     version: ">=0"
   pre_reqs:
-  #:
   - media-libs/id3lib
   requires:
   - <<: *layers-gnome-common
@@ -5058,7 +5073,7 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 #   - <<: *layers-X
-# 
+
 - category: "apps"
   name: "kdenlive"
   version: "21.08.3"
@@ -5535,12 +5550,10 @@ packages:
     name: "plantuml"
     version: ">=0"
   pre_reqs:
-#   - *apps-java-packages
   - *layers-java-packages
   - dev-java/ant-core
   - media-gfx/graphviz
   requires:
-#   - <<: *apps-java
   - <<: *layers-java
   - <<: *layers-qt
   - <<: *apps-ant-core
