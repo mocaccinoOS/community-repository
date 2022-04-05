@@ -765,6 +765,24 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-libepubgen
+  category: "libs"
+  name: "libepubgen"
+  version: "0.1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/libepubgen
+  atom: "app-text/libepubgen"
+  provides:
+  - category: "app-text"
+    name: "libepubgen"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
 - &libs-libfame
   category: "libs"
   name: "libfame"
@@ -1160,6 +1178,44 @@ packages:
   provides:
   - category: "net-libs"
     name: "mbedtls"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-mdds
+  category: "libs"
+  name: "mdds"
+  version: "1.7.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/mdds
+  atom: "dev-util/mdds"
+  provides:
+  - category: "dev-util"
+    name: "mdds"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-metis
+  category: "libs"
+  name: "metis"
+  version: "5.1.0-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/metis
+  atom: "sci-libs/metis"
+  provides:
+  - category: "sci-libs"
+    name: "metis"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3486,24 +3542,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-metis
-  category: "libs"
-  name: "metis"
-  version: "5.1.0-r5"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/metis
-  atom: "sci-libs/metis"
-  provides:
-  - category: "sci-libs"
-    name: "metis"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-opencv
   category: "libs"
   name: "opencv"
@@ -4263,6 +4301,29 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
+
+- &libs-libetonyek
+  category: "libs"
+  name: "libetonyek"
+  version: "0.1.10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/libetonyek
+  atom: "app-text/libetonyek"
+  provides:
+  - category: "app-text"
+    name: "libetonyek"
+    version: ">=0"
+  pre_reqs:
+  - app-text/liblangtag
+  - dev-util/mdds
+  requires:
+  - <<: *layers-X
+  - <<: *libs-liblangtag
+  - <<: *libs-mdds
+  build_requires:
+  - <<: *layers-X
 
 - &libs-wcslib
   category: "libs"
