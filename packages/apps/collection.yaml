@@ -247,6 +247,24 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-clucene
+  category: "libs"
+  name: "clucene"
+  version: "2.3.3.4-r6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/clucene
+  atom: "dev-cpp/clucene"
+  provides:
+  - category: "dev-cpp"
+    name: "clucene"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
