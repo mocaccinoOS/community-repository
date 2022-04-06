@@ -1244,6 +1244,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libzmf
+  category: "libs"
+  name: "libzmf"
+  version: "0.0.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libzmf
+  atom: "media-libs/libzmf"
+  provides:
+  - category: "media-libs"
+    name: "libzmf"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-log4cplus
   category: "libs"
   name: "log4cplus"
