@@ -185,24 +185,6 @@ packages:
 ### dep 0 libs ###
 ################################################################################
 
-- &libs-ampache_browser
-  category: "libs"
-  name: "ampache_browser"
-  version: "4.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/ampache_browser
-  atom: "media-libs/ampache_browser"
-  provides:
-  - category: "media-libs"
-    name: "ampache_browser"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -4725,10 +4707,12 @@ packages:
     name: "audacious-plugins"
     version: ">=0"
   - category: "media-libs"
+    name: "ampache_browser"
+    version: ">=0"
+  - category: "media-libs"
     name: "bio2jack"
     version: ">=0"
   pre_reqs:
-  - media-libs/ampache_browser
   - media-libs/faad2
   - media-libs/libbs2b
   - media-libs/libopenmpt
@@ -4736,7 +4720,6 @@ packages:
   - media-sound/fluidsynth
   requires:
   - <<: *layers-qt
-  - <<: *libs-ampache_browser
   - <<: *libs-faad2
   - <<: *libs-libbs2b
   - <<: *libs-libopenmpt
