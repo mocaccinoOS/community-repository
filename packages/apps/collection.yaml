@@ -78,6 +78,11 @@ anchors:
     virtual/jre
     virtual/jdk
 
+# https://bugs.gentoo.org/727334
+- &libs-sphinx-packages >-
+    dev-texlive/texlive-fontsrecommended
+    dev-python/sphinx
+  
 packages:
 
 ################################################################################
@@ -603,23 +608,23 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-libaom
-#   category: "libs"
-#   name: "libaom"
-#   version: "3.2.0"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-libs/libaom
-#   atom: "media-libs/libaom"
-#   provides:
-#   - category: "media-libs"
-#     name: "libaom"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &libs-libaom
+  category: "libs"
+  name: "libaom"
+  version: "3.2.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/libaom
+  atom: "media-libs/libaom"
+  provides:
+  - category: "media-libs"
+    name: "libaom"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-libabw
   category: "libs"
@@ -1234,9 +1239,7 @@ packages:
     name: "mdds"
     version: ">=0"
   pre_reqs:
-  # https://bugs.gentoo.org/727334 
-  - dev-texlive/texlive-fontsrecommended
-  - dev-python/sphinx
+  - *libs-sphinx-packages
   requires:
   - <<: *layers-X
   build_requires:
@@ -2102,7 +2105,7 @@ packages:
       media-gfx/fontforge
   atom: "media-gfx/fontforge"
   pre_reqs:
-  - dev-python/sphinx
+  - *libs-sphinx-packages
   provides:
   - category: "media-libs"
     name: "media-libs/libuninameslist"
