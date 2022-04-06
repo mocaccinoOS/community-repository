@@ -1027,6 +1027,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libodfgen
+  category: "libs"
+  name: "libodfgen"
+  version: "0.1.8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/libodfgen
+  atom: "app-text/libodfgen"
+  provides:
+  - category: "app-text"
+    name: "libodfgen"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-libofa
   category: "libs"
   name: "libofa"
