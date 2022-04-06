@@ -1086,7 +1086,7 @@ packages:
   name: "libqxp"
   version: "0.0.2"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-text/libqxp
   atom: "app-text/libqxp"
@@ -1171,7 +1171,7 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-# moved to X
+# TODO: remove next cycle
 - &libs-libwmf
   category: "libs"
   name: "libwmf"
@@ -1189,6 +1189,24 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+  
+- &libs-libwps
+  category: "libs"
+  name: "libwps"
+  version: "0.4.12"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/libwps
+  atom: "app-text/libwps"
+  provides:
+  - category: "app-text"
+    name: "libwps"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 - &libs-libxdg-basedir
   category: "libs"
