@@ -4662,6 +4662,52 @@ packages:
 ### dep II apps ###
 ################################################################################
 
+# TODO: add eds flag to app-office/abiword
+# TODO: add t1lib flag to x11-libs/gtkmathview
+- category: "apps"
+  name: "abiword"
+  version: "3.0.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/abiword
+  atom: "app-office/abiword"
+  provides:
+  - category: "app-office"
+    name: "abiword"
+    version: ">=0"
+  - category: "app-text"
+    name: "wv"
+    version: ">=0"
+  - category: "app-text"
+    name: "aiksaurus"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "link-grammar"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "gtkmathview"
+    version: ">=0"
+  pre_reqs:  
+  - dev-cpp/asio
+  - dev-libs/redland
+  - media-libs/libchamplain
+  - media-libs/libwmf
+  # - media-libs/t1lib
+  - net-libs/loudmouth
+  - media-fonts/texcm-ttf
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-asio
+  - <<: *libs-redland
+  - <<: *libs-libchamplain
+  - <<: *libs-libwmf
+  # - <<: *libs-t1lib
+  - <<: *libs-loudmouth
+  - <<: *fonts-texcm-ttf
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "audacious"
   version: "4.1+3"
