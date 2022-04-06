@@ -4295,6 +4295,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-postgresql
+  category: "libs"
+  name: "postgresql"
+  version: "13.5-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/postgresql
+  atom: "dev-db/postgresql"
+  provides:
+  - category: "dev-db"
+    name: "postgresql"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-postgresql"
+    version: ">=0"
+  - category: "entity"
+    name: "postgres"
+    version: ">=0"
+  pre_reqs:
+  - dev-libs/ossp-uuid
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-ossp-uuid
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "sqliteman"
   version: "1.2.2-r4"
