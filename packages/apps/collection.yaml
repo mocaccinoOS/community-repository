@@ -211,6 +211,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-asio
+  category: "libs"
+  name: "asio"
+  version: "1.21.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/asio
+  atom: "dev-cpp/asio"
+  provides:
+  - category: "dev-cpp"
+    name: "asio"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-babl
   category: "libs"
   name: "babl"
@@ -1354,6 +1372,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-mhash
+  category: "libs"
+  name: "mhash"
+  version: "0.9.9.9-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/mhash
+  atom: "app-crypt/mhash"
+  provides:
+  - category: "app-crypt"
+    name: "mhash"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-MIME-tools
   category: "libs"
   name: "MIME-tools"
@@ -1811,26 +1847,6 @@ packages:
 ################################################################################
 ### dep 0 apps ###
 ################################################################################
-
-- category: "apps"
-  name: "abiword"
-  version: "3.0.4+55"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/abiword
-  atom: "app-office/abiword"
-  provides:
-  - category: "app-office"
-    name: "abiword"
-    version: ">=0"
-  - category: "app-text"
-    name: "wv"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "brasero"
