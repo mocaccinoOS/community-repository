@@ -301,6 +301,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# TODO: remove next cycle
 - &libs-faad2
   category: "libs"
   name: "faad2"
@@ -697,6 +698,27 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+# TODO: add gtk flag next cycle
+- &libs-libchamplain
+  category: "libs"
+  name: "libchamplain"
+  version: "0.12.20"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libchamplain
+  atom: "media-libs/libchamplain"
+  overlay:
+    name: "brave-overlay"
+  provides:
+  - category: "media-libs"
+    name: "libchamplain"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-libdca
   category: "libs"
