@@ -1498,6 +1498,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-ossp-uuid
+  category: "libs"
+  name: "ossp-uuid"
+  version: "1.6.2-r6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/ossp-uuid
+  atom: "dev-libs/ossp-uuid"
+  provides:
+  - category: "dev-libs"
+    name: "ossp-uuid"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-physfs
   category: "libs"
   name: "physfs"
