@@ -4295,7 +4295,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-postgresql
+- &apps-postgresql
   category: "libs"
   name: "postgresql"
   version: "13.5-r1"
@@ -4311,14 +4311,14 @@ packages:
   - category: "app-eselect"
     name: "eselect-postgresql"
     version: ">=0"
-  - category: "entity"
-    name: "postgres"
-    version: ">=0"
   pre_reqs:
   - dev-libs/ossp-uuid
   requires:
   - <<: *layers-system-x
   - <<: *libs-ossp-uuid
+  - category: "entity"
+    name: "postgres"
+    version: ">=0"
   build_requires:
   - <<: *layers-system-x
 
@@ -4568,6 +4568,37 @@ packages:
   - <<: *libs-glm
   - <<: *libs-liblangtag
   - <<: *libs-mdds
+  build_requires:
+  - <<: *layers-X
+
+- &libs-redland
+  category: "libs"
+  name: "redland"
+  version: "1.0.17-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/redland
+  atom: "dev-libs/redland"
+  provides:
+  - category: "dev-libs"
+    name: "redland"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rasqal"
+    version: ">=0"
+  pre_reqs:
+  - app-crypt/mhash
+  - dev-db/libiodbc
+  - dev-db/postgresql
+  - dev-perl/XML-DOM
+  - media-libs/raptor
+  requires:
+  - <<: *layers-X
+  - <<: *libs-mhash
+  - <<: *libs-libiodbc
+  - <<: *apps-postgresql
+  - <<: *libs-raptor
   build_requires:
   - <<: *layers-X
 
