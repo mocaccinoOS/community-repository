@@ -824,6 +824,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# TODO: remove next cycle
+- &libs-glm
+  category: "libs"
+  name: "glm"
+  version: "0.9.9.8-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/glm
+  atom: "media-libs/glm"
+  provides:
+  - category: "media-libs"
+    name: "glm"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -2418,7 +2437,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# !
+# TODO: remove next cycle
 - category: "apps"
   name: "kolourpaint"
   version: "21.08.3+2"
@@ -4343,7 +4362,7 @@ packages:
 - &libs-libetonyek
   category: "libs"
   name: "libetonyek"
-  version: "0.1.10"
+  version: "0.1.10+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4354,10 +4373,12 @@ packages:
     name: "libetonyek"
     version: ">=0"
   pre_reqs:
+  - media-libs/glm
   - app-text/liblangtag
   - dev-util/mdds
   requires:
   - <<: *layers-X
+  - <<: *libs-glm
   - <<: *libs-liblangtag
   - <<: *libs-mdds
   build_requires:
@@ -5260,7 +5281,7 @@ packages:
 - &libs-libheif
   category: "libs"
   name: "libheif"
-  version: "1.12.0-r1+5"
+  version: "1.12.0-r1+6"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5271,12 +5292,12 @@ packages:
     name: "libheif"
     version: ">=0"
   pre_reqs:
-#   - media-libs/libaom
+  - media-libs/libaom
   - media-libs/libde265
   - media-video/rav1e
   requires:
   - <<: *layers-X
-#   - <<: *libs-libaom
+  - <<: *libs-libaom
   - <<: *libs-libde265
   - <<: *libs-rav1e
   build_requires:
