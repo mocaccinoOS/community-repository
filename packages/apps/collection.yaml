@@ -171,6 +171,16 @@ packages:
     name: "robotoslab"
     version: ">=0"
 
+- &fonts-texcm-ttf
+  <<: *fonts
+  name: "texcm-ttf"
+  version: "1.0"
+  atom: "media-fonts/texcm-ttf"
+  provides:
+  - category: "media-fonts"
+    name: "texcm-ttf"
+    version: ">=0"
+
 ################################################################################
 ### dep 0 libs ###
 ################################################################################
@@ -246,24 +256,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-bio2jack
-  category: "libs"
-  name: "bio2jack"
-  version: "0.9-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/bio2jack
-  atom: "media-libs/bio2jack"
-  provides:
-  - category: "media-libs"
-    name: "bio2jack"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-clucene
   category: "libs"
@@ -681,6 +673,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# TODO: remove next cycle
 - &libs-libbs2b
   category: "libs"
   name: "libbs2b"
@@ -4671,7 +4664,7 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.1+2"
+  version: "4.1+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-audacious-packages >-
@@ -4685,9 +4678,11 @@ packages:
   - category: "media-plugins"
     name: "audacious-plugins"
     version: ">=0"
+  - category: "media-libs"
+    name: "bio2jack"
+    version: ">=0"
   pre_reqs:
   - media-libs/ampache_browser
-  - media-libs/bio2jack
   - media-libs/faad2
   - media-libs/libbs2b
   - media-libs/libopenmpt
@@ -4696,7 +4691,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-ampache_browser
-  - <<: *libs-bio2jack
   - <<: *libs-faad2
   - <<: *libs-libbs2b
   - <<: *libs-libopenmpt
