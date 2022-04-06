@@ -1646,6 +1646,24 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-raptor
+  category: "libs"
+  name: "raptor"
+  version: "2.0.15-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/raptor
+  atom: "media-libs/raptor"
+  provides:
+  - category: "media-libs"
+    name: "raptor"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
