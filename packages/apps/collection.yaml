@@ -882,6 +882,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-loudmouth
+  category: "libs"
+  name: "loudmouth"
+  version: "1.5.3-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/loudmouth
+  atom: "net-libs/loudmouth"
+  overlay:
+    name: "brave-overlay"
+  provides:
+  - category: "net-libs"
+    name: "loudmouth"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 # TODO: remove next cycle
 - &libs-glm
   category: "libs"
