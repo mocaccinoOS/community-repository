@@ -1789,6 +1789,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# TODO: 
 - &libs-snappy
   category: "libs"
   name: "snappy"
@@ -1860,6 +1861,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-tomcat-servlet-api
+  category: "libs"
+  name: "tomcat-servlet-api"
+  version: "10.0.17"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/tomcat-servlet-api
+  atom: "dev-java/tomcat-servlet-api"
+  provides:
+  - category: "dev-java"
+    name: "tomcat-servlet-api"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
 
 - &libs-tremor
   category: "libs"
@@ -3553,6 +3572,29 @@ packages:
   - <<: *libs-snappy
   build_requires:
   - <<: *layers-system-x
+
+- &libs-bsh
+  category: "apps"
+  name: "bsh"
+  version: "2.0_beta6-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/bsh
+  atom: "dev-java/bsh"
+  provides:
+  - category: "dev-java"
+    name: "bsh"
+    version: ">=0"
+  pre_reqs:
+  - dev-java/ant-core
+  - dev-java/tomcat-servlet-api
+  requires:
+  - <<: *layers-java
+  - <<: *apps-ant-core
+  - <<: *libs-tomcat-servlet-api
+  build_requires:
+  - <<: *layers-java
 
 - &libs-camd
   category: "libs"
