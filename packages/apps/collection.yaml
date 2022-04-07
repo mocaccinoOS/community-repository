@@ -256,6 +256,25 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+  
+# TODO: remove next cycle
+- &libs-clutter-gtk
+  category: "libs"
+  name: "clutter-gtk"
+  version: "1.8.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/clutter-gtk
+  atom: "media-libs/clutter-gtk"
+  provides:
+  - category: "media-libs"
+    name: "clutter-gtk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-Config-Simple
   category: "libs"
@@ -4669,6 +4688,7 @@ packages:
   pre_reqs:  
   - dev-cpp/asio
   - dev-libs/redland
+  - media-libs/clutter-gtk
   - media-libs/libchamplain
   - media-libs/libwmf
   # - media-libs/t1lib
@@ -4678,6 +4698,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-asio
   - <<: *libs-redland
+  - <<: *libs-clutter-gtk
   - <<: *libs-libchamplain
   - <<: *libs-libwmf
   # - <<: *libs-t1lib
