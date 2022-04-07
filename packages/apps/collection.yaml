@@ -693,11 +693,10 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-# TODO: add gtk flag next cycle
 - &libs-libchamplain
   category: "libs"
   name: "libchamplain"
-  version: "0.12.20+2"
+  version: "0.12.20+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -707,8 +706,11 @@ packages:
   - category: "media-libs"
     name: "libchamplain"
     version: ">=0"
+  pre_reqs:
+  - media-libs/clutter-gtk
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-clutter-gtk
   build_requires:
   - <<: *layers-gnome-common
 
