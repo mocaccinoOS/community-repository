@@ -312,6 +312,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-cppunit
+  category: "libs"
+  name: "cppunit"
+  version: "1.15.1-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/cppunit
+  atom: "dev-util/cppunit"
+  provides:
+  - category: "dev-util"
+    name: "cppunit"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 # TODO: remove next cycle
 - &libs-faad2
   category: "libs"
@@ -456,6 +474,25 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+# TODO: remove next cycle
+- &libs-glm
+  category: "libs"
+  name: "glm"
+  version: "0.9.9.8-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/glm
+  atom: "media-libs/glm"
+  provides:
+  - category: "media-libs"
+    name: "glm"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-gmime
   category: "libs"
@@ -894,42 +931,41 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-loudmouth
-  category: "libs"
-  name: "loudmouth"
-  version: "1.5.3-r3+1"
+- &libs-libfreehand
+  category: "apps"
+  name: "libfreehand"
+  version: "0.1.2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/loudmouth
-  atom: "net-libs/loudmouth"
-  provides:
-  - category: "net-libs"
-    name: "loudmouth"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
-# TODO: remove next cycle
-- &libs-glm
-  category: "libs"
-  name: "glm"
-  version: "0.9.9.8-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/glm
-  atom: "media-libs/glm"
+      media-libs/libfreehand
+  atom: "media-libs/libfreehand"
   provides:
   - category: "media-libs"
-    name: "glm"
+    name: "libfreehand"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
+
+- &libs-libpagemaker
+  category: "apps"
+  name: "libpagemaker"
+  version: "0.0.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libpagemaker
+  atom: "media-libs/libpagemaker"
+  provides:
+  - category: "media-libs"
+    name: "libpagemaker"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 - &libs-libiodbc
   category: "libs"
@@ -1367,6 +1403,24 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+
+- &libs-loudmouth
+  category: "libs"
+  name: "loudmouth"
+  version: "1.5.3-r3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/loudmouth
+  atom: "net-libs/loudmouth"
+  provides:
+  - category: "net-libs"
+    name: "loudmouth"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-mac
   category: "libs"
@@ -4608,6 +4662,27 @@ packages:
   - <<: *libs-libnova
   build_requires:
   - <<: *layers-X
+
+- &libs-lpsolve
+  category: "libs"
+  name: "lpsolve"
+  version: "5.5.2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/lpsolve
+  atom: "sci-libs/lpsolve"
+  provides:
+  - category: "sci-libs"
+    name: "lpsolve"
+    version: ">=0"
+  pre_reqs:
+  - sci-libs/colamd
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-colamd
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-openvdb
   category: "libs"
