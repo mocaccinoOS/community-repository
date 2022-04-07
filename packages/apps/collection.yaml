@@ -512,6 +512,24 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-gperf
+  category: "libs"
+  name: "gperf"
+  version: "3.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/gperf
+  atom: "dev-util/gperf"
+  provides:
+  - category: "dev-util"
+    name: "gperf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gsl
   category: "libs"
   name: "gsl"
@@ -930,24 +948,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libfreehand
-  category: "apps"
-  name: "libfreehand"
-  version: "0.1.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libfreehand
-  atom: "media-libs/libfreehand"
-  provides:
-  - category: "media-libs"
-    name: "libfreehand"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-libpagemaker
   category: "apps"
@@ -3794,6 +3794,27 @@ packages:
   - <<: *libs-argtable
   build_requires:
   - <<: *layers-X
+
+- &libs-libfreehand
+  category: "apps"
+  name: "libfreehand"
+  version: "0.1.2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libfreehand
+  atom: "media-libs/libfreehand"
+  provides:
+  - category: "media-libs"
+    name: "libfreehand"
+    version: ">=0"
+  pre_reqs:
+  - dev-util/gperf
+  requires:
+  - <<: *layers-codecs
+  - <<: *libs-gperf
+  build_requires:
+  - <<: *layers-codecs
 
 - &libs-libebook
   category: "libs"
