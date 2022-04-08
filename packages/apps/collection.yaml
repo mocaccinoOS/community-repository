@@ -274,25 +274,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
-# TODO: remove next cycle
-- &libs-clutter-gtk
-  category: "libs"
-  name: "clutter-gtk"
-  version: "1.8.4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/clutter-gtk
-  atom: "media-libs/clutter-gtk"
-  provides:
-  - category: "media-libs"
-    name: "clutter-gtk"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
 
 - &libs-Config-Simple
   category: "libs"
@@ -779,11 +760,8 @@ packages:
   - category: "media-libs"
     name: "libchamplain"
     version: ">=0"
-  pre_reqs:
-  - media-libs/clutter-gtk
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-clutter-gtk
   build_requires:
   - <<: *layers-gnome-common
 
@@ -1313,25 +1291,6 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-# TODO: remove next cycle
-- &libs-libwmf
-  category: "libs"
-  name: "libwmf"
-  version: "0.2.8.4-r9"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libwmf
-  atom: "media-libs/libwmf"
-  provides:
-  - category: "media-libs"
-    name: "libwmf"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-  
 - &libs-libwps
   category: "libs"
   name: "libwps"
@@ -2735,24 +2694,6 @@ packages:
   provides:
   - category: "kde-misc"
     name: "kdiff3"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
-# TODO: remove next cycle
-- category: "apps"
-  name: "kolourpaint"
-  version: "21.08.3+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kolourpaint
-  atom: "kde-apps/kolourpaint"
-  provides:
-  - category: "kde-apps"
-    name: "kolourpaint"
     version: ">=0"
   requires:
   - <<: *layers-kde-common
@@ -4842,9 +4783,7 @@ packages:
   pre_reqs:  
   - dev-cpp/asio
   - dev-libs/redland
-  - media-libs/clutter-gtk
   - media-libs/libchamplain
-  - media-libs/libwmf
   # - media-libs/t1lib
   - net-libs/loudmouth
   - media-fonts/texcm-ttf
@@ -4852,9 +4791,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-asio
   - <<: *libs-redland
-  - <<: *libs-clutter-gtk
   - <<: *libs-libchamplain
-  - <<: *libs-libwmf
   # - <<: *libs-t1lib
   - <<: *libs-loudmouth
   - <<: *fonts-texcm-ttf
@@ -6086,7 +6023,6 @@ packages:
   - media-libs/libheif
   - media-libs/libmng
   - media-libs/libmypaint
-  - media-libs/libwmf
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-mypaint-brushes
@@ -6094,7 +6030,6 @@ packages:
   - <<: *libs-libheif
   - <<: *libs-libmng
   - <<: *libs-libmypaint
-  - <<: *libs-libwmf
   build_requires:
   - <<: *layers-gnome-common
 
