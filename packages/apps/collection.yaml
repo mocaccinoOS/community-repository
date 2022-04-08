@@ -456,25 +456,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# TODO: remove next cycle
-- &libs-glm
-  category: "libs"
-  name: "glm"
-  version: "0.9.9.8-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/glm
-  atom: "media-libs/glm"
-  provides:
-  - category: "media-libs"
-    name: "glm"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-gmime
   category: "libs"
   name: "gmime"
@@ -4687,12 +4668,10 @@ packages:
     name: "libetonyek"
     version: ">=0"
   pre_reqs:
-  - media-libs/glm
   - app-text/liblangtag
   - dev-util/mdds
   requires:
   - <<: *layers-X
-  - <<: *libs-glm
   - <<: *libs-liblangtag
   - <<: *libs-mdds
   build_requires:
