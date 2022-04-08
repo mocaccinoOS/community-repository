@@ -4997,6 +4997,111 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-libreoffice
+  category: "apps"
+  name: "libreoffice"
+  version: "7.2.5.2-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/libreoffice
+  atom: "app-office/libreoffice"
+  provides:
+  - category: "app-office"
+    name: "libreoffice"
+    version: ">=0"
+  - category: "app-text"
+    name: "libnumbertext"
+    version: ">=0"
+  - category: "app-text"
+    name: "libstaroffice"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "libcmis"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "liborcus"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libixion"
+    version: ">=0"
+  - category: "games-engines"
+    name: "box2d"
+    version: ">=0"
+  - category: "sys-devel"
+    name: "ucpp"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "coinor-mp"
+    version: ">=0"
+  pre_reqs:
+  - app-text/libabw
+  - app-text/libebook
+  - app-text/libepubgen
+  - app-text/libetonyek
+  - app-text/libexttextcat
+  - app-text/liblangtag
+  - app-text/libmspub
+  - app-text/libmwaw
+  - app-text/libodfgen
+  - app-text/libqxp
+  - app-text/libwps
+  - app-text/mythes
+  - dev-cpp/clucene
+  - dev-db/mariadb-connector-c
+  - dev-db/postgresql
+  - *layers-java-packages
+  - dev-java/ant-core
+  # - dev-java/javatoolkit
+  # - dev-java/bsh
+  # - dev-java/rhino
+  - dev-util/mdds
+  - dev-libs/redland
+  - dev-libs/xmlsec
+  - dev-perl/Archive-Zip
+  - dev-util/cppunit
+  - media-gfx/fontforge
+  - media-libs/libfreehand
+  - media-libs/libpagemaker
+  - media-libs/libvisio
+  - media-libs/libzmf
+  - sci-mathematics/lpsolve  
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-java
+  - <<: *libs-libabw
+  - <<: *libs-libebook
+  - <<: *libs-libepubgen
+  - <<: *libs-libetonyek
+  - <<: *libs-libexttextcat
+  - <<: *libs-liblangtag
+  - <<: *libs-libmspub
+  - <<: *libs-libmwaw
+  - <<: *libs-libodfgen
+  - <<: *libs-libqxp
+  - <<: *libs-libwps
+  - <<: *libs-mythes
+  - <<: *libs-clucene
+  - <<: *libs-mariadb-connector-c
+  # - <<: *apps-postgresql
+  - <<: *apps-ant-core
+  # - <<: *apps-javatoolkit
+  # - <<: *libs-bsh
+  # - <<: *libs-rhino
+  - <<: *libs-mdds
+  - <<: *libs-redland
+  - <<: *libs-xmlsec
+  - <<: *libs-Archive-Zip
+  - <<: *libs-cppunit
+  - <<: *apps-fontforge
+  - <<: *libs-libfreehand
+  - <<: *libs-libpagemaker
+  - <<: *libs-libvisio
+  - <<: *libs-libzmf
+  - <<: *libs-lpsolve
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "onedrive"
   version: "2.4.9+4"
