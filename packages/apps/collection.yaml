@@ -474,24 +474,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-gperf
-  category: "libs"
-  name: "gperf"
-  version: "3.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/gperf
-  atom: "dev-util/gperf"
-  provides:
-  - category: "dev-util"
-    name: "gperf"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-gsl
   category: "libs"
   name: "gsl"
@@ -1782,25 +1764,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-# TODO: 
-- &libs-snappy
-  category: "libs"
-  name: "snappy"
-  version: "1.1.9-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-arch/snappy
-  atom: "app-arch/snappy"
-  provides:
-  - category: "app-arch"
-    name: "snappy"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-suitesparseconfig
   category: "libs"
@@ -3531,7 +3494,7 @@ packages:
 - &libs-c-blosc
   category: "libs"
   name: "c-blosc"
-  version: "1.21.1+1"
+  version: "1.21.1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3541,11 +3504,8 @@ packages:
   - category: "dev-libs"
     name: "c-blosc"
     version: ">=0"
-  pre_reqs:
-  - app-arch/snappy
   requires:
   - <<: *layers-system-x
-  - <<: *libs-snappy
   build_requires:
   - <<: *layers-system-x
 
@@ -3712,13 +3672,10 @@ packages:
   - category: "media-libs"
     name: "libfreehand"
     version: ">=0"
-  pre_reqs:
-  - dev-util/gperf
   requires:
-  - <<: *layers-codecs
-  - <<: *libs-gperf
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libebook
   category: "libs"
@@ -4570,13 +4527,10 @@ packages:
   - category: "media-libs"
     name: "libvisio"
     version: ">=0"
-  pre_reqs:
-  - dev-util/gperf
   requires:
-  - <<: *layers-codecs
-  - <<: *libs-gperf
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-lpsolve
   category: "libs"
@@ -4984,6 +4938,7 @@ packages:
   - media-libs/libpagemaker
   - media-libs/libvisio
   - media-libs/libzmf
+  # TODO: - media-libs/zxing-cpp
   - sci-mathematics/lpsolve  
   requires:
   - <<: *layers-gnome-common
