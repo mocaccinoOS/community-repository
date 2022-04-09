@@ -3194,6 +3194,24 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-spacenavd
+  category: "apps"
+  name: "spacenavd"
+  version: "0.8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/spacenavd
+  atom: "app-misc/spacenavd"
+  provides:
+  - category: "app-misc"
+    name: "spacenavd"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "subtitlecomposer"
   version: "0.7.1+6"
