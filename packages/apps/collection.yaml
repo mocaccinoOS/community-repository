@@ -1617,6 +1617,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-plotutils
+  category: "libs"
+  name: "plotutils"
+  version: "2.6-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/plotutils
+  atom: "media-libs/plotutils"
+  provides:
+  - category: "media-libs"
+    name: "plotutils"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-ptex
   category: "libs"
   name: "ptex"
@@ -4392,6 +4410,29 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-system-x
+
+- &apps-pstoedit
+  category: "apps"
+  name: "pstoedit"
+  version: "3.75"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/pstoedit
+  atom: "media-gfx/pstoedit"
+  provides:
+  - category: "media-gfx"
+    name: "pstoedit"
+    version: ">=0"
+  pre_reqs;
+  - media-libs/libemf
+  - media-libs/plotutils
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libemf
+  - <<: *libs-plotutils
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "sqliteman"
