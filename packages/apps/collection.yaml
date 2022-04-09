@@ -4197,6 +4197,28 @@ packages:
   - <<: *layers-gnome
 
 - category: "apps"
+  name: "graphicsmagick"
+  version: "1.3.37"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/graphicsmagick
+  atom: "media-gfx/graphicsmagick"
+  provides:
+  - category: "media-gfx"
+    name: "graphicsmagick"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/jbigkit
+  - media-libs/libfpx
+  requires:
+  - <<: *layers-X
+  - <<: *libs-jbigkit
+  - <<: *libs-libfpx
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "guvcview"
   version: "2.0.6-r2+1"
   labels:
