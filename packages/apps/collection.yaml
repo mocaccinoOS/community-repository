@@ -275,24 +275,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-collada-dom
-  category: "libs"
-  name: "collada-dom"
-  version: "2.5.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/collada-dom
-  atom: "dev-libs/collada-dom"
-  provides:
-  - category: "dev-libs"
-    name: "collada-dom"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -595,6 +577,24 @@ packages:
   provides:
   - category: "media-libs"
     name: "id3lib"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-jbigkit
+  category: "libs"
+  name: "jbigkit"
+  version: "2.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/jbigkit
+  atom: "media-libs/jbigkit"
+  provides:
+  - category: "media-libs"
+    name: "jbigkit"
     version: ">=0"
   requires:
   - <<: *layers-system-x
