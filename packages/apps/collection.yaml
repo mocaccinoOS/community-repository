@@ -3971,6 +3971,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libspnav
+  category: "libs"
+  name: "libspnav"
+  version: "0.2.3-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libspnav
+  atom: "dev-libs/libspnav"
+  provides:
+  - category: "dev-libs"
+    name: "libspnav"
+    version: ">=0"
+  pre_reqs:
+  - app-misc/spacenavd
+  requires:
+  - <<: *layers-X
+  - <<: *apps-spacenavd
+  build_requires:
+  - <<: *layers-X
+
 - &libs-tbb
   category: "libs"
   name: "tbb"
