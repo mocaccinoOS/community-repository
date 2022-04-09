@@ -4376,40 +4376,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "scribus"
-  version: "1.5.8"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/scribus
-  atom: "app-office/scribus"
-  provides:
-  - category: "app-office"
-    name: "scribus"
-    version: ">=0"
-  pre_reqs:
-  - app-text/libmspub
-  - app-text/libqxp
-  - app-text/podofo
-  # - media-gfx/graphicsmagick
-  - media-libs/libfreehand
-  - media-libs/libpagemaker
-  - media-libs/libvisio
-  - media-libs/libzmf  
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libmspub
-  - <<: *libs-libqxp
-  - <<: *apps-podofo
-  # - <<: *apps-graphicsmagick
-  - <<: *libs-libfreehand
-  - <<: *libs-libpagemaker
-  - <<: *libs-libvisio
-  - <<: *libs-libzmf  
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "sqliteman"
   version: "1.2.2-r4"
   labels:
@@ -5227,6 +5193,40 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-icoutils
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
+  name: "scribus"
+  version: "1.5.8"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/scribus
+  atom: "app-office/scribus"
+  provides:
+  - category: "app-office"
+    name: "scribus"
+    version: ">=0"
+  pre_reqs:
+  - app-text/libmspub
+  - app-text/libqxp
+  - app-text/podofo
+  # - media-gfx/graphicsmagick
+  - media-libs/libfreehand
+  - media-libs/libpagemaker
+  - media-libs/libvisio
+  - media-libs/libzmf  
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libmspub
+  - <<: *libs-libqxp
+  - <<: *apps-podofo
+  # - <<: *apps-graphicsmagick
+  - <<: *libs-libfreehand
+  - <<: *libs-libpagemaker
+  - <<: *libs-libvisio
+  - <<: *libs-libzmf  
   build_requires:
   - <<: *layers-qt
 
