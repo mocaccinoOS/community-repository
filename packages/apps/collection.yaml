@@ -854,6 +854,24 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-libemf
+  category: "libs"
+  name: "libemf"
+  version: "1.0.13"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libemf
+  atom: "media-libs/libemf"
+  provides:
+  - category: "media-libs"
+    name: "libemf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libepubgen
   category: "libs"
   name: "libepubgen"
