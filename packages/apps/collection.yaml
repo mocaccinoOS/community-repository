@@ -257,24 +257,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-clucene
-  category: "libs"
-  name: "clucene"
-  version: "2.3.3.4-r6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/clucene
-  atom: "dev-cpp/clucene"
-  provides:
-  - category: "dev-cpp"
-    name: "clucene"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -691,24 +673,6 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- &libs-libabw
-  category: "libs"
-  name: "libabw"
-  version: "0.1.3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libabw
-  atom: "app-text/libabw"
-  provides:
-  - category: "app-text"
-    name: "libabw"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 # TODO: remove next cycle
 - &libs-libbs2b
   category: "libs"
@@ -872,42 +836,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libepubgen
-  category: "libs"
-  name: "libepubgen"
-  version: "0.1.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libepubgen
-  atom: "app-text/libepubgen"
-  provides:
-  - category: "app-text"
-    name: "libepubgen"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-libexttextcat
-  category: "libs"
-  name: "libexttextcat"
-  version: "3.4.6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libexttextcat
-  atom: "app-text/libexttextcat"
-  provides:
-  - category: "app-text"
-    name: "libexttextcat"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libfame
   category: "libs"
   name: "libfame"
@@ -925,24 +853,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libpagemaker
-  category: "apps"
-  name: "libpagemaker"
-  version: "0.0.4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libpagemaker
-  atom: "media-libs/libpagemaker"
-  provides:
-  - category: "media-libs"
-    name: "libpagemaker"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-libiodbc
   category: "libs"
@@ -998,24 +908,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &libs-liblangtag
-  category: "libs"
-  name: "liblangtag"
-  version: "0.6.3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/liblangtag
-  atom: "app-text/liblangtag"
-  provides:
-  - category: "app-text"
-    name: "liblangtag"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -1069,42 +961,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-libmspub
-  category: "libs"
-  name: "libmspub"
-  version: "0.1.4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/libmspub
-  atom: "app-text/libmspub"
-  provides:
-  - category: "app-text"
-    name: "libmspub"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
-- &libs-libmwaw
-  category: "libs"
-  name: "libmwaw"
-  version: "0.3.21"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libmwaw
-  atom: "app-text/libmwaw"
-  provides:
-  - category: "app-text"
-    name: "libmwaw"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-libmygpo-qt
   category: "libs"
@@ -1164,24 +1020,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libodfgen
-  category: "libs"
-  name: "libodfgen"
-  version: "0.1.8"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libodfgen
-  atom: "app-text/libodfgen"
-  provides:
-  - category: "app-text"
-    name: "libodfgen"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
 - &libs-libofa
   category: "libs"
   name: "libofa"
@@ -1217,24 +1055,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-libqxp
-  category: "libs"
-  name: "libqxp"
-  version: "0.0.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libqxp
-  atom: "app-text/libqxp"
-  provides:
-  - category: "app-text"
-    name: "libqxp"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-libshout
   category: "libs"
@@ -1290,24 +1110,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libwps
-  category: "libs"
-  name: "libwps"
-  version: "0.4.12"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libwps
-  atom: "app-text/libwps"
-  provides:
-  - category: "app-text"
-    name: "libwps"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
@@ -1325,24 +1127,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libzmf
-  category: "libs"
-  name: "libzmf"
-  version: "0.0.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libzmf
-  atom: "media-libs/libzmf"
-  provides:
-  - category: "media-libs"
-    name: "libzmf"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-log4cplus
   category: "libs"
@@ -1435,26 +1219,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-mdds
-  category: "libs"
-  name: "mdds"
-  version: "1.7.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/mdds
-  atom: "dev-util/mdds"
-  provides:
-  - category: "dev-util"
-    name: "mdds"
-    version: ">=0"
-  pre_reqs:
-  - *libs-sphinx-packages
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-metis
   category: "libs"
   name: "metis"
@@ -1503,24 +1267,6 @@ packages:
   provides:
   - category: "dev-perl"
     name: "MIME-tools"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-mythes
-  category: "libs"
-  name: "mythes"
-  version: "1.2.4-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/mythes
-  atom: "app-text/mythes"
-  provides:
-  - category: "app-text"
-    name: "mythes"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -1785,24 +1531,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &libs-raptor
-  category: "libs"
-  name: "raptor"
-  version: "2.0.15-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/raptor
-  atom: "media-libs/raptor"
-  provides:
-  - category: "media-libs"
-    name: "raptor"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 - &libs-rtl-sdr
   category: "libs"
@@ -3752,45 +3480,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libfreehand
-  category: "apps"
-  name: "libfreehand"
-  version: "0.1.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libfreehand
-  atom: "media-libs/libfreehand"
-  provides:
-  - category: "media-libs"
-    name: "libfreehand"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-libebook
-  category: "libs"
-  name: "libebook"
-  version: "0.1.3-r2+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libebook
-  atom: "app-text/libebook"
-  provides:
-  - category: "app-text"
-    name: "libebook"
-    version: ">=0"
-  pre_reqs:
-  - app-text/liblangtag
-  requires:
-  - <<: *layers-X
-  - <<: *libs-liblangtag
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gts
   category: "apps"
   name: "gts"
@@ -3876,6 +3565,96 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *layers-java
+  build_requires:
+  - <<: *layers-X
+
+- &libs-office-common
+  category: "libs"
+  name: "office-common"
+  version: "0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-office-common-packages >-
+      app-text/libabw
+      app-text/liblangtag
+      app-text/libebook
+      app-text/libepubgen
+      app-text/libetonyek
+      app-text/libexttextcat
+      app-text/libmspub
+      app-text/libmwaw
+      app-text/libodfgen
+      app-text/libqxp
+      app-text/libwps
+      app-text/mythes
+      dev-cpp/clucene
+      dev-util/mdds
+      media-libs/raptor
+      dev-libs/redland
+      media-libs/libfreehand
+      media-libs/libpagemaker
+      media-libs/libzmf
+  atom: *libs-office-common-packages
+  provides:
+  - category: "app-text"
+    name: "libabw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libodfgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libebook"
+    version: ">=0"
+  - category: "app-text"
+    name: "libetonyek"
+    version: ">=0"
+  - category: "app-text"
+    name: "libexttextcat"
+    version: ">=0"
+  - category: "app-text"
+    name: "liblangtag"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmwaw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmspub"
+    version: ">=0"
+  - category: "app-text"
+    name: "libepubgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libqxp"
+    version: ">=0"
+  - category: "app-text"
+    name: "libwps"
+    version: ">=0"
+  - category: "app-text"
+    name: "mythes"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "clucene"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "redland"
+    version: ">=0"
+  - category: "dev-util"
+    name: "mdds"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libfreehand"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libpagemaker"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libzmf"
+    version: ">=0"
+  - category: "media-libs"
+    name: "raptor"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
@@ -4273,28 +4052,6 @@ packages:
   - <<: *libs-ytnef
   build_requires:
   - <<: *layers-gnome
-
-# - category: "apps"
-#   name: "graphicsmagick"
-#   version: "1.3.37"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/graphicsmagick
-#   atom: "media-gfx/graphicsmagick"
-#   provides:
-#   - category: "media-gfx"
-#     name: "graphicsmagick"
-#     version: ">=0"
-#   pre_reqs:
-#   - media-libs/jbigkit
-#   - media-libs/libfpx
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-jbigkit
-#   - <<: *libs-libfpx
-#   build_requires:
-#   - <<: *layers-X
 
 - category: "apps"
   name: "guvcview"
@@ -4739,60 +4496,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-libetonyek
-  category: "libs"
-  name: "libetonyek"
-  version: "0.1.10+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/libetonyek
-  atom: "app-text/libetonyek"
-  provides:
-  - category: "app-text"
-    name: "libetonyek"
-    version: ">=0"
-  pre_reqs:
-  - app-text/liblangtag
-  - dev-util/mdds
-  requires:
-  - <<: *layers-X
-  - <<: *libs-liblangtag
-  - <<: *libs-mdds
-  build_requires:
-  - <<: *layers-X
-
-- &libs-redland
-  category: "libs"
-  name: "redland"
-  version: "1.0.17-r2+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/redland
-  atom: "dev-libs/redland"
-  provides:
-  - category: "dev-libs"
-    name: "redland"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rasqal"
-    version: ">=0"
-  pre_reqs:
-  - app-crypt/mhash
-  - dev-db/libiodbc
-  # - dev-db/postgresql
-  - dev-perl/XML-DOM
-  - media-libs/raptor
-  requires:
-  - <<: *layers-X
-  - <<: *libs-mhash
-  - <<: *libs-libiodbc
-  # - <<: *apps-postgresql
-  - <<: *libs-raptor
-  build_requires:
-  - <<: *layers-X
-
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
@@ -4846,7 +4549,7 @@ packages:
     version: ">=0"
   pre_reqs:  
   - dev-cpp/asio
-  - dev-libs/redland
+  - *libs-office-common-packages
   - media-libs/libchamplain
   # - media-libs/t1lib
   - net-libs/loudmouth
@@ -4854,7 +4557,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-asio
-  - <<: *libs-redland
+  - <<: *libs-office-common
   - <<: *libs-libchamplain
   # - <<: *libs-t1lib
   - <<: *libs-loudmouth
@@ -5070,70 +4773,36 @@ packages:
     name: "coinor-mp"
     version: ">=0"
   pre_reqs:
-  - app-text/libabw
-  - app-text/libebook
-  - app-text/libepubgen
-  - app-text/libetonyek
-  - app-text/libexttextcat
-  - app-text/liblangtag
-  - app-text/libmspub
-  - app-text/libmwaw
-  - app-text/libodfgen
-  - app-text/libqxp
-  - app-text/libwps
-  - app-text/mythes
-  - dev-cpp/clucene
-  - dev-db/mariadb-connector-c
-  # - dev-db/postgresql
   - *layers-java-packages
   - dev-java/ant-core
   - dev-java/javatoolkit
   # - dev-java/bsh
   # - dev-java/rhino
-  - dev-util/mdds
-  - dev-libs/redland
+  - *libs-office-common-packages
+  - dev-db/mariadb-connector-c
+  # - dev-db/postgresql
   - dev-libs/xmlsec
   - dev-perl/Archive-Zip
   - dev-util/cppunit
   - media-gfx/fontforge
-  - media-libs/libfreehand
-  - media-libs/libpagemaker
   - media-libs/libvisio
-  - media-libs/libzmf
   - media-libs/zxing-cpp
   - sci-mathematics/lpsolve  
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-java
-  - <<: *libs-libabw
-  - <<: *libs-libebook
-  - <<: *libs-libepubgen
-  - <<: *libs-libetonyek
-  - <<: *libs-libexttextcat
-  - <<: *libs-liblangtag
-  - <<: *libs-libmspub
-  - <<: *libs-libmwaw
-  - <<: *libs-libodfgen
-  - <<: *libs-libqxp
-  - <<: *libs-libwps
-  - <<: *libs-mythes
-  - <<: *libs-clucene
-  - <<: *libs-mariadb-connector-c
-  # - <<: *apps-postgresql
   - <<: *apps-ant-core
   - <<: *apps-javatoolkit
   # - <<: *libs-bsh
   # - <<: *libs-rhino
-  - <<: *libs-mdds
-  - <<: *libs-redland
+  - <<: *libs-office-common
+  - <<: *libs-mariadb-connector-c
+  # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *libs-Archive-Zip
   - <<: *libs-cppunit
   - <<: *apps-fontforge
-  - <<: *libs-libfreehand
-  - <<: *libs-libpagemaker
   - <<: *libs-libvisio
-  - <<: *libs-libzmf
   - <<: *libs-lpsolve
   build_requires:
   - <<: *layers-gnome-common
@@ -5310,24 +4979,14 @@ packages:
     name: "scribus"
     version: ">=0"
   pre_reqs:
-  - app-text/libmspub
-  - app-text/libqxp
+  - *libs-office-common-packages
   - app-text/podofo
-  # - media-gfx/graphicsmagick
-  - media-libs/libfreehand
-  - media-libs/libpagemaker
   - media-libs/libvisio
-  - media-libs/libzmf  
   requires:
   - <<: *layers-qt
-  - <<: *libs-libmspub
-  - <<: *libs-libqxp
+  - <<: *libs-office-common
   - <<: *apps-podofo
-  # - <<: *apps-graphicsmagick
-  - <<: *libs-libfreehand
-  - <<: *libs-libpagemaker
   - <<: *libs-libvisio
-  - <<: *libs-libzmf  
   build_requires:
   - <<: *layers-qt
 
