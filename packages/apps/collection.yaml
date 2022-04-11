@@ -4223,7 +4223,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "13.5-r1"
+  version: "13.5-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4239,13 +4239,13 @@ packages:
   pre_reqs:
   - dev-libs/ossp-uuid
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
   - category: "entity"
     name: "postgres"
     version: ">=0"
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-pstoedit
   category: "apps"
