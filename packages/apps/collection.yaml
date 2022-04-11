@@ -5308,6 +5308,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-pycryptodome
+  category: "libs"
+  name: "pycryptodome"
+  version: "3.14.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pycryptodome
+  atom: "dev-python/pycryptodome"
+  provides:
+  - category: "dev-python"
+    name: "pycryptodome"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/libtomcrypt
+  - dev-python/pypy3
+  - dev-python/wheel
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-libtomcrypt
+  - <<: *apps-pypy3
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-rav1e
   category: "libs"
   name: "rav1e"
