@@ -4089,6 +4089,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-img2pdf
+  category: "apps"
+  name: "img2pdf"
+  version: "0.4.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/img2pdf
+  atom: "media-gfx/img2pdf"
+  provides:
+  - category: "media-gfx"
+    name: "img2pdf"
+    version: ">=0"
+  pre_emerge:
+  - dev-python/pikepdf
+  requires:
+  - <<: *layers-X
+  - <<: *libs-pikepdf
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "kget"
   version: "21.08.3+2"
