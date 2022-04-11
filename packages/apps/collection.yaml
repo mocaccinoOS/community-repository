@@ -1496,6 +1496,24 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-reportlab
+  category: "libs"
+  name: "reportlab"
+  version: "3.6.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/reportlab
+  atom: "dev-python/reportlab"
+  provides:
+  - category: "dev-python"
+    name: "reportlab"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
@@ -1788,38 +1806,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &apps-clamav
-  category: "apps"
-  name: "clamav"
-  version: "0.103.5+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-antivirus/clamav
-  atom: "app-antivirus/clamav"
-  provides:
-  - category: "acct-group"
-    name: "clamav"
-    version: ">=0"
-  - category: "acct-user"
-    name: "clamav"
-    version: ">=0"
-  - category: "app-antivirus"
-    name: "clamav"
-    version: ">=0"
-  pre_reqs:
-  # up to the next version: dev-libs/tomsfastmath
-  - dev-libs/tomsfastmath
-  requires:
-  - <<: *layers-X
-  # up to the next version: dev-libs/tomsfastmath
-  - <<: *libs-tomsfastmath
-  - category: "entity"
-    name: "clamav"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "cuetools"
@@ -3955,6 +3941,38 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libao
+  build_requires:
+  - <<: *layers-X
+
+- &apps-clamav
+  category: "apps"
+  name: "clamav"
+  version: "0.103.5+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-antivirus/clamav
+  atom: "app-antivirus/clamav"
+  provides:
+  - category: "acct-group"
+    name: "clamav"
+    version: ">=0"
+  - category: "acct-user"
+    name: "clamav"
+    version: ">=0"
+  - category: "app-antivirus"
+    name: "clamav"
+    version: ">=0"
+  pre_reqs:
+  # up to the next version: dev-libs/tomsfastmath
+  - dev-libs/tomsfastmath
+  requires:
+  - <<: *layers-X
+  # up to the next version: dev-libs/tomsfastmath
+  - <<: *libs-tomsfastmath
+  - category: "entity"
+    name: "clamav"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
