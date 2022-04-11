@@ -5873,6 +5873,29 @@ packages:
 ### dep V apps ###
 ################################################################################
 
+- &apps-doxygen
+  category: "apps"
+  name: "doxygen"
+  version: "1.9.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-doc/doxygen
+  atom: "app-doc/doxygen"
+  provides:
+  - category: "app-doc"
+    name: "doxygen"
+    version: ">=0"
+  pre_reqs:
+  - dev-libs/xapian
+  - media-gfx/graphviz
+  requires:
+  - <<: *layers-X
+  - <<: *libs-xapian
+  - <<: *apps-graphviz
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "gimp"
   version: "2.10.30+1"
