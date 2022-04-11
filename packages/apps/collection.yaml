@@ -5325,29 +5325,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pycryptodome
-  category: "libs"
-  name: "pycryptodome"
-  version: "3.14.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pycryptodome
-  atom: "dev-python/pycryptodome"
-  provides:
-  - category: "dev-python"
-    name: "pycryptodome"
-    version: ">=0"
-  pre_emerge:
-  - dev-libs/libtomcrypt
-  - dev-python/pypy3
-  - dev-python/wheel
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libtomcrypt
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
+# - &libs-pycryptodome
+#   category: "libs"
+#   name: "pycryptodome"
+#   version: "3.14.1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/pycryptodome
+#   atom: "dev-python/pycryptodome"
+#   provides:
+#   - category: "dev-python"
+#     name: "pycryptodome"
+#     version: ">=0"
+#   pre_emerge:
+#   - dev-libs/libtomcrypt
+#   - dev-python/pypy3
+#   - dev-python/wheel
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-libtomcrypt
+#   - <<: *apps-pypy3
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-rav1e
   category: "libs"
@@ -5890,11 +5890,11 @@ packages:
   - dev-libs/xapian
   - media-gfx/graphviz
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   - <<: *libs-xapian
   - <<: *apps-graphviz
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-qt
 
 - category: "apps"
   name: "gimp"
