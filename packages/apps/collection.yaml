@@ -854,24 +854,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libiodbc
-  category: "libs"
-  name: "libiodbc"
-  version: "3.52.15"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-db/libiodbc
-  atom: "dev-db/libiodbc"
-  provides:
-  - category: "dev-db"
-    name: "libiodbc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libfpx
   category: "libs"
   name: "libfpx"
@@ -1231,24 +1213,6 @@ packages:
   provides:
   - category: "sci-libs"
     name: "metis"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-mhash
-  category: "libs"
-  name: "mhash"
-  version: "0.9.9.9-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-crypt/mhash
-  atom: "app-crypt/mhash"
-  provides:
-  - category: "app-crypt"
-    name: "mhash"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3575,6 +3539,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: &libs-office-common-packages >-
+      app-crypt/mhash
       app-text/libabw
       app-text/liblangtag
       app-text/libebook
@@ -3588,14 +3553,19 @@ packages:
       app-text/libwps
       app-text/mythes
       dev-cpp/clucene
+      dev-db/libiodbc
       dev-util/mdds
       media-libs/raptor
+      dev-libs/rasqal
       dev-libs/redland
       media-libs/libfreehand
       media-libs/libpagemaker
       media-libs/libzmf
   atom: *libs-office-common-packages
   provides:
+  - category: "app-crypt"
+    name: "mhash"
+    version: ">=0"
   - category: "app-text"
     name: "libabw"
     version: ">=0"
@@ -3636,7 +3606,13 @@ packages:
     name: "clucene"
     version: ">=0"
   - category: "dev-libs"
+    name: "rasqal"
+    version: ">=0"
+  - category: "dev-libs"
     name: "redland"
+    version: ">=0"
+  - category: "dev-db"
+    name: "libiodbc"
     version: ">=0"
   - category: "dev-util"
     name: "mdds"
