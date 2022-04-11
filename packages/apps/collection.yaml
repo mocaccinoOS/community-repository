@@ -1586,6 +1586,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-tomsfastmath
+  category: "libs"
+  name: "tomsfastmath"
+  version: "0.13.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tomsfastmath
+  atom: "dev-libs/tomsfastmath"
+  provides:
+  - category: "dev-libs"
+    name: "tomsfastmath"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-tremor
   category: "libs"
   name: "tremor"
@@ -1774,17 +1792,13 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "0.103.5"
+  version: "0.103.5+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       app-antivirus/clamav
   atom: "app-antivirus/clamav"
   provides:
-  # up to the next version: dev-libs/tomsfastmath
-  - category: "dev-libs"
-    name: "tomsfastmath"
-    version: ">=0"
   - category: "acct-group"
     name: "clamav"
     version: ">=0"
@@ -1794,8 +1808,13 @@ packages:
   - category: "app-antivirus"
     name: "clamav"
     version: ">=0"
+  pre_reqs:
+  # up to the next version: dev-libs/tomsfastmath
+  - dev-libs/tomsfastmath
   requires:
   - <<: *layers-X
+  # up to the next version: dev-libs/tomsfastmath
+  - <<: *libs-tomsfastmath
   - category: "entity"
     name: "clamav"
     version: ">=0"
