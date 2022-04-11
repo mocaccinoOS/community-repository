@@ -1496,28 +1496,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-reportlab
-  category: "libs"
-  name: "reportlab"
-  version: "3.6.7"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/reportlab
-  atom: "dev-python/reportlab"
-  provides:
-  - category: "dev-python"
-    name: "reportlab"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/sphinx
-  - dev-python/tomli
-  - dev-python/wheel
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
