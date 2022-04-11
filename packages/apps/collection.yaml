@@ -3541,6 +3541,48 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libspnav
+  category: "libs"
+  name: "libspnav"
+  version: "0.2.3-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libspnav
+  atom: "dev-libs/libspnav"
+  provides:
+  - category: "dev-libs"
+    name: "libspnav"
+    version: ">=0"
+  pre_reqs:
+  - app-misc/spacenavd
+  requires:
+  - <<: *layers-X
+  - <<: *apps-spacenavd
+  build_requires:
+  - <<: *layers-X
+
+- &libs-libtomcrypt
+  category: "libs"
+  name: "libtomcrypt"
+  version: "1.18.2-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libtomcrypt
+  atom: "dev-libs/libtomcrypt"
+  provides:
+  - category: "dev-libs"
+    name: "libtomcrypt"
+    version: ">=0"
+  pre_emerge:
+  - dev-libs/tomsfastmath
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-tomsfastmath
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-office-common
   category: "libs"
   name: "office-common"
@@ -3735,27 +3777,6 @@ packages:
   - <<: *layers-java
   - <<: *libs-ladspa-sdk
   - <<: *libs-vamp-plugin-sdk
-  build_requires:
-  - <<: *layers-X
-
-- &libs-libspnav
-  category: "libs"
-  name: "libspnav"
-  version: "0.2.3-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libspnav
-  atom: "dev-libs/libspnav"
-  provides:
-  - category: "dev-libs"
-    name: "libspnav"
-    version: ">=0"
-  pre_reqs:
-  - app-misc/spacenavd
-  requires:
-  - <<: *layers-X
-  - <<: *apps-spacenavd
   build_requires:
   - <<: *layers-X
 
