@@ -69,7 +69,12 @@ jobs:
         export PATH=$PATH:/usr/local/go/bin
         mkdir build || true
         pushd ./.github
+        
         echo $PWD
+        df -h
+        df -h /var/tmp
+        df -h ~
+        
         go build -o build
         popd
         sudo -E ./.github/build
