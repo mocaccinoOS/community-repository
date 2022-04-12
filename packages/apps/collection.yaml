@@ -5044,11 +5044,13 @@ packages:
   requires:
   - <<: *layers-qt
   # - <<: *libs-office-common
+  - <<: *layers-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
   - <<: *layers-office-common
+  requires_final_images: true
 
 - category: "apps"
   name: "sqlitebrowser"
