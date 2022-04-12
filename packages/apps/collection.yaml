@@ -5027,7 +5027,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8+2"
+  version: "1.5.8"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5038,19 +5038,16 @@ packages:
     name: "scribus"
     version: ">=0"
   pre_reqs:
-  # - *libs-office-common-packages
+  - *libs-office-common-packages
   - app-text/podofo
   - media-libs/libvisio
   requires:
   - <<: *layers-qt
-  # - <<: *libs-office-common
-  - <<: *layers-office-common
+  - <<: *libs-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *layers-office-common
-  requires_final_images: true
+  - <<: *layers-qt
 
 - category: "apps"
   name: "sqlitebrowser"
