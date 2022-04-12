@@ -66,7 +66,12 @@ anchors:
   category: "layers"
   name: "gnome"
   version: ">=0"
-  
+
+- &layers-office-common
+  category: "layers"
+  name: "office-common"
+  version: ">=0"
+
 - &layers-java
   category: "layers"
   name: "java"
@@ -1676,23 +1681,23 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-xapian
-  category: "libs"
-  name: "xapian"
-  version: "1.4.18-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/xapian
-  atom: "dev-libs/xapian"
-  provides:
-  - category: "dev-libs"
-    name: "xapian"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-xapian
+#   category: "libs"
+#   name: "xapian"
+#   version: "1.4.18-r1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-libs/xapian
+#   atom: "dev-libs/xapian"
+#   provides:
+#   - category: "dev-libs"
+#     name: "xapian"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-xmlsec
   category: "libs"
@@ -5033,16 +5038,17 @@ packages:
     name: "scribus"
     version: ">=0"
   pre_reqs:
-  - *libs-office-common-packages
+  # - *libs-office-common-packages
   - app-text/podofo
   - media-libs/libvisio
   requires:
   - <<: *layers-qt
-  - <<: *libs-office-common
+  # - <<: *libs-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
   - <<: *layers-qt
+  - <<: *layers-office-common
 
 - category: "apps"
   name: "sqlitebrowser"
@@ -5886,14 +5892,16 @@ packages:
     name: "doxygen"
     version: ">=0"
   pre_reqs:
-  - dev-libs/xapian
+  # - dev-libs/xapian
   - media-gfx/graphviz
   requires:
-  - <<: *layers-qt
-  - <<: *libs-xapian
+  # - <<: *layers-qt
+  - <<: *layers-plasma
+  # - <<: *libs-xapian
   - <<: *apps-graphviz
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-plasma
+  # - <<: *layers-qt
 
 - category: "apps"
   name: "gimp"

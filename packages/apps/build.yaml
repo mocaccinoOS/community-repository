@@ -8,9 +8,11 @@ env:
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+
 {{ if .Values.requires_final_images }}
 requires_final_images: {{ .Values.requires_final_images }}
 {{ end }}
+
 {{ if .Values.unpack }}
 unpack: {{ .Values.unpack }}
 {{ end }}
@@ -21,10 +23,12 @@ prelude:
 - {{ . }}
 {{ end }}
 {{ end }}
+
 {{ $packages := include "cr.packages" .Values }}
 {{ if $packages }}
 - bash prelude.sh {{ $packages }}
 {{ end }}
+
 {{ if .Values.overlay }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L
@@ -34,6 +38,7 @@ prelude:
 - echo "y" | layman -a {{ .Values.overlay.name }}
 {{ end }}
 {{ end }}
+
 {{ if .Values.pre_reqs }}
 {{ range .Values.pre_reqs }}
 {{ $tokens := . | splitList ";" }}
@@ -46,6 +51,7 @@ prelude:
 {{ end }}
 
 steps:
+
 {{ if .Values.pre_emerge }}
 {{ range .Values.pre_emerge }}
 {{ $tokens := . | splitList ";" }}
@@ -56,6 +62,7 @@ steps:
 {{ end }}
 {{ end }}
 {{ end }}
+
 {{ if .Values.atom }}
 {{ $tokens := .Values.atom | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
@@ -64,6 +71,7 @@ steps:
 - {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ end }}
 {{ end }}
+
 {{ if .Values.bdeps }}
 {{ range .Values.bdeps }}
 - emerge -C {{ . }}
