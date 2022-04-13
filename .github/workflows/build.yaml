@@ -30,11 +30,11 @@ jobs:
               PACKAGE_VERSION=${PACKAGE_VERSION//\+/\-}
               PACKAGE=$PACKAGE_NAME-$PACKAGE_CATEGORY-$PACKAGE_VERSION              
               if ! luet util image-exist "quay.io/mocaccino/mocaccino-community:$PACKAGE"; then
-                  #echo "$i"
                   PACKAGES="${PACKAGES}${PACKAGES:+,}$i"
               fi
           done          
           PACKAGES="{\"packages\":[${PACKAGES}]}"
+          echo ${PACKAGES}
           echo "::set-output name=matrix-sets::echo $(jq -rc '[.packages | _nwise(256)]' <<< ${PACKAGES})"
 
   build-set-0:
