@@ -3566,7 +3566,7 @@ packages:
 - &libs-libtomcrypt
   category: "libs"
   name: "libtomcrypt"
-  version: "1.18.2-r3"
+  version: "1.18.2-r3+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3576,7 +3576,7 @@ packages:
   - category: "dev-libs"
     name: "libtomcrypt"
     version: ">=0"
-  pre_emerge:
+  pre_reqs:
   - dev-libs/tomsfastmath
   requires:
   - <<: *layers-sys-fs
@@ -4114,7 +4114,7 @@ packages:
 - &apps-img2pdf
   category: "apps"
   name: "img2pdf"
-  version: "0.4.3+2"
+  version: "0.4.3+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4124,7 +4124,7 @@ packages:
   - category: "media-gfx"
     name: "img2pdf"
     version: ">=0"
-  pre_emerge:
+  pre_reqs:
   - dev-python/pikepdf
   requires:
   - <<: *layers-X
@@ -5332,7 +5332,7 @@ packages:
 # - &libs-pycryptodome
 #   category: "libs"
 #   name: "pycryptodome"
-#   version: "3.14.1"
+#   version: "3.14.1+1"
 #   labels:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
@@ -5342,7 +5342,7 @@ packages:
 #   - category: "dev-python"
 #     name: "pycryptodome"
 #     version: ">=0"
-#   pre_emerge:
+#   pre_reqs:
 #   - dev-libs/libtomcrypt
 #   - dev-python/pypy3
 #   - dev-python/wheel
