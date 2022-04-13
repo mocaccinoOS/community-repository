@@ -1169,25 +1169,6 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-# TODO: remove next cycle
-- &libs-mariadb-connector-c
-  category: "libs"
-  name: "mariadb-connector-c"
-  version: "3.1.13"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-db/mariadb-connector-c
-  atom: "dev-db/mariadb-connector-c"
-  provides:
-  - category: "dev-db"
-    name: "mariadb-connector-c"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
@@ -4838,7 +4819,6 @@ packages:
   # - dev-java/bsh
   # - dev-java/rhino
   - *libs-office-common-packages
-  - dev-db/mariadb-connector-c
   # - dev-db/postgresql
   - dev-libs/xmlsec
   - dev-perl/Archive-Zip
@@ -4855,7 +4835,6 @@ packages:
   # - <<: *libs-bsh
   # - <<: *libs-rhino
   - <<: *libs-office-common
-  - <<: *libs-mariadb-connector-c
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *libs-Archive-Zip
