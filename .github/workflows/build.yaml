@@ -19,7 +19,23 @@ jobs:
           sudo luet install utils/jq
       - name: Set matrix sets for build
         id: set-matrix-sets
-        run: echo "::set-output name=matrix-sets::$(luet tree pkglist --tree packages -o json | jq -rc '[.packages | _nwise(256)]')"
+        run: |
+          PACKAGES=""
+          PKG_LIST=$(luet tree pkglist --tree packages -o json) 
+          for i in $(echo "$PKG_LIST" | jq -rc '.packages[]'); do
+              PACKAGE_PATH=$(echo "$i" | jq -r ".path")
+              PACKAGE_NAME=$(echo "$i" | jq -r ".name")
+              PACKAGE_CATEGORY=$(echo "$i" | jq -r ".category")
+              PACKAGE_VERSION=$(echo "$i" | jq -r ".version")
+              PACKAGE_VERSION=${PACKAGE_VERSION//\+/\-}
+              PACKAGE=$PACKAGE_NAME-$PACKAGE_CATEGORY-$PACKAGE_VERSION              
+              if ! luet util image-exist "quay.io/mocaccino/mocaccino-community:$PACKAGE"; then
+                  #echo "$i"
+                  PACKAGES="${PACKAGES}${PACKAGES:+,}$i"
+              fi
+          done          
+          PACKAGES="{\"packages\":[${PACKAGES}]}"
+          echo "::set-output name=matrix-sets::echo $(jq -rc '[.packages | _nwise(256)]' <<< ${PACKAGES})"
 
   build-set-0:
     name: Set 0
