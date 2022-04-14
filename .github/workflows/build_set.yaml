@@ -66,6 +66,7 @@ jobs:
     - name: Build packages 🔧
       run: |
         sudo luet install -y repository/mocaccino-desktop-stable
+        sudo luet install -y repository/mocaccino-os-commons
         export PATH=$PATH:/usr/local/go/bin
         mkdir build || true
         pushd ./.github
