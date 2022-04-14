@@ -5,7 +5,7 @@ event="$1"
 payload="$2"
 if [ "$event" == "image.post.pull" ]; then
     image=$(echo "$payload" | jq -r .data | jq -r .ImageName )
-    out=$(docker images --format='{{.Repository}}:{{.Tag}}' | grep -v $image | xargs -r docker rmi --force)
+    out=$(docker images --format='{{.Repository}}:{{.Tag}}' | grep -v $image | grep -v quay.io/mocaccinoos/luetrepo-amd64-cache | xargs -r docker rmi --force)
     rm -rf /tmp/*
     jq --arg key0   'state' \
      --arg value0 "Cleaned up: $out" \
