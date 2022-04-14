@@ -2,6 +2,7 @@
 
 sudo -E luet build \
         --only-target-package \
+        --plugin cleanup-images \
         --pull-repository quay.io/mocaccino/os-commons \
         --pull-repository $PULL_REPOSITORY \
         --pull --push --image-repository $FINAL_REPO \
