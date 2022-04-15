@@ -86,8 +86,127 @@ anchors:
 - &libs-sphinx-packages >-
     dev-texlive/texlive-fontsrecommended
     dev-python/sphinx
-  
+
+
 packages:
+
+################################################################################
+## layers ###
+################################################################################
+
+- &layers-office-common
+  category: "layers"
+  name: "office-common"
+  version: "0.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &layers-office-common-packages >-
+      app-crypt/mhash
+      app-text/libabw
+      app-text/liblangtag
+      app-text/libebook
+      app-text/libepubgen
+      app-text/libetonyek
+      app-text/libexttextcat
+      app-text/libmspub
+      app-text/libmwaw
+      app-text/libodfgen
+      app-text/libqxp
+      app-text/libwps
+      app-text/mythes
+      dev-cpp/clucene
+      dev-db/libiodbc
+      dev-util/mdds
+      media-libs/raptor
+      dev-libs/rasqal
+      dev-libs/redland
+      media-libs/libfreehand
+      media-libs/libpagemaker
+      media-libs/libzmf
+  atom: *layers-office-common-packages
+  provides:
+  - category: "app-crypt"
+    name: "mhash"
+    version: ">=0"
+  - category: "app-text"
+    name: "libabw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libodfgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libebook"
+    version: ">=0"
+  - category: "app-text"
+    name: "libetonyek"
+    version: ">=0"
+  - category: "app-text"
+    name: "libexttextcat"
+    version: ">=0"
+  - category: "app-text"
+    name: "liblangtag"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmwaw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmspub"
+    version: ">=0"
+  - category: "app-text"
+    name: "libepubgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libqxp"
+    version: ">=0"
+  - category: "app-text"
+    name: "libwps"
+    version: ">=0"
+  - category: "app-text"
+    name: "mythes"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "clucene"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rasqal"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "redland"
+    version: ">=0"
+  - category: "dev-db"
+    name: "libiodbc"
+    version: ">=0"
+  - category: "dev-util"
+    name: "mdds"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libfreehand"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libpagemaker"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libzmf"
+    version: ">=0"
+  - category: "media-libs"
+    name: "raptor"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &buildbase-office-common
+  category: "buildbase"
+  name: "office-common"
+  version: "0.1"
+  real_category: "layers"
+  hidden: true
+  requires:
+  - name: "{{ .Values.name }}"
+    category: "{{ .Values.real_category }}"
+    version: ">=0"
+  unpack: true
 
 ################################################################################
 ### fonts ###
@@ -3589,108 +3708,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-office-common
-  category: "libs"
-  name: "office-common"
-  version: "0.1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &libs-office-common-packages >-
-      app-crypt/mhash
-      app-text/libabw
-      app-text/liblangtag
-      app-text/libebook
-      app-text/libepubgen
-      app-text/libetonyek
-      app-text/libexttextcat
-      app-text/libmspub
-      app-text/libmwaw
-      app-text/libodfgen
-      app-text/libqxp
-      app-text/libwps
-      app-text/mythes
-      dev-cpp/clucene
-      dev-db/libiodbc
-      dev-util/mdds
-      media-libs/raptor
-      dev-libs/rasqal
-      dev-libs/redland
-      media-libs/libfreehand
-      media-libs/libpagemaker
-      media-libs/libzmf
-  atom: *libs-office-common-packages
-  provides:
-  - category: "app-crypt"
-    name: "mhash"
-    version: ">=0"
-  - category: "app-text"
-    name: "libabw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libodfgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libebook"
-    version: ">=0"
-  - category: "app-text"
-    name: "libetonyek"
-    version: ">=0"
-  - category: "app-text"
-    name: "libexttextcat"
-    version: ">=0"
-  - category: "app-text"
-    name: "liblangtag"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmwaw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmspub"
-    version: ">=0"
-  - category: "app-text"
-    name: "libepubgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libqxp"
-    version: ">=0"
-  - category: "app-text"
-    name: "libwps"
-    version: ">=0"
-  - category: "app-text"
-    name: "mythes"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "clucene"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rasqal"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "redland"
-    version: ">=0"
-  - category: "dev-db"
-    name: "libiodbc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "mdds"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libfreehand"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libpagemaker"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libzmf"
-    version: ">=0"
-  - category: "media-libs"
-    name: "raptor"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-opencv
   category: "libs"
   name: "opencv"
@@ -4630,7 +4647,7 @@ packages:
     version: ">=0"
   pre_reqs:  
   - dev-cpp/asio
-  - *libs-office-common-packages
+  - *layers-office-common-packages
   - media-libs/libchamplain
   - media-libs/t1lib
   - net-libs/loudmouth
@@ -4638,7 +4655,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-asio
-  - <<: *libs-office-common
+  - <<: *layers-office-common
   - <<: *libs-libchamplain
   - <<: *libs-t1lib
   - <<: *libs-loudmouth
@@ -4859,7 +4876,7 @@ packages:
   - dev-java/javatoolkit
   # - dev-java/bsh
   # - dev-java/rhino
-  - *libs-office-common-packages
+  - *layers-office-common-packages
   # - dev-db/postgresql
   - dev-libs/xmlsec
   - dev-perl/Archive-Zip
@@ -4875,7 +4892,7 @@ packages:
   - <<: *apps-javatoolkit
   # - <<: *libs-bsh
   # - <<: *libs-rhino
-  - <<: *libs-office-common
+  - <<: *layers-office-common
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *libs-Archive-Zip
@@ -5058,12 +5075,12 @@ packages:
     name: "scribus"
     version: ">=0"
   pre_reqs:
-  - *libs-office-common-packages
+  - *layers-office-common-packages
   - app-text/podofo
   - media-libs/libvisio
   requires:
   - <<: *layers-qt
-  - <<: *libs-office-common
+  - <<: *layers-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
