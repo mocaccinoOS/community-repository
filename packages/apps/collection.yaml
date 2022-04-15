@@ -4556,6 +4556,24 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-t1lib
+  category: "libs"
+  name: "t1lib"
+  version: "5.1.2-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/t1lib
+  atom: "media-libs/t1lib"
+  provides:
+  - category: "media-libs"
+    name: "t1lib"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
