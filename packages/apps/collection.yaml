@@ -2798,6 +2798,23 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "redshift"
+  version: "1.12-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/redshift
+  atom: "x11-misc/redshift"
+  provides:
+  - category: "x11-misc"
+    name: "redshift"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "scapy"
   version: "2.4.5"
   labels:
