@@ -19,7 +19,7 @@ on:
 
 jobs:
   build:
-    if: ${{ inputs.build-sets != '' && inputs.build-sets != '{"packages":[]}' && fromJson(inputs.build-sets)[inputs.set-id] }}
+    if: ${{ inputs.build-sets != '' && inputs.build-sets != '[]' && inputs.build-sets != '[[]]' && fromJson(inputs.build-sets)[inputs.set-id] }}
     strategy:
       matrix:
         include: ${{ fromJson(inputs.build-sets)[inputs.set-id] }}
