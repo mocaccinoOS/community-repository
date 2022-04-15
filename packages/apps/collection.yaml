@@ -4600,10 +4600,9 @@ packages:
 ################################################################################
 
 # TODO: add eds flag to app-office/abiword
-# TODO: add t1lib flag to x11-libs/gtkmathview
 - category: "apps"
   name: "abiword"
-  version: "3.0.5+1"
+  version: "3.0.5+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4629,7 +4628,7 @@ packages:
   - dev-cpp/asio
   - *libs-office-common-packages
   - media-libs/libchamplain
-  # - media-libs/t1lib
+  - media-libs/t1lib
   - net-libs/loudmouth
   - media-fonts/texcm-ttf
   requires:
@@ -4637,7 +4636,7 @@ packages:
   - <<: *libs-asio
   - <<: *libs-office-common
   - <<: *libs-libchamplain
-  # - <<: *libs-t1lib
+  - <<: *libs-t1lib
   - <<: *libs-loudmouth
   - <<: *fonts-texcm-ttf
   build_requires:
