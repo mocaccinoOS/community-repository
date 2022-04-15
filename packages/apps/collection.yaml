@@ -203,9 +203,7 @@ packages:
   real_category: "layers"
   hidden: true
   build_requires:
-  - name: "{{ .Values.name }}"
-    category: "{{ .Values.real_category }}"
-    version: ">=0"
+  - <<: *layers-office-common
   unpack: true
 
 ################################################################################
