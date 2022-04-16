@@ -4644,21 +4644,22 @@ packages:
     version: ">=0"
   pre_reqs:  
   - dev-cpp/asio
-  - *layers-office-common-packages
   - media-libs/libchamplain
   - media-libs/t1lib
   - net-libs/loudmouth
   - media-fonts/texcm-ttf
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-asio
   - <<: *layers-office-common
+  - <<: *libs-asio
   - <<: *libs-libchamplain
   - <<: *libs-t1lib
   - <<: *libs-loudmouth
   - <<: *fonts-texcm-ttf
   build_requires:
   - <<: *layers-gnome-common
+  - <<: *buildbase-office-common
+  requires_final_images: true
 
 - category: "apps"
   name: "audacious"
@@ -4873,7 +4874,6 @@ packages:
   - dev-java/javatoolkit
   # - dev-java/bsh
   # - dev-java/rhino
-  - *layers-office-common-packages
   # - dev-db/postgresql
   - dev-libs/xmlsec
   - dev-perl/Archive-Zip
@@ -4884,12 +4884,12 @@ packages:
   - sci-mathematics/lpsolve  
   requires:
   - <<: *layers-gnome-common
+  - <<: *layers-office-common
   - <<: *layers-java
   - <<: *apps-ant-core
   - <<: *apps-javatoolkit
   # - <<: *libs-bsh
   # - <<: *libs-rhino
-  - <<: *layers-office-common
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *libs-Archive-Zip
@@ -4899,6 +4899,8 @@ packages:
   - <<: *libs-lpsolve
   build_requires:
   - <<: *layers-gnome-common
+  - <<: *buildbase-office-common
+  requires_final_images: true
 
 - category: "apps"
   name: "onedrive"
@@ -5072,7 +5074,6 @@ packages:
     name: "scribus"
     version: ">=0"
   pre_reqs:
-  # - *layers-office-common-packages
   - app-text/podofo
   - media-libs/libvisio
   requires:
