@@ -196,14 +196,14 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &buildbase-office-common
-  category: "buildbase"
-  name: "office-common"
-  version: "0.2"
-  build_requires:
-  - <<: *layers-office-common
-  hidden: true
-  unpack: true
+# - &buildbase-office-common
+#   category: "buildbase"
+#   name: "office-common"
+#   version: "0.2"
+#   build_requires:
+#   - <<: *layers-office-common
+#   hidden: true
+#   unpack: true
   
 - &layerbase-office-common
   <<: *layers-office-common
@@ -4664,7 +4664,7 @@ packages:
   - <<: *fonts-texcm-ttf
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-office-common
+  - <<: *layerbase-office-common
   requires_final_images: true
 
 - category: "apps"
@@ -4905,7 +4905,7 @@ packages:
   - <<: *libs-lpsolve
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-office-common
+  - <<: *layerbase-office-common
   requires_final_images: true
 
 - category: "apps"
