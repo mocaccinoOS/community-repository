@@ -97,7 +97,7 @@ packages:
 - &layers-office-common
   category: "layers"
   name: "office-common"
-  version: "0.1"
+  version: "0.2"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-office-common-packages >-
@@ -199,10 +199,12 @@ packages:
 - &buildbase-office-common
   category: "buildbase"
   name: "office-common"
-  version: "0.1"
-  hidden: true
+  version: "0.2"
+  labels:
+    emerge.jobs: "3"
   build_requires:
   - <<: *layers-office-common
+  hidden: true
   unpack: true
 
 ################################################################################
@@ -4620,7 +4622,7 @@ packages:
 # TODO: add eds flag to app-office/abiword
 - category: "apps"
   name: "abiword"
-  version: "3.0.5+3"
+  version: "3.0.5+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4657,7 +4659,7 @@ packages:
   - <<: *libs-loudmouth
   - <<: *fonts-texcm-ttf
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
   - <<: *buildbase-office-common
   requires_final_images: true
 
@@ -4831,7 +4833,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.2.5.2-r1+3"
+  version: "7.2.5.2-r1+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4898,7 +4900,7 @@ packages:
   - <<: *libs-libvisio
   - <<: *libs-lpsolve
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
   - <<: *buildbase-office-common
   requires_final_images: true
 
