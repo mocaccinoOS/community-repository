@@ -83,6 +83,7 @@ steps:
 {{ end }}
 {{ end }}
 
+{{ if ne .Values.category "buildbase" }}
 excludes:
 - ^/etc/csh.env
 - ^/etc/environment.d/10-gentoo-env.conf
@@ -105,3 +106,4 @@ excludes:
 # - ^/usr/include
 # - ^/luetbuild
 # - ^/tmp
+{{ end }}
