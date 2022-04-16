@@ -97,7 +97,7 @@ packages:
 - &layers-office-common
   category: "layers"
   name: "office-common"
-  version: "0.2"
+  version: "0.3"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-office-common-packages >-
@@ -194,8 +194,9 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
-
+  - <<: *buildbase-X
+  requires_final_images: true
+  
 # - &buildbase-office-common
 #   category: "buildbase"
 #   name: "office-common"
@@ -208,7 +209,6 @@ packages:
 - &layerbase-office-common
   <<: *layers-office-common
   category: "layerbase"
-  version: "0.2+2"
   hidden: true
 
 ################################################################################
@@ -5069,7 +5069,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8+10"
+  version: "1.5.8+11"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
