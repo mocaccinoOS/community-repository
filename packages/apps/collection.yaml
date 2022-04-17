@@ -382,24 +382,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-cppunit
-  category: "libs"
-  name: "cppunit"
-  version: "1.15.1-r3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/cppunit
-  atom: "dev-util/cppunit"
-  provides:
-  - category: "dev-util"
-    name: "cppunit"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 # TODO: remove next cycle
 - &libs-faad2
   category: "libs"
@@ -4798,14 +4780,12 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-office-common
   - <<: *layers-java
-  - <<: *apps-ant-core
   - <<: *apps-javatoolkit
   # - <<: *libs-bsh
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *libs-Archive-Zip
-  - <<: *libs-cppunit
   - <<: *apps-fontforge
   - <<: *libs-libvisio
   - <<: *libs-lpsolve
