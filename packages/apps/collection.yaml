@@ -195,15 +195,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
-# - &buildbase-office-common
-#   category: "buildbase"
-#   name: "office-common"
-#   version: "0.2"
-#   build_requires:
-#   - <<: *layers-office-common
-#   hidden: true
-#   unpack: true
 
 - &layerbase-office-common
   <<: *layers-office-common
@@ -553,24 +544,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-gmime
-  category: "libs"
-  name: "gmime"
-  version: "3.2.7+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/gmime
-  atom: "dev-libs/gmime"
-  provides:
-  - category: "dev-libs"
-    name: "gmime"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 - &libs-gsl
   category: "libs"
@@ -2211,24 +2184,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-gspell
-  category: "apps"
-  name: "gspell"
-  version: "1.9.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/gspell
-  atom: "app-text/gspell"
-  provides:
-  - category: "app-text"
-    name: "gspell"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "hardinfo"
@@ -3904,27 +3859,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-ytnef
-  category: "libs"
-  name: "ytnef"
-  version: "2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-mail/ytnef
-  atom: "net-mail/ytnef"
-  provides:
-  - category: "net-mail"
-    name: "ytnef"
-    version: ">=0"
-  pre_reqs:
-  - dev-perl/MIME-tools
-  requires:
-  - <<: *layers-X
-  - <<: *libs-MIME-tools
-  build_requires:
-  - <<: *layers-X
-
 ################################################################################
 ### dep I apps ###
 ################################################################################
@@ -4088,32 +4022,6 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "geary"
-  version: "40.0-r1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      mail-client/geary
-  atom: "mail-client/geary"
-  overlay:
-    name: "dlang"
-  provides:
-  - category: "mail-client"
-    name: "geary"
-    version: ">=0"
-  pre_reqs: 
-  - app-text/gspell
-  - dev-libs/gmime
-  - net-mail/ytnef
-  requires:
-  - <<: *layers-gnome
-  - <<: *apps-gspell
-  - <<: *libs-gmime
-  - <<: *libs-ytnef
-  build_requires:
-  - <<: *layers-gnome
 
 - category: "apps"
   name: "guvcview"
@@ -4776,6 +4684,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# TODO: bump next cycle
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
@@ -4791,21 +4700,19 @@ packages:
     version: ">=0"
   pre_reqs:
   - app-office/dia
-  - app-text/gspell
   - dev-libs/gdl
   - media-gfx/scour
   - media-libs/libvisio
   - sci-libs/gsl
   requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
   - <<: *apps-dia
-  - <<: *apps-gspell
   - <<: *libs-gdl
   - <<: *apps-scour
   - <<: *libs-libvisio
   - <<: *libs-gsl
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "k3b"
