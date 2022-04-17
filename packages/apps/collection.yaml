@@ -292,24 +292,6 @@ packages:
 ### dep 0 libs ###
 ################################################################################
 
-- &libs-Archive-Zip
-  category: "libs"
-  name: "Archive-Zip"
-  version: "1.680.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Archive-Zip
-  atom: "dev-perl/Archive-Zip"
-  provides:
-  - category: "dev-perl"
-    name: "Archive-Zip"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -4775,17 +4757,15 @@ packages:
   - media-gfx/fontforge
   - media-libs/libvisio
   - media-libs/zxing-cpp
-  - sci-mathematics/lpsolve  
+  - sci-mathematics/lpsolve
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-office-common
   - <<: *layers-java
-  - <<: *apps-javatoolkit
   # - <<: *libs-bsh
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
-  - <<: *libs-Archive-Zip
   - <<: *apps-fontforge
   - <<: *libs-libvisio
   - <<: *libs-lpsolve
