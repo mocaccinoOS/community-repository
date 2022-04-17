@@ -97,7 +97,7 @@ packages:
 - &layers-office-common
   category: "layers"
   name: "office-common"
-  version: "0.3"
+  version: "0.4"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-office-common-packages >-
@@ -194,8 +194,7 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-X
   
 # - &buildbase-office-common
 #   category: "buildbase"
@@ -205,7 +204,7 @@ packages:
 #   - <<: *layers-office-common
 #   hidden: true
 #   unpack: true
-  
+
 - &layerbase-office-common
   <<: *layers-office-common
   category: "layerbase"
@@ -5069,7 +5068,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8+11"
+  version: "1.5.8+10"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5088,9 +5087,8 @@ packages:
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *layers-qt
   - <<: *layerbase-office-common
-  requires_final_images: true
 
 - category: "apps"
   name: "sqlitebrowser"
