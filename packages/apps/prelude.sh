@@ -1,7 +1,7 @@
 #!/bin/bash
 set -x
 
-packages=( "$@" )
+packages=( "${@//^layerbase-/^layers-}" )
 
 for package in ${packages[@]}; do
 
