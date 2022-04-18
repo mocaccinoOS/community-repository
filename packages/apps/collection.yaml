@@ -5775,6 +5775,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-telepathy-farstream
+  category: "libs"
+  name: "telepathy-farstream"
+  version: "0.6.2-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-libs/telepathy-farstream
+  atom: "net-libs/telepathy-farstream"
+  provides:
+  - category: "net-libs"
+    name: "telepathy-farstream"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/farstream
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-farstream
+  build_requires:
+  - <<: *layers-gnome-common
+
 ################################################################################
 ### dep IV apps ###
 ################################################################################
