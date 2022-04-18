@@ -1566,6 +1566,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-signon-ui
+  category: "libs"
+  name: "signon-ui"
+  version: "0.15_p20171022-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/signon-ui
+  atom: "net-libs/signon-ui"
+  provides:
+  - category: "net-libs"
+    name: "signon-ui"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
 - &libs-suitesparseconfig
   category: "libs"
   name: "suitesparseconfig"
@@ -2341,26 +2359,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-spidermonkey-60
-  category: "libs"
-  name: "spidermonkey"
-  version: "60.5.2.0-r6"
+- category: "apps"
+  name: "kaccounts-providers"
+  version: "21.08.3"
   labels:
-    emerge.jobs: "1"
-    emerge.load_average: "0.9"
-    emerge.packages: &apps-spidermonkey-60-packages >-
-      dev-lang/spidermonkey:60;MAKEOPTS="-j1 -l0.9"
-  atom: *apps-spidermonkey-60-packages
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kaccounts-providers
+  atom: "kde-apps/kaccounts-providers"
   provides:
-  - category: "dev-lang"
-    name: "spidermonkey"
+  - category: "kde-apps"
+    name: "kaccounts-providers"
     version: ">=0"
   pre_reqs:
-  - =dev-lang/python-2.7.18_p13
+  - net-libs/signon-ui
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-plasma
+  - <<: *libs-signon-ui
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-plasma
 
 - &apps-kapptemplate
   category: "apps"
@@ -3008,6 +3025,27 @@ packages:
   - category: "media-sound"
     name: "shntool"
     version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-spidermonkey-60
+  category: "libs"
+  name: "spidermonkey"
+  version: "60.5.2.0-r6"
+  labels:
+    emerge.jobs: "1"
+    emerge.load_average: "0.9"
+    emerge.packages: &apps-spidermonkey-60-packages >-
+      dev-lang/spidermonkey:60;MAKEOPTS="-j1 -l0.9"
+  atom: *apps-spidermonkey-60-packages
+  provides:
+  - category: "dev-lang"
+    name: "spidermonkey"
+    version: ">=0"
+  pre_reqs:
+  - =dev-lang/python-2.7.18_p13
   requires:
   - <<: *layers-system-x
   build_requires:
