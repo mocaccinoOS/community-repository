@@ -545,6 +545,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gupnp-igd
+  category: "libs"
+  name: "gupnp-igd"
+  version: "1.2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/gupnp-igd
+  atom: "net-libs/gupnp-igd"
+  provides:
+  - category: "net-libs"
+    name: "gupnp-igd"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-hdf5
   category: "libs"
   name: "hdf5"
@@ -1583,6 +1601,24 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
+
+- &libs-libsrtp
+  category: "libs"
+  name: "libsrtp"
+  version: "2.3.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libsrtp
+  atom: "net-libs/libsrtp"
+  provides:
+  - category: "net-libs"
+    name: "libsrtp"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-suitesparseconfig
   category: "libs"
@@ -3537,6 +3573,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gst-plugins-srtp
+  category: "libs"
+  name: "gst-plugins-srtp"
+  version: "1.18.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-plugins/gst-plugins-srtp
+  atom: "media-plugins/gst-plugins-srtp"
+  provides:
+  - category: "media-plugins"
+    name: "gst-plugins-srtp"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/libsrtp
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libsrtp
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gts
   category: "apps"
   name: "gts"
@@ -3603,6 +3660,27 @@ packages:
   - <<: *libs-http-parser
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-libnice
+  category: "libs"
+  name: "libnice"
+  version: "0.1.15"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libnice
+  atom: "net-libs/libnice"
+  provides:
+  - category: "net-libs"
+    name: "libnice"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/gupnp-igd
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gupnp-igd
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-libpano13
   category: "libs"
@@ -4393,6 +4471,27 @@ packages:
   - <<: *libs-opencv
   build_requires:
   - <<: *layers-qt
+
+- &libs-gst-plugins-libnice
+  category: "libs"
+  name: "gst-plugins-libnice"
+  version: "0.1.15-r100"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-plugins/gst-plugins-libnice
+  atom: "media-plugins/gst-plugins-libnice"
+  provides:
+  - category: "media-plugins"
+    name: "gst-plugins-libnice"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/libnice
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libnice
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-indilib
   category: "libs"
@@ -5195,6 +5294,33 @@ packages:
   - <<: *libs-libmng
   build_requires:
   - <<: *layers-X
+
+- &libs-farstream
+  category: "libs"
+  name: "farstream"
+  version: "0.2.9"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-libs/farstream
+  atom: "net-libs/farstream"
+  provides:
+  - category: "net-libs"
+    name: "farstream"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/gupnp-igd
+  - net-libs/libnice
+  - media-plugins/gst-plugins-libnice
+  - media-plugins/gst-plugins-srtp
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gupnp-igd
+  - <<: *libs-libnice
+  - <<: *libs-gst-plugins-libnice
+  - <<: *libs-gst-plugins-srtp
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-greenlet
   category: "libs"
