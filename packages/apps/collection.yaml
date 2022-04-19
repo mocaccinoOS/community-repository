@@ -6229,6 +6229,32 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &apps-ktp-accounts-kcm
+  category: "apps"
+  name: "ktp-accounts-kcm"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/ktp-accounts-kcm
+  atom: "kde-apps/ktp-accounts-kcm"
+  provides:
+  - category: "kde-apps"
+    name: "ktp-accounts-kcm"
+    version: ">=0"
+  pre_reqs:
+  - kde-apps/kaccounts-providers
+  - net-libs/telepathy-qt
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-gnome-common
+  - <<: *apps-kaccounts-providers
+  - <<: *libs-telepathy-qt
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
+
 - category: "apps"
   name: "remmina"
   version: "1.4.25"
