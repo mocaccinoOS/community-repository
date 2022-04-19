@@ -82,12 +82,18 @@ anchors:
     virtual/jre
     virtual/jdk
 
+
 # https://bugs.gentoo.org/727334
 - &libs-sphinx-packages >-
     dev-texlive/texlive-fontsrecommended
     dev-python/sphinx
 
+- &apps-okular
+  category: "apps"
+  name: "okular"
+  version: ">=0"
 
+  
 packages:
 
 ################################################################################
@@ -5504,6 +5510,8 @@ packages:
 ### dep III apps ###
 ################################################################################
 
+# kde-frameworks/kdelibs4support: in layers/plasma not layers/kde-common 
+# kde-frameworks/kjs: in layers/plasma not layers/kde-common
 - category: "apps"
   name: "calligra"
   version: "3.2.1-r5"
@@ -5518,22 +5526,24 @@ packages:
     version: ">=0"
   pre_reqs:
   - dev-libs/libspnav
+  - kde-apps/okular
   - media-gfx/pstoedit
   - media-libs/libvisio
   - sci-libs/gsl
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-plasma
   - <<: *layers-office-common
   - <<: *libs-libspnav
+  - <<: *apps-okular
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
   - <<: *libs-gsl
   build_requires:
-  - <<: *buildbase-kde-common
+  - <<: *layers-plasma
   - <<: *layerbase-office-common
   requires_final_images: true
 
-# kde-frameworks/kholidays: layers/plasma not layers/kde-common
+# kde-frameworks/kholidays: in layers/plasma not layers/kde-common
 - category: "apps"
   name: "calligraplan"
   version: "3.3.0"
