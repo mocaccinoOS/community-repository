@@ -1590,24 +1590,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-signon-ui
-  category: "libs"
-  name: "signon-ui"
-  version: "0.15_p20171022-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/signon-ui
-  atom: "net-libs/signon-ui"
-  provides:
-  - category: "net-libs"
-    name: "signon-ui"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
 - &libs-libsrtp
   category: "libs"
   name: "libsrtp"
@@ -2404,7 +2386,7 @@ packages:
 - &apps-kaccounts-providers
   category: "apps"
   name: "kaccounts-providers"
-  version: "21.08.3"
+  version: "21.08.3+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2414,11 +2396,11 @@ packages:
   - category: "kde-apps"
     name: "kaccounts-providers"
     version: ">=0"
-  pre_reqs:
-  - net-libs/signon-ui
+  - category: "net-libs"
+    name: "signon-ui"
+    version: ">=0"
   requires:
   - <<: *layers-plasma
-  - <<: *libs-signon-ui
   build_requires:
   - <<: *layers-plasma
 
@@ -5510,38 +5492,39 @@ packages:
 ### dep III apps ###
 ################################################################################
 
+# TODO
 # kde-frameworks/kdelibs4support: in layers/plasma not layers/kde-common 
 # kde-frameworks/kjs: in layers/plasma not layers/kde-common
-- category: "apps"
-  name: "calligra"
-  version: "3.2.1-r5"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/calligra
-  atom: "app-office/calligra"
-  provides:
-  - category: "app-office"
-    name: "calligra"
-    version: ">=0"
-  pre_reqs:
-  - dev-libs/libspnav
-  - kde-apps/okular
-  - media-gfx/pstoedit
-  - media-libs/libvisio
-  - sci-libs/gsl
-  requires:
-  - <<: *layers-plasma
-  - <<: *layers-office-common
-  - <<: *libs-libspnav
-  - <<: *apps-okular
-  - <<: *apps-pstoedit
-  - <<: *libs-libvisio
-  - <<: *libs-gsl
-  build_requires:
-  - <<: *layers-plasma
-  - <<: *layerbase-office-common
-# requires_final_images: true
+# - category: "apps"
+#   name: "calligra"
+#   version: "3.2.1-r5"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       app-office/calligra
+#   atom: "app-office/calligra"
+#   provides:
+#   - category: "app-office"
+#     name: "calligra"
+#     version: ">=0"
+#   pre_reqs:
+#   - dev-libs/libspnav
+#   - kde-apps/okular
+#   - media-gfx/pstoedit
+#   - media-libs/libvisio
+#   - sci-libs/gsl
+#   requires:
+#   - <<: *layers-plasma
+#   - <<: *layers-office-common
+#   - <<: *libs-libspnav
+#   - <<: *apps-okular
+#   - <<: *apps-pstoedit
+#   - <<: *libs-libvisio
+#   - <<: *libs-gsl
+#   build_requires:
+#   - <<: *layers-plasma
+#   - <<: *layerbase-office-common
+#   requires_final_images: true
 
 # kde-frameworks/kholidays: in layers/plasma not layers/kde-common
 - category: "apps"
@@ -6287,6 +6270,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# TODO
 # - &apps-ktp-accounts-kcm
 #   category: "apps"
 #   name: "ktp-accounts-kcm"
