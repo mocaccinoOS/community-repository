@@ -2395,7 +2395,8 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
+- &apps-kaccounts-providers
+  category: "apps"
   name: "kaccounts-providers"
   version: "21.08.3"
   labels:
@@ -5967,6 +5968,29 @@ packages:
   - <<: *apps-nx
   build_requires:
   - <<: *layers-X
+
+- &libs-telepathy-qt
+  category: "libs"
+  name: "telepathy-qt"
+  version: "0.9.8-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/telepathy-qt
+  atom: "net-libs/telepathy-qt"
+  provides:
+  - category: "net-libs"
+    name: "telepathy-qt"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/telepathy-farstream
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-gnome-common
+  - <<: *libs-telepathy-farstream
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
 
 ################################################################################
 ### dep V apps ###
