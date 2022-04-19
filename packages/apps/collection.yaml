@@ -5504,6 +5504,26 @@ packages:
 ### dep III apps ###
 ################################################################################
 
+- category: "apps"
+  name: "calligraplan"
+  version: "3.3.0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/calligraplan
+  atom: "app-office/calligraplan"
+  provides:
+  - category: "app-office"
+    name: "calligraplan"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/libvisio
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-libvisio
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-hugin
   category: "apps"
   name: "hugin"
