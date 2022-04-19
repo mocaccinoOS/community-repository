@@ -5504,6 +5504,7 @@ packages:
 ### dep III apps ###
 ################################################################################
 
+# layers/plasma because kde-frameworks/kholidays not in layers/kde-common
 - category: "apps"
   name: "calligraplan"
   version: "3.3.0"
@@ -5519,10 +5520,10 @@ packages:
   pre_reqs:
   - media-libs/libvisio
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-plasma
   - <<: *libs-libvisio
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-palsma
 
 - &apps-hugin
   category: "apps"
