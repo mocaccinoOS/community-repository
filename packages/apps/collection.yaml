@@ -5504,6 +5504,37 @@ packages:
 ### dep III apps ###
 ################################################################################
 
+- category: "apps"
+  name: "calligra"
+  version: "3.2.1-r5"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/calligra
+  atom: "app-office/calligra"
+  provides:
+  - category: "app-office"
+    name: "calligra"
+    version: ">=0"
+  pre_reqs:
+  - dev-cpp/eigen
+  - dev-libs/libspnav
+  - media-gfx/pstoedit
+  - media-libs/libvisio
+  - sci-libs/gsl
+  requires:
+  - <<: *layers-kde-common
+  - <<: *layers-office-common
+  - <<: *libs-eigen
+  - <<: *libs-libspnav
+  - <<: *apps-pstoedit
+  - <<: *libs-libvisio
+  - <<: *libs-gsl
+  build_requires:
+  - <<: *buildbase-kde-common
+  - <<: *layerbase-office-common
+  requires_final_images: true
+
 # kde-frameworks/kholidays: layers/plasma not layers/kde-common
 - category: "apps"
   name: "calligraplan"
