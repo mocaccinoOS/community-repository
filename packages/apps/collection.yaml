@@ -88,11 +88,6 @@ anchors:
     dev-texlive/texlive-fontsrecommended
     dev-python/sphinx
 
-- &apps-okular
-  category: "apps"
-  name: "okular"
-  version: ">=0"
-
   
 packages:
 
@@ -5490,8 +5485,12 @@ packages:
   - media-libs/libvisio
   - sci-libs/gsl
   requires:
+  # okular in layers/kde-apps-minimal
   - <<: *layers-kde-common
   - <<: *layers-office-common
+  - category: "apps"
+    name: "okular"
+    version: ">=0"
   - <<: *libs-libspnav
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
