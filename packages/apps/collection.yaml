@@ -1164,6 +1164,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-telepathy-idle
+  category: "libs"
+  name: "telepathy-idle"
+  version: "0.2.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/telepathy-idle
+  atom: "net-irc/telepathy-idle"
+  provides:
+  - category: "net-irc"
+    name: "telepathy-idle"
+    version: ">=0"
+  requires:
+  # depends on net-libs/telepathy-glib
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+  
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
@@ -6241,27 +6260,30 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-ktp-accounts-kcm
-  category: "apps"
-  name: "ktp-accounts-kcm"
-  version: "21.08.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/ktp-accounts-kcm
-  atom: "kde-apps/ktp-accounts-kcm"
-  provides:
-  - category: "kde-apps"
-    name: "ktp-accounts-kcm"
-    version: ">=0"
-  pre_reqs:
-  - net-libs/telepathy-qt
-  requires:
-  - <<: *layers-plasma
-  - <<: *layers-gnome-common
-  - <<: *libs-telepathy-qt
-  build_requires:
-  - <<: *layers-plasma
+# - &apps-ktp-accounts-kcm
+#   category: "apps"
+#   name: "ktp-accounts-kcm"
+#   version: "21.08.3"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-apps/ktp-accounts-kcm
+#   atom: "kde-apps/ktp-accounts-kcm"
+#   provides:
+#   - category: "kde-apps"
+#     name: "ktp-accounts-kcm"
+#     version: ">=0"
+#   pre_reqs:
+#   - net-im/telepathy-connection-managers
+#   - net-libs/telepathy-qt
+#   requires:
+#   - <<: *layers-plasma
+#   # net-libs/telepathy-farstream net-libs/telepathy-glib are in layers/gnome-common
+#   - <<: *layers-gnome-common
+#   - <<: * net-im/telepathy-connection-managers
+#   - <<: *libs-telepathy-qt
+#   build_requires:
+#   - <<: *layers-plasma
 
 - category: "apps"
   name: "remmina"
