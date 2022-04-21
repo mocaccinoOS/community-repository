@@ -2187,6 +2187,25 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "gsmartcontrol"
+  version: "1.1.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/gsmartcontrol
+  atom: "sys-apps/gsmartcontrol"
+  provides:
+  - category: "sys-apps"
+    name: "gsmartcontrol"
+    version: ">=0"
+  pre_reqs:
+  - dev-util/gtk-builder-convert
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "hardinfo"
   version: "0.6_alpha_pre20201116-r1"
   labels:
