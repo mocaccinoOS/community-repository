@@ -5810,7 +5810,7 @@ packages:
 - &libs-telepathy-connection-managers
   category: "libs"
   name: "telepathy-connection-managers"
-  version: "2-r2"
+  version: "2-r2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5838,7 +5838,8 @@ packages:
   - <<: *libs-telepathy-idle
   - <<: *libs-farstream
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - &libs-telepathy-farstream
   category: "libs"
