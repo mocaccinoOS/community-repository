@@ -546,6 +546,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gtksourceview-3
+  category: "libs"
+  name: "gtksourceview-3"
+  version: "3.24.11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &libs-gtksourceview-3-packages >-
+      x11-libs/gtksourceview:3
+  atom: *libs-gtksourceview-3-packages
+  provides:
+  - category: "x11-libs"
+    name: "gtksourceview:3"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
@@ -5871,6 +5889,7 @@ packages:
 #   pre_reqs:
 #   - net-irc/telepathy-idle
 #   - net-libs/farstream
+#   - *libs-gtksourceview-3-packages
 #   # - net-voip/telepathy-rakia ssl
 #   requires:
 #   - <<: *layers-X
@@ -5878,6 +5897,7 @@ packages:
 #   - <<: *layers-gnome-common
 #   - <<: *libs-telepathy-idle
 #   - <<: *libs-farstream
+#   - <<: *libs-gtksourceview-3
 #   build_requires:
 #   - <<: *layers-gnome-common
 
