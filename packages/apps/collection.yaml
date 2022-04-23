@@ -5912,42 +5912,54 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-telepathy-connection-managers
-#   category: "libs"
-#   name: "telepathy-connection-managers"
-#   version: "2-r2+1"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-im/telepathy-connection-managers
-#   atom: "net-im/telepathy-connection-managers"
-#   provides:
-#   - category: "net-im"
-#     name: "telepathy-connection-managers"
-#     version: ">=0"
-#   - category: "net-voip"
-#     name: "telepathy-gabble"
-#     version: ">=0"
-#   - category: "net-voip"
-#     name: "telepathy-salut"
-#     version: ">=0"
-#   - category: "x11-plugins"
-#     name: "pidgin-opensteamworks"
-#     version: ">=0"
-#   pre_reqs:
-#   - net-irc/telepathy-idle
-#   - net-libs/farstream
-#   - *libs-gtksourceview-3-packages
-#   # - net-voip/telepathy-rakia ssl
-#   requires:
-#   - <<: *layers-X
-#   # depends on net-libs/telepathy-glib
-#   - <<: *layers-gnome-common
-#   - <<: *libs-telepathy-idle
-#   - <<: *libs-farstream
-#   - <<: *libs-gtksourceview-3
-#   build_requires:
-#   - <<: *layers-gnome-common
+- &libs-pidgin-opensteamworks
+  category: "libs"
+  name: "pidgin-opensteamworks"
+  version: "1.25.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-plugins/pidgin-opensteamworks
+  atom: "x11-plugins/pidgin-opensteamworks"
+  provides:
+  - category: "x11-plugins"
+    name: "pidgin-opensteamworks"
+    version: ">=0"
+  pre_reqs:
+  - net-im/pidgin
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-pidgin
+  build_requires:
+  - <<: *layers-gnome-common
+
+- &libs-pidgin-sipe
+  category: "libs"
+  name: "pidgin-sipe"
+  version: "1.25.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-plugins/pidgin-sipe
+  atom: "x11-plugins/pidgin-sipe"
+  provides:
+  - category: "x11-plugins"
+    name: "pidgin-sipe"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/farstream
+  - net-libs/libnice
+  - net-im/pidgin
+  - net-libs/telepathy-glib
+  requires:
+  # depends on net-libs/telepathy-glib
+  - <<: *layers-gnome-common
+  - <<: *libs-farstream
+  - <<: *libs-libnice
+  - <<: *apps-pidgin
+  - <<: *libs-telepathy-glib
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-telepathy-farstream
   category: "libs"
@@ -6116,6 +6128,43 @@ packages:
   - <<: *libs-gegl
   build_requires:
   - <<: *layers-X
+
+# - &libs-telepathy-connection-managers
+#   category: "libs"
+#   name: "telepathy-connection-managers"
+#   version: "2-r2+1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-im/telepathy-connection-managers
+#   atom: "net-im/telepathy-connection-managers"
+#   provides:
+#   - category: "net-im"
+#     name: "telepathy-connection-managers"
+#     version: ">=0"
+#   - category: "net-voip"
+#     name: "telepathy-gabble"
+#     version: ">=0"
+#   - category: "net-voip"
+#     name: "telepathy-salut"
+#     version: ">=0"
+#   pre_reqs:
+#   - net-irc/telepathy-idle
+#   - net-libs/farstream
+#   - *libs-gtksourceview-3-packages
+#   # - net-voip/telepathy-rakia ssl
+#   - x11-plugins/pidgin-opensteamworks
+#   - x11-plugins/pidgin-sipe
+#   requires:
+#   # depends on net-libs/telepathy-glib
+#   - <<: *layers-gnome-common
+#   - <<: *libs-telepathy-idle
+#   - <<: *libs-farstream
+#   - <<: *libs-gtksourceview-3
+#   - <<: *libs-pidgin-opensteamworks
+#   - <<: *libs-pidgin-pidgin-sipe
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &libs-python-x2go
   category: "libs"
