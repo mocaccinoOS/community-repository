@@ -510,6 +510,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gmime-2
+  category: "libs"
+  name: "gmime-2"
+  version: "2.6.23-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &libs-gmime-2-packages >-
+      dev-libs/gmime:2.6
+  atom: *libs-gmime-2-packages
+  provides:
+  - category: "dev-libs"
+    name: "gmime:2.6"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gsl
   category: "libs"
   name: "gsl"
@@ -5948,6 +5966,7 @@ packages:
     version: ">=0"
   pre_reqs:
   - net-libs/farstream
+  - *libs-gmime-2-packages
   - net-libs/libnice
   - net-im/pidgin
   - net-libs/telepathy-glib
@@ -5955,6 +5974,7 @@ packages:
   # depends on net-libs/telepathy-glib
   - <<: *layers-gnome-common
   - <<: *libs-farstream
+  - <<: *libs-gmime-2
   - <<: *libs-libnice
   - <<: *apps-pidgin
   build_requires:
