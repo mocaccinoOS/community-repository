@@ -6104,46 +6104,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-kdevelop
-  category: "apps"
-  name: "kdevelop"
-  version: "5.6.2+1"
-#  "21.12.3-r1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &apps-kdevelop-packages >-
-      dev-util/kdevelop
-      dev-util/kdevelop-php
-      dev-util/kdevelop-pg-qt
-      dev-util/kdevelop-python
-  atom: *apps-kdevelop-packages
-  provides:
-  - category: "dev-util"
-    name: "kdevelop"
-    version: ">=0"
-  - category: "dev-util"
-    name: "kdevelop-php"
-    version: ">=0"
-  - category: "dev-util"
-    name: "kdevelop-pg-qt"
-    version: ">=0"
-  - category: "dev-util"
-    name: "kdevelop-python"
-    version: ">=0"
-  pre_reqs:
-  - app-editors/okteta
-  - dev-util/astyle
-  - dev-python/pycodestyle
-  - kde-apps/kapptemplate
-  requires:
-  - <<: *layers-plasma
-  - <<: *apps-okteta
-  - <<: *apps-astyle 
-  - <<: *apps-pycodestyle
-  - <<: *apps-kapptemplate
-  build_requires:
-  - <<: *layers-plasma
-
 ################################################################################
 ### dep V libs ###
 ################################################################################
@@ -6565,3 +6525,53 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
+
+################################################################################
+### dep VII libs ###
+################################################################################
+
+################################################################################
+### dep VII apps ###
+################################################################################
+
+- &apps-kdevelop
+  category: "apps"
+  name: "kdevelop"
+  version: "5.6.2+2"
+#  "21.12.3-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-kdevelop-packages >-
+      dev-util/kdevelop
+      dev-util/kdevelop-php
+      dev-util/kdevelop-pg-qt
+      dev-util/kdevelop-python
+  atom: *apps-kdevelop-packages
+  provides:
+  - category: "dev-util"
+    name: "kdevelop"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-php"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-pg-qt"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kdevelop-python"
+    version: ">=0"
+  pre_reqs:
+  - app-editors/okteta
+  - dev-util/astyle
+  - dev-python/pycodestyle
+  - kde-apps/kapptemplate
+  - kde-apps/ktp-accounts-kcm
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-okteta
+  - <<: *apps-astyle 
+  - <<: *apps-pycodestyle
+  - <<: *apps-kapptemplate
+  - <<: *apps-ktp-accounts-kcm
+  build_requires:
+  - <<: *layers-plasma
