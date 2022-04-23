@@ -5683,6 +5683,34 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-pidgin
+  category: "apps"
+  name: "pidgin"
+  version: "2.14.8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/pidgin
+  atom: "net-im/pidgin"
+  provides:
+  - category: "net-im"
+    name: "pidgin"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libgnt"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/libgadu
+  - net-libs/farstream
+  - dev-lang/tk
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libgadu
+  - <<: *libs-farstream
+  - <<: *apps-tk
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-pip
   category: "apps"
   name: "pip"
