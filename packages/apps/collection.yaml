@@ -6366,26 +6366,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "umbrello"
-  version: "21.08.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/umbrello
-  atom: "kde-apps/umbrello"
-  provides:
-  - category: "kde-apps"
-    name: "umbrello"
-    version: ">=0"
-  pre_reqs:
-  - *apps-kdevelop-packages
-  requires:
-  - <<: *layers-plasma
-  - <<: *apps-kdevelop
-  build_requires:
-  - <<: *layers-plasma
-
 ################################################################################
 ### dep VI libs ###
 ################################################################################
@@ -6573,5 +6553,33 @@ packages:
   - <<: *apps-pycodestyle
   - <<: *apps-kapptemplate
   - <<: *apps-ktp-accounts-kcm
+  build_requires:
+  - <<: *layers-plasma
+
+################################################################################
+### dep VIII libs ###
+################################################################################
+
+################################################################################
+### dep VIII apps ###
+################################################################################
+
+- category: "apps"
+  name: "umbrello"
+  version: "21.08.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/umbrello
+  atom: "kde-apps/umbrello"
+  provides:
+  - category: "kde-apps"
+    name: "umbrello"
+    version: ">=0"
+  pre_reqs:
+  - *apps-kdevelop-packages
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-kdevelop
   build_requires:
   - <<: *layers-plasma
