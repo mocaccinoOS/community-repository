@@ -1694,6 +1694,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sofia-sip
+  category: "libs"
+  name: "sofia-sip"
+  version: "1.12.11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/sofia-sip
+  atom: "net-libs/sofia-sip"
+  provides:
+  - category: "net-libs"
+    name: "sofia-sip"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-suitesparseconfig
   category: "libs"
   name: "suitesparseconfig"
@@ -3935,6 +3953,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-telepathy-rakia
+  category: "libs"
+  name: "telepathy-rakia"
+  version: "0.8.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-voip/telepathy-rakia
+  atom: "net-voip/telepathy-rakia"
+  provides:
+  - category: "net-voip"
+    name: "telepathy-rakia"
+    version: ">=0"
+  pre_reqs:
+  - net-libs/farstream
+  - net-libs/sofia-sip
+  - net-libs/telepathy-glib
+  requires:
+  # depends on net-libs/telepathy-glib
+  - <<: *layers-gnome-common
+  - <<: *libs-sofia-sip
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-tix
   category: "libs"
   name: "tix"
@@ -6169,15 +6211,16 @@ packages:
 #     version: ">=0"
 #   pre_reqs:
 #   - net-irc/telepathy-idle
-#   - net-libs/farstream
 #   - *libs-gtksourceview-3-packages
-#   # - net-voip/telepathy-rakia ssl
+#   - net-libs/farstream
+#   - net-voip/telepathy-rakia
 #   - x11-plugins/pidgin-opensteamworks
 #   - x11-plugins/pidgin-sipe
 #   requires:
 #   # depends on net-libs/telepathy-glib
 #   - <<: *layers-gnome-common
 #   - <<: *libs-telepathy-idle
+#   - <<: *libs-telepathy-rakia
 #   - <<: *libs-farstream
 #   - <<: *libs-gtksourceview-3
 #   - <<: *libs-pidgin-opensteamworks
