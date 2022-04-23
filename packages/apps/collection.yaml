@@ -1291,6 +1291,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-meanwhile
+  category: "libs"
+  name: "meanwhile"
+  version: "1.0.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/meanwhile
+  atom: "net-libs/meanwhile"
+  provides:
+  - category: "net-libs"
+    name: "meanwhile"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-metis
   category: "libs"
   name: "metis"
@@ -5700,13 +5718,15 @@ packages:
     name: "libgnt"
     version: ">=0"
   pre_reqs:
-  - net-libs/libgadu
   - net-libs/farstream
+  - net-libs/libgadu
+  - net-libs/meanwhile
   - dev-lang/tk
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-libgadu
   - <<: *libs-farstream
+  - <<: *libs-libgadu
+  - <<: *libs-meanwhile
   - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
