@@ -6454,9 +6454,12 @@ packages:
   - app-doc/doxygen
   requires:
   - <<: *layers-gnome-common
+  - <<: *layers-qt
   - <<: *apps-doxygen
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 ################################################################################
 ### dep VI apps ###
