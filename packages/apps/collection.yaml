@@ -6437,6 +6437,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-wxpython
+  category: "libs"
+  name: "wxpython"
+  version: "4.0.7-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/wxpython
+  atom: "dev-python/wxpython"
+  provides:
+  - category: "dev-python"
+    name: "wxpython"
+    version: ">=0"
+  pre_reqs:
+  - app-doc/doxygen
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-doxygen
+  build_requires:
+  - <<: *layers-gnome-common
+
 ################################################################################
 ### dep VI apps ###
 ################################################################################
