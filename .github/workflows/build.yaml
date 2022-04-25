@@ -72,30 +72,30 @@ jobs:
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | tail -n 100
+        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
         echo
         df -h
         echo
-        sudo apt-get remove -y '^llvm-.*' '^libllvm.*'
+        sudo apt-get remove -y '^llvm-.*|^libllvm.*'
         sudo apt-get remove --auto-remove android-sdk-platform-tools
         sudo apt-get purge --auto-remove android-sdk-platform-tools
         sudo rm -rf /usr/local/lib/android
-        sudo apt-get remove -y '^dotnet-.*' '^aspnetcore-.*'
+        sudo apt-get remove -y '^dotnet-.*|^aspnetcore-.*'
         sudo rm -rf /usr/share/dotnet
-        sudo apt-get remove -y '^mono-.*' monodoc-manual msbuild
+        sudo apt-get remove -y '^mono-.*'
         sudo apt-get remove -y '^ghc-.*'
         sudo apt-get remove -y '.*jdk.*'
         sudo apt-get remove -y '.*jre.*'
         sudo apt-get remove -y 'php.*'
-        sudo apt-get remove -y hhvm powershell firefox
+        sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild
         sudo apt-get remove -y '^google-.*'
-        sudo apt-get remove -y '^mongo-.*' '^postgresql-.*' '^mysql-.*'
+        sudo apt-get remove -y '^mongo-.*|^postgresql-.*|^mysql-.*'
         sudo apt-get remove -y '^gfortran-.*'
         sudo apt-get autoremove -y
         sudo apt-get clean
         echo
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | tail -n 100
+        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
         echo
         df -h
     - run: |
