@@ -6440,7 +6440,7 @@ packages:
 - &libs-wxpython
   category: "libs"
   name: "wxpython"
-  version: "4.0.7-r1"
+  version: "4.0.7-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6598,33 +6598,33 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- &apps-pyhoca-gui
-  category: "apps"
-  name: "pyhoca-gui"
-  version: "0.6.1.1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/pyhoca-gui
-  atom: "net-misc/pyhoca-gui"
-  provides:
-  - category: "net-misc"
-    name: "pyhoca-gui"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/python-distutils-extra
-  - net-misc/python-x2go
-  - dev-python/wxpython
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-qt
-  - <<: *libs-python-distutils-extra
-  - <<: *libs-python-x2go
-  - <<: *libs-wxpython
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  requires_final_images: true
+# - &apps-pyhoca-gui
+#   category: "apps"
+#   name: "pyhoca-gui"
+#   version: "0.6.1.1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/pyhoca-gui
+#   atom: "net-misc/pyhoca-gui"
+#   provides:
+#   - category: "net-misc"
+#     name: "pyhoca-gui"
+#     version: ">=0"
+#   pre_reqs:
+#   - dev-python/python-distutils-extra
+#   - net-misc/python-x2go
+#   - dev-python/wxpython
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   - <<: *libs-python-distutils-extra
+#   - <<: *libs-python-x2go
+#   - <<: *libs-wxpython
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-qt
+#   requires_final_images: true
 
 ################################################################################
 ### dep VIII libs ###
