@@ -35,8 +35,7 @@ jobs:
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        echo $pkgs | head -n 100
+        dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr | tail -n +1 | head -n 100
         echo
         df -h
         echo
@@ -60,8 +59,7 @@ jobs:
         sudo apt-get clean
         echo
         echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        echo $pkgs | head -n 100
+        dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr | tail -n +1 | head -n 100
         echo
         df -h
     - run: |
