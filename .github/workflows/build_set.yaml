@@ -35,7 +35,7 @@ jobs:
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
+        dpkg-query -lf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
         echo
         df -h
         echo
@@ -52,13 +52,14 @@ jobs:
         sudo apt-get remove -y 'php.*'
         sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild
         sudo apt-get remove -y '^google-.*'
+        sudo apt-get remove -y azure-cli
         sudo apt-get remove -y '^mongo-.*|^postgresql-.*|^mysql-.*'
         sudo apt-get remove -y '^gfortran-.*'
         sudo apt-get autoremove -y
         sudo apt-get clean
         echo
         echo "Listing top largest packages"
-        dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
+        dpkg-query -lf '${Installed-Size}\t${Package}\n' | sort -nr | head -n 100
         echo
         df -h
     - run: |
