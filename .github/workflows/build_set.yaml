@@ -36,7 +36,7 @@ jobs:
       run: |
         echo "Listing top largest packages"
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        echo $(head -n 100 <<< $pkgs)
+        echo $pkgs | head -n 100
         echo
         df -h
         echo
@@ -61,7 +61,7 @@ jobs:
         echo
         echo "Listing top largest packages"
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        echo $(head -n 100 <<< $pkgs)
+        echo $pkgs | head -n 100
         echo
         df -h
     - run: |
