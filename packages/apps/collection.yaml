@@ -347,6 +347,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-bcrypt
+  category: "libs"
+  name: "bcrypt"
+  version: "3.2.0+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/bcrypt
+  atom: "dev-python/bcrypt"
+  provides:
+  - category: "dev-python"
+    name: "bcrypt"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -364,6 +382,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-cryptography
+  category: "libs"
+  name: "cryptography"
+  version: "3.4.7-r3+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cryptography
+  atom: "dev-python/cryptography"
+  provides:
+  - category: "dev-python"
+    name: "cryptography"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/hypothesis
+  - dev-python/iso8601
+  - dev-python/pretend
+  - dev-python/pyasn1-modules
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 # TODO: remove next cycle
 - &libs-faad2
@@ -522,6 +563,28 @@ packages:
   provides:
   - category: "dev-libs"
     name: "gmime:2.6"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-greenlet
+  category: "libs"
+  name: "greenlet"
+  version: "1.1.2+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-greenlet-packages >-
+      dev-python/greenlet
+      virtual/python-greenlet
+  atom: *libs-greenlet-packages
+  provides:
+  - category: "dev-python"
+    name: "greenlet"
+    version: ">=0"
+  - category: "virtual"
+    name: "python-greenlet"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1512,6 +1575,24 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-pyasn1
+  category: "libs"
+  name: "pyasn1"
+  version: "0.4.8-r1+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyasn1
+  atom: "dev-python/pyasn1"
+  provides:
+  - category: "dev-python"
+    name: "pyasn1"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
@@ -1909,6 +1990,32 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-zope
+  category: "libs"
+  name: "zope"
+  version: "0.4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &libs-zope-packages >-
+      dev-python/namespace-zope
+      dev-python/zope-event
+      dev-python/zope-interface
+  atom: *libs-zope-packages
+  provides:
+  - category: "dev-python"
+    name: "namespace-zope"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-event"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-interface"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 ################################################################################
 ### dep 0 apps ###
@@ -2895,6 +3002,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-pip
+  category: "apps"
+  name: "pip"
+  version: "22.0.4+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pip
+  atom: "dev-python/pip"
+  provides:
+  - category: "dev-python"
+    name: "pip"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "plasma-sdk"
   version: "1.3+3"
@@ -2946,6 +3071,24 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- &apps-pycodestyle
+  category: "apps"
+  name: "pycodestyle"
+  version: "2.8.0+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pycodestyle
+  atom: "dev-python/pycodestyle"
+  provides:
+  - category: "dev-python"
+    name: "pycodestyle"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-qhexedit2
   category: "apps"
@@ -3684,6 +3827,29 @@ packages:
   - <<: *libs-protobuf-c
   build_requires:
   - <<: *layers-X
+
+- &libs-gevent
+  category: "libs"
+  name: "gevent"
+  version: "21.12.0+3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/gevent
+  atom: "dev-python/gevent"
+  provides:
+  - category: "dev-python"
+    name: "gevent"
+    version: ">=0"
+  pre_reqs:
+  - *libs-zope-packages
+  - *libs-greenlet-packages
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-zope
+  - <<: *libs-greenlet
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-gst-plugins-srtp
   category: "libs"
@@ -4724,6 +4890,28 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# - &libs-pycryptodome
+#   category: "libs"
+#   name: "pycryptodome"
+#   version: "3.14.1+1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/pycryptodome
+#   atom: "dev-python/pycryptodome"
+#   provides:
+#   - category: "dev-python"
+#     name: "pycryptodome"
+#     version: ">=0"
+#   pre_reqs:
+#   - dev-libs/libtomcrypt
+#   - dev-python/wheel
+#   requires:
+#   - <<: *layers-sys-fs
+#   - <<: *libs-libtomcrypt
+#   build_requires:
+#   - <<: *layers-sys-fs
+
 - &libs-t1lib
   category: "libs"
   name: "t1lib"
@@ -5157,31 +5345,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-pypy3
-  category: "apps"
-  name: "pypy3"
-  version: "7.3.8+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/pypy3
-  atom: "dev-python/pypy3"
-  provides:
-  - category: "dev-python"
-    name: "pypy3"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pypy3-exe"
-    version: ">=0"
-  pre_reqs:
-  - dev-lang/tk
-  - dev-tcltk/tix
-  requires:
-  - <<: *layers-X
-  - <<: *libs-tix
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "q4wine"
   version: "1.3.12+7"
@@ -5361,52 +5524,6 @@ packages:
 ### dep III libs ###
 ################################################################################
 
-- &libs-bcrypt
-  category: "libs"
-  name: "bcrypt"
-  version: "3.2.0+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/bcrypt
-  atom: "dev-python/bcrypt"
-  provides:
-  - category: "dev-python"
-    name: "bcrypt"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
-- &libs-cryptography
-  category: "libs"
-  name: "cryptography"
-  version: "3.4.7-r3+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/cryptography
-  atom: "dev-python/cryptography"
-  provides:
-  - category: "dev-python"
-    name: "cryptography"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  - dev-python/hypothesis
-  - dev-python/iso8601
-  - dev-python/pretend
-  - dev-python/pyasn1-modules
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
 - &libs-devil
   category: "libs"
   name: "devil"
@@ -5456,31 +5573,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-greenlet
-  category: "libs"
-  name: "greenlet"
-  version: "1.1.2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &libs-greenlet-packages >-
-      dev-python/greenlet
-      virtual/python-greenlet
-  atom: *libs-greenlet-packages
-  provides:
-  - category: "dev-python"
-    name: "greenlet"
-    version: ">=0"
-  - category: "virtual"
-    name: "python-greenlet"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
 - &libs-mlt
   category: "libs"
   name: "mlt"
@@ -5514,51 +5606,6 @@ packages:
   - <<: *libs-frei0r-plugins
   build_requires:
   - <<: *layers-kde-common
-
-- &libs-pyasn1
-  category: "libs"
-  name: "pyasn1"
-  version: "0.4.8-r1+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyasn1
-  atom: "dev-python/pyasn1"
-  provides:
-  - category: "dev-python"
-    name: "pyasn1"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
-# - &libs-pycryptodome
-#   category: "libs"
-#   name: "pycryptodome"
-#   version: "3.14.1+1"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/pycryptodome
-#   atom: "dev-python/pycryptodome"
-#   provides:
-#   - category: "dev-python"
-#     name: "pycryptodome"
-#     version: ">=0"
-#   pre_reqs:
-#   - dev-libs/libtomcrypt
-#   - dev-python/pypy3
-#   - dev-python/wheel
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-libtomcrypt
-#   - <<: *apps-pypy3
-#   build_requires:
-#   - <<: *layers-X
 
 - &libs-rav1e
   category: "libs"
@@ -5605,35 +5652,6 @@ packages:
   - <<: *libs-suitesparseconfig
   build_requires:
   - <<: *layers-system-x
-
-- &libs-zope
-  category: "libs"
-  name: "zope"
-  version: "0.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &libs-zope-packages >-
-      dev-python/namespace-zope
-      dev-python/zope-event
-      dev-python/zope-interface
-  atom: *libs-zope-packages
-  provides:
-  - category: "dev-python"
-    name: "namespace-zope"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-event"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-interface"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
 
 ################################################################################
 ### dep III apps ###
@@ -5810,56 +5828,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-pip
-  category: "apps"
-  name: "pip"
-  version: "22.0.4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/pip
-  atom: "dev-python/pip"
-  provides:
-  - category: "dev-python"
-    name: "pip"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  - dev-python/cryptography
-  - dev-python/freezegun
-  - dev-python/pretend
-  - dev-python/pytest
-  - dev-python/scripttest
-  - dev-python/tomli-w
-  - dev-python/werkzeug
-  - dev-python/wheel
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
-- &apps-pycodestyle
-  category: "libs"
-  name: "pycodestyle"
-  version: "2.8.0+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pycodestyle
-  atom: "dev-python/pycodestyle"
-  provides:
-  - category: "dev-python"
-    name: "pycodestyle"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/pypy3
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "stellarium"
   version: "0.21.3"
@@ -5912,32 +5880,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gevent
-  category: "libs"
-  name: "gevent"
-  version: "21.12.0+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/gevent
-  atom: "dev-python/gevent"
-  provides:
-  - category: "dev-python"
-    name: "gevent"
-    version: ">=0"
-  pre_reqs:
-  - dev-python/dnspython
-  - dev-python/pypy3
-  - *libs-zope-packages
-  - *libs-greenlet-packages
-  requires:
-  - <<: *layers-X
-  - <<: *apps-pypy3
-  - <<: *libs-zope
-  - <<: *libs-greenlet
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libheif
   category: "libs"
   name: "libheif"
@@ -5964,9 +5906,9 @@ packages:
   - <<: *layers-X
 
 - &libs-paramiko
-  category: "apps"
+  category: "libs"
   name: "paramiko"
-  version: "2.10.3"
+  version: "2.10.3+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -5983,13 +5925,13 @@ packages:
   - dev-python/pyasn1
   - dev-python/pynacl
   requires:
-  - <<: *layers-X
+  - <<: *layers-sys-fs
   - <<: *libs-bcrypt
   - <<: *libs-cryptography
   - <<: *libs-pyasn1
   - <<: *libs-pynacl
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-sys-fs
 
 - &libs-pidgin-opensteamworks
   category: "libs"
@@ -6210,7 +6152,7 @@ packages:
 - &libs-python-x2go
   category: "libs"
   name: "python-x2go"
-  version: "0.6.1.3+1"
+  version: "0.6.1.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
