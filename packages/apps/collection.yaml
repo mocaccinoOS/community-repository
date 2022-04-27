@@ -4023,27 +4023,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-opencv
-  category: "libs"
-  name: "opencv"
-  version: "4.5.5-r1+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/opencv
-  atom: "media-libs/opencv"
-  provides:
-  - category: "media-libs"
-    name: "opencv"
-    version: ">=0"
-  pre_reqs:
-  - sci-libs/hdf5
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-hdf5
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
@@ -4751,29 +4730,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-frei0r-plugins
-  category: "libs"
-  name: "frei0r-plugins"
-  version: "1.7.0-r1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-plugins/frei0r-plugins
-  atom: "media-plugins/frei0r-plugins"
-  provides:
-  - category: "media-plugins"
-    name: "frei0r-plugins"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/gavl
-  - media-libs/opencv
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-gavl
-  - <<: *libs-opencv
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
@@ -4862,6 +4818,31 @@ packages:
   - <<: *libs-colamd
   build_requires:
   - <<: *layers-system-x
+
+- &libs-opencv
+  category: "libs"
+  name: "opencv"
+  version: "4.5.5-r1+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opencv
+  atom: "media-libs/opencv"
+  provides:
+  - category: "media-libs"
+    name: "opencv"
+    version: ">=0"
+  pre_reqs:
+  - sci-libs/hdf5
+  - dev-cpp/tbb
+  - media-libs/xine-lib
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-hdf5
+  - <<: *libs-tbb
+  - <<: *libs-xine-lib
+  build_requires:
+  - <<: *layers-qt
 
 - &libs-openvdb
   category: "libs"
@@ -5574,39 +5555,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-mlt
+- &libs-frei0r-plugins
   category: "libs"
-  name: "mlt"
-  version: "7.4.0+2"
+  name: "frei0r-plugins"
+  version: "1.7.0-r1+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      media-libs/mlt
-  atom: "media-libs/mlt"
+      media-plugins/frei0r-plugins
+  atom: "media-plugins/frei0r-plugins"
   provides:
-  - category: "media-libs"
-    name: "mlt"
-    version: ">=0"
-  - category: "media-libs"
-    name: "rtaudio"
+  - category: "media-plugins"
+    name: "frei0r-plugins"
     version: ">=0"
   pre_reqs:
-  - media-libs/ladspa-sdk
-  - media-libs/libebur128
-  - media-libs/rubberband
-  - media-libs/sdl2-image
-  - media-libs/xine-lib
-  - media-plugins/frei0r-plugins
+  - media-libs/gavl
+  - media-libs/opencv
   requires:
-  - <<: *layers-kde-common
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-libebur128
-  - <<: *libs-rubberband
-  - <<: *libs-sdl2-image
-  - <<: *libs-xine-lib
-  - <<: *libs-frei0r-plugins
+  - <<: *layers-qt
+  - <<: *libs-gavl
+  - <<: *libs-opencv
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
 
 - &libs-rav1e
   category: "libs"
@@ -5750,26 +5720,6 @@ packages:
 #   - <<: *layers-X
 
 - category: "apps"
-  name: "kdenlive"
-  version: "21.12.3"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kdenlive
-  atom: "kde-apps/kdenlive"
-  provides:
-  - category: "kde-apps"
-    name: "kdenlive"
-    version: ">=0"
-  pre_reqs:
-  - media-libs/mlt
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-mlt
-  build_requires:
-  - <<: *layers-plasma
-
-- category: "apps"
   name: "kstars"
   version: "3.5.7"
   labels:
@@ -5905,6 +5855,40 @@ packages:
   - <<: *libs-rav1e
   build_requires:
   - <<: *layers-X
+
+- &libs-mlt
+  category: "libs"
+  name: "mlt"
+  version: "7.4.0+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/mlt
+  atom: "media-libs/mlt"
+  provides:
+  - category: "media-libs"
+    name: "mlt"
+    version: ">=0"
+  - category: "media-libs"
+    name: "rtaudio"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/ladspa-sdk
+  - media-libs/libebur128
+  - media-libs/rubberband
+  - media-libs/sdl2-image
+  - media-libs/xine-lib
+  - media-plugins/frei0r-plugins
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-libebur128
+  - <<: *libs-rubberband
+  - <<: *libs-sdl2-image
+  - <<: *libs-xine-lib
+  - <<: *libs-frei0r-plugins
+  build_requires:
+  - <<: *layers-kde-common
 
 - &libs-paramiko
   category: "libs"
@@ -6065,6 +6049,26 @@ packages:
   - <<: *libs-lasi
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "kdenlive"
+  version: "21.12.3"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kdenlive
+  atom: "kde-apps/kdenlive"
+  provides:
+  - category: "kde-apps"
+    name: "kdenlive"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/mlt
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-mlt
+  build_requires:
+  - <<: *layers-plasma
 
 ################################################################################
 ### dep V libs ###
