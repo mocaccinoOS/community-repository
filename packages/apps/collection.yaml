@@ -3267,6 +3267,25 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "tokodon"
+  version: "21.12"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-tokodon-packages >-
+      =kde-apps/tokodon-21.12
+  atom: *apps-tokodon-packages
+  overlay:
+    name: "guru"
+  provides:
+  - category: "kde-apps"
+    name: "tokodon"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "tree"
   version: "0.4+3"
   labels:
