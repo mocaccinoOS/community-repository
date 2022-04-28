@@ -4118,12 +4118,12 @@ packages:
 - &libs-tbb
   category: "libs"
   name: "tbb"
-  version: "2021.5.0-r1+1"
+  version: "2021.5.0-r1+2"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/tbb
-  atom: "dev-cpp/tbb"
+    emerge.packages: &libs-tbb-packages >-
+      =dev-cpp/tbb-2021.5.0-r1
+  atom: *libs-tbb-packages
   provides:
   - category: "dev-cpp"
     name: "tbb"
@@ -4841,7 +4841,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.5.5-r1+3"
+  version: "4.5.5-r1+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4853,7 +4853,7 @@ packages:
     version: ">=0"
   pre_reqs:
   - sci-libs/hdf5
-  - dev-cpp/tbb
+  - *libs-tbb-packages
   - media-libs/xine-lib
   requires:
   - <<: *layers-qt
@@ -4866,7 +4866,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "8.2.0-r7"
+  version: "8.2.0-r7+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4877,7 +4877,7 @@ packages:
     name: "openvdb"
     version: ">=0"
   pre_reqs:
-  - dev-cpp/tbb
+  - *libs-tbb-packages
   - dev-libs/c-blosc
   - dev-libs/log4cplus
   - media-libs/glfw
@@ -5667,15 +5667,14 @@ packages:
   - sci-libs/gsl
   requires:
   - <<: *layers-kde-common
-  #- <<: *layers-kde-apps-minimal
   - <<: *layers-office-common
   - <<: *libs-libspnav
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
   - <<: *libs-gsl
   build_requires:
-  - <<: *buildbase-kde-common
   # okular in layers/kde-apps-minimal
+  - <<: *buildbase-kde-common
   - <<: *layerbase-office-common
   requires_final_images: true
 
@@ -6358,7 +6357,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "3.3+1"
+  version: "3.3+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: &libs-ocio-oiio-packages >-
@@ -6377,7 +6376,7 @@ packages:
     version: ">=0"
   pre_reqs:
   - dev-cpp/pystring
-  - dev-cpp/tbb
+  - *libs-tbb-packages
   - dev-libs/tinyxml  
   - dev-python/pybind11
   - media-gfx/openvdb
