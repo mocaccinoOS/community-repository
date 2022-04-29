@@ -627,6 +627,23 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "libs"
+  name: "gtkglext"
+  version: "1.2.0-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtkglext
+  atom: "x11-libs/gtkglext"
+  provides:
+  - category: "x11-libs"
+    name: "gtkglext"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gtksourceview-3
   category: "libs"
   name: "gtksourceview-3"
@@ -4285,6 +4302,28 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "cairo-dock"
+  version: "3.4.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/cairo-dock
+  atom: "x11-misc/cairo-dock"
+  overlay:
+    name: "pinkbyte"
+  provides:
+  - category: "x11-misc"
+    name: "cairo-dock"
+    version: ">=0"
+  pre_reqs:
+  - x11-libs/gtkglext
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-gtkglext
+  build_requires:
+  - <<: *layers-kde-common
 
 - &apps-cdrdao
   category: "apps"
