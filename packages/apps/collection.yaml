@@ -4311,12 +4311,16 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/cairo-dock
-  atom: "x11-misc/cairo-dock"
+      x11-plugins/cairo-dock-plugins
+  atom: "x11-misc/cairo-dock x11-plugins/cairo-dock-plugins"
   overlay:
     name: "pinkbyte"
   provides:
   - category: "x11-misc"
     name: "cairo-dock"
+    version: ">=0"
+  - category: "x11-plugins"
+    name: "cairo-dock-plugins"
     version: ">=0"
   pre_reqs:
   - x11-libs/gtkglext
