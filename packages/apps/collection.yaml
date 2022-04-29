@@ -3563,11 +3563,12 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "7.1"
+  version: "7.7"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       app-emulation/wine-staging
+      app-emulation/wine-desktop-common
       app-emulation/winetricks
       app-emulation/protontricks
   atom: "app-emulation/wine-staging app-emulation/winetricks app-emulation/protontricks"
@@ -3609,12 +3610,12 @@ packages:
     name: "vdf"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
   - category: "entity"
     name: "rtkit"
     version: ">=0"
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "zsh"
