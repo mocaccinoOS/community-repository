@@ -2113,6 +2113,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "chromium"
+  version: "100.0.4896.127"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      www-client/chromium
+  atom: "www-client/chromium"
+  provides:
+  - category: "www-client"
+    name: "chromium"
+    version: ">=0"
+  pre_emerge:
+  - dev-util/gn
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-qt
+  requires_final_images: true
+
+- category: "apps"
   name: "cuetools"
   version: "1.4.1+1"
   labels:
