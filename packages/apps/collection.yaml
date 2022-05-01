@@ -347,6 +347,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "libs"
+  name: "bamf"
+  version: "0.5.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/bamf
+  atom: "x11-libs/bamf"
+  overlays:
+  - name: "edgets"
+  provides:
+  - category: "x11-libs"
+    name: "bamf"
+    version: ">=0"
+  pre_reqs:
+  - x11-libs/bamf
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-bcrypt
   category: "libs"
   name: "bcrypt"
@@ -4623,6 +4644,29 @@ packages:
   - <<: *libs-mbedtls
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "plank"
+  version: "0.11.89-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/plank
+  atom: "x11-misc/plank"
+  overlays:
+  - name: "edgets"
+  provides:
+  - category: "x11-misc"
+    name: "plank"
+    version: ">=0"
+  pre_reqs:
+  - x11-libs/bamf
+  - gnome-base/gnome-menus
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-bamf
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-postgresql
   category: "apps"
