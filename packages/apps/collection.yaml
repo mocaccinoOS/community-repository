@@ -354,16 +354,14 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      x11-libs/bamf
-  atom: "x11-libs/bamf"
+      unity-base/bamf
+  atom: "unity-base/bamf"
   overlays:
   - name: "unity-gentoo"
   provides:
-  - category: "x11-libs"
+  - category: "unity-base"
     name: "bamf"
     version: ">=0"
-  pre_reqs:
-  - x11-libs/bamf
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -4661,7 +4659,7 @@ packages:
     name: "plank"
     version: ">=0"
   pre_reqs:
-  - x11-libs/bamf
+  - unity-base/bamf
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-bamf
