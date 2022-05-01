@@ -350,14 +350,14 @@ packages:
 - &libs-bamf
   category: "libs"
   name: "bamf"
-  version: "0.5.5"
+  version: "0.5.5_p20210119_p0_p01"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-libs/bamf
   atom: "x11-libs/bamf"
   overlays:
-  - name: "edgets"
+  - name: "unity-gentoo"
   provides:
   - category: "x11-libs"
     name: "bamf"
@@ -4648,21 +4648,20 @@ packages:
 
 - category: "apps"
   name: "plank"
-  version: "0.11.89-r1"
+  version: "0.11.89_p3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/plank
   atom: "x11-misc/plank"
   overlays:
-  - name: "edgets"
+  - name: "unity-gentoo"
   provides:
   - category: "x11-misc"
     name: "plank"
     version: ">=0"
   pre_reqs:
   - x11-libs/bamf
-  - gnome-base/gnome-menus
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-bamf
