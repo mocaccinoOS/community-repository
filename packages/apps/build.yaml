@@ -29,13 +29,15 @@ prelude:
 - bash prelude.sh {{ $packages }}
 {{ end }}
 
-{{ if .Values.overlay }}
+{{ if .Values.overlays }}
 - USE="-subversion -mercurial" emerge app-portage/layman
 - layman -L
-{{ if .Values.overlay.url }}
-- echo "y" | layman -o {{ .Values.overlay.url }} -f -a {{ .Values.overlay.name }}
+{{ range .Values.overlays }}
+{{ if .url }}
+- echo "y" | layman -o {{ .url }} -f -a {{ .name }}
 {{ else }}
-- echo "y" | layman -a {{ .Values.overlay.name }}
+- echo "y" | layman -a {{ .name }}
+{{ end }}
 {{ end }}
 {{ end }}
 

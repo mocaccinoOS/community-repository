@@ -261,8 +261,8 @@ packages:
   name: "robotomono"
   version: "3.000+3"
   atom: "media-fonts/robotomono"
-  overlay:
-    name: "4nykey"
+  overlays:
+  - name: "4nykey"
   provides:
   - category: "media-fonts"
     name: "robotomono"
@@ -272,8 +272,8 @@ packages:
   name: "robotoslab"
   version: "2.000+3"
   atom: "media-fonts/robotoslab"
-  overlay:
-    name: "4nykey"
+  overlays:
+  - name: "4nykey"
   provides:
   - category: "media-fonts"
     name: "robotoslab"
@@ -2064,8 +2064,8 @@ packages:
     emerge.packages: >-
       www-client/brave-bin
   atom: "www-client/brave-bin"
-  overlay:
-    name: "brave-overlay"
+  overlays:
+  - name: "brave-overlay"
   provides:
   - category: "www-client"
     name: "brave-bin"
@@ -2175,8 +2175,8 @@ packages:
     emerge.packages: &apps-dmd-packages >-
       =dev-lang/dmd-2.094.2
   atom: *apps-dmd-packages
-  overlay:
-    name: "dlang"
+  overlays:
+  - name: "dlang"
   provides:
   - category: "app-eselect"
     name: "eselect-dlang"
@@ -2759,8 +2759,8 @@ packages:
     emerge.packages: >-
       x11-misc/ksnip
   atom: "x11-misc/ksnip"
-  overlay:
-    name: "guru"
+  overlays:
+  - name: "guru"
   provides:
   - category: "x11-misc"
     name: "ksnip"
@@ -2813,8 +2813,8 @@ packages:
     emerge.packages: >-
       games-util/mangohud
   atom: "games-util/mangohud"
-  overlay:
-    name: "ace"
+  overlays:
+  - name: "ace"
   provides:
   - category: "games-util"
     name: "mangohud"
@@ -3292,8 +3292,8 @@ packages:
     emerge.packages: &apps-tokodon-packages >-
       =kde-apps/tokodon-21.12
   atom: *apps-tokodon-packages
-  overlay:
-    name: "guru"
+  overlays:
+  - name: "guru"
   provides:
   - category: "kde-apps"
     name: "tokodon"
@@ -4309,13 +4309,14 @@ packages:
   version: "3.4.1"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
+    emerge.packages: &cairo-dock-packages >-
       x11-misc/cairo-dock
+      x11-themes/cairo-dock-themes 
 #       x11-plugins/cairo-dock-plugins
-#   atom: "x11-misc/cairo-dock x11-plugins/cairo-dock-plugins"
-  atom: "x11-misc/cairo-dock"
-  overlay:
-    name: "pinkbyte"
+  atom: *cairo-dock-packages
+  overlays:
+  - name: "pinkbyte"
+  - name: "argent-main"
   provides:
   - category: "x11-misc"
     name: "cairo-dock"
@@ -4353,28 +4354,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "chromium"
-  version: "100.0.4896.127"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      www-client/chromium
-  atom: "www-client/chromium"
-  provides:
-  - category: "www-client"
-    name: "chromium"
-    version: ">=0"
-  pre_emerge:
-  - dev-util/gn
-  pre_reqs:
-  - *layers-java-packages
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-java
-  build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
+# - category: "apps"
+#   name: "chromium"
+#   version: "100.0.4896.127"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       www-client/chromium
+#   atom: "www-client/chromium"
+#   provides:
+#   - category: "www-client"
+#     name: "chromium"
+#     version: ">=0"
+#   pre_emerge:
+#   - dev-util/gn
+#   pre_reqs:
+#   - *layers-java-packages
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-java
+#   build_requires:
+#   - <<: *buildbase-qt
+#   requires_final_images: true
 
 - &apps-clamav
   category: "apps"
@@ -5311,8 +5312,8 @@ packages:
     emerge.packages: >-
       net-misc/onedrive
   atom: "net-misc/onedrive"
-  overlay:
-    name: "dlang"
+  overlays:
+  - name: "dlang"
   provides:
   - category: "net-misc"
     name: "onedrive"
