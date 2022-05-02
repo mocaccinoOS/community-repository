@@ -1061,6 +1061,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libglade
+  category: "apps"
+  name: "libglade"
+  version: "2.6.4-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/libglade
+  atom: "gnome-base/libglade"
+  provides:
+  - category: "gnome-base"
+    name: "libglade"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -2076,7 +2094,27 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  
+
+- category: "apps"
+  name: "cairo-clock"
+  version: "0.3.4-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/cairo-clock
+  atom: "x11-misc/cairo-clock"
+  provides:
+  - category: "x11-misc"
+    name: "cairo-clock"
+    version: ">=0"
+  pre_reqs:
+  - gnome-base/libglade
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libglade
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "celestia"
   version: "1.7.0_pre20220120+1"
