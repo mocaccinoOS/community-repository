@@ -2494,6 +2494,25 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# should be in main repo
+- &apps-hddtemp 
+  category: "apps"
+  name: "hddtemp"
+  version: "0.3_beta15-r29"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/hddtemp
+  atom: "app-admin/hddtemp"
+  provides:
+  - category: "app-admin"
+    name: "hddtemp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "hexchat"
   version: "2.14.3+65"
