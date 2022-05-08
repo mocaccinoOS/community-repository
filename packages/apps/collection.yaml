@@ -77,18 +77,31 @@ anchors:
   version: ">=0"
 
 - &layers-java-packages >-
-    dev-java/openjdk-jre-bin
-    dev-java/openjdk-bin
-    virtual/jre
-    virtual/jdk
+  dev-java/openjdk-jre-bin
+  dev-java/openjdk-bin
+  virtual/jre
+  virtual/jdk
 
+################################################################################
+### libs ###
+################################################################################
 
 # https://bugs.gentoo.org/727334
 - &libs-sphinx-packages >-
-    dev-texlive/texlive-fontsrecommended
-    dev-python/sphinx
+  dev-texlive/texlive-fontsrecommended
+  dev-python/sphinx
 
-  
+################################################################################
+### apps ###
+################################################################################
+
+- &apps-vim-packages >-
+  app-editors/vim
+- &apps-vim
+  category: "apps"
+  name: "vim"
+  version: ">=0"
+
 packages:
 
 ################################################################################
@@ -5264,10 +5277,10 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/cmus
-  atom: "media-libs/cmus"
+      media-sound/cmus
+  atom: "media-sound/cmus"
   provides:
-  - category: "media-libs"
+  - category: "media-sound"
     name: "cmus"
     version: ">=0"
   pre_reqs:
