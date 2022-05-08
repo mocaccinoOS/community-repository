@@ -1146,6 +1146,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libmp4v2
+  category: "libs"
+  name: "libmp4v2"
+  version: "2.0.0-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmp4v2
+  atom: "media-libs/libmp4v2"
+  provides:
+  - category: "media-libs"
+    name: "libmp4v2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libnova
   category: "libs"
   name: "libnova"
@@ -5284,16 +5302,20 @@ packages:
     name: "cmus"
     version: ">=0"
   pre_reqs:
+  - media-libs/faad2
   - media-libs/libao
   - media-libs/libdiscid
   - media-libs/libmikmod
+  - media-libs/libmp4v2
   - media-libs/tremor
   # - net-im/pidgin
   requires:
   - <<: *layers-X
+  - <<: *libs-faad2
   - <<: *libs-libao
   - <<: *libs-libdiscid
   - <<: *libs-libmikmod
+  - <<: *libs-libmp4v2
   - <<: *libs-tremor
   # - <<: *apps-pidgin
   build_requires:
