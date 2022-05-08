@@ -2038,6 +2038,23 @@ packages:
 ################################################################################
 
 - category: "apps"
+  name: "alacritty"
+  version: "0.9.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/alacritty
+  atom: "x11-terms/alacritty"
+  provides:
+  - category: "x11-terms"
+    name: "alacritty"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "brasero"
   version: "3.12.2+1"
   labels:
