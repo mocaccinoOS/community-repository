@@ -5258,6 +5258,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-cmus
+  category: "apps"
+  name: "cmus"
+  version: "2.9.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/cmus
+  atom: "media-libs/cmus"
+  provides:
+  - category: "media-libs"
+    name: "cmus"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/libao
+  - media-libs/libdiscid
+  - media-libs/libmikmod
+  - media-libs/tremor
+  # - net-im/pidgin
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libao
+  - <<: *libs-libdiscid
+  - <<: *libs-libmikmod
+  - <<: *libs-tremor
+  # - <<: *apps-pidgin
+  build_requires:
+  - <<: *layers-X
+
 - &apps-enblend
   category: "apps"
   name: "enblend"
