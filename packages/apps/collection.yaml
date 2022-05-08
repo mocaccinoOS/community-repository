@@ -1460,6 +1460,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-nas
+  category: "libs"
+  name: "nas"
+  version: "1.9.5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/nas
+  atom: "media-libs/nas"
+  provides:
+  - category: "media-libs"
+    name: "nas"
+    version: ">=0"
+  pre_reqs:
+  - app-text/rman
+  - x11-misc/gccmakedep
+  - x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-netpbm
   category: "libs"
   name: "netpbm"
