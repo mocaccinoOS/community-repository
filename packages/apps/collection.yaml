@@ -826,24 +826,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libao
-  category: "libs"
-  name: "libao"
-  version: "1.2.2-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libao
-  atom: "media-libs/libao"
-  provides:
-  - category: "media-libs"
-    name: "libao"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libaom
   category: "libs"
   name: "libaom"
@@ -4007,6 +3989,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libao
+  category: "libs"
+  name: "libao"
+  version: "1.2.2-r2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libao
+  atom: "media-libs/libao"
+  provides:
+  - category: "media-libs"
+    name: "libao"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/nas
+  requires:
+  - <<: *layers-X
+  - <<: *libs-nas
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
@@ -4052,6 +4055,27 @@ packages:
   - <<: *libs-http-parser
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-libmikmod
+  category: "libs"
+  name: "libmikmod"
+  version: "3.3.11.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmikmod
+  atom: "media-libs/libmikmod"
+  provides:
+  - category: "media-libs"
+    name: "libmikmod"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/nas
+  requires:
+  - <<: *layers-X
+  - <<: *libs-nas
+  build_requires:
+  - <<: *layers-X
 
 - &libs-libnice
   category: "libs"
