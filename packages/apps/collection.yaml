@@ -1151,26 +1151,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libmygpo-qt
-  category: "libs"
-  name: "libmygpo-qt"
-  version: "1.1.0+3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmygpo-qt
-  atom: "media-libs/libmygpo-qt"
-  provides:
-  - category: "media-libs"
-    name: "libmygpo-qt"
-    version: ">=0"
-  pre_reqs:
-  - dev-cpp/gtest
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-libnova
   category: "libs"
   name: "libnova"
@@ -4468,7 +4448,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc1+4"
+  version: "1.4.0_rc1+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4478,14 +4458,16 @@ packages:
   - category: "media-sound"
     name: "clementine"
     version: ">=0"
+  - category: "media-libs"
+    name: "libmygpo-qt"
+    version: ">=0"
   pre_reqs:
   - dev-cpp/gtest
-  - media-libs/libmygpo-qt
+  - dev-cpp/gtest
   - gnome-base/gvfs
   requires:
   - <<: *layers-plasma
   - <<: *layers-gnome-common
-  - <<: *libs-libmygpo-qt
   build_requires:
   - <<: *layers-plasma
 
