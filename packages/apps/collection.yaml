@@ -2257,6 +2257,24 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
+- &apps-dosbox
+  category: "apps"
+  name: "dosbox"
+  version: "0.74.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-emulation/dosbox
+  atom: "games-emulation/dosbox"
+  provides:
+  - category: "games-emulation"
+    name: "dosbox"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd-rw-tools"
