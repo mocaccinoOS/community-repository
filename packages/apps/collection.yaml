@@ -1934,6 +1934,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-tre
+  category: "libs"
+  name: "tre"
+  version: "0.8.0_p20210321"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tre
+  atom: "dev-libs/tre"
+  provides:
+  - category: "dev-libs"
+    name: "tre"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/setuptools
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-tremor
   category: "libs"
   name: "tremor"
