@@ -1790,6 +1790,42 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdl-net
+  category: "libs"
+  name: "sdl-net"
+  version: "1.2.8-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-net
+  atom: "media-libs/sdl-net"
+  provides:
+  - category: "media-libs"
+    name: "sdl-net"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-smpeg
+  category: "libs"
+  name: "smpeg"
+  version: "0.4.4-r11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/smpeg
+  atom: "media-libs/smpeg"
+  provides:
+  - category: "media-libs"
+    name: "smpeg"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-sofia-sip
   category: "libs"
   name: "sofia-sip"
@@ -2256,24 +2292,6 @@ packages:
   - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
-
-- &apps-dosbox
-  category: "apps"
-  name: "dosbox"
-  version: "0.74.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-emulation/dosbox
-  atom: "games-emulation/dosbox"
-  provides:
-  - category: "games-emulation"
-    name: "dosbox"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &apps-dvd-rw-tools
   category: "apps"
@@ -5078,6 +5096,31 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
+- &libs-sdl-sound
+  category: "libs"
+  name: "sdl-sound"
+  version: "1.0.3-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-sound
+  atom: "media-libs/sdl-sound"
+  provides:
+  - category: "media-libs"
+    name: "sdl-sound"
+    version: ">=0"
+  pre_reqs:
+  - dev-games/physfs
+  - media-libs/libmikmod
+  - media-libs/smpeg
+  requires:
+  - <<: *layers-X
+  - <<: *libs-physfs
+  - <<: *libs-libmikmod
+  - media-libs/smpeg
+  build_requires:
+  - <<: *layers-X
+
 - &libs-t1lib
   category: "libs"
   name: "t1lib"
@@ -5895,6 +5938,31 @@ packages:
   - <<: *libs-libvisio
   build_requires:
   - <<: *layers-kde-common
+
+- &apps-dosbox
+  category: "apps"
+  name: "dosbox"
+  version: "0.74.3+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-emulation/dosbox
+  atom: "games-emulation/dosbox"
+  provides:
+  - category: "games-emulation"
+    name: "dosbox"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/sdl-net
+  - media-libs/libmikmod
+  - media-libs/sdl-sound
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libmikmod
+  - <<: *libs-sdl-net
+  - <<: *libs-sdl-sound
+  build_requires:
+  - <<: *layers-X
 
 - &apps-hugin
   category: "apps"
