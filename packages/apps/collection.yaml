@@ -4849,6 +4849,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-R
+  category: "apps"
+  name: "R"
+  version: "4.1.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/R
+  atom: "dev-lang/R"
+  provides:
+  - category: "dev-lang"
+    name: "R"
+    version: ">=0"
+  pre_reqs:
+  - *layers-java-packages
+  - dev-lang/tk
+  - dev-libs/tre
+  requires:
+  - <<: *layers-X
+  - <<: *layers-java
+  - <<: *apps-tk
+  - <<: *libs-tre
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "sqliteman"
   version: "1.2.2-r4"
@@ -6008,7 +6033,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2021.0.0+3"
+  version: "2021.0.0+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
