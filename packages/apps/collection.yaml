@@ -839,24 +839,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libaom
-  category: "libs"
-  name: "libaom"
-  version: "3.3.0"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/libaom
-  atom: "media-libs/libaom"
-  provides:
-  - category: "media-libs"
-    name: "libaom"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
 # TODO: remove next cycle
 - &libs-libbs2b
   category: "libs"
@@ -1127,24 +1109,6 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
-
-- &libs-libmpeg2
-  category: "libs"
-  name: "libmpeg2"
-  version: "0.5.1-r3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmpeg2
-  atom: "media-libs/libmpeg2"
-  provides:
-  - category: "media-libs"
-    name: "libmpeg2"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-libmp4v2
   category: "libs"
@@ -3599,23 +3563,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- category: "apps"
-  name: "vulkan-tools"
-  version: "0.3+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/vulkan-tools
-  atom: "dev-util/vulkan-tools"
-  provides:
-  - category: "dev-util"
-    name: "vulkan-tools"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
   
 - category: "apps"
   name: "w_scan"
@@ -4830,7 +4777,7 @@ packages:
 - &apps-transcode
   category: "apps"
   name: "transcode"
-  version: "1.1.7-r6+1"
+  version: "1.1.7-r6+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4842,11 +4789,9 @@ packages:
     version: ">=0"
   pre_reqs:
   - media-libs/libdv
-  - media-libs/libmpeg2
   requires:
   - <<: *layers-X
   - <<: *libs-libdv
-  - <<: *libs-libmpeg2
   build_requires:
   - <<: *layers-X
 
@@ -6087,7 +6032,7 @@ packages:
 - &libs-libheif
   category: "libs"
   name: "libheif"
-  version: "1.12.0-r1+6"
+  version: "1.12.0-r1+7"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6098,12 +6043,10 @@ packages:
     name: "libheif"
     version: ">=0"
   pre_reqs:
-  - media-libs/libaom
   - media-libs/libde265
   - media-video/rav1e
   requires:
   - <<: *layers-X
-  - <<: *libs-libaom
   - <<: *libs-libde265
   - <<: *libs-rav1e
   build_requires:
