@@ -82,6 +82,16 @@ anchors:
   virtual/jre
   virtual/jdk
 
+- &layers-ghc
+  category: "layers"
+  name: "ghc"
+  version: ">=0"
+
+- &layers-office-common
+  category: "layers"
+  name: "office-common"
+  version: ">=0"
+
 ################################################################################
 ### libs ###
 ################################################################################
@@ -108,10 +118,10 @@ packages:
 ## layers ###
 ################################################################################
 
-- &layers-office-common
-  category: "layers"
+- &layerbase-office-common
+  category: "layerbase"
   name: "office-common"
-  version: "0.5"
+  version: "0.6"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-office-common-packages >-
@@ -210,11 +220,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &layerbase-office-common
-  <<: *layers-office-common
-  category: "layerbase"
-  hidden: true
-
 - &apps-numactl
   category: "apps"
   name: "numactl"
@@ -233,10 +238,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &layers-ghc
-  category: "layers"
+- &layerbase-ghc
+  category: "layerbase"
   name: "ghc"
-  version: "8.10.4-r1"
+  version: "8.10.4-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: &layers-ghc-packages >-
@@ -260,10 +265,6 @@ packages:
   - <<: *apps-numactl
   build_requires:
   - <<: *layers-system-x
-
-- &layerbase-ghc
-  <<: *layers-ghc
-  category: "layerbase"
   hidden: true
 
 ################################################################################

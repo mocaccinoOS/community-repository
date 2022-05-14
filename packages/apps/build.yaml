@@ -109,3 +109,12 @@ excludes:
 # - ^/luetbuild
 # - ^/tmp
 {{ end }}
+
+{{ if eq .Values.category "layerbase" }}
+subpackages:
+  - category: "layers"
+    name: "{{ .Values.name }}"
+    version: "{{ .Values.version }}"
+    excludes:
+    - ^/var/db/pkg
+{{ end }}
