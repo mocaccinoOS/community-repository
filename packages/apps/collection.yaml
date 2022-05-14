@@ -215,6 +215,57 @@ packages:
   category: "layerbase"
   hidden: true
 
+- &apps-numactl
+  category: "apps"
+  name: "numactl"
+  version: "2.0.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/numactl
+  atom: "sys-process/numactl"
+  provides:
+  - category: "sys-process"
+    name: "numactl"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-ghc
+  category: "apps"
+  name: "ghc"
+  version: "8.10.4-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-ghc-packages >-
+      dev-lang/ghc
+      app-admin/haskell-updater 
+  atom: *apps-ghc-packages
+  provides:
+  - category: "dev-lang"
+    name: "ghc"
+    version: ">=0"
+  - category: "app-admin"
+    name: "haskell-updater"
+    version: ">=0"
+  pre_reqs:
+  - app-text/docbook-xml-dtd
+  - app-text/docbook-xsl-stylesheets
+  - dev-python/sphinx
+  - sys-process/numactl
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-system-x
+
+- &layerbase-ghc
+  <<: *layers-ghc
+  category: "layerbase"
+  hidden: true
+
 ################################################################################
 ### fonts ###
 ################################################################################
@@ -3110,24 +3161,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-numactl
-  category: "apps"
-  name: "numactl"
-  version: "2.0.14"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/numactl
-  atom: "sys-process/numactl"
-  provides:
-  - category: "sys-process"
-    name: "numactl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-nx
   category: "apps"
   name: "nx"
@@ -4665,34 +4698,6 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-ghc
-  category: "apps"
-  name: "ghc"
-  version: "8.10.4-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &apps-ghc-packages >-
-      dev-lang/ghc
-      app-admin/haskell-updater 
-  atom: *apps-ghc-packages
-  provides:
-  - category: "dev-lang"
-    name: "ghc"
-    version: ">=0"
-  - category: "app-admin"
-    name: "haskell-updater"
-    version: ">=0"
-  pre_reqs:
-  - app-text/docbook-xml-dtd
-  - app-text/docbook-xsl-stylesheets
-  - dev-python/sphinx
-  - sys-process/numactl
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-numactl
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "guvcview"
