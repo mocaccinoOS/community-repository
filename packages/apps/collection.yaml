@@ -233,16 +233,16 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-ghc
+- &layers-ghc
   category: "apps"
   name: "ghc"
   version: "8.10.4-r1"
   labels:
     emerge.jobs: "1"
-    emerge.packages: &apps-ghc-packages >-
+    emerge.packages: &layers-ghc-packages >-
       dev-lang/ghc
       app-admin/haskell-updater 
-  atom: *apps-ghc-packages
+  atom: *layers-ghc-packages
   provides:
   - category: "dev-lang"
     name: "ghc"
