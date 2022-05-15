@@ -21,7 +21,7 @@ jobs:
         id: set-matrix-sets
         run: |
           PACKAGES=""
-          PKG_LIST=$(luet tree pkglist --tree packages -o json) 
+          PKG_LIST=$(luet tree pkglist --tree packages -o json | jq '.packages[] | select(.path != "")') 
           for i in $(echo "$PKG_LIST" | jq -rc '.packages[]'); do
               PACKAGE_PATH=$(echo "$i" | jq -r ".path")
               PACKAGE_NAME=$(echo "$i" | jq -r ".name")
