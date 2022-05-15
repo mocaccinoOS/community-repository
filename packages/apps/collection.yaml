@@ -86,11 +86,19 @@ anchors:
   category: "layers"
   name: "ghc"
   version: ">=0"
+- &layerbase-ghc
+  category: "layerbase"
+  name: "ghc"
+  version: ">=0"
 
 - &layers-office-common
   category: "layers"
   name: "office-common"
   version: ">=0"
+- &layerbase-office-common
+  category: "layerbase"
+  name: "office-common"
+  version: ">=0"  
 
 ################################################################################
 ### libs ###
@@ -114,161 +122,6 @@ anchors:
 
 
 packages:
-
-################################################################################
-## layers ###
-################################################################################
-
-- &layerbase-office-common
-  category: "layerbase"
-  name: "office-common"
-  version: "0.6"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &layers-office-common-packages >-
-      app-crypt/mhash
-      app-text/libabw
-      app-text/liblangtag
-      app-text/libebook
-      app-text/libepubgen
-      app-text/libetonyek
-      app-text/libexttextcat
-      app-text/libmspub
-      app-text/libmwaw
-      app-text/libodfgen
-      app-text/libqxp
-      app-text/libwps
-      app-text/mythes
-      dev-cpp/clucene
-      dev-db/libiodbc
-      dev-util/mdds
-      media-libs/raptor
-      dev-libs/rasqal
-      dev-libs/redland
-      media-libs/libfreehand
-      media-libs/libpagemaker
-      media-libs/libzmf
-  atom: *layers-office-common-packages
-  provides:
-  - category: "app-crypt"
-    name: "mhash"
-    version: ">=0"
-  - category: "app-text"
-    name: "libabw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libodfgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libebook"
-    version: ">=0"
-  - category: "app-text"
-    name: "libetonyek"
-    version: ">=0"
-  - category: "app-text"
-    name: "libexttextcat"
-    version: ">=0"
-  - category: "app-text"
-    name: "liblangtag"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmwaw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmspub"
-    version: ">=0"
-  - category: "app-text"
-    name: "libepubgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libqxp"
-    version: ">=0"
-  - category: "app-text"
-    name: "libwps"
-    version: ">=0"
-  - category: "app-text"
-    name: "mythes"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "clucene"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rasqal"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "redland"
-    version: ">=0"
-  - category: "dev-db"
-    name: "libiodbc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "mdds"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libfreehand"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libpagemaker"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libzmf"
-    version: ">=0"
-  - category: "media-libs"
-    name: "raptor"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-  hidden: true
-
-- &apps-numactl
-  category: "apps"
-  name: "numactl"
-  version: "2.0.14"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/numactl
-  atom: "sys-process/numactl"
-  provides:
-  - category: "sys-process"
-    name: "numactl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &layerbase-ghc
-  category: "layerbase"
-  name: "ghc"
-  version: "8.10.4-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &layers-ghc-packages >-
-      dev-lang/ghc
-      app-admin/haskell-updater 
-  atom: *layers-ghc-packages
-  provides:
-  - category: "dev-lang"
-    name: "ghc"
-    version: ">=0"
-  - category: "app-admin"
-    name: "haskell-updater"
-    version: ">=0"
-  pre_reqs:
-  - app-text/docbook-xml-dtd
-  - app-text/docbook-xsl-stylesheets
-  # - *libs-sphinx-packages
-  - dev-python/sphinx
-  - sys-process/numactl
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-numactl
-  build_requires:
-  - <<: *layers-system-x
-  hidden: true
 
 ################################################################################
 ### fonts ###
@@ -3159,6 +3012,24 @@ packages:
   provides:
   - category: "app-misc"
     name: "nnn"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-numactl
+  category: "apps"
+  name: "numactl"
+  version: "2.0.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/numactl
+  atom: "sys-process/numactl"
+  provides:
+  - category: "sys-process"
+    name: "numactl"
     version: ">=0"
   requires:
   - <<: *layers-system-x

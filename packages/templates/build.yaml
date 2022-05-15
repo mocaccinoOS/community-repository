@@ -1,0 +1,148 @@
+{{ define "build" }}
+
+env:
+{{ if .Values.labels }}
+- JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
+{{ else }}
+- JOBS=3
+{{ end }}
+- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
+
+requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+
+{{ if .Values.requires_final_images }}
+requires_final_images: {{ .Values.requires_final_images }}
+{{ end }}
+
+{{ if .Values.unpack }}
+unpack: {{ .Values.unpack }}
+{{ end }}
+
+prelude:
+{{ if .Values.prepare }}
+{{ range .Values.prepare }}
+- {{ . }}
+{{ end }}
+{{ end }}
+
+{{ $packages := include "cr.packages" .Values }}
+{{ if $packages }}
+# - bash prelude.sh {{ $packages }}
+{{ range $packages | splitList " " }}
+#{{ $package := . | replace "layerbase-" "layers-" | replace "\"" "" }}
+{{ $package := . | replace "\"" "" }}
+- |
+  set -x; \
+  if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
+    cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
+  fi
+- |
+  set -x; \
+  if [ -e "package.license/{{ $package }}.license" ]; then \
+    cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
+  fi
+- |
+  set -x; \
+  if [ -e "package.use/{{ $package }}.use" ]; then \
+    cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
+  fi
+{{ end }}
+{{ end }}
+
+{{ if .Values.overlays }}
+- USE="-subversion -mercurial" emerge app-portage/layman
+- layman -L
+{{ range .Values.overlays }}
+{{ if .url }}
+- echo "y" | layman -o {{ .url }} -f -a {{ .name }}
+{{ else }}
+- echo "y" | layman -a {{ .name }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ if .Values.pre_reqs }}
+{{ range .Values.pre_reqs }}
+{{ $tokens := . | splitList ";" }}
+{{ if eq (len $tokens) 1 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ else if eq (len $tokens) 2 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+steps:
+
+{{ if .Values.pre_emerge }}
+{{ range .Values.pre_emerge }}
+{{ $tokens := . | splitList ";" }}
+{{ if eq (len $tokens) 1 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ else if eq (len $tokens) 2 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ end }}
+{{ end }}
+{{ end }}
+
+{{ if .Values.atom }}
+{{ $tokens := .Values.atom | splitList ";" }}
+{{ if eq (len $tokens) 1 }}
+- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ else if eq (len $tokens) 2 }}
+- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ end }}
+{{ end }}
+
+{{ if .Values.bdeps }}
+{{ range .Values.bdeps }}
+- emerge -C {{ . }}
+{{ end }}
+{{ end }}
+{{ if .Values.etc_update }}
+{{ if .Values.etc_update.mode }}
+- etc-update -q --automode {{ .Values.etc_update.mode }}
+{{ end }}
+{{ end }}
+
+{{ if ne .Values.category "buildbase" }}
+excludes:
+- ^/etc/csh.env
+- ^/etc/environment.d/10-gentoo-env.conf
+- ^/etc/ld.so.conf
+- ^/etc/profile.env
+- ^/luetbuild
+- ^/usr/portage
+- ^/usr/portage/distfiles
+- ^/usr/share/applications/mimeinfo.cache
+- ^/var/cache/edb
+- ^/var/cache/distfiles
+- ^/var/cache/fontconfig
+{{ if ne .Values.category "layerbase" }}
+- ^/var/db/pkg
+{{ end }}
+- ^/var/db/repos
+- ^/var/lib/portage
+- ^/var/log
+# devel split
+# - ^/usr/include
+# - ^/luetbuild
+# - ^/tmp
+{{ end }}
+
+{{ if eq .Values.category "layerbase" }}
+subpackages:
+  - category: "layers"
+    name: "{{ .Values.name }}"
+    version: "{{ .Values.version }}"
+    excludes:
+    - ^/var
+{{ end }}
+
+#     includes:
+#     - ^/var/db/pkg/.*
+#     excludes:
+#     - ^/var$
+#     - ^/var/db$
+
+{{ end }}
