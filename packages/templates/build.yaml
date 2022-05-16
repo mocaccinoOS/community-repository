@@ -29,8 +29,7 @@ prelude:
 {{ if $packages }}
 # - bash prelude.sh {{ $packages }}
 {{ range $packages | splitList " " }}
-#{{ $package := . | replace "layerbase-" "layers-" | replace "\"" "" }}
-{{ $package := . | replace "\"" "" }}
+{{ $package := . | replace "layerbase-" "layers-" | replace "\"" "" }}
 - |
   set -x; \
   if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
