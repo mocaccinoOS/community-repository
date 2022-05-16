@@ -2049,6 +2049,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-bottom
+  category: "apps"
+  name: "bottom"
+  version: "0.6.8+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/bottom
+  atom: "sys-process/bottom"
+  provides:
+  - category: "sys-process"
+    name: "bottom"
+    version: ">=0"
+  pre_reqs:
+  - dev-lang/rust-bin
+  - virtual/rust
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "brasero"
   version: "3.12.2+1"
