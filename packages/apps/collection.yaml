@@ -1213,6 +1213,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-libsoundtouch
+  category: "libs"
+  name: "libsoundtouch"
+  version: "2.3.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsoundtouch
+  atom: "media-libs/libsoundtouch"
+  provides:
+  - category: "dev-libs"
+    name: "libsoundtouch"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
   
 - &libs-libsrtp
   category: "libs"
@@ -6829,6 +6847,7 @@ packages:
   - dev-libs/serd
   - dev-libs/sord
   - media-libs/libsbsms
+  - media-libs/libsoundtouch
   - media-libs/lv2
   - media-libs/lilv
   - media-libs/portmidi
@@ -6842,6 +6861,7 @@ packages:
   - <<: *libs-serd
   - <<: *libs-sord
   - <<: *libs-libsbsms
+  - <<: *libs-libsoundtouch
   - <<: *libs-lv2
   - <<: *libs-lilv
   - <<: *libs-portmidi
