@@ -6484,6 +6484,33 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-sratom
+  category: "libs"
+  name: "sratom"
+  version: "0.6.8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sratom
+  atom: "media-libs/sratom"
+  provides:
+  - category: "media-libs"
+    name: "sratom"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/sphinx
+  - dev-python/sphinx_lv2_theme
+  - dev-libs/serd
+  - dev-libs/sord
+  - media-libs/lv2
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-serd
+  - <<: *libs-sord
+  - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-telepathy-farstream
   category: "libs"
   name: "telepathy-farstream"
@@ -6629,6 +6656,35 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-gegl
+  build_requires:
+  - <<: *layers-X
+
+- &libs-lilv
+  category: "libs"
+  name: "lilv"
+  version: "0.24.12"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lilv
+  atom: "media-libs/lilv"
+  provides:
+  - category: "dev-libs"
+    name: "lilv"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/sphinx
+  - dev-python/sphinx_lv2_theme
+  - dev-libs/serd
+  - dev-libs/sord
+  - media-libs/lv2
+  - media-libs/sratom
+  requires:
+  - <<: *layers-X
+  - <<: *libs-serd
+  - <<: *libs-sord
+  - <<: *libs-lv2
+  - <<: *libs-sratom
   build_requires:
   - <<: *layers-X
 
