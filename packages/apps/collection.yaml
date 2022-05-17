@@ -1509,6 +1509,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-portmidi
+  category: "libs"
+  name: "portmidi"
+  version: "234"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/portmidi
+  atom: "media-libs/portmidi"
+  provides:
+  - category: "dev-libs"
+    name: "portmidi"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  # - <<: *layers-java
+  build_requires:
+  - <<: *layers-codecs
+  # - <<: *layers-java
+
 - &libs-protobuf-c
   category: "libs"
   name: "protobuf-c"
