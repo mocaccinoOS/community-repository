@@ -3114,7 +3114,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "77.0.4054.90+38"
+  version: "86.0.4363.59"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3128,6 +3128,26 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "2.13"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/pandoc
+  atom: "app-text/pandoc"
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *layers-system-x
+  - <<: *layerbase-haskell
 
 - &apps-pip
   category: "apps"
