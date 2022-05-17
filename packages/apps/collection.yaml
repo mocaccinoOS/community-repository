@@ -1760,9 +1760,6 @@ packages:
   - category: "dev-libs"
     name: "serd"
     version: ">=0"
-  pre_reqs:
-  - dev-python/sphinx
-  - dev-python/sphinx_lv2_theme
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6498,8 +6495,6 @@ packages:
     name: "sratom"
     version: ">=0"
   pre_reqs:
-  - dev-python/sphinx
-  - dev-python/sphinx_lv2_theme
   - dev-libs/serd
   - dev-libs/sord
   - media-libs/lv2
@@ -6510,6 +6505,27 @@ packages:
   - <<: *libs-lv2
   build_requires:
   - <<: *layers-system-x
+
+- &libs-suil
+  category: "libs"
+  name: "suil"
+  version: "0.10.10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/suil
+  atom: "media-libs/suil"
+  provides:
+  - category: "dev-libs"
+    name: "suil"
+    version: ">=0"
+  pre_reqs:
+  - media-libs/lv2
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-qt
 
 - &libs-telepathy-farstream
   category: "libs"
@@ -6673,8 +6689,6 @@ packages:
     name: "lilv"
     version: ">=0"
   pre_reqs:
-  - dev-python/sphinx
-  - dev-python/sphinx_lv2_theme
   - dev-libs/serd
   - dev-libs/sord
   - media-libs/lv2
