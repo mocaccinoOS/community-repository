@@ -689,6 +689,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-isodate
+  category: "libs"
+  name: "isodate"
+  version: "0.6.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/isodate
+  atom: "dev-python/isodate"
+  provides:
+  - category: "dev-python"
+    name: "isodate"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-jbigkit
   category: "libs"
   name: "jbigkit"
@@ -1267,24 +1285,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-- &libs-lv2
-  category: "libs"
-  name: "lv2"
-  version: "1.18.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lv2
-  atom: "media-libs/lv2"
-  provides:
-  - category: "dev-libs"
-    name: "lv2"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-mac
   category: "libs"
@@ -2058,6 +2058,24 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-webencodings
+  category: "libs"
+  name: "webencodings"
+  version: "0.5.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/webencodings
+  atom: "dev-python/webencodings"
+  provides:
+  - category: "dev-python"
+    name: "webencodings"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-zope
   category: "libs"
@@ -4119,6 +4137,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-html5lib
+  category: "libs"
+  name: "html5lib"
+  version: "1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/html5lib
+  atom: "dev-python/html5lib"
+  provides:
+  - category: "dev-python"
+    name: "html5lib"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/webencodings
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-webencodings
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -5258,6 +5297,29 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
+- &libs-rdflib
+  category: "libs"
+  name: "rdflib"
+  version: "6.1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/rdflib
+  atom: "dev-python/rdflib"
+  provides:
+  - category: "dev-python"
+    name: "rdflib"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/html5lib
+  - dev-python/isodate
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-html5lib
+  - <<: *libs-isodate
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-sdl-sound
   category: "libs"
   name: "sdl-sound"
@@ -5981,6 +6043,33 @@ packages:
   - <<: *libs-opencv
   build_requires:
   - <<: *layers-qt
+
+- &libs-lv2
+  category: "libs"
+  name: "lv2"
+  version: "1.18.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lv2
+  atom: "media-libs/lv2"
+  provides:
+  - category: "dev-libs"
+    name: "lv2"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/webencodings
+  - dev-python/html5lib
+  - dev-python/isodate
+  - dev-python/rdflib
+  requires:
+  - <<: *layers-X
+  - <<: *libs-webencodings
+  - <<: *libs-html5lib
+  - <<: *libs-isodate
+  - <<: *libs-rdflib
+  build_requires:
+  - <<: *layers-X
 
 - &libs-rav1e
   category: "libs"
