@@ -3129,26 +3129,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "2.13"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pandoc
-  atom: "app-text/pandoc"
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *layerbase-haskell
-  requires_final_images: true
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "2.13"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/pandoc
+#   atom: "app-text/pandoc"
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *layerbase-haskell
+#   requires_final_images: true
 
 - &apps-pip
   category: "apps"
@@ -3583,6 +3583,24 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-twolame
+  category: "apps"
+  name: "twolame"
+  version: "0.4.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/twolame
+  atom: "media-sound/twolame"
+  provides:
+  - category: "media-sound"
+    name: "twolame"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
 
 - &apps-ufw
   category: "apps"
