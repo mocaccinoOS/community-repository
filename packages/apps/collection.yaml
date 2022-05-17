@@ -1268,6 +1268,24 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-lv2
+  category: "libs"
+  name: "lv2"
+  version: "1.18.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lv2
+  atom: "media-libs/lv2"
+  provides:
+  - category: "dev-libs"
+    name: "lv2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-mac
   category: "libs"
   name: "mac"
