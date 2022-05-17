@@ -6813,6 +6813,47 @@ packages:
 ### dep V apps ###
 ################################################################################
 
+- category: "apps"
+  name: "audacity"
+  version: "2.4.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/audacity
+  atom: "media-sound/audacity"
+  provides:
+  - category: "media-sound"
+    name: "audacity"
+    version: ">=0"
+  pre_reqs
+  - dev-libs/serd
+  - dev-libs/sord
+  - media-libs/libsbsms
+  - media-libs/lv2
+  - media-libs/lilv
+  - media-libs/portmidi
+  - media-libs/sratom
+  - media-libs/suil
+  - media-libs/vamp-plugin-sdk
+  - media-sound/twolame
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-gnome-common
+  - <<: *libs-serd
+  - <<: *libs-sord
+  - <<: *libs-libsbsms
+  - <<: *libs-lv2
+  - <<: *libs-lilv
+  - <<: *libs-portmidi
+  - <<: *libs-sratom
+  - <<: *libs-suil
+  - <<: *libs-vamp-plugin-sdk
+  - <<: *apps-twolame
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
+
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
