@@ -3143,11 +3143,12 @@ packages:
     name: "pandoc"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *layers-haskell
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildase-X
   - <<: *layerbase-haskell
+  requires_final_images: true
 
 - &apps-pip
   category: "apps"
