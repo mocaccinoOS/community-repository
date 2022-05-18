@@ -6547,7 +6547,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.10+1"
+  version: "0.10.10"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6560,10 +6560,10 @@ packages:
   pre_reqs:
   - media-libs/lv2
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   - <<: *libs-lv2
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-qt
 
 - &libs-telepathy-farstream
   category: "libs"
@@ -6856,6 +6856,7 @@ packages:
   - media-libs/vamp-plugin-sdk
   - media-sound/twolame
   requires:
+  - <<: *layers-qt
   - <<: *layers-gnome-common
   - <<: *libs-serd
   - <<: *libs-sord
@@ -6869,7 +6870,9 @@ packages:
   - <<: *libs-vamp-plugin-sdk
   - <<: *apps-twolame
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - &apps-doxygen
   category: "apps"
