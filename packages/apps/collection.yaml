@@ -7228,6 +7228,55 @@ packages:
 ### dep VII apps ###
 ################################################################################
 
+- category: "apps"
+  name: "blender"
+  version: "3.1.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/blender
+  atom: "media-gfx/blender"
+  provides:
+  - category: "media-gfx"
+    name: "blender"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "alembic"
+    version: ">=0"
+  - category: "media-libs"
+    name: "embree"
+    version: ">=0"
+  - category: "media-libs"
+    name: "oidn"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opencollada"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opensubdiv"
+    version: ">=0"
+  - category: "media-libs"
+    name: "osl"
+    version: ">=0"
+  pre_reqs:
+  - app-misc/spacenavd
+  - dev-libs/c-blosc
+  - dev-libs/libspnav
+  - dev-util/valgrind
+  - media-gfx/openvdb
+  - media-libs/libharu
+  - libs-ocio-oiio-packages
+  requires:
+  - <<: *layers-X
+  - <<: *apps-spacenavd
+  - <<: *libs-c-blosc
+  - <<: *libs-libspnav
+  - <<: *libs-openvdb
+  - <<: *libs-libharu
+  - <<: *libs-ocio-oiio
+  build_requires:
+  - <<: *layers-X
+
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
