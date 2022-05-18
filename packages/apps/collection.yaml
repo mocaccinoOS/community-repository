@@ -3239,26 +3239,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "2.13"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pandoc
-  atom: "app-text/pandoc"
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *layerbase-haskell
-  requires_final_images: true
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "2.13"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/pandoc
+#   atom: "app-text/pandoc"
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *layerbase-haskell
+#   requires_final_images: true
 
 - &apps-pip
   category: "apps"
@@ -5590,6 +5590,29 @@ packages:
   - <<: *libs-gsl
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "fotoxx"
+  version: "21.60"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/fotoxx
+  atom: "media-gfx/fotoxx"
+  provides:
+  - category: "media-gfx"
+    name: "fotoxx"
+    version: ">=0"
+  pre_reqs
+  - media-gfx/dcraw
+  - media-libs/libchamplain
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-dcraw
+  - <<: *libs-libchamplain
+  gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-inkscape
   category: "apps"
