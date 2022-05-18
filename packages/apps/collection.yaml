@@ -616,6 +616,24 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-libharu
+  category: "libs"
+  name: "libharu"
+  version: "2.3.0-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libharu
+  atom: "media-libs/libharu"
+  provides:
+  - category: "media-libs"
+    name: "libharu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-hdf5
   category: "libs"
   name: "hdf5"
