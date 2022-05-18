@@ -4962,6 +4962,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-openmpi
+  category: "apps"
+  name: "openmpi"
+  version: "4.1.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-cluster/openmpi
+  atom: "sys-cluster/openmpi"
+  provides:
+  - category: "sys-cluster"
+    name: "openmpi"
+    version: ">=0"
+  pre_reqs:
+  - sys-apps/hwloc
+  requires:
+  - <<: *layers-X
+  - <<: *apps-hwloc
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "openrgb"
   version: "0.7"
@@ -5955,6 +5976,27 @@ packages:
   - <<: *libs-qscintilla
   build_requires:
   - <<: *layers-qt
+
+- &apps-valgrind
+  category: "apps"
+  name: "valgrind"
+  version: "3.18.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/valgrind
+  atom: "dev-util/valgrind"
+  provides:
+  - category: "dev-util"
+    name: "valgrind"
+    version: ">=0"
+  pre_reqs:
+  - sys-cluster/openmpi
+  requires:
+  - <<: *layers-X
+  - <<: *apps-openmpi
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "x2goclient"
@@ -7233,9 +7275,9 @@ packages:
   version: "3.0.1-r5"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
+    emerge.packages: &apps-blender-packages >-
       =media-gfx/blender-3.0.1-r5
-  atom: "media-gfx/blender"
+  atom: *apps-blender-packages
   provides:
   - category: "media-gfx"
     name: "blender"
