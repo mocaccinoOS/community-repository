@@ -797,6 +797,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-lib3ds
+  category: "libs"
+  name: "lib3ds"
+  version: "2.0.0_rc1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lib3ds
+  atom: "media-libs/lib3ds"
+  provides:
+  - category: "media-libs"
+    name: "lib3ds"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 # TODO: remove next cycle
 - &libs-libbs2b
   category: "libs"
@@ -2129,6 +2147,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-zstandard
+  category: "libs"
+  name: "zstandard"
+  version: "0.17.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/zstandard
+  atom: "dev-python/zstandard"
+  provides:
+  - category: "dev-python"
+    name: "zstandard"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-zope
   category: "libs"
@@ -7326,28 +7362,33 @@ packages:
 #   - dev-texlive/texlive-fontutils
 #   - dev-texlive/texlive-latex
 #   - dev-texlive/texlive-latexextra
+  - *libs-ocio-oiio-pre_emerge
+  - *libs-ocio-oiio-packages
+  - *libs-tbb-packages
+  - app-admin/chrpath
   - dev-lang/ispc
   - dev-python/pybind11
+  - dev-python/zstandard
   - app-misc/spacenavd
   - dev-libs/c-blosc
   - dev-libs/libspnav
   - dev-util/valgrind
   - media-gfx/openvdb
   - media-libs/glfw
+  - media-libs/lib3ds
   - media-libs/libharu
-  - *libs-ocio-oiio-pre_emerge
-  - *libs-ocio-oiio-packages
   - media-libs/ptex
-  - *libs-tbb-packages
   requires:
   - <<: *layers-qt
   - <<: *libs-pybind11
+  - <<: *libs-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
   - <<: *libs-libspnav
   - <<: *libs-openvdb
   - <<: *libs-glfw
+  - <<: *libs-lib3ds
   - <<: *libs-libharu
   - <<: *libs-ocio-oiio
   - <<: *libs-ptex
