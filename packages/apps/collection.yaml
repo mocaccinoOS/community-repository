@@ -300,6 +300,24 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-chrome-binary-plugins
+  category: "libs"
+  name: "chrome-binary-plugins"
+  version: "101.0.4951.64"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-plugins/chrome-binary-plugins
+  atom: "www-plugins/chrome-binary-plugins"
+  provides:
+  - category: "www-plugins"
+    name: "chrome-binary-plugins"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -3328,26 +3346,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-pandoc
-#   category: "apps"
-#   name: "pandoc"
-#   version: "2.13"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-text/pandoc
-#   atom: "app-text/pandoc"
-#   provides:
-#   - category: "app-text"
-#     name: "pandoc"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *layers-haskell
-#   build_requires:
-#   - <<: *buildbase-X
-#   - <<: *layerbase-haskell
-#   requires_final_images: true
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "2.13"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/pandoc
+  atom: "app-text/pandoc"
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *layerbase-haskell
+  requires_final_images: true
 
 - &apps-pip
   category: "apps"
