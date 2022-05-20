@@ -318,6 +318,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-colorama
+  category: "libs"
+  name: "colorama"
+  version: "0.4.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/colorama
+  atom: "dev-python/colorama"
+  provides:
+  - category: "dev-python"
+    name: "colorama"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/mock
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -2015,8 +2035,6 @@ packages:
   - category: "dev-libs"
     name: "tre"
     version: ">=0"
-  pre_reqs:
-  - dev-python/setuptools
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3364,10 +3382,9 @@ packages:
 #   - <<: *layers-haskell
 #   build_requires:
 #   - <<: *buildbase-X
-#   - <<: *layerbase-ghc
 #   - <<: *layerbase-haskell
 #   requires_final_images: true
-# 
+
 - &apps-pip
   category: "apps"
   name: "pip"
@@ -4476,7 +4493,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "5.0.1+1"
+  version: "5.1.2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4931,7 +4948,7 @@ packages:
 - &apps-img2pdf
   category: "apps"
   name: "img2pdf"
-  version: "0.4.3+4"
+  version: "0.4.3+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5129,6 +5146,34 @@ packages:
   - <<: *libs-plotutils
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "qutebrowser"
+  version: "2.5.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/qutebrowser
+  atom: "www-client/qutebrowser"
+  provides:
+  - category: "www-client"
+    name: "qutebrowser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "adblock"
+    version: ">=0"
+  - category: "dev-util"
+    name: "maturin"
+    version: ">=0"
+  pre_reqs:
+  - dev-python/colorama
+  - www-plugins/chrome-binary-plugins
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-colorama
+  # - <<: *libs-chrome-binary-plugins
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-R
   category: "apps"
@@ -5891,7 +5936,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.8.2+4"
+  version: "1.8.2+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
