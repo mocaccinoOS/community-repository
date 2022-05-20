@@ -3346,28 +3346,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "2.13"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pandoc
-  atom: "app-text/pandoc"
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *layerbase-ghc
-  - <<: *layerbase-haskell
-  requires_final_images: true
-
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "2.13"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/pandoc
+#   atom: "app-text/pandoc"
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *layerbase-ghc
+#   - <<: *layerbase-haskell
+#   requires_final_images: true
+# 
 - &apps-pip
   category: "apps"
   name: "pip"
