@@ -42,11 +42,6 @@ prelude:
 {{ end }}
 {{ end }}
 
-{{ if eq .Values.name "dee" }}
-{{ $debug := include "cr.prereqs" .Values | fromJsonArray }}
-{{ include "cr.dumpJson" $debug }}
-{{ end }}
-
 {{ range include "cr.prereqs" .Values | fromJsonArray }}
 - {{ . }}
 {{ end }}
