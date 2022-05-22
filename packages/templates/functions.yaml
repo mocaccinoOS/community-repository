@@ -1,4 +1,8 @@
 
+################################################################################
+## cr.packages ###
+################################################################################
+
 {{- define "cr.packages" }} 
 
 {{- $packages := list }}
@@ -6,7 +10,7 @@
 {{- if .requires }}
 {{- range .requires }}
 
-{{- $deps := (include "cr.packages" . ) | splitList " " }}
+{{- $deps := ( include "cr.packages" . ) | splitList " " }}
 {{- $packages = $packages | concat $deps }}
 
 {{- end }}
@@ -22,9 +26,102 @@
 
 {{- end }}
 
-#########
-# debug
-#########
+################################################################################
+## cr.prereqs ###
+################################################################################
+
+{{- define "cr.prereqs" }} 
+
+{{- $commands := list }}
+{{- $command := "" }}
+
+{{- range .requires }}
+
+{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
+{{- end }}
+
+{{- if .overlays }}
+{{- $command := printf "USE=\"-subversion -mercurial\" emerge app-portage/layman" }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- $command := printf "layman -L" }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- range .overlays }}
+{{- if .url }}
+{{- $command = printf "echo \"y\" | layman -o %s -f -a %s" .url .name }}
+{{- else }}
+{{- $command = printf "echo \"y\" | layman -a %s" .name }}
+{{- end }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .prepare }}
+{{- range .prepare }}
+{{- if . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .prereqs }}
+{{- range .prereqs }}
+{{- $command := include "cr.emerge" . }}
+{{- if $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .atoms }}
+{{- $command := include "cr.emerge" .atoms }}
+{{- if $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- end }}
+
+{{- $commands | toJson }}
+
+{{- end }}
+
+################################################################################
+## cr.emerge ###
+################################################################################
+
+{{- define "cr.emerge" }}
+
+{{- $command := "" }}
+
+{{- $tokens := . | splitList ";" }}
+{{- if eq (len $tokens) 1 }}
+{{- $command = printf "emerge -1 -j ${JOBS} %s" (index $tokens 0) }}
+{{- else if eq (len $tokens) 2 }}
+{{- $command = printf "%s emerge -1 -j ${JOBS} %s" (index $tokens 1) (index $tokens 0) }}
+{{- end }}
+
+{{- $command }}
+
+{{- end }}
+
+################################################################################
+## debug ###
+################################################################################
 
 {{- define "cr.dump" }}
 {{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}

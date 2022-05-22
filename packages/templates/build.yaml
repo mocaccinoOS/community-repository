@@ -8,7 +8,12 @@ env:
 {{ end }}
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
-requires: {{ .Values.build_requires | toYaml | nindent 1 }}
+requires:
+{{ range .Values.build_requires }}
+- category: {{ .category }}
+  name: {{ .name }}
+  version: ">=0"
+{{ end }}
 
 {{ if .Values.requires_final_images }}
 requires_final_images: {{ .Values.requires_final_images }}
@@ -19,62 +24,32 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ if .Values.prepare }}
-{{ range .Values.prepare }}
-- {{ . }}
-{{ end }}
-{{ end }}
-
 {{ $packages := include "cr.packages" .Values }}
 {{ if $packages }}
-# - bash prelude.sh {{ $packages }}
 {{ range $packages | splitList " " }}
 {{ $package := . | replace "layerbase-" "layers-" | replace "\"" "" }}
 - |
   set -x; \
   if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
     cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
-  fi
-- |
-  set -x; \
+  fi; \
   if [ -e "package.license/{{ $package }}.license" ]; then \
     cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
-  fi
-- |
-  set -x; \
+  fi; \
   if [ -e "package.use/{{ $package }}.use" ]; then \
     cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
-  fi
+  fi;
 {{ end }}
 {{ end }}
 
-{{ if .Values.overlays }}
-- USE="-subversion -mercurial" emerge app-portage/layman
-- layman -L
-{{ range .Values.overlays }}
-{{ if .url }}
-- echo "y" | layman -o {{ .url }} -f -a {{ .name }}
-{{ else }}
-- echo "y" | layman -a {{ .name }}
-{{ end }}
-{{ end }}
-{{ end }}
-
-{{ if .Values.pre_reqs }}
-{{ range .Values.pre_reqs }}
-{{ $tokens := . | splitList ";" }}
-{{ if eq (len $tokens) 1 }}
-- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
-{{ else if eq (len $tokens) 2 }}
-- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
-{{ end }}
-{{ end }}
+{{ range include "cr.prereqs" .Values | fromJsonArray }}
+- {{ . }}
 {{ end }}
 
 steps:
 
-{{ if .Values.pre_emerge }}
-{{ range .Values.pre_emerge }}
+{{ if .Values.preemerge }}
+{{ range .Values.preemerge }}
 {{ $tokens := . | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
@@ -84,8 +59,8 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ if .Values.atom }}
-{{ $tokens := .Values.atom | splitList ";" }}
+{{ if .Values.atoms }}
+{{ $tokens := .Values.atoms | splitList ";" }}
 {{ if eq (len $tokens) 1 }}
 - emerge -1 -j ${JOBS} {{ index $tokens 0 }}
 {{ else if eq (len $tokens) 2 }}
@@ -93,8 +68,8 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ if .Values.bdeps }}
-{{ range .Values.bdeps }}
+{{ if .Values.unmerge }}
+{{ range .Values.unmerge }}
 - emerge -C {{ . }}
 {{ end }}
 {{ end }}
