@@ -35,14 +35,6 @@
 {{- $commands := list }}
 {{- $command := "" }}
 
-{{- range .requires }}
-
-{{- range include "cr.prereqs" . | fromJsonArray }}
-{{- if not (has . $commands) }}
-{{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-
 {{- if .overlays }}
 {{- $command := printf "USE=\"-subversion -mercurial\" emerge app-portage/layman" }}
 {{- if not (has $command $commands) }}
@@ -82,6 +74,14 @@
 {{- $commands = append $commands $command }}
 {{- end }}
 {{- end }}
+{{- end }}
+{{- end }}
+
+{{- range .requires }}
+
+{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
 {{- end }}
 {{- end }}
 
