@@ -351,6 +351,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# TODO: drop next cycle
 - &libs-cryptography
   category: "libs"
   name: "cryptography"
@@ -374,28 +375,28 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-dee
-  category: "libs"
-  name: "dee"
-  version: "1.2.7"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/dee
-  atoms: "dev-libs/dee"
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "dev-libs"
-    name: "dee"
-    version: ">=0"
-  prepare:
-  - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
-  - emerge unity-base/unity-build-env:0/hirsute
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-dee
+#   category: "libs"
+#   name: "dee"
+#   version: "1.2.7"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-libs/dee
+#   atoms: "dev-libs/dee"
+#   overlays:
+#   - name: "unity-gentoo"
+#   provides:
+#   - category: "dev-libs"
+#     name: "dee"
+#     version: ">=0"
+#   prepare:
+#   - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
+#   - emerge unity-base/unity-build-env:0/hirsute
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 # TODO: remove next cycle
 - &libs-faad2
