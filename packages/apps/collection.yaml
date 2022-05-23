@@ -223,6 +223,24 @@ packages:
 ### dep 0 libs ###
 ################################################################################
 
+- &libs-aopalliance
+  category: "libs"
+  name: "aopalliance"
+  version: "1.0-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/aopalliance
+  atoms: "dev-java/aopalliance"
+  provides:
+  - category: "dev-java"
+    name: "aopalliance"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -258,6 +276,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-asm
+  category: "libs"
+  name: "asm"
+  version: "9.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/asm
+  atoms: "dev-java/asm"
+  provides:
+  - category: "dev-java"
+    name: "asm"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
 
 - &libs-babl
   category: "libs"
@@ -672,6 +708,42 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &libs-javax-inject
+  category: "libs"
+  name: "javax-inject"
+  version: "1-r4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/javax-inject
+  atoms: "dev-java/javax-inject"
+  provides:
+  - category: "dev-java"
+    name: "javax-inject"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
+- &libs-jsr305
+  category: "libs"
+  name: "jsr305"
+  version: "30.1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/jsr305
+  atoms: dev-java/jsr305
+  provides:
+  - category: "dev-java"
+    name: "jsr305"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
 
 - &libs-libharu
   category: "libs"
@@ -1433,6 +1505,24 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-mathjax
+  category: "libs"
+  name: "mathjax"
+  version: "2.7.7"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/mathjax
+  atoms: "dev-libs/mathjax"
+  provides:
+  - category: "dev-libs"
+    name: "mathjax"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-mbedtls
   category: "libs"
@@ -3541,6 +3631,24 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-rhino
+  category: "apps"
+  name: "rhino"
+  version: "1.7.14"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/rhino
+  atoms: "dev-java/rhino"
+  provides:
+  - category: "dev-java"
+    name: "rhino"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - category: "apps"
   name: "scapy"
   version: "2.4.5"
@@ -4285,6 +4393,41 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-guava
+  category: "libs"
+  name: "guava"
+  version: "30.1.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-guava-atoms >-
+      dev-java/guava
+      dev-java/checker-framework-qual
+      dev-java/error-prone-annotations
+      dev-java/failureaccess
+      dev-java/j2objc-annotations
+  atoms: *apps-guava-atoms
+  provides:
+  - category: "dev-java"
+    name: "guava"
+    version: ">=0"
+  - category: "dev-java"
+    name: "checker-framework-qual"
+    version: ">=0"
+  - category: "dev-java"
+    name: "error-prone-annotations"
+    version: ">=0"
+  - category: "dev-java"
+    name: "failureaccess"
+    version: ">=0"
+  - category: "dev-java"
+    name: "j2objc-annotations"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  - <<: *libs-jsr305
+  build_requires:
+  - <<: *layers-java
+
 # TODO: remove next cycle
 - &libs-html5lib
   category: "libs"
@@ -4338,12 +4481,11 @@ packages:
     name: "libcaca"
     version: ">=0"
   requires:
-  - <<: *layers-X
   - <<: *layers-java
   - <<: *apps-mono
   - <<: *libs-ftgl
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-java
 
 - &libs-libgit2
   category: "libs"
@@ -4416,10 +4558,9 @@ packages:
     name: "libpano13"
     version: ">=0"
   requires:
-  - <<: *layers-X
   - <<: *layers-java
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-java
 
 - &libs-libspnav
   category: "libs"
@@ -5607,6 +5748,29 @@ packages:
   # - <<: *apps-pidgin
   build_requires:
   - <<: *layers-X
+
+- &apps-eclipse-ecj
+  category: "apps"
+  name: "eclipse-ecj"
+  version: "4.15"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-eclipse-ecj-atoms >-
+      dev-java/eclipse-ecj
+      dev-java/ant-eclipse-ecj
+  atoms: *apps-eclipse-ecj-atoms
+  provides:
+  - category: "dev-java"
+    name: "eclipse-ecj"
+    version: ">=0"
+  - category: "dev-java"
+    name: "ant-eclipse-ecj"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  - <<: *apps-ant-core
+  build_requires:
+  - <<: *layers-java
 
 - &apps-enblend
   category: "apps"
@@ -6869,8 +7033,8 @@ packages:
     name: "plantuml"
     version: ">=0"
   requires:
-  - <<: *layers-java
   - <<: *layers-qt
+  - <<: *layers-java
   - <<: *apps-ant-core
   - <<: *apps-graphviz
   build_requires:
