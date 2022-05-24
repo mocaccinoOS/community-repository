@@ -387,30 +387,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# TODO: drop next cycle
-- &libs-cryptography
-  category: "libs"
-  name: "cryptography"
-  version: "3.4.7-r3+2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/cryptography
-  atoms: "dev-python/cryptography"
-  provides:
-  - category: "dev-python"
-    name: "cryptography"
-    version: ">=0"
-  prereqs:
-  - dev-python/hypothesis
-  - dev-python/iso8601
-  - dev-python/pretend
-  - dev-python/pyasn1-modules
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 # - &libs-dee
 #   category: "libs"
 #   name: "dee"
@@ -830,25 +806,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "id3lib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# TODO: remove next cycle
-- &libs-isodate
-  category: "libs"
-  name: "isodate"
-  version: "0.6.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/isodate
-  atoms: "dev-python/isodate"
-  provides:
-  - category: "dev-python"
-    name: "isodate"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1487,6 +1444,24 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-lv2
+  category: "libs"
+  name: "lv2"
+  version: "1.18.2+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lv2
+  atoms: "media-libs/lv2"
+  provides:
+  - category: "dev-libs"
+    name: "lv2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-mac
   category: "libs"
@@ -2294,25 +2269,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# TODO: remove next cycle
-- &libs-webencodings
-  category: "libs"
-  name: "webencodings"
-  version: "0.5.1-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/webencodings
-  atoms: "dev-python/webencodings"
-  provides:
-  - category: "dev-python"
-    name: "webencodings"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-zstandard
   category: "libs"
   name: "zstandard"
@@ -2435,7 +2391,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20220120+1"
+  version: "1.7.0_pre20220120+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -4428,26 +4384,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-# TODO: remove next cycle
-- &libs-html5lib
-  category: "libs"
-  name: "html5lib"
-  version: "1.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/html5lib
-  atoms: "dev-python/html5lib"
-  provides:
-  - category: "dev-python"
-    name: "html5lib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-webencodings
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -4994,7 +4930,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3+7"
+  version: "2.4.3+r2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5104,7 +5040,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "61.0.0+2"
+  version: "61.0.0+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5543,27 +5479,6 @@ packages:
 #   - <<: *libs-libtomcrypt
 #   build_requires:
 #   - <<: *layers-sys-fs
-
-# TODO: remove next cycle
-- &libs-rdflib
-  category: "libs"
-  name: "rdflib"
-  version: "6.1.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/rdflib
-  atoms: "dev-python/rdflib"
-  provides:
-  - category: "dev-python"
-    name: "rdflib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-html5lib
-  - <<: *libs-isodate
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-sdl-sound
   category: "libs"
@@ -6253,28 +6168,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-lv2
-  category: "libs"
-  name: "lv2"
-  version: "1.18.2+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lv2
-  atoms: "media-libs/lv2"
-  provides:
-  - category: "dev-libs"
-    name: "lv2"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-webencodings
-  - <<: *libs-html5lib
-  - <<: *libs-isodate
-  - <<: *libs-rdflib
-  build_requires:
-  - <<: *layers-X
-
 - &libs-rav1e
   category: "libs"
   name: "rav1e"
@@ -6601,7 +6494,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-bcrypt
-  - <<: *libs-cryptography
   - <<: *libs-pyasn1
   - <<: *libs-pynacl
   build_requires:
@@ -6924,7 +6816,7 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "2.4.2-r2+1"
+  version: "2.4.2-r2+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
