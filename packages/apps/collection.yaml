@@ -3677,6 +3677,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-sndio
+  category: "apps"
+  name: "sndio"
+  version: "1.8.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/sndio
+  atoms: "media-sound/sndio"
+  provides:
+  - category: "media-sound"
+    name: "sndio"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  - category: "entity"
+    name: "sndiod"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-codecs
+
 - category: "apps"
   name: "solaar"
   version: "1.1.1+1"
