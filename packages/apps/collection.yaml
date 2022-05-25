@@ -2350,12 +2350,14 @@ packages:
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
-  version: "3.14.14-r3+1"
+  version: "3.14.14-r3+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-power/apcupsd
   atoms: "sys-power/apcupsd"
+  prereqs:
+  - virtual/libusb:0
   provides:
   - category: "sys-power"
     name: "apcupsd"
