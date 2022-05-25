@@ -2330,6 +2330,23 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "alsa-utils"
+  version: "1.2.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/alsa-utils
+  atoms: "media-sound/alsa-utils"
+  provides:
+  - category: "media-sound"
+    name: "alsa-utils"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
