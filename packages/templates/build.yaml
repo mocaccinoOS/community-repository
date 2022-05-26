@@ -50,11 +50,9 @@ steps:
 
 {{ if .Values.preemerge }}
 {{ range .Values.preemerge }}
-{{ $tokens := . | splitList ";" }}
-{{ if eq (len $tokens) 1 }}
-- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
-{{ else if eq (len $tokens) 2 }}
-- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ $command := include "cr.emerge" . }}
+{{ if $command }}
+- {{ $command }}
 {{ end }}
 {{ end }}
 {{ end }}

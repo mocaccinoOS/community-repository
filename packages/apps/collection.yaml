@@ -5179,7 +5179,7 @@ packages:
   - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
   - category: "entity"
-    #name: "postgres"
+    name: "postgres"
     version: ">=0"
   build_requires:
   - <<: *layers-sys-fs
@@ -5222,8 +5222,8 @@ packages:
   - category: "dev-util"
     name: "maturin"
     version: ">=0"
-  # prereqs:
-  # - www-plugins/chrome-binary-plugins
+  opt_requires:
+  - <<: *libs-chrome-binary-plugins
   requires:
   - <<: *layers-qt
   - <<: *libs-colorama
@@ -5692,33 +5692,6 @@ packages:
   - <<: *layers-X
   - <<: *apps-clamav
   - <<: *libs-Gtk3
-  build_requires:
-  - <<: *layers-X
-
-- &apps-cmus
-  category: "apps"
-  name: "cmus"
-  version: "2.9.1-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/cmus
-  atoms: "media-sound/cmus"
-  provides:
-  - category: "media-sound"
-    name: "cmus"
-    version: ">=0"
-  # prereqs:
-  # - net-im/pidgin
-  requires:
-  - <<: *layers-X
-  - <<: *libs-faad2
-  - <<: *libs-libao
-  - <<: *libs-libdiscid
-  - <<: *libs-libmikmod
-  - <<: *libs-libmp4v2
-  - <<: *libs-tremor
-  # - <<: *apps-pidgin
   build_requires:
   - <<: *layers-X
 
@@ -6444,6 +6417,34 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-moc
+  category: "apps"
+  name: "moc"
+  version: "2.6_alpha3-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/moc
+  atoms: "media-sound/moc"
+  provides:
+  - category: "media-sound"
+    name: "moc"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libtimidity"
+    version: ">=0"
+  opt_requires:
+  - <<: *apps-timidity
+  requires:
+  - <<: *layers-X
+  - <<: *libs-faad2
+  - <<: *libs-libao
+  - <<: *libs-libsidplay
+  - <<: *libs-tremor
+  - <<: *apps-sndio
+  build_requires:
+  - <<: *layers-X
+
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
@@ -6711,6 +6712,35 @@ packages:
 ################################################################################
 ### dep IV apps ###
 ################################################################################
+
+
+- &apps-cmus
+  category: "apps"
+  name: "cmus"
+  version: "2.9.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/cmus
+  atoms: "media-sound/cmus"
+  provides:
+  - category: "media-sound"
+    name: "cmus"
+    version: ">=0"
+  # prereqs:
+  # - net-im/pidgin
+  opt_requires:
+  - <<: *apps-pidgin
+  requires:
+  - <<: *layers-X
+  - <<: *libs-faad2
+  - <<: *libs-libao
+  - <<: *libs-libdiscid
+  - <<: *libs-libmikmod
+  - <<: *libs-libmp4v2
+  - <<: *libs-tremor
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "digikam"

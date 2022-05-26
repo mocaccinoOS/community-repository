@@ -7,6 +7,15 @@
 
 {{- $packages := list }}
 
+{{- if .opt_requires }}
+{{- range .opt_requires }}
+
+{{- $deps := ( include "cr.packages" . ) | splitList " " }}
+{{- $packages = $packages | concat $deps }}
+
+{{- end }}
+{{- end }}
+
 {{- if .requires }}
 {{- range .requires }}
 
@@ -74,6 +83,27 @@
 {{- $commands = append $commands $command }}
 {{- end }}
 {{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .opt_requires }}
+{{- range .opt_requires }}
+
+{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
+{{- end }}
+
+{{- if .atoms }}
+{{- $command := include "cr.emerge" .atoms }}
+{{- if $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{- end }}
 {{- end }}
 
