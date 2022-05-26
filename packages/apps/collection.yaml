@@ -3692,9 +3692,8 @@ packages:
   - category: "media-sound"
     name: "sndio"
     version: ">=0"
-  - category: "acct-user"
-    name: "sndio"
-    version: ">=0"
+  prereqs:
+  - acct-user/sndiod
   requires:
   - <<: *layers-codecs
   - category: "entity"
@@ -3942,15 +3941,12 @@ packages:
       net-p2p/transmission
   atoms: "net-p2p/transmission"
   provides:
-  - category: "acct-group"
-    name: "transmission"
-    version: ">=0"
-  - category: "acct-user"
-    name: "transmission"
-    version: ">=0"
   - category: "net-p2p"
     name: "transmission"
     version: ">=0"
+  prereqs:
+  - acct-group/transmission
+  - acct-user/transmission
   requires:
   - <<: *layers-gnome-common
   - category: "entity"
@@ -4097,12 +4093,6 @@ packages:
       app-emulation/protontricks
   atoms: *apps-wine-staging-atoms
   provides:
-  - category: "acct-group"
-    name: "rtkit"
-    version: ">=0"
-  - category: "acct-user"
-    name: "rtkit"
-    version: ">=0"
   - category: "sys-auth"
     name: "rtkit"
     version: ">=0"
@@ -4133,6 +4123,9 @@ packages:
   - category: "dev-python"
     name: "vdf"
     version: ">=0"
+  prereqs:
+  - acct-group/rtkit
+  - acct-user/rtkit
   requires:
   - <<: *layers-gnome-common
   - category: "entity"
@@ -4929,15 +4922,12 @@ packages:
       app-antivirus/clamav
   atoms: "app-antivirus/clamav"
   provides:
-  - category: "acct-group"
-    name: "clamav"
-    version: ">=0"
-  - category: "acct-user"
-    name: "clamav"
-    version: ">=0"
   - category: "app-antivirus"
     name: "clamav"
     version: ">=0"
+  prereqs:
+  - acct-group/clamav
+  - acct-user/clamav
   requires:
   - <<: *layers-X
   # up to the next version: dev-libs/tomsfastmath
@@ -5182,11 +5172,14 @@ packages:
   - category: "app-eselect"
     name: "eselect-postgresql"
     version: ">=0"
+  prereqs:
+  - acct-group/postgres
+  - acct-user/postgres
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
   - category: "entity"
-    name: "postgres"
+    #name: "postgres"
     version: ">=0"
   build_requires:
   - <<: *layers-sys-fs
@@ -6082,15 +6075,6 @@ packages:
   - category: "media-sound"
     name: "timidity++"
     version: ">=0"
-#   - category: "acct-group"
-#     name: "audio"
-#     version: ">=0"
-#   - category: "acct-group"
-#     name: "nobody"
-#     version: ">=0"
-#   - category: "acct-user"
-#     name: "timidity"
-#     version: ">=0"
   - category: "app-eselect"
     name: "eselect-timidity"
     version: ">=0"
@@ -6106,9 +6090,6 @@ packages:
   - acct-user/timidity
   requires:
   - <<: *layers-X
-  - category: "media-sound"
-    name: "timidity++"
-    version: ">=0"
   - category: "entity"
     name: "audio"
     version: ">=0"
