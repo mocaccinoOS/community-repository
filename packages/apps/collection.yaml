@@ -739,6 +739,42 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libircclient
+  category: "libs"
+  name: "libircclient"
+  version: "1.10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libircclient
+  atoms: "dev-libs/libircclient"
+  provides:
+  - category: "dev-libs"
+    name: "libircclient"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libmicrohttpd
+  category: "libs"
+  name: "libmicrohttpd"
+  version: "0.9.73"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libmicrohttpd
+  atoms: "net-libs/libmicrohttpd"
+  provides:
+  - category: "net-libs"
+    name: "libmicrohttpd"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-hdf5
   category: "libs"
   name: "hdf5"
