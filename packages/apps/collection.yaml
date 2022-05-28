@@ -416,25 +416,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# TODO: remove next cycle
-- &libs-faad2
-  category: "libs"
-  name: "faad2"
-  version: "2.10.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/faad2
-  atoms: "media-libs/faad2"
-  provides:
-  - category: "media-libs"
-    name: "faad2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
@@ -649,24 +630,6 @@ packages:
   provides:
   - category: "x11-libs"
     name: "gtkglext"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-gtksourceview-3
-  category: "libs"
-  name: "gtksourceview-3"
-  version: "3.24.11"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &libs-gtksourceview-3-atoms >-
-      x11-libs/gtksourceview:3.0
-  atoms: *libs-gtksourceview-3-atoms
-  provides:
-  - category: "x11-libs"
-    name: "gtksourceview:3.0"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -1197,24 +1160,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libmng
-  category: "libs"
-  name: "libmng"
-  version: "2.0.3-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libmng
-  atoms: "media-libs/libmng"
-  provides:
-  - category: "media-libs"
-    name: "libmng"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
-
 - &libs-libmp4v2
   category: "libs"
   name: "libmp4v2"
@@ -1522,24 +1467,6 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
-
-- &libs-mathjax
-  category: "libs"
-  name: "mathjax"
-  version: "2.7.7"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/mathjax
-  atoms: "dev-libs/mathjax"
-  provides:
-  - category: "dev-libs"
-    name: "mathjax"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-mbedtls
   category: "libs"
@@ -2131,24 +2058,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-tinyxml
-  category: "libs"
-  name: "tinyxml"
-  version: "2.6.2-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tinyxml
-  atoms: "dev-libs/tinyxml"
-  provides:
-  - category: "dev-libs"
-    name: "tinyxml"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-tomsfastmath
   category: "libs"
   name: "tomsfastmath"
@@ -2184,24 +2093,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-tremor
-  category: "libs"
-  name: "tremor"
-  version: "0.20130223-r2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/tremor
-  atoms: "media-libs/tremor"
-  provides:
-  - category: "media-libs"
-    name: "tremor"
-    version: ">=0"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
 
 - &libs-vamp-plugin-sdk
   category: "libs"
@@ -2366,24 +2257,6 @@ packages:
   provides:
   - category: "x11-terms"
     name: "alacritty"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &apps-alsa-utils
-  category: "apps"
-  name: "alsa-utils"
-  version: "1.2.6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/alsa-utils
-  atoms: "media-sound/alsa-utils"
-  provides:
-  - category: "media-sound"
-    name: "alsa-utils"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -4867,12 +4740,10 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libxdg-basedir
-  - <<: *libs-faad2
   - <<: *libs-libcaca
   - <<: *libs-libdca
   - <<: *libs-libdvdcss
   - <<: *libs-libfame
-  - <<: *libs-libmng
   - <<: *apps-vcdimager
   - <<: *layers-gnome-common
   build_requires:
@@ -5715,7 +5586,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-qt
-  - <<: *libs-faad2
   - <<: *libs-libbs2b
   - <<: *libs-libopenmpt
   - <<: *libs-libsidplayfp
@@ -6148,7 +6018,6 @@ packages:
   - <<: *apps-tk
   - <<: *libs-libao
   - <<: *libs-nas
-  - <<: *apps-alsa-utils
   build_requires:
   - <<: *layers-X
 
@@ -6241,14 +6110,12 @@ packages:
   - dev-util/valgrind
   requires:
   - <<: *layers-X
-  - <<: *libs-faad2
   - <<: *libs-game-music-emu
   - <<: *libs-libao
   - <<: *libs-libdiscid
   - <<: *libs-libofa
   - <<: *libs-libshout
   - <<: *libs-libsidplay
-  - <<: *libs-tremor
   - <<: *libs-fluidsynth
   - <<: *libs-mac
   build_requires:
@@ -6274,7 +6141,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-allegro
-  - <<: *libs-libmng
   build_requires:
   - <<: *layers-X
 
@@ -6509,10 +6375,8 @@ packages:
   - <<: *apps-timidity
   requires:
   - <<: *layers-X
-  - <<: *libs-faad2
   - <<: *libs-libao
   - <<: *libs-libsidplay
-  - <<: *libs-tremor
   - <<: *apps-sndio
   build_requires:
   - <<: *layers-X
@@ -6785,7 +6649,6 @@ packages:
 ### dep IV apps ###
 ################################################################################
 
-
 - &apps-cmus
   category: "apps"
   name: "cmus"
@@ -6805,12 +6668,10 @@ packages:
   - <<: *apps-pidgin
   requires:
   - <<: *layers-X
-  - <<: *libs-faad2
   - <<: *libs-libao
   - <<: *libs-libdiscid
   - <<: *libs-libmikmod
   - <<: *libs-libmp4v2
-  - <<: *libs-tremor
   build_requires:
   - <<: *layers-X
 
@@ -6967,7 +6828,6 @@ packages:
   # depends on net-libs/telepathy-glib
   - <<: *layers-gnome-common
   - <<: *libs-farstream
-  - <<: *libs-gtksourceview-3
   - <<: *libs-pidgin-opensteamworks
   - <<: *libs-pidgin-sipe
   - <<: *libs-telepathy-idle
@@ -7131,7 +6991,6 @@ packages:
   - <<: *apps-mypaint-brushes
   - <<: *libs-gegl
   - <<: *libs-libheif
-  - <<: *libs-libmng
   - <<: *libs-libmypaint
   build_requires:
   - <<: *layers-gnome-common
@@ -7232,7 +7091,6 @@ packages:
   - <<: *libs-pybind11
   - <<: *libs-pystring
   - <<: *libs-tbb
-  - <<: *libs-tinyxml
   build_requires:
   - <<: *layers-qt
 
