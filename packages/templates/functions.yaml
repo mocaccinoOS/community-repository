@@ -150,6 +150,40 @@
 {{- end }}
 
 ################################################################################
+## flatten ###
+################################################################################
+
+{{- define "cr.flatten_list" -}}
+  {{- $output := list -}}
+  {{- range . -}}
+    {{- if (kindIs "slice" . ) -}}
+      {{- $output = (concat $output ( get (fromYaml (include "cr.flatten_list" . ) )  "list" ) ) -}}
+    {{- else -}}
+      {{- $output = (append $output . ) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- toYaml (dict "list" $output) -}}
+{{- end -}}
+
+{{- define "cr.flatten" -}}
+  {{- get ( fromYaml (include "cr.flatten_list" . ) ) "list"  | toYaml }}
+{{- end -}}
+
+{{- define "cr.flatten_map" -}}
+  {{- $map := first . -}}
+  {{- $label := last . -}}
+  {{- range $key, $val := $map -}}
+    {{- $sublabel := list $label $key | join "_" | upper -}}
+    {{- if kindOf $val | eq "map" -}}
+      {{- list $val $sublabel | include "cr.flatten_map" -}}
+    {{- else -}}
+- name: {{ $sublabel | quote }}
+  value: {{ $val | quote }}
+  {{- end -}}
+{{- end -}}
+{{- end -}}
+
+################################################################################
 ## debug ###
 ################################################################################
 

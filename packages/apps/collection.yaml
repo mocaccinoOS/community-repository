@@ -117,6 +117,12 @@ anchors:
 - &libs-sphinx-atoms >-
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
+  
+- &nvidia-drivers-atoms >-
+  sys-kernel/gentoo-sources
+  sys-kernel/gentoo-kernel
+  virtual/dist-kernel
+  x11-drivers/nvidia-drivers
 
 ################################################################################
 ### apps ###
@@ -7016,6 +7022,40 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-gnome-common
   requires_final_images: true
+
+- &apps-conky
+  category: "apps"
+  name: "conky"
+  version: "1.12.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/conky
+  atoms: "app-admin/conky"
+  provides:
+  - category: "app-admin"
+    name: "conky"
+    version: ">=0"
+  prereqs:
+  - app-editors/nano
+  - app-text/docbook2X
+  - sys-kernel/gentoo-sources
+  - sys-kernel/gentoo-kernel
+  - virtual/dist-kernel
+  - x11-drivers/nvidia-drivers
+  opt_requires:
+  - <<: *apps-apcupsd
+  - <<: *apps-cmus
+  - <<: *apps-moc
+  - <<: *apps-vim
+  - <<: *apps-xmms2
+  - <<: *libs-libircclient
+  - <<: *libs-libmicrohttpd
+  requires:
+  - <<: *layers-X
+  - <<: *apps-hddtemp
+  build_requires:
+  - <<: *layers-X
 
 - &apps-doxygen
   category: "apps"
