@@ -2818,6 +2818,36 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "foot"
+  version: "1.12.1+3"
+  uri:
+    - https://codeberg.org/dnkl/foot
+  license: "MIT"
+  description: "A fast, lightweight and minimalistic Wayland terminal emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-foot-atoms >-
+      gui-apps/foot dev-libs/libutf8proc media-libs/fcft
+  atoms: *apps-foot-atoms
+  provides:
+    - name: libutf8proc
+      category: dev-libs
+      version: '>=0'
+    - name: foot
+      category: gui-apps
+      version: '>=0'
+    - name: fcft
+      category: media-libs
+      version: '>=0'
+  prereqs:
+  - app-text/scdoc
+  - dev-libs/tllist
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "geeqie"
   version: "1.6-r1"
   labels:
@@ -7022,40 +7052,6 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-gnome-common
   requires_final_images: true
-
-- &apps-conky
-  category: "apps"
-  name: "conky"
-  version: "1.12.2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-admin/conky
-  atoms: "app-admin/conky"
-  provides:
-  - category: "app-admin"
-    name: "conky"
-    version: ">=0"
-  prereqs:
-  - app-editors/nano
-  - app-text/docbook2X
-  - sys-kernel/gentoo-sources
-  - sys-kernel/gentoo-kernel
-  - virtual/dist-kernel
-  - x11-drivers/nvidia-drivers
-  opt_requires:
-  - <<: *apps-apcupsd
-  - <<: *apps-cmus
-  - <<: *apps-moc
-  - <<: *apps-vim
-  - <<: *apps-xmms2
-  - <<: *libs-libircclient
-  - <<: *libs-libmicrohttpd
-  requires:
-  - <<: *layers-X
-  - <<: *apps-hddtemp
-  build_requires:
-  - <<: *layers-X
 
 - &apps-doxygen
   category: "apps"
