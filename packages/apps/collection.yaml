@@ -128,13 +128,11 @@ anchors:
 ### apps ###
 ################################################################################
 
-- &apps-vim-atoms >-
-  app-editors/vim
 - &apps-vim
   category: "apps"
   name: "vim"
   version: ">=0"
-
+  atoms: "app-editors/vim"
 
 packages:
 
@@ -6916,7 +6914,7 @@ packages:
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.12.2"
+  version: "1.12.2+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6937,7 +6935,7 @@ packages:
   - <<: *apps-apcupsd
   - <<: *apps-cmus
   - <<: *apps-moc
-  # - <<: *apps-vim
+  - <<: *apps-vim
   requires:
   - <<: *layers-X
   - <<: *apps-hddtemp
