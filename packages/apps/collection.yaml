@@ -118,11 +118,15 @@ anchors:
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
   
-- &nvidia-drivers-atoms >-
-  sys-kernel/gentoo-sources
-  sys-kernel/gentoo-kernel
-  virtual/dist-kernel
-  x11-drivers/nvidia-drivers
+- &kernel-modules-nvidia-drivers-lts
+  category: "kernel-modules"
+  name: "nvidia-drivers-lts"
+  version: ">=0"
+  atoms:
+  - sys-kernel/gentoo-sources
+  - sys-kernel/gentoo-kernel
+  - virtual/dist-kernel
+  - x11-drivers/nvidia-drivers
 
 ################################################################################
 ### apps ###
@@ -132,7 +136,8 @@ anchors:
   category: "apps"
   name: "vim"
   version: ">=0"
-  atoms: "app-editors/vim"
+  atoms:
+  - app-editors/vim
 
 packages:
 
@@ -144,7 +149,12 @@ packages:
   category: "fonts"
   name: "fontawesome"
   version: "5.15.1+3"
-  atoms: "media-fonts/fontawesome"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/fontawesome
+  atoms:
+  - media-fonts/fontawesome
   provides:
   - category: "media-fonts"
     name: "fontawesome"
@@ -158,7 +168,12 @@ packages:
   <<: *fonts
   name: "font-cursor-misc"
   version: "1.0.3-r2"
-  atoms: "media-fonts/font-cursor-misc"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/font-cursor-misc
+  atoms:
+  - media-fonts/font-cursor-misc
   provides:
   - category: "media-fonts"
     name: "font-cursor-misc"
@@ -167,7 +182,12 @@ packages:
 - <<: *fonts
   name: "inconsolata"
   version: "20140821+3"
-  atoms: "media-fonts/inconsolata"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/inconsolata
+  atoms:
+  - media-fonts/inconsolata
   provides:
   - category: "media-fonts"
     name: "inconsolata"
@@ -176,7 +196,12 @@ packages:
 - <<: *fonts
   name: "inconsolata-hellenic"
   version: "1.19+3"
-  atoms: "media-fonts/inconsolata-hellenic"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/inconsolata-hellenic
+  atoms:
+  - media-fonts/inconsolata-hellenic
   provides:
   - category: "media-fonts"
     name: "inconsolata-hellenic"
@@ -185,7 +210,12 @@ packages:
 - <<: *fonts
   name: "roboto"
   version: "2.138+3"
-  atoms: "media-fonts/roboto"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/roboto
+  atoms:
+  - media-fonts/roboto
   provides:
   - category: "media-fonts"
     name: "roboto"
@@ -194,7 +224,12 @@ packages:
 - <<: *fonts
   name: "robotomono"
   version: "3.000+3"
-  atoms: "media-fonts/robotomono"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/robotomono
+  atoms:
+  - media-fonts/robotomono
   overlays:
   - name: "4nykey"
   provides:
@@ -205,7 +240,12 @@ packages:
 - <<: *fonts
   name: "robotoslab"
   version: "2.000+3"
-  atoms: "media-fonts/robotoslab"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/robotoslab
+  atoms:
+  - media-fonts/robotoslab
   overlays:
   - name: "4nykey"
   provides:
@@ -217,7 +257,12 @@ packages:
   <<: *fonts
   name: "texcm-ttf"
   version: "1.0"
-  atoms: "media-fonts/texcm-ttf"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/texcm-ttf
+  atoms:
+  - media-fonts/texcm-ttf
   provides:
   - category: "media-fonts"
     name: "texcm-ttf"
@@ -235,7 +280,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/aopalliance
-  atoms: "dev-java/aopalliance"
+  atoms:
+  - dev-java/aopalliance
   provides:
   - category: "dev-java"
     name: "aopalliance"
@@ -253,7 +299,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/argtable
-  atoms: "dev-libs/argtable"
+  atoms:
+  - dev-libs/argtable
   provides:
   - category: "dev-libs"
     name: "argtable"
@@ -271,7 +318,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-cpp/asio
-  atoms: "dev-cpp/asio"
+  atoms:
+  - dev-cpp/asio
   provides:
   - category: "dev-cpp"
     name: "asio"
@@ -289,7 +337,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/asm
-  atoms: "dev-java/asm"
+  atoms:
+  - dev-java/asm
   provides:
   - category: "dev-java"
     name: "asm"
@@ -307,7 +356,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/babl
-  atoms: "media-libs/babl"
+  atoms:
+  - media-libs/babl
   provides:
   - category: "media-libs"
     name: "babl"
@@ -325,7 +375,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/bcrypt
-  atoms: "dev-python/bcrypt"
+  atoms:
+  - dev-python/bcrypt
   provides:
   - category: "dev-python"
     name: "bcrypt"
@@ -343,7 +394,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-plugins/chrome-binary-plugins
-  atoms: "www-plugins/chrome-binary-plugins"
+  atoms:
+  - www-plugins/chrome-binary-plugins
   provides:
   - category: "www-plugins"
     name: "chrome-binary-plugins"
@@ -361,7 +413,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/colorama
-  atoms: "dev-python/colorama"
+  atoms:
+  - dev-python/colorama
   provides:
   - category: "dev-python"
     name: "colorama"
@@ -381,7 +434,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-perl/Config-Simple
-  atoms: "dev-perl/Config-Simple"
+  atoms:
+  - dev-perl/Config-Simple
   provides:
   - category: "dev-perl"
     name: "Config-Simple"
@@ -399,7 +453,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/dee
-  atoms: "dev-libs/dee"
+  atoms:
+  - dev-libs/dee
   overlays:
   - name: "unity-gentoo"
   provides:
@@ -422,7 +477,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-perl/File-ReadBackwards
-  atoms: "dev-perl/File-ReadBackwards"
+  atoms:
+  - dev-perl/File-ReadBackwards
   provides:
   - category: "dev-perl"
     name: "File-ReadBackwards"
@@ -440,7 +496,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/flann
-  atoms: "sci-libs/flann"
+  atoms:
+  - sci-libs/flann
   provides:
   - category: "sci-libs"
     name: "flann"
@@ -458,7 +515,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/ftgl
-  atoms: "media-libs/ftgl"
+  atoms:
+  - media-libs/ftgl
   provides:
   - category: "media-libs"
     name: "ftgl"
@@ -476,7 +534,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/game-music-emu
-  atoms: "media-libs/game-music-emu"
+  atoms:
+  - media-libs/game-music-emu
   provides:
   - category: "media-libs"
     name: "game-music-emu"
@@ -494,7 +553,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/gavl
-  atoms: "media-libs/gavl"
+  atoms:
+  - media-libs/gavl
   provides:
   - category: "media-libs"
     name: "gavl"
@@ -512,7 +572,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/gdl
-  atoms: "dev-libs/gdl"
+  atoms:
+  - dev-libs/gdl
   provides:
   - category: "dev-libs"
     name: "gdl"
@@ -530,7 +591,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/glfw
-  atoms: "media-libs/glfw"
+  atoms:
+  - media-libs/glfw
   provides:
   - category: "media-libs"
     name: "glfw"
@@ -548,7 +610,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &libs-gmime-2-atoms >-
       dev-libs/gmime:2.6
-  atoms: *libs-gmime-2-atoms
+  atoms:
+  - *libs-gmime-2-atoms
   provides:
   - category: "dev-libs"
     name: "gmime:2.6"
@@ -567,7 +630,8 @@ packages:
     emerge.packages: &libs-greenlet-atoms >-
       dev-python/greenlet
       virtual/python-greenlet
-  atoms: *libs-greenlet-atoms
+  atoms:
+  - *libs-greenlet-atoms
   provides:
   - category: "dev-python"
     name: "greenlet"
@@ -588,7 +652,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/gsl
-  atoms: "sci-libs/gsl"
+  atoms:
+  - sci-libs/gsl
   provides:
   - category: "sci-libs"
     name: "gsl"
@@ -606,7 +671,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-perl/Gtk3
-  atoms: "dev-perl/Gtk3"
+  atoms:
+  - dev-perl/Gtk3
   provides:
   - category: "dev-perl"
     name: "Gtk3"
@@ -624,7 +690,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-libs/gtkglext
-  atoms: "x11-libs/gtkglext"
+  atoms:
+  - x11-libs/gtkglext
   provides:
   - category: "x11-libs"
     name: "gtkglext"
@@ -642,7 +709,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/gupnp-igd
-  atoms: "net-libs/gupnp-igd"
+  atoms:
+  - net-libs/gupnp-igd
   provides:
   - category: "net-libs"
     name: "gupnp-igd"
@@ -660,7 +728,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/javax-inject
-  atoms: "dev-java/javax-inject"
+  atoms:
+  - dev-java/javax-inject
   provides:
   - category: "dev-java"
     name: "javax-inject"
@@ -678,7 +747,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/jsr305
-  atoms: dev-java/jsr305
+  atoms:
+  - dev-java/jsr305
   provides:
   - category: "dev-java"
     name: "jsr305"
@@ -696,7 +766,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libharu
-  atoms: "media-libs/libharu"
+  atoms:
+  - media-libs/libharu
   provides:
   - category: "media-libs"
     name: "libharu"
@@ -714,7 +785,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libircclient
-  atoms: "net-libs/libircclient"
+  atoms:
+  - net-libs/libircclient
   provides:
   - category: "net-libs"
     name: "libircclient"
@@ -732,7 +804,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libmicrohttpd
-  atoms: "net-libs/libmicrohttpd"
+  atoms:
+  - net-libs/libmicrohttpd
   provides:
   - category: "net-libs"
     name: "libmicrohttpd"
@@ -750,7 +823,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/hdf5
-  atoms: "sci-libs/hdf5"
+  atoms:
+  - sci-libs/hdf5
   provides:
   - category: "sci-libs"
     name: "hdf5"
@@ -768,7 +842,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/hidapi
-  atoms: "dev-libs/hidapi"
+  atoms:
+  - dev-libs/hidapi
   provides:
   - category: "dev-libs"
     name: "hidapi"
@@ -786,7 +861,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/http-parser
-  atoms: "net-libs/http-parser"
+  atoms:
+  - net-libs/http-parser
   provides:
   - category: "net-libs"
     name: "http-parser"
@@ -805,7 +881,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/id3lib
-  atoms: "media-libs/id3lib"
+  atoms:
+  - media-libs/id3lib
   provides:
   - category: "media-libs"
     name: "id3lib"
@@ -823,7 +900,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/jbigkit
-  atoms: "media-libs/jbigkit"
+  atoms:
+  - media-libs/jbigkit
   provides:
   - category: "media-libs"
     name: "jbigkit"
@@ -841,7 +919,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/ladspa-sdk
-  atoms: "media-libs/ladspa-sdk"
+  atoms:
+  - media-libs/ladspa-sdk
   provides:
   - category: "media-libs"
     name: "ladspa-sdk"
@@ -859,7 +938,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/lash
-  atoms: "media-sound/lash"
+  atoms:
+  - media-sound/lash
   provides:
   - category: "media-sound"
     name: "lash"
@@ -877,7 +957,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/lasi
-  atoms: "media-libs/lasi"
+  atoms:
+  - media-libs/lasi
   provides:
   - category: "media-libs"
     name: "lasi"
@@ -895,7 +976,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/lib3ds
-  atoms: "media-libs/lib3ds"
+  atoms:
+  - media-libs/lib3ds
   provides:
   - category: "media-libs"
     name: "lib3ds"
@@ -914,7 +996,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libbs2b
-  atoms: "media-libs/libbs2b"
+  atoms:
+  - media-libs/libbs2b
   provides:
   - category: "media-libs"
     name: "libbs2b"
@@ -932,7 +1015,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libchamplain
-  atoms: "media-libs/libchamplain"
+  atoms:
+  - media-libs/libchamplain
   provides:
   - category: "media-libs"
     name: "libchamplain"
@@ -950,7 +1034,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libdca
-  atoms: "media-libs/libdca"
+  atoms:
+  - media-libs/libdca
   provides:
   - category: "media-libs"
     name: "libdca"
@@ -968,7 +1053,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libde265
-  atoms: "media-libs/libde265"
+  atoms:
+  - media-libs/libde265
   provides:
   - category: "media-libs"
     name: "libde265"
@@ -986,7 +1072,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libdiscid
-  atoms: "media-libs/libdiscid"
+  atoms:
+  - media-libs/libdiscid
   provides:
   - category: "media-libs"
     name: "libdiscid"
@@ -1004,7 +1091,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libdv
-  atoms: "media-libs/libdv"
+  atoms:
+  - media-libs/libdv
   provides:
   - category: "media-libs"
     name: "libdv"
@@ -1022,7 +1110,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libdvdcss
-  atoms: "media-libs/libdvdcss"
+  atoms:
+  - media-libs/libdvdcss
   provides:
   - category: "media-libs"
     name: "libdvdcss"
@@ -1040,7 +1129,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/llibebur128
-  atoms: "media-libs/libebur128"
+  atoms:
+  - media-libs/libebur128
   provides:
   - category: "media-libs"
     name: "libebur128"
@@ -1058,7 +1148,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libemf
-  atoms: "media-libs/libemf"
+  atoms:
+  - media-libs/libemf
   provides:
   - category: "media-libs"
     name: "libemf"
@@ -1076,7 +1167,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libfame
-  atoms: "media-libs/libfame"
+  atoms:
+  - media-libs/libfame
   provides:
   - category: "media-libs"
     name: "libfame"
@@ -1094,7 +1186,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libfpx
-  atoms: "media-libs/libfpx"
+  atoms:
+  - media-libs/libfpx
   provides:
   - category: "media-libs"
     name: "libfpx"
@@ -1112,7 +1205,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       gnome-base/libglade
-  atoms: "gnome-base/libglade"
+  atoms:
+  - gnome-base/libglade
   provides:
   - category: "gnome-base"
     name: "libglade"
@@ -1130,7 +1224,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libktorrent
-  atoms: "net-libs/libktorrent"
+  atoms:
+  - net-libs/libktorrent
   provides:
   - category: "net-libs"
     name: "libktorrent"
@@ -1148,7 +1243,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/liblqr
-  atoms: "media-libs/liblqr"
+  atoms:
+  - media-libs/liblqr
   provides:
   - category: "media-libs"
     name: "liblqr"
@@ -1166,7 +1262,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libmp4v2
-  atoms: "media-libs/libmp4v2"
+  atoms:
+  - media-libs/libmp4v2
   provides:
   - category: "media-libs"
     name: "libmp4v2"
@@ -1184,7 +1281,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/libnova
-  atoms: "sci-libs/libnova"
+  atoms:
+  - sci-libs/libnova
   provides:
   - category: "sci-libs"
     name: "libnova"
@@ -1202,7 +1300,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libnsgif
-  atoms: "media-libs/libnsgif"
+  atoms:
+  - media-libs/libnsgif
   provides:
   - category: "media-libs"
     name: "libnsgif"
@@ -1222,7 +1321,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libofa
-  atoms: "media-libs/libofa"
+  atoms:
+  - media-libs/libofa
   provides:
   - category: "media-libs"
     name: "libofa"
@@ -1240,7 +1340,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libopenmpt
-  atoms: "media-libs/libopenmpt"
+  atoms:
+  - media-libs/libopenmpt
   provides:
   - category: "media-libs"
     name: "libopenmpt"
@@ -1258,7 +1359,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libshout
-  atoms: "media-libs/libshout"
+  atoms:
+  - media-libs/libshout
   provides:
   - category: "media-libs"
     name: "libshout"
@@ -1276,7 +1378,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &libs-libsidplay-atoms >-
       media-libs/libsidplay:2
-  atoms: *libs-libsidplay-atoms
+  atoms:
+  - *libs-libsidplay-atoms
   provides:
   - category: "media-libs"
     name: "libsidplay"
@@ -1294,7 +1397,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libsidplayfp
-  atoms: "media-libs/libsidplayfp"
+  atoms:
+  - media-libs/libsidplayfp
   provides:
   - category: "media-libs"
     name: "libsidplayfp"
@@ -1312,7 +1416,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libsbsms
-  atoms: "media-libs/libsbsms"
+  atoms:
+  - media-libs/libsbsms
   provides:
   - category: "dev-libs"
     name: "libsbsms"
@@ -1330,7 +1435,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libsoundtouch
-  atoms: "media-libs/libsoundtouch"
+  atoms:
+  - media-libs/libsoundtouch
   provides:
   - category: "dev-libs"
     name: "libsoundtouch"
@@ -1348,7 +1454,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libsrtp
-  atoms: "net-libs/libsrtp"
+  atoms:
+  - net-libs/libsrtp
   provides:
   - category: "net-libs"
     name: "libsrtp"
@@ -1366,7 +1473,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &libs-libwnck-1-atoms >-
       x11-libs/libwnck:1
-  atoms: *libs-libwnck-1-atoms
+  atoms:
+  - *libs-libwnck-1-atoms
   provides:
   - category: "x11-libs"
     name: "libwnck"
@@ -1384,7 +1492,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libxdg-basedir
-  atoms: "dev-libs/libxdg-basedir"
+  atoms:
+  - dev-libs/libxdg-basedir
   provides:
   - category: "dev-libs"
     name: "libxdg-basedir"
@@ -1402,7 +1511,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/log4cplus
-  atoms: "dev-libs/log4cplus"
+  atoms:
+  - dev-libs/log4cplus
   provides:
   - category: "dev-libs"
     name: "log4cplus"
@@ -1420,7 +1530,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/loudmouth
-  atoms: "net-libs/loudmouth"
+  atoms:
+  - net-libs/loudmouth
   provides:
   - category: "net-libs"
     name: "loudmouth"
@@ -1438,7 +1549,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/lv2
-  atoms: "media-libs/lv2"
+  atoms:
+  - media-libs/lv2
   provides:
   - category: "dev-libs"
     name: "lv2"
@@ -1456,7 +1568,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/mac
-  atoms: "media-sound/mac"
+  atoms:
+  - media-sound/mac
   provides:
   - category: "media-sound"
     name: "mac"
@@ -1474,7 +1587,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/mbedtls
-  atoms: "net-libs/mbedtls"
+  atoms:
+  - net-libs/mbedtls
   provides:
   - category: "net-libs"
     name: "mbedtls"
@@ -1492,7 +1606,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/meanwhile
-  atoms: "net-libs/meanwhile"
+  atoms:
+  - net-libs/meanwhile
   provides:
   - category: "net-libs"
     name: "meanwhile"
@@ -1510,7 +1625,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/metis
-  atoms: "sci-libs/metis"
+  atoms:
+  - sci-libs/metis
   provides:
   - category: "sci-libs"
     name: "metis"
@@ -1528,7 +1644,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-perl/MIME-tools
-  atoms: "dev-perl/MIME-tools"
+  atoms:
+  - dev-perl/MIME-tools
   provides:
   - category: "dev-perl"
     name: "MIME-tools"
@@ -1546,7 +1663,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/namespace-google
-  atoms: "dev-python/namespace-google"
+  atoms:
+  - dev-python/namespace-google
   provides:
   - category: "dev-python"
     name: "namespace-google"
@@ -1564,7 +1682,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/nas
-  atoms: "media-libs/nas"
+  atoms:
+  - media-libs/nas
   provides:
   - category: "media-libs"
     name: "nas"
@@ -1586,7 +1705,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/netpbm
-  atoms: "media-libs/netpbm"
+  atoms:
+  - media-libs/netpbm
   provides:
   - category: "media-libs"
     name: "netpbm"
@@ -1604,7 +1724,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-cpp/nlohmann_json
-  atoms: "dev-cpp/nlohmann_json"
+  atoms:
+  - dev-cpp/nlohmann_json
   provides:
   - category: "dev-cpp"
     name: "nlohmann_json"
@@ -1622,7 +1743,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/ossp-uuid
-  atoms: "dev-libs/ossp-uuid"
+  atoms:
+  - dev-libs/ossp-uuid
   provides:
   - category: "dev-libs"
     name: "ossp-uuid"
@@ -1640,7 +1762,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-games/physfs
-  atoms: "dev-games/physfs"
+  atoms:
+  - dev-games/physfs
   provides:
   - category: "dev-games"
     name: "physfs"
@@ -1658,7 +1781,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/plotutils
-  atoms: "media-libs/plotutils"
+  atoms:
+  - media-libs/plotutils
   provides:
   - category: "media-libs"
     name: "plotutils"
@@ -1679,7 +1803,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/portmidi
-  atoms: "media-libs/portmidi"
+  atoms:
+  - media-libs/portmidi
   provides:
   - category: "dev-libs"
     name: "portmidi"
@@ -1699,7 +1824,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/protobuf-c
-  atoms: "dev-libs/protobuf-c"
+  atoms:
+  - dev-libs/protobuf-c
   provides:
   - category: "dev-libs"
     name: "protobuf-c"
@@ -1717,7 +1843,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/ptex
-  atoms: "media-libs/ptex"
+  atoms:
+  - media-libs/ptex
   provides:
   - category: "media-libs"
     name: "ptex"
@@ -1737,7 +1864,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pyasn1
-  atoms: "dev-python/pyasn1"
+  atoms:
+  - dev-python/pyasn1
   provides:
   - category: "dev-python"
     name: "pyasn1"
@@ -1755,7 +1883,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pybind11
-  atoms: "dev-python/pybind11"
+  atoms:
+  - dev-python/pybind11
   provides:
   - category: "dev-python"
     name: "pybind11"
@@ -1773,7 +1902,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pynacl
-  atoms: "dev-python/pynacl"
+  atoms:
+  - dev-python/pynacl
   provides:
   - category: "dev-python"
     name: "pynacl"
@@ -1793,7 +1923,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-cpp/pystring
-  atoms: "dev-cpp/pystring"
+  atoms:
+  - dev-cpp/pystring
   provides:
   - category: "dev-cpp"
     name: "pystring"
@@ -1811,7 +1942,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/python-distutils-extra
-  atoms: "dev-python/python-distutils-extra"
+  atoms:
+  - dev-python/python-distutils-extra
   provides:
   - category: "dev-python"
     name: "python-distutils-extra"
@@ -1829,7 +1961,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/qcustomplot
-  atoms: "dev-libs/qcustomplot"
+  atoms:
+  - dev-libs/qcustomplot
   provides:
   - category: "dev-libs"
     name: "qcustomplot"
@@ -1847,7 +1980,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-libs/qscintilla
-  atoms: "x11-libs/qscintilla"
+  atoms:
+  - x11-libs/qscintilla
   provides:
   - category: "x11-libs"
     name: "qscintilla"
@@ -1865,7 +1999,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/quazip
-  atoms: "dev-libs/quazip"
+  atoms:
+  - dev-libs/quazip
   provides:
   - category: "dev-libs"
     name: "quazip"
@@ -1883,7 +2018,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-wireless/rtl-sdr
-  atoms: "net-wireless/rtl-sdr"
+  atoms:
+  - net-wireless/rtl-sdr
   provides:
   - category: "net-wireless"
     name: "rtl-sdr"
@@ -1901,7 +2037,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-libs/sdl2-image
-  atoms: "media-libs/sdl2-image"
+  atoms:
+  - media-libs/sdl2-image
   provides:
   - category: "media-libs"
     name: "sdl2-image"
@@ -1919,7 +2056,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl-net
-  atoms: "media-libs/sdl-net"
+  atoms:
+  - media-libs/sdl-net
   provides:
   - category: "media-libs"
     name: "sdl-net"
@@ -1937,7 +2075,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/serd
-  atoms: "dev-libs/serd"
+  atoms:
+  - dev-libs/serd
   provides:
   - category: "dev-libs"
     name: "serd"
@@ -1955,7 +2094,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/smpeg
-  atoms: "media-libs/smpeg"
+  atoms:
+  - media-libs/smpeg
   provides:
   - category: "media-libs"
     name: "smpeg"
@@ -1973,7 +2113,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/sofia-sip
-  atoms: "net-libs/sofia-sip"
+  atoms:
+  - net-libs/sofia-sip
   provides:
   - category: "net-libs"
     name: "sofia-sip"
@@ -1991,7 +2132,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/suitesparseconfig
-  atoms: "sci-libs/suitesparseconfig"
+  atoms:
+  - sci-libs/suitesparseconfig
   provides:
   - category: "sci-libs"
     name: "suitesparseconfig"
@@ -2009,7 +2151,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-perl/Switch
-  atoms: "dev-perl/Switch"
+  atoms:
+  - dev-perl/Switch
   provides:
   - category: "dev-perl"
     name: "Switch"
@@ -2027,7 +2170,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/t1lib
-  atoms: "media-libs/t1lib"
+  atoms:
+  - media-libs/t1lib
   provides:
   - category: "media-libs"
     name: "t1lib"
@@ -2045,7 +2189,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-irc/telepathy-idle
-  atoms: "net-irc/telepathy-idle"
+  atoms:
+  - net-irc/telepathy-idle
   provides:
   - category: "net-irc"
     name: "telepathy-idle"
@@ -2064,7 +2209,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/tomsfastmath
-  atoms: "dev-libs/tomsfastmath"
+  atoms:
+  - dev-libs/tomsfastmath
   provides:
   - category: "dev-libs"
     name: "tomsfastmath"
@@ -2082,7 +2228,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/tre
-  atoms: "dev-libs/tre"
+  atoms:
+  - dev-libs/tre
   provides:
   - category: "dev-libs"
     name: "tre"
@@ -2100,7 +2247,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/vamp-plugin-sdk
-  atoms: "media-libs/vamp-plugin-sdk"
+  atoms:
+  - media-libs/vamp-plugin-sdk
   provides:
   - category: "media-libs"
     name: "vamp-plugin-sdk"
@@ -2118,7 +2266,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/vc
-  atoms: "dev-libs/vc"
+  atoms:
+  - dev-libs/vc
   provides:
   - category: "sci-libs"
     name: "vc"
@@ -2136,7 +2285,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-cpp/websocketpp
-  atoms: "dev-cpp/websocketpp"
+  atoms:
+  - dev-cpp/websocketpp
   provides:
   - category: "dev-cpp"
     name: "websocketpp"
@@ -2154,7 +2304,8 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
 #       dev-libs/xapian
-#   atoms: "dev-libs/xapian"
+#   atoms:
+#   - dev-libs/xapian
 #   provides:
 #   - category: "dev-libs"
 #     name: "xapian"
@@ -2172,7 +2323,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/xmlsec
-  atoms: "dev-libs/xmlsec"
+  atoms:
+  - dev-libs/xmlsec
   provides:
   - category: "dev-libs"
     name: "xmlsec"
@@ -2190,7 +2342,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-apps/xwininfo
-  atoms: "x11-apps/xwininfo"
+  atoms:
+  - x11-apps/xwininfo
   provides:
   - category: "x11-apps"
     name: "xwininfo"
@@ -2208,7 +2361,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/zstandard
-  atoms: "dev-python/zstandard"
+  atoms:
+  - dev-python/zstandard
   provides:
   - category: "dev-python"
     name: "zstandard"
@@ -2227,7 +2381,8 @@ packages:
     emerge.packages: &libs-zope-atoms >-
       dev-python/zope-event
       dev-python/zope-interface
-  atoms: *libs-zope-atoms
+  atoms:
+  - *libs-zope-atoms
   provides:
   - category: "dev-python"
     name: "zope-event"
@@ -2251,7 +2406,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-terms/alacritty
-  atoms: "x11-terms/alacritty"
+  atoms:
+  - x11-terms/alacritty
   provides:
   - category: "x11-terms"
     name: "alacritty"
@@ -2269,7 +2425,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-power/apcupsd
-  atoms: "sys-power/apcupsd"
+  atoms:
+  - sys-power/apcupsd
   prereqs:
   - virtual/libusb:0
   provides:
@@ -2289,7 +2446,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-process/bottom
-  atoms: "sys-process/bottom"
+  atoms:
+  - sys-process/bottom
   provides:
   - category: "sys-process"
     name: "bottom"
@@ -2309,7 +2467,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-cdr/brasero
-  atoms: "app-cdr/brasero"
+  atoms:
+  - app-cdr/brasero
   provides:
   - category: "app-cdr"
     name: "brasero"
@@ -2326,7 +2485,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/brave-bin
-  atoms: "www-client/brave-bin"
+  atoms:
+  - www-client/brave-bin
   overlays:
   - name: "brave-overlay"
   provides:
@@ -2347,7 +2507,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-astronomy/celestia
-  atoms: "sci-astronomy/celestia"
+  atoms:
+  - sci-astronomy/celestia
   provides:
   - category: "sci-astronomy"
     name: "celestia"
@@ -2365,7 +2526,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: &apps-cfortran-atoms >-
       =dev-lang/cfortran-4.4-r3 
-  atoms: *apps-cfortran-atoms
+  atoms:
+  - *apps-cfortran-atoms
   provides:
   - category: "dev-lang"
     name: "cfortran"
@@ -2384,7 +2546,8 @@ packages:
     emerge.packages: >-
       sys-libs/libcpuid
       sys-process/cpu-x
-  atoms: "sys-process/cpu-x"
+  atoms:
+  - sys-process/cpu-x
   overlays:
   - name: "ROKO__"
   provides:
@@ -2403,7 +2566,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-cdr/cuetools
-  atoms: "app-cdr/cuetools"
+  atoms:
+  - app-cdr/cuetools
   provides:
   - category: "app-cdr"
     name: "cuetools"
@@ -2420,7 +2584,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/darktable
-  atoms: "media-gfx/darktable"
+  atoms:
+  - media-gfx/darktable
   provides:
   - category: "media-gfx"
     name: "darktable"
@@ -2440,7 +2605,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-office/dia
-  atoms: "app-office/dia"
+  atoms:
+  - app-office/dia
   provides:
   - category: "app-office"
     name: "dia"
@@ -2458,7 +2624,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: &apps-dmd-atoms >-
       =dev-lang/dmd-2.094.2
-  atoms: *apps-dmd-atoms
+  atoms:
+  - *apps-dmd-atoms
   overlays:
   - name: "dlang"
   provides:
@@ -2480,7 +2647,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/dolphin-plugins-git
-  atoms: "kde-apps/dolphin-plugins-git"
+  atoms:
+  - kde-apps/dolphin-plugins-git
   provides:
   - category: "kde-apps"
     name: "dolphin-plugins-git"
@@ -2497,7 +2665,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-cdr/dolphin-plugins-mountiso
-  atoms: "app-cdr/dolphin-plugins-mountiso"
+  atoms:
+  - app-cdr/dolphin-plugins-mountiso
   provides:
   - category: "app-cdr"
     name: "dolphin-plugins-mountiso"
@@ -2515,7 +2684,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-cdr/dvd+rw-tools
-  atoms: "app-cdr/dvd+rw-tools"
+  atoms:
+  - app-cdr/dvd+rw-tools
   provides:
   - category: "app-cdr"
     name: "dvd+rw-tools"
@@ -2535,7 +2705,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-editors/emacs
-  atoms: "app-editors/emacs"
+  atoms:
+  - app-editors/emacs
   provides:
     - category: app-editors
       name: emacs
@@ -2565,7 +2736,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sys-fs/extundelete
-  atoms: "sys-fs/extundelete"
+  atoms:
+  - sys-fs/extundelete
   provides:
   - category: "sys-fs"
     name: "extundelete"
@@ -2582,7 +2754,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/ffmpegthumbs
-  atoms: "kde-apps/ffmpegthumbs"
+  atoms:
+  - kde-apps/ffmpegthumbs
   provides:
   - category: "kde-apps"
     name: "ffmpegthumbs"
@@ -2599,7 +2772,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/filelight
-  atoms: "kde-apps/filelight"
+  atoms:
+  - kde-apps/filelight
   provides:
   - category: "kde-apps"
     name: "filelight"
@@ -2617,7 +2791,8 @@ packages:
     emerge.packages: >-
       dev-libs/libfilezilla
       net-ftp/filezilla
-  atoms: "net-ftp/filezilla"
+  atoms:
+  - net-ftp/filezilla
   provides:
   - category: "dev-libs"
     name: "libfilezilla"
@@ -2637,7 +2812,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-shells/fish
-  atoms: "app-shells/fish"
+  atoms:
+  - app-shells/fish
   provides:
   - category: "app-shells"
     name: "fish"
@@ -2654,7 +2830,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/flacon
-  atoms: "media-sound/flacon"
+  atoms:
+  - media-sound/flacon
   provides:
   - category: "media-sound"
     name: "flacon"
@@ -2673,7 +2850,8 @@ packages:
     emerge.packages: >-
       media-libs/libuninameslist
       media-gfx/fontforge
-  atoms: "media-gfx/fontforge"
+  atoms:
+  - media-gfx/fontforge
   prereqs:
   - *libs-sphinx-atoms
   provides:
@@ -2699,7 +2877,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &apps-foot-atoms >-
       gui-apps/foot dev-libs/libutf8proc media-libs/fcft
-  atoms: *apps-foot-atoms
+  atoms:
+  - *apps-foot-atoms
   provides:
     - name: libutf8proc
       category: dev-libs
@@ -2725,7 +2904,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/geeqie
-  atoms: "media-gfx/geeqie"
+  atoms:
+  - media-gfx/geeqie
   provides:
   - category: "media-gfx"
     name: "geeqie"
@@ -2742,7 +2922,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-office/gnumeric
-  atoms: "app-office/gnumeric"
+  atoms:
+  - app-office/gnumeric
   provides:
   - category: "app-office"
     name: "gnumeric"
@@ -2759,7 +2940,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/gsmartcontrol
-  atoms: "sys-apps/gsmartcontrol"
+  atoms:
+  - sys-apps/gsmartcontrol
   provides:
   - category: "sys-apps"
     name: "gsmartcontrol"
@@ -2778,7 +2960,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/hardinfo
-  atoms: "app-admin/hardinfo"
+  atoms:
+  - app-admin/hardinfo
   provides:
   - category: "app-admin"
     name: "hardinfo"
@@ -2797,7 +2980,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/hddtemp
-  atoms: "app-admin/hddtemp"
+  atoms:
+  - app-admin/hddtemp
   provides:
   - category: "app-admin"
     name: "hddtemp"
@@ -2814,7 +2998,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-irc/hexchat
-  atoms: "net-irc/hexchat"
+  atoms:
+  - net-irc/hexchat
   provides:
   - category: "net-irc"
     name: "hexchat"
@@ -2831,7 +3016,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/httrack
-  atoms: "www-client/httrack"
+  atoms:
+  - www-client/httrack
   provides:
   - category: "www-client"
     name: "httrack"
@@ -2848,7 +3034,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/hwinfo
-  atoms: "sys-apps/hwinfo"
+  atoms:
+  - sys-apps/hwinfo
   prereqs:
   - app-arch/rpm2targz
   provides:
@@ -2871,7 +3058,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/hwloc
-  atoms: "sys-apps/hwloc"
+  atoms:
+  - sys-apps/hwloc
   provides:
   - category: "sys-apps"
     name: "hwloc"
@@ -2889,7 +3077,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/icoutils
-  atoms: "media-gfx/icoutils"
+  atoms:
+  - media-gfx/icoutils
   prereqs:
   - app-arch/rpm2targz
   provides:
@@ -2909,7 +3098,8 @@ packages:
     emerge.packages: >-
       dev-libs/iniparser
       app-cdr/isomaster
-  atoms: "app-cdr/isomaster"
+  atoms:
+  - app-cdr/isomaster
   provides:
   - category: "dev-libs"
     name: "iniparser"
@@ -2930,7 +3120,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-lang/ispc
-  atoms: "dev-lang/ispc"
+  atoms:
+  - dev-lang/ispc
   provides:
   - category: "dev-lang"
     name: "ispc"
@@ -2951,7 +3142,8 @@ packages:
 #       dev-java/openjdk-bin
 #       virtual/jre
 #       virtual/jdk
-#   atoms: *apps-java-atoms
+#   atoms:
+#   - *apps-java-atoms
 #   provides:
 #   - name: eselect-java
 #     category: app-eselect
@@ -2990,7 +3182,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/javatoolkit
-  atoms: "dev-java/javatoolkit"
+  atoms:
+  - dev-java/javatoolkit
   provides:
   - category: "dev-java"
     name: "javatoolkit"
@@ -3008,7 +3201,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/kapptemplate
-  atoms: "kde-apps/kapptemplate"
+  atoms:
+  - kde-apps/kapptemplate
   provides:
   - category: "kde-apps"
     name: "kapptemplate"
@@ -3025,7 +3219,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/kate
-  atoms: "kde-apps/kate"
+  atoms:
+  - kde-apps/kate
   provides:
   - category: "kde-apps"
     name: "kate"
@@ -3042,7 +3237,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/kcharselect
-  atoms: "kde-apps/kcharselect"
+  atoms:
+  - kde-apps/kcharselect
   provides:
   - category: "kde-apps"
     name: "kcharselect"
@@ -3059,7 +3255,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-misc/kdiff3
-  atoms: "kde-misc/kdiff3"
+  atoms:
+  - kde-misc/kdiff3
   provides:
   - category: "kde-misc"
     name: "kdiff3"
@@ -3076,7 +3273,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kompare
-  atoms: "kde-apps/kompare"
+  atoms:
+  - kde-apps/kompare
   provides:
   - category: "kde-apps"
     name: "kompare"
@@ -3093,7 +3291,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/krfb
-  atoms: "kde-apps/krfb"
+  atoms:
+  - kde-apps/krfb
   provides:
   - category: "kde-apps"
     name: "krfb"
@@ -3110,7 +3309,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-misc/krusader
-  atoms: "kde-misc/krusader"
+  atoms:
+  - kde-misc/krusader
   provides:
   - category: "kde-misc"
     name: "krusader"
@@ -3127,7 +3327,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/ksnip
-  atoms: "x11-misc/ksnip"
+  atoms:
+  - x11-misc/ksnip
   overlays:
   - name: "guru"
   provides:
@@ -3147,7 +3348,8 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
 #       kde-plasma/ksysguard
-#   atoms: "kde-plasma/ksysguard"
+#   atoms:
+#   - kde-plasma/ksysguard
 #   provides:
 #   - category: "kde-plasma"
 #     name: "ksysguard"
@@ -3164,7 +3366,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-misc/latte-dock
-  atoms: "kde-misc/latte-dock"
+  atoms:
+  - kde-misc/latte-dock
   provides:
   - category: "kde-misc"
     name: "latte-dock"
@@ -3181,18 +3384,16 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       games-util/mangohud
-  atoms: "games-util/mangohud"
+  atoms:
+  - games-util/mangohud
   overlays:
   - name: "ace"
   provides:
   - category: "games-util"
     name: "mangohud"
     version: ">=0"
-  prereqs:
-  - sys-kernel/gentoo-sources
-  - sys-kernel/gentoo-kernel
-  - virtual/dist-kernel
-  - x11-drivers/nvidia-drivers
+  opt_requires:
+  - <<: *kernel-modules-nvidia-drivers-lts
   requires:
   - <<: *layers-X
   build_requires:
@@ -3205,7 +3406,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/marble
-  atoms: "kde-apps/marble"
+  atoms:
+  - kde-apps/marble
   provides:
   - category: "kde-apps"
     name: "marble"
@@ -3222,7 +3424,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-misc/mc
-  atoms: "app-misc/mc"
+  atoms:
+  - app-misc/mc
   provides:
   - category: "app-misc"
     name: "mc"
@@ -3239,7 +3442,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-sound/milkytracker
-  atoms: "media-sound/milkytracker"
+  atoms:
+  - media-sound/milkytracker
   provides:
   - category: "media-sound"
     name: "milkytracker"
@@ -3258,7 +3462,8 @@ packages:
     emerge.packages: &apps-mono-atoms >-
       dev-lang/mono
       dev-dotnet/libgdiplus
-  atoms: *apps-mono-atoms
+  atoms:
+  - *apps-mono-atoms
   provides:
   - category: "dev-lang"
     name: "mono"
@@ -3280,7 +3485,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-video/mpv
-  atoms: "media-video/mpv"
+  atoms:
+  - media-video/mpv
   provides:
   - category: "media-libs"
     name: "libplacebo"
@@ -3304,7 +3510,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/mypaint-brushes
-  atoms: "media-gfx/mypaint-brushes"
+  atoms:
+  - media-gfx/mypaint-brushes
   provides:
   - category: "media-gfx"
     name: "mypaint-brushes"
@@ -3321,7 +3528,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-misc/nnn
-  atoms: "app-misc/nnn"
+  atoms:
+  - app-misc/nnn
   provides:
   - category: "app-misc"
     name: "nnn"
@@ -3339,7 +3547,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-process/numactl
-  atoms: "sys-process/numactl"
+  atoms:
+  - sys-process/numactl
   provides:
   - category: "sys-process"
     name: "numactl"
@@ -3357,7 +3566,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/nx
-  atoms: net-misc/nx
+  atoms:
+  - net-misc/nx
   provides:
   - category: "net-misc"
     name: "nx"
@@ -3377,7 +3587,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-editors/okteta
-  atoms: "app-editors/okteta"
+  atoms:
+  - app-editors/okteta
   provides:
   - category: "app-editors"
     name: "okteta"
@@ -3394,7 +3605,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/opera
-  atoms: "www-client/opera"
+  atoms:
+  - www-client/opera
   provides:
   - category: "www-client"
     name: "opera"
@@ -3412,7 +3624,8 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
 #       app-text/pandoc
-#   atoms: "app-text/pandoc"
+#   atoms:
+#   - app-text/pandoc
 #   provides:
 #   - category: "app-text"
 #     name: "pandoc"
@@ -3434,7 +3647,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pip
-  atoms: "dev-python/pip"
+  atoms:
+  - dev-python/pip
   provides:
   - category: "dev-python"
     name: "pip"
@@ -3451,7 +3665,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-plasma/plasma-sdk
-  atoms: "kde-plasma/plasma-sdk"
+  atoms:
+  - kde-plasma/plasma-sdk
   provides:
   - category: "kde-plasma"
     name: "plasma-sdk"
@@ -3469,7 +3684,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-text/podofo
-  atoms: "app-text/podofo"
+  atoms:
+  - app-text/podofo
   provides:
   - category: "app-text"
     name: "podofo"
@@ -3486,7 +3702,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-libs/pulseaudio-qt
-  atoms: "media-libs/pulseaudio-qt"
+  atoms:
+  - media-libs/pulseaudio-qt
   provides:
   - category: "media-libs"
     name: "pulseaudio-qt"
@@ -3504,7 +3721,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pycodestyle
-  atoms: "dev-python/pycodestyle"
+  atoms:
+  - dev-python/pycodestyle
   provides:
   - category: "dev-python"
     name: "pycodestyle"
@@ -3522,7 +3740,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-editors/qhexedit2
-  atoms: "app-editors/qhexedit2"
+  atoms:
+  - app-editors/qhexedit2
   provides:
   - category: "app-editors"
     name: "qhexedit2"
@@ -3539,7 +3758,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/rawtherapee
-  atoms: "media-gfx/rawtherapee"
+  atoms:
+  - media-gfx/rawtherapee
   provides:
   - category: "media-libs"
     name: "libiptcdata"
@@ -3559,7 +3779,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/redshift
-  atoms: "x11-misc/redshift"
+  atoms:
+  - x11-misc/redshift
   provides:
   - category: "x11-misc"
     name: "redshift"
@@ -3577,7 +3798,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/rhino
-  atoms: "dev-java/rhino"
+  atoms:
+  - dev-java/rhino
   provides:
   - category: "dev-java"
     name: "rhino"
@@ -3594,7 +3816,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-analyzer/scapy
-  atoms: "net-analyzer/scapy"
+  atoms:
+  - net-analyzer/scapy
   provides:
   - category: "net-analyzer"
     name: "scapy"
@@ -3612,7 +3835,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/scour
-  atoms: "media-gfx/scour"
+  atoms:
+  - media-gfx/scour
   provides:
   - category: "media-gfx"
     name: "scour"
@@ -3630,7 +3854,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/sndio
-  atoms: "media-sound/sndio"
+  atoms:
+  - media-sound/sndio
   provides:
   - category: "media-sound"
     name: "sndio"
@@ -3652,7 +3877,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-misc/solaar
-  atoms: "app-misc/solaar"
+  atoms:
+  - app-misc/solaar
   provides:
   - category: "app-misc"
     name: "solaar"
@@ -3669,7 +3895,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/soundconverter
-  atoms: "media-sound/soundconverter"
+  atoms:
+  - media-sound/soundconverter
   provides:
   - category: "media-sound"
     name: "soundconverter"
@@ -3686,7 +3913,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/soundkonverter
-  atoms: "media-sound/soundkonverter"
+  atoms:
+  - media-sound/soundkonverter
   provides:
   - category: "media-sound"
     name: "soundkonverter"
@@ -3704,7 +3932,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-misc/spacenavd
-  atoms: "app-misc/spacenavd"
+  atoms:
+  - app-misc/spacenavd
   provides:
   - category: "app-misc"
     name: "spacenavd"
@@ -3721,7 +3950,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-video/subtitlecomposer
-  atoms: "media-video/subtitlecomposer"
+  atoms:
+  - media-video/subtitlecomposer
   provides:
   - category: "media-video"
     name: "subtitlecomposer"
@@ -3738,7 +3968,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: &apps-tokodon-atoms >-
       =kde-apps/tokodon-21.12
-  atoms: *apps-tokodon-atoms
+  atoms:
+  - *apps-tokodon-atoms
   overlays:
   - name: "guru"
   provides:
@@ -3757,7 +3988,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-text/tree
-  atoms: "app-text/tree"
+  atoms:
+  - app-text/tree
   provides:
   - category: "app-text"
     name: "tree"
@@ -3774,7 +4006,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/shntool
-  atoms: "media-sound/shntool"
+  atoms:
+  - media-sound/shntool
   provides:
   - category: "media-sound"
     name: "shntool"
@@ -3793,7 +4026,8 @@ packages:
     emerge.load_average: "0.9"
     emerge.packages: &apps-spidermonkey-60-atoms >-
       dev-lang/spidermonkey:60;MAKEOPTS="-j1 -l0.9"
-  atoms: *apps-spidermonkey-60-atoms
+  atoms:
+  - *apps-spidermonkey-60-atoms
   provides:
   - category: "dev-lang"
     name: "spidermonkey"
@@ -3812,7 +4046,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-admin/systemdgenie
-  atoms: "app-admin/systemdgenie"
+  atoms:
+  - app-admin/systemdgenie
   provides:
   - category: "app-admin"
     name: "systemdgenie"
@@ -3829,7 +4064,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-admin/testdisk
-  atoms: "app-admin/testdisk"
+  atoms:
+  - app-admin/testdisk
   provides:
   - category: "app-admin"
     name: "testdisk"
@@ -3848,7 +4084,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-lang/tk
-  atoms: "dev-lang/tk"
+  atoms:
+  - dev-lang/tk
   provides:
   - category: "dev-lang"
     name: "tk"
@@ -3865,7 +4102,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-misc/tmux
-  atoms: "app-misc/tmux"
+  atoms:
+  - app-misc/tmux
   provides:
   - category: "app-misc"
     name: "tmux"
@@ -3882,7 +4120,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/transmission
-  atoms: "net-p2p/transmission"
+  atoms:
+  - net-p2p/transmission
   provides:
   - category: "net-p2p"
     name: "transmission"
@@ -3906,7 +4145,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/twolame
-  atoms: "media-sound/twolame"
+  atoms:
+  - media-sound/twolame
   provides:
   - category: "media-sound"
     name: "twolame"
@@ -3924,7 +4164,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-firewall/ufw
-  atoms: "net-firewall/ufw"
+  atoms:
+  - net-firewall/ufw
   provides:
   - category: "net-firewall"
     name: "ufw"
@@ -3944,7 +4185,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-video/vcdimager
-  atoms: "media-video/vcdimager"
+  atoms:
+  - media-video/vcdimager
   prereqs:
   - x11-misc/makedepend
   provides:
@@ -3963,7 +4205,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/vivaldi
-  atoms: "www-client/vivaldi"
+  atoms:
+  - www-client/vivaldi
   provides:
   - category: "www-client"
     name: "vivaldi"
@@ -3980,7 +4223,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/w_scan
-  atoms: "media-tv/w_scan"
+  atoms:
+  - media-tv/w_scan
   provides:
   - category: "media-tv"
     name: "w_scan"
@@ -3997,7 +4241,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-misc/wacomtablet
-  atoms: "kde-misc/wacomtablet"
+  atoms:
+  - kde-misc/wacomtablet
   provides:
   - category: "kde-misc"
     name: "wacomtablet"
@@ -4014,7 +4259,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-irc/weechat
-  atoms: "net-irc/weechat"
+  atoms:
+  - net-irc/weechat
   provides:
   - category: "net-irc"
     name: "weechat"
@@ -4034,7 +4280,8 @@ packages:
       app-emulation/wine-desktop-common
       app-emulation/winetricks
       app-emulation/protontricks
-  atoms: *apps-wine-staging-atoms
+  atoms:
+  - *apps-wine-staging-atoms
   provides:
   - category: "sys-auth"
     name: "rtkit"
@@ -4084,7 +4331,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-shells/zsh
-  atoms: "app-shells/zsh"
+  atoms:
+  - app-shells/zsh
   provides:
   - category: "app-shells"
     name: "zsh"
@@ -4106,7 +4354,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/amd
-  atoms: "sci-libs/amd"
+  atoms:
+  - sci-libs/amd
   provides:
   - category: "sci-libs"
     name: "amd"
@@ -4125,7 +4374,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/c-blosc
-  atoms: "dev-libs/c-blosc"
+  atoms:
+  - dev-libs/c-blosc
   provides:
   - category: "dev-libs"
     name: "c-blosc"
@@ -4143,7 +4393,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/camd
-  atoms: "sci-libs/camd"
+  atoms:
+  - sci-libs/camd
   provides:
   - category: "sci-libs"
     name: "camd"
@@ -4162,7 +4413,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/ccolamd
-  atoms: "sci-libs/ccolamd"
+  atoms:
+  - sci-libs/ccolamd
   provides:
   - category: "sci-libs"
     name: "ccolamd"
@@ -4181,7 +4433,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-libs/cfitsio
-  atoms: "sci-libs/cfitsio"
+  atoms:
+  - sci-libs/cfitsio
   provides:
   - category: "sci-libs"
     name: "cfitsio"
@@ -4200,7 +4453,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-plugins/cmt-plugins
-  atoms: "media-plugins/cmt-plugins"
+  atoms:
+  - media-plugins/cmt-plugins
   provides:
   - category: "media-plugins"
     name: "cmt-plugins"
@@ -4219,7 +4473,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/coin
-  atoms: "media-libs/coin"
+  atoms:
+  - media-libs/coin
   provides:
   - category: "media-libs"
     name: "coin"
@@ -4241,7 +4496,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/colamd
-  atoms: "sci-libs/colamd"
+  atoms:
+  - sci-libs/colamd
   provides:
   - category: "sci-libs"
     name: "colamd"
@@ -4260,7 +4516,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/dumb
-  atoms: "media-libs/dumb"
+  atoms:
+  - media-libs/dumb
   provides:
   - category: "media-libs"
     name: "dumb"
@@ -4279,7 +4536,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libgadu
-  atoms: "net-libs/libgadu"
+  atoms:
+  - net-libs/libgadu
   provides:
   - category: "net-libs"
     name: "libgadu"
@@ -4298,7 +4556,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-python/gevent
-  atoms: "dev-python/gevent"
+  atoms:
+  - dev-python/gevent
   provides:
   - category: "dev-python"
     name: "gevent"
@@ -4318,7 +4577,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-plugins/gst-plugins-srtp
-  atoms: "media-plugins/gst-plugins-srtp"
+  atoms:
+  - media-plugins/gst-plugins-srtp
   provides:
   - category: "media-plugins"
     name: "gst-plugins-srtp"
@@ -4337,7 +4597,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/gts
-  atoms: "sci-libs/gts"
+  atoms:
+  - sci-libs/gts
   provides:
   - category: "sci-libs"
     name: "gts"
@@ -4360,7 +4621,8 @@ packages:
       dev-java/error-prone-annotations
       dev-java/failureaccess
       dev-java/j2objc-annotations
-  atoms: *apps-guava-atoms
+  atoms:
+  - *apps-guava-atoms
   provides:
   - category: "dev-java"
     name: "guava"
@@ -4391,7 +4653,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libao
-  atoms: "media-libs/libao"
+  atoms:
+  - media-libs/libao
   provides:
   - category: "media-libs"
     name: "libao"
@@ -4410,7 +4673,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libcaca
-  atoms: "media-libs/libcaca"
+  atoms:
+  - media-libs/libcaca
   provides:
   - category: "media-libs"
     name: "libcaca"
@@ -4430,7 +4694,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libgit2
-  atoms: "dev-libs/libgit2"
+  atoms:
+  - dev-libs/libgit2
   provides:
   - category: "dev-libs"
     name: "libgit2"
@@ -4449,7 +4714,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libmikmod
-  atoms: "media-libs/libmikmod"
+  atoms:
+  - media-libs/libmikmod
   provides:
   - category: "media-libs"
     name: "libmikmod"
@@ -4468,7 +4734,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/libnice
-  atoms: "net-libs/libnice"
+  atoms:
+  - net-libs/libnice
   provides:
   - category: "net-libs"
     name: "libnice"
@@ -4487,7 +4754,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libpano13
-  atoms: "media-libs/libpano13"
+  atoms:
+  - media-libs/libpano13
   provides:
   - category: "media-libs"
     name: "libpano13"
@@ -4505,7 +4773,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libspnav
-  atoms: "dev-libs/libspnav"
+  atoms:
+  - dev-libs/libspnav
   provides:
   - category: "dev-libs"
     name: "libspnav"
@@ -4524,7 +4793,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libtomcrypt
-  atoms: "dev-libs/libtomcrypt"
+  atoms:
+  - dev-libs/libtomcrypt
   provides:
   - category: "dev-libs"
     name: "libtomcrypt"
@@ -4543,7 +4813,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pikepdf
-  atoms: "dev-python/pikepdf"
+  atoms:
+  - dev-python/pikepdf
   provides:
   - category: "dev-python"
     name: "pikepdf"
@@ -4569,7 +4840,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/protobuf-python
-  atoms: "dev-python/protobuf-python"
+  atoms:
+  - dev-python/protobuf-python
   provides:
   - category: "dev-python"
     name: "protobuf-python"
@@ -4588,7 +4860,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/rubberband
-  atoms: "media-libs/rubberband"
+  atoms:
+  - media-libs/rubberband
   provides:
   - category: "media-libs"
     name: "rubberband"
@@ -4608,7 +4881,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/sord
-  atoms: "dev-libs/sord"
+  atoms:
+  - dev-libs/sord
   provides:
   - category: "dev-libs"
     name: "sord"
@@ -4627,7 +4901,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &libs-tbb-atoms >-
       =dev-cpp/tbb-2021.5.0-r1
-  atoms: *libs-tbb-atoms
+  atoms:
+  - *libs-tbb-atoms
   provides:
   - category: "dev-cpp"
     name: "tbb"
@@ -4646,7 +4921,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-voip/telepathy-rakia
-  atoms: "net-voip/telepathy-rakia"
+  atoms:
+  - net-voip/telepathy-rakia
   provides:
   - category: "net-voip"
     name: "telepathy-rakia"
@@ -4669,7 +4945,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-tcltk/tix
-  atoms: "dev-tcltk/tix"
+  atoms:
+  - dev-tcltk/tix
   provides:
   - category: "dev-tcltk"
     name: "tix"
@@ -4688,7 +4965,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libunity
-  atoms: "dev-libs/libunity"
+  atoms:
+  - dev-libs/libunity
   overlays:
   - name: "unity-gentoo"
   provides:
@@ -4709,7 +4987,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/vigra
-  atoms: "media-libs/vigra"
+  atoms:
+  - media-libs/vigra
   provides:
   - category: "media-libs"
     name: "vigra"
@@ -4728,7 +5007,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/xine-lib
-  atoms: "media-libs/xine-lib"
+  atoms:
+  - media-libs/xine-lib
   provides:
   - category: "media-libs"
     name: "xine-lib"
@@ -4759,7 +5039,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-java/ant-core
-  atoms: "dev-java/ant-core"
+  atoms:
+  - dev-java/ant-core
   provides:
   - category: "dev-java"
     name: "ant-core"
@@ -4778,7 +5059,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-util/astyle
-  atoms: "dev-util/astyle"
+  atoms:
+  - dev-util/astyle
   provides:
   - category: "dev-util"
     name: "astyle"
@@ -4795,7 +5077,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/cairo-clock
-  atoms: "x11-misc/cairo-clock"
+  atoms:
+  - x11-misc/cairo-clock
   provides:
   - category: "x11-misc"
     name: "cairo-clock"
@@ -4815,7 +5098,8 @@ packages:
       x11-misc/cairo-dock
 #       x11-themes/cairo-dock-themes
 #       x11-plugins/cairo-dock-plugins
-  atoms: *cairo-dock-atoms
+  atoms:
+  - *cairo-dock-atoms
   overlays:
   - name: "pinkbyte"
 #   - name: "argent-main"
@@ -4840,7 +5124,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-cdr/cdrdao
-  atoms: "app-cdr/cdrdao"
+  atoms:
+  - app-cdr/cdrdao
   prereqs:
   - x11-misc/makedepend
   provides:
@@ -4861,7 +5146,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-antivirus/clamav
-  atoms: "app-antivirus/clamav"
+  atoms:
+  - app-antivirus/clamav
   provides:
   - category: "app-antivirus"
     name: "clamav"
@@ -4886,7 +5172,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/clementine
-  atoms: "media-sound/clementine"
+  atoms:
+  - media-sound/clementine
   provides:
   - category: "media-sound"
     name: "clementine"
@@ -4911,7 +5198,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/dcraw
-  atoms: "media-gfx/dcraw"
+  atoms:
+  - media-gfx/dcraw
   provides:
   - category: "media-gfx"
     name: "dcraw"
@@ -4929,7 +5217,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/easytag
-  atoms: "media-sound/easytag"
+  atoms:
+  - media-sound/easytag
   provides:
   - category: "media-sound"
     name: "easytag"
@@ -4949,7 +5238,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/guvcview
-  atoms: "media-video/guvcview"
+  atoms:
+  - media-video/guvcview
   provides:
   - category: "media-video"
     name: "guvcview"
@@ -4968,7 +5258,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/img2pdf
-  atoms: "media-gfx/img2pdf"
+  atoms:
+  - media-gfx/img2pdf
   provides:
   - category: "media-gfx"
     name: "img2pdf"
@@ -4987,7 +5278,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/kget
-  atoms: "kde-apps/kget"
+  atoms:
+  - kde-apps/kget
   provides:
   - category: "kde-apps"
     name: "kget"
@@ -5005,7 +5297,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-misc/krename
-  atoms: "kde-misc/krename"
+  atoms:
+  - kde-misc/krename
   provides:
   - category: "kde-misc"
     name: "krename"
@@ -5023,7 +5316,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-p2p/ktorrent
-  atoms: "net-p2p/ktorrent"
+  atoms:
+  - net-p2p/ktorrent
   provides:
   - category: "net-p2p"
     name: "ktorrent"
@@ -5041,7 +5335,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/mkvtoolnix
-  atoms: "media-video/mkvtoolnix"
+  atoms:
+  - media-video/mkvtoolnix
   provides:
   - category: "media-video"
     name: "mkvtoolnix"
@@ -5066,7 +5361,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-cluster/openmpi
-  atoms: "sys-cluster/openmpi"
+  atoms:
+  - sys-cluster/openmpi
   provides:
   - category: "sys-cluster"
     name: "openmpi"
@@ -5084,7 +5380,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-misc/openrgb
-  atoms: "app-misc/openrgb"
+  atoms:
+  - app-misc/openrgb
   provides:
   - category: "app-misc"
     name: "openrgb"
@@ -5105,7 +5402,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-db/postgresql
-  atoms: "dev-db/postgresql"
+  atoms:
+  - dev-db/postgresql
   provides:
   - category: "dev-db"
     name: "postgresql"
@@ -5133,7 +5431,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/pstoedit
-  atoms: "media-gfx/pstoedit"
+  atoms:
+  - media-gfx/pstoedit
   provides:
   - category: "media-gfx"
     name: "pstoedit"
@@ -5152,7 +5451,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/qutebrowser
-  atoms: "www-client/qutebrowser"
+  atoms:
+  - www-client/qutebrowser
   provides:
   - category: "www-client"
     name: "qutebrowser"
@@ -5180,7 +5480,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-lang/R
-  atoms: "dev-lang/R"
+  atoms:
+  - dev-lang/R
   provides:
   - category: "dev-lang"
     name: "R"
@@ -5199,7 +5500,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-db/sqliteman
-  atoms: "dev-db/sqliteman"
+  atoms:
+  - dev-db/sqliteman
   provides:
   - category: "dev-db"
     name: "sqliteman"
@@ -5218,7 +5520,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/transcode
-  atoms: "media-video/transcode"
+  atoms:
+  - media-video/transcode
   provides:
   - category: "media-video"
     name: "transcode"
@@ -5241,7 +5544,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: &libs-allegro-atoms >-
       media-libs/allegro:0
-  atoms: *libs-allegro-atoms
+  atoms:
+  - *libs-allegro-atoms
   provides:
   - category: "media-libs"
     name: "allegro"
@@ -5261,7 +5565,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       unity-base/bamf
-  atoms: "unity-base/bamf"
+  atoms:
+  - unity-base/bamf
   overlays:
   - name: "unity-gentoo"
   provides:
@@ -5283,7 +5588,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-util/cargo-c
-  atoms: "dev-util/cargo-c"
+  atoms:
+  - dev-util/cargo-c
   provides:
   - category: "dev-util"
     name: "cargo-c"
@@ -5302,7 +5608,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/cholmod
-  atoms: "sci-libs/cholmod"
+  atoms:
+  - sci-libs/cholmod
   provides:
   - category: "sci-libs"
     name: "cholmod"
@@ -5325,7 +5632,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/fluidsynth
-  atoms: "media-sound/fluidsynth"
+  atoms:
+  - media-sound/fluidsynth
   provides:
   - category: "media-sound"
     name: "fluidsynth"
@@ -5346,7 +5654,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-plugins/gst-plugins-libnice
-  atoms: "media-plugins/gst-plugins-libnice"
+  atoms:
+  - media-plugins/gst-plugins-libnice
   provides:
   - category: "media-plugins"
     name: "gst-plugins-libnice"
@@ -5365,7 +5674,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/indilib
-  atoms: "sci-libs/indilib"
+  atoms:
+  - sci-libs/indilib
   provides:
   - category: "sci-libs"
     name: "indilib"
@@ -5388,7 +5698,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libvisio
-  atoms: "media-libs/libvisio"
+  atoms:
+  - media-libs/libvisio
   provides:
   - category: "media-libs"
     name: "libvisio"
@@ -5406,7 +5717,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-mathematics/lpsolve
-  atoms: "sci-mathematics/lpsolve"
+  atoms:
+  - sci-mathematics/lpsolve
   provides:
   - category: "sci-mathematics"
     name: "lpsolve"
@@ -5425,7 +5737,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/opencv
-  atoms: "media-libs/opencv"
+  atoms:
+  - media-libs/opencv
   provides:
   - category: "media-libs"
     name: "opencv"
@@ -5446,7 +5759,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/openvdb
-  atoms: "media-gfx/openvdb"
+  atoms:
+  - media-gfx/openvdb
   provides:
   - category: "media-gfx"
     name: "openvdb"
@@ -5468,7 +5782,8 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
 #       dev-python/pycryptodome
-#   atoms: "dev-python/pycryptodome"
+#   atoms:
+#   - dev-python/pycryptodome
 #   provides:
 #   - category: "dev-python"
 #     name: "pycryptodome"
@@ -5487,7 +5802,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl-sound
-  atoms: "media-libs/sdl-sound"
+  atoms:
+  - media-libs/sdl-sound
   provides:
   - category: "media-libs"
     name: "sdl-sound"
@@ -5508,7 +5824,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-astronomy/wcslib
-  atoms: "sci-astronomy/wcslib"
+  atoms:
+  - sci-astronomy/wcslib
   provides:
   - category: "sci-astronomy"
     name: "wcslib"
@@ -5530,7 +5847,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-office/abiword
-  atoms: "app-office/abiword"
+  atoms:
+  - app-office/abiword
   provides:
   - category: "app-office"
     name: "abiword"
@@ -5568,7 +5886,8 @@ packages:
     emerge.packages: &apps-audacious-atoms >-
       media-sound/audacious
       media-plugins/audacious-plugins
-  atoms: *apps-audacious-atoms
+  atoms:
+  - *apps-audacious-atoms
   provides:
   - category: "media-sound"
     name: "audacious"
@@ -5598,7 +5917,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/bat
-  atoms: "sys-apps/bat"
+  atoms:
+  - sys-apps/bat
   provides:
   - category: "sys-apps"
     name: "bat"
@@ -5617,7 +5937,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-antivirus/clamtk
-  atoms: "app-antivirus/clamtk"
+  atoms:
+  - app-antivirus/clamtk
   provides:
   - category: "dev-perl"
     name: "File-chdir"
@@ -5644,7 +5965,8 @@ packages:
     emerge.packages: &apps-eclipse-ecj-atoms >-
       dev-java/eclipse-ecj
       dev-java/ant-eclipse-ecj
-  atoms: *apps-eclipse-ecj-atoms
+  atoms:
+  - *apps-eclipse-ecj-atoms
   provides:
   - category: "dev-java"
     name: "eclipse-ecj"
@@ -5666,7 +5988,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/enblend
-  atoms: "media-gfx/enblend"
+  atoms:
+  - media-gfx/enblend
   provides:
   - category: "media-gfx"
     name: "enblend"
@@ -5685,7 +6008,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/fotoxx
-  atoms: "media-gfx/fotoxx"
+  atoms:
+  - media-gfx/fotoxx
   provides:
   - category: "media-gfx"
     name: "fotoxx"
@@ -5705,7 +6029,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/inkscape
-  atoms: "media-gfx/inkscape"
+  atoms:
+  - media-gfx/inkscape
   provides:
   - category: "media-gfx"
     name: "inkscape"
@@ -5727,7 +6052,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/k3b
-  atoms: "kde-apps/k3b"
+  atoms:
+  - kde-apps/k3b
   provides:
   - category: "kde-apps"
     name: "k3b"
@@ -5749,7 +6075,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-office/libreoffice
-  atoms: "app-office/libreoffice"
+  atoms:
+  - app-office/libreoffice
   provides:
   - category: "app-office"
     name: "libreoffice"
@@ -5814,7 +6141,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/onedrive
-  atoms: "net-misc/onedrive"
+  atoms:
+  - net-misc/onedrive
   overlays:
   - name: "dlang"
   provides:
@@ -5834,7 +6162,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-text/pdfarranger
-  atoms: "app-text/pdfarranger"
+  atoms:
+  - app-text/pdfarranger
   provides:
   - category: "app-text"
     name: "pdfarranger"
@@ -5853,7 +6182,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-plasma/plasma-firewall
-  atoms: "kde-plasma/plasma-firewall"
+  atoms:
+  - kde-plasma/plasma-firewall
   provides:
   - category: "kde-plasma"
     name: "plasma-firewall"
@@ -5871,7 +6201,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/pulseaudio-dlna
-  atoms: "net-misc/pulseaudio-dlna"
+  atoms:
+  - net-misc/pulseaudio-dlna
   provides:
   - category: "net-misc"
     name: "pulseaudio-dlna"
@@ -5916,7 +6247,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-emulation/q4wine
-  atoms: "app-emulation/q4wine"
+  atoms:
+  - app-emulation/q4wine
   provides:
   - category: "app-emulation"
     name: "q4wine"
@@ -5937,7 +6269,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-office/scribus
-  atoms: "app-office/scribus"
+  atoms:
+  - app-office/scribus
   provides:
   - category: "app-office"
     name: "scribus"
@@ -5959,7 +6292,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-db/sqlitebrowser
-  atoms: "dev-db/sqlitebrowser"
+  atoms:
+  - dev-db/sqlitebrowser
   provides:
   - category: "dev-db"
     name: "sqlitebrowser"
@@ -5983,7 +6317,8 @@ packages:
       app-eselect/eselect-timidity
       media-sound/timidity-eawpatches
       media-sound/timidity-freepats
-  atoms: *apps-timidity-atoms
+  atoms:
+  - *apps-timidity-atoms
   provides:
   - category: "media-sound"
     name: "timidity++"
@@ -6027,7 +6362,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-util/valgrind
-  atoms: "dev-util/valgrind"
+  atoms:
+  - dev-util/valgrind
   provides:
   - category: "dev-util"
     name: "valgrind"
@@ -6045,7 +6381,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/x2goclient
-  atoms: "net-misc/x2goclient"
+  atoms:
+  - net-misc/x2goclient
   provides:
   - category: "net-misc"
     name: "x2goclient"
@@ -6063,7 +6400,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/x2goserver
-  atoms: "net-misc/x2goserver"
+  atoms:
+  - net-misc/x2goserver
   provides:
   - category: "net-misc"
     name: "x2goserver"
@@ -6099,7 +6437,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-sound/xmms2
-  atoms: "media-sound/xmms2"
+  atoms:
+  - media-sound/xmms2
   provides:
   - category: "media-sound"
     name: "xmms2"
@@ -6131,7 +6470,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/devil
-  atoms: "media-libs/devil"
+  atoms:
+  - media-libs/devil
   provides:
   - category: "media-libs"
     name: "devil"
@@ -6150,7 +6490,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-libs/farstream
-  atoms: "net-libs/farstream"
+  atoms:
+  - net-libs/farstream
   provides:
   - category: "net-libs"
     name: "farstream"
@@ -6171,7 +6512,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-plugins/frei0r-plugins
-  atoms: "media-plugins/frei0r-plugins"
+  atoms:
+  - media-plugins/frei0r-plugins
   provides:
   - category: "media-plugins"
     name: "frei0r-plugins"
@@ -6191,7 +6533,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/rav1e
-  atoms: "media-video/rav1e"
+  atoms:
+  - media-video/rav1e
   provides:
   - category: "media-video"
     name: "rav1e"
@@ -6210,7 +6553,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/umfpack
-  atoms: "sci-libs/umfpack"
+  atoms:
+  - sci-libs/umfpack
   provides:
   - category: "sci-libs"
     name: "umfpack"
@@ -6234,7 +6578,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-office/calligra
-  atoms: "app-office/calligra"
+  atoms:
+  - app-office/calligra
   provides:
   - category: "app-office"
     name: "calligra"
@@ -6261,7 +6606,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-office/calligraplan
-  atoms: "app-office/calligraplan"
+  atoms:
+  - app-office/calligraplan
   provides:
   - category: "app-office"
     name: "calligraplan"
@@ -6280,7 +6626,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       games-emulation/dosbox
-  atoms: "games-emulation/dosbox"
+  atoms:
+  - games-emulation/dosbox
   provides:
   - category: "games-emulation"
     name: "dosbox"
@@ -6301,7 +6648,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/hugin
-  atoms: "media-gfx/hugin"
+  atoms:
+  - media-gfx/hugin
   provides:
   - category: "dev-cpp"
     name: "tclap"
@@ -6334,7 +6682,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-astronomy/kstars
-  atoms: "sci-astronomy/kstars"
+  atoms:
+  - sci-astronomy/kstars
   provides:
   - category: "dev-qt"
     name: "qtdatavis3d"
@@ -6361,7 +6710,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/moc
-  atoms: "media-sound/moc"
+  atoms:
+  - media-sound/moc
   provides:
   - category: "media-sound"
     name: "moc"
@@ -6387,7 +6737,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-im/pidgin
-  atoms: "net-im/pidgin"
+  atoms:
+  - net-im/pidgin
   provides:
   - category: "net-im"
     name: "pidgin"
@@ -6411,7 +6762,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/plank
-  atoms: "x11-misc/plank"
+  atoms:
+  - x11-misc/plank
   overlays:
   - name: "unity-gentoo"
   provides:
@@ -6431,7 +6783,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       sci-astronomy/stellarium
-  atoms: "sci-astronomy/stellarium"
+  atoms:
+  - sci-astronomy/stellarium
   provides:
   - category: "dev-libs"
     name: "qtcompress"
@@ -6457,7 +6810,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-libs/gegl
-  atoms: "media-libs/gegl"
+  atoms:
+  - media-libs/gegl
   provides:
   - category: "media-libs"
     name: "gegl"
@@ -6478,7 +6832,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libheif
-  atoms: "media-libs/libheif"
+  atoms:
+  - media-libs/libheif
   provides:
   - category: "media-libs"
     name: "libheif"
@@ -6498,7 +6853,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-libs/mlt
-  atoms: "media-libs/mlt"
+  atoms:
+  - media-libs/mlt
   provides:
   - category: "media-libs"
     name: "mlt"
@@ -6525,7 +6881,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-python/paramiko
-  atoms: "dev-python/paramiko"
+  atoms:
+  - dev-python/paramiko
   provides:
   - category: "dev-python"
     name: "paramiko"
@@ -6548,7 +6905,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-plugins/pidgin-opensteamworks
-  atoms: "x11-plugins/pidgin-opensteamworks"
+  atoms:
+  - x11-plugins/pidgin-opensteamworks
   provides:
   - category: "x11-plugins"
     name: "pidgin-opensteamworks"
@@ -6567,7 +6925,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-plugins/pidgin-sipe
-  atoms: "x11-plugins/pidgin-sipe"
+  atoms:
+  - x11-plugins/pidgin-sipe
   provides:
   - category: "x11-plugins"
     name: "pidgin-sipe"
@@ -6592,7 +6951,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sratom
-  atoms: "media-libs/sratom"
+  atoms:
+  - media-libs/sratom
   provides:
   - category: "media-libs"
     name: "sratom"
@@ -6613,7 +6973,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/suil
-  atoms: "media-libs/suil"
+  atoms:
+  - media-libs/suil
   provides:
   - category: "dev-libs"
     name: "suil"
@@ -6632,7 +6993,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-libs/telepathy-farstream
-  atoms: "net-libs/telepathy-farstream"
+  atoms:
+  - net-libs/telepathy-farstream
   provides:
   - category: "net-libs"
     name: "telepathy-farstream"
@@ -6655,7 +7017,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/cmus
-  atoms: "media-sound/cmus"
+  atoms:
+  - media-sound/cmus
   provides:
   - category: "media-sound"
     name: "cmus"
@@ -6680,7 +7043,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/digikam
-  atoms: "media-gfx/digikam"
+  atoms:
+  - media-gfx/digikam
   provides:
   - category: "media-libs"
     name: "qtav"
@@ -6704,7 +7068,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/graphviz
-  atoms: "media-gfx/graphviz"
+  atoms:
+  - media-gfx/graphviz
   provides:
   - category: "media-gfx"
     name: "graphviz"
@@ -6728,7 +7093,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/kdenlive
-  atoms: "kde-apps/kdenlive"
+  atoms:
+  - kde-apps/kdenlive
   provides:
   - category: "kde-apps"
     name: "kdenlive"
@@ -6751,7 +7117,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/dcmtk
-  atoms: "sci-libs/dcmtk"
+  atoms:
+  - sci-libs/dcmtk
   provides:
   - category: "sci-libs"
     name: "dcmtk"
@@ -6770,7 +7137,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libmypaint
-  atoms: "media-libs/libmypaint"
+  atoms:
+  - media-libs/libmypaint
   provides:
   - category: "media-libs"
     name: "libmypaint"
@@ -6789,7 +7157,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/lilv
-  atoms: "media-libs/lilv"
+  atoms:
+  - media-libs/lilv
   provides:
   - category: "dev-libs"
     name: "lilv"
@@ -6811,7 +7180,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-im/telepathy-connection-managers
-  atoms: "net-im/telepathy-connection-managers"
+  atoms:
+  - net-im/telepathy-connection-managers
   provides:
   - category: "net-im"
     name: "telepathy-connection-managers"
@@ -6841,7 +7211,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/python-x2go
-  atoms: "net-misc/python-x2go"
+  atoms:
+  - net-misc/python-x2go
   provides:
   - category: "net-misc"
     name: "python-x2go"
@@ -6862,7 +7233,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-libs/telepathy-qt
-  atoms: "net-libs/telepathy-qt"
+  atoms:
+  - net-libs/telepathy-qt
   provides:
   - category: "net-libs"
     name: "telepathy-qt"
@@ -6887,7 +7259,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/audacity
-  atoms: "media-sound/audacity"
+  atoms:
+  - media-sound/audacity
   provides:
   - category: "media-sound"
     name: "audacity"
@@ -6919,18 +7292,20 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/conky
-  atoms: "app-admin/conky"
+  atoms:
+  - app-admin/conky
   provides:
   - category: "app-admin"
     name: "conky"
     version: ">=0"
+  - category: "dev-lang"
+    name: "lua:5.3"
+    version: ">=0"
   prereqs:
   - app-editors/nano
   - app-text/docbook2X
-  - sys-kernel/gentoo-sources
-  - sys-kernel/gentoo-kernel
-  - virtual/dist-kernel
-  - x11-drivers/nvidia-drivers
+  opt_requires:
+  - <<: *kernel-modules-nvidia-drivers-lts
   opt_requires:
   - <<: *apps-apcupsd
   - <<: *apps-cmus
@@ -6955,7 +7330,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-doc/doxygen
-  atoms: "app-doc/doxygen"
+  atoms:
+  - app-doc/doxygen
   provides:
   - category: "app-doc"
     name: "doxygen"
@@ -6976,7 +7352,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/gimp
-  atoms: "media-gfx/gimp"
+  atoms:
+  - media-gfx/gimp
   provides:
   - category: "media-gfx"
     name: "gimp"
@@ -7000,7 +7377,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/mypaint
-  atoms: "media-gfx/mypaint"
+  atoms:
+  - media-gfx/mypaint
   provides:
   - category: "media-gfx"
     name: "mypaint"
@@ -7020,7 +7398,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/plantuml
-  atoms: "media-gfx/plantuml"
+  atoms:
+  - media-gfx/plantuml
   provides:
   - category: "media-gfx"
     name: "plantuml"
@@ -7041,7 +7420,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/pyhoca-cli
-  atoms: "net-misc/pyhoca-cli"
+  atoms:
+  - net-misc/pyhoca-cli
   provides:
   - category: "net-misc"
     name: "pyhoca-cli"
@@ -7065,7 +7445,8 @@ packages:
     emerge.packages: &libs-ocio-oiio-atoms >-
       media-libs/openimageio
       media-libs/opencolorio
-  atoms: *libs-ocio-oiio-atoms
+  atoms:
+  - *libs-ocio-oiio-atoms
   provides:
   - category: "media-libs"
     name: "opencolorio"
@@ -7100,7 +7481,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       dev-python/wxpython
-  atoms: "dev-python/wxpython"
+  atoms:
+  - dev-python/wxpython
   provides:
   - category: "dev-python"
     name: "wxpython"
@@ -7125,7 +7507,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/krita
-  atoms: "media-gfx/krita"
+  atoms:
+  - media-gfx/krita
   provides:
   - category: "media-gfx"
     name: "krita"
@@ -7149,7 +7532,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/ktp-accounts-kcm
-  atoms: "kde-apps/ktp-accounts-kcm"
+  atoms:
+  - kde-apps/ktp-accounts-kcm
   provides:
   - category: "kde-apps"
     name: "ktp-accounts-kcm"
@@ -7170,7 +7554,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/remmina
-  atoms: "net-misc/remmina"
+  atoms:
+  - net-misc/remmina
   provides:
   - category: "net-misc"
     name: "remmina"
@@ -7204,7 +7589,8 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: &apps-blender-atoms >-
 #       =media-gfx/blender-3.0.1-r5
-#   atoms: *apps-blender-atoms
+#   atoms:
+#   - *apps-blender-atoms
 #   provides:
 #   - category: "media-gfx"
 #     name: "blender"
@@ -7270,7 +7656,8 @@ packages:
       dev-util/kdevelop-php
       dev-util/kdevelop-pg-qt
       dev-util/kdevelop-python
-  atoms: *apps-kdevelop-atoms
+  atoms:
+  - *apps-kdevelop-atoms
   provides:
   - category: "dev-util"
     name: "kdevelop"
@@ -7302,7 +7689,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-misc/pyhoca-gui
-  atoms: "net-misc/pyhoca-gui"
+  atoms:
+  - net-misc/pyhoca-gui
   provides:
   - category: "net-misc"
     name: "pyhoca-gui"
@@ -7333,7 +7721,8 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       kde-apps/umbrello
-  atoms: "kde-apps/umbrello"
+  atoms:
+  - kde-apps/umbrello
   provides:
   - category: "kde-apps"
     name: "umbrello"

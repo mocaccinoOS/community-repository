@@ -96,10 +96,12 @@
 {{- end }}
 
 {{- if .atoms }}
-{{- $command := include "cr.emerge" .atoms }}
+{{- range .atoms }}
+{{- $command := include "cr.emerge" . }}
 {{- if $command }}
 {{- if not (has $command $commands) }}
 {{- $commands = append $commands $command }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -116,10 +118,12 @@
 {{- end }}
 
 {{- if .atoms }}
-{{- $command := include "cr.emerge" .atoms }}
+{{- range .atoms }}
+{{- $command := include "cr.emerge" . }}
 {{- if $command }}
 {{- if not (has $command $commands) }}
 {{- $commands = append $commands $command }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}

@@ -101,11 +101,6 @@ anchors:
 ### libs ###
 ################################################################################
 
-# https://bugs.gentoo.org/727334
-- &libs-sphinx-atoms >-
-  dev-texlive/texlive-fontsrecommended
-  dev-python/sphinx
-
 ################################################################################
 ### apps ###
 ################################################################################
@@ -113,13 +108,6 @@ anchors:
 - &apps-numactl
   category: "apps"
   name: "numactl"
-  version: ">=0"
-
-- &apps-vim-atoms >-
-  app-editors/vim
-- &apps-vim
-  category: "apps"
-  name: "vim"
   version: ">=0"
 
 packages:
@@ -157,7 +145,8 @@ packages:
       media-libs/libfreehand
       media-libs/libpagemaker
       media-libs/libzmf
-  atoms: *layers-office-common-atoms
+  atoms:
+  - *layers-office-common-atoms
   provides:
   - category: "app-crypt"
     name: "mhash"
@@ -240,7 +229,8 @@ packages:
     emerge.packages: &layers-ghc-atoms >-
       dev-lang/ghc
       app-admin/haskell-updater 
-  atoms: *layers-ghc-atoms
+  atoms:
+  - *layers-ghc-atoms
   provides:
   - category: "dev-lang"
     name: "ghc"
@@ -251,7 +241,6 @@ packages:
   prereqs:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
-  # - *libs-sphinx-atoms
   - dev-python/sphinx
   requires:
   - <<: *layers-system-x
@@ -554,7 +543,8 @@ packages:
       dev-haskell/yaml
       dev-haskell/zip-archive
       dev-haskell/zlib
-  atoms: *layers-haskell-atoms
+  atoms:
+  - *layers-haskell-atoms
   provides:
   - category: "dev-haskell"
     name: "adjunctions"

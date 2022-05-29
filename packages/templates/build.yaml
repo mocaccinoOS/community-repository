@@ -58,11 +58,11 @@ steps:
 {{ end }}
 
 {{ if .Values.atoms }}
-{{ $tokens := .Values.atoms | splitList ";" }}
-{{ if eq (len $tokens) 1 }}
-- emerge -1 -j ${JOBS} {{ index $tokens 0 }}
-{{ else if eq (len $tokens) 2 }}
-- {{ index $tokens 1 }} emerge -1 -j ${JOBS} {{ index $tokens 0 }}
+{{ range .Values.atoms }}
+{{ $command := include "cr.emerge" . }}
+{{ if $command }}
+- {{ $command }}
+{{ end }}
 {{ end }}
 {{ end }}
 
