@@ -3846,6 +3846,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-skypeforlinux
+  category: "apps"
+  name: "skypeforlinux"
+  version: "8.83.0.408"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-im/skypeforlinux
+  atoms:
+  - net-im/skypeforlinux
+  provides:
+  - category: "net-im"
+    name: "skypeforlinux"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
+
 - &apps-sndio
   category: "apps"
   name: "sndio"
@@ -7313,6 +7335,7 @@ packages:
   - <<: *apps-vim
   requires:
   - <<: *layers-X
+  - <<: *layers-gnome-common
   - <<: *apps-hddtemp
   - <<: *apps-xmms2
   - <<: *libs-libircclient
