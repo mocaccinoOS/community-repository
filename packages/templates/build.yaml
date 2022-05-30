@@ -48,6 +48,14 @@ prelude:
 
 steps:
 
+{{- if .Values.setup }}
+{{- range .Values.setup }}
+{{- if . }}
+- {{ . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{ if .Values.preemerge }}
 {{ range .Values.preemerge }}
 {{ $command := include "cr.emerge" . }}
