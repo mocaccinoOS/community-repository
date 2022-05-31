@@ -7595,7 +7595,9 @@ packages:
     name: "spice-gtk"
     version: ">=0"
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+#   - <<: *buildbase-kde-common
+  requires_final_images: true
 
 ################################################################################
 ### dep VII libs ###
@@ -7605,68 +7607,68 @@ packages:
 ### dep VII apps ###
 ################################################################################
 
-# - category: "apps"
-#   name: "blender"
-#   version: "3.0.1-r5"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: &apps-blender-atoms >-
-#       =media-gfx/blender-3.0.1-r5
-#   atoms:
-#   - *apps-blender-atoms
-#   provides:
-#   - category: "media-gfx"
-#     name: "blender"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "alembic"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "embree"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "oidn"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opencollada"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opensubdiv"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "osl"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "partio"
-#     version: ">=0"
-#   prereqs:
-# #   - app-doc/doxygen
-# #   - dev-python/sphinx
-# #   - dev-texlive/texlive-bibtexextra
-# #   - dev-texlive/texlive-fontsextra
-# #   - dev-texlive/texlive-fontutils
-# #   - dev-texlive/texlive-latex
-# #   - dev-texlive/texlive-latexextra
-#   - app-admin/chrpath
-#   - dev-util/valgrind
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-pybind11
-#   - <<: *libs-zstandard
-#   - <<: *apps-ispc
-#   - <<: *apps-spacenavd
-#   - <<: *libs-c-blosc
-#   - <<: *libs-libspnav
-#   - <<: *libs-openvdb
-#   - <<: *libs-glfw
-#   - <<: *libs-lib3ds
-#   - <<: *libs-libharu
-#   - <<: *libs-ocio-oiio
-#   - <<: *libs-ptex
-#   - <<: *libs-tbb
-#   - <<: *libs-hdf5
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "blender"
+  version: "3.0.1-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-blender-atoms >-
+      =media-gfx/blender-3.0.1-r5
+  atoms:
+  - *apps-blender-atoms
+  provides:
+  - category: "media-gfx"
+    name: "blender"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "alembic"
+    version: ">=0"
+  - category: "media-libs"
+    name: "embree"
+    version: ">=0"
+  - category: "media-libs"
+    name: "oidn"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opencollada"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opensubdiv"
+    version: ">=0"
+  - category: "media-libs"
+    name: "osl"
+    version: ">=0"
+  - category: "media-libs"
+    name: "partio"
+    version: ">=0"
+  prereqs:
+#   - app-doc/doxygen
+#   - dev-python/sphinx
+#   - dev-texlive/texlive-bibtexextra
+#   - dev-texlive/texlive-fontsextra
+#   - dev-texlive/texlive-fontutils
+#   - dev-texlive/texlive-latex
+#   - dev-texlive/texlive-latexextra
+  - app-admin/chrpath
+  - dev-util/valgrind
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-pybind11
+  - <<: *libs-zstandard
+  - <<: *apps-ispc
+  - <<: *apps-spacenavd
+  - <<: *libs-c-blosc
+  - <<: *libs-libspnav
+  - <<: *libs-openvdb
+  - <<: *libs-glfw
+  - <<: *libs-lib3ds
+  - <<: *libs-libharu
+  - <<: *libs-ocio-oiio
+  - <<: *libs-ptex
+  - <<: *libs-tbb
+  - <<: *libs-hdf5
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-kdevelop
   category: "apps"
