@@ -3377,6 +3377,25 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-lshw
+  category: "apps"
+  name: "lshw"
+  version: "02.19.2b_p20210121-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/lshw
+  atoms:
+  - sys-apps/lshw
+  provides:
+  - category: "sys-apps"
+    name: "lshw"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "mangohud"
   version: "0.6.5"
