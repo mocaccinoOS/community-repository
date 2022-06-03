@@ -3577,6 +3577,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-nut
+  category: "apps"
+  name: "nut"
+  version: "2.7.4-r8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-power/nut
+  atoms:
+  - sys-power/nut
+  provides:
+  - category: "sys-power"
+    name: "nut"
+    version: ">=0"
+  prereqs:
+  - acct-group/nut
+  - acct-user/nut
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "nut"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
 - &apps-nx
   category: "apps"
   name: "nx"
