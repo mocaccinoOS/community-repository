@@ -1754,6 +1754,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-perl-Tk
+  category: "libs"
+  name: "perl-Tk"
+  version: "804.36.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Tk
+  atoms:
+  - dev-perl/Tk
+  provides:
+  - category: "dev-perl"
+    name: "Tk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-physfs
   category: "libs"
   name: "physfs"
@@ -3577,31 +3596,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-nut
-  category: "apps"
-  name: "nut"
-  version: "2.7.4-r8"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-power/nut
-  atoms:
-  - sys-power/nut
-  provides:
-  - category: "sys-power"
-    name: "nut"
-    version: ">=0"
-  prereqs:
-  - acct-group/nut
-  - acct-user/nut
-  requires:
-  - <<: *layers-X
-  - category: "entity"
-    name: "nut"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-X
-
 - &apps-nx
   category: "apps"
   name: "nx"
@@ -5419,6 +5413,28 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-net-snmp
+  category: "apps"
+  name: "net-snmp"
+  version: "5.9.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/net-snmp
+  atoms:
+  - net-analyzer/net-snmp
+  provides:
+  - category: "net-analyzer"
+    name: "net-snmp"
+    version: ">=0"
+  prereqs:
+  - app-doc/doxygen
+  requires:
+  - <<: *layers-X
+  - <<: *libs-perl-Tk
+  build_requires:
+  - <<: *layers-X
+
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
@@ -6199,6 +6215,33 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-office-common
   requires_final_images: true
+
+- &apps-nut
+  category: "apps"
+  name: "nut"
+  version: "2.7.4-r8+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-power/nut
+  atoms:
+  - sys-power/nut
+  provides:
+  - category: "sys-power"
+    name: "nut"
+    version: ">=0"
+  prereqs:
+  - acct-group/nut
+  - acct-user/nut
+  - virtual/libusb:0
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "nut"
+    version: ">=0"
+  - <<: *apps-net-snmp
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "onedrive"
