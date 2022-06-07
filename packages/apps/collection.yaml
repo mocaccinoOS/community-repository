@@ -3286,6 +3286,25 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "kid3"
+  version: "3.9.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/kid3
+  atoms:
+  - media-sound/kid3
+  provides:
+  - category: "media-sound"
+    name: "kid3"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-id3lib
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "kompare"
   version: "21.12.3"
   labels:
