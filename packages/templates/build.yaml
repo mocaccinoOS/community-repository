@@ -27,7 +27,7 @@ prelude:
 {{ $packages := include "cr.packages" .Values }}
 {{ if $packages }}
 {{ range $packages | splitList " " }}
-{{ $package := . | replace "layerbase-" "layers-" | replace "\"" "" }}
+{{ $package := . | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" | replace "\"" "" }}
 - |
   set -x; \
   if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
