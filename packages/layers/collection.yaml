@@ -265,6 +265,7 @@ packages:
   - <<: *layers-system-x
 
 - &buildbase-ghc
+  <<: *layers-ghc 
   category: "buildbase"
   requires_final_images: true
   hidden: true
@@ -1435,7 +1436,8 @@ packages:
   - <<: *buildbase-ghc
   requires_final_images: true
 
-- &buildbase-ghc
+- &buildbase-haskell
+  <<: *layers-haskell
   category: "buildbase"
   requires_final_images: true
   hidden: true
