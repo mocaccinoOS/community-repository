@@ -256,6 +256,34 @@ packages:
   - <<: *layers-system-x
   hidden: true
 
+- category: "buildbase"
+  name: "ghc"
+  version: "8.10.4-r1+3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &layers-ghc-atoms >-
+      dev-lang/ghc
+      app-admin/haskell-updater 
+  atoms:
+  - *layers-ghc-atoms
+  provides:
+  - category: "dev-lang"
+    name: "ghc"
+    version: ">=0"
+  - category: "app-admin"
+    name: "haskell-updater"
+    version: ">=0"
+  prereqs:
+  - app-text/docbook-xml-dtd
+  - app-text/docbook-xsl-stylesheets
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-system-x
+  hidden: true
+
 - category: "layerbase"
   name: "haskell"
   version: "0.3"
