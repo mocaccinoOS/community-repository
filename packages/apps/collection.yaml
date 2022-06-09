@@ -90,10 +90,10 @@ anchors:
   category: "layerbase"
   name: "ghc"
   version: ">=0"
-- &buildbase-ghc
-  category: "buildbase"
-  name: "ghc"
-  version: ">=0"
+# - &buildbase-ghc
+#   category: "buildbase"
+#   name: "ghc"
+#   version: ">=0"
   
 - &layers-haskell
   category: "layers"
@@ -103,10 +103,10 @@ anchors:
   category: "layerbase"
   name: "haskell"
   version: ">=0"
-- &buildbase-haskell
-  category: "buildbase"
-  name: "haskell"
-  version: ">=0"
+# - &buildbase-haskell
+#   category: "buildbase"
+#   name: "haskell"
+#   version: ">=0"
 
 - &layers-office-common
   category: "layers"
@@ -3681,7 +3681,7 @@ packages:
 #   - <<: *layers-haskell
 #   build_requires:
 #   - <<: *buildbase-X
-#   - <<: *buildbase-haskell
+#   - <<: *layerbase-haskell
 #   requires_final_images: true
 
 - &apps-pip
