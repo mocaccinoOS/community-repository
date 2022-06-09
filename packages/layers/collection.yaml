@@ -280,7 +280,7 @@ packages:
 - &def-layers-haskell
   category: "layers"
   name: "haskell"
-  version: "0.4"
+  version: "0.5"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-haskell-atoms >-
@@ -1443,10 +1443,10 @@ packages:
   - <<: *layerbase-ghc
   requires_final_images: true
 
-# - <<: *def-layers-haskell
-#   category: "buildbase"
-#   requires_final_images: true
-#   hidden: true
+- <<: *def-layers-haskell
+  category: "layerbase"
+  requires_final_images: true
+  hidden: true
 
 # - <<: *def-layers-haskell
 #   category: "buildbase"
