@@ -239,7 +239,7 @@ packages:
 - &layers-ghc
   category: "layers"
   name: "ghc"
-  version: "8.10.4-r1+5"
+  version: "8.10.4-r1+6"
   labels:
     emerge.jobs: "1"
     emerge.packages: &layers-ghc-atoms >-
@@ -267,12 +267,13 @@ packages:
 - &buildbase-ghc
   <<: *layers-ghc 
   category: "buildbase"
+  unpack: true
   hidden: true
 
 - &layers-haskell
   category: "layers"
   name: "haskell"
-  version: "0.4"
+  version: "0.3"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-haskell-atoms >-
@@ -1439,4 +1440,5 @@ packages:
   <<: *layers-haskell
   category: "buildbase"
   requires_final_images: true
+  unpack: true
   hidden: true
