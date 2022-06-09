@@ -86,10 +86,10 @@ anchors:
   category: "layers"
   name: "ghc"
   version: ">=0"
-# - &layerbase-ghc
-#   category: "layerbase"
-#   name: "ghc"
-#   version: ">=0"
+- &layerbase-ghc
+  category: "layerbase"
+  name: "ghc"
+  version: ">=0"
 - &buildbase-ghc
   category: "buildbase"
   name: "ghc"
@@ -99,10 +99,10 @@ anchors:
   category: "layers"
   name: "haskell"
   version: ">=0"
-# - &layerbase-haskell
-#   category: "layerbase"
-#   name: "haskell"
-#   version: ">=0"
+- &layerbase-haskell
+  category: "layerbase"
+  name: "haskell"
+  version: ">=0"
 - &buildbase-haskell
   category: "buildbase"
   name: "haskell"
@@ -3662,27 +3662,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "2.13"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pandoc
-  atoms:
-  - app-text/pandoc
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-haskell
-  requires_final_images: true
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "2.13"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/pandoc
+#   atoms:
+#   - app-text/pandoc
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *buildbase-haskell
+#   requires_final_images: true
 
 - &apps-pip
   category: "apps"
