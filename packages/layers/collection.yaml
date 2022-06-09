@@ -82,31 +82,31 @@ anchors:
   virtual/jre
   virtual/jdk
 
-# - &layers-ghc
-#   category: "layers"
-#   name: "ghc"
-#   version: ">=0"
+- &layers-ghc
+  category: "layers"
+  name: "ghc"
+  version: ">=0"
 # - &layerbase-ghc
 #   category: "layerbase"
 #   name: "ghc"
 #   version: ">=0"
-# - &buildbase-ghc
-#   category: "buildbase"
-#   name: "ghc"
-#   version: ">=0"
-#   
-# - &layers-haskell
-#   category: "layers"
-#   name: "haskell"
-#   version: ">=0"
+- &buildbase-ghc
+  category: "buildbase"
+  name: "ghc"
+  version: ">=0"
+  
+- &layers-haskell
+  category: "layers"
+  name: "haskell"
+  version: ">=0"
 # - &layerbase-haskell
 #   category: "layerbase"
 #   name: "haskell"
 #   version: ">=0"
-# - &buildbase-haskell
-#   category: "buildbase"
-#   name: "haskell"
-#   version: ">=0"
+- &buildbase-haskell
+  category: "buildbase"
+  name: "haskell"
+  version: ">=0"
 
 - &layers-office-common
   category: "layers"
@@ -236,7 +236,7 @@ packages:
   - <<: *layers-X
   hidden: true
 
-- &layers-ghc
+- &def-layers-ghc
   category: "layers"
   name: "ghc"
   version: "8.10.4-r1+6"
@@ -264,13 +264,13 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &buildbase-ghc
-  <<: *layers-ghc 
+- &def-buildbase-ghc
+  <<: *def-layers-ghc 
   category: "buildbase"
   unpack: true
   hidden: true
 
-- &layers-haskell
+- &def-layers-haskell
   category: "layers"
   name: "haskell"
   version: "0.4"
@@ -1436,8 +1436,8 @@ packages:
   - <<: *buildbase-ghc
   requires_final_images: true
 
-- &buildbase-haskell
-  <<: *layers-haskell
+- &def-buildbase-haskell
+  <<: *def-layers-haskell
   category: "buildbase"
   requires_final_images: true
   unpack: true
