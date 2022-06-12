@@ -36,6 +36,7 @@ prelude:
   if [ -e "package.license/{{ $package }}.license" ]; then \
     cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
   fi; \
+  mkdir -p /etc/portage/package.unmask; \
   if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
     cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
   fi; \
