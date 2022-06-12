@@ -3662,6 +3662,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "2.9.2.1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-pandoc-atoms >-
+      app-text/pandoc
+  atoms:
+  - *apps-pandoc-atoms
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  requires:
+#   - <<: *layers-X
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *buildbase-X
+#   - <<: *layerbase-ghc
+#   - <<: *layerbase-haskell
+  - <<: *buildbase-haskell
+  requires_final_images: true
+
 - &apps-pip
   category: "apps"
   name: "pip"
