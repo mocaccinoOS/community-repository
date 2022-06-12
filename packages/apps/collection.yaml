@@ -6957,6 +6957,7 @@ packages:
   - *layers-java-atoms
   requires:
   - <<: *layers-gnome-common
+  - <<: *layers-haskell
   - <<: *layers-java
   - category: "entity"
     name: "rstudio-server"
@@ -6972,7 +6973,9 @@ packages:
   - <<: *apps-R
   - <<: *apps-rhino
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-haskell
+  requires_final_images: true
 
 - category: "apps"
   name: "stellarium"
