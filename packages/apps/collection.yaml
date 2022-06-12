@@ -3406,7 +3406,8 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
+- &apps-mangohud
+  category: "apps"
   name: "mangohud"
   version: "0.6.5"
   labels:
@@ -5277,6 +5278,33 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "goverlay"
+  version: "0.8.1+3"
+  uri:
+  - https://github.com/benjamimgois/goverlay
+  license: "GPL-3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-goverlay-atoms >-
+      games-util/goverlay dev-libs/qt5pas
+  atoms:
+  - *apps-goverlay-atoms
+  overlays:
+  - name: "thegreatmcpain"
+  provides:
+  - category: "dev-libs"
+    name: "qt5pas"
+    version: ">=0"
+  - category: "games-util"
+    name: "goverlay"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-mangohud
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "guvcview"
