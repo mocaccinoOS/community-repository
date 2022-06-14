@@ -5516,16 +5516,16 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.7+1"
+  version: "0.7+2"
   labels:
     emerge.jobs: "3"
-    emerge.packages: >-
+    emerge.packages: &apps-openrgb-atoms >-
       app-misc/openrgb
       app-misc/openrgb-plugin-skin
       app-misc/openrgb-plugin-effects
       app-misc/openrgb-plugin-visualmap
   atoms:
-  - app-misc/openrgb
+  - *apps-openrgb-atoms
   provides:
   - category: "app-misc"
     name: "openrgb"
