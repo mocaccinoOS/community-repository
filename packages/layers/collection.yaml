@@ -82,6 +82,34 @@ anchors:
   virtual/jre
   virtual/jdk
 
+
+- &layers-ghc
+  category: "layers"
+  name: "ghc"
+  version: ">=0"
+- &layerbase-ghc
+  category: "layerbase"
+  name: "ghc"
+  version: ">=0"
+- &buildbase-ghc
+  category: "buildbase"
+  name: "ghc"
+  version: ">=0"
+
+- &layers-haskell
+  category: "layers"
+  name: "haskell"
+  version: ">=0"
+- &layerbase-haskell
+  category: "layerbase"
+  name: "haskell"
+  version: ">=0"
+- &buildbase-haskell
+  category: "buildbase"
+  name: "haskell"
+  version: ">=0"
+
+
 ################################################################################
 ### libs ###
 ################################################################################
@@ -203,6 +231,45 @@ packages:
 - <<: *def-layers-office-common
   category: "layerbase"
   hidden: true
+
+
+- &def-layers-ghc
+  category: "layers"
+  name: "ghc"
+  version: "8.10.4-r1+10"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &layers-ghc-atoms >-
+      dev-lang/ghc
+      app-admin/haskell-updater 
+  atoms:
+  - *layers-ghc-atoms
+  provides:
+  - category: "dev-lang"
+    name: "ghc"
+    version: ">=0"
+  - category: "app-admin"
+    name: "haskell-updater"
+    version: ">=0"
+  prereqs:
+  - app-text/docbook-xml-dtd
+  - app-text/docbook-xsl-stylesheets
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-system-x
+  # - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-system-x
+
+- <<: *def-layers-ghc 
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-layers-ghc 
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
 
 # >=app-text/pandoc-2.13 need dev-haskell/hslua-module-path
 # >=app-text/pandoc-2.11.3.1 need dev-haskell/citeproc
