@@ -3667,7 +3667,7 @@ packages:
 - &apps-pandoc
   category: "apps"
   name: "pandoc"
-  version: "2.9.2.1+2"
+  version: "2.9.2.1+4"
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-pandoc-atoms >-
@@ -3682,6 +3682,7 @@ packages:
   - <<: *layers-haskell
   build_requires:
   - <<: *buildbase-haskell
+  requires_final_images: true
 
 - &apps-pip
   category: "apps"
