@@ -277,12 +277,10 @@ packages:
 - &def-layers-haskell
   category: "layers"
   name: "haskell"
-  version: "0.10"
+  version: "0.11"
   labels:
     emerge.jobs: "3"
     emerge.packages: &layers-haskell-atoms >-
-      app-admin/haskell-updater
-      dev-lang/ghc
       dev-haskell/adjunctions
       dev-haskell/aeson
       dev-haskell/aeson-diff
@@ -583,12 +581,6 @@ packages:
   atoms:
   - *layers-haskell-atoms
   provides:
-  - name: "haskell-updater"
-    category: "app-admin"
-    version: ">=0"
-  - name: "ghc"
-    category: "dev-lang"
-    version: ">=0"
   - name: "adjunctions"
     category: "dev-haskell"
     version: ">=0"
@@ -1494,10 +1486,14 @@ packages:
   - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-ghc
   # - <<: *apps-numactl
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-ghc
+
+- <<: *def-layers-haskell 
+  category: "layerbase"
+  hidden: true
 
 - <<: *def-layers-haskell
   category: "buildbase"
