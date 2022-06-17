@@ -92,7 +92,7 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ if .Values.category "layerbase" }}
+{{ if eq .Values.category "layerbase" }}
 includes:
 - ^/etc/portage/package.accept_keywords/.*
 - ^/etc/portage/package.license/.*
