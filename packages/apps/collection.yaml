@@ -6976,7 +6976,7 @@ packages:
 
 - category: "apps"
   name: "rstudio"
-  version: "1.3.1093-r1+1"
+  version: "1.3.1093-r1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7024,7 +7024,8 @@ packages:
   - <<: *apps-rhino
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-haskell
+  - <<: *layerdbase-ghc
+  - <<: *layerdbase-haskell
   requires_final_images: true
 
 - category: "apps"
