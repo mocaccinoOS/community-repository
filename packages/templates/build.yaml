@@ -92,13 +92,13 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ if eq .Values.category "layerbase" }}
-includes:
-- ^/etc/portage/package.accept_keywords/.*
-- ^/etc/portage/package.license/.*
-- ^/etc/portage/package.unmask/.*
-- ^/etc/portage/package.use/.*
-{{ end }}
+# {{ if eq .Values.category "layerbase" }}
+# includes:
+# - ^/etc/portage/package.accept_keywords/.*
+# - ^/etc/portage/package.license/.*
+# - ^/etc/portage/package.unmask/.*
+# - ^/etc/portage/package.use/.*
+# {{ end }}
 
 {{ if ne .Values.category "buildbase" }}
 excludes:
