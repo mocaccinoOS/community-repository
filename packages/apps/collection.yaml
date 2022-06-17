@@ -82,8 +82,26 @@ anchors:
   virtual/jre
   virtual/jdk
   
+
+- &layers-ghc
+  category: "layers"
+  name: "ghc"
+  version: ">=0"
+- &layerbase-ghc
+  category: "layerbase"
+  name: "ghc"
+  version: ">=0"
+- &buildbase-ghc
+  category: "buildbase"
+  name: "ghc"
+  version: ">=0"
+
 - &layers-haskell
   category: "layers"
+  name: "haskell"
+  version: ">=0"
+- &layerbase-haskell
+  category: "layerbase"
   name: "haskell"
   version: ">=0"
 - &buildbase-haskell
@@ -3667,7 +3685,7 @@ packages:
 - &apps-pandoc
   category: "apps"
   name: "pandoc"
-  version: "2.9.2.1+4"
+  version: "2.9.2.1+5"
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-pandoc-atoms >-
