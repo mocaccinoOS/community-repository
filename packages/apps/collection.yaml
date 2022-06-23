@@ -3682,24 +3682,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-pandoc
-#   category: "apps"
-#   name: "pandoc"
-#   version: "2.9.2.1+6"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: &apps-pandoc-atoms >-
-#       =app-text/pandoc-2.9.2.1
-#   atoms:
-#   - *apps-pandoc-atoms
-#   provides:
-#   - category: "app-text"
-#     name: "pandoc"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-haskell
-#   build_requires:
-#   - <<: *layers-haskell
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "2.9.2.1+6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-pandoc-atoms >-
+      =app-text/pandoc-2.9.2.1
+  atoms:
+  - *apps-pandoc-atoms
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  requires:
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *layers-haskell
 
 - &apps-pip
   category: "apps"
@@ -6974,60 +6974,60 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - category: "apps"
-#   name: "rstudio"
-#   version: "1.3.1093-r1+6"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-haskell/pandoc-citeproc
-#       dev-java/gin
-#       dev-java/gwt
-#       dev-java/validation-api
-#       sci-mathematics/rstudio
-#   atoms: 
-#   - sci-mathematics/rstudio
-#   provides:
-#   - category: "sci-mathematics"
-#     name: "rstudio"
-#     version: ">=0"
-#   - category: "dev-haskell"
-#     name: "pandoc-citeproc"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "gin"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "gwt"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "validation-api"
-#     version: ">=0"
-#   pre_reqs:
-#   - *layers-java-atoms
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-ghc
-#   - <<: *layers-haskell
-#   - <<: *layers-java
-#   - category: "entity"
-#     name: "rstudio-server"
-#     version: ">=0"
-#   - <<: *apps-ant-core
-#   - <<: *libs-aopalliance
-#   - <<: *libs-asm
-#   - <<: *libs-guava
-#   - <<: *libs-javax-inject
-#   - <<: *apps-eclipse-ecj
-#   - <<: *apps-javatoolkit
-#   - <<: *apps-pandoc
-#   - <<: *apps-R
-#   - <<: *apps-rhino
-#   build_requires:
-#   - <<: *buildbase-qt
-#   - <<: *layerbase-ghc
-#   - <<: *layerbase-haskell
-#   requires_final_images: true
+- category: "apps"
+  name: "rstudio"
+  version: "1.3.1093-r1+6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-haskell/pandoc-citeproc
+      dev-java/gin
+      dev-java/gwt
+      dev-java/validation-api
+      sci-mathematics/rstudio
+  atoms: 
+  - sci-mathematics/rstudio
+  provides:
+  - category: "sci-mathematics"
+    name: "rstudio"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc-citeproc"
+    version: ">=0"
+  - category: "dev-java"
+    name: "gin"
+    version: ">=0"
+  - category: "dev-java"
+    name: "gwt"
+    version: ">=0"
+  - category: "dev-java"
+    name: "validation-api"
+    version: ">=0"
+  pre_reqs:
+  - *layers-java-atoms
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-ghc
+  - <<: *layers-haskell
+  - <<: *layers-java
+  - category: "entity"
+    name: "rstudio-server"
+    version: ">=0"
+  - <<: *apps-ant-core
+  - <<: *libs-aopalliance
+  - <<: *libs-asm
+  - <<: *libs-guava
+  - <<: *libs-javax-inject
+  - <<: *apps-eclipse-ecj
+  - <<: *apps-javatoolkit
+  - <<: *apps-pandoc
+  - <<: *apps-R
+  - <<: *apps-rhino
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *layerbase-ghc
+  - <<: *layerbase-haskell
+  requires_final_images: true
 
 - category: "apps"
   name: "stellarium"
