@@ -141,6 +141,13 @@ anchors:
 ### apps ###
 ################################################################################
 
+- &apps-emacs
+  category: "apps"
+  name: "emacs"
+  version: ">=0"
+  atoms:
+  - app-editors/emacs
+
 - &apps-vim
   category: "apps"
   name: "vim"
@@ -149,6 +156,11 @@ anchors:
   - app-editors/vim
 
 packages:
+
+{{ $layers := include "collection_layers" | toYaml }}
+{{ range $layers }}
+- {{ . }}
+{{ end }}
 
 ################################################################################
 ### fonts ###
@@ -2607,7 +2619,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "3.8.0-r2"
+  version: "3.8.1-r1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -2724,37 +2736,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-- &apps-emacs
-  category: "apps"
-  name: "emacs"
-  version: "28.1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-editors/emacs
-  atoms:
-  - app-editors/emacs
-  provides:
-    - category: app-editors
-      name: emacs
-      version: ">=0"
-    - category: app-emacs
-      name: emacs-common
-      version: ">=0"
-    - category: app-eselect
-      name: eselect-ctags
-      version: ">=0"
-    - category: app-eselect
-      name: eselect-emacs
-      version: ">=0"
-    - category: net-libs
-      name: liblockfile
-      version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 # should be in main repo
 - category: "apps"
@@ -5925,7 +5906,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "8.2.0-r7+1"
+  version: "8.2.0-r7+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6195,7 +6176,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.1-r1+3"
+  version: "1.1.2-r1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6841,7 +6822,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2021.0.0+4"
+  version: "2021.0.0+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6974,61 +6955,58 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# No space in GH to build
-# - category: "apps"
-#   name: "rstudio"
-#   version: "1.3.1093-r1+6"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-haskell/pandoc-citeproc
-#       dev-java/gin
-#       dev-java/gwt
-#       dev-java/validation-api
-#       sci-mathematics/rstudio
-#   atoms: 
-#   - sci-mathematics/rstudio
-#   provides:
-#   - category: "sci-mathematics"
-#     name: "rstudio"
-#     version: ">=0"
-#   - category: "dev-haskell"
-#     name: "pandoc-citeproc"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "gin"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "gwt"
-#     version: ">=0"
-#   - category: "dev-java"
-#     name: "validation-api"
-#     version: ">=0"
-#   pre_reqs:
-#   - *layers-java-atoms
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-ghc
-#   - <<: *layers-haskell
-#   - <<: *layers-java
-#   - category: "entity"
-#     name: "rstudio-server"
-#     version: ">=0"
-#   - <<: *apps-ant-core
-#   - <<: *libs-aopalliance
-#   - <<: *libs-asm
-#   - <<: *libs-guava
-#   - <<: *libs-javax-inject
-#   - <<: *apps-eclipse-ecj
-#   - <<: *apps-javatoolkit
-#   - <<: *apps-pandoc
-#   - <<: *apps-R
-#   - <<: *apps-rhino
-#   build_requires:
-#   - <<: *buildbase-qt
-#   - <<: *layerbase-ghc
-#   - <<: *layerbase-haskell
-#   requires_final_images: true
+No space in GH to build
+- category: "apps"
+  name: "rstudio"
+  version: "1.3.1093-r1+6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-haskell/pandoc-citeproc
+      dev-java/gin
+      dev-java/gwt
+      dev-java/validation-api
+      sci-mathematics/rstudio
+  atoms: 
+  - sci-mathematics/rstudio
+  provides:
+  - category: "sci-mathematics"
+    name: "rstudio"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc-citeproc"
+    version: ">=0"
+  - category: "dev-java"
+    name: "gin"
+    version: ">=0"
+  - category: "dev-java"
+    name: "gwt"
+    version: ">=0"
+  - category: "dev-java"
+    name: "validation-api"
+    version: ">=0"
+  pre_reqs:
+  - *layers-java-atoms
+  requires:
+  - <<: *layers-qt
+  - <<: *def-layers-ghc
+  - <<: *def-layers-haskell
+  - <<: *layers-java
+  - category: "entity"
+    name: "rstudio-server"
+    version: ">=0"
+  - <<: *apps-ant-core
+  - <<: *libs-aopalliance
+  - <<: *libs-asm
+  - <<: *libs-guava
+  - <<: *libs-javax-inject
+  - <<: *apps-eclipse-ecj
+  - <<: *apps-javatoolkit
+  - <<: *apps-pandoc
+  - <<: *apps-R
+  - <<: *apps-rhino
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "stellarium"
@@ -7366,7 +7344,7 @@ packages:
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.5"
+  version: "3.6.5+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7693,7 +7671,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "3.3+2"
+  version: "3.4"
   labels:
     emerge.jobs: "3"
     emerge.packages: &libs-ocio-oiio-atoms >-
@@ -7756,7 +7734,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.0.2+2"
+  version: "5.0.8"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
