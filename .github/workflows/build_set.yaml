@@ -29,7 +29,8 @@ jobs:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
       PULL_REPOSITORY: quay.io/mocaccino/desktop
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: [self-hosted, x64]
     steps:
     - uses: actions/checkout@v2
     - name: Release space from worker
