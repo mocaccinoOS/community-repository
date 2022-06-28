@@ -81,9 +81,10 @@ jobs:
             sudo cp -rfv .github/plugins/* /usr/bin/
     - name: Build packages 🔧
       run: |
-        sudo luet install -y repository/mocaccino-desktop-stable
-        sudo luet install -y repository/mocaccino-os-commons
-        sudo luet install -y repository/mocaccino-extra-stable
+        export LUET_NOLOCK=true
+        sudo -E luet install -y repository/mocaccino-desktop-stable
+        sudo -E luet install -y repository/mocaccino-os-commons
+        sudo -E luet install -y repository/mocaccino-extra-stable
         export PATH=$PATH:/usr/local/go/bin
         mkdir build || true
         pushd ./.github
