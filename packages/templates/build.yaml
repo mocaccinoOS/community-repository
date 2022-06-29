@@ -59,34 +59,34 @@ steps:
 {{ include "cr.packagesetup" $package }}
 {{ end }}
 
-{{ if .Values.preemerge }}
-{{ range .Values.preemerge }}
-{{ $command := include "cr.emerge" . }}
-{{ if $command }}
+{{- if .Values.preemerge }}
+{{- range .Values.preemerge }}
+{{- $command := include "cr.emerge" . }}
+{{- if $command }}
 - {{ $command }}
-{{ end }}
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
 
-{{ if .Values.atoms }}
-{{ range .Values.atoms }}
-{{ $command := include "cr.emerge" . }}
-{{ if $command }}
+{{- if .Values.atoms }}
+{{- range .Values.atoms }}
+{{- $command := include "cr.emerge" . }}
+{{- if $command }}
 - {{ $command }}
-{{ end }}
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
 
-{{ if .Values.unmerge }}
-{{ range .Values.unmerge }}
+{{- if .Values.unmerge }}
+{{- range .Values.unmerge }}
 - emerge -C {{ . }}
-{{ end }}
-{{ end }}
-{{ if .Values.etc_update }}
-{{ if .Values.etc_update.mode }}
+{{- end }}
+{{- end }}
+{{- if .Values.etc_update }}
+{{- if .Values.etc_update.mode }}
 - etc-update -q --automode {{ .Values.etc_update.mode }}
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
 
 # {{ if eq .Values.category "layerbase" }}
 # includes:

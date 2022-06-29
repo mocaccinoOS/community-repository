@@ -116,15 +116,19 @@
 {{- range .opt_requires }}
 
 {{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
+{{- end }}
 {{- end }}
 {{- end }}
 
 {{- if .setup }}
 {{- range .setup }}
 {{- if . }}
-- {{ . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -133,7 +137,9 @@
 {{- range .preemerge }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
-- {{ $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -156,15 +162,19 @@
 {{- range .requires }}
 
 {{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
+{{- end }}
 {{- end }}
 {{- end }}
 
 {{- if .setup }}
 {{- range .setup }}
 {{- if . }}
-- {{ . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -173,7 +183,9 @@
 {{- range .preemerge }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
-- {{ $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
