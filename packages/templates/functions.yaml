@@ -143,6 +143,23 @@
 {{- end }}
 {{- end }}
 
+{- if .setup }}
+{{- range .setup }}
+{{- if . }}
+- {{ . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{ if .preemerge }}
+{{ range .preemerge }}
+{{ $command := include "cr.emerge" . }}
+{{ if $command }}
+- {{ $command }}
+{{ end }}
+{{ end }}
+{{ end }}
+
 {{- if .atoms }}
 {{- range .atoms }}
 {{- $command := include "cr.emerge" . }}
