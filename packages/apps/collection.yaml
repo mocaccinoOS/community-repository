@@ -3790,6 +3790,25 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "r-studio"
+  version: "5"
+  labels:
+    emerge.jobs: "3"
+  prereqs:
+  - app-arch/rpm
+  - app-arch/rpm2targz
+  prepare:
+  - wget https://www.r-studio.com/downloads/RStudio5_x64.rpm
+  setup:
+  #- ar x RStudio5_x64.rpm --output /
+  - rpm -i RStudio5_x64.rpm --nodeps
+  #- tar xvf RStudio5_x64.rpm
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+
+- category: "apps"
   name: "rawtherapee"
   version: "5.8-r1"
   labels:
@@ -6171,7 +6190,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.1.2-r1"
+  version: "1.1.2-r1+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7552,7 +7571,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.9.1"
+  version: "1.9.2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7666,7 +7685,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "4"
+  version: "4.1"
   labels:
     emerge.jobs: "3"
     emerge.packages: &libs-ocio-oiio-atoms >-
@@ -7684,8 +7703,9 @@ packages:
   - category: "dev-cpp"
     name: "robin-map"
     version: ">=0"
-  preemerge:
+  prereqs:
   - dev-cpp/pystring
+  preemerge:
   - media-libs/opencolorio;USE="-opengl"
   requires:
   - <<: *layers-qt
