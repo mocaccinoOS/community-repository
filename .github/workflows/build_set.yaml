@@ -63,6 +63,7 @@ jobs:
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
         head -n 30 <<< "${pkgs}"
         echo
+        sudo rm -rfv build || true
         df -h
     - run: |
         git fetch --prune --unshallow
