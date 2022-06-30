@@ -6951,61 +6951,61 @@ packages:
   - <<: *layers-gnome-common
 
 # No space in GH to build
-- category: "apps"
-  name: "rstudio"
-  version: "1.3.1093-r1+6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-haskell/pandoc-citeproc
-      dev-java/gin
-      dev-java/gwt
-      dev-java/validation-api
-      sci-mathematics/rstudio
-  atoms: 
-  - sci-mathematics/rstudio
-  provides:
-  - category: "sci-mathematics"
-    name: "rstudio"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "pandoc-citeproc"
-    version: ">=0"
-  - category: "dev-java"
-    name: "gin"
-    version: ">=0"
-  - category: "dev-java"
-    name: "gwt"
-    version: ">=0"
-  - category: "dev-java"
-    name: "validation-api"
-    version: ">=0"
-  pre_reqs:
-  - *layers-java-atoms
-  requires:
-  - <<: *layers-qt
-  # - <<: *layers-ghc
-  - <<: *layers-haskell
-  - <<: *layers-java
-  - category: "entity"
-    name: "rstudio-server"
-    version: ">=0"
-  - <<: *apps-ant-core
-  - <<: *libs-aopalliance
-  - <<: *libs-asm
-  - <<: *libs-guava
-  - <<: *libs-javax-inject
-  - <<: *apps-eclipse-ecj
-  - <<: *apps-javatoolkit
-  - <<: *apps-pandoc
-  - <<: *apps-R
-  - <<: *apps-rhino
-  build_requires:
-  - <<: *buildbase-haskell
-  - <<: *buildbase-qt
-  # - <<: *layerbase-ghc
-  # - <<: *layerbase-haskell
-  requires_final_images: true
+# - category: "apps"
+#   name: "rstudio"
+#   version: "1.3.1093-r1+6"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-haskell/pandoc-citeproc
+#       dev-java/gin
+#       dev-java/gwt
+#       dev-java/validation-api
+#       sci-mathematics/rstudio
+#   atoms: 
+#   - sci-mathematics/rstudio
+#   provides:
+#   - category: "sci-mathematics"
+#     name: "rstudio"
+#     version: ">=0"
+#   - category: "dev-haskell"
+#     name: "pandoc-citeproc"
+#     version: ">=0"
+#   - category: "dev-java"
+#     name: "gin"
+#     version: ">=0"
+#   - category: "dev-java"
+#     name: "gwt"
+#     version: ">=0"
+#   - category: "dev-java"
+#     name: "validation-api"
+#     version: ">=0"
+#   pre_reqs:
+#   - *layers-java-atoms
+#   requires:
+#   - <<: *layers-qt
+#   # - <<: *layers-ghc
+#   - <<: *layers-haskell
+#   - <<: *layers-java
+#   - category: "entity"
+#     name: "rstudio-server"
+#     version: ">=0"
+#   - <<: *apps-ant-core
+#   - <<: *libs-aopalliance
+#   - <<: *libs-asm
+#   - <<: *libs-guava
+#   - <<: *libs-javax-inject
+#   - <<: *apps-eclipse-ecj
+#   - <<: *apps-javatoolkit
+#   - <<: *apps-pandoc
+#   - <<: *apps-R
+#   - <<: *apps-rhino
+#   build_requires:
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-haskell
+#   # - <<: *layerbase-ghc
+#   # - <<: *layerbase-haskell
+#   requires_final_images: true
 
 - category: "apps"
   name: "stellarium"
