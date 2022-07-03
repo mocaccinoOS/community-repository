@@ -2920,6 +2920,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "gftp"
+  version: "2.9.1b"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-ftp/gftp
+  atoms:
+  - net-ftp/gftp
+  provides:
+  - category: "net-ftp"
+    name: "gftp"
+    version: ">=0"
+  prereqs:
+  - gnome-base/gconf
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "gnumeric"
   version: "1.12.48+53"
   labels:
