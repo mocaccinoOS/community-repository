@@ -7171,7 +7171,7 @@ packages:
 - &libs-pidgin-sipe
   category: "libs"
   name: "pidgin-sipe"
-  version: "1.25.0-r1+2"
+  version: "1.25.0-r1+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7776,28 +7776,29 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-ktp-accounts-kcm
-  category: "apps"
-  name: "ktp-accounts-kcm"
-  version: "21.12.3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/ktp-accounts-kcm
-  atoms:
-  - kde-apps/ktp-accounts-kcm
-  provides:
-  - category: "kde-apps"
-    name: "ktp-accounts-kcm"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  # depends on net-libs/telepathy-glib
-  - <<: *layers-gnome-common
-  - <<: *libs-telepathy-connection-managers
-  - <<: *libs-telepathy-qt
-  build_requires:
-  - <<: *layers-plasma
+# needs gnome-common eventually
+# - &apps-ktp-accounts-kcm
+#   category: "apps"
+#   name: "ktp-accounts-kcm"
+#   version: "21.12.3"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-apps/ktp-accounts-kcm
+#   atoms:
+#   - kde-apps/ktp-accounts-kcm
+#   provides:
+#   - category: "kde-apps"
+#     name: "ktp-accounts-kcm"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-plasma
+#   # depends on net-libs/telepathy-glib
+#   - <<: *layers-gnome-common
+#   - <<: *libs-telepathy-connection-managers
+#   - <<: *libs-telepathy-qt
+#   build_requires:
+#   - <<: *layers-plasma
 
 - category: "apps"
   name: "remmina"
@@ -7931,7 +7932,8 @@ packages:
   - <<: *apps-astyle 
   - <<: *apps-pycodestyle
   - <<: *apps-kapptemplate
-  - <<: *apps-ktp-accounts-kcm
+  # needs gnome-common eventually
+  # - <<: *apps-ktp-accounts-kcm
   build_requires:
   - <<: *layers-plasma
 
