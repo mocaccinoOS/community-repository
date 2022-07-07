@@ -42,7 +42,7 @@ jobs:
           sudo rm -Rf /etc/luet/ || true
           sudo rm -Rf /var/tmp/luet || true
           sudo rm -Rf /var/luet || true
-          docker system prune -f -a --volumes || true
+          sudo docker system prune -f -a --volumes || true
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
