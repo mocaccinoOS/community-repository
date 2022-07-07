@@ -33,6 +33,16 @@ jobs:
     runs-on: [self-hosted, x64]
     steps:
     - uses: actions/checkout@v2
+    - name: Release space from worker ♻
+      if: always()
+      run: |
+          sudo rm -rf build || true
+          sudo rm -rf bin || true
+          sudo rm /usr/bin/luet || true
+          sudo rm -Rf /etc/luet/ || true
+          sudo rm -Rf /var/tmp/luet || true
+          sudo rm -Rf /var/luet || true
+          docker system prune -f -a --volumes || true
     - name: Release space from worker
       run: |
         echo "Listing top largest packages"
