@@ -7314,7 +7314,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "2.50.0"
+  version: "2.50.0+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -7328,6 +7328,8 @@ packages:
   - category: "dev-scheme"
     name: "guile"
     version: ">=0"
+  prereqs:
+  - *layers-java-atoms
   requires:
   - <<: *layers-qt
   - <<: *layers-java
