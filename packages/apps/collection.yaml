@@ -1690,25 +1690,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-namespace-google
-  category: "libs"
-  name: "namespace-google"
-  version: "1-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/namespace-google
-  atoms:
-  - dev-python/namespace-google
-  provides:
-  - category: "dev-python"
-    name: "namespace-google"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-nas
   category: "libs"
   name: "nas"
@@ -4947,7 +4928,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-namespace-google
   build_requires:
   - <<: *layers-X
 
@@ -5169,6 +5149,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- category: "apps"
+  name: "bleachbit"
+  version: "4.4.2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-apps/bleachbit
+  atoms:
+  - sys-apps/bleachbit
+  provides:
+  - category: "sys-apps"
+    name: "bleachbit"
+    version: ">=0"
+  prereqs:
+  - dev-python/mock
+  requires:
+  - <<: *layers-X
+  - <<: *libs-chardet
+  build_requires:
+  - <<: *layers-X
+  
 - category: "apps"
   name: "cairo-clock"
   version: "0.3.4-r2"
@@ -6409,7 +6410,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-dlna"
-  version: "9999+4"
+  version: "0.6.5_p1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
