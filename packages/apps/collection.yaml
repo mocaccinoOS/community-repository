@@ -402,6 +402,25 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-chardet
+  category: "libs"
+  name: "chardet"
+  version: "4.0.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/chardet
+  atoms:
+  - dev-python/chardet
+  provides:
+  - category: "dev-python"
+    name: "chardet"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
@@ -6390,7 +6409,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-dlna"
-  version: "9999+3"
+  version: "9999+4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6406,9 +6425,6 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "notify2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "chardet"
     version: ">=0"
   - category: "dev-python"
     name: "pyroute2"
@@ -6431,6 +6447,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-protobuf-python
+  - <<: *libs-chardet
   build_requires:
   - <<: *layers-gnome-common
 
