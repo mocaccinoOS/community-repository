@@ -378,6 +378,9 @@ packages:
   - category: "media-libs"
     name: "babl"
     version: ">=0"
+  prepare:
+  - sed "/gnome2_environment_reset/a \        sed -i -e 's/Description/description/' meson.build || die \# bug 843266" /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild manifest
   requires:
   - <<: *layers-X
   build_requires:
