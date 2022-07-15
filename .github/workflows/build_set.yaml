@@ -27,7 +27,7 @@ jobs:
       matrix-sets: ${{ inputs.build-sets }}
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
-      CURRENT_PACKAGE:  ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
+      CURRENT_PACKAGE: ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
       PULL_REPOSITORY: quay.io/mocaccino/desktop
     #runs-on: ubuntu-latest
     runs-on: [self-hosted, x64]
@@ -93,7 +93,7 @@ jobs:
     - name: Build packages 🔧
       run: |
         export LUET_NOLOCK=true
-        sudo -E luet install -y repository/mocaccino-desktop-stable
+        sudo -E luet install -y repository/mocaccino-desktop #-stable
         sudo -E luet install -y repository/mocaccino-os-commons
         sudo -E luet install -y repository/mocaccino-extra-stable
         export PATH=$PATH:/usr/local/go/bin
