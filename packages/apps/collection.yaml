@@ -147,6 +147,13 @@ anchors:
   version: ">=0"
   atoms:
   - app-editors/emacs
+  
+- &apps-spice-gtk
+  category: "apps"
+  name: "spice-gtk"
+  version: ">=0"
+  atoms:
+  - net-misc/spice-gtk
 
 - &apps-vim
   category: "apps"
@@ -154,7 +161,7 @@ anchors:
   version: ">=0"
   atoms:
   - app-editors/vim
-
+  
 packages:
 
 ################################################################################
@@ -7806,9 +7813,7 @@ packages:
   - <<: *layers-gnome-common
 #   - <<: *layers-kde-common
   - <<: *apps-pyhoca-cli
-  - category: "apps"
-    name: "spice-gtk"
-    version: ">=0"
+  - <<: *apps-spice-gtk
   build_requires:
   - <<: *buildbase-gnome-common
 #   - <<: *buildbase-kde-common
