@@ -5244,7 +5244,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "0.103.6"
+  version: "0.103.6+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6176,7 +6176,7 @@ packages:
 - &apps-enblend
   category: "apps"
   name: "enblend"
-  version: "4.2.0_p20161007-r1+2"
+  version: "4.2.0_p20161007-r1+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6217,7 +6217,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.1.2-r1+1"
+  version: "1.1.2-r1+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6263,7 +6263,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.3.3.2-r3"
+  version: "7.3.3.2-r3+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6397,7 +6397,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "5.23.4+2"
+  version: "5.24.5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6747,7 +6747,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "3.2.1-r5+4"
+  version: "3.2.1-r5+5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6775,7 +6775,7 @@ packages:
 
 - category: "apps"
   name: "calligraplan"
-  version: "3.3.0+1"
+  version: "3.3.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6817,7 +6817,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2021.0.0+5"
+  version: "2021.0.0+6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -7269,7 +7269,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "7.5.0+1"
+  version: "7.5.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -7294,7 +7294,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "2.50.0+1"
+  version: "2.50.0+2"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -7487,7 +7487,7 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "2.4.2-r2+2"
+  version: "2.4.2-r2+3"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7626,7 +7626,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2022.1+1"
+  version: "1.2022.5"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7645,26 +7645,28 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# not supporting python > 3.9
-# - &apps-pyhoca-cli
-#   category: "apps"
-#   name: "pyhoca-cli"
-#   version: "0.6.1.2+4"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/pyhoca-cli
-#   atoms:
-#   - net-misc/pyhoca-cli
-#   provides:
-#   - category: "net-misc"
-#     name: "pyhoca-cli"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-python-x2go
-#   build_requires:
-#   - <<: *layers-X
+- &apps-pyhoca-cli
+  category: "apps"
+  name: "pyhoca-cli"
+  version: "0.6.1.2+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/pyhoca-cli
+  atoms:
+  - net-misc/pyhoca-cli
+  provides:
+  - category: "net-misc"
+    name: "pyhoca-cli"
+    version: ">=0"
+  prepare:
+  - sed -i -e '/PYTHON_COMPAT/ s/9/10/' /var/db/repos/gentoo/net-misc/pyhoca-cli/pyhoca-cli-0.6.1.2.ebuild
+  - ebuild /var/db/repos/gentoo/net-misc/pyhoca-cli/pyhoca-cli-0.6.1.2.ebuild manifest
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-x2go
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################
 ### dep VI libs ###
@@ -7785,7 +7787,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.25+1"
+  version: "1.4.25+2"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -7803,8 +7805,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
 #   - <<: *layers-kde-common
-# not supporting python > 3.9
-# - <<: *apps-pyhoca-cli
+  - <<: *apps-pyhoca-cli
   - category: "apps"
     name: "spice-gtk"
     version: ">=0"
@@ -7922,31 +7923,33 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# not supporting python > 3.9
-# - &apps-pyhoca-gui
-#   category: "apps"
-#   name: "pyhoca-gui"
-#   version: "0.6.1.1+1"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/pyhoca-gui
-#   atoms:
-#   - net-misc/pyhoca-gui
-#   provides:
-#   - category: "net-misc"
-#     name: "pyhoca-gui"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *libs-python-distutils-extra
-#   - <<: *libs-python-x2go
-#   - <<: *libs-wxpython
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   requires_final_images: true
+- &apps-pyhoca-gui
+  category: "apps"
+  name: "pyhoca-gui"
+  version: "0.6.1.1+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/pyhoca-gui
+  atoms:
+  - net-misc/pyhoca-gui
+  provides:
+  - category: "net-misc"
+    name: "pyhoca-gui"
+    version: ">=0"
+  prepare:
+  - sed -i -e '/PYTHON_COMPAT/ s/9/10/' /var/db/repos/gentoo/net-misc/pyhoca-gui/pyhoca-gui-0.6.1.1.ebuild
+  - ebuild /var/db/repos/gentoo/net-misc/pyhoca-gui/pyhoca-gui-0.6.1.1.ebuild manifest
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *libs-python-distutils-extra
+  - <<: *libs-python-x2go
+  - <<: *libs-wxpython
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 ################################################################################
 ### dep VIII libs ###
