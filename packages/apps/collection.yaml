@@ -5648,6 +5648,9 @@ packages:
     name: "qutebrowser"
     version: ">=0"
   - category: "dev-python"
+    name: "zipp"
+    version: ">=0"
+  - category: "dev-python"
     name: "adblock"
     version: ">=0"
   - category: "dev-util"
@@ -7642,25 +7645,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-pyhoca-cli
-  category: "apps"
-  name: "pyhoca-cli"
-  version: "0.6.1.2+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/pyhoca-cli
-  atoms:
-  - net-misc/pyhoca-cli
-  provides:
-  - category: "net-misc"
-    name: "pyhoca-cli"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-python-x2go
-  build_requires:
-  - <<: *layers-X
+# not supporting python > 3.9
+# - &apps-pyhoca-cli
+#   category: "apps"
+#   name: "pyhoca-cli"
+#   version: "0.6.1.2+4"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/pyhoca-cli
+#   atoms:
+#   - net-misc/pyhoca-cli
+#   provides:
+#   - category: "net-misc"
+#     name: "pyhoca-cli"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-python-x2go
+#   build_requires:
+#   - <<: *layers-X
 
 ################################################################################
 ### dep VI libs ###
@@ -7799,7 +7803,8 @@ packages:
   requires:
   - <<: *layers-gnome-common
 #   - <<: *layers-kde-common
-  - <<: *apps-pyhoca-cli
+# not supporting python > 3.9
+# - <<: *apps-pyhoca-cli
   - category: "apps"
     name: "spice-gtk"
     version: ">=0"
@@ -7902,7 +7907,7 @@ packages:
   - category: "dev-util"
     name: "kdevelop-pg-qt"
     version: ">=0"
-# not supporting python > 3.9    
+# not supporting python > 3.9
 #   - category: "dev-util"
 #     name: "kdevelop-python"
 #     version: ">=0"
@@ -7917,30 +7922,31 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- &apps-pyhoca-gui
-  category: "apps"
-  name: "pyhoca-gui"
-  version: "0.6.1.1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/pyhoca-gui
-  atoms:
-  - net-misc/pyhoca-gui
-  provides:
-  - category: "net-misc"
-    name: "pyhoca-gui"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-qt
-  - <<: *libs-python-distutils-extra
-  - <<: *libs-python-x2go
-  - <<: *libs-wxpython
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  requires_final_images: true
+# not supporting python > 3.9
+# - &apps-pyhoca-gui
+#   category: "apps"
+#   name: "pyhoca-gui"
+#   version: "0.6.1.1+1"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/pyhoca-gui
+#   atoms:
+#   - net-misc/pyhoca-gui
+#   provides:
+#   - category: "net-misc"
+#     name: "pyhoca-gui"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   - <<: *libs-python-distutils-extra
+#   - <<: *libs-python-x2go
+#   - <<: *libs-wxpython
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-qt
+#   requires_final_images: true
 
 ################################################################################
 ### dep VIII libs ###
