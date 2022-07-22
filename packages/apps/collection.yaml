@@ -3430,28 +3430,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-mangohud
-  category: "apps"
-  name: "mangohud"
-  version: "0.6.7-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-util/mangohud
-  atoms:
-  - games-util/mangohud
-  overlays:
-  - name: "thegreatmcpain"
-  provides:
-  - category: "games-util"
-    name: "mangohud"
-    version: ">=0"
-  opt_requires:
-  - <<: *kernel-modules-nvidia-drivers-lts
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &apps-mangohud
+#   category: "apps"
+#   name: "mangohud"
+#   version: "0.6.7-r1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-util/mangohud
+#   atoms:
+#   - games-util/mangohud
+#   overlays:
+#   - name: "thegreatmcpain"
+#   provides:
+#   - category: "games-util"
+#     name: "mangohud"
+#     version: ">=0"
+#   opt_requires:
+#   - <<: *kernel-modules-nvidia-drivers-lts
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "marble"
@@ -5347,36 +5347,36 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "goverlay"
-  version: "0.8.1+4"
-  uri:
-  - https://github.com/benjamimgois/goverlay
-  license: "GPL-3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &apps-goverlay-atoms >-
-      dev-libs/qt5pas
-      games-util/goverlay
-  atoms:
-  - *apps-goverlay-atoms
-  overlays:
-  - name: "thegreatmcpain"
-  provides:
-  - category: "dev-libs"
-    name: "qt5pas"
-    version: ">=0"
-  - category: "games-util"
-    name: "goverlay"
-    version: ">=0"
-  prereqs:
-  - dev-lang/fpc
-  - dev-lang/lazarus
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-mangohud
-  build_requires:
-  - <<: *layers-qt
+# - category: "apps"
+#   name: "goverlay"
+#   version: "0.8.1+4"
+#   uri:
+#   - https://github.com/benjamimgois/goverlay
+#   license: "GPL-3"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: &apps-goverlay-atoms >-
+#       dev-libs/qt5pas
+#       games-util/goverlay
+#   atoms:
+#   - *apps-goverlay-atoms
+#   overlays:
+#   - name: "thegreatmcpain"
+#   provides:
+#   - category: "dev-libs"
+#     name: "qt5pas"
+#     version: ">=0"
+#   - category: "games-util"
+#     name: "goverlay"
+#     version: ">=0"
+#   prereqs:
+#   - dev-lang/fpc
+#   - dev-lang/lazarus
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-mangohud
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "guvcview"
