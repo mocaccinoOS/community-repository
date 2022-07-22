@@ -490,29 +490,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-dee
-#   category: "libs"
-#   name: "dee"
-#   version: "1.2.7+1"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/dee
-#   atoms:
-#   - dev-libs/dee
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "dev-libs"
-#     name: "dee"
-#     version: ">=0"
-#   prepare:
-#   - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
-#   - emerge unity-base/unity-build-env:0/hirsute
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &libs-dee
+  category: "libs"
+  name: "dee"
+  version: "1.2.7+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/dee
+  atoms:
+  - dev-libs/dee
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "dev-libs"
+    name: "dee"
+    version: ">=0"
+  prepare:
+  - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
+  - emerge unity-base/unity-build-env:0/jammy
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-File-ReadBackwards
   category: "libs"
@@ -5049,30 +5049,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-libunity
-#   category: "libs"
-#   name: "libunity"
-#   version: "7.1.4+1"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/libunity
-#   atoms:
-#   - dev-libs/libunity
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "dev-libs"
-#     name: "libunity"
-#     version: ">=0"
-#   prepare:
-#   - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
-#   - emerge unity-base/unity-build-env:0/hirsute
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-dee
-#   build_requires:
-#   - <<: *layers-X
+- &libs-libunity
+  category: "libs"
+  name: "libunity"
+  version: "7.1.4+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libunity
+  atoms:
+  - dev-libs/libunity
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "dev-libs"
+    name: "libunity"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-dee
+  build_requires:
+  - <<: *layers-X
 
 - &libs-vigra
   category: "libs"
@@ -5763,31 +5760,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-bamf
-#   category: "libs"
-#   name: "bamf"
-#   version: "0.5.6"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       unity-base/bamf
-#   atoms:
-#   - unity-base/bamf
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "unity-base"
-#     name: "bamf"
-#     version: ">=0"
-#   prepare:
-#   - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
-#   - emerge unity-base/unity-build-env:0/hirsute
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-libunity
-#   - <<: *libs-libwnck-1
-#   build_requires:
-#   - <<: *layers-gnome-common
+- &libs-bamf
+  category: "libs"
+  name: "bamf"
+  version: "0.5.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      unity-base/bamf
+  atoms:
+  - unity-base/bamf
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "unity-base"
+    name: "bamf"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libunity
+  - <<: *libs-libwnck-1
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-cargo-c
   category: "libs"
@@ -6945,29 +6939,26 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - category: "apps"
-#   name: "plank"
-#   version: "0.11.89_p4"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-misc/plank
-#   atoms:
-#   - x11-misc/plank
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "x11-misc"
-#     name: "plank"
-#     version: ">=0"
-#   prepare:
-#   - eselect profile set unity-gentoo:linux/amd64/17.1/hirsute
-#   - emerge unity-base/unity-build-env:0/hirsute
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-bamf
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "plank"
+  version: "0.11.89_p4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/plank
+  atoms:
+  - x11-misc/plank
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "x11-misc"
+    name: "plank"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-bamf
+  build_requires:
+  - <<: *layers-gnome-common
 
 # No space in GH to build
 # - category: "apps"
