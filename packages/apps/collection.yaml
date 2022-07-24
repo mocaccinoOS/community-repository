@@ -2504,6 +2504,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-argyllcms
+  category: "apps"
+  name: "argyllcms"
+  version: "2.1.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/argyllcms
+  atoms:
+  - media-gfx/argyllcms
+  overlays:
+  - name: "brother-overlay"
+  provides:
+  - category: "media-gfx"
+    name: "argyllcms"
+    version: ">=0"
+  prereqs:
+  - dev-util/ftjam
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
