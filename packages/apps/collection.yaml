@@ -2483,6 +2483,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-bind-tools
+  category: "apps"
+  name: "bind-tools"
+  version: "9.16.30"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dns/bind-tools
+  atoms:
+  - net-dns/bind-tools
+  provides:
+  - category: "net-dns"
+    name: "bind-tools"
+    version: ">=0"
+  prereqs:
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-bottom
   category: "apps"
   name: "bottom"
@@ -4355,6 +4376,25 @@ packages:
   provides:
   - category: "net-irc"
     name: "weechat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-whois
+  category: "apps"
+  name: "whois"
+  version: "5.5.13-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/whois
+  atoms:
+  - net-misc/whois
+  provides:
+  - category: "net-misc"
+    name: "whois"
     version: ">=0"
   requires:
   - <<: *layers-system-x
