@@ -2463,16 +2463,16 @@ packages:
   version: "0.38.6"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
+    emerge.packages: &libs-zeroconf-atoms >-
       dev-python/ifaddr
       dev-python/zeroconf
   atoms:
-  - dev-python/zeroconf
+  - *libs-zeroconf-atoms
   provides:
   - category: "dev-python"
     name: "ifaddr"
     version: ">=0"
-    - category: "dev-python"
+  - category: "dev-python"
     name: "zeroconf"
     version: ">=0"
   requires:
@@ -6170,11 +6170,11 @@ packages:
   version: "12.1.4"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
+    emerge.packages: &libs-pychromecast-atoms >-
       dev-python/casttube
       dev-python/pychromecast
   atoms:
-  - dev-python/pychromecast
+  - *libs-pychromecast-atoms
   provides:
   - category: "dev-python"
     name: "pychromecast"
@@ -6877,34 +6877,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-allegro
-  build_requires:
-  - <<: *layers-X
-
-- &apps-displaycal-py3
-  category: "apps"
-  name: "displaycal-py3"
-  version: "2.1.2-r1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/displaycal-py3
-  atoms:
-  - media-gfx/displaycal-py3
-  overlays:
-  - name: "stefantalpalaru"
-  provides:
-  - category: "media-gfx"
-    name: "displaycal-py3"
-    version: ">=0"
-  prereqs:
-  - dev-python/zeroconf
-  requires:
-  - <<: *layers-X
-  - <<: *libs-distro
-  - <<: *libs-pychromecast
-  - <<: *libs-send2trash
-  - <<: *libs-wxpython
-  - <<: *apps-argyllcms
   build_requires:
   - <<: *layers-X
 
@@ -8134,6 +8106,33 @@ packages:
   - <<: *libs-hdf5
   build_requires:
   - <<: *layers-qt
+
+- &apps-displaycal-py3
+  category: "apps"
+  name: "displaycal-py3"
+  version: "2.1.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/displaycal-py3
+  atoms:
+  - media-gfx/displaycal-py3
+  overlays:
+  - name: "stefantalpalaru"
+  provides:
+  - category: "media-gfx"
+    name: "displaycal-py3"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-distro
+  - <<: *libs-pychromecast
+  - <<: *libs-send2trash
+  - <<: *libs-wxpython
+  - <<: *libs-zeroconf
+  - <<: *apps-argyllcms
+  build_requires:
+  - <<: *layers-X
 
 - &apps-kdevelop
   category: "apps"
