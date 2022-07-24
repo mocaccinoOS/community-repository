@@ -1761,6 +1761,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-nss-mdns
+  category: "libs"
+  name: "nss-mdns"
+  version: "0.15.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-auth/nss-mdns
+  atoms:
+  - sys-auth/nss-mdns
+  provides:
+  - category: "sys-auth"
+    name: "nss-mdns"
+    version: ">=0"
+  prereqs:
+  - virtual/libusb:0
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
