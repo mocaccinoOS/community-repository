@@ -5243,7 +5243,31 @@ packages:
   - <<: *libs-chardet
   build_requires:
   - <<: *layers-X
-  
+
+- &apps-brother-scan4-bin
+  category: "apps"
+  name: "brother-scan4-bin"
+  version: "0.4.4-r3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/brother-scan4-bin
+  atoms:
+  - media-gfx/brother-scan4-bin
+  overlays:
+  - name: "brother-overlay"
+  provides:
+  - category: "media-gfx"
+    name: "brother-scan4-bin"
+    version: ">=0"
+  prereqs:
+  - virtual/libusb:0
+  requires:
+  - <<: *layers-X
+  - <<: *libs-nss-mdns
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "cairo-clock"
   version: "0.3.4-r2+1"
@@ -6193,6 +6217,28 @@ packages:
   build_requires:
   # due to dev-libs/oniguruma
   - <<: *layers-gnome
+
+- &apps-brother-dcp1610w-bin
+  category: "apps"
+  name: "brother-dcp1610w-bin"
+  version: "1.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/brother-dcp1610w-bin
+  atoms:
+  - media-gfx/brother-dcp1610w-bin
+  overlays:
+  - name: "brother-overlay"
+  provides:
+  - category: "media-gfx"
+    name: "brother-dcp1610w-bin"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-brother-scan4-bin
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "clamtk"
