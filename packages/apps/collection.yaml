@@ -8124,7 +8124,8 @@ packages:
     name: "displaycal-py3"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
   - <<: *libs-distro
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
@@ -8132,7 +8133,9 @@ packages:
   - <<: *libs-zeroconf
   - <<: *apps-argyllcms
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - &apps-kdevelop
   category: "apps"
