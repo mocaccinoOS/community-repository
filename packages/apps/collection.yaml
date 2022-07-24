@@ -514,6 +514,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-distro
+  category: "libs"
+  name: "distro"
+  version: "1.7.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/distro
+  atoms:
+  - dev-python/distro
+  provides:
+  - category: "dev-python"
+    name: "distro"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
@@ -2133,6 +2152,25 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-send2trash
+  category: "libs"
+  name: "send2trash"
+  version: "1.8.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/send2trash
+  atoms:
+  - dev-python/send2trash
+  provides:
+  - category: "dev-python"
+    name: "send2trash"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-serd
   category: "libs"
   name: "serd"
@@ -2418,6 +2456,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-zeroconf
+  category: "libs"
+  name: "zeroconf"
+  version: "0.38.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/ifaddr
+      dev-python/zeroconf
+  atoms:
+  - dev-python/zeroconf
+  provides:
+  - category: "dev-python"
+    name: "ifaddr"
+    version: ">=0"
+    - category: "dev-python"
+    name: "zeroconf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-zstandard
   category: "libs"
@@ -6103,6 +6164,31 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
+- &libs-pychromecast
+  category: "libs"
+  name: "pychromecast"
+  version: "12.1.4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/casttube
+      dev-python/pychromecast
+  atoms:
+  - dev-python/pychromecast
+  provides:
+  - category: "dev-python"
+    name: "pychromecast"
+    version: ">=0"
+  - category: "dev-python"
+    name: "casttube"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-protobuf-python
+  - <<: *libs-zeroconf
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-sdl-sound
   category: "libs"
   name: "sdl-sound"
@@ -6791,6 +6877,34 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-allegro
+  build_requires:
+  - <<: *layers-X
+
+- &apps-displaycal-py3
+  category: "apps"
+  name: "displaycal-py3"
+  version: "2.1.2-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/displaycal-py3
+  atoms:
+  - media-gfx/displaycal-py3
+  overlays:
+  - name: "stefantalpalaru"
+  provides:
+  - category: "media-gfx"
+    name: "displaycal-py3"
+    version: ">=0"
+  prereqs:
+  - dev-python/zeroconf
+  requires:
+  - <<: *layers-X
+  - <<: *libs-distro
+  - <<: *libs-pychromecast
+  - <<: *libs-send2trash
+  - <<: *libs-wxpython
+  - <<: *apps-argyllcms
   build_requires:
   - <<: *layers-X
 
