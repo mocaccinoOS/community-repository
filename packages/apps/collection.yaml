@@ -5990,26 +5990,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-cargo-c
-  category: "libs"
-  name: "cargo-c"
-  version: "0.9.5+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/cargo-c
-  atoms:
-  - dev-util/cargo-c
-  provides:
-  - category: "dev-util"
-    name: "cargo-c"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libgit2
-  build_requires:
-  - <<: *layers-X
-
 - &libs-cholmod
   category: "libs"
   name: "cholmod"
@@ -7010,9 +6990,10 @@ packages:
   - category: "media-video"
     name: "rav1e"
     version: ">=0"
+  prereqs:
+  - dev-util/cargo-c
   requires:
   - <<: *layers-X
-  - <<: *libs-cargo-c
   build_requires:
   - <<: *layers-X
 
