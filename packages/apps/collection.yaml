@@ -6346,6 +6346,38 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "avidemux"
+  version: "2.7.8"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-avidemux-atoms >-
+      media-libs/avidemux-core
+      media-libs/aften
+      media-sound/dcaenc
+      media-libs/avidemux-plugins
+      media-video/avidemux
+  atoms:
+  - *apps-avidemux-atoms
+  provides:
+  - category: "media-libs"
+    name: "avidemux-core"
+    version: ">=0"
+  - category: "media-libs"
+    name: "avidemux-plugins"
+    version: ">=0"
+  - category: "media-video"
+    name: "avidemux"
+    version: ">=0"
+  prereqs:
+  - dev-lang/yasm
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libdca
+  - <<: *libs-libmp4v2
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "bat"
   version: "0.20.0"
   labels:
