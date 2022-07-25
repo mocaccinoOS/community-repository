@@ -1820,6 +1820,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pep517
+  category: "libs"
+  name: "pep517"
+  version: "0.12.0-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pep517
+  atoms:
+  - dev-python/pep517
+  provides:
+  - category: "dev-python"
+    name: "pep517"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-perl-Tk
   category: "libs"
   name: "perl-Tk"
@@ -4579,6 +4598,26 @@ packages:
   requires:
   - <<: *layers-system-x
   - <<: *libs-suitesparseconfig
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-build
+  category: "libs"
+  name: "build"
+  version: "0.8.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/build
+  atoms:
+  - dev-python/build
+  provides:
+  - category: "dev-python"
+    name: "build"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-pep517
   build_requires:
   - <<: *layers-system-x
 
@@ -8130,6 +8169,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
+  - <<: *libs-build
   - <<: *libs-distro
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
