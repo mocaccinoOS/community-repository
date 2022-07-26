@@ -4415,6 +4415,24 @@ packages:
   - <<: *layers-codecs
 
 - category: "apps"
+  name: "spice-vdagent"
+  version: "0.21.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/spice-vdagent
+  atoms:
+  - app-emulation/spice-vdagent
+  provides:
+  - category: "app-emulation"
+    name: "spice-vdagent"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
+- category: "apps"
   name: "vivaldi"
   version: "5.3.2679.61"
   labels:
