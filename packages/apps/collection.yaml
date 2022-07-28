@@ -1071,25 +1071,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-libdca
-  category: "libs"
-  name: "libdca"
-  version: "0.0.7+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libdca
-  atoms:
-  - media-libs/libdca
-  provides:
-  - category: "media-libs"
-    name: "libdca"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libde265
   category: "libs"
   name: "libde265"
@@ -5255,7 +5236,6 @@ packages:
   - <<: *layers-X
   - <<: *libs-libxdg-basedir
   - <<: *libs-libcaca
-  - <<: *libs-libdca
   - <<: *libs-libdvdcss
   - <<: *libs-libfame
   - <<: *apps-vcdimager
@@ -6332,7 +6312,6 @@ packages:
   - dev-lang/yasm
   requires:
   - <<: *layers-qt
-  - <<: *libs-libdca
   - <<: *libs-libmp4v2
   - <<: *apps-twolame
   build_requires:
