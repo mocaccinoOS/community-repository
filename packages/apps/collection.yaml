@@ -860,25 +860,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libmicrohttpd
-  category: "libs"
-  name: "libmicrohttpd"
-  version: "0.9.75"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libmicrohttpd
-  atoms:
-  - net-libs/libmicrohttpd
-  provides:
-  - category: "net-libs"
-    name: "libmicrohttpd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-hdf5
   category: "libs"
   name: "hdf5"
@@ -7826,7 +7807,6 @@ packages:
   - <<: *apps-hddtemp
   # - <<: *apps-xmms2
   - <<: *libs-libircclient
-  - <<: *libs-libmicrohttpd
   build_requires:
   - <<: *buildbase-X
   - <<: *buildbase-gnome-common
