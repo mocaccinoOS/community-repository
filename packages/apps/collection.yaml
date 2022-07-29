@@ -37,7 +37,7 @@ anchors:
   category: "buildbase"
   name: "qt"
   version: ">=0"
-  
+
 - &layers-kde-common
   category: "layers"
   name: "kde-common"
@@ -81,7 +81,6 @@ anchors:
   dev-java/openjdk-bin
   virtual/jre
   virtual/jdk
-  
 
 - &layers-ghc
   category: "layers"
@@ -126,7 +125,7 @@ anchors:
 - &libs-sphinx-atoms >-
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
-  
+
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
@@ -147,7 +146,7 @@ anchors:
   version: ">=0"
   atoms:
   - app-editors/emacs
-  
+
 - &apps-spice-gtk
   category: "apps"
   name: "spice-gtk"
@@ -161,7 +160,7 @@ anchors:
   version: ">=0"
   atoms:
   - app-editors/vim
-  
+
 packages:
 
 ################################################################################
@@ -3111,7 +3110,7 @@ packages:
   - <<: *layers-X
 
 # should be in main repo
-- &apps-hddtemp 
+- &apps-hddtemp
   category: "apps"
   name: "hddtemp"
   version: "0.3_beta15-r29+1"
@@ -3223,6 +3222,25 @@ packages:
   provides:
   - category: "media-gfx"
     name: "icoutils"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-imwheel
+  category: "apps"
+  name: "imwheel"
+  version: "1.0.0_pre13_p20100827+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/imwheel
+  atoms:
+  - x11-misc/imwheel
+  provides:
+  - category: "x11-misc"
+    name: "imwheel"
     version: ">=0"
   requires:
   - <<: *layers-X
