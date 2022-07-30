@@ -2825,27 +2825,6 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-- &apps-dvd-rw-tools
-  category: "apps"
-  name: "dvd-rw-tools"
-  version: "7.1-r4+4"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-cdr/dvd+rw-tools
-  atoms:
-  - app-cdr/dvd+rw-tools
-  provides:
-  - category: "app-cdr"
-    name: "dvd+rw-tools"
-    version: ">=0"
-  prereqs:
-  - x11-misc/makedepend
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 # should be in main repo
 - category: "apps"
   name: "extundelete"
@@ -5490,26 +5469,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "dvdshrink"
-  version: "2.6.1_p10-r1+1"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-cdr/dvdshrink
-  atoms:
-  - app-cdr/dvdshrink
-  provides:
-  - category: "app-cdr"
-    name: "dvdshrink"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-dvd-rw-tools
-  - <<: *apps-transcode
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "easytag"
   version: "2.4.3+r2+3"
   labels:
@@ -6423,6 +6382,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-dvd-rw-tools
+  category: "apps"
+  name: "dvd-rw-tools"
+  version: "7.1-r4+4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvd+rw-tools
+  atoms:
+  - app-cdr/dvd+rw-tools
+  provides:
+  - category: "app-cdr"
+    name: "dvd+rw-tools"
+    version: ">=0"
+  prereqs:
+  - x11-misc/makedepend
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-eclipse-ecj
   category: "apps"
   name: "eclipse-ecj"
@@ -7086,6 +7066,26 @@ packages:
   - <<: *libs-libmikmod
   - <<: *libs-sdl-net
   - <<: *libs-sdl-sound
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "dvdshrink"
+  version: "2.6.1_p10-r1+1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvdshrink
+  atoms:
+  - app-cdr/dvdshrink
+  provides:
+  - category: "app-cdr"
+    name: "dvdshrink"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-dvd-rw-tools
+  - <<: *apps-transcode
   build_requires:
   - <<: *layers-X
 
