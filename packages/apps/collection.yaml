@@ -3746,7 +3746,7 @@ packages:
   - category: "net-misc"
     name: "nx"
     version: ">=0"
-  prereqs: 
+  prereqs:
   - x11-misc/gccmakedep x11-misc/xorg-cf-files x11-misc/imake
   requires:
   - <<: *layers-X
@@ -4134,6 +4134,27 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+ &apps-timeshift
+  category: "apps"
+  name: "timeshift"
+  version: "22.06.1-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/timeshift
+  atoms:
+  - app-backup/timeshift
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "app-backup"
+    name: "timeshift"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "tokodon"
