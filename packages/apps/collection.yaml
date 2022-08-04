@@ -8315,6 +8315,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gocr
+  category: "apps"
+  name: "gocr"
+  version: "0.52"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/gocr
+  atoms:
+  - app-text/gocr
+  provides:
+  - category: "app-text"
+    name: "gocr"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-netpbm
+  - <<: *apps-sli
+  - <<: *apps-tk
+  - <<: *apps-xsane
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
