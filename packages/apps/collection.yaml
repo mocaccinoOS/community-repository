@@ -4576,6 +4576,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-xli
+  category: "apps"
+  name: "xli"
+  version: "1.17.0-r5"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/xli
+  atoms:
+  - media-gfx/xli
+  provides:
+  - category: "media-gfx"
+    name: "xli"
+    version: ">=0"
+  prereqs:
+  - app-text/rman
+  - x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "zsh"
   version: "5.8.1-r2"
@@ -7163,9 +7185,9 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-netpbm
   - <<: *apps-dvd-rw-tools
   - <<: *apps-transcode
+  - <<: *apps-xsane
   build_requires:
   - <<: *layers-X
 
@@ -8170,7 +8192,7 @@ packages:
 - &apps-xsane
   category: "apps"
   name: "xsane"
-  version: "0.999-r4"
+  version: "0.999-r4+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -8183,6 +8205,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-netpbm
   - <<: *apps-gimp
   build_requires:
   - <<: *layers-gnome-common
