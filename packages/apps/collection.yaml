@@ -7170,27 +7170,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "dvdshrink"
-  version: "2.6.1_p10-r1+2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-cdr/dvdshrink
-  atoms:
-  - app-cdr/dvdshrink
-  provides:
-  - category: "app-cdr"
-    name: "dvdshrink"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-dvd-rw-tools
-  - <<: *apps-transcode
-  - <<: *apps-xsane
-  build_requires:
-  - <<: *layers-X
-
 - &apps-hugin
   category: "apps"
   name: "hugin"
@@ -8314,6 +8293,27 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   requires_final_images: true
+
+- category: "apps"
+  name: "dvdshrink"
+  version: "2.6.1_p10-r1+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvdshrink
+  atoms:
+  - app-cdr/dvdshrink
+  provides:
+  - category: "app-cdr"
+    name: "dvdshrink"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-dvd-rw-tools
+  - <<: *apps-transcode
+  - <<: *apps-xsane
+  build_requires:
+  - <<: *layers-X
 
 - &apps-kdevelop
   category: "apps"
