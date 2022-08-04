@@ -1781,6 +1781,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-Pango
+  category: "libs"
+  name: "Pango"
+  version: "1.227.0-r2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/Pango
+  atoms:
+  - dev-perl/Pango
+  provides:
+  - category: "dev-perl"
+    name: "Pango"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pep517
   category: "libs"
   name: "pep517"
