@@ -4861,6 +4861,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-Gtk2
+  category: "libs"
+  name: "Gtk2"
+  version: "1.249.930"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/Gtk2
+  atoms:
+  - dev-perl/Gtk2
+  provides:
+  - category: "dev-perl"
+    name: "Gtk2"
+    version: ">=0"
+  prereqs:
+  - *libs-Pango
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gts
   category: "libs"
   name: "gts"
