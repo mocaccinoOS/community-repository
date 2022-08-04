@@ -5120,26 +5120,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libtomcrypt
-  category: "libs"
-  name: "libtomcrypt"
-  version: "1.18.2-r4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libtomcrypt
-  atoms:
-  - dev-libs/libtomcrypt
-  provides:
-  - category: "dev-libs"
-    name: "libtomcrypt"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-tomsfastmath
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
@@ -6240,26 +6220,6 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
-
-# - &libs-pycryptodome
-#   category: "libs"
-#   name: "pycryptodome"
-#   version: "3.14.1+2"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/pycryptodome
-#   atoms:
-#   - dev-python/pycryptodome
-#   provides:
-#   - category: "dev-python"
-#     name: "pycryptodome"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-sys-fs
-#   - <<: *libs-libtomcrypt
-#   build_requires:
-#   - <<: *layers-sys-fs
 
 - &libs-pychromecast
   category: "libs"
