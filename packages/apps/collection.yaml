@@ -8391,27 +8391,26 @@ packages:
 ### dep VIII apps ###
 ################################################################################
 
-- category: "apps"
-  name: "dvdshrink"
-  version: "2.6.1_p10-r1+2"
+- &apps-subtitleripper
+  category: "apps"
+  name: "subtitleripper"
+  version: "0.3.4-r4"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
-      app-cdr/dvdshrink
+      media-video/subtitleripper
   atoms:
-  - app-cdr/dvdshrink
+  - media-video/subtitleripper
   provides:
-  - category: "app-cdr"
-    name: "dvdshrink"
+  - category: "media-video"
+    name: "subtitleripper"
     version: ">=0"
   requires:
-  - <<: *layers-X
-  - <<: *apps-dvd-rw-tools
+  - <<: *layers-gnome-common
+  - <<: *libs-netpbm
   - <<: *apps-gocr
-  - <<: *apps-transcode
-  - <<: *apps-xsane
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "umbrello"
@@ -8431,3 +8430,34 @@ packages:
   - <<: *apps-kdevelop
   build_requires:
   - <<: *layers-plasma
+
+################################################################################
+### dep IX libs ###
+################################################################################
+
+################################################################################
+### dep IX apps ###
+################################################################################
+
+- category: "apps"
+  name: "dvdshrink"
+  version: "2.6.1_p10-r1+2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-cdr/dvdshrink
+  atoms:
+  - app-cdr/dvdshrink
+  provides:
+  - category: "app-cdr"
+    name: "dvdshrink"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-dvd-rw-tools
+  - <<: *apps-gocr
+  - <<: *apps-subtitleripper
+  - <<: *apps-transcode
+  - <<: *apps-xsane
+  build_requires:
+  - <<: *layers-X
