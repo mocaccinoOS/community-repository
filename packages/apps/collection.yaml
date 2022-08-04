@@ -3653,7 +3653,8 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
+- &apps-mpv
+  category: "apps"
   name: "mpv"
   version: "0.34.1-r1"
   labels:
@@ -4174,6 +4175,24 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "celluloid"
+  version: "0.21+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/celluloid
+  atoms:
+  - media-video/celluloid
+  provides:
+  - category: "media-video"
+    name: "celluloid"
+    version: ">=0"
+  requires:
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *apps-mpv
 
 - category: "apps"
   name: "tokodon"
