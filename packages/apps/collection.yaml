@@ -2844,6 +2844,25 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
+- &apps-dvdauthor
+  category: "apps"
+  name: "dvdauthor"
+  version: "0.7.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/dvdauthor
+  atoms:
+  - media-video/dvdauthor
+  provides:
+  - category: "media-video"
+    name: "dvdauthor"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 # should be in main repo
 - category: "apps"
   name: "extundelete"
@@ -8455,6 +8474,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-dvd-rw-tools
+  - <<: *apps-dvdauthor
   - <<: *apps-gocr
   - <<: *apps-subtitleripper
   - <<: *apps-transcode
