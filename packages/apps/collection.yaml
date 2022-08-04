@@ -7932,7 +7932,8 @@ packages:
   - <<: *layers-plasma
   # - <<: *layers-qt
 
-- category: "apps"
+- &apps-gimp
+  category: "apps"
   name: "gimp"
   version: "2.10.32"
   labels:
@@ -8165,6 +8166,26 @@ packages:
   - <<: *buildbase-gnome-common
 #   - <<: *buildbase-kde-common
   requires_final_images: true
+
+- &apps-xsane
+  category: "apps"
+  name: "xsane"
+  version: "0.999-r4"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/xsane
+  atoms:
+  - media-gfx/xsane
+  provides:
+  - category: "media-gfx"
+    name: "xsane"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-gimp
+  build_requires:
+  - <<: *layers-gnome-common
 
 ################################################################################
 ### dep VII libs ###
