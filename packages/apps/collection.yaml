@@ -3811,6 +3811,25 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-openjade
+  category: "apps"
+  name: "openjade"
+  version: "1.3.2-r9"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/openjade
+  atoms:
+  - app-text/openjade
+  provides:
+  - category: "app-text"
+    name: "openjade"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "opera"
   version: "89.0.4447.48"
