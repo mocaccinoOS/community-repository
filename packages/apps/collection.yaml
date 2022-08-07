@@ -140,6 +140,13 @@ anchors:
 ### apps ###
 ################################################################################
 
+- &apps-grub
+  category: "apps"
+  name: "grub"
+  version: ">=0"
+  atoms:
+  - sys-boot/grub
+
 - &apps-emacs
   category: "apps"
   name: "emacs"
@@ -3124,9 +3131,9 @@ packages:
     name: "grub-btrfs"
     version: ">=0"
   requires:
-  - apps/grub
+  - <<: *apps-grub
   build_requires:
-  - apps/grub
+  - <<: *apps-grub
 
 - category: "apps"
   name: "hardinfo"
