@@ -3109,6 +3109,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "grub-btrfs"
+  version: "4.11+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/grub-btrfs
+  atoms:
+  - app-backup/grub-btrfs
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "app-backup"
+    name: "grub-btrfs"
+    version: ">=0"
+  requires:
+  - apps/grub
+  build_requires:
+  - apps/grub
+
+- category: "apps"
   name: "hardinfo"
   version: "0.6_alpha_pre20201116-r1+1"
   labels:
