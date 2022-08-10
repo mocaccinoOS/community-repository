@@ -6024,6 +6024,27 @@ packages:
   - <<: *layers-java
 
 - category: "apps"
+  name: "snapper-gui"
+  version: "220626+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/snapper-gui
+  atoms:
+  - app-backup/snapper-gui
+  overlays:
+  - name: "gentoo-zh"
+  provides:
+  - category: "app-backup"
+    name: "snapper-gui"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-snapper
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "soundconverter"
   version: "4.0.3+1"
   labels:
