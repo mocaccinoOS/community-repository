@@ -4121,6 +4121,25 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
+- &apps-snapper
+  category: "apps"
+  name: "snapper"
+  version: "0.9.1+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/snapper
+  atoms:
+  - app-backup/snapper
+  provides:
+  - category: "app-backup"
+    name: "snapper"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-sndio
   category: "apps"
   name: "sndio"
