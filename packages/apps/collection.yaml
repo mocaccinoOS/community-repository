@@ -3267,6 +3267,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "iat"
+  version: "0.1.7-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/iat
+  atoms:
+  - app-cdr/iat
+  provides:
+  - category: "app-cdr"
+    name: "iat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-icoutils
   category: "apps"
   name: "icoutils"
