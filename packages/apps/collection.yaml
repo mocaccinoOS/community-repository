@@ -2674,6 +2674,24 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "ccd2iso"
+  version: "0.3-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/ccd2iso
+  atoms:
+  - app-cdr/ccd2iso
+  provides:
+  - category: "app-cdr"
+    name: "ccd2iso"
+    version: ">=0"
+  requires:
+  - <<: *system-x
+  build_requires:
+  - <<: *system-x
+
+- category: "apps"
   name: "celestia"
   version: "1.7.0_pre20220120+3"
   labels:
