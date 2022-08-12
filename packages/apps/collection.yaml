@@ -2590,6 +2590,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "bchunk"
+  version: "1.2.2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/bchunk
+  atoms:
+  - app-cdr/bchunk
+  provides:
+  - category: "app-cdr"
+    name: "bchunk"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
