@@ -2347,6 +2347,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-uthash
+  category: "libs"
+  name: "uthash"
+  version: "2.3.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/uthash
+  atoms:
+  - dev-libs/uthash
+  provides:
+  - category: "dev-libs"
+    name: "uthash"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-vamp-plugin-sdk
   category: "libs"
   name: "vamp-plugin-sdk"
