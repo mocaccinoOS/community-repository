@@ -2591,6 +2591,24 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "b5i2iso"
+  version: "0.2-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/b5i2iso
+  atoms:
+  - app-cdr/b5i2iso
+  provides:
+  - category: "app-cdr"
+    name: "b5i2iso"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "bchunk"
   version: "1.2.2"
   labels:
