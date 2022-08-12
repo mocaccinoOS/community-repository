@@ -4152,6 +4152,25 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-rofi
+  category: "apps"
+  name: "rofi"
+  version: "1.7.3-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/rofi
+  atoms:
+  - x11-misc/rofi
+  provides:
+  - category: "x11-misc"
+    name: "rofi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "scapy"
   version: "2.4.5+1"
