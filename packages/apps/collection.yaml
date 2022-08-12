@@ -4581,6 +4581,28 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &apps-vala
+  category: "apps"
+  name: "vala"
+  version: "0.56.1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-lang/vala
+  atoms:
+  - dev-lang/vala
+  provides:
+  - category: "dev-lang"
+    name: "vala"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "vala-common"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-ufw
   category: "apps"
   name: "ufw"
