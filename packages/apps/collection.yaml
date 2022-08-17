@@ -2801,6 +2801,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "colord-kde"
+  version: "0.5.0-r2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/colord-kde
+  atoms:
+  - kde-misc/colord-kde
+  provides:
+  - category: "kde-misc"
+    name: "colord-kde"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
