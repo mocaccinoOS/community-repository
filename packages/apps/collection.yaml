@@ -337,6 +337,25 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-analitza
+  category: "libs"
+  name: "analitza"
+  version: "22.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/analitza
+  atoms:
+  - kde-apps/analitza
+  provides:
+  - category: "kde-apps"
+    name: "analitza"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &libs-asio
   category: "libs"
   name: "asio"
