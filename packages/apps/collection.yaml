@@ -2588,6 +2588,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "alligator"
+  version: "22.06"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/alligator
+  atoms:
+  - kde-apps/alligator
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "kde-apps"
+    name: "alligator"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-argyllcms
   category: "apps"
   name: "argyllcms"
