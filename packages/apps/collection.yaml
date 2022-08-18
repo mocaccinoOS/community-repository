@@ -518,25 +518,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-distro
-  category: "libs"
-  name: "distro"
-  version: "1.7.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/distro
-  atoms:
-  - dev-python/distro
-  provides:
-  - category: "dev-python"
-    name: "distro"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
@@ -8551,7 +8532,6 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *libs-build
-  - <<: *libs-distro
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
   - <<: *libs-wxpython
