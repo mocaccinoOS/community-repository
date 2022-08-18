@@ -5927,6 +5927,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-kalgebra
+  category: "apps"
+  name: "kalgebra"
+  version: "22.04.3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kalgebra
+  atoms:
+  - kde-apps/kalgebra
+  provides:
+  - category: "kde-apps"
+    name: "kalgebra"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-analitza
+  build_requires:
+  - <<: *layers-kde-common
+  - <<: *libs-analitza
+
 # TODO: gpg
 - category: "apps"
   name: "kget"
