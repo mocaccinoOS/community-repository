@@ -513,30 +513,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-dee
-  category: "libs"
-  name: "dee"
-  version: "1.2.7+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/dee
-  atoms:
-  - dev-libs/dee
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "dev-libs"
-    name: "dee"
-    version: ">=0"
-  prepare:
-  - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
-  - emerge unity-base/unity-build-env:0/jammy
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
@@ -5559,28 +5535,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libunity
-  category: "libs"
-  name: "libunity"
-  version: "7.1.4+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libunity
-  atoms:
-  - dev-libs/libunity
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "dev-libs"
-    name: "libunity"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-dee
-  build_requires:
-  - <<: *layers-X
-
 - &libs-vigra
   category: "libs"
   name: "vigra"
@@ -6373,29 +6327,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-bamf
-  category: "libs"
-  name: "bamf"
-  version: "0.5.6"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      unity-base/bamf
-  atoms:
-  - unity-base/bamf
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "unity-base"
-    name: "bamf"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-libunity
-  - <<: *libs-libwnck-1
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-cholmod
   category: "libs"
   name: "cholmod"
@@ -6417,6 +6348,31 @@ packages:
   - <<: *libs-ccolamd
   - <<: *libs-colamd
   - <<: *libs-metis
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-dee
+  category: "libs"
+  name: "dee"
+  version: "1.2.7+2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/dee
+  atoms:
+  - dev-libs/dee
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "dev-libs"
+    name: "dee"
+    version: ">=0"
+  prepare:
+  - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
+  - emerge unity-base/unity-build-env:0/jammy
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-vala
   build_requires:
   - <<: *layers-system-x
 
@@ -7425,6 +7381,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libunity
+  category: "libs"
+  name: "libunity"
+  version: "7.1.4+1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libunity
+  atoms:
+  - dev-libs/libunity
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "dev-libs"
+    name: "libunity"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-dee
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep III apps ###
 ################################################################################################################################################################
@@ -7613,27 +7591,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "plank"
-  version: "0.11.89_p4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/plank
-  atoms:
-  - x11-misc/plank
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "x11-misc"
-    name: "plank"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-bamf
-  build_requires:
-  - <<: *layers-gnome-common
-
 # No space in GH to build
 # - category: "apps"
 #   name: "rstudio"
@@ -7716,6 +7673,29 @@ packages:
 ################################################################################################################################################################
 ### dep IV libs ###
 ################################################################################################################################################################
+
+- &libs-bamf
+  category: "libs"
+  name: "bamf"
+  version: "0.5.6"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      unity-base/bamf
+  atoms:
+  - unity-base/bamf
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "unity-base"
+    name: "bamf"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libunity
+  - <<: *libs-libwnck-1
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-gegl
   category: "libs"
@@ -8307,6 +8287,27 @@ packages:
   - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "plank"
+  version: "0.11.89_p4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/plank
+  atoms:
+  - x11-misc/plank
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "x11-misc"
+    name: "plank"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-bamf
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "plantuml"
