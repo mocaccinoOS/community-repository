@@ -4126,6 +4126,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "quassel"
+  version: "0.14.0-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-irc/quassel
+  atoms:
+  - net-irc/quassel
+  provides:
+  - category: "net-irc"
+    name: "quassel"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - category: "entity"
+    name: "quassel"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-qhexedit2
   category: "apps"
   name: "qhexedit2"
