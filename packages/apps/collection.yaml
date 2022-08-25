@@ -3937,6 +3937,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "nwipe"
+  version: "0.34"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/nwipe
+  atoms:
+  - app-crypt/nwipe
+  provides:
+  - category: "app-crypt"
+    name: "nwipe"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-nx
   category: "apps"
   name: "nx"
