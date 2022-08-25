@@ -3533,6 +3533,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "joe"
+  version: "4.6-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/joe
+  atoms:
+  - app-editors/joe
+  provides:
+  - category: "app-editors"
+    name: "joe"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
