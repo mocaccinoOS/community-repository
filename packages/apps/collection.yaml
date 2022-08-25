@@ -3997,6 +3997,24 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "otter"
+  version: "1.0.03"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/otter
+  atoms:
+  - www-client/otter
+  provides:
+  - category: "www-client"
+    name: "otter"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "p7zip-ui"
   version: "16.02-r8+2"
   labels:
