@@ -3919,6 +3919,24 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "ncdu"
+  version: "1.16-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/ncdu
+  atoms:
+  - sys-fs/ncdu
+  provides:
+  - category: "sys-fs"
+    name: "ncdu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "nnn"
   version: "4.5"
   labels:
