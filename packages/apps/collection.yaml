@@ -4879,7 +4879,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - category: "apps"
   name: "w_scan"
   version: "20170107"
@@ -4915,6 +4915,24 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
+
+- category: "apps"
+  name: "wavemon"
+  version: "0.9.3-r1"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-wireless/wavemon
+  atoms:
+  - net-wireless/wavemon
+  provides:
+  - category: "net-wireless"
+    name: "wavemon"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "weechat"
