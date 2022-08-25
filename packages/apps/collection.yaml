@@ -3452,6 +3452,24 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "iptraf-ng"
+  version: "1.2.1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/iptraf-ng
+  atoms:
+  - net-analyzer/iptraf-ng
+  provides:
+  - category: "net-analyzer"
+    name: "iptraf-ng"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-ispc
   category: "apps"
   name: "ispc"
