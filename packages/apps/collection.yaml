@@ -2856,6 +2856,24 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "curses-hexedit"
+  version: "0.9.7-r1"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/curses-hexedit
+  atoms:
+  - app-editors/curses-hexedit
+  provides:
+  - category: "app-editors"
+    name: "curses-hexedit"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "darktable"
   version: "3.8.1-r1+1"
   labels:
