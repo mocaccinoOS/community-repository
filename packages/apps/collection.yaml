@@ -6327,6 +6327,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "obs-studio"
+  version: "27.2.4"
+  uri:
+    - https://obsproject.com
+  license: "GPL-2"
+  description: "Software for Recording and Streaming Live Video Content"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/obs-studio
+  atoms:
+  - media-video/obs-studio
+  provides:
+  - category: "media-video"
+    name: "obs-studio"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-mbedtls
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
