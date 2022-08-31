@@ -2468,29 +2468,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-zope
-  category: "libs"
-  name: "zope"
-  version: "0.6"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: &libs-zope-atoms >-
-      dev-python/zope-event
-      dev-python/zope-interface
-  atoms:
-  - *libs-zope-atoms
-  provides:
-  - category: "dev-python"
-    name: "zope-event"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-interface"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 ################################################################################################################################################################
 ### dep 0 apps ###
 ################################################################################################################################################################
@@ -5366,7 +5343,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-zope
   - <<: *libs-greenlet
   build_requires:
   - <<: *layers-sys-fs
