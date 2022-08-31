@@ -696,25 +696,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-gsl
-  category: "libs"
-  name: "gsl"
-  version: "2.7.1-r1+1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gsl
-  atoms:
-  - sci-libs/gsl
-  provides:
-  - category: "sci-libs"
-    name: "gsl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-Gtk3
   category: "libs"
   name: "Gtk3"
@@ -6148,7 +6129,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-qt
-  - <<: *libs-gsl
   build_requires:
   - <<: *layers-qt
 
@@ -6807,7 +6787,6 @@ packages:
   - <<: *libs-websocketpp
   - <<: *libs-rtl-sdr
   - <<: *libs-cfitsio
-  - <<: *libs-gsl
   - <<: *libs-libnova
   build_requires:
   - <<: *layers-X
@@ -7238,7 +7217,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-vigra
-  - <<: *libs-gsl
   build_requires:
   - <<: *layers-X
 
@@ -7290,7 +7268,6 @@ packages:
   - <<: *libs-gdl
   - <<: *apps-scour
   - <<: *libs-libvisio
-  - <<: *libs-gsl
   build_requires:
   - <<: *layers-gnome-common
 
@@ -7865,7 +7842,6 @@ packages:
   - <<: *libs-libspnav
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
-  - <<: *libs-gsl
   build_requires:
   # okular in layers/kde-apps-minimal
   - <<: *buildbase-kde-common
@@ -8878,7 +8854,6 @@ packages:
   - <<: *libs-libheif
   - <<: *libs-libmypaint
   - <<: *libs-ocio-oiio
-  - <<: *libs-gsl
   - <<: *libs-vc
   build_requires:
   - <<: *layers-kde-common
