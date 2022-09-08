@@ -95,18 +95,18 @@ anchors:
   name: "ghc"
   version: ">=0"
 
-- &layers-haskell
-  category: "layers"
-  name: "haskell"
-  version: ">=0"
-- &layerbase-haskell
-  category: "layerbase"
-  name: "haskell"
-  version: ">=0"
-- &buildbase-haskell
-  category: "buildbase"
-  name: "haskell"
-  version: ">=0"
+# - &layers-haskell
+#   category: "layers"
+#   name: "haskell"
+#   version: ">=0"
+# - &layerbase-haskell
+#   category: "layerbase"
+#   name: "haskell"
+#   version: ">=0"
+# - &buildbase-haskell
+#   category: "buildbase"
+#   name: "haskell"
+#   version: ">=0"
 
 - &layers-office-common
   category: "layers"
@@ -4849,28 +4849,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "2.9.2.1+7"
-  uri:
-    - https://pandoc.org
-  license: "GPL-2+"
-  description: "Conversion between markup formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &apps-pandoc-atoms >-
-      =app-text/pandoc-2.9.2.1
-  atoms:
-  - *apps-pandoc-atoms
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  requires:
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *layers-haskell
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "2.9.2.1+7"
+#   uri:
+#     - https://pandoc.org
+#   license: "GPL-2+"
+#   description: "Conversion between markup formats"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: &apps-pandoc-atoms >-
+#       =app-text/pandoc-2.9.2.1
+#   atoms:
+#   - *apps-pandoc-atoms
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *layers-haskell
 
 - &apps-pip
   category: "apps"
