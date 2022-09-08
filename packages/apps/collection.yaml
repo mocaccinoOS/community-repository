@@ -4644,6 +4644,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "nomacs"
+  version: "3.16.224-r2"
+  uri:
+    - https://nomacs.org
+  license: "GPL-3+"
+  description: "Qt-based image viewer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/nomacs
+  atoms:
+  - media-gfx/nomacs
+  provides:
+  - category: "media-gfx"
+    name: "nomacs"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-opencv
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "nrg2iso"
   version: "0.4-r2+1"
   uri:
