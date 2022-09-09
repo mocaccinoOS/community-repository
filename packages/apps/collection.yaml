@@ -4424,9 +4424,10 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+# require on gnome for now, need to move dev-libs/totem-pl-parser to layers/gnome-common
 - category: "apps"
   name: "lollypop"
-  version: "1.4.29"
+  version: "1.4.29+1"
   uri:
     - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -4442,9 +4443,9 @@ packages:
     name: "lollypop"
     version: ">=0"
   requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-gnome
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-gnome
 
 - &apps-lshw
   category: "apps"
