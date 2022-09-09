@@ -4424,6 +4424,28 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- category: "apps"
+  name: "lollypop"
+  version: "1.4.29"
+  uri:
+    - https://wiki.gnome.org/Apps/Lollypop
+  license: "GPL-3+"
+  description: "Modern music player for GNOME"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/lollypop
+  atoms:
+  - media-sound/lollypop
+  provides:
+  - category: "media-sound"
+    name: "lollypop"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-lshw
   category: "apps"
   name: "lshw"
