@@ -2631,6 +2631,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-soupsieve
+  category: "libs"
+  name: "soupsieve"
+  version: "2.3.2_p1"
+  uri:
+    - https://github.com/facelessuser/soupsieve
+  license: "MIT"
+  description: "A modern CSS selector implementation for BeautifulSoup"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/soupsieve
+  atoms:
+  - dev-python/soupsieve
+  provides:
+  - category: "dev-python"
+    name: "soupsieve"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-suitesparseconfig
   category: "libs"
   name: "suitesparseconfig"
@@ -4423,29 +4446,6 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
-
-# require on gnome for now, need to move dev-libs/totem-pl-parser to layers/gnome-common
-- category: "apps"
-  name: "lollypop"
-  version: "1.4.29+1"
-  uri:
-    - https://wiki.gnome.org/Apps/Lollypop
-  license: "GPL-3+"
-  description: "Modern music player for GNOME"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/lollypop
-  atoms:
-  - media-sound/lollypop
-  provides:
-  - category: "media-sound"
-    name: "lollypop"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome
-  build_requires:
-  - <<: *layers-gnome
 
 - &apps-lshw
   category: "apps"
@@ -6917,6 +6917,30 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-beautifulsoup4
+  category: "apps"
+  name: "beautifulsoup4"
+  version: "4.11.1"
+  uri:
+    - https://www.crummy.com/software/BeautifulSoup/bs4
+  license: "MIT"
+  description: "Pythonic idioms for iterating, searching, and modifying an HTML/XML parse tree"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/beautifulsoup4
+  atoms:
+  - dev-python/beautifulsoup4
+  provides:
+  - category: "dev-python"
+    name: "beautifulsoup4"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-soupsieve
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "bleachbit"
   version: "4.4.2+1"
@@ -8566,6 +8590,30 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-office-common
   requires_final_images: true
+
+# require on gnome for now, need to move dev-libs/totem-pl-parser to layers/gnome-common
+- category: "apps"
+  name: "lollypop"
+  version: "1.4.29+2"
+  uri:
+    - https://wiki.gnome.org/Apps/Lollypop
+  license: "GPL-3+"
+  description: "Modern music player for GNOME"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/lollypop
+  atoms:
+  - media-sound/lollypop
+  provides:
+  - category: "media-sound"
+    name: "lollypop"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-beautifulsoup4
+  build_requires:
+  - <<: *layers-gnome
 
 - &apps-nut
   category: "apps"
