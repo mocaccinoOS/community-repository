@@ -4563,6 +4563,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "mixxx"
+  version: "2.3.3"
+  uri:
+    - https://www.mixxx.org
+  license: "GPL-2"
+  description: "Advanced Digital DJ tool based on Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/mixxx
+  atoms:
+  - media-sound/mixxx
+  provides:
+  - category: "media-sound"
+    name: "mixxx"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libebur128
+  - <<: *libs-vamp-plugin-sdk
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-mono
   category: "apps"
   name: "mono"
