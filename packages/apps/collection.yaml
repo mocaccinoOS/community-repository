@@ -1246,6 +1246,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libdispatch
+  category: "libs"
+  name: "libdispatch"
+  version: "5.3.3-r1"
+  uri:
+    - https://github.com/apple/swift-corelibs-libdispatch
+  license: "Apache-2.0"
+  description: "A library for concurrent code execution on multicore hardware"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libdispatch
+  atoms:
+  - dev-libs/libdispatch
+  provides:
+  - category: "dev-libs"
+    name: "libdispatch"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libdv
   category: "libs"
   name: "libdv"
@@ -7087,6 +7110,29 @@ packages:
   - <<: *libs-netpbm
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "deadbeef"
+  version: "1.8.8-r1"
+  uri:
+    - https://deadbeef.sourceforge.io
+  license: "BSD GPL-2 LGPL-2.1"
+  description: "DeaDBeeF is a modular audio player similar to foobar2000"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/deadbeef
+  atoms:
+  - media-sound/deadbeef
+  provides:
+  - category: "media-sound"
+    name: "deadbeef"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libdispatch
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "easytag"
