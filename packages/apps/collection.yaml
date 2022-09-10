@@ -3556,6 +3556,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "elisa"
+  version: "22.04.3"
+  uri:
+    - https://apps.kde.org/elisa
+  license: "LGPL-3+"
+  description: "Simple music player by KDE"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/elisa
+  atoms:
+  - media-sound/elisa
+  provides:
+  - category: "media-sound"
+    name: "elisa"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 # should be in main repo
 - category: "apps"
   name: "extundelete"
