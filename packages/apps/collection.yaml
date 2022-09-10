@@ -806,29 +806,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-Gtk3
-  category: "libs"
-  name: "Gtk3"
-  version: "0.38.0+1"
-  uri:
-    - https://metacpan.org/release/Gtk3
-  license: "LGPL-2.1+"
-  description: "Perl interface to the 3.x series of the gtk+ toolkit"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-perl/Gtk3
-  atoms:
-  - dev-perl/Gtk3
-  provides:
-  - category: "dev-perl"
-    name: "Gtk3"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gtkglext
   category: "libs"
   name: "gtkglext"
@@ -8345,7 +8322,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-clamav
-  - <<: *libs-Gtk3
   build_requires:
   - <<: *layers-X
 
