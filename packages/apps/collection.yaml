@@ -7812,6 +7812,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "zoom"
+  version: "5.11.9.4300-r3"
+  uri:
+    - https://zoom.us
+  license: "all-rights-reserved"
+  description: "Video conferencing and web conferencing service"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/zoom
+  atoms:
+  - net-im/zoom
+  provides:
+  - category: "dev-qt"
+    name: "qtdiag"
+    version: ">=0"
+  - category: "net-im"
+    name: "zoom"
+    version: ">=0"
+  prereqs:
+  - dev-qt/qtdiag
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-quazip
+  build_requires:
+  - <<: *layers-qt
+
 ################################################################################################################################################################
 ### dep II libs ###
 ################################################################################################################################################################
