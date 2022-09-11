@@ -7632,6 +7632,32 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "qtox"
+  version: "1.17.6-r1"
+  uri:
+    - https://qtox.github.io
+  license: "GPL-3+"
+  description: "Instant messaging client using the encrypted p2p Tox protocol"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/qtox
+  atoms:
+  - net-im/qtox
+  provides:
+  - category: "net-libs"
+    name: "tox"
+    version: ">=0"
+  - category: "net-im"
+    name: "qtox"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-sqlcipher
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "qutebrowser"
   version: "2.5.2"
   uri:
