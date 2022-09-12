@@ -9156,6 +9156,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "zynaddsubfx"
+  version: "3.0.5"
+  uri:
+    - http://zynaddsubfx.sourceforge.net/
+  license: "GPL-2"
+  description: "Software synthesizer capable of making a countless number of instruments"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/zynaddsubfx
+  atoms:
+  - media-sound/zynaddsubfx
+  overlays:
+  - name: "brother-overlay"
+  provides:
+  - category: "media-sound"
+    name: "zynaddsubfx"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-mxml
+  - <<: *libs-liblo
+  - <<: *libs-dssi
+  - <<: *libs-lash
+  - <<: *libs-fltk
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep III libs ###
 ################################################################################################################################################################
