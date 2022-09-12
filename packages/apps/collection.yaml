@@ -860,98 +860,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-javax-inject
-  category: "libs"
-  name: "javax-inject"
-  version: "1-r4+1"
-  uri:
-    - https://github.com/javax-inject/javax-inject
-  license: "Apache-2.0"
-  description: "Dependency injection for Java (JSR-330)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/javax-inject
-  atoms:
-  - dev-java/javax-inject
-  provides:
-  - category: "dev-java"
-    name: "javax-inject"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
-- &libs-jsr305
-  category: "libs"
-  name: "jsr305"
-  version: "3.0.2-r1"
-  uri:
-    - https://jcp.org/en/jsr/detail?id
-  license: "BSD"
-  description: "Annotations for Software Defect Detection in Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/jsr305
-  atoms:
-  - dev-java/jsr305
-  provides:
-  - category: "dev-java"
-    name: "jsr305"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
-- &libs-libharu
-  category: "libs"
-  name: "libharu"
-  version: "2.3.0-r2+1"
-  uri:
-    - http://www.libharu.org/
-  license: "ZLIB"
-  description: "C/C++ library for PDF generation"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libharu
-  atoms:
-  - media-libs/libharu
-  provides:
-  - category: "media-libs"
-    name: "libharu"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-libircclient
-  category: "libs"
-  name: "libircclient"
-  version: "1.10+1"
-  uri:
-    - http://www.ulduzsoft.com/libircclient/
-  license: "LGPL-2+"
-  description: "Small but powerful library implementing the client-server IRC protocol"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libircclient
-  atoms:
-  - net-libs/libircclient
-  provides:
-  - category: "net-libs"
-    name: "libircclient"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
@@ -1022,6 +930,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-javax-inject
+  category: "libs"
+  name: "javax-inject"
+  version: "1-r4+1"
+  uri:
+    - https://github.com/javax-inject/javax-inject
+  license: "Apache-2.0"
+  description: "Dependency injection for Java (JSR-330)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/javax-inject
+  atoms:
+  - dev-java/javax-inject
+  provides:
+  - category: "dev-java"
+    name: "javax-inject"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-jbigkit
   category: "libs"
   name: "jbigkit"
@@ -1039,6 +970,52 @@ packages:
   provides:
   - category: "media-libs"
     name: "jbigkit"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-jsr305
+  category: "libs"
+  name: "jsr305"
+  version: "3.0.2-r1"
+  uri:
+    - https://jcp.org/en/jsr/detail?id
+  license: "BSD"
+  description: "Annotations for Software Defect Detection in Java"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/jsr305
+  atoms:
+  - dev-java/jsr305
+  provides:
+  - category: "dev-java"
+    name: "jsr305"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
+- &libs-libharu
+  category: "libs"
+  name: "libharu"
+  version: "2.3.0-r2+1"
+  uri:
+    - http://www.libharu.org/
+  license: "ZLIB"
+  description: "C/C++ library for PDF generation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libharu
+  atoms:
+  - media-libs/libharu
+  provides:
+  - category: "media-libs"
+    name: "libharu"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1414,6 +1391,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libircclient
+  category: "libs"
+  name: "libircclient"
+  version: "1.10+1"
+  uri:
+    - http://www.ulduzsoft.com/libircclient/
+  license: "LGPL-2+"
+  description: "Small but powerful library implementing the client-server IRC protocol"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libircclient
+  atoms:
+  - net-libs/libircclient
+  provides:
+  - category: "net-libs"
+    name: "libircclient"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -1437,6 +1437,29 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- &libs-liblo
+  category: "libs"
+  name: "liblo"
+  version: "0.31"
+  uri:
+    - https://sourceforge.net/projects/liblo/
+  license: "LGPL-2.1"
+  description: "Lightweight OSC (Open Sound Control) implementation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/liblo
+  atoms:
+  - media-libs/liblo
+  provides:
+  - category: "media-libs"
+    name: "liblo"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-liblqr
   category: "libs"
@@ -1947,6 +1970,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-mxml
+  category: "libs"
+  name: "mxml"
+  version: "3.3.1"
+  uri:
+    - https://github.com/michaelrsweet/mxml
+  license: "Mini-XML"
+  description: "A small XML parsing library that you can use to read XML data files or strings"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/mxml
+  atoms:
+  - dev-libs/mxml
+  provides:
+  - category: "dev-libs"
+    name: "mxml"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-nas
   category: "libs"
