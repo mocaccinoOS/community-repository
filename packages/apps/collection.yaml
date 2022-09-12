@@ -6328,6 +6328,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-dssi
+  category: "libs"
+  name: "dssi"
+  version: "1.1.1-r1"
+  uri:
+    - http://dssi.sourceforge.net/
+  license: "BSD LGPL-2.1"
+  description: "Plugin API for software instruments with user interfaces"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/dssi
+  atoms:
+  - media-libs/dssi
+  provides:
+  - category: "media-libs"
+    name: "dssi"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-liblo
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-dumb
   category: "libs"
   name: "dumb"
