@@ -9261,6 +9261,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-fluidsynth-dssi
+  category: "libs"
+  name: "fluidsynth-dssi"
+  version: "1.0.0-r1"
+  uri:
+    - http://dssi.sourceforge.net/
+  license: "GPL-2"
+  description: "DSSI Soft Synth Interface"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/fluidsynth-dssi
+  atoms:
+  - media-libs/fluidsynth-dssi
+  provides:
+  - category: "media-libs"
+    name: "fluidsynth-dssi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-dssi
+  - <<: *libs-liblo
+  - <<: *apps-fluidsynth
+  build_requires:
+  - <<: *layers-X
+
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
