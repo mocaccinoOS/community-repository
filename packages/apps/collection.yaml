@@ -8020,32 +8020,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-fluidsynth
-  category: "libs"
-  name: "fluidsynth"
-  version: "2.2.7"
-  uri:
-    - https://www.fluidsynth.org
-  license: "LGPL-2.1+"
-  description: "Software real-time synthesizer based on the Soundfont 2 specifications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/fluidsynth
-  atoms:
-  - media-sound/fluidsynth
-  provides:
-  - category: "media-sound"
-    name: "fluidsynth"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-cmt-plugins
-  - <<: *libs-lash
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
@@ -8335,48 +8309,6 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "audacious"
-  version: "4.1+4"
-  uri:
-    - https://audacious-media-player.org
-    - http://ampache-browser.org
-    - https://github.com/ampache-browser/ampache_browser
-    - http://bio2jack.sourceforge.net/
-  license: "BSD-2 LGPL-2.1 GPL-2+ GPL-3 GPL-3+"
-  description: |
-    "Audacious Player - Your music, your way, no exceptions"
-    "Ampache desktop client library"
-    "A library for porting blocked I/O OSS/ALSA audio applications to JACK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: &apps-audacious-atoms >-
-      media-sound/audacious
-      media-plugins/audacious-plugins
-  atoms:
-  - *apps-audacious-atoms
-  provides:
-  - category: "media-sound"
-    name: "audacious"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "audacious-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "ampache_browser"
-    version: ">=0"
-  - category: "media-libs"
-    name: "bio2jack"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libbs2b
-  - <<: *libs-libopenmpt
-  - <<: *libs-libsidplayfp
-  - <<: *libs-fluidsynth
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "avidemux"
   version: "2.7.8+2"
   uri:
@@ -8579,7 +8511,7 @@ packages:
   - <<: *libs-vigra
   build_requires:
   - <<: *layers-X
-
+ 
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
@@ -8591,11 +8523,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/fluidsynth
+      media-sound/fluidsynth
   atoms:
-  - media-libs/fluidsynth
+  - media-sound/fluidsynth
   provides:
-  - category: "media-libs"
+  - category: "media-sound"
     name: "fluidsynth"
     version: ">=0"
   requires:
@@ -9150,7 +9082,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.1"
+  version: "0.9.1-r1"
   uri:
     - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -9175,7 +9107,7 @@ packages:
   - <<: *libs-libofa
   - <<: *libs-libshout
   - <<: *libs-libsidplay
-  - <<: *libs-fluidsynth
+  - <<: *apps-fluidsynth
   - <<: *libs-mac
   build_requires:
   - <<: *layers-X
@@ -9392,6 +9324,48 @@ packages:
 ################################################################################################################################################################
 ### dep III apps ###
 ################################################################################################################################################################
+
+- category: "apps"
+  name: "audacious"
+  version: "4.2"
+  uri:
+    - https://audacious-media-player.org
+    - http://ampache-browser.org
+    - https://github.com/ampache-browser/ampache_browser
+    - http://bio2jack.sourceforge.net/
+  license: "BSD-2 LGPL-2.1 GPL-2+ GPL-3 GPL-3+"
+  description: |
+    "Audacious Player - Your music, your way, no exceptions"
+    "Ampache desktop client library"
+    "A library for porting blocked I/O OSS/ALSA audio applications to JACK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: &apps-audacious-atoms >-
+      media-sound/audacious
+      media-plugins/audacious-plugins
+  atoms:
+  - *apps-audacious-atoms
+  provides:
+  - category: "media-sound"
+    name: "audacious"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "audacious-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "ampache_browser"
+    version: ">=0"
+  - category: "media-libs"
+    name: "bio2jack"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libbs2b
+  - <<: *libs-libopenmpt
+  - <<: *libs-libsidplayfp
+  - <<: *apps-fluidsynth
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "calligra"
