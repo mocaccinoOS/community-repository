@@ -7954,6 +7954,30 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "vkeybd"
+  version: "0.1.18d"
+  uri:
+    - http://www.alsa-project.org/~iwai/alsa.html
+  license: "GPL-2"
+  description: "A virtual MIDI keyboard for X"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/vkeybd
+  atoms:
+  - media-sound/vkeybd
+  provides:
+  - category: "media-sound"
+    name: "vkeybd"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-tk
+  - <<: *libs-lash
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "zoom"
   version: "5.11.9.4300-r3+1"
   uri:
