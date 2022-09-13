@@ -8580,6 +8580,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-fluidsynth
+  category: "apps"
+  name: "fluidsynth"
+  version: "2.2.8"
+  uri:
+    - https://www.fluidsynth.org
+  license: "LGPL-2.1+"
+  description: "Software real-time synthesizer based on the Soundfont 2 specifications"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/fluidsynth
+  atoms:
+  - media-libs/fluidsynth
+  provides:
+  - category: "media-libs"
+    name: "fluidsynth"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-cmt-plugins
+  - <<: *libs-lash
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "fotoxx"
   version: "22.16"
