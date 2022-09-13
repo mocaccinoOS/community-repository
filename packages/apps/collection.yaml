@@ -5207,6 +5207,28 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "qjackctl"
+  version: "0.9.7"
+  uri:
+    - https://qjackctl.sourceforge.io/
+  license: "GPL-2"
+  description: "Qt GUI to control the JACK Audio Connection Kit and ALSA sequencer connections"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qjackctl
+  atoms:
+  - media-sound/qjackctl
+  provides:
+  - category: "media-sound"
+    name: "qjackctl"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "rawtherapee"
   version: "5.8-r1+1"
   uri:
