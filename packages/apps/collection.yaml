@@ -668,6 +668,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-fluid-soundfont
+  category: "libs"
+  name: "fluid-soundfont"
+  version: "3.1"
+  uri:
+    - http://musescore.org/en/handbook/soundfont
+  license: "MIT"
+  description: "The Fluid R3 soundfont"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluid-soundfont
+  atoms:
+  - media-sound/fluid-soundfont
+  provides:
+  - category: "media-sound"
+    name: "fluid-soundfont"
+    version: ">=0"
+  prereqs:
+  - app-eselect/eselect-timidity
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
