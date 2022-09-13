@@ -9559,29 +9559,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- category: "apps"
-  name: "nomacs"
-  version: "3.16.224-r2"
-  uri:
-    - https://nomacs.org
-  license: "GPL-3+"
-  description: "Qt-based image viewer"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/nomacs
-  atoms:
-  - media-gfx/nomacs
-  provides:
-  - category: "media-gfx"
-    name: "nomacs"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-opencv
-  build_requires:
-  - <<: *layers-qt
-
 - &apps-moc
   category: "apps"
   name: "moc"
@@ -9616,6 +9593,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "nomacs"
+  version: "3.16.224-r2"
+  uri:
+    - https://nomacs.org
+  license: "GPL-3+"
+  description: "Qt-based image viewer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/nomacs
+  atoms:
+  - media-gfx/nomacs
+  provides:
+  - category: "media-gfx"
+    name: "nomacs"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-opencv
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
@@ -9648,6 +9648,29 @@ packages:
   - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "qsynth"
+  version: "0.9.7"
+  uri:
+    - https://qsynth.sourceforge.io/
+  license: "GPL-2"
+  description: "Qt application to control FluidSynth"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/qsynth
+  atoms:
+  - media-sound/qsynth
+  provides:
+  - category: "media-sound"
+    name: "qsynth"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-fluidsynth
+  build_requires:
+  - <<: *layers-qt
 
 # No space in GH to build
 # - category: "apps"
