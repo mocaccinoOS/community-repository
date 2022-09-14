@@ -8001,6 +8001,31 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "yoshimi"
+  version: "2.2.1"
+  uri:
+    - http://yoshimi.sourceforge.net/
+  license: "GPL-2"
+  description: "Software synthesizer based on ZynAddSubFX"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/yoshimi
+  atoms:
+  - media-sound/yoshimi
+  provides:
+  - category: "media-sound"
+    name: "yoshimi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-mxml
+  - <<: *libs-lv2
+  - <<: *libs-fltk
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "zoom"
   version: "5.11.9.4300-r3+1"
   uri:
