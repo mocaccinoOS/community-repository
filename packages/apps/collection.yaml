@@ -1093,29 +1093,6 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- &libs-lash
-  category: "libs"
-  name: "lash"
-  version: "0.5.4-r5"
-  uri:
-    - http://www.nongnu.org/lash/
-  license: "GPL-2"
-  description: "LASH Audio Session Handler"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/lash
-  atoms:
-  - media-sound/lash
-  provides:
-  - category: "media-sound"
-    name: "lash"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-lasi
   category: "libs"
   name: "lasi"
@@ -4548,6 +4525,29 @@ packages:
 #   - <<: *layers-plasma
 #   build_requires:
 #   - <<: *layers-plasma
+
+- &apps-lash
+  category: "libs"
+  name: "apps"
+  version: "0.5.4-r5"
+  uri:
+    - http://www.nongnu.org/lash/
+  license: "GPL-2"
+  description: "LASH Audio Session Handler"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/lash
+  atoms:
+  - media-sound/lash
+  provides:
+  - category: "media-sound"
+    name: "lash"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "latte-dock"
@@ -8019,7 +8019,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-tk
-  - <<: *libs-lash
+  - <<: *apps-lash
   build_requires:
   - <<: *layers-X
 
@@ -8451,6 +8451,32 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "amsynth"
+  version: "1.12.4"
+  uri:
+    - https://github.com/amsynth/amsynth
+  license: "GPL-2"
+  description: "Virtual analogue synthesizer"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/amsynth
+  atoms:
+  - media-sound/amsynth
+  provides:
+  - category: "media-sound"
+    name: "amsynth"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-dssi
+  - <<: *libs-liblo
+  - <<: *libs-lv2
+  - <<: *apps-lash
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "avidemux"
   version: "2.7.8+2"
   uri:
@@ -8676,7 +8702,7 @@ packages:
   - <<: *layers-X
   - <<: *libs-ladspa-sdk
   - <<: *libs-cmt-plugins
-  - <<: *libs-lash
+  - <<: *apps-lash
   build_requires:
   - <<: *layers-X
 
@@ -9276,7 +9302,7 @@ packages:
   - <<: *libs-mxml
   - <<: *libs-liblo
   - <<: *libs-dssi
-  - <<: *libs-lash
+  - <<: *apps-lash
   - <<: *libs-fltk
   build_requires:
   - <<: *layers-X
