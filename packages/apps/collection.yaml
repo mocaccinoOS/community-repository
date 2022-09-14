@@ -9149,6 +9149,38 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "terminatorx"
+  version: "4.1.0"
+  uri:
+    - https://www.terminatorx.org/
+    - http://www.underbit.com/products/mad/
+  license: "GPL-2"
+  description: |
+    "Realtime audio synthesizer allowing you to 'scratch' on sampled audio data"
+    "The MAD audio player"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: &apps-terminatorx-atoms >-
+      media-sound/madplay
+      media-sound/terminatorx
+  atoms:
+  - *apps-terminatorx-atoms
+  provides:
+  - category: "media-sound"
+    name: "terminatorx"
+    version: ">=0"
+  - category: "media-sound"
+    name: "madplay"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblrdf
+  - <<: *libs-cmt-plugins
+  build_requires:
+  - <<: *layers-X
+
 - &apps-timidity
   category: "apps"
   name: "timidity"
