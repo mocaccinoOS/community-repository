@@ -3471,6 +3471,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-cpupower
+  category: "apps"
+  name: "cpupower"
+  version: "5.12"
+  uri:
+    - https://www.kernel.org/
+  license: "GPL-2"
+  description: "Shows and sets processor power related values"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-power/cpupower
+  atoms:
+  - sys-power/cpupower
+  provides:
+  - category: "sys-power"
+    name: "cpupower"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "cuetools"
   version: "1.4.1-r1"
