@@ -6729,6 +6729,31 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-liblrdf
+  category: "libs"
+  name: "liblrdf"
+  version: "0.6.1-r1"
+  uri:
+    - https://github.com/swh/LRDF
+  license: "GPL-2"
+  description: "Library for manipulation of RDF files in LADSPA plugins"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: 
+      - media-libs/liblrdf
+  atoms:
+  - media-libs/liblrdf
+  provides:
+  - category: "media-libs"
+    name: "liblrdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-raptor
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
