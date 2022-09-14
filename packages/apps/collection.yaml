@@ -2524,6 +2524,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-raptor
+  category: "libs"
+  name: "raptor"
+  version: "2.0.15-r5"
+  uri:
+    - https://github.com/swh/LRDF
+  license: "Apache-2.0 GPL-2 LGPL-2.1"
+  description: "Library for manipulation of RDF files in LADSPA plugins"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: 
+      - media-libs/raptor
+  atoms:
+  - media-libs/raptor
+  provides:
+  - category: "media-libs"
+    name: "raptor"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
@@ -4527,9 +4550,9 @@ packages:
 #   - <<: *layers-plasma
 
 - &apps-lash
-  category: "libs"
-  name: "apps"
-  version: "0.5.4-r5"
+  category: "apps"
+  name: "lash"
+  version: "0.5.4-r5+1"
   uri:
     - http://www.nongnu.org/lash/
   license: "GPL-2"
@@ -8452,7 +8475,7 @@ packages:
 
 - category: "apps"
   name: "amsynth"
-  version: "1.12.4"
+  version: "1.12.4+1"
   uri:
     - https://github.com/amsynth/amsynth
   license: "GPL-2"

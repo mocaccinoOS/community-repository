@@ -96,23 +96,30 @@ anchors:
   name: "ghc"
   version: ">=0"
 
-- &layers-haskell
-  category: "layers"
-  name: "haskell"
-  version: ">=0"
-- &layerbase-haskell
-  category: "layerbase"
-  name: "haskell"
-  version: ">=0"
-- &buildbase-haskell
-  category: "buildbase"
-  name: "haskell"
-  version: ">=0"
+# - &layers-haskell
+#   category: "layers"
+#   name: "haskell"
+#   version: ">=0"
+# - &layerbase-haskell
+#   category: "layerbase"
+#   name: "haskell"
+#   version: ">=0"
+# - &buildbase-haskell
+#   category: "buildbase"
+#   name: "haskell"
+#   version: ">=0"
 
 
 ################################################################################
 ### libs ###
 ################################################################################
+
+- &libs-raptor
+  category: "libs"
+  name: "raptor"
+  version: ">=0"
+  atoms:
+  - media-libs/raptor
 
 ################################################################################
 ### apps ###
@@ -267,11 +274,11 @@ packages:
   - category: "media-libs"
     name: "libzmf"
     version: ">=0"
-  - category: "media-libs"
-    name: "raptor"
-    version: ">=0"
+  prepare:
+  - wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/master/packages/apps/package.use/libs-raptor.use -O /etc/portage/package.use/libs-raptor.use
   requires:
   - <<: *layers-X
+  - <<: *libs-raptor
   build_requires:
   - <<: *layers-X
 
