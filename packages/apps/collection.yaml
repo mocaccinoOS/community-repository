@@ -7430,6 +7430,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "helm-synthesizer"
+  version: "0.9.0-r1"
+  uri:
+    - https://tytel.org/helm/
+  license: "GPL-3+"
+  description: "Open source polyphonic software synthesizer with lots of modulation"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/helm
+  atoms:
+  - media-sound/helm
+  provides:
+  - category: "media-sound"
+    name: "helm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-X
+
 - &apps-img2pdf
   category: "apps"
   name: "img2pdf"
