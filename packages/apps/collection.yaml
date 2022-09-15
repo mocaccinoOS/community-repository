@@ -6032,6 +6032,28 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "vscodium"
+  version: "1.71.0.22245"
+  uri:
+    - https://vscodium.com/
+  license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
+  description: "A community-driven, freely-licensed binary distribution of Microsoft's VSCode"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/vscodium
+  atoms:
+  - app-editors/vscodium
+  provides:
+  - category: "app-editors"
+    name: "vscodium"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "w_scan"
   uri:
     - http://wirbel.htpc-forum.de/w_scan/index2.html
