@@ -7481,6 +7481,7 @@ packages:
   uri:
   - https://github.com/benjamimgois/goverlay
   license: "GPL-3"
+  description: "GOverlay is an opensource project that aims to create a Graphical UI to help manage Linux overlays."
   labels:
     emerge.jobs: "1"
     emerge.packages: &apps-goverlay-atoms >-
@@ -9144,6 +9145,35 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-icoutils
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
+  name: "rosegarden"
+  version: "22.06"
+  uri:
+  - https://github.com/benjamimgois/rosegarden
+  license: "GPL-2"
+  description: "MIDI and audio sequencer and notation editor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/rosegarden
+  atoms:
+  - media-sound/rosegarden
+  provides:
+  - category: "media-sound"
+    name: "rosegarden"
+    version: ">=0"
+  prereqs:
+  - dev-lang/fpc
+  - dev-lang/lazarus
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-liblrdf
   build_requires:
   - <<: *layers-qt
 
