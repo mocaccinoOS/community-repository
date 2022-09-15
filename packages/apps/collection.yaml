@@ -1580,6 +1580,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libntlm
+  category: "libs"
+  name: "libntlm"
+  version: "1.6"
+  uri:
+    - https://www.nongnu.org/libntlm/
+  license: "LGPL-2"
+  description: "Microsoft's NTLM authentication (libntlm) library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libntlm
+  atoms:
+  - net-libs/libntlm
+  provides:
+  - category: "net-libs"
+    name: "libntlm"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
 - &libs-libofa
   category: "libs"
   name: "libofa"
@@ -7424,6 +7447,33 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "gkrellm"
+  version: "2.3.11-r1"
+  uri:
+    - http://www.gkrellm.net/
+  license: "GPL-3+"
+  description: "Single process stack of various system monitors"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/gkrellm
+  atoms:
+  - app-admin/gkrellm
+  provides:
+  - category: "app-admin"
+    name: "gkrellm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "gkrellmd"
+    version: ">=0"
+  - <<: *apps-hddtemp
+  - <<: *libs-libntlm
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "goverlay"
