@@ -36,7 +36,7 @@
 {{- end }}
 
 ################################################################################
-## cr.packages ###
+## cr.packagesetup ###
 ################################################################################
 
 {{- define "cr.packagesetup" }}
@@ -115,42 +115,10 @@
 {{- if .opt_requires }}
 {{- range .opt_requires }}
 
-{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- range include "cr.prereqs_emerge" . | fromJsonArray }}
 {{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .setup }}
-{{- range .setup }}
-{{- if . }}
-{{- if not (has . $commands) }}
-{{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .preemerge }}
-{{- range .preemerge }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- if not (has $command $commands) }}
-{{- $commands = append $commands $command }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .atoms }}
-{{- range .atoms }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- if not (has $command $commands) }}
-{{- $commands = append $commands $command }}
-{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -161,7 +129,7 @@
 {{- if .requires }}
 {{- range .requires }}
 
-{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- range include "cr.prereqs_emerge" . | fromJsonArray }}
 {{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
@@ -169,33 +137,11 @@
 {{- end }}
 {{- end }}
 
-{{- if .setup }}
-{{- range .setup }}
+{{- if .completion }}
+{{- range .completion }}
 {{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .preemerge }}
-{{- range .preemerge }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- if not (has $command $commands) }}
-{{- $commands = append $commands $command }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .atoms }}
-{{- range .atoms }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- if not (has $command $commands) }}
-{{- $commands = append $commands $command }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -224,6 +170,59 @@
 {{- end }}
 
 {{- $command }}
+
+{{- end }}
+
+################################################################################
+## cr.prereqs_emerge ###
+################################################################################
+
+{{- define "cr.prereqs_emerge" }} 
+
+{{- $commands := list }}
+{{- $command := "" }}
+
+{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- if . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .setup }}
+{{- range .setup }}
+{{- if . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .preemerge }}
+{{- range .preemerge }}
+{{- $command := include "cr.emerge" . }}
+{{- if $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .atoms }}
+{{- range .atoms }}
+{{- $command := include "cr.emerge" . }}
+{{- if $command }}
+{{- if not (has $command $commands) }}
+{{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- $commands | toJson }}
 
 {{- end }}
 

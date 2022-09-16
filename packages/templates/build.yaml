@@ -88,6 +88,14 @@ steps:
 {{- end }}
 {{- end }}
 
+{{- if .Values.completion }}
+{{- range .Values.completion }}
+{{- if . }}
+- {{ . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 # {{ if eq .Values.category "layerbase" }}
 # includes:
 # - ^/etc/portage/package.accept_keywords/.*
