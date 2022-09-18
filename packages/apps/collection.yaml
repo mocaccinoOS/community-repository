@@ -4468,6 +4468,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "notepadqq"
+  version: "2.0.0_beta"
+  uri:
+    - https://notepadqq.com/s
+  license: "GPL-3+"
+  description: "Notepad++-like editor for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/notepadqq
+  provides:
+  - category: "app-editors"
+    name: "notepadqq"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "nrg2iso"
   version: "0.4-r2+1"
   uri:
