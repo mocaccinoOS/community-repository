@@ -69,14 +69,10 @@ steps:
 {{- end }}
 
 {{- if .Values.labels }}
-{{- if .Values.labels.emerge }}
-{{- if .Values.labels.emerge.packages }}
-{{- range .Values.labels.emerge.packages }}
-{{- $command := include "cr.emerge" . }}
+{{- if ( index .Values.labels "emerge.packages" ) }}
+{{- $command := include "cr.emerge" ( index .Values.labels "emerge.packages" ) }}
 {{- if $command }}
 - {{ $command }}
-{{- end }}
-{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}

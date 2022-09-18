@@ -212,15 +212,11 @@
 {{- end }}
 
 {{- if .labels }}
-{{- if .labels.emerge }}
-{{- if .labels.emerge.packages }}
-{{- range .labels.emerge.packages }}
-{{- $command := include "cr.emerge" . }}
+{{- if ( index .labels "emerge.packages" ) }}
+{{- $command := include "cr.emerge" ( index .labels "emerge.packages" ) }}
 {{- if $command }}
 {{- if not (has $command $commands) }}
 {{- $commands = append $commands $command }}
-{{- end }}
-{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
