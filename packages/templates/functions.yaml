@@ -211,12 +211,16 @@
 {{- end }}
 {{- end }}
 
-{{- if .atoms }}
-{{- range .atoms }}
+{{- if .labels }}
+{{- if .labels.emerge }}
+{{- if .labels.emerge.packages }}
+{{- range .labels.emerge.packages }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
 {{- if not (has $command $commands) }}
 {{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}

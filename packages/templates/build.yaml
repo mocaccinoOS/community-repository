@@ -68,11 +68,15 @@ steps:
 {{- end }}
 {{- end }}
 
-{{- if .Values.atoms }}
-{{- range .Values.atoms }}
+{{- if .Values.labels }}
+{{- if .Values.labels.emerge }}
+{{- if .Values.labels.emerge.packages }}
+{{- range .Values.labels.emerge.packages }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
 - {{ $command }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}

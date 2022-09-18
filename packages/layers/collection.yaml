@@ -118,8 +118,10 @@ anchors:
   category: "libs"
   name: "raptor"
   version: ">=0"
-  atoms:
-  - media-libs/raptor
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/raptor
 
 ################################################################################
 ### apps ###
@@ -206,8 +208,6 @@ packages:
       media-libs/libfreehand
       media-libs/libpagemaker
       media-libs/libzmf
-  atoms:
-  - *layers-office-common-atoms
   provides:
   - category: "app-crypt"
     name: "mhash"
@@ -301,8 +301,6 @@ packages:
     emerge.packages: &layers-ghc-atoms >-
       dev-lang/ghc
       app-admin/haskell-updater
-  atoms:
-  - *layers-ghc-atoms
   provides:
   - category: "dev-lang"
     name: "ghc"
@@ -653,8 +651,6 @@ packages:
 #       dev-haskell/yaml
 #       dev-haskell/zip-archive
 #       dev-haskell/zlib
-#   atoms:
-#   - *layers-haskell-atoms
 #   provides:
 #   - category: "dev-haskell"
 #     name: "adjunctions"
