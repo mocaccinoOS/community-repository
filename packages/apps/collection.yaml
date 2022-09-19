@@ -7291,6 +7291,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "plymouth-kcm"
+  version: "5.24.6"
+  uri:
+    - https://invent.kde.org/plasma/plymouth-kcm
+  license: "GPL-2+"
+  description: "KDE Plasma control module for Plymouth"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/plymouth-kcm
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
+  sys-boot/plymouth
+  provides:
+  - category: "kde-plasma"
+    name: "plymouth-kcm"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-grub
+  build_requires:
+  - <<: *layers-plasma
+
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
