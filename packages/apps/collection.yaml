@@ -4490,6 +4490,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "nordvpn"
+  version: "3.14.2"
+  uri:
+    - https://nordvpn.com
+  license: "NordVPN"
+  description: "NordVPN native client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/nordvpn
+  overlays:
+  - name: "nordvpn"
+  provides:
+  - category: "net-vpn"
+    name: "nordvpn"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+
 # - category: "apps"
 #   name: "notepadqq"
 #   version: "9999"
