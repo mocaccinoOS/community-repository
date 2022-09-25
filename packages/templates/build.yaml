@@ -145,4 +145,12 @@ excludes:
 #     - ^/var$
 #     - ^/var/db$
 
+{{- if .Values.excludes }}
+{{- range .Values.excludes }}
+{{- if . }}
+- {{ . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{ end }}

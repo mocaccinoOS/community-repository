@@ -4499,9 +4499,6 @@ packages:
   description: "NordVPN native client"
   labels:
     emerge.jobs: "1"
-  prereqs:
-  - app-arch/rpm
-  - app-arch/rpm2targz
   prepare:
   - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/nordvpn_3.14.2_amd64.deb
   - mkdir nordvpn_3.14.2_amd64
@@ -4516,7 +4513,9 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *buildbase-X  
+  - <<: *buildbase-X
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
 
 # - category: "apps"
 #   name: "notepadqq"
