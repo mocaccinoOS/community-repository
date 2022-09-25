@@ -4470,7 +4470,8 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
+- &apps-networkmanager-openvpn
+  category: "apps"
   name: "networkmanager-openvpn"
   version: "1.8.18"
   uri:
@@ -4512,31 +4513,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-# - category: "apps"
-#   name: "nordvpn"
-#   version: "3.14.2+1"
-#   uri:
-#     - https://nordvpn.com
-#   license: "NordVPN"
-#   description: "NordVPN native client"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-vpn/nordvpn
-#   overlays:
-#   - name: "nordvpn"
-#   provides:
-#   - category: "net-vpn"
-#     name: "nordvpn"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - category: "entity"
-#     name: "openvpn"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *buildbase-gnome-common
 
 # - category: "apps"
 #   name: "notepadqq"
@@ -7259,6 +7235,29 @@ packages:
   - <<: *libs-perl-Tk
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "nordvpn"
+  version: "3.14.2+3"
+  uri:
+    - https://nordvpn.com
+  license: "NordVPN"
+  description: "NordVPN native client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/nordvpn
+  overlays:
+  - name: "nordvpn"
+  provides:
+  - category: "net-vpn"
+    name: "nordvpn"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-networkmanager-openvpn
+  build_requires:
+  - <<: *buildbase-gnome-common
 
 - category: "apps"
   name: "obs-studio"
