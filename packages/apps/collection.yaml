@@ -4471,6 +4471,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "networkmanager-openvpn"
+  version: "1.8.18"
+  uri:
+    - https://gitlab.gnome.org/GNOME/NetworkManager-openvpn
+  license: "GPL-2+"
+  description: "NNetworkManager OpenVPN plugin"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/networkmanager-openvpn
+  provides:
+  - category: "net-vpn"
+    name: "networkmanager-openvpn"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - category: "entity"
+    name: "openvpn"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-gnome-common
+
+- category: "apps"
   name: "nnn"
   version: "4.5"
   uri:
