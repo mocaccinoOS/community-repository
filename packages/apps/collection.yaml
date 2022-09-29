@@ -468,7 +468,7 @@ packages:
   uri:
     - https://github.com/pyca/bcrypt/
     - https://pypi.org/project/bcrypt/
-  license: " Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-DFS-2016 Unlicense"
+  license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD MIT Unicode-DFS-2016 Unlicense"
   description: "Modern password hashing for software and servers"
   labels:
     emerge.jobs: "1"
@@ -593,6 +593,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+ 
+- &libs-cssselect
+  category: "libs"
+  name: "cssselect"
+  version: "1.1.0-r2"
+  uri:
+    - https://cssselect.readthedocs.io/en/latest/
+  license: "BSD"
+  description: "parses CSS3 Selectors and translates them to XPath 1.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cssselect
+  provides:
+  - category: "dev-python"
+    name: "cssselect"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-File-ReadBackwards
   category: "libs"
@@ -1892,6 +1913,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-msgpack
+  category: "libs"
+  name: "msgpack"
+  version: "1.0.4"
+  uri:
+    - https://msgpack.org/
+  license: "Apache-2.0"
+  description: "MessagePack (de)serializer for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/msgpack
+  provides:
+  - category: "dev-python"
+    name: "msgpack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-mxml
   category: "libs"
   name: "mxml"
@@ -2044,6 +2086,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-pbr
+  category: "libs"
+  name: "pbr"
+  version: "5.10.0"
+  uri:
+    - https://opendev.org/openstack/pbr/
+  license: "Apache-2.0"
+  description: "Inject some useful and sensible default behaviors into setuptools"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pbr
+  provides:
+  - category: "dev-python"
+    name: "pbr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-pep517
   category: "libs"
@@ -5856,6 +5919,28 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-cachecontrol
+  category: "libs"
+  name: "cachecontrol"
+  version: "0.12.11"
+  uri:
+    - https://pypi.org/project/CacheControl/
+  license: "Apache-2.0"
+  description: "httplib2 caching for requests"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cachecontrol
+  provides:
+  - category: "dev-python"
+    name: "cachecontrol"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-msgpack
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-camd
   category: "libs"
   name: "camd"
@@ -6363,6 +6448,28 @@ packages:
   - <<: *apps-spacenavd
   build_requires:
   - <<: *layers-X
+
+- &libs-lockfile
+  category: "libs"
+  name: "lockfile"
+  version: "0.12.2-r3"
+  uri:
+    - https://launchpad.net/pylockfile/
+  license: "MIT"
+  description: "Platform-independent file locking module"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/lockfile
+  provides:
+  - category: "dev-python"
+    name: "lockfile"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-pbr
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-pikepdf
   category: "libs"
@@ -8216,6 +8323,9 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-cachecontrol
+  - <<: *libs-cssselect
+  - <<: *libs-lockfile
   - <<: *apps-dia
   - <<: *libs-gdl
   - <<: *apps-scour
