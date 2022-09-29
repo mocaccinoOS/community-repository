@@ -8333,10 +8333,9 @@ packages:
   - <<: *layerbase-office-common
   requires_final_images: true
 
-# require on gnome for now, need to move dev-libs/totem-pl-parser to layers/gnome-common
 - category: "apps"
   name: "lollypop"
-  version: "1.4.29+2"
+  version: "1.4.29+4"
   uri:
     - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -8350,10 +8349,10 @@ packages:
     name: "lollypop"
     version: ">=0"
   requires:
-  - <<: *layers-gnome
+  - <<: *layers-gnome-common
   - <<: *libs-beautifulsoup4
   build_requires:
-  - <<: *layers-gnome
+  - <<: *layers-gnome-common
 
 - &apps-nut
   category: "apps"
