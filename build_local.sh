@@ -1,6 +1,14 @@
 #!/bin/bash
 
 root=$(git rev-parse --show-toplevel)
+
+BASEDIR=$(dirname "$0")
+if [ -z "$root" ]; then
+  root=$BASEDIR
+fi
+
+pushd $root
+
 docker build -t build-image $root
 
 docker run --rm -ti -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workdir --entrypoint /usr/bin/luet -w /workdir build-image build \
