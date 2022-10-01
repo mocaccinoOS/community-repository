@@ -2821,6 +2821,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-vdf
+  category: "libs"
+  name: "vdf"
+  version: "3.4-r1"
+  uri:
+    - https://github.com/ValvePython/vdf
+  license: "MIT"
+  description: "A module for (de)serialization to and from VDF, Valve's key-value text format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/vdf
+  provides:
+  - category: "dev-python"
+    name: "vdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
@@ -2863,6 +2884,29 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
+- &libs-XML-LibXML
+  category: "libs"
+  name: "XML-LibXML"
+  version: "2.20.700-r2"
+  uri:
+    - https://metacpan.org/release/XML-LibXML
+  license: "Artistic GPL-1+"
+  description: "Perl binding for libxml2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/XML-LibXML
+  provides:
+  - category: "dev-perl"
+    name: "XML-LibXML"
+    version: ">=0"
+  prereqs:
+  - dev-perl/Alien-Libxml2
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
@@ -5797,11 +5841,14 @@ packages:
   prereqs:
   - acct-group/rtkit
   - acct-user/rtkit
+  - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-gnome-common
   - category: "entity"
     name: "rtkit"
     version: ">=0"
+  - <<: *libs-vdf
+  - <<: *libs-XML-LibXML
   build_requires:
   - <<: *layers-gnome-common
 
