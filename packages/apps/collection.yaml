@@ -332,6 +332,27 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
+- &libs-abseil-cpp
+  category: "libs"
+  name: "abseil-cpp"
+  version: "20211102.0"
+  uri:
+    - https://abseil.io
+  license: "Apache-2.0 BSD"
+  description: "Abseil Common Libraries (C++), LTS Branch"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/abseil-cpp
+  provides:
+  - category: "dev-cpp"
+    name: "abseil-cpp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-aopalliance
   category: "libs"
   name: "aopalliance"
@@ -8432,7 +8453,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.3.5.2"
+  version: "7.3.5.2+1"
   uri:
     - https://www.libreoffice.org
     - https://github.com/Numbertext/libnumbertext
@@ -8495,16 +8516,21 @@ packages:
   - dev-java/javatoolkit
   # - dev-java/bsh
   # - dev-java/rhino
+  - sys-devel/lld
   # - dev-db/postgresql
   - dev-perl/Archive-Zip
   - dev-util/cppunit
   - media-libs/zxing-cpp
   requires:
   - <<: *layers-gnome-common
+  - category: "entity"
+    name: "libreoffice"
+    version: ">=0"
   - <<: *layers-office-common
   - <<: *layers-java
   # - <<: *libs-bsh
   # - <<: *libs-rhino
+  - libs-abseil-cpp
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *apps-fontforge
