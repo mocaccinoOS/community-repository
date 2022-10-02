@@ -479,6 +479,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-aubio
+  category: "libs"
+  name: "aubio"
+  version: "0.4.9-r2"
+  uri:
+  - https://aubio.org/
+  license: "GPL-3"
+  description: "Library for audio labelling"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/aubio
+  provides:
+  - category: "media-libs"
+    name: "aubio"
+    version: ">=0"
+  prereqs:
+  - app-text/txt2man
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-babl
   category: "libs"
   name: "babl"
@@ -10887,6 +10910,36 @@ packages:
 #   - <<: *libs-telepathy-qt
 #   build_requires:
 #   - <<: *layers-plasma
+
+- category: "apps"
+  name: "qtractor"
+  version: "0.9.27-r1"
+  uri:
+  - https://qtractor.sourceforge.io
+  license: "GPL-2"
+  description: "Audio/MIDI multi-track sequencer written in C++ with the Qt framework"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qtractor
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "media-sound"
+    name: "qtractor"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-aubio
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-lilv
+  - <<: *libs-lv2
+  - <<: *libs-rubberband
+  - <<: *libs-suil
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "remmina"
