@@ -2544,6 +2544,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdl2-ttf
+  category: "libs"
+  name: "sdl2-ttf"
+  version: "2.0.15"
+  uri:
+  - https://www.libsdl.org/projects/SDL_ttf/
+  license: "ZLIB"
+  description: "Library that allows you to use TrueType fonts in SDL applications"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl2-ttf
+  provides:
+  - category: "media-libs"
+    name: "sdl2-ttf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -2602,6 +2623,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "smpeg"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-smpeg2
+  category: "libs"
+  name: "smpeg2"
+  version: "2.0.0-r4"
+  uri:
+  - https://icculus.org/smpeg/
+  license: "LGPL-2+"
+  description: "SDL MPEG Player Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/smpeg2
+  provides:
+  - category: "media-libs"
+    name: "smpeg2"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -9167,6 +9209,30 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-dee
+  build_requires:
+  - <<: *layers-X
+
+- &libs-sdl2-mixer
+  category: "libs"
+  name: "sdl2-mixer"
+  version: "2.0.4-r3"
+  uri:
+  - https://www.libsdl.org/projects/SDL_mixer/
+  license: "ZLIB"
+  description: "Simple Direct Media Layer Mixer Library"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/sdl2-mixer
+  provides:
+  - category: "media-libs"
+    name: "sdl2-mixer"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libmikmod
+#   - <<: *apps-fluidsynth
+  - <<: *apps-timidity
   build_requires:
   - <<: *layers-X
 
