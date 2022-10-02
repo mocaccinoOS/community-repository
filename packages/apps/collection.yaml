@@ -353,6 +353,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-analitza
+  category: "libs"
+  name: "analitza"
+  version: "22.04.3"
+  uri:
+  - https://kde.org/
+  license: "GPL-2"
+  description: "KDE library for mathematical features"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/analitza
+  provides:
+  - category: "kde-apps"
+    name: "analitza"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &libs-aopalliance
   category: "libs"
   name: "aopalliance"
@@ -395,27 +416,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-analitza
-  category: "libs"
-  name: "analitza"
-  version: "22.04.3"
-  uri:
-  - https://kde.org/
-  license: "GPL-2"
-  description: "KDE library for mathematical features"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/analitza
-  provides:
-  - category: "kde-apps"
-    name: "analitza"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
 - &libs-asio
   category: "libs"
   name: "asio"
@@ -457,6 +457,27 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
+
+- &libs-attrs
+  category: "libs"
+  name: "attrs"
+  version: "22.1.0"
+  uri:
+  - https://github.com/python-attrs/attrs/
+  license: "MIT"
+  description: "Attributes without boilerplate"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/attrs
+  provides:
+  - category: "dev-python"
+    name: "attrs"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-babl
   category: "libs"
@@ -614,7 +635,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
- 
+
+- &libs-constantly
+  category: "libs"
+  name: "constantly"
+  version: "15.1.0-r2"
+  uri:
+  - https://github.com/twisted/constantly
+  license: "MIT"
+  description: "Symbolic constants in Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/constantly
+  provides:
+  - category: "dev-python"
+    name: "constantly"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-cssselect
   category: "libs"
   name: "cssselect"
@@ -955,6 +997,27 @@ packages:
   provides:
   - category: "net-libs"
     name: "http-parser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-hyperframe
+  category: "libs"
+  name: "hyperframe"
+  version: "6.0.1-r1"
+  uri:
+  - https://python-hyper.org/projects/hyperframe/en/latest/
+  license: "MIT"
+  description: "HTTP/2 framing layer for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/hyperframe
+  provides:
+  - category: "dev-python"
+    name: "hyperframe"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2354,6 +2417,30 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-pyopenssl
+  category: "libs"
+  name: "pyopenssl"
+  version: "22.0.0"
+  uri:
+  - https://www.pyopenssl.org/
+  license: "Apache-2.0"
+  description: "Python interface to the OpenSSL library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyopenssl
+  provides:
+  - category: "dev-python"
+    name: "pyopenssl"
+    version: ">=0"
+  prereqs:
+  - dev-python/sphinx
+  - dev-python/sphinx_rtd_theme
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pystring
   category: "libs"
   name: "pystring"
@@ -2480,6 +2567,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-rencode
+  category: "libs"
+  name: "rencode"
+  version: "1.0.6-r3"
+  uri:
+  - https://github.com/aresch/rencode
+  license: "GPL-3+"
+  description: "similar to bencode from the BitTorrent project"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/rencode
+  provides:
+  - category: "dev-python"
+    name: "rencode"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-rtl-sdr
   category: "libs"
@@ -9810,6 +9918,32 @@ packages:
   - <<: *apps-pidgin
   build_requires:
   - <<: *layers-gnome-common
+
+- &libs-pygame
+  category: "libs"
+  name: "pygame"
+  version: "2.1.2-r1"
+  uri:
+  - https://www.pygame.org/
+  license: "LGPL-2.1"
+  description: "Python bindings for SDL multimedia library"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/pygame
+  provides:
+  - category: "dev-python"
+    name: "pygame"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-portmidi
+  - <<: *libs-sdl2-image
+  - <<: *libs-sdl2-mixer
+  - <<: *libs-sdl2-ttf
+  - <<: *libs-smpeg2
+  build_requires:
+  - <<: *layers-X
 
 - &libs-sratom
   category: "libs"
