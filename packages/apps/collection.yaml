@@ -591,6 +591,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-click
+  category: "libs"
+  name: "click"
+  version: "8.1.3"
+  uri:
+  - https://palletsprojects.com/p/click/
+  license: "BSD MIT"
+  description: "A Python package for creating beautiful command line interfaces"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/click
+  provides:
+  - category: "dev-python"
+    name: "click"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-colorama
   category: "libs"
   name: "colorama"
@@ -1018,6 +1039,27 @@ packages:
   provides:
   - category: "dev-python"
     name: "hyperframe"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-hyperlink
+  category: "libs"
+  name: "hyperlink"
+  version: "21.0.0-r1"
+  uri:
+  - https://github.com/python-hyper/hyperlink/
+  license: "BSD MIT"
+  description: "A featureful, correct URL for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/hyperlink
+  provides:
+  - category: "dev-python"
+    name: "hyperlink"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2393,6 +2435,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pyhamcrest
+  category: "libs"
+  name: "pyhamcrest"
+  version: "2.0.4"
+  uri:
+  - https://github.com/hamcrest/PyHamcrest/
+  license: "BSD"
+  description: "Hamcrest framework for matcher objects"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/pyhamcrest
+  provides:
+  - category: "dev-python"
+    name: "pyhamcrest"
+    version: ">=0"
+  prereqs:
+  - dev-python/hatch-vcs
+  - dev-python/hatchling
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
@@ -2440,6 +2506,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-pyserial
+  category: "libs"
+  name: "pyserial"
+  version: "3.5-r1"
+  uri:
+  -  https://github.com/pyserial/pyserial
+  license: "PSF-2"
+  description: "Python Serial Port extension"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyserial
+  provides:
+  - category: "dev-python"
+    name: "pyserial"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-pystring
   category: "libs"
@@ -6488,6 +6575,54 @@ packages:
 #   build_requires:
 #   - <<: *layers-java
 
+- &libs-h2
+  category: "libs"
+  name: "h2"
+  version: "4.1.0-r1"
+  uri:
+  - https://python-hyper.org/projects/h2/en/stable/
+  license: "MIT"
+  description: "HTTP/2 State-Machine based protocol implementation"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/hpack
+      dev-python/h2
+  provides:
+  - category: "dev-python"
+    name: "h2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "hpack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-hyperframe
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-incremental
+  category: "libs"
+  name: "incremental"
+  version: "21.3.0-r1"
+  uri:
+  - https://github.com/twisted/incremental
+  license: "MIT"
+  description: "Incremental is a small library that versions your Python projects"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/incremental
+  provides:
+  - category: "dev-python"
+    name: "incremental"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-click
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -6764,6 +6899,30 @@ packages:
   - <<: *libs-vamp-plugin-sdk
   build_requires:
   - <<: *layers-java
+
+- &libs-service_identity
+  category: "libs"
+  name: "service_identity"
+  version: "21.1.0-r1"
+  uri:
+  -  https://github.com/pyca/service-identity/
+  license: "MIT"
+  description: "Service identity verification for pyOpenSSL"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/service_identity
+  provides:
+  - category: "dev-python"
+    name: "service_identity"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-attrs
+  - <<: *libs-pyasn1
+  - <<: *libs-pyopenssl
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-sord
   category: "libs"
