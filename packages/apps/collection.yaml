@@ -7703,6 +7703,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "musescore"
+  version: "3.6.2-r1"
+  uri:
+  - https://musescore.org/
+  license: "GPL-2"
+  description: "WYSIWYG Music Score Typesetter"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/musescore
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "media-sound"
+    name: "musescore"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-portmidi
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
