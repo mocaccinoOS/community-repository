@@ -10267,6 +10267,33 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "deluge"
+  version: "2.0.5-r2"
+  uri:
+  - https://deluge-torrent.org/
+  license: "GPL-2"
+  description: "BitTorrent client with a client/server model"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-p2p/deluge
+  provides:
+  - category: "net-p2p"
+    name: "deluge"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "deluge"
+    version: ">=0"
+  - <<: *libs-chardet
+  - <<: *libs-pygame
+  - <<: *libs-rencode
+  - <<: *libs-twisted
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "digikam"
   version: "7.5.0+2"
   uri:
