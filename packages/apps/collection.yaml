@@ -9526,6 +9526,44 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-twisted
+  category: "libs"
+  name: "twisted"
+  version: "22.4.0-r2"
+  uri:
+  - https://www.twistedmatrix.com/trac/
+  license: "MIT"
+  description: "An asynchronous networking framework written in Python"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/automat
+      dev-python/priority
+      dev-python/twisted
+  provides:
+  - category: "dev-python"
+    name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "priority"
+    version: ">=0"
+  - category: "dev-python"
+    name: "automat"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-bcrypt
+  - <<: *libs-constantly
+  - <<: *libs-h2
+  - <<: *libs-hyperlink
+  - <<: *libs-incremental
+  - <<: *libs-pyasn1
+  - <<: *libs-pyhamcrest
+  - <<: *libs-pyserial
+  - <<: *libs-service_identity
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep III apps ###
 ################################################################################################################################################################
