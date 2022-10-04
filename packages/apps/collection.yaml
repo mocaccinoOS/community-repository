@@ -3454,6 +3454,26 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- category: "apps"
+  name: "cool-retro-term"
+  version: "1.1.1+31"
+  uri:
+  - https://github.com/Swordfish90/cool-retro-term
+  license: "GPL-3 GPL-2"
+  description: "A good looking terminal emulator which mimics the old cathode display"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/cool-retro-term
+  provides:
+    - category: "x11-terms"
+      name: "cool-retro-term"
+      version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
@@ -5046,6 +5066,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "proton-ge-custom-bin"
+  version: "7.20+25"
+  uri:
+  - https://github.com/GloriousEggroll/proton-ge-custom
+  license: "BSD"
+  description: "A fancy custom distribution of Valves Proton with various patches"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/proton-ge-custom-bin
+  overlays:
+  - name: "touchfish-os"
+  provides:
+  - category: "app-emulation"
+    name: "proton-ge-custom-bin"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "pulseaudio-qt"
