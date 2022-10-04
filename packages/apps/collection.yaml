@@ -571,28 +571,6 @@ packages:
   build_requires:
   - <<: *apps-grub
 
-- &libs-chardet
-  category: "libs"
-  name: "chardet"
-  version: "4.0.0-r1+1"
-  uri:
-  - https://github.com/chardet/chardet/
-  - https://pypi.org/project/chardet/
-  license: "LGPL-2.1"
-  description: "Universal encoding detector"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/chardet
-  provides:
-  - category: "dev-python"
-    name: "chardet"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
@@ -613,27 +591,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-click
-  category: "libs"
-  name: "click"
-  version: "8.1.3"
-  uri:
-  - https://palletsprojects.com/p/click/
-  license: "BSD MIT"
-  description: "A Python package for creating beautiful command line interfaces"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/click
-  provides:
-  - category: "dev-python"
-    name: "click"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-colorama
   category: "libs"
@@ -679,27 +636,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-constantly
-  category: "libs"
-  name: "constantly"
-  version: "15.1.0-r2"
-  uri:
-  - https://github.com/twisted/constantly
-  license: "MIT"
-  description: "Symbolic constants in Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/constantly
-  provides:
-  - category: "dev-python"
-    name: "constantly"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-cssselect
   category: "libs"
@@ -1005,6 +941,31 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-h2
+  category: "libs"
+  name: "h2"
+  version: "4.1.0-r1"
+  uri:
+  - https://python-hyper.org/projects/h2/en/stable/
+  license: "MIT"
+  description: "HTTP/2 State-Machine based protocol implementation"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/hpack
+      dev-python/h2
+  provides:
+  - category: "dev-python"
+    name: "h2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "hpack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
@@ -1047,48 +1008,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-hyperframe
-  category: "libs"
-  name: "hyperframe"
-  version: "6.0.1-r1"
-  uri:
-  - https://python-hyper.org/projects/hyperframe/en/latest/
-  license: "MIT"
-  description: "HTTP/2 framing layer for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/hyperframe
-  provides:
-  - category: "dev-python"
-    name: "hyperframe"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-hyperlink
-  category: "libs"
-  name: "hyperlink"
-  version: "21.0.0-r1"
-  uri:
-  - https://github.com/python-hyper/hyperlink/
-  license: "BSD MIT"
-  description: "A featureful, correct URL for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/hyperlink
-  provides:
-  - category: "dev-python"
-    name: "hyperlink"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 # should be in desktop repo
 - &libs-id3lib
   category: "libs"
@@ -1105,6 +1024,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "id3lib"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-incremental
+  category: "libs"
+  name: "incremental"
+  version: "21.3.0-r1"
+  uri:
+  - https://github.com/twisted/incremental
+  license: "MIT"
+  description: "Incremental is a small library that versions your Python projects"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/incremental
+  provides:
+  - category: "dev-python"
+    name: "incremental"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2413,28 +2353,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-pyasn1
-  category: "libs"
-  name: "pyasn1"
-  version: "0.4.8-r2"
-  uri:
-  - http://snmplabs.com/pyasn1/
-  - https://github.com/etingof/pyasn1
-  license: "BSD-2"
-  description: "ASN.1 library for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyasn1
-  provides:
-  - category: "dev-python"
-    name: "pyasn1"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-pybind11
   category: "libs"
   name: "pybind11"
@@ -2453,30 +2371,6 @@ packages:
   - category: "dev-python"
     name: "pybind11"
     version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-pyhamcrest
-  category: "libs"
-  name: "pyhamcrest"
-  version: "2.0.4"
-  uri:
-  - https://github.com/hamcrest/PyHamcrest/
-  license: "BSD"
-  description: "Hamcrest framework for matcher objects"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/pyhamcrest
-  provides:
-  - category: "dev-python"
-    name: "pyhamcrest"
-    version: ">=0"
-  prereqs:
-  - dev-python/hatch-vcs
-  - dev-python/hatchling
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2505,51 +2399,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-- &libs-pyopenssl
-  category: "libs"
-  name: "pyopenssl"
-  version: "22.0.0+1"
-  uri:
-  - https://www.pyopenssl.org/
-  license: "Apache-2.0"
-  description: "Python interface to the OpenSSL library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyopenssl
-  provides:
-  - category: "dev-python"
-    name: "pyopenssl"
-    version: ">=0"
-  prereqs:
-  - dev-python/sphinx
-  - dev-python/sphinx_rtd_theme
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
-- &libs-pyserial
-  category: "libs"
-  name: "pyserial"
-  version: "3.5-r1"
-  uri:
-  - https://github.com/pyserial/pyserial
-  license: "PSF-2"
-  description: "Python Serial Port extension"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyserial
-  provides:
-  - category: "dev-python"
-    name: "pyserial"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-pystring
   category: "libs"
@@ -2677,27 +2526,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-rencode
-  category: "libs"
-  name: "rencode"
-  version: "1.0.6-r3"
-  uri:
-  - https://github.com/aresch/rencode
-  license: "GPL-3+"
-  description: "similar to bencode from the BitTorrent project"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/rencode
-  provides:
-  - category: "dev-python"
-    name: "rencode"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-rtl-sdr
   category: "libs"
@@ -3453,6 +3281,28 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "bleachbit"
+  version: "4.4.2+1"
+  uri:
+  - https://bleachbit.org/
+  license: "GPL-3"
+  description: "Clean junk to free disk space and to maintain privacy"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-apps/bleachbit
+  provides:
+  - category: "sys-apps"
+    name: "bleachbit"
+    version: ">=0"
+  prereqs:
+  - dev-python/mock
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-bottom
   category: "apps"
@@ -6598,54 +6448,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-java
 
-- &libs-h2
-  category: "libs"
-  name: "h2"
-  version: "4.1.0-r1"
-  uri:
-  - https://python-hyper.org/projects/h2/en/stable/
-  license: "MIT"
-  description: "HTTP/2 State-Machine based protocol implementation"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/hpack
-      dev-python/h2
-  provides:
-  - category: "dev-python"
-    name: "h2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "hpack"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-hyperframe
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-incremental
-  category: "libs"
-  name: "incremental"
-  version: "21.3.0-r1"
-  uri:
-  - https://github.com/twisted/incremental
-  license: "MIT"
-  description: "Incremental is a small library that versions your Python projects"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/incremental
-  provides:
-  - category: "dev-python"
-    name: "incremental"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-click
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -6900,28 +6702,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pyasn1-modules
-  category: "libs"
-  name: "pyasn1-modules"
-  version: "0.2.8-r2"
-  uri:
-  - https://pypi.org/project/pyasn1-modules/
-  license: "BSD-2"
-  description: "pyasn1 modules"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyasn1-modules
-  provides:
-  - category: "dev-python"
-    name: "pyasn1-modules"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-pyasn1
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -7155,29 +6935,6 @@ packages:
   - <<: *libs-soupsieve
   build_requires:
   - <<: *layers-system-x
-
-- category: "apps"
-  name: "bleachbit"
-  version: "4.4.2+1"
-  uri:
-  - https://bleachbit.org/
-  license: "GPL-3"
-  description: "Clean junk to free disk space and to maintain privacy"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sys-apps/bleachbit
-  provides:
-  - category: "sys-apps"
-    name: "bleachbit"
-    version: ">=0"
-  prereqs:
-  - dev-python/mock
-  requires:
-  - <<: *layers-X
-  - <<: *libs-chardet
-  build_requires:
-  - <<: *layers-X
 
 - &apps-brother-scan4-bin
   category: "apps"
@@ -8432,9 +8189,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-attrs
-  - <<: *libs-pyasn1
-  - <<: *libs-pyasn1-modules
-  - <<: *libs-pyopenssl
   build_requires:
   - <<: *layers-sys-fs
 
@@ -9597,13 +9351,8 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-bcrypt
-  - <<: *libs-constantly
   - <<: *libs-h2
-  - <<: *libs-hyperlink
   - <<: *libs-incremental
-  - <<: *libs-pyasn1
-  - <<: *libs-pyhamcrest
-  - <<: *libs-pyserial
   - <<: *libs-service_identity
   build_requires:
   - <<: *layers-X
@@ -10128,7 +9877,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-bcrypt
-  - <<: *libs-pyasn1
   - <<: *libs-pynacl
   build_requires:
   - <<: *layers-sys-fs
@@ -10330,9 +10078,7 @@ packages:
   - category: "entity"
     name: "deluge"
     version: ">=0"
-  - <<: *libs-chardet
   - <<: *libs-pygame
-  - <<: *libs-rencode
   - <<: *libs-twisted
   build_requires:
   - <<: *layers-X
