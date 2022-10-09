@@ -142,6 +142,11 @@ anchors:
 ### apps ###
 ################################################################################################################################################################
 
+- &apps-docker
+  category: "container"
+  name: "docker"
+  version: ">=0"
+
 - &apps-grub
   category: "apps"
   name: "grub"
@@ -3583,6 +3588,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-distrobox
+  category: "apps"
+  name: "distrobox"
+  version: "1.4.1"
+  uri:
+  - https://distrobox.privatedns.org/
+  license: "GPL-3"
+  description: "Use any Linux distribution inside your terminal (powered by docker/podman)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-containers/distrobox
+  provides:
+  - category: "app-containers"
+    name: "distrobox"
+    version: ">=0"
+  requires:
+  - <<: *apps-docker
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-dmd
   category: "apps"
