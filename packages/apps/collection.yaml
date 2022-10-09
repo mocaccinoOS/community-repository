@@ -3605,10 +3605,12 @@ packages:
   - category: "app-containers"
     name: "distrobox"
     version: ">=0"
+  prereqs:
+  - app-containers/docker
   requires:
   - <<: *apps-docker
   build_requires:
-  - <<: *apps-docker
+  - <<: *layers-system-x
 
 - &apps-dmd
   category: "apps"
