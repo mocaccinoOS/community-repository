@@ -3592,7 +3592,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.4.1+1"
+  version: "1.4.1+2"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -3606,9 +3606,10 @@ packages:
     name: "distrobox"
     version: ">=0"
   requires:
+  - <<: *layers-system-x
   - <<: *apps-docker
   build_requires:
-  - <<: *apps-docker
+  - <<: *layers-system-x
 
 - &apps-dmd
   category: "apps"
