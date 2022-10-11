@@ -1161,27 +1161,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-libde265
-  category: "libs"
-  name: "libde265"
-  version: "1.0.8+3"
-  uri:
-  - https://github.com/strukturag/libde265
-  license: "GPL-3"
-  description: "Open h.265 video codec implementation"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libde265
-  provides:
-  - category: "media-libs"
-    name: "libde265"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libdiscid
   category: "libs"
   name: "libdiscid"
@@ -9885,7 +9864,7 @@ packages:
 - &libs-libheif
   category: "libs"
   name: "libheif"
-  version: "1.12.0-r2"
+  version: "1.12.0-r3"
   uri:
   - https://github.com/strukturag/libheif
   license: "GPL-3"
@@ -9900,7 +9879,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-libde265
   - <<: *libs-rav1e
   build_requires:
   - <<: *layers-X
