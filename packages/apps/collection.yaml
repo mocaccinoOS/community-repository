@@ -10393,7 +10393,6 @@ packages:
   - app-editors/nano
   - app-text/docbook2X
   opt_requires:
-  - <<: *kernel-modules-nvidia-drivers-lts
   - <<: *apps-apcupsd
   - <<: *apps-cmus
   - <<: *apps-moc
@@ -10405,7 +10404,7 @@ packages:
   - <<: *libs-libircclient
   build_requires:
   - <<: *buildbase-gnome-common
-  requires_final_images: true
+  - <<: *kernel-modules-nvidia-drivers-lts
 
 - &apps-doxygen
   category: "apps"
