@@ -8377,27 +8377,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-service_identity
-  category: "libs"
-  name: "service_identity"
-  version: "21.1.0-r1+2"
-  uri:
-  - https://github.com/pyca/service-identity/
-  license: "MIT"
-  description: "Service identity verification for pyOpenSSL"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/service_identity
-  provides:
-  - category: "dev-python"
-    name: "service_identity"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
@@ -9557,7 +9536,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-incremental
-  - <<: *libs-service_identity
   build_requires:
   - <<: *layers-X
 
