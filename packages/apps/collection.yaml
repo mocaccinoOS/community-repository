@@ -1055,6 +1055,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libheif
+  category: "libs"
+  name: "libheif"
+  version: "1.12.0-r3"
+  uri:
+  - https://github.com/strukturag/libheif
+  license: "GPL-3"
+  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libheif
+  provides:
+  - category: "media-libs"
+    name: "libheif"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
@@ -2138,6 +2159,35 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pikepdf
+  category: "libs"
+  name: "pikepdf"
+  version: "5.6.1"
+  uri:
+  - https://github.com/pikepdf/pikepdf/
+  - https://pypi.org/project/pikepdf/
+  license: "MPL-2.0"
+  description: "Python library to work with pdf files based on qpdf"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pikepdf
+  provides:
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  #prepare:
+  # Workaround upstream dropping patchsets
+  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
+  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
+  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
+  prereqs:
+  - dev-python/setuptools_scm_git_archive
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-plotutils
   category: "libs"
   name: "plotutils"
@@ -2205,29 +2255,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &libs-pybind11
-  category: "libs"
-  name: "pybind11"
-  version: "2.9.2-r1"
-  uri:
-  - https://pybind11.readthedocs.io/en/stable/
-  - https://github.com/pybind/pybind11/
-  - https://pypi.org/project/pybind11/
-  license: "BSD"
-  description: "AST-based Python refactoring library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pybind11
-  provides:
-  - category: "dev-python"
-    name: "pybind11"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-pynacl
   category: "libs"
@@ -6610,36 +6637,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pikepdf
-  category: "libs"
-  name: "pikepdf"
-  version: "5.2.0-r1"
-  uri:
-  - https://github.com/pikepdf/pikepdf/
-  - https://pypi.org/project/pikepdf/
-  license: "MPL-2.0"
-  description: "Python library to work with pdf files based on qpdf"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pikepdf
-  provides:
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
-  #prepare:
-  # Workaround upstream dropping patchsets
-  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
-  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
-  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
-  prereqs:
-  - dev-python/setuptools_scm_git_archive
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pybind11
-  build_requires:
-  - <<: *layers-X
-
 - &libs-protobuf-python
   category: "libs"
   name: "protobuf-python"
@@ -7218,7 +7215,7 @@ packages:
 - &apps-img2pdf
   category: "apps"
   name: "img2pdf"
-  version: "0.4.3+6"
+  version: "0.4.4"
   uri:
   - https://gitlab.mister-muffin.de/josch/img2pdf
   license: "LGPL-3+"
@@ -8867,7 +8864,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.8.2+6"
+  version: "1.8.2+7"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   license: "GPL-3"
@@ -9838,27 +9835,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libheif
-  category: "libs"
-  name: "libheif"
-  version: "1.12.0-r3"
-  uri:
-  - https://github.com/strukturag/libheif
-  license: "GPL-3"
-  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libheif
-  provides:
-  - category: "media-libs"
-    name: "libheif"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-mlt
   category: "libs"
   name: "mlt"
@@ -10621,7 +10597,6 @@ packages:
   - <<: *libs-opencv
   - <<: *libs-openvdb
   - <<: *libs-ptex
-  - <<: *libs-pybind11
   - <<: *libs-pystring
   - <<: *libs-tbb
   build_requires:
@@ -10860,7 +10835,6 @@ packages:
   - dev-util/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *libs-pybind11
   - <<: *libs-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
