@@ -467,27 +467,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-attrs
-  category: "libs"
-  name: "attrs"
-  version: "22.1.0"
-  uri:
-  - https://github.com/python-attrs/attrs/
-  license: "MIT"
-  description: "Attributes without boilerplate"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/attrs
-  provides:
-  - category: "dev-python"
-    name: "attrs"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-aubio
   category: "libs"
   name: "aubio"
@@ -8426,7 +8405,7 @@ packages:
 - &libs-service_identity
   category: "libs"
   name: "service_identity"
-  version: "21.1.0-r1+1"
+  version: "21.1.0-r1+2"
   uri:
   - https://github.com/pyca/service-identity/
   license: "MIT"
@@ -8441,7 +8420,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-attrs
   build_requires:
   - <<: *layers-sys-fs
 
@@ -10109,7 +10087,7 @@ packages:
 - &libs-paramiko
   category: "libs"
   name: "paramiko"
-  version: "2.11.0"
+  version: "2.11.0+1"
   uri:
   - https://www.paramiko.org/
   - https://github.com/paramiko/paramiko/
