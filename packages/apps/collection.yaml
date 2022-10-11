@@ -1498,29 +1498,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libnsgif
-  category: "libs"
-  name: "libnsgif"
-  version: "0.2.1-r3+1"
-  uri:
-  - https://www.netsurf-browser.org/projects/libnsgif/
-  license: "MIT"
-  description: "decoding library for the GIF image file format, written in C"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libnsgif
-  provides:
-  - category: "media-libs"
-    name: "libnsgif"
-    version: ">=0"
-  prereqs:
-  - dev-util/netsurf-buildsystem
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libntlm
   category: "libs"
   name: "libntlm"
@@ -9927,7 +9904,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-babl
-  - <<: *libs-libnsgif
   - <<: *libs-umfpack
   build_requires:
   - <<: *layers-X
