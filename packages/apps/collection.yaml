@@ -126,7 +126,7 @@ anchors:
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
 
-- &kernel-modules-nvidia-drivers-lts
+- &kernel-gentoo
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
   version: ">=0"
@@ -136,7 +136,17 @@ anchors:
       sys-kernel/gentoo-sources
       sys-kernel/gentoo-kernel
       virtual/dist-kernel
+
+- &kernel-modules-nvidia-drivers-lts
+  category: "kernel-modules"
+  name: "nvidia-drivers-lts"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
       x11-drivers/nvidia-drivers
+  requires:
+  - <<: *kernel-gentoo
 
 ################################################################################################################################################################
 ### apps ###
@@ -4494,7 +4504,8 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "marble"
