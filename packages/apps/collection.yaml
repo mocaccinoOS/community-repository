@@ -4131,7 +4131,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.17.0-r2+1"
+  version: "1.17.0-r2+2"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -4144,6 +4144,9 @@ packages:
   - category: "dev-lang"
     name: "ispc"
     version: ">=0"
+  prepare:
+  - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild
+  - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild manifest
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10623,7 +10626,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "2.93.9+50"
+  version: "2.93.9+51"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
