@@ -2083,6 +2083,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-Path-Tiny
+  category: "libs"
+  name: "Path-Tiny"
+  version: "0.120.0"
+  uri:
+  - https://metacpan.org/release/Path-Tiny
+  - https://metacpan.org/release/Unicode-UTF8
+  license: "Apache-2.0 "
+  description: |
+    "Manual text wrapping and reformatting"
+    "Encoding and decoding of UTF-8 encoding form"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Path-Tiny
+      dev-perl/Unicode-UTF8
+  provides:
+  - category: "dev-perl"
+    name: "Path-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-UTF8"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pbr
   category: "libs"
   name: "pbr"
@@ -2712,6 +2740,27 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &libs-Text-Reform
+  category: "libs"
+  name: "Text-Reform"
+  version: "1.200.0-r2"
+  uri:
+  - https://metacpan.org/release/Text-Reform
+  license: "Artistic GPL-1+"
+  description: "Manual text wrapping and reformatting"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Text-Reform
+  provides:
+  - category: "dev-perl"
+    name: "Text-Reform"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-tomsfastmath
   category: "libs"
@@ -6766,6 +6815,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-Text-Autoformat
+  category: "libs"
+  name: "Text-Autoformat"
+  version: "1.750.0"
+  uri:
+  - https://metacpan.org/release/Text-Autoformat
+  license: "Artistic GPL-1+"
+  description: "Automatic text wrapping and reformatting"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Text-Autoformat
+  provides:
+  - category: "dev-perl"
+    name: "Text-Autoformat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-Text-Reform
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-tix
   category: "libs"
   name: "tix"
@@ -8139,6 +8210,35 @@ packages:
   - <<: *libs-smpeg
   build_requires:
   - <<: *layers-X
+
+- &libs-Template-Toolkit
+  category: "libs"
+  name: "Template-Toolkit"
+  version: "3.9.0"
+  uri:
+  - https://metacpan.org/release/Template-Toolkit
+  - https://metacpan.org/release/AppConfig
+  license: "Artistic GPL-1+"
+  description: |
+    "The Template Toolkit"
+    "Perl5 module for reading configuration files and parsing command line arguments"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Template-Toolkit
+      dev-perl/AppConfig
+  provides:
+  - category: "dev-perl"
+    name: "Template-Toolkit"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "AppConfig"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-Text-Autoformat
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-wcslib
   category: "libs"
