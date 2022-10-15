@@ -3874,6 +3874,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gnuchess
+  category: "apps"
+  name: "gnuchess"
+  version: "6.2.9"
+  uri:
+  - https://www.gnu.org/software/chess/chess.html
+  license: "GPL-3 GPL-2"
+  description: |
+    "Console based chess interface"
+    "Opening book for gnuchess"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-board/gnuchess
+      games-board/gnuchess-book
+  provides:
+  - category: "games-board"
+    name: "gnuchess"
+    version: ">=0"
+  - category: "games-board-book"
+    name: "gnuchess"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "gnumeric"
   version: "1.12.52"
