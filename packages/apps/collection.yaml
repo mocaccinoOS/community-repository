@@ -76,7 +76,7 @@ anchors:
   name: "java"
   version: ">=0"
 
-- &layers-java-atoms >-
+- &layers-java-packages >-
   dev-java/openjdk-jre-bin
   dev-java/openjdk-bin
   virtual/jre
@@ -122,7 +122,7 @@ anchors:
 ################################################################################################################################################################
 
 # https://bugs.gentoo.org/727334
-- &libs-sphinx-atoms >-
+- &libs-sphinx-packages >-
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
 
@@ -3813,7 +3813,7 @@ packages:
       media-libs/libuninameslist
       media-gfx/fontforge
   prereqs:
-  - *libs-sphinx-atoms
+  - *libs-sphinx-packages
   provides:
   - category: "media-libs"
     name: "media-libs/libuninameslist"
@@ -4599,7 +4599,7 @@ packages:
   - category: "games-util"
     name: "mangohud"
     version: ">=0"
-  opt_requires:
+  optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
   - <<: *layers-X
@@ -7820,7 +7820,7 @@ packages:
   - category: "dev-util"
     name: "maturin"
     version: ">=0"
-  opt_requires:
+  optrequires:
   - <<: *libs-chrome-binary-plugins
   requires:
   - <<: *layers-qt
@@ -8759,7 +8759,7 @@ packages:
     name: "coinor-mp"
     version: ">=0"
   prereqs:
-  # - *layers-java-atoms
+  # - *layers-java-packages
   - dev-java/ant-core
   - dev-java/javatoolkit
   # - dev-java/bsh
@@ -9640,7 +9640,7 @@ packages:
   - category: "media-libs"
     name: "libtimidity"
     version: ">=0"
-  opt_requires:
+  optrequires:
   - <<: *apps-timidity
   requires:
   - <<: *layers-X
@@ -9756,7 +9756,7 @@ packages:
 #     name: "validation-api"
 #     version: ">=0"
 #   pre_reqs:
-#   - *layers-java-atoms
+#   - *layers-java-packages
 #   requires:
 #   - <<: *layers-qt
 #   # - <<: *layers-ghc
@@ -10082,7 +10082,7 @@ packages:
     version: ">=0"
   # prereqs:
   # - net-im/pidgin
-  opt_requires:
+  optrequires:
   - <<: *apps-pidgin
   requires:
   - <<: *layers-X
@@ -10170,7 +10170,7 @@ packages:
     name: "guile"
     version: ">=0"
   prereqs:
-  - *layers-java-atoms
+  - *layers-java-packages
   requires:
   - <<: *layers-qt
   - <<: *layers-java
@@ -10417,7 +10417,7 @@ packages:
     version: ">=0"
   prereqs:
   - app-text/docbook2X
-  opt_requires:
+  optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   - <<: *apps-apcupsd
   - <<: *apps-cmus
