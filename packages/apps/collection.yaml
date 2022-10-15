@@ -4394,6 +4394,32 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "kitty"
+  version: "0.26.2"
+  uri:
+  - https://sw.kovidgoyal.net/kitty
+  license: "GPL-3"
+  description: "Fast, feature-rich, GPU-based terminal"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/kitty
+  provides:
+  - category: "x11-terms"
+    name: "kitty"
+    version: ">=0"
+  - category: "x11-terms"
+    name: "kitty-shell-integration"
+    version: ">=0"
+  - category: "x11-terms"
+    name: "kitty-terminfo"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "kompare"
   version: "22.04.3"
   uri:
