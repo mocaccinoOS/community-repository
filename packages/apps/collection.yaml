@@ -2424,6 +2424,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-random2
+  category: "libs"
+  name: "random2"
+  version: "1.0.1-r2"
+  uri:
+  - https://pypi.org/project/random2/
+  license: "PSF-2"
+  description: "Python-2.7 random module ported to python-3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/random2
+  provides:
+  - category: "dev-python"
+    name: "random2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-raptor
   category: "libs"
   name: "raptor"
@@ -6748,6 +6769,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-pysol_cards
+  category: "libs"
+  name: "pysol_cards"
+  version: "0.14.2"
+  uri:
+  - https://pypi.org/project/pysol-cards/
+  license: "Apache-2.0 MIT"
+  description: "Deal PySol FreeCell cards"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pysol_cards
+  provides:
+  - category: "dev-python"
+    name: "pysol_cards"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-random2
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-rubberband
   category: "libs"
