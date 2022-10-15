@@ -4607,6 +4607,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "kookbook"
+  version: "0.1"
+  uri:
+  - https://invent.kde.org/utilities/kookbook
+  license: "BSD"
+  description: "Simple recipe manager taking structured markdown for recipes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/kookbook
+  overlays:
+  - name: "kde"
+  provides:
+  - category: "app-misc"
+    name: "kookbook"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
@@ -5362,6 +5384,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "ruqola"
+  version: "1.3.1"
+  uri:
+  - https://invent.kde.org/network/ruqola
+  license: "GPL-2+"
+  description: "Rocket.Chat client for the KDE desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/ruqola
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "net-im"
+    name: "ruqola"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "scapy"
