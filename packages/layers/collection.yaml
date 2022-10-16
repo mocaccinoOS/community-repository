@@ -133,6 +133,14 @@ anchors:
       dev-perl/Path-Tiny
       dev-perl/Unicode-UTF8
 
+- category: "libs"
+  name: "qtpy"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/QtPy
+
 - &libs-Text-Reform
   category: "libs"
   name: "Text-Reform"
@@ -607,6 +615,7 @@ packages:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-apps-minimal
+  - <<: *libs-qtpy
   - <<: *libs-Path-Tiny
   - <<: *libs-Text-Reform
   - <<: *libs-Text-Autoformat
