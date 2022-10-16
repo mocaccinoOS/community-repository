@@ -3855,6 +3855,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gconf
+  category: "apps"
+  name: "gconf"
+  version: "3.2.6-r6"
+  uri:
+    - https://projects.gnome.org/gconf/
+  license: "LGPL-2+"
+  description: "GNOME configuration system and daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/gconf
+  provides:
+  - category: "gnome-base"
+    name: "gconf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "geeqie"
   version: "1.6-r1+1"
@@ -5840,31 +5861,6 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
-- &apps-vala
-  category: "apps"
-  name: "vala"
-  version: "0.56.1"
-  uri:
-  - https://wiki.gnome.org/Projects/Vala
-  - https://gitlab.gnome.org/GNOME/vala
-  license: "LGPL-2.1+"
-  description: "Compiler for the GObject type system"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-lang/vala
-  provides:
-  - category: "dev-lang"
-    name: "vala"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "vala-common"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-ufw
   category: "apps"
   name: "ufw"
@@ -6399,6 +6395,32 @@ packages:
   - <<: *libs-suitesparseconfig
   build_requires:
   - <<: *layers-system-x
+
+- &libs-dee
+  category: "libs"
+  name: "dee"
+  version: "1.2.7+2"
+  uri:
+  - https://launchpad.net/dee/
+  license: "GPL-3"
+  description: "Provide objects allowing to create Model-View-Controller type programs across DBus"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/dee
+  overlays:
+  - name: "unity-gentoo"
+  provides:
+  - category: "dev-libs"
+    name: "dee"
+    version: ">=0"
+  prepare:
+  - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
+  - emerge unity-base/unity-build-env:0/jammy
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-dssi
   category: "libs"
@@ -8107,33 +8129,6 @@ packages:
   - <<: *libs-ccolamd
   - <<: *libs-colamd
   - <<: *libs-metis
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-dee
-  category: "libs"
-  name: "dee"
-  version: "1.2.7+2"
-  uri:
-  - https://launchpad.net/dee/
-  license: "GPL-3"
-  description: "Provide objects allowing to create Model-View-Controller type programs across DBus"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/dee
-  overlays:
-  - name: "unity-gentoo"
-  provides:
-  - category: "dev-libs"
-    name: "dee"
-    version: ">=0"
-  prepare:
-  - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
-  - emerge unity-base/unity-build-env:0/jammy
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-vala
   build_requires:
   - <<: *layers-system-x
 
