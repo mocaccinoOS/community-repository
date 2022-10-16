@@ -7217,7 +7217,7 @@ packages:
 - &apps-cdrdao
   category: "apps"
   name: "cdrdao"
-  version: "1.2.4-r1"
+  version: "1.2.4-r1+1"
   uri:
   - http://cdrdao.sourceforge.net
   license: "GPL-2+"
@@ -7226,12 +7226,13 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       app-cdr/cdrdao
-  prereqs:
-  - x11-misc/makedepend
   provides:
   - category: "app-cdr"
     name: "cdrdao"
     version: ">=0"
+  prereqs:
+  - x11-misc/makedepend
+  - gnome-base/gconf
   requires:
   - <<: *layers-X
   - <<: *libs-libao
