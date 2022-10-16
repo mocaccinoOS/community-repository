@@ -174,15 +174,6 @@ anchors:
 ### apps ###
 ################################################################################
 
-- &apps-gconf
-  category: "apps"
-  name: "gconf"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/gconf
-
 - &apps-gnuchess
   category: "apps"
   name: "gnuchess"
@@ -458,7 +449,6 @@ packages:
   - app-text/rarian
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-gconf
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-gnome-common
