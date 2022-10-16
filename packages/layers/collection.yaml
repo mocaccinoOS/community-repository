@@ -114,6 +114,15 @@ anchors:
 ### libs ###
 ################################################################################
 
+- &libs-libglade
+  category: "libs"
+  name: "libglade"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/libglade
+
 - &libs-raptor
   category: "libs"
   name: "raptor"
@@ -133,7 +142,8 @@ anchors:
       dev-perl/Path-Tiny
       dev-perl/Unicode-UTF8
 
-- category: "libs"
+- &libs-qtpy
+  category: "libs"
   name: "qtpy"
   version: ">=0"
   labels:
@@ -190,15 +200,6 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       games-board/gnuchess
-
-- &libs-libglade
-  category: "libs"
-  name: "libglade"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/libglade
 
 
 packages:
