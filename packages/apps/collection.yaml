@@ -414,27 +414,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &apps-argouml
-  category: "apps"
-  name: "argouml"
-  version: "0.34-r1"
-  uri:
-  - https://argouml-tigris-org.github.io/
-  license: "MPL-1.1 GPL-2"
-  description: "Modelling tool that helps you do your design using UML"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/argouml
-  provides:
-  - category: "dev-util"
-    name: "argouml"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -3132,6 +3111,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "alligator"
+  version: "22.06+1"
+  uri:
+  - https://apps.kde.org/alligator/
+  license: "GPL-2+"
+  description: "A convergent RSS/Atom feed reader for Plasma"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/alligator
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "kde-apps"
+    name: "alligator"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
@@ -3155,27 +3156,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "alligator"
-  version: "22.06+1"
+- &apps-argouml
+  category: "apps"
+  name: "argouml"
+  version: "0.34-r1"
   uri:
-  - https://apps.kde.org/alligator/
-  license: "GPL-2+"
-  description: "A convergent RSS/Atom feed reader for Plasma"
+  - https://argouml-tigris-org.github.io/
+  license: "MPL-1.1 GPL-2"
+  description: "Modelling tool that helps you do your design using UML"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/alligator
-  overlays:
-  - name: "guru"
+      dev-util/argouml
   provides:
-  - category: "kde-apps"
-    name: "alligator"
+  - category: "dev-util"
+    name: "argouml"
     version: ">=0"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-java
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-java
 
 - &apps-argyllcms
   category: "apps"
@@ -6185,6 +6185,27 @@ packages:
   prereqs:
   - app-text/rman
   - x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-xmahjongg
+  category: "apps"
+  name: "xmahjongg"
+  version: "3.7-r1"
+  uri:
+  - http://www.lcdf.org/xmahjongg/
+  license: "AGPL-3"
+  description: "Friendly GUI version of xmahjongg"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-board/xmahjongg
+  provides:
+  - category: "games-board"
+    name: "xmahjongg"
+    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
