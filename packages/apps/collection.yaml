@@ -2403,6 +2403,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "libs"
+  name: "qtpy"
+  version: "2.1.0-r4"
+  uri:
+  - https://github.com/spyder-ide/qtpy/
+  license: "MIT"
+  description: "Abstraction layer on top of PyQt and PySide with additional custom QWidgets"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/QtPy
+  provides:
+  - category: "dev-python"
+    name: "QtPy"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-quazip
   category: "libs"
   name: "quazip"
