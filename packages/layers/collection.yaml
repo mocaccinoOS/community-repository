@@ -361,11 +361,25 @@ packages:
 
 - category: "layers"
   name: "gnome-games"
-  version: "1"
+  version: "1.1"
   uri:
-  - https://apps.kde.org/categories/games/
+  - https://wiki.gnome.org/Apps/Atomix
+  - https://wiki.gnome.org/Apps/Five%20or%20more
+  - https://wiki.gnome.org/Apps/2048
+  - https://wiki.gnome.org/Apps/Chess
+  - https://wiki.gnome.org/Apps/Klotski
+  - https://wiki.gnome.org/Apps/Mahjongg
+  - https://wiki.gnome.org/Apps/Mines
+  - https://wiki.gnome.org/Apps/Nibbles
+  - https://wiki.gnome.org/Apps/Robots
+  - https://wiki.gnome.org/Apps/Sudoku
+  - https://wiki.gnome.org/Apps/Swell%20Foop
+  - https://wiki.gnome.org/Apps/Taquin
+  - https://wiki.gnome.org/Apps/Tetravex
   license: "metapackage"
   description: |
+    "Mind game - build molecules out of single atoms"
+    "Remove colored balls from the board by forming lines"
     "Move the tiles until you obtain the 2048 tile"
     "Play the classic two-player boardgame of chess"
     "Slide blocks to solve the puzzle"
@@ -375,11 +389,13 @@ packages:
     "Nibbles clone for GNOME"
     "Avoid the robots and make them crash into each other"
     "Test your logic skills in this number grid puzzle"
-    "Complete the puzzle by matching numbered tiles"
     "Move tiles so that they reach their places"
+    "Complete the puzzle by matching numbered tiles"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      games-puzzle/atomix
+      games-puzzle/five-or-more
       games-puzzle/gnome2048
       games-board/gnome-chess
       games-puzzle/gnome-klotski
@@ -388,11 +404,18 @@ packages:
       games-arcade/gnome-nibbles
       games-arcade/gnome-robots
       games-puzzle/gnome-sudoku
+      games-puzzle/swell-foop
+      games-puzzle/gnome-taquin
       games-puzzle/gnome-tetravex
-      games-puzzle/gnome-taquin      
   provides:
   - category: "dev-libs"
     name: "libgnome-games-support"
+    version: ">=0"
+  - category: "games-puzzle"
+    name: "atomix"
+    version: ">=0"
+  - category: "games-puzzle"
+    name: "five-or-more"
     version: ">=0"
   - category: "games-puzzle"
     name: "gnome2048"
@@ -420,6 +443,9 @@ packages:
     version: ">=0"
   - category: "games-puzzle"
     name: "gnome-sudoku"
+    version: ">=0"
+  - category: "games-puzzle"
+    name: "swell-foop"
     version: ">=0"
   - category: "games-puzzle"
     name: "gnome-tetravex"
