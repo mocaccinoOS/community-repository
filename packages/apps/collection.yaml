@@ -414,6 +414,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-argouml
+  category: "apps"
+  name: "argouml"
+  version: "0.34-r1"
+  uri:
+  - https://argouml-tigris-org.github.io/
+  license: "MPL-1.1 GPL-2"
+  description: "Modelling tool that helps you do your design using UML"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/argouml
+  provides:
+  - category: "dev-util"
+    name: "argouml"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-argtable
   category: "libs"
   name: "argtable"
