@@ -6950,7 +6950,7 @@ packages:
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
-  version: "2.0.2+121"
+  version: "3.0.0"
   uri:
   - https://www.breakfastquay.com/rubberband/
   license: "GPL-2"
@@ -8970,7 +8970,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.3-r1"
+  version: "2.3.3-r1+1"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -8990,7 +8990,6 @@ packages:
   - <<: *libs-libsoundtouch
   - <<: *libs-hidapi
   - <<: *libs-rubberband
-  - <<: *libs-libsoundtouch
   build_requires:
   - <<: *layers-qt
 
@@ -9993,7 +9992,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.8.0+1"
+  version: "7.8.0+2"
   uri:
   - http://www.mltframework.org/
   license: "GPL-3"
@@ -10148,7 +10147,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.12"
+  version: "0.10.16-r1"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -10278,7 +10277,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "2.50.0+2"
+  version: "5.0.1-r1"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
@@ -10334,10 +10333,33 @@ packages:
 ### dep V libs ###
 ################################################################################################################################################################
 
+- &libs-gtkmm-2
+  category: "libs"
+  name: "gtkmm"
+  version: "2.24.5-r1"
+  uri:
+  - https://www.gtkmm.org
+  license: "LGPL-2.1+"
+  description: "C++ interface for GTK+"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/gtkmm:2.4
+  provides:
+  - category: "dev-cpp"
+    name: "gtkmm"
+    version: ">=0"
+  optrequires:
+  - <<: *apps-graphviz
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.5+3"
+  version: "3.6.5+4"
   uri:
   - https://dicom.offis.de/dcmtk.php.en
   license: "OFFIS"
@@ -10563,7 +10585,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.9.4-r1"
+  version: "1.9.4-r2"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -10661,7 +10683,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2022.5"
+  version: "1.2022.7"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -10783,36 +10805,37 @@ packages:
 ### dep VI apps ###
 ################################################################################################################################################################
 
-- &apps-ardour
-  category: "apps"
-  name: "ardour"
-  version: "7.0"
-  uri:
-  - https://ardour.org/
-  license: "AGPL-3"
-  description: "Digital Audio Workstation"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/ardour
-  provides:
-  - category: "media-sound"
-    name: "ardour"
-    version: ">=0"
-  prereqs:
-  - app-doc/doxygen
-  requires:
-  - <<: *layers-X
-  - <<: *libs-aubio
-  - <<: *libs-liblo
-  - <<: *libs-liblrdf
-  - <<: *libs-lilv
-  - <<: *libs-lv2
-  - <<: *libs-raptor
-  - <<: *libs-suil
-  - <<: *libs-vamp-plugin-sdk
-  build_requires:
-  - <<: *layers-qt
+# - &apps-ardour
+#   category: "apps"
+#   name: "ardour"
+#   version: "7.0"
+#   uri:
+#   - https://ardour.org/
+#   license: "AGPL-3"
+#   description: "Digital Audio Workstation"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/ardour
+#   provides:
+#   - category: "media-sound"
+#     name: "ardour"
+#     version: ">=0"
+#   prereqs:
+#   - app-doc/doxygen
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-aubio
+#   - <<: *libs-libgnomecanvas
+#   - <<: *libs-liblo
+#   - <<: *libs-liblrdf
+#   - <<: *libs-lilv
+#   - <<: *libs-lv2
+#   - <<: *libs-raptor
+#   - <<: *libs-suil
+#   - <<: *libs-vamp-plugin-sdk
+#   build_requires:
+#   - <<: *layers-qt
   
 - category: "apps"
   name: "krita"
@@ -10868,7 +10891,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "0.9.27-r1"
+  version: "0.9.28"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
