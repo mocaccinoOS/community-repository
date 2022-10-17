@@ -6748,6 +6748,28 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-libgnomecanvas
+  category: "libs"
+  name: "libgnomecanvas"
+  version: "2.30.3-r1"
+  uri:
+    - https://library.gnome.org/devel/libgnomecanvas/stable/
+  license: "LGPL-2"
+  description: "The Gnome 2 Canvas library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/libgnomecanvas
+  provides:
+  - category: "gnome-base"
+    name: "libgnomecanvas"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libglade
+  build_requires:
+  - <<: *layers-X
+
 - &libs-liblrdf
   category: "libs"
   name: "liblrdf"
@@ -10761,6 +10783,37 @@ packages:
 ### dep VI apps ###
 ################################################################################################################################################################
 
+- &apps-ardour
+  category: "apps"
+  name: "ardour"
+  version: "7.0"
+  uri:
+  - https://ardour.org/
+  license: "AGPL-3"
+  description: "Digital Audio Workstation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/ardour
+  provides:
+  - category: "media-sound"
+    name: "ardour"
+    version: ">=0"
+  prereqs:
+  - app-doc/doxygen
+  requires:
+  - <<: *layers-X
+  - <<: *libs-aubio
+  - <<: *libs-liblo
+  - <<: *libs-liblrdf
+  - <<: *libs-lilv
+  - <<: *libs-lv2
+  - <<: *libs-raptor
+  - <<: *libs-suil
+  - <<: *libs-vamp-plugin-sdk
+  build_requires:
+  - <<: *layers-X
+  
 - category: "apps"
   name: "krita"
   version: "5.0.8+3"
