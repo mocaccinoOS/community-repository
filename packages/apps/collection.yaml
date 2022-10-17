@@ -10805,37 +10805,37 @@ packages:
 ### dep VI apps ###
 ################################################################################################################################################################
 
-# - &apps-ardour
-#   category: "apps"
-#   name: "ardour"
-#   version: "7.0"
-#   uri:
-#   - https://ardour.org/
-#   license: "AGPL-3"
-#   description: "Digital Audio Workstation"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/ardour
-#   provides:
-#   - category: "media-sound"
-#     name: "ardour"
-#     version: ">=0"
-#   prereqs:
-#   - app-doc/doxygen
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-aubio
-#   - <<: *libs-libgnomecanvas
-#   - <<: *libs-liblo
-#   - <<: *libs-liblrdf
-#   - <<: *libs-lilv
-#   - <<: *libs-lv2
-#   - <<: *libs-raptor
-#   - <<: *libs-suil
-#   - <<: *libs-vamp-plugin-sdk
-#   build_requires:
-#   - <<: *layers-qt
+- &apps-ardour
+  category: "apps"
+  name: "ardour"
+  version: "7.0"
+  uri:
+  - https://ardour.org/
+  license: "AGPL-3"
+  description: "Digital Audio Workstation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/ardour
+  provides:
+  - category: "media-sound"
+    name: "ardour"
+    version: ">=0"
+  prereqs:
+  - app-doc/doxygen
+  requires:
+  - <<: *layers-X
+  - <<: *libs-aubio
+  - <<: *libs-libgnomecanvas
+  - <<: *libs-liblo
+  - <<: *libs-liblrdf
+  - <<: *libs-lilv
+  - <<: *libs-lv2
+  - <<: *libs-raptor
+  - <<: *libs-suil
+  - <<: *libs-vamp-plugin-sdk
+  build_requires:
+  - <<: *layers-qt
   
 - category: "apps"
   name: "krita"
