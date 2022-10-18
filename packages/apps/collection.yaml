@@ -3715,6 +3715,26 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "epiphany"
+  version: "42.4-r1"
+  uri:
+  - https://gitlab.gnome.org/GNOME/epiphany
+  license: "GPL-3+"
+  description: "GNOME webbrowser based on Webkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/epiphany
+  provides:
+  - category: "www-client"
+    name: "epiphany"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 # should be in main repo
 - category: "apps"
   name: "extundelete"
