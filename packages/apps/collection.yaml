@@ -4873,6 +4873,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-nmap
+  category: "apps"
+  name: "nmap"
+  version: "7.93"
+  uri:
+  - https://nmap.org/
+  license: "NPSL GPL-2"
+  description: "Network exploration tool and security / port scanner"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/liblinear
+      net-analyzer/nmap
+  provides:
+  - category: "dev-libs"
+    name: "liblinear"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "nmap"
+    version: ">=0"
+  prereqs:
+  - sec-keys/openpgp-keys-nmap
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "nnn"
   version: "4.5"
