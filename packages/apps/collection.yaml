@@ -4893,6 +4893,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-netkit-fingerd
+  category: "apps"
+  name: "netkit-fingerd"
+  version: "0.17-r3"
+  uri:
+  -  https://wiki.linuxfoundation.org/networking/netkit
+  license: "BSD"
+  description: "Netkit - fingerd and finger client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/netkit-fingerd
+  provides:
+  - category: "net-misc"
+    name: "netkit-fingerd"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-nmap
   category: "apps"
   name: "nmap"
@@ -7497,6 +7518,32 @@ packages:
   - <<: *libs-libntlm
   build_requires:
   - <<: *layers-X
+
+- &apps-gnome-nettool
+  category: "apps"
+  name: "gnome-nettool"
+  version: "42.0"
+  uri:
+  -  https://gitlab.gnome.org/GNOME/gnome-nettool
+  license: "GPL-2"
+  description: "Graphical front-ends to various networking command-line"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/gnome-nettool
+  provides:
+  - category: "net-analyzer"
+    name: "gnome-nettool"
+    version: ">=0"
+  prereqs:
+  - app-text/yelp-tools
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-bind-tools
+  - <<: *apps-netkit-fingerd
+  - <<: *apps-nmap
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "goverlay"
