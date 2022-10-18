@@ -3244,7 +3244,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.16.30"
+  version: "9.16.33"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -7816,6 +7816,29 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-perl-Tk
+  build_requires:
+  - <<: *layers-qt
+
+- &apps-nmapsi
+  category: "apps"
+  name: "nmapsi"
+  version: "0.5_alpha2"
+  uri:
+  - https://github.com/nmapsi4/nmapsi4
+  license: "GPL-2"
+  description: "Qt frontend to nmap"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/nmapsi
+  provides:
+  - category: "net-analyzer"
+    name: "nmapsi"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-bind-tools
+  - <<: *apps-nmap
   build_requires:
   - <<: *layers-qt
 
