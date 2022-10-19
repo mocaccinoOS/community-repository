@@ -4019,6 +4019,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "gnome-shell-frippery"
+  version: "42.1"
+  uri:
+  - http://frippery.org/extensions/index.html
+  license: "GPL-2+"
+  description: "Unofficial extension pack providing GNOME 2-like features"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-extra/gnome-shell-frippery
+  provides:
+  - category: "gnome-extra"
+    name: "gnome-shell-frippery"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
+
 - &apps-gnuchess
   category: "apps"
   name: "gnuchess"
