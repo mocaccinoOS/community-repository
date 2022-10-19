@@ -8087,6 +8087,28 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "qcad"
+  version: "3.27.8.0"
+  uri:
+  - http://www.qcad.org
+  license: "GPL-3"
+  description: "Open Source 2D CAD"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/qcad
+  overlays:
+  - name: "booboo"
+  provides:
+  - category: "media-gfx"
+    name: "qcad"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "qtox"
   version: "1.17.6-r1"
   uri:
