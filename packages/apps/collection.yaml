@@ -4997,6 +4997,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "news-flash"
+  version: "1.5.1"
+  uri:
+  - https://gitlab.com/news-flash/news_flash_gtk
+  license: "GPL-3"
+  description: "Simple News Feed Reader for feeds aggregated by an online RSS reader account"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-news/news-flash
+  overlays:
+  - name: "fritteli"
+  provides:
+  - category: "net-news"
+    name: "news-flash"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-nmap
   category: "apps"
   name: "nmap"
