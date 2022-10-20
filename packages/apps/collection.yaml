@@ -4584,6 +4584,28 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "kooha"
+  version: "2.0.1"
+  uri:
+  - https://github.com/SeaDve/Kooha
+  license: "GPL-3"
+  description: "Elegantly record your screen"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/kooha
+  overlays:
+  - name: "reagentoo"
+  provides:
+  - category: "media-video"
+    name: "kooha"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
+
+- category: "apps"
   name: "krfb"
   version: "22.04.3"
   uri:
