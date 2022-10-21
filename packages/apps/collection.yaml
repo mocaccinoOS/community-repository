@@ -3882,6 +3882,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "foliate"
+  version: "2.6.4-r1"
+  uri:
+  - https://github.com/johnfactotum/foliate
+  license: "GPL-3+"
+  description: "gtk ebook reader built with gjs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/foliate
+  provides:
+  - category: "app-text"
+    name: "foliate"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
