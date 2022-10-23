@@ -3311,7 +3311,7 @@ packages:
 #   name: "bluefish"
 #   version: "2.2.12"
 #   uri:
-#   -  https://bluefish.openoffice.nl/
+#   - https://bluefish.openoffice.nl/
 #   license: "GPL-3+"
 #   description: "GTK HTML editor for the experienced web designer or programmer"
 #   labels:
@@ -3502,7 +3502,7 @@ packages:
   name: "coquillo"
   version: "2.0.1"
   uri:
-  -  https://www.linux-apps.com/content/show.php/Coquillo?content=141896
+  - https://www.linux-apps.com/content/show.php/Coquillo?content=141896
   license: "LGPL-3"
   description: "GUI audio tagger based on Qt and taglib"
   labels:
@@ -3612,7 +3612,7 @@ packages:
   name: "designer"
   version: "5.15.5"
   uri:
-  -  https://www.qt.io/
+  - https://www.qt.io/
   license: "GPL-2 GPL-3 LGPL-3 FDL-1.3"
   description: "WYSIWYG tool for designing and building graphical user interfaces with QtWidgets"
   labels:
@@ -3648,6 +3648,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-diffpdf
+  category: "apps"
+  name: "diffpdf"
+  version: "2.1.3-r2"
+  uri:
+  -  https://www.qtrac.eu/diffpdf.html
+  license: "GPL-2"
+  description: "Program that textually or visually compares two PDF files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/diffpdf
+  provides:
+  - category: "app-text"
+    name: "diffpdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-distrobox
   category: "apps"
@@ -5065,7 +5086,7 @@ packages:
   name: "netkit-fingerd"
   version: "0.17-r3"
   uri:
-  -  https://wiki.linuxfoundation.org/networking/netkit
+  - https://wiki.linuxfoundation.org/networking/netkit
   license: "BSD"
   description: "Netkit - fingerd and finger client"
   labels:
@@ -7713,7 +7734,7 @@ packages:
   name: "gnome-nettool"
   version: "42.0"
   uri:
-  -  https://gitlab.gnome.org/GNOME/gnome-nettool
+  - https://gitlab.gnome.org/GNOME/gnome-nettool
   license: "GPL-2"
   description: "Graphical front-ends to various networking command-line"
   labels:
