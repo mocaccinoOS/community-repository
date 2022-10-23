@@ -5683,6 +5683,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-qjoypad
+  category: "apps"
+  name: "qjoypad"
+  version: "4.3.1"
+  uri:
+  - https://github.com/panzi/qjoypad
+  license: "GPL-2"
+  description: "Translate gamepad/joystick input into key strokes/mouse actions in X"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/qjoypad
+  provides:
+  - category: "x11-misc"
+    name: "qjoypad"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "rawtherapee"
   version: "5.8-r1+1"
