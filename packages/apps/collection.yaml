@@ -6410,82 +6410,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "wine-staging"
-  version: "7.18+1"
+- &apps-xaos
+  category: "apps"
+  name: "xaos"
+  version: "4.2.1_p20210828"
   uri:
-  - https://www.winehq.org/
-  - https://github.com/bobwya/wine-desktop-common
-  - https://github.com/Winetricks/winetricks
-  - https://wiki.winehq.org/Winetricks
-  - https://github.com/Matoking/protontricks
-  - https://github.com/heftig/rtkit
-  - https://source.winehq.org/git/vkd3d.git/
-  - https://github.com/ValvePython/vdf
-  - https://github.com/bobwya/wine.eselect
-  license: "BSD BSD-2 GPL-2 GPL-2+ GPL-3 LGPL-2.1 LGPL-2.1+ MIT MPL-1.1 MPL-2.0 Apache-2.0"
-  description: |
-    "Free implementation of Windows(tm) on Unix, with Wine Staging patchset"
-    "A Mozilla Gecko based version of Internet Explorer for Wine"
-    "Wine Mono is a replacement for the .NET runtime and class libraries in Wine"
-    "Core desktop menu entries and icons for Wine"
-    "Easy way to install DLLs needed to work around problems in Wine"
-    "Wrapper for Proton (Steam Play) games"
-    "Realtime Policy and Watchdog Daemon"
-    "D3D12 to Vulkan translation library"
-    "A module for (de)serialization to and from VDF, Valve's key-value text format"
-    "Manage active wine version"
+  - https://xaos-project.github.io/
+  license: "GPL-2"
+  description: "Very fast real-time fractal zoomer"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
-      app-emulation/wine-staging
-      app-emulation/wine-desktop-common
-      app-emulation/winetricks
-      app-emulation/protontricks
+      x11-misc/xaos
   provides:
-  - category: "sys-auth"
-    name: "rtkit"
+  - category: "x11-misc"
+    name: "xaos"
     version: ">=0"
-  - category: "app-emulation"
-    name: "vkd3d"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-gecko"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-mono"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-desktop-common"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "wine-staging"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "winetricks"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "protontricks"
-    version: ">=0"
-  - category: "app-eselect"
-    name: "eselect-wine"
-    version: ">=0"
-  - category: "dev-python"
-    name: "vdf"
-    version: ">=0"
-  prereqs:
-  - acct-group/rtkit
-  - acct-user/rtkit
-  - dev-util/mingw64-toolchain
+  preeqs:
+  - app-doc/doxygen
+  - media-gfx/graphviz
   requires:
-  - <<: *layers-gnome-common
-  - category: "entity"
-    name: "rtkit"
-    version: ">=0"
-  - <<: *libs-vdf
-  - <<: *libs-XML-LibXML
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-qt
 
 - &apps-xli
   category: "apps"
@@ -8508,6 +8455,83 @@ packages:
   - <<: *apps-lash
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "wine-staging"
+  version: "7.18+1"
+  uri:
+  - https://www.winehq.org/
+  - https://github.com/bobwya/wine-desktop-common
+  - https://github.com/Winetricks/winetricks
+  - https://wiki.winehq.org/Winetricks
+  - https://github.com/Matoking/protontricks
+  - https://github.com/heftig/rtkit
+  - https://source.winehq.org/git/vkd3d.git/
+  - https://github.com/ValvePython/vdf
+  - https://github.com/bobwya/wine.eselect
+  license: "BSD BSD-2 GPL-2 GPL-2+ GPL-3 LGPL-2.1 LGPL-2.1+ MIT MPL-1.1 MPL-2.0 Apache-2.0"
+  description: |
+    "Free implementation of Windows(tm) on Unix, with Wine Staging patchset"
+    "A Mozilla Gecko based version of Internet Explorer for Wine"
+    "Wine Mono is a replacement for the .NET runtime and class libraries in Wine"
+    "Core desktop menu entries and icons for Wine"
+    "Easy way to install DLLs needed to work around problems in Wine"
+    "Wrapper for Proton (Steam Play) games"
+    "Realtime Policy and Watchdog Daemon"
+    "D3D12 to Vulkan translation library"
+    "A module for (de)serialization to and from VDF, Valve's key-value text format"
+    "Manage active wine version"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-emulation/wine-staging
+      app-emulation/wine-desktop-common
+      app-emulation/winetricks
+      app-emulation/protontricks
+  provides:
+  - category: "sys-auth"
+    name: "rtkit"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "vkd3d"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-gecko"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-mono"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-desktop-common"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "wine-staging"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "winetricks"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "protontricks"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-wine"
+    version: ">=0"
+  - category: "dev-python"
+    name: "vdf"
+    version: ">=0"
+  prereqs:
+  - acct-group/rtkit
+  - acct-user/rtkit
+  - dev-util/mingw64-toolchain
+  requires:
+  - <<: *layers-gnome-common
+  - category: "entity"
+    name: "rtkit"
+    version: ">=0"
+  - <<: *libs-vdf
+  - <<: *libs-XML-LibXML
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "yoshimi"
