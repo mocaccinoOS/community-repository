@@ -4062,6 +4062,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-fraqtive
+  category: "apps"
+  name: "fraqtive"
+  version: "0.4.8-r2"
+  uri:
+  - https://fraqtive.mimec.org/
+  license: "GPL-2"
+  description: "Open source, multi-platform generator of the Mandelbrot family fractals"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/fraqtive
+  provides:
+  - category: "x11-misc"
+    name: "fraqtive"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-gconf
   category: "apps"
   name: "gconf"
