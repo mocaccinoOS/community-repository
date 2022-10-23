@@ -4815,6 +4815,26 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "mandelbulber"
+  version: "2.28"
+  uri:
+  - https://www.mandelbulber.com
+  license: "CC-BY-4.0 GPL-3"
+  description: "Tool to render 3D fractals"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mandelbulber
+  provides:
+  - category: "media-gfx"
+    name: "mandelbulber"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
