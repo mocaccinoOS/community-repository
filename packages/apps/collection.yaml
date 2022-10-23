@@ -3497,6 +3497,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-coquillo
+  category: "apps"
+  name: "coquillo"
+  version: "2.0.1"
+  uri:
+  -  https://www.linux-apps.com/content/show.php/Coquillo?content=141896
+  license: "LGPL-3"
+  description: "GUI audio tagger based on Qt and taglib"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/coquillo
+  provides:
+  - category: "media-sound"
+    name: "coquillo"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
