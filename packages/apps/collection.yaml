@@ -2552,27 +2552,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-sdl-net
-  category: "libs"
-  name: "sdl-net"
-  version: "1.2.8-r2+1"
-  uri:
-  - https://www.libsdl.org/projects/SDL_net/
-  license: "ZLIB"
-  description: "Simple Direct Media Layer Network Support Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-net
-  provides:
-  - category: "media-libs"
-    name: "sdl-net"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-sdl2-ttf
   category: "libs"
   name: "sdl2-ttf"
@@ -2588,6 +2567,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "sdl2-ttf"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-sdl-net
+  category: "libs"
+  name: "sdl-net"
+  version: "1.2.8-r2+1"
+  uri:
+  - https://www.libsdl.org/projects/SDL_net/
+  license: "ZLIB"
+  description: "Simple Direct Media Layer Network Support Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-net
+  provides:
+  - category: "media-libs"
+    name: "sdl-net"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -2826,6 +2826,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-tinyxml2
+  category: "libs"
+  name: "tinyxml2"
+  version: "9.0.0-r1"
+  uri:
+  - http://www.grinninglizard.com/tinyxml2/
+  license: "ZLIB"
+  description: "A simple, small, efficient, C++ XML parser"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tinyxml2
+  provides:
+  - category: "dev-libs"
+    name: "tinyxml2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-sustem-x
 
 - &libs-tomsfastmath
   category: "libs"
