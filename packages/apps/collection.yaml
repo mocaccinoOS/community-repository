@@ -9534,6 +9534,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-luminance-hdr
+  category: "apps"
+  name: "luminance-hdr"
+  version: "2.6.1.1"
+  uri:
+  -  http://qtpfsgui.sourceforge.net
+  license: "GPL-2"
+  description: "Graphical user interface that provides a workflow for HDR imaging"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/luminance-hdr
+  provides:
+  - category: "media-gfx"
+    name: "luminance-hdr"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-cfitsio
+  build_requires:
+  - <<: *layers-kde-common
+
 # - &apps-mediainfo
 #   category: "apps"
 #   name: "mediainfo"
