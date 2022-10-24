@@ -7259,6 +7259,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libmediainfo
+  category: "libs"
+  name: "libmediainfo"
+  version: "22.03"
+  uri:
+  - https://mediaarea.net/mediainfo/
+  license: "BSD-2"
+  description: "MediaInfo libraries"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmediainfo
+  provides:
+  - category: "media-libs"
+    name: "libmediainfo"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-tinyxml2
+  - <<: *libs-libzen
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-protobuf-python
   category: "libs"
   name: "protobuf-python"
