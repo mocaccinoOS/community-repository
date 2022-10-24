@@ -8371,6 +8371,29 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-smplayer
+  category: "apps"
+  name: "smplayer"
+  version: "22.2.0"
+  uri:
+  - https://www.smplayer.eu/
+  license: "GPL-2+ BSD-2"
+  description: "Great Qt GUI front-end for mplayer/mpv"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/smplayer
+  provides:
+  - category: "media-video"
+    name: "smplayer"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  # - <<: *media-video/mplayer
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "snapper-gui"
   version: "220626+1"
