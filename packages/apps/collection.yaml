@@ -1740,6 +1740,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libzen
+  category: "libs"
+  name: "libzen"
+  version: "0.4.39"
+  uri:
+  -  https://github.com/MediaArea/ZenLib
+  license: "ZLIB"
+  description: "Shared library for libmediainfo and mediainfo"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libzen
+  provides:
+  - category: "media-libs"
+    name: "libzen"
+    version: ">=0"
+  prereqs:
+  - dev-lang/yasm
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-sustem-x
+
 - &libs-log4cplus
   category: "libs"
   name: "log4cplus"
