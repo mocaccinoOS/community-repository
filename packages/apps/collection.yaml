@@ -2848,6 +2848,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-udis86
+  category: "libs"
+  name: "udis86"
+  version: "1.7.2-r1"
+  uri:
+  - http://udis86.sourceforge.net/
+  license: "BSD"
+  description: "Disassembler library for the x86/-64 architecture sets"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/udis86
+  provides:
+  - category: "dev-libs"
+    name: "udis86"
+    version: ">=0"
+  prereqs:
+  - dev-lang/yasm
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-sustem-x
+
 - &libs-uthash
   category: "libs"
   name: "uthash"
