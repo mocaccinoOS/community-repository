@@ -4747,7 +4747,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-qt
-  mhash
   build_requires:
   - <<: *layers-qt
 
@@ -4924,6 +4923,27 @@ packages:
 #   - <<: *layers-plasma
 #   build_requires:
 #   - <<: *layers-plasma
+
+- &apps-kvantum
+  category: "apps"
+  name: "kvantum"
+  version: "1.0.1"
+  uri:
+  - https://github.com/tsujan/Kvantum
+  license: "GPL-3"
+  description: "SVG-based theme engine for Qt5, KDE Plasma and LXQt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-themes/kvantum
+  provides:
+  - category: "x11-themes"
+    name: "kvantum"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - &apps-lash
   category: "apps"
