@@ -3524,6 +3524,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-cgroup-utils
+  category: "apps"
+  name: "cgroup-utils"
+  version: "0.8-r1"
+  uri:
+  - https://github.com/peo3/cgroup-utils
+  license: "GPL-2"
+  description: "Tools and libraries for control groups of Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cgroup-utils
+  provides:
+  - category: "dev-python"
+    name: "cgroup-utils"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "colord-kde"
   version: "0.5.0-r2"
@@ -7628,7 +7649,7 @@ packages:
 - &apps-brother-scan4-bin
   category: "apps"
   name: "brother-scan4-bin"
-  version: "0.4.4-r3"
+  version: "0.4.4-r3+1"
   uri:
   - http://support.brother.com/g/s/id/linux/en/index.html
   license: "GPL-2 brother-eula no-source-code"
@@ -9539,7 +9560,7 @@ packages:
   name: "luminance-hdr"
   version: "2.6.1.1"
   uri:
-  -  http://qtpfsgui.sourceforge.net
+  - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
   description: "Graphical user interface that provides a workflow for HDR imaging"
   labels:
