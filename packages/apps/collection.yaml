@@ -6182,6 +6182,28 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "tophat"
+  version: "9999"
+  uri:
+  - https://github.com/fflewddur/tophat
+  license: "GPL-3"
+  description: "An elegant system resource monitor for the GNOME shell"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-extra/tophat
+  overlays:
+  - name: "Miezhiko"
+  provides:
+  - category: "gnome-extra"
+    name: "tophat"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
+
+- category: "apps"
   name: "tree"
   version: "1.8.0"
   uri:
