@@ -3373,26 +3373,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-bluefish
-#   category: "apps"
-#   name: "bluefish"
-#   version: "2.2.12"
-#   uri:
-#   - https://bluefish.openoffice.nl/
-#   license: "GPL-3+"
-#   description: "GTK HTML editor for the experienced web designer or programmer"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-editors/bluefish
-#   provides:
-#   - category: "app-editors"
-#     name: "bluefish"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+- &apps-bluefish
+  category: "apps"
+  name: "bluefish"
+  version: "2.2.12"
+  uri:
+  - https://bluefish.openoffice.nl/
+  license: "GPL-3+"
+  description: "GTK HTML editor for the experienced web designer or programmer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/bluefish
+  provides:
+  - category: "app-editors"
+    name: "bluefish"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-bottom
   category: "apps"
@@ -4101,25 +4101,25 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "foobillard"
-#   version: "3.0a-r1"
-#   uri:
-#   - http://foobillard.sourceforge.net/
-#   license: "GPL-2"
-#   description: "8ball, 9ball, snooker and carambol game"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-sports/foobillard
-#   provides:
-#   - category: "games-sports"
-#     name: "foobillard"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+- category: "apps"
+  name: "foobillard"
+  version: "3.0a-r1"
+  uri:
+  - http://foobillard.sourceforge.net/
+  license: "GPL-2"
+  description: "8ball, 9ball, snooker and carambol game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-sports/foobillard
+  provides:
+  - category: "games-sports"
+    name: "foobillard"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "foot"
@@ -5099,7 +5099,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "22.04.3+1"
+  version: "22.04.3+2"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7344,51 +7344,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-libmediainfo
-#   category: "libs"
-#   name: "libmediainfo"
-#   version: "22.03+1"
-#   uri:
-#   - https://mediaarea.net/mediainfo/
-#   license: "BSD-2"
-#   description: "MediaInfo libraries"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/libmediainfo
-#   provides:
-#   - category: "media-libs"
-#     name: "libmediainfo"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   - <<: *libs-tinyxml2
-#   - <<: *libs-libzen
-#   build_requires:
-#   - <<: *layers-system-x
-
-- &libs-protobuf-python
+- &libs-libmediainfo
   category: "libs"
-  name: "protobuf-python"
-  version: "3.20.1"
+  name: "libmediainfo"
+  version: "22.03+1"
   uri:
-  - https://developers.google.com/protocol-buffers/
-  - https://github.com/protocolbuffers/protobuf/
-  - https://pypi.org/project/protobuf/
-  license: "BSD"
-  description: "Google's Protocol Buffers - Python bindings"
+  - https://mediaarea.net/mediainfo/
+  license: "BSD-2"
+  description: "MediaInfo libraries"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/protobuf-python
+      media-libs/libmediainfo
   provides:
-  - category: "dev-python"
-    name: "protobuf-python"
+  - category: "media-libs"
+    name: "libmediainfo"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  - <<: *layers-system-x
+  - <<: *libs-tinyxml2
+  - <<: *libs-libzen
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-system-x
 
 - &libs-pysol_cards
   category: "libs"
@@ -7800,7 +7777,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc1+7"
+  version: "1.4.0_rc2"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -8288,7 +8265,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "27.2.4"
+  version: "28.1.2-r1"
   uri:
   - https://obsproject.com
   license: "GPL-2"
@@ -8444,7 +8421,7 @@ packages:
 
 - category: "apps"
   name: "qcad"
-  version: "3.27.8.01+1"
+  version: "3.27.8.0+2"
   uri:
   - http://www.qcad.org
   license: "GPL-3"
@@ -8949,7 +8926,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.6.0-r2"
+  version: "4.6.0-r2+1"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -8997,7 +8974,7 @@ packages:
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
-  version: "12.1.4"
+  version: "12.1.4+1"
   uri:
   - https://github.com/home-assistant-libs/pychromecast
   - https://github.com/ur1katz/casttube
@@ -9019,7 +8996,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-system-x
-  - <<: *libs-protobuf-python
   - <<: *libs-zeroconf
   build_requires:
   - <<: *layers-system-x
@@ -9599,28 +9575,28 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - &apps-mediainfo
-#   category: "apps"
-#   name: "mediainfo"
-#   version: "22.03+1"
-#   uri:
-#   - https://mediaarea.net/mediainfo/
-#   license: "BSD-2"
-#   description: "MediaInfo supplies technical and tag information about media files"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-video/mediainfo
-#   provides:
-#   - category: "media-video"
-#     name: "mediainfo"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-libmediainfo
-#   - <<: *libs-libzen
-#   build_requires:
-#   - <<: *layers-gnome-common
+- &apps-mediainfo
+  category: "apps"
+  name: "mediainfo"
+  version: "22.03+1"
+  uri:
+  - https://mediaarea.net/mediainfo/
+  license: "BSD-2"
+  description: "MediaInfo supplies technical and tag information about media files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/mediainfo
+  provides:
+  - category: "media-video"
+    name: "mediainfo"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-libmediainfo
+  - <<: *libs-libzen
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-nut
   category: "apps"
@@ -9653,7 +9629,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.3-r1+1"
+  version: "2.3.3-r1+2"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -10137,7 +10113,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.7.0-r2"
+  version: "1.7.0-r2+1"
   uri:
   - http://www.dyne.org/software/frei0r/
   license: "GPL-2"
@@ -10675,7 +10651,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.8.0+2"
+  version: "7.8.0+3"
   uri:
   - http://www.mltframework.org/
   license: "GPL-3"
@@ -10930,7 +10906,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "7.8.0-r1"
+  version: "7.8.0-r1+1"
   uri:
   - https://www.digikam.org/
   - https://www.qtav.org
@@ -11320,7 +11296,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r2+4"
+  version: "2.0.1-r2+5"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -11336,7 +11312,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libmypaint
-  - <<: *libs-protobuf-python
   - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *layers-X
@@ -11491,7 +11466,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "7.0"
+  version: "7.0+1"
   uri:
   - https://ardour.org/
   license: "AGPL-3"

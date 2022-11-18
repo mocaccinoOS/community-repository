@@ -123,6 +123,15 @@ anchors:
     emerge.packages: >-
       gnome-base/libglade
 
+- &libs-mhash
+  category: "libs"
+  name: "mhash"
+  version: "0.9.9.9-r2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/mhash
+
 - &libs-raptor
   category: "libs"
   name: "raptor"
@@ -211,32 +220,30 @@ packages:
 - &def-layers-office-common
   category: "layers"
   name: "office-common"
-  version: "0.9+1"
+  version: "0.9+2"
   uri:
-    - http://mhash.sourceforge.net/
-    - https://wiki.documentfoundation.org/DLP/Libraries/libabw
-    - https://bitbucket.org/tagoh/liblangtag/wiki/Home
-    - https://sourceforge.net/projects/libebook/
-    - https://sourceforge.net/projects/libepubgen/
-    - https://wiki.documentfoundation.org/DLP/Libraries/libetonyek
-    - https://software.wise-guys.nl/libtextcat/
-    - https://wiki.documentfoundation.org/DLP/Libraries/libmspub
-    - https://sourceforge.net/p/libmwaw/wiki/Home/
-    - http://libwpd.sourceforge.net/
-    - https://wiki.documentfoundation.org/DLP/Libraries/libqxp
-    - https://sourceforge.net/p/libwps/wiki/Home/
-    - https://github.com/hunspell/mythes
-    - http://clucene.sourceforge.net/
-    - http://www.iodbc.org/
-    - https://gitlab.com/mdds/mdds
-    - http://librdf.org/rasqal/
-    - http://librdf.org/
-    - https://wiki.documentfoundation.org/DLP/Libraries/libfreehand
-    - https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker
-    - https://wiki.documentfoundation.org/DLP/Libraries/libzmf
+  - https://wiki.documentfoundation.org/DLP/Libraries/libabw
+  - https://bitbucket.org/tagoh/liblangtag/wiki/Home
+  - https://sourceforge.net/projects/libebook/
+  - https://sourceforge.net/projects/libepubgen/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libetonyek
+  - https://software.wise-guys.nl/libtextcat/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libmspub
+  - https://sourceforge.net/p/libmwaw/wiki/Home/
+  - http://libwpd.sourceforge.net/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libqxp
+  - https://sourceforge.net/p/libwps/wiki/Home/
+  - https://github.com/hunspell/mythes
+  - http://clucene.sourceforge.net/
+  - http://www.iodbc.org/
+  - https://gitlab.com/mdds/mdds
+  - http://librdf.org/rasqal/
+  - http://librdf.org/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libfreehand
+  - https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker
+  - https://wiki.documentfoundation.org/DLP/Libraries/libzmf
   license: "Apache-2.0 BSD-2 GPL-2 GPL-2+ LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0"
   description: |
-    "Library providing a uniform interface to a large number of hash algorithms"
     "Library parsing abiword documents"
     "Interface library to access tags for identifying languages"
     "Library parsing various ebook formats"
@@ -261,7 +268,6 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      app-crypt/mhash
       app-text/libabw
       app-text/liblangtag
       app-text/libebook
@@ -283,9 +289,6 @@ packages:
       media-libs/libpagemaker
       media-libs/libzmf
   provides:
-  - category: "app-crypt"
-    name: "mhash"
-    version: ">=0"
   - category: "app-text"
     name: "libabw"
     version: ">=0"
@@ -351,6 +354,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-raptor
+  - <<: *libs-mhash
   build_requires:
   - <<: *layers-X
 
