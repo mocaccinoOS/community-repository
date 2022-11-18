@@ -1911,6 +1911,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-mhash
+  category: "libs"
+  name: "mhash"
+  version: "0.9.9.9-r2"
+  uri:
+  - http://mhash.sourceforge.net/
+  license: "GPL-2"
+  description: "Library providing a uniform interface to a large number of hash algorithms"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/mhash
+  provides:
+  - category: "app-crypt"
+    name: "mhash"
+    version: ">=0"
+  prereqs:
+  - dev-lang/yasm
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-MIME-tools
   category: "libs"
   name: "MIME-tools"
