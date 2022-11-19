@@ -1082,27 +1082,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libheif
-  category: "libs"
-  name: "libheif"
-  version: "1.12.0-r3"
-  uri:
-  - https://github.com/strukturag/libheif
-  license: "GPL-3"
-  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libheif
-  provides:
-  - category: "media-libs"
-    name: "libheif"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
@@ -1377,6 +1356,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libheif
+  category: "libs"
+  name: "libheif"
+  version: "1.12.0-r3"
+  uri:
+  - https://github.com/strukturag/libheif
+  license: "GPL-3"
+  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libheif
+  provides:
+  - category: "media-libs"
+    name: "libheif"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -1483,6 +1483,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libmirage
+  category: "libs"
+  name: "libmirage"
+  version: "3.2.6"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "CD and DVD image access library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libmirage
+  provides:
+  - category: "dev-libs"
+    name: "libmirage"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
+  
 - &libs-libmp4v2
   category: "libs"
   name: "libmp4v2"
@@ -3542,27 +3563,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &apps-cdemu
-  category: "apps"
-  name: "cdemu"
-  version: "3.2.5"
-  uri:
-  - https://cdemu.sourceforge.io
-  license: "GPL-2+"
-  description: "Command-line tool for controlling cdemu-daemon"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/cdemu
-  provides:
-  - category: "app-cdr"
-    name: "cdemu"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "celestia"
@@ -7804,6 +7804,35 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-cdemu
+  category: "apps"
+  name: "cdemu"
+  version: "3.2.5"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Command-line tool for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cdemu
+  provides:
+  - category: "app-cdr"
+    name: "cdemu"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "vhba"
+    version: ">=0"
+  prereqs:
+  - virtual/dist-kernel
+  - virtual/linux-sources
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libao
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *layers-X
+
 - &apps-cdrdao
   category: "apps"
   name: "cdrdao"
@@ -7950,28 +7979,6 @@ packages:
   - <<: *libs-id3lib
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-gcdemu
-  category: "apps"
-  name: "gcdemu"
-  version: "3.2.6"
-  uri:
-  - https://cdemu.sourceforge.io
-  license: "GPL-2+"
-  description: "Gtk+ GUI for controlling cdemu-daemon"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/gcdemu
-  provides:
-  - category: "app-cdr"
-    name: "gcdemu"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-cdemu
-  build_requires:
-  - <<: *layers-kde-common
 
 - category: "apps"
   name: "gkrellm"
@@ -8139,28 +8146,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
   - <<: *libs-analitza
-
-- &apps-kcdemu
-  category: "apps"
-  name: "kcdemu"
-  version: "0.8.0"
-  uri:
-  - https://www.linux-apps.com/p/998461/
-  license: "GPL-2"
-  description: "Frontend to cdemu daemon based on KDE Frameworks"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/kcdemu
-  provides:
-  - category: "app-cdr"
-    name: "kcdemu"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-cdemu
-  build_requires:
-  - <<: *layers-kde-common
 
 # TODO: gpg
 - category: "apps"
@@ -9995,7 +9980,7 @@ packages:
 - &apps-timidity
   category: "apps"
   name: "timidity"
-  version: "2.15.0-r3+1"
+  version: "2.15.0-r6"
   uri:
   - http://timidity.sourceforge.net/
   - https://wiki.gentoo.org/wiki/No_homepage
@@ -10473,6 +10458,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gcdemu
+  category: "apps"
+  name: "gcdemu"
+  version: "3.2.6"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Gtk+ GUI for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/gcdemu
+  provides:
+  - category: "app-cdr"
+    name: "gcdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-hugin
   category: "apps"
   name: "hugin"
@@ -10518,6 +10525,28 @@ packages:
   - <<: *layers-gnome-common
 #   - <<: *layers-X
 
+- &apps-kcdemu
+  category: "apps"
+  name: "kcdemu"
+  version: "0.8.0"
+  uri:
+  - https://www.linux-apps.com/p/998461/
+  license: "GPL-2"
+  description: "Frontend to cdemu daemon based on KDE Frameworks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/kcdemu
+  provides:
+  - category: "app-cdr"
+    name: "kcdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu
+  build_requires:
+  - <<: *layers-kde-common
+
 - category: "apps"
   name: "kstars"
   version: "3.5.9"
@@ -10558,7 +10587,7 @@ packages:
 - &apps-moc
   category: "apps"
   name: "moc"
-  version: "2.6_alpha3-r5+1"
+  version: "2.6_alpha3-r6"
   uri:
   - https://moc.daper.net
   - http://libtimidity.sourceforge.net
@@ -11004,7 +11033,7 @@ packages:
 - &apps-cmus
   category: "apps"
   name: "cmus"
-  version: "2.9.1-r1+1"
+  version: "2.10.0-r1"
   uri:
   - https://cmus.github.io/
   license: "GPL-2"
