@@ -2592,6 +2592,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdl2-net
+  category: "libs"
+  name: "sdl2-net"
+  version: "2.0.1"
+  uri:
+  - https://www.libsdl.org/projects/SDL_net/index.html
+  license: "ZLIB"
+  description: "Simple Direct Media Layer Network Support Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl2-net
+  provides:
+  - category: "media-libs"
+    name: "sdl2-net"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-sdl2-ttf
   category: "libs"
   name: "sdl2-ttf"
@@ -4054,6 +4075,27 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-firejail
+  category: "apps"
+  name: "firejail"
+  version: "0.9.70"
+  uri:
+  - https://firejail.wordpress.com/
+  license: "GPL-2"
+  description: "Security sandbox for any type of processes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/firejail
+  provides:
+  - category: "sys-apps"
+    name: "firejail"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "fish"
