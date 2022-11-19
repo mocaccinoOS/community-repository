@@ -3505,6 +3505,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-cdemu
+  category: "apps"
+  name: "cdemu"
+  version: "3.2.5"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Command-line tool for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cdemu
+  provides:
+  - category: "app-cdr"
+    name: "cdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "celestia"
   version: "1.7.0_pre20220120+3"
@@ -3863,26 +3884,6 @@ packages:
   provides:
   - category: "kde-apps"
     name: "dolphin-plugins-git"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-apps-minimal
-  build_requires:
-  - <<: *layers-kde-apps-minimal
-
-- category: "apps"
-  name: "dolphin-plugins-mountiso"
-  version: "22.04.3"
-  uri:
-  - https://apps.kde.org/dolphin_plugins/
-  license: "GPL-2 "
-  description: "Dolphin plugin for ISO loopback device mounting"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/dolphin-plugins-mountiso
-  provides:
-  - category: "app-cdr"
-    name: "dolphin-plugins-mountiso"
     version: ">=0"
   requires:
   - <<: *layers-kde-apps-minimal
@@ -7891,6 +7892,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-gcdemu
+  category: "apps"
+  name: "gcdemu"
+  version: "3.2.6"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Gtk+ GUI for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/gcdemu
+  provides:
+  - category: "app-cdr"
+    name: "gcdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu
+  build_requires:
+  - <<: *layers-kde-common
+
 - category: "apps"
   name: "gkrellm"
   version: "2.3.11-r1"
@@ -8057,6 +8080,28 @@ packages:
   build_requires:
   - <<: *layers-kde-common
   - <<: *libs-analitza
+
+- &apps-kcdemu
+  category: "apps"
+  name: "kcdemu"
+  version: "0.8.0"
+  uri:
+  - https://www.linux-apps.com/p/998461/
+  license: "GPL-2"
+  description: "Frontend to cdemu daemon based on KDE Frameworks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/kcdemu
+  provides:
+  - category: "app-cdr"
+    name: "kcdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu
+  build_requires:
+  - <<: *layers-kde-common
 
 # TODO: gpg
 - category: "apps"
