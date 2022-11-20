@@ -1486,7 +1486,7 @@ packages:
 - &libs-libmirage
   category: "libs"
   name: "libmirage"
-  version: "3.2.6"
+  version: "3.2.6+1"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -6785,6 +6785,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-beautifulsoup4
+  category: "libs"
+  name: "beautifulsoup4"
+  version: "4.11.1"
+  uri:
+  - https://www.crummy.com/software/BeautifulSoup/bs4
+  license: "MIT"
+  description: "Pythonic idioms for iterating, searching, and modifying an HTML/XML parse tree"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/beautifulsoup4
+  provides:
+  - category: "dev-python"
+    name: "beautifulsoup4"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-soupsieve
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-build
   category: "libs"
   name: "build"
@@ -7708,28 +7730,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-beautifulsoup4
-  category: "libs"
-  name: "beautifulsoup4"
-  version: "4.11.1"
-  uri:
-  - https://www.crummy.com/software/BeautifulSoup/bs4
-  license: "MIT"
-  description: "Pythonic idioms for iterating, searching, and modifying an HTML/XML parse tree"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/beautifulsoup4
-  provides:
-  - category: "dev-python"
-    name: "beautifulsoup4"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-soupsieve
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-brother-scan4-bin
   category: "apps"
   name: "brother-scan4-bin"
@@ -8285,6 +8285,28 @@ packages:
   - <<: *libs-fluid-soundfont
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-mirage2iso
+  category: "apps"
+  name: "mirage2iso"
+  version: "0.4.2-r1"
+  uri:
+  - https://github.com/mgorny/mirage2iso/
+  license: "BSD"
+  description: "CD/DVD image converter using libmirage"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/mirage2iso
+  provides:
+  - category: "app-cdr"
+    name: "mirage2iso"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *layers-codecs
 
 - category: "apps"
   name: "mkvtoolnix"
