@@ -633,10 +633,10 @@ packages:
 - &def-layers-ghc
   category: "layers"
   name: "ghc"
-  version: "8.10.6"
+  version: "8.10.4-r1+14"
   uri:
-    - https://www.haskell.org/ghc/
-    - http://haskell.org/haskellwiki/Gentoo#haskell-updater
+  - https://www.haskell.org/ghc/
+  - http://haskell.org/haskellwiki/Gentoo#haskell-updater
   license: "BSD GPL-2"
   description: |
     "The Glasgow Haskell Compiler"
@@ -653,6 +653,9 @@ packages:
   - category: "app-admin"
     name: "haskell-updater"
     version: ">=0"
+  prepare:
+  - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ghc/ghc-9.0.2.ebuild
+  - ebuild /var/db/repos/gentoo/dev-lang/ghc/ghc-9.0.2.ebuild manifest
   prereqs:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
