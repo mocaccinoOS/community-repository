@@ -653,9 +653,6 @@ packages:
   - category: "app-admin"
     name: "haskell-updater"
     version: ">=0"
-  prepare:
-  - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ghc/ghc-9.0.2.ebuild
-  - ebuild /var/db/repos/gentoo/dev-lang/ghc/ghc-9.0.2.ebuild manifest
   prereqs:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
