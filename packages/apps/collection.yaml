@@ -4283,6 +4283,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "galaxy"
+  version: "2.2-r1"
+  uri:
+  - http://www.kornelix.com/galaxy.html
+  license: "GPL-3"
+  description: "Stellar simulation program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-astronomy/galaxy
+  provides:
+  - category: "sci-astronomy"
+    name: "galaxy"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-gconf
   category: "apps"
   name: "gconf"
