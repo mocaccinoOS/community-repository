@@ -4345,6 +4345,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "gnofract4d"
+  version: "4.3_p20211108"
+  uri:
+  - https://fract4d.github.io/gnofract4d/
+  license: "BSD"
+  description: "A program for drawing beautiful mathematically-based images known as fractals"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/gnofract4d
+  provides:
+  - category: "media-gfx"
+    name: "gnofract4d"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "gnome-shell-frippery"
   version: "42.1"
   uri:
@@ -11906,7 +11926,8 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "2.93.9+51"
+# version: "2.93.9+51"
+  version: "3.3.0"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
