@@ -11200,38 +11200,38 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-hedgewars
-  category: "apps"
-  name: "hedgewars"
-  version: "1.0.0-r100"
-  uri:
-  - https://www.hedgewars.org/
-  license: "GPL-2 Apache-2.0 FDL-1.3"
-  description: "A turn-based strategy, artillery, action and comedy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/hedgewars
-  provides:
-  - category: "games-strategy"
-    name: "hedgewars"
-    version: ">=0"
-  prereqs:
-  - dev-lang/ghc
-  - dev-haskell/parsec
-  - dev-lang/fpc  
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-physfs
-  - <<: *libs-sdl2-image
-  - <<: *libs-sdl2-mixer
-  - <<: *libs-sdl2-net
-  - <<: *libs-sdl2-ttf
-  - <<: *fonts-wqy-zenhei
-  build_requires:
-  - <<: *buildbase-ghc
-  - <<: *buildbase-qt
-  requires_final_images: true
+# - &apps-hedgewars
+#   category: "apps"
+#   name: "hedgewars"
+#   version: "1.0.0-r100"
+#   uri:
+#   - https://www.hedgewars.org/
+#   license: "GPL-2 Apache-2.0 FDL-1.3"
+#   description: "A turn-based strategy, artillery, action and comedy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/hedgewars
+#   provides:
+#   - category: "games-strategy"
+#     name: "hedgewars"
+#     version: ">=0"
+#   prereqs:
+#   - dev-lang/ghc
+#   - dev-haskell/parsec
+#   - dev-lang/fpc  
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-physfs
+#   - <<: *libs-sdl2-image
+#   - <<: *libs-sdl2-mixer
+#   - <<: *libs-sdl2-net
+#   - <<: *libs-sdl2-ttf
+#   - <<: *fonts-wqy-zenhei
+#   build_requires:
+#   - <<: *buildbase-ghc
+#   - <<: *buildbase-qt
+#   requires_final_images: true
     
 - category: "apps"
   name: "kdenlive"
