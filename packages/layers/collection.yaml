@@ -82,6 +82,31 @@ anchors:
   virtual/jre
   virtual/jdk
 
+- &layers-latex
+  category: "layers"
+  name: "latex"
+  version: ">=0"
+- &layerbase-latex
+  category: "layerbase"
+  name: "latex"
+  version: ">=0"
+- &buildbase-latex
+  category: "buildbase"
+  name: "latex"
+  version: ">=0"
+
+- &layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: ">=0"
+- &layerbase-perl-libs
+  category: "layerbase"
+  name: "perl-libs"
+  version: ">=0"
+- &buildbase-perl-libs
+  category: "buildbase"
+  name: "perl-libs"
+  version: ">=0"
 
 - &layers-ghc
   category: "layers"
@@ -196,6 +221,15 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pysol_cards
+
+- &libs-xxhash
+  category: "libs"
+  name: "xxhash"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/xxhash
 
 ################################################################################
 ### apps ###
@@ -360,6 +394,222 @@ packages:
 
 - <<: *def-layers-office-common
   category: "layerbase"
+  hidden: true
+
+
+- &def-layers-latex
+  category: "layers"
+  name: "latex"
+  version: "2021"
+  uri:
+  - http://www.tug.org/texlive/
+  license: "metapackage"
+  description: |
+    "A complete TeX distribution"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+        app-text/texlive
+  provides:
+  - category: "app-text"
+    name: "dvipng"
+    version: ">=0"
+  - category: "app-text"
+    name: "dvisvgm"
+    version: ">=0"
+  - category: "app-text"
+    name: "lcdf-typetools"
+    version: ">=0"
+  - category: "app-text"
+    name: "ps2eps"
+    version: ">=0"
+  - category: "app-text"
+    name: "psutils"
+    version: ">=0"
+  - category: "app-text"
+    name: "t1utils"
+    version: ">=0"
+  - category: "app-text"
+    name: "texi2html"
+    version: ">=0"
+#   - category: "app-text"
+#     name: "texlive-core"
+#     version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-EastAsianWidth"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Pod-LaTeX"
+    version: ">=0"
+  - category: "app-text"
+    name: "ttf2pk2"
+    version: ">=0"
+  - category: "app-text"
+    name: "xdvik"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "glossaries"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "latex-beamer"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "latexdiff"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "latexmk"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "pdfannotextractor"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "pgf"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "tex4ht"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-basic"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-bibtexextra"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-context"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-fontsextra"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-fontsrecommended"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-fontutils"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-formatsextra"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-games"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-humanities"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langarabic"
+    version: ">=0"
+#   - category: "dev-texlive"
+#     name: "texlive-langchinese"
+#     version: ">=0"
+#   - category: "dev-texlive"
+#     name: "texlive-langcjk"
+#     version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langcyrillic"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langczechslovak"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langenglish"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langeuropean"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langfrench"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langgerman"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langgreek"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langitalian"
+    version: ">=0"
+#   - category: "dev-texlive"
+#     name: "texlive-langjapanese"
+#     version: ">=0"
+#   - category: "dev-texlive"
+#     name: "texlive-langkorean"
+#     version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langother"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langpolish"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langportuguese"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-langspanish"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-latex"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-latexextra"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-latexrecommended"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-luatex"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-mathscience"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-metapost"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-music"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-pictures"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-plaingeneric"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-pstricks"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-publishers"
+    version: ">=0"
+  - category: "dev-texlive"
+    name: "texlive-xetex"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "sam2p"
+    version: ">=0"
+#   - category: "sys-apps"
+#     name: "texinfo"
+#     version: ">=0"
+  - category: "virtual"
+    name: "latex-base"
+    version: ">=0"
+  - category: "virtual"
+    name: "texi2dvi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-perl-libs
+  - <<: *libs-xxhash
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-perl-libs
+  requires_final_images: true
+
+- <<: *def-layers-latex 
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-layers-latex 
+  category: "buildbase"
+  unpack: true
   hidden: true
 
 
@@ -629,6 +879,102 @@ packages:
   - <<: *libs-pysol_cards
   build_requires:
   - <<: *layers-kde-common
+
+
+- &def-layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: "0.1"
+  uri:
+  - https://metacpan.org
+  license: "metapackage"
+  description: |
+    "Perl libs to support various packages"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/OLE-StorageLite
+      dev-perl/IO-stringy
+      dev-perl/Text-CSV_XS
+      dev-perl/Crypt-RC4
+      dev-perl/Digest-Perl-MD5
+      dev-perl/Unicode-Map
+      dev-perl/Algorithm-Diff
+      dev-perl/Text-Unidecode
+      dev-perl/Class-Inspector
+      dev-perl/Exporter-Tiny
+      virtual/perl-if
+      dev-perl/Spreadsheet-ParseExcel
+      dev-perl/List-MoreUtils-XS
+      dev-perl/List-MoreUtils
+      dev-perl/File-ShareDir
+      dev-perl/libintl-perl
+  provides:
+  - category: "dev-perl"
+    name: "Algorithm-Diff"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Class-Inspector"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-RC4"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-Perl-MD5"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Exporter-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-ShareDir"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "IO-stringy"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils-XS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "OLE-StorageLite"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Spreadsheet-ParseExcel"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-CSV_XS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Unidecode"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-Map"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "libintl-perl"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-if"
+    version: ">=0"
+  prereqs:
+  - virtual/perl-IPC-Cmd
+  - dev-perl/File-ShareDir-Install
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- <<: *def-layers-perl-libs 
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-layers-perl-libs 
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
 
 - &def-layers-ghc
   category: "layers"

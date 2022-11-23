@@ -82,6 +82,32 @@ anchors:
   virtual/jre
   virtual/jdk
 
+- &layers-latex
+  category: "layers"
+  name: "latex"
+  version: ">=0"
+- &layerbase-latex
+  category: "layerbase"
+  name: "latex"
+  version: ">=0"
+- &buildbase-latex
+  category: "buildbase"
+  name: "latex"
+  version: ">=0"
+
+- &layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: ">=0"
+- &layerbase-perl-libs
+  category: "layerbase"
+  name: "perl-libs"
+  version: ">=0"
+- &buildbase-perl-libs
+  category: "buildbase"
+  name: "perl-libs"
+  version: ">=0"
+
 - &layers-ghc
   category: "layers"
   name: "ghc"
@@ -1145,7 +1171,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# TODO: remove next cycle
 - &libs-libbs2b
   category: "libs"
   name: "libbs2b"
@@ -1166,6 +1191,28 @@ packages:
   - <<: *layers-codecs
   build_requires:
   - <<: *layers-codecs
+
+- &libs-libcerf
+  category: "libs"
+  name: "libcerf"
+  version: "1.17"
+  uri:
+  - https://jugit.fz-juelich.de/mlz/libcerf
+  license: "MIT"
+  description: "Efficient and accurate implementation of complex error functions"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/libcerf
+  provides:
+  - category: "sci-libs"
+    name: "libcerf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-libcerf
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-libchamplain
   category: "libs"
@@ -1371,6 +1418,34 @@ packages:
   provides:
   - category: "media-libs"
     name: "libheif"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-libgii-libggi
+  category: "libs"
+  name: "libgii"
+  version: "0.1"
+  uri:
+  - https://ibiblio.org/ggicore/packages/libgii.html
+  - https://ibiblio.org/ggicore/packages/libggi.html
+  license: "LGPL-2 MIT"
+  description: |
+    "Easy to use, but yet powerful, API for all possible input sources"
+    "Provides an opaque interface to the display's acceleration function"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libgii
+      media-libs/libggi
+  provides:
+  - category: "media-libs"
+    name: "libgii"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libggi"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -3190,6 +3265,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-xxhash
+  category: "libs"
+  name: "xxhash"
+  version: "0.8.1"
+  uri:
+  - http://www.xxhash.net
+  license: "BSD-2 GPL-2+"
+  description: "Extremely fast non-cryptographic hash algorithm"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/xxhash
+  provides:
+  - category: "dev-libs"
+    name: "xxhash"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-zeroconf
   category: "libs"
@@ -9618,6 +9714,35 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-gnuplot
+  category: "apps"
+  name: "gnuplot"
+  version: "5.4.3"
+  uri:
+  - http://www.gnuplot.info/
+  license: "gnuplot"
+  description: "Command-line driven interactive plotting program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-visualization/gnuplot
+  provides:
+  - category: "sci-visualization"
+    name: "gnuplot"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-latex
+  - <<: *libs-libcaca
+  - <<: *libs-libgii-libggi
+  - <<: *libs-libcerf
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-latex
+  requires_final_images: true
+  
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
@@ -11269,8 +11394,8 @@ packages:
 #   - <<: *libs-sdl2-ttf
 #   - <<: *fonts-wqy-zenhei
 #   build_requires:
-#   - <<: *buildbase-ghc
 #   - <<: *buildbase-qt
+#   - <<: *buildbase-ghc
 #   requires_final_images: true
     
 - category: "apps"
