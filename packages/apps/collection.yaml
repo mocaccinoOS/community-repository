@@ -4114,6 +4114,27 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-epstool
+  category: "apps"
+  name: "epstool"
+  version: "3.09"
+  uri:
+  - http://www.ghostgum.com.au/software/epstool.htm
+  license: "GPL-2"
+  description: "Creates or extracts preview images in EPS files, fixes bounding boxes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/epstool
+  provides:
+  - category: "app-text"
+    name: "epstool"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 # should be in main repo
 - category: "apps"
   name: "extundelete"
