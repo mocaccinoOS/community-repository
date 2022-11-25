@@ -860,6 +860,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gl2ps
+  category: "libs"
+  name: "gl2ps"
+  version: "1.4.2"
+  uri:
+  - http://www.geuz.org/gl2ps/
+  license: "LGPL-2"
+  description: "OpenGL to PostScript printing library"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      x11-libs/gl2ps
+  provides:
+  - category: "x11-libs"
+    name: "gl2ps"
+    version: ">=0"
+  requires:
+  - <<: *layers-latex
+  build_requires:
+  - <<: *layers-latex
+
 - &libs-glfw
   category: "libs"
   name: "glfw"
@@ -9256,6 +9277,29 @@ packages:
   - <<: *libs-metis
   build_requires:
   - <<: *layers-system-x
+
+- &libs-glpk
+  category: "libs"
+  name: "glpk"
+  version: "5.0-r1"
+  uri:
+  - https://www.gnu.org/software/glpk/
+  license: "GPL-3"
+  description: "GNU Linear Programming Kit"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-mathematics/glpk
+  provides:
+  - category: "sci-mathematics"
+    name: "glpk"
+    version: ">=0"
+  requires:
+  - <<: *layers-office-common
+  - <<: *libs-amd
+  - <<: *libs-colamd
+  build_requires:
+  - <<: *layers-office-common
 
 - &libs-gst-plugins-libnice
   category: "libs"
