@@ -86,23 +86,36 @@ anchors:
   category: "layers"
   name: "latex"
   version: ">=0"
-- &layerbase-latex
-  category: "layerbase"
-  name: "latex"
-  version: ">=0"
+# - &layerbase-latex
+#   category: "layerbase"
+#   name: "latex"
+#   version: ">=0"
 - &buildbase-latex
   category: "buildbase"
   name: "latex"
+  version: ">=0"
+
+- &layers-sci-libs
+  category: "layers"
+  name: "sci-libs"
+  version: ">=0"
+# - &layerbase-sci-libs
+#   category: "layerbase"
+#   name: "sci-libs"
+#   version: ">=0"
+- &buildbase-sci-libs
+  category: "buildbase"
+  name: "sci-libs"
   version: ">=0"
 
 - &layers-perl-libs
   category: "layers"
   name: "perl-libs"
   version: ">=0"
-- &layerbase-perl-libs
-  category: "layerbase"
-  name: "perl-libs"
-  version: ">=0"
+# - &layerbase-perl-libs
+#   category: "layerbase"
+#   name: "perl-libs"
+#   version: ">=0"
 - &buildbase-perl-libs
   category: "buildbase"
   name: "perl-libs"
@@ -6428,25 +6441,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "celluloid"
-  version: "0.21+1"
+- &apps-tcsh
+  category: "apps"
+  name: "tcsh"
+  version: "6.24.01-r1"
   uri:
-  - https://celluloid-player.github.io
-  license: "GPL-3+"
-  description: "A simple GTK+ frontend for mpv"
+  - https://www.tcsh.org/
+  license: "BSD"
+  description: "Enhanced version of the Berkeley C shell (csh)"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/celluloid
+      app-shells/tcsh
   provides:
-  - category: "media-video"
-    name: "celluloid"
+  - category: "app-shells"
+    name: "tcsh"
     version: ">=0"
   requires:
-  - <<: *apps-mpv
+  - <<: *layers-system-x
   build_requires:
-  - <<: *apps-mpv
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "tokodon"
@@ -8066,6 +8080,26 @@ packages:
   - <<: *libs-libao
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "celluloid"
+  version: "0.21+1"
+  uri:
+  - https://celluloid-player.github.io
+  license: "GPL-3+"
+  description: "A simple GTK+ frontend for mpv"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/celluloid
+  provides:
+  - category: "media-video"
+    name: "celluloid"
+    version: ">=0"
+  requires:
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *apps-mpv
 
 - &apps-clamav
   category: "apps"
@@ -12404,3 +12438,28 @@ packages:
   - <<: *apps-xsane
   build_requires:
   - <<: *layers-gnome-common
+
+
+
+- &libs-sundials
+  category: "libs"
+  name: "sundials"
+  version: "6.2.0"
+  uri:
+  - https://computing.llnl.gov/projects/sundials
+  license: "BSD"
+  description: "Suite of nonlinear solvers"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/sundials
+  provides:
+  - category: "sci-libs"
+    name: "sundials"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-openmpi
+  - <<: *libs-hypre
+  build_requires:
+  - <<: *layers-X
