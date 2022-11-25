@@ -9755,34 +9755,34 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - &apps-gnuplot
-#   category: "apps"
-#   name: "gnuplot"
-#   version: "5.4.3"
-#   uri:
-#   - http://www.gnuplot.info/
-#   license: "gnuplot"
-#   description: "Command-line driven interactive plotting program"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sci-visualization/gnuplot
-#   provides:
-#   - category: "sci-visualization"
-#     name: "gnuplot"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *layers-latex
-#   - <<: *libs-libcaca
-#   - <<: *libs-libgii-libggi
-#   - <<: *libs-libcerf
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-latex
-#   requires_final_images: true
+- &apps-gnuplot
+  category: "apps"
+  name: "gnuplot"
+  version: "5.4.3"
+  uri:
+  - http://www.gnuplot.info/
+  license: "gnuplot"
+  description: "Command-line driven interactive plotting program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-visualization/gnuplot
+  provides:
+  - category: "sci-visualization"
+    name: "gnuplot"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-latex
+  - <<: *libs-libcaca
+  - <<: *libs-libgii-libggi
+  - <<: *libs-libcerf
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-latex
+  requires_final_images: true
   
 - &apps-inkscape
   category: "apps"
