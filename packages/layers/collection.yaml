@@ -449,16 +449,19 @@ packages:
 - &def-layers-latex
   category: "layers"
   name: "latex"
-  version: "2021"
+  version: "0.1"
   uri:
   - http://www.tug.org/texlive/
+  - http://hutchinson.belmont.ma.us/tth/
   license: "metapackage"
   description: |
     "A complete TeX distribution"
+    "Translate TEX into HTML"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
         app-text/texlive
+        dev-tex/tth
   provides:
   - category: "app-text"
     name: "dvipng"
@@ -642,6 +645,9 @@ packages:
     version: ">=0"
   - category: "virtual"
     name: "texi2dvi"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "tth"
     version: ">=0"
   requires:
   - <<: *layers-X
