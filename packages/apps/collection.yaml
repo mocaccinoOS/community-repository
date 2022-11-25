@@ -6397,29 +6397,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-timeshift
-  category: "apps"
-  name: "timeshift"
-  version: "22.06.1-r1+2"
-  uri:
-  - https://github.com/linuxmint/timeshift
-  license: "LGPL-3"
-  description: "A system restore utility for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-backup/timeshift
-  overlays:
-  - name: "guru"
-  provides:
-  - category: "app-backup"
-    name: "timeshift"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &apps-sqlcipher
   category: "apps"
   name: "sqlcipher"
@@ -6461,6 +6438,29 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &apps-timeshift
+  category: "apps"
+  name: "timeshift"
+  version: "22.06.1-r1+2"
+  uri:
+  - https://github.com/linuxmint/timeshift
+  license: "LGPL-3"
+  description: "A system restore utility for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/timeshift
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "app-backup"
+    name: "timeshift"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "tokodon"
@@ -6505,6 +6505,30 @@ packages:
   - <<: *layers-gnome
   build_requires:
   - <<: *layers-gnome
+
+- &apps-transfig
+  category: "apps"
+  name: "transfig"
+  version: "3.2.5e-r1"
+  uri:
+  - https://www.xfig.org/
+  license: "BSD"
+  description: "Set of tools for creating TeX documents with graphics"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/transfig
+  provides:
+  - category: "media-gfx"
+    name: "transfig"
+    version: ">=0"
+  prereqs:
+  - app-text/rman
+  - x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "tree"
@@ -12438,28 +12462,3 @@ packages:
   - <<: *apps-xsane
   build_requires:
   - <<: *layers-gnome-common
-
-
-
-- &libs-sundials
-  category: "libs"
-  name: "sundials"
-  version: "6.2.0"
-  uri:
-  - https://computing.llnl.gov/projects/sundials
-  license: "BSD"
-  description: "Suite of nonlinear solvers"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/sundials
-  provides:
-  - category: "sci-libs"
-    name: "sundials"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-openmpi
-  - <<: *libs-hypre
-  build_requires:
-  - <<: *layers-X
