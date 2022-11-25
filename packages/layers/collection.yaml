@@ -881,99 +881,99 @@ packages:
   - <<: *layers-kde-common
 
 
-# - &def-layers-perl-libs
-#   category: "layers"
-#   name: "perl-libs"
-#   version: "0.1"
-#   uri:
-#   - https://metacpan.org
-#   license: "metapackage"
-#   description: |
-#     "Perl libs to support various packages"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-perl/OLE-StorageLite
-#       dev-perl/IO-stringy
-#       dev-perl/Text-CSV_XS
-#       dev-perl/Crypt-RC4
-#       dev-perl/Digest-Perl-MD5
-#       dev-perl/Unicode-Map
-#       dev-perl/Algorithm-Diff
-#       dev-perl/Text-Unidecode
-#       dev-perl/Class-Inspector
-#       dev-perl/Exporter-Tiny
-#       virtual/perl-if
-#       dev-perl/Spreadsheet-ParseExcel
-#       dev-perl/List-MoreUtils-XS
-#       dev-perl/List-MoreUtils
-#       dev-perl/File-ShareDir
-#       dev-perl/libintl-perl
-#   provides:
-#   - category: "dev-perl"
-#     name: "Algorithm-Diff"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Class-Inspector"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Crypt-RC4"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Digest-Perl-MD5"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Exporter-Tiny"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "File-ShareDir"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "IO-stringy"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "List-MoreUtils"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "List-MoreUtils-XS"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "OLE-StorageLite"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Spreadsheet-ParseExcel"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Text-CSV_XS"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Text-Unidecode"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Unicode-Map"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "libintl-perl"
-#     version: ">=0"
-#   - category: "virtual"
-#     name: "perl-if"
-#     version: ">=0"
-#   prereqs:
-#   - virtual/perl-IPC-Cmd
-#   - dev-perl/File-ShareDir-Install
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-# 
-# # - <<: *def-layers-perl-libs 
-# #   category: "layerbase"
-# #   hidden: true
-# 
+- &def-layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: "0.1"
+  uri:
+  - https://metacpan.org
+  license: "metapackage"
+  description: |
+    "Perl libs to support various packages"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/OLE-StorageLite
+      dev-perl/IO-stringy
+      dev-perl/Text-CSV_XS
+      dev-perl/Crypt-RC4
+      dev-perl/Digest-Perl-MD5
+      dev-perl/Unicode-Map
+      dev-perl/Algorithm-Diff
+      dev-perl/Text-Unidecode
+      dev-perl/Class-Inspector
+      dev-perl/Exporter-Tiny
+      virtual/perl-if
+      dev-perl/Spreadsheet-ParseExcel
+      dev-perl/List-MoreUtils-XS
+      dev-perl/List-MoreUtils
+      dev-perl/File-ShareDir
+      dev-perl/libintl-perl
+  provides:
+  - category: "dev-perl"
+    name: "Algorithm-Diff"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Class-Inspector"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-RC4"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-Perl-MD5"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Exporter-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-ShareDir"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "IO-stringy"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils-XS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "OLE-StorageLite"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Spreadsheet-ParseExcel"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-CSV_XS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Unidecode"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-Map"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "libintl-perl"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-if"
+    version: ">=0"
+  prereqs:
+  - virtual/perl-IPC-Cmd
+  - dev-perl/File-ShareDir-Install
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 # - <<: *def-layers-perl-libs 
-#   category: "buildbase"
-#   unpack: true
+#   category: "layerbase"
 #   hidden: true
+
+- <<: *def-layers-perl-libs 
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 
 - &def-layers-ghc
