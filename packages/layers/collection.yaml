@@ -86,23 +86,36 @@ anchors:
   category: "layers"
   name: "latex"
   version: ">=0"
-- &layerbase-latex
-  category: "layerbase"
-  name: "latex"
-  version: ">=0"
+# - &layerbase-latex
+#   category: "layerbase"
+#   name: "latex"
+#   version: ">=0"
 - &buildbase-latex
   category: "buildbase"
   name: "latex"
+  version: ">=0"
+
+- &layers-sci-libs
+  category: "layers"
+  name: "sci-libs"
+  version: ">=0"
+# - &layerbase-sci-libs
+#   category: "layerbase"
+#   name: "sci-libs"
+#   version: ">=0"
+- &buildbase-sci-libs
+  category: "buildbase"
+  name: "sci-libs"
   version: ">=0"
 
 - &layers-perl-libs
   category: "layers"
   name: "perl-libs"
   version: ">=0"
-- &layerbase-perl-libs
-  category: "layerbase"
-  name: "perl-libs"
-  version: ">=0"
+# - &layerbase-perl-libs
+#   category: "layerbase"
+#   name: "perl-libs"
+#   version: ">=0"
 - &buildbase-perl-libs
   category: "buildbase"
   name: "perl-libs"
@@ -138,6 +151,24 @@ anchors:
 ################################################################################
 ### libs ###
 ################################################################################
+
+- &libs-amd
+  category: "libs"
+  name: "amd"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/amd
+
+- &libs-colamd
+  category: "libs"
+  name: "colamd"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/colamd
 
 - &libs-libglade
   category: "libs"
@@ -222,6 +253,15 @@ anchors:
     emerge.packages: >-
       dev-python/pysol_cards
 
+- &libs-suitesparseconfig
+  category: "libs"
+  name: "suitesparseconfig"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/suitesparseconfig
+
 - &libs-xxhash
   category: "libs"
   name: "xxhash"
@@ -243,6 +283,15 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       games-board/gnuchess
+
+- &apps-openmpi
+  category: "apps"
+  name: "openmpi"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-cluster/openmpi
 
 
 packages:
@@ -608,6 +657,81 @@ packages:
 #   hidden: true
 
 - <<: *def-layers-latex 
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
+- &def-layers-sci-libs
+  category: "layers"
+  name: "sci-libs"
+  version: "0.1"
+  uri:
+  - http://www.caam.rice.edu/software/ARPACK/
+  - https://people.engr.tamu.edu/davis/suitesparse.html
+  - https://portal.nersc.gov/project/sparse/superlu/
+  - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
+  - https://computing.llnl.gov/projects/sundials
+  license: "metapackage"
+  description: |
+    "Arnoldi package library to solve large scale eigenvalue problems"
+    "Extended sparse matrix package"
+    "Sparse LU factorization library"
+    "Parallel matrix preconditioners library"
+    "Algorithm for matrix permutation into block triangular form"
+    "Sparse LU factorization for circuit simulation"
+    "Multithreaded sparse LU factorization library"
+    "Suite of nonlinear solvers"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/arpack
+      sci-libs/cxsparse
+      sci-libs/superlu
+      sci-libs/hypre
+      sci-libs/btf
+      sci-libs/klu    
+      sci-libs/superlu_mt
+      sci-libs/sundials
+  provides:
+  - category: "sci-libs"
+    name: "arpack"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "cxsparse"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "superlu"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "hypre"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "btf"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "klu"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "superlu_mt"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "sundials"
+    version: ">=0"
+  requires:
+  - <<: *layers-latex
+  - <<: *apps-openmpi
+  - <<: *libs-amd
+  - <<: *libs-colamd
+  - <<: *libs-suitesparseconfig
+  build_requires:
+  - <<: *layers-latex
+
+# - <<: *def-layers-sci-libs 
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-layers-sci-libs 
   category: "buildbase"
   unpack: true
   hidden: true
