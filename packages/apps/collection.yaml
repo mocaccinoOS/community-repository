@@ -4060,6 +4060,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "diffuse"
+  version: "0.7.5"
+  uri:
+  - http://diffuse.sourceforge.net/
+  license: "GPL-2"
+  description: "A graphical tool to compare and merge text files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/diffuse
+  provides:
+  - category: "dev-util"
+    name: "diffuse"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
