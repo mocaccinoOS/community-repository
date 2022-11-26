@@ -6129,6 +6129,28 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "putty"
+  version: "0.77-r3"
+  uri:
+  - https://www.chiark.greenend.org.uk/~sgtatham/putty/
+  license: "MIT"
+  description: "A Free Telnet/SSH Client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/putty
+  provides:
+  - category: "net-misc"
+    name: "putty"
+    version: ">=0"
+  prereqs:
+  - app-doc/halibut
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-pycodestyle
   category: "apps"
   name: "pycodestyle"
