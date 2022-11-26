@@ -972,6 +972,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gtksourceviewmm
+  category: "libs"
+  name: "gtksourceviewmm"
+  version: "3.18.0-r2"
+  uri:
+  - https://wiki.gnome.org/Projects/GtkSourceView
+  license: "LGPL-2.1"
+  description: "C++ bindings for gtksourceview"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/gtksourceviewmm
+  provides:
+  - category: "dev-cpp"
+    name: "gtksourceviewmm"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
@@ -9068,6 +9089,29 @@ packages:
   - <<: *libs-tre
   build_requires:
   - <<: *layers-java
+
+- category: "apps"
+  name: "regexxer"
+  version: "0.10-r2"
+  uri:
+  - http://regexxer.sourceforge.net/
+  license: "GPL-2"
+  description: "An interactive tool for performing search and replace operations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/regexxer
+  provides:
+  - category: "dev-util"
+    name: "regexxer"
+    version: ">=0"
+  prereqs:
+  - dev-util/intltool
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gtksourceviewmm
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-smplayer
   category: "apps"
