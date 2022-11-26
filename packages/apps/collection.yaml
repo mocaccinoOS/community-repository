@@ -9601,6 +9601,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libgit2-glib
+  category: "apps"
+  name: "libgit2-glib"
+  version: "42.2"
+  uri:
+  - https://wiki.gnome.org/Projects/Libgit2-glib
+  license: "LGPL-2+"
+  description: "Git library for GLib"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libgit2-glib
+  provides:
+  - category: "dev-libs"
+    name: "libgit2-glib"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libgit2
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
@@ -11095,6 +11117,32 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# - &apps-gedit
+#   category: "apps"
+#   name: "gedit"
+#   version: "42.2"
+#   uri:
+#   - https://wiki.gnome.org/Apps/Gedit
+#   - https://wiki.gnome.org/Apps/Gedit/ThirdPartyPlugins
+#   license: "GPL-2+ CC-BY-SA-3.0"
+#   description: |
+#     "A text editor for the GNOME desktop"
+#     "Collection of extra plugins for the gedit Text Editor"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-editors/gedit
+#       app-editors/gedit-plugins
+#   provides:
+#   - category: "app-editors"
+#     name: "gedit"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-libgit2-glib
+#   build_requires:
+#   - <<: *layers-gnome-common
+
 - &apps-hugin
   category: "apps"
   name: "hugin"
@@ -11252,53 +11300,53 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-octave
-  category: "apps"
-  name: "octave"
-  version: "6.4.0-r3+1"
-  uri:
-  - https://www.gnu.org/software/octave/
-  license: "GPL-3"
-  description: "High-level interactive language for numerical computations"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-mathematics/octave
-  provides:
-  - category: "sci-mathematics"
-    name: "octave"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "qrupdate"
-    version: ">=0"
-  prereqs:
-  - *layers-java-packages
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-qt
-  - <<: *layers-java
-  - <<: *layers-latex
-  - <<: *layers-sci-libs
-  - <<: *apps-epstool
-  - <<: *apps-pstoedit
-  - <<: *apps-transfig
-  - <<: *libs-qhull
-  - <<: *libs-camd
-  - <<: *libs-ccolamd
-  - <<: *libs-cholmod
-  - <<: *libs-colamd
-  - <<: *libs-umfpack
-  - <<: *libs-glpk
-  - <<: *apps-gnuplot
-  - <<: *libs-fltk
-  - <<: *libs-gl2ps
-  - <<: *libs-qscintilla  
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  - <<: *buildbase-latex
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-octave
+#   category: "apps"
+#   name: "octave"
+#   version: "6.4.0-r3+1"
+#   uri:
+#   - https://www.gnu.org/software/octave/
+#   license: "GPL-3"
+#   description: "High-level interactive language for numerical computations"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sci-mathematics/octave
+#   provides:
+#   - category: "sci-mathematics"
+#     name: "octave"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "qrupdate"
+#     version: ">=0"
+#   prereqs:
+#   - *layers-java-packages
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   - <<: *layers-java
+#   - <<: *layers-latex
+#   - <<: *layers-sci-libs
+#   - <<: *apps-epstool
+#   - <<: *apps-pstoedit
+#   - <<: *apps-transfig
+#   - <<: *libs-qhull
+#   - <<: *libs-camd
+#   - <<: *libs-ccolamd
+#   - <<: *libs-cholmod
+#   - <<: *libs-colamd
+#   - <<: *libs-umfpack
+#   - <<: *libs-glpk
+#   - <<: *apps-gnuplot
+#   - <<: *libs-fltk
+#   - <<: *libs-gl2ps
+#   - <<: *libs-qscintilla  
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-latex
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - &apps-pidgin
   category: "apps"
