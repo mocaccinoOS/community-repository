@@ -6454,6 +6454,26 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
+- category: "apps"
+  name: "smb4k"
+  version: "3.1.3+1"
+  uri:
+  - https://apps.kde.org/smb4k
+  license: "GPL-2"
+  description: "Advanced network neighborhood browser"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/smb4k
+  provides:
+  - category: "net-misc"
+    name: "smb4k"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-sndio
   category: "apps"
   name: "sndio"
