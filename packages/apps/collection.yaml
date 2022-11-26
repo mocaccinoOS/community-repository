@@ -5521,6 +5521,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "meld"
+  version: "3.22.0-r1"
+  uri:
+  - http://meldmerge.org/
+  license: "GPL-2+"
+  description: "A graphical diff and merge tool"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/meld
+  provides:
+  - category: "dev-util"
+    name: "meld"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "milkytracker"
   version: "1.03.00+2"
   uri:
