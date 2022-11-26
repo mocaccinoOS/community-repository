@@ -4019,6 +4019,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "diff-pdf"
+  version: "0.5"
+  uri:
+  - https://vslavik.github.io/diff-pdf/
+  license: "GPL-2+ LGPL-2+"
+  description: "A simple tool for visually comparing two PDF files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/diff-pdf
+  provides:
+  - category: "app-text"
+    name: "diff-pdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-diffpdf
   category: "apps"
   name: "diffpdf"
