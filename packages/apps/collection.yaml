@@ -9285,6 +9285,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-visual-regexp
+  category: "apps"
+  name: "visual-regexp"
+  version: "3.1"
+  uri:
+  - http://laurent.riesterer.free.fr/regexp/
+  license: "GPL-2"
+  description: "Type the regexp and visualize it on a sample of your choice"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/visual-regexp
+  provides:
+  - category: "dev-util"
+    name: "visual-regexp"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-tk
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "vkeybd"
   version: "0.1.18d"
