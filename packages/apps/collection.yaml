@@ -6454,25 +6454,25 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
-- category: "apps"
-  name: "smb4k"
-  version: "3.1.3+1"
-  uri:
-  - https://apps.kde.org/smb4k
-  license: "GPL-2"
-  description: "Advanced network neighborhood browser"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/smb4k
-  provides:
-  - category: "net-misc"
-    name: "smb4k"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
+# - category: "apps"
+#   name: "smb4k"
+#   version: "3.1.3+1"
+#   uri:
+#   - https://apps.kde.org/smb4k
+#   license: "GPL-2"
+#   description: "Advanced network neighborhood browser"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/smb4k
+#   provides:
+#   - category: "net-misc"
+#     name: "smb4k"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-kde-common
+#   build_requires:
+#   - <<: *layers-kde-common
 
 - &apps-sndio
   category: "apps"
@@ -11300,53 +11300,53 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-octave
-#   category: "apps"
-#   name: "octave"
-#   version: "6.4.0-r3+1"
-#   uri:
-#   - https://www.gnu.org/software/octave/
-#   license: "GPL-3"
-#   description: "High-level interactive language for numerical computations"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sci-mathematics/octave
-#   provides:
-#   - category: "sci-mathematics"
-#     name: "octave"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "qrupdate"
-#     version: ">=0"
-#   prereqs:
-#   - *layers-java-packages
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *layers-java
-#   - <<: *layers-latex
-#   - <<: *layers-sci-libs
-#   - <<: *apps-epstool
-#   - <<: *apps-pstoedit
-#   - <<: *apps-transfig
-#   - <<: *libs-qhull
-#   - <<: *libs-camd
-#   - <<: *libs-ccolamd
-#   - <<: *libs-cholmod
-#   - <<: *libs-colamd
-#   - <<: *libs-umfpack
-#   - <<: *libs-glpk
-#   - <<: *apps-gnuplot
-#   - <<: *libs-fltk
-#   - <<: *libs-gl2ps
-#   - <<: *libs-qscintilla  
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-latex
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-octave
+  category: "apps"
+  name: "octave"
+  version: "6.4.0-r3+1"
+  uri:
+  - https://www.gnu.org/software/octave/
+  license: "GPL-3"
+  description: "High-level interactive language for numerical computations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-mathematics/octave
+  provides:
+  - category: "sci-mathematics"
+    name: "octave"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "qrupdate"
+    version: ">=0"
+  prereqs:
+  - *layers-java-packages
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-java
+  - <<: *layers-latex
+  - <<: *layers-sci-libs
+  - <<: *apps-epstool
+  - <<: *apps-pstoedit
+  - <<: *apps-transfig
+  - <<: *libs-qhull
+  - <<: *libs-camd
+  - <<: *libs-ccolamd
+  - <<: *libs-cholmod
+  - <<: *libs-colamd
+  - <<: *libs-umfpack
+  - <<: *libs-glpk
+  - <<: *apps-gnuplot
+  - <<: *libs-fltk
+  - <<: *libs-gl2ps
+  - <<: *libs-qscintilla  
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-latex
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-pidgin
   category: "apps"
