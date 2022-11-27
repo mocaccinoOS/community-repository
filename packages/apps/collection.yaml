@@ -7212,6 +7212,27 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
+- &apps-xsensors
+  category: "apps"
+  name: "xsensors"
+  version: "0.80"
+  uri:
+  - https://github.com/Mystro256/xsensors/
+  license: "GPL-2"
+  description: "A hardware health information viewer, interface to lm-sensors"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/xsensors
+  provides:
+  - category: "x11-misc"
+    name: "xsensors"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "zsh"
   version: "5.8.1-r2"
