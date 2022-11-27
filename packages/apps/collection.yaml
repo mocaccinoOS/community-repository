@@ -6606,7 +6606,28 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  
+
+- &apps-simplescreenrecorder
+  category: "apps"
+  name: "simplescreenrecorder"
+  version: "0.4.4"
+  uri:
+  - https://www.maartenbaert.be/simplescreenrecorder/
+  license: "GPL-3"
+  description: "A Simple Screen Recorder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/simplescreenrecorder
+  provides:
+  - category: "media-video"
+    name: "simplescreenrecorder"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-skypeforlinux
   category: "apps"
   name: "skypeforlinux"
