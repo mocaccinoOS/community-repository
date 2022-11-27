@@ -6154,6 +6154,29 @@ packages:
 #   build_requires:
 #   - <<: *layers-haskell
 
+- &apps-peek
+  category: "apps"
+  name: "peek"
+  version: "1.5.1"
+  uri:
+  - https://github.com/phw/peek
+  license: "GPL-3+"
+  description: "Simple animated Gif screen recorder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/peek
+  provides:
+  - category: "media-video"
+    name: "peek"
+    version: ">=0"
+  prereqs:
+  - app-text/txt2man
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-pip
   category: "apps"
   name: "pip"
