@@ -6474,6 +6474,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-simple-scan
+  category: "apps"
+  name: "simple-scan"
+  version: "42.5"
+  uri:
+  - https://gitlab.gnome.org/GNOME/simple-scan
+  license: "GPL-3+"
+  description: "Simple document scanning utility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/simple-scan
+  provides:
+  - category: "media-gfx"
+    name: "simple-scan"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+  
 - &apps-skypeforlinux
   category: "apps"
   name: "skypeforlinux"
