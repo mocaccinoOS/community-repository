@@ -12663,6 +12663,29 @@ packages:
 #   - <<: *buildbase-kde-common
   requires_final_images: true
 
+- &apps-xsane
+  category: "apps"
+  name: "xsane"
+  version: "0.999-r4+1"
+  uri:
+  - http://www.xsane.org/
+  license: "GPL-2"
+  description: "Graphical scanning frontend"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/xsane
+  provides:
+  - category: "media-gfx"
+    name: "xsane"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-netpbm
+  - <<: *apps-gimp
+  build_requires:
+  - <<: *layers-gnome-common
+
 ################################################################################################################################################################
 ### dep 7 libs ###
 ################################################################################################################################################################
@@ -12930,30 +12953,6 @@ packages:
   - <<: *apps-kdevelop
   build_requires:
   - <<: *layers-plasma
-
-- &apps-xsane
-  category: "apps"
-  name: "xsane"
-  version: "0.999-r4+2"
-  uri:
-  - http://www.xsane.org/
-  license: "GPL-2"
-  description: "Graphical scanning frontend"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/xsane
-  provides:
-  - category: "media-gfx"
-    name: "xsane"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-netpbm
-  - <<: *apps-gimp
-  - <<: *apps-gocr
-  build_requires:
-  - <<: *layers-gnome-common
 
 ################################################################################################################################################################
 ### dep 9 libs ###
