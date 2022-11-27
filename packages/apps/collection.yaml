@@ -2303,6 +2303,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-nv-codec-headers
+  category: "libs"
+  name: "nv-codec-headers"
+  version: "11.1.5.1-r1"
+  uri:
+  - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
+  license: "MIT"
+  description: "FFmpeg version of headers required to interface with Nvidias codec APIs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/nv-codec-headers
+  provides:
+  - category: "media-libs"
+    name: "nv-codec-headers"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
@@ -3429,6 +3450,27 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "zeroconf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-zimg
+  category: "libs"
+  name: "zimg"
+  version: "3.0.4"
+  uri:
+  - https://github.com/sekrit-twc/zimg
+  license: "WTFPL-2"
+  description: "Scaling, colorspace conversion, and dithering library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/zimg
+  provides:
+  - category: "media-libs"
+    name: "zimg"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -8820,6 +8862,31 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+
+- &apps-handbrake
+  category: "apps"
+  name: "handbrake"
+  version: "1.5.1"
+  uri:
+  - https://handbrake.fr/
+  license: "GPL-2"
+  description: "Open-source, GPL-licensed, multiplatform, multithreaded video transcoder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/handbrake
+  provides:
+  - category: "media-video"
+    name: "handbrake"
+    version: ">=0"
+  prereqs:
+  - dev-util/intltool
+  requires:
+  - <<: *layers-X
+  - <<: *libs-nv-codec-headers
+  - <<: *libs-zimg
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "helm-synthesizer"
