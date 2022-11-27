@@ -4638,6 +4638,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gmtp
+  category: "apps"
+  name: "gmtp"
+  version: "1.3.11-r3"
+  uri:
+  - http://gmtp.sourceforge.net/
+  license: "GPL-2+"
+  description: "A simple MTP client for MP3 players"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/gmtp
+  provides:
+  - category: "media-sound"
+    name: "gmtp"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "gnofract4d"
   version: "4.3_p20211108"
