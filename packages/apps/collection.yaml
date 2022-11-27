@@ -4536,6 +4536,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-kgpg
+  category: "apps"
+  name: "kgpg"
+  version: "22.04.3"
+  uri:
+  - https://apps.kde.org/kgpg/
+  license: "GPL-2"
+  description: "Frontend for GnuPG, a powerful encryption utility by KDE"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kgpg
+  provides:
+  - category: "kde-apps"
+    name: "kgpg"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-pim
+  build_requires:
+  - <<: *layers-kde-pim
+
 - category: "apps"
   name: "galaxy"
   version: "2.2-r1"
