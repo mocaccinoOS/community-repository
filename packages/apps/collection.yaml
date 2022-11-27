@@ -9398,6 +9398,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-rotoscope
+  category: "apps"
+  name: "rotoscope"
+  version: "0.2-r2"
+  uri:
+  - http://www.toonyphotos.com
+  license: "GPL-2"
+  description: "Graphics program that can be used to give photos a cartoon-like appearance"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/rotoscope
+  provides:
+  - category: "media-gfx"
+    name: "rotoscope"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libglade
+  build_requires:
+  - <<: *layers-X
+
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
