@@ -6128,6 +6128,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-powerpanel
+  category: "apps"
+  name: "powerpanel"
+  version: "1.4.1"
+  uri:
+  - https://www.cyberpowersystems.com/
+  license: "PowerPanel"
+  description: "PowerPanel software for CyberPower UPS systems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/powerpanel
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "app-misc"
+    name: "powerpanel"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "proton-ge-custom-bin"
   version: "7.20+25"
