@@ -4705,6 +4705,28 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "grub-btrfs"
+  version: "4.11+2"
+  uri:
+  - https://github.com/Antynea/grub-btrfs
+  license: "GPL-3"
+  description: "Improves Grub by adding btrfs snapshots to the Grub menu."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/grub-btrfs
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "app-backup"
+    name: "grub-btrfs"
+    version: ">=0"
+  requires:
+  - <<: *apps-grub
+  build_requires:
+  - <<: *apps-grub
+
+- category: "apps"
   name: "gsmartcontrol"
   version: "1.1.3+1"
   uri:
@@ -4726,27 +4748,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "grub-btrfs"
-  version: "4.11+2"
+- &apps-gtk-sunlight
+  category: "apps"
+  name: "gtk-sunlight"
+  version: "0.4.2-r2"
   uri:
-  - https://github.com/Antynea/grub-btrfs
-  license: "GPL-3"
-  description: "Improves Grub by adding btrfs snapshots to the Grub menu."
+  - http://realtimesunlightwallpaper.weebly.com/
+  license: "GPL-1"
+  description: "Real-time Sunlight Wallpaper"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-backup/grub-btrfs
-  overlays:
-  - name: "guru"
+      app-misc/gtk-sunlight
   provides:
-  - category: "app-backup"
-    name: "grub-btrfs"
+  - category: "app-misc"
+    name: "gtk-sunlight"
     version: ">=0"
   requires:
-  - <<: *apps-grub
+  - <<: *layers-X
   build_requires:
-  - <<: *apps-grub
+  - <<: *layers-X
 
 - category: "apps"
   name: "hardinfo"
