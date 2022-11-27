@@ -4556,6 +4556,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gaupol
+  category: "apps"
+  name: "gaupol"
+  version: "1.11-r1"
+  uri:
+  - https://otsaloma.io/gaupol/
+  license: "GPL-2+"
+  description: "A subtitle editor for text-based subtitles"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/gaupol
+  provides:
+  - category: "media-video"
+    name: "gaupol"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-gconf
   category: "apps"
   name: "gconf"
