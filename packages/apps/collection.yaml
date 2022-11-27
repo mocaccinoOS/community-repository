@@ -7122,6 +7122,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-worker
+  category: "apps"
+  name: "worker"
+  version: "4.6.1-r100"
+  uri:
+  - http://www.boomerangsworld.de/cms/worker/
+  license: "GPL-2"
+  description: "Worker Filemanager: Amiga Directory Opus 4 clone"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/worker
+  provides:
+  - category: "app-misc"
+    name: "worker"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "avfs"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-xaos
   category: "apps"
   name: "xaos"
