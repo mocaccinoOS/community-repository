@@ -1231,6 +1231,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libbpf
+  category: "libs"
+  name: "libbpf"
+  version: "0.8.1"
+  uri:
+  - https://github.com/libbpf/libbpf
+  license: "GPL-2 LGPL-2.1 BSD-2"
+  description: "Stand-alone build of libbpf from the Linux kernel"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libbpf
+  provides:
+  - category: "dev-libs"
+    name: "libbpf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libbs2b
   category: "libs"
   name: "libbs2b"
@@ -9485,6 +9506,28 @@ packages:
   - <<: *libs-libdv
   build_requires:
   - <<: *layers-X
+
+- &apps-v4l-utils
+  category: "apps"
+  name: "v4l-utils"
+  version: "1.22.1-r1"
+  uri:
+  - https://git.linuxtv.org/v4l-utils.git
+  license: "GPL-2+ LGPL-2.1+"
+  description: "Separate utilities ebuild from upstream v4l-utils package"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/v4l-utils
+  provides:
+  - category: "media-tv"
+    name: "v4l-utils"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libbpf
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-visual-regexp
   category: "apps"
