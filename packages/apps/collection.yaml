@@ -653,6 +653,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-compface
+  category: "libs"
+  name: "compface"
+  version: "1.5.2"
+  uri:
+  - http://www.xemacs.org/Download/optLibs.html
+  license: "MIT"
+  description: "Utilities and library to convert to/from X-Face format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/compface
+  provides:
+  - category: "media-libs"
+    name: "compface"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
@@ -11260,6 +11281,42 @@ packages:
   - <<: *libs-File-ReadBackwards
   - <<: *libs-Switch
   - <<: *libs-xwininfo
+  build_requires:
+  - <<: *layers-X
+
+- &apps-xemacs
+  category: "apps"
+  name: "xemacs"
+  version: "21.4.24-r5"
+  uri:
+  - https://www.xemacs.org/
+  license: "GPL-3+"
+  description: "highly customizable open source text editor and application development system"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/dnd
+      app-xemacs/xemacs-base
+      app-editors/xemacs
+  provides:
+  - category: "app-editors"
+    name: "xemacs"
+    version: ">=0"
+  - category: "app-xemacs"
+    name: "xemacs-base"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "dnd"
+    version: ">=0"
+  prereqs:
+  - sys-devel/autoconf:2.1
+  requires:
+  - <<: *layers-X
+  - <<: *apps-eselect-emacs
+  - <<: *apps-postgresql
+  - <<: *libs-compface
+  - <<: *libs-nas
+  - <<: *libs-gpm
   build_requires:
   - <<: *layers-X
 
