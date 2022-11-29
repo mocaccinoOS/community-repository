@@ -844,6 +844,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-gpm
+  category: "libs"
+  name: "gpm"
+  version: "1.20.7-r5"
+  uri:
+  - https://www.nico.schottelius.org/software/gpm/
+  license: "GPL-2"
+  description: "Console-based mouse driver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/gpm
+  provides:
+  - category: "sys-libs"
+    name: "gpm"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gdl
   category: "libs"
   name: "gdl"
@@ -1617,6 +1638,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-liblockfile
+  category: "libs"
+  name: "liblockfile"
+  version: "1.17"
+  uri:
+  - https://github.com/miquels/liblockfile
+  license: "LGPL-2"
+  description: "Implements functions designed to lock the standard mailboxes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/liblockfile
+  provides:
+  - category: "net-libs"
+    name: "liblockfile"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - category: "entity"
+    name: "mail"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -2016,6 +2061,38 @@ packages:
   provides:
   - category: "dev-libs"
     name: "lv2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-m17n-lib
+  category: "libs"
+  name: "m17n-lib"
+  version: "1.8.0"
+  uri:
+  - ttps://savannah.nongnu.org/projects/m17n
+  license: "LGPL-2.1"
+  description: |
+    "Multilingual Library for Unix/Linux"
+    "Database for the m17n library"
+    "Library for handling OpenType fonts (OTF)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libotf
+      dev-db/m17n-db
+      dev-libs/m17n-lib
+  provides:
+  - category: "dev-db"
+    name: "m17n-db"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "m17n-lib"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libotf"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -4339,6 +4416,33 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-eselect-emacs
+  category: "apps"
+  name: "eselect-emacs"
+  version: "1.19"
+  uri:
+  - https://wiki.gentoo.org/wiki/Project:Emacs
+  license: "GPL-2+"
+  description: |
+    "Manage multiple Emacs versions on one system"
+    "Manages ctags implementations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-eselect/eselect-emacs
+      app-eselect/eselect-ctags
+  provides:
+  - name: eselect-ctags
+    category: app-eselect
+    version: '>=0'
+  - name: eselect-emacs
+    category: app-eselect
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 # should be in main repo
 - category: "apps"
@@ -8759,6 +8863,36 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-id3lib
+  build_requires:
+  - <<: *layers-gnome-common
+
+- &apps-emacs
+  category: "apps"
+  name: "emacs"
+  #version: "28.1-r2"
+  version: "28.1-r2"
+  uri:
+  - https://www.gnu.org/software/emacs
+  license: "GPL-3+ FDL-1.3+ BSD HPND MIT W3C unicode PSF-2"
+  description: "The extensible, customizable, self-documenting real-time display editor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/emacs
+      app-emacs/emacs-common
+  provides:
+  - name: emacs
+    category: app-editors
+    version: '>=0'
+  - name: emacs-common
+    category: app-emacs
+    version: '>=0'
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-eselect-emacs
+  - <<: *libs-gpm
+  - <<: *libs-liblockfile
+  - <<: *libs-m17n-lib
   build_requires:
   - <<: *layers-gnome-common
 
