@@ -10905,7 +10905,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.7.4-r8+2"
+  version: "2.8.0"
   uri:
   - https://www.networkupstools.org
   license: "GPL-2"
@@ -10914,6 +10914,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-power/nut
+  overlays:
+  - name: "blackburn29"
   provides:
   - category: "sys-power"
     name: "nut"
@@ -10924,6 +10926,9 @@ packages:
   - virtual/libusb:0
   requires:
   - <<: *layers-X
+  - category: "entity"
+    name: "uucp"
+    version: ">=0"
   - category: "entity"
     name: "nut"
     version: ">=0"
