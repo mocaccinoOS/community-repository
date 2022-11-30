@@ -8882,7 +8882,7 @@ packages:
   category: "apps"
   name: "emacs"
   #version: "28.1-r2"
-  version: "28.1-r2"
+  version: "28.1-r2+1"
   uri:
   - https://www.gnu.org/software/emacs
   license: "GPL-3+ FDL-1.3+ BSD HPND MIT W3C unicode PSF-2"
@@ -8907,6 +8907,8 @@ packages:
   - <<: *libs-m17n-lib
   build_requires:
   - <<: *layers-gnome-common
+  excludes:
+  - ^usr/bin/ctags
 
 - category: "apps"
   name: "gkrellm"
@@ -11283,7 +11285,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.4.24-r5"
+  version: "21.4.24-r5+1"
   uri:
   - https://www.xemacs.org/
   license: "GPL-3+"
@@ -11315,6 +11317,8 @@ packages:
   - <<: *libs-gpm
   build_requires:
   - <<: *layers-X
+  excludes:
+  - ^usr/bin/ctags
 
 - &apps-xmms2
   category: "apps"

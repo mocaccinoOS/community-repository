@@ -10,3 +10,6 @@ install:
 - env-update && source /etc/profile
 {{ end }}
 
+{{ if and (eq .category "apps") (or (eq .name "emacs") (eq .name "eamacs")) }}
+- eselect ctags update
+{{ end }}
