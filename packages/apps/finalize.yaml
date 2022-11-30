@@ -10,6 +10,9 @@ install:
 - env-update && source /etc/profile
 {{ end }}
 
-{{ if and (eq .category "apps") (or (eq .name "emacs") (eq .name "eamacs")) }}
-- eselect ctags update
+{{ if and (eq .category "apps") (or (eq .name "emacs") (eq .name "xemacs")) }}
+- eselect ctags update ifunset
+{{ end }}
+{{ if and (eq .category "apps") (eq .name "xemacs") }}
+- eselect gnuclient update ifunset
 {{ end }}
