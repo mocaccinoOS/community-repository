@@ -1971,6 +1971,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libXaw3d
+  category: "libs"
+  name: "libXaw3d"
+  version: "1.6.3"
+  uri:
+  - https://www.x.org/wiki/
+  license: "MIT"
+  description: "X.Org Xaw3d library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/libXaw3d
+  provides:
+  - category: "x11-libs"
+    name: "libXaw3d"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
@@ -2239,6 +2260,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-motif
+  category: "libs"
+  name: "motif"
+  version: "2.3.8-r3"
+  uri:
+  - https://sourceforge.net/projects/motif/
+  license: "LGPL-2.1+ MIT"
+  description: "The Motif user interface component toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/motif
+  provides:
+  - category: "x11-libs"
+    name: "motif"
+    version: ">=0"
+  prereqs:
+  - dev-util/byacc
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-msgpack
   category: "libs"
   name: "msgpack"
@@ -2342,6 +2386,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "netpbm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-neXtaw
+  category: "libs"
+  name: "neXtaw"
+  version: "0.15.1-r4"
+  uri:
+  - https://siag.nu/neXtaw/
+  license: "BSD"
+  description: "Athena Widgets with N*XTSTEP appearance"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/neXtaw
+  provides:
+  - category: "x11-libs"
+    name: "neXtaw"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -11323,6 +11388,9 @@ packages:
   - <<: *libs-compface
   - <<: *libs-nas
   - <<: *libs-gpm
+  - <<: *libs-libXaw3d
+  - <<: *libs-motif
+  - <<: *libs-neXtaw
   build_requires:
   - <<: *layers-X
   excludes:
