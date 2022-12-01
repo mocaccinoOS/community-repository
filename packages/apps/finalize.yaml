@@ -12,6 +12,7 @@ install:
 
 {{ if and (eq .Values.category "apps") (or (eq .Values.name "emacs") (eq .Values.name "xemacs")) }}
 - eselect ctags update ifunset
+- eselect emacs update ifunset
 {{ end }}
 {{ if and (eq .Values.category "apps") (eq .Values.name "xemacs") }}
 - eselect gnuclient update ifunset
