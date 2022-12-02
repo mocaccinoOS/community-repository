@@ -11488,6 +11488,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-xournal
+  category: "apps"
+  name: "xournal"
+  version: "0.4.8.2016"
+  uri:
+  - http://xournal.sourceforge.net/
+  license: "GPL-2"
+  description: "An application for notetaking, sketching, and keeping a journal using a stylus"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/xournal
+  provides:
+  - category: "app-text"
+    name: "xournal"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libgnomecanvas
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "zynaddsubfx"
   version: "3.0.6-r1"
