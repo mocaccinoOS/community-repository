@@ -856,26 +856,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-gpm
+- &libs-girara
   category: "libs"
-  name: "gpm"
-  version: "1.20.7-r5"
+  name: "girara"
+  version: "0.3.7"
   uri:
-  - https://www.nico.schottelius.org/software/gpm/
+  - https://pwmt.org/projects/girara/
   license: "GPL-2"
-  description: "Console-based mouse driver"
+  description: "UI library that focuses on simplicity and minimalism"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sys-libs/gpm
+      dev-libs/girara
   provides:
-  - category: "sys-libs"
-    name: "gpm"
+  - category: "dev-libs"
+    name: "girara"
     version: ">=0"
+  prereqs:
+  - dev-libs/check
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
 
 - &libs-gdl
   category: "libs"
@@ -956,6 +958,27 @@ packages:
   provides:
   - category: "dev-libs"
     name: "gmime:2.6"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-gpm
+  category: "libs"
+  name: "gpm"
+  version: "1.20.7-r5"
+  uri:
+  - https://www.nico.schottelius.org/software/gpm/
+  license: "GPL-2"
+  description: "Console-based mouse driver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/gpm
+  provides:
+  - category: "sys-libs"
+    name: "gpm"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -10092,6 +10115,31 @@ packages:
   - <<: *libs-mxml
   - <<: *libs-lv2
   - <<: *libs-fltk
+  build_requires:
+  - <<: *layers-X
+
+- &apps-zathura
+  category: "apps"
+  name: "zathura"
+  version: "0.4.9"
+  uri:
+  - https://pwmt.org/projects/zathura/
+  license: "GPL-2"
+  description: "A highly customizable and functional document viewer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/zathura
+  provides:
+  - category: "app-text"
+    name: "zathura"
+    version: ">=0"
+  prereqs:
+  - dev-libs/check
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-X
+  - <<: *libs-girara
   build_requires:
   - <<: *layers-X
 
