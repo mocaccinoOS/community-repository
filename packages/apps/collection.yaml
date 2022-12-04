@@ -162,6 +162,20 @@ anchors:
   version: ">=0"
 
 ################################################################################################################################################################
+### fonts ###
+################################################################################################################################################################
+
+- &fonts
+  category: "fonts"
+  description: "Just a stub for defining fonts"
+  labels:
+    emerge.jobs: "1"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+################################################################################################################################################################
 ### libs ###
 ################################################################################################################################################################
 
@@ -243,8 +257,30 @@ packages:
 ### fonts ###
 ################################################################################################################################################################
 
-- &fonts
-  category: "fonts"
+- &fonts-culmus
+  <<: *fonts
+  name: "culmus"
+  version: "0.120-r6"
+  uri:
+  - http://culmus.sourceforge.net/
+  license: "GPL-2 LICENSE-BITSTREAM MIT"
+  description: "Hebrew Type1 fonts"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/culmus
+  atoms:
+  - atom: media-fonts/culmus
+    use: ancient fancy fontforge taamey X
+  provides:
+  - category: "media-fonts"
+    name: "culmus"
+    version: ">=0"
+  prereqs:
+  - media-gfx/fontforge
+
+- &fonts-fontawesome
+  <<: *fonts
   name: "fontawesome"
   version: "5.15.1+3"
   uri:
@@ -259,10 +295,6 @@ packages:
   - category: "media-fonts"
     name: "fontawesome"
     version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &fonts-font-cursor-misc
   <<: *fonts
@@ -5040,9 +5072,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
+- &apps-gnumeric
+  category: "apps"
   name: "gnumeric"
-  version: "1.12.52"
+  version: "1.12.53-r1"
   uri:
   - http://www.gnumeric.org/
   license: "GPL-2"
@@ -5055,6 +5088,8 @@ packages:
   - category: "app-office"
     name: "gnumeric"
     version: ">=0"
+  prereqs:
+  - app-text/yelp-tools
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -5452,7 +5487,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "22.04.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -12991,6 +13026,47 @@ packages:
   - <<: *libs-libmypaint
   build_requires:
   - <<: *layers-gnome-common
+
+# - &apps-lyx
+#   category: "apps"
+#   name: "lyx"
+#   version: "2.3.6.1-r2"
+#   uri:
+#   - https://www.lyx.org/
+#   - https://www.gnu.org/software/unrtf/unrtf.html
+#   license: "GPL-2 GPL-3"
+#   description: |
+#     "WYSIWYM frontend for LaTeX, DocBook, etc"
+#     "Converts RTF files to various formats"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/unrtf
+#       app-office/lyx
+#   atoms:
+#   - atom: app-office/lyx
+#     use: aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X # dot
+#   provides:
+#   - category: "app-office"
+#     name: "lyx"
+#     version: ">=0"
+#   - category: "app-text"
+#     name: "unrtf"
+#     version: ">=0"
+# #  prereqs:
+# #  - sys-devel/bc
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   - <<: *layers-latex
+#   - <<: *apps-dia
+#   - <<: *apps-gnumeric
+#   - <<: *apps-graphviz
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-latex
+#   requires_final_images: true
 
 - category: "apps"
   name: "mypaint"

@@ -152,6 +152,41 @@ anchors:
 #   name: "haskell"
 #   version: ">=0"
 
+################################################################################
+### fonts ###
+################################################################################
+
+- &fonts
+  category: "fonts"
+  description: "Just a stub for defining fonts"
+  labels:
+    emerge.jobs: "1"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &fonts-culmus
+  <<: *fonts
+  name: "culmus"
+  version: "0.120-r6"
+  uri:
+  - http://culmus.sourceforge.net/
+  license: "GPL-2 LICENSE-BITSTREAM MIT"
+  description: "Hebrew Type1 fonts"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/culmus
+  atoms:
+  - atom: media-fonts/culmus
+    use: ancient fancy fontforge taamey X
+  provides:
+  - category: "media-fonts"
+    name: "culmus"
+    version: ">=0"
+  prereqs:
+  - media-gfx/fontforge
 
 ################################################################################
 ### libs ###
@@ -454,19 +489,22 @@ packages:
 - &def-layers-latex
   category: "layers"
   name: "latex"
-  version: "0.1"
+  version: "0.2"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
+  - http://ivritex.sourceforge.net/
   license: "metapackage"
   description: |
-    "A complete TeX distribution"
-    "Translate TEX into HTML"
+    A complete TeX distribution
+    Translate TEX into HTML
+    Culmus fonts support for latex
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
         app-text/texlive
         dev-tex/tth
+        dev-tex/culmus-latex
   provides:
   - category: "app-text"
     name: "dvipng"
@@ -654,10 +692,14 @@ packages:
   - category: "dev-tex"
     name: "tth"
     version: ">=0"
+  - category: "dev-tex"
+    name: "culmus-latex"
+    version: ">=0"
   requires:
   - <<: *layers-X
   - <<: *layers-perl-libs
   - <<: *libs-xxhash
+  - <<: *fonts-culmus
   build_requires:
   - <<: *buildbase-X
   - <<: *buildbase-perl-libs

@@ -39,7 +39,7 @@
 ## cr.packagesetup ###
 ################################################################################
 
-{{- define "cr.packagesetup" }}
+{{- define "cr.package_setup" }}
 {{- $package := . }}
 - |
   set -x; \
@@ -59,6 +59,46 @@
   if [ -e "package.use/{{ $package }}.use" ]; then \
     cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
   fi;
+{{- end }}
+
+################################################################################
+## cr.packages_setup ###
+################################################################################
+
+{{- define "cr.packages_setup" }}
+
+{{- if .optrequires }}
+{{- range .optrequires }}
+{{- ( include "cr.packages_setup" . ) }}
+{{- end }}
+{{- end }}
+
+{{- if .requires }}
+{{- range .requires }}
+{{- ( include "cr.packages_setup" . ) }}
+{{- end }}
+{{- end }}
+
+{{- $package := . }}
+
+{{- $filepath := "/etc/portage/package" }}
+{{- $filename := printf "%s-%s" .category .name }}
+
+{{- if .atoms }}
+{{- range .atoms }}
+{{- $atom := . }}
+{{- range ("accept_keywords license unmask use" | splitList " ") }}
+{{- $param := . }}
+{{- $value := (index $atom .) }}
+{{- if $value }}
+- |
+  mkdir -p {{ $filepath }}.{{ $param }}; \
+  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ $param }}/{{ $filename }}.{{ $param }} 2>&1;
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{- end }}
 
 ################################################################################

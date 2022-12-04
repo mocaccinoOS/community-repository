@@ -28,9 +28,11 @@ prelude:
 {{ if $packages }}
 {{ range $packages | splitList " " }}
 {{ $package := . | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" | replace "\"" "" }}
-{{ include "cr.packagesetup" $package }}
+{{ include "cr.package_setup" $package }}
 {{ end }}
 {{ end }}
+
+{{ include "cr.packages_setup" .Values }}
 
 {{ range include "cr.prereqs" .Values | fromJsonArray }}
 - {{ . }}
@@ -55,9 +57,11 @@ steps:
 {{- end }}
 
 {{ if eq .Values.category "layerbase" }}
-{{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" }}
-{{ include "cr.packagesetup" $package }}
+{{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
+{{ include "cr.package_setup" $package }}
 {{ end }}
+
+{{ include "cr.packages_setup" .Values }}
 
 {{- if .Values.preemerge }}
 {{- range .Values.preemerge }}
