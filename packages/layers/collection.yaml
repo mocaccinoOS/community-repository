@@ -725,7 +725,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *layers-perl-libs
-  - <<: *libs-Text-CSV
   - <<: *libs-netpbm
   - <<: *libs-xxhash
   - <<: *fonts-culmus
@@ -1090,7 +1089,7 @@ packages:
 - &def-layers-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.2"
+  version: "0.3"
   uri:
   - https://metacpan.org
   license: "metapackage"
@@ -1164,6 +1163,7 @@ packages:
   - dev-perl/File-ShareDir-Install
   requires:
   - <<: *layers-X
+  - <<: *libs-Text-CSV
   build_requires:
   - <<: *layers-X
 
