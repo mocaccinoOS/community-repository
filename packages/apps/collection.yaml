@@ -269,13 +269,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-fonts/culmus
-  atoms:
-  - atom: "media-fonts/culmus"
-    use: "ancient fancy fontforge taamey X"
   provides:
   - category: "media-fonts"
     name: "culmus"
     version: ">=0"
+  atoms:
+  - atom: "media-fonts/culmus"
+    use: "ancient fancy fontforge taamey X"
   prereqs:
   - media-gfx/fontforge
 
@@ -3016,6 +3016,9 @@ packages:
   - category: "media-libs"
     name: "raptor"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/raptor"
+    use: "curl json unicode"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3337,6 +3340,30 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &libs-Text-CSV
+  category: "libs"
+  name: "Text-CSV"
+  version: "2.10.0"
+  uri:
+  - https://metacpan.org/release/Text-CSV
+  license: "Artistic GPL-1+"
+  description: "Manipulate comma-separated value strings"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Text-CSV
+  provides:
+  - category: "dev-perl"
+    name: "Text-CSV"
+    version: ">=0"
+  atoms:
+  - atom: "dev-perl/Text-CSV"
+    use: "xs"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-Text-Reform
   category: "libs"
@@ -4735,13 +4762,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/flacon
-  atoms:
-  - atom: "media-sound/flacon"
-    accept_keywords: "~amd64"
   provides:
   - category: "media-sound"
     name: "flacon"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/flacon"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -8912,7 +8939,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "0.103.6+1"
+  version: "0.103.6+2"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -8925,6 +8952,9 @@ packages:
   - category: "app-antivirus"
     name: "clamav"
     version: ">=0"
+  atoms:
+  - atom: "app-antivirus/clamav"
+    use: "clamapp"
   prereqs:
   - acct-group/clamav
   - acct-user/clamav
@@ -8940,7 +8970,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc2"
+  version: "1.4.0_rc2+1"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -8956,6 +8986,11 @@ packages:
   - category: "media-libs"
     name: "libmygpo-qt"
     version: ">=0"
+  atoms:
+  - atom: "gnome-base/gvfs"
+    use: "ios mtp"
+  - atom: "media-sound/clementine"
+    use: "-lastfm ios moodbar mtp"
   prereqs:
   - dev-cpp/gtest
   - gnome-base/gvfs
@@ -9019,13 +9054,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/easytag
-  atoms:
-  - atom: "media-sound/easytag"
-    use: "flac mp3 mp4 opus speex vorbis wavpack"
   provides:
   - category: "media-sound"
     name: "easytag"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/easytag"
+    use: "flac mp3 mp4 opus speex vorbis wavpack"
   prereqs:
   - app-text/yelp-tools
   requires:
@@ -10744,11 +10779,9 @@ packages:
   - category: "dev-perl"
     name: "LWP-UserAgent-Cached"
     version: ">=0"
-  - category: "dev-perl"
-    name: "Text-CSV"
-    version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *libs-Text-CSV
   - <<: *apps-clamav
   build_requires:
   - <<: *layers-X
@@ -13055,9 +13088,6 @@ packages:
 #     emerge.packages: >-
 #       app-text/unrtf
 #       app-office/lyx
-#   atoms:
-#   - atom: "app-office/lyx"
-#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X # dot"
 #   provides:
 #   - category: "app-office"
 #     name: "lyx"
@@ -13065,6 +13095,9 @@ packages:
 #   - category: "app-text"
 #     name: "unrtf"
 #     version: ">=0"
+#   atoms:
+#   - atom: "app-office/lyx"
+#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X # dot"
 # #  prereqs:
 # #  - sys-devel/bc
 #   requires:
