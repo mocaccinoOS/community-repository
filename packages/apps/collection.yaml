@@ -2295,7 +2295,7 @@ packages:
 - &libs-mhash
   category: "libs"
   name: "mhash"
-  version: "0.9.9.9-r2+1"
+  version: "0.9.9.9-r2+2"
   uri:
   - http://mhash.sourceforge.net/
   license: "GPL-2"
@@ -3003,7 +3003,7 @@ packages:
 - &libs-raptor
   category: "libs"
   name: "raptor"
-  version: "2.0.15-r5"
+  version: "2.0.15-r7"
   uri:
   - https://github.com/swh/LRDF
   license: "Apache-2.0 GPL-2 LGPL-2.1"
@@ -4726,7 +4726,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "9.0.0"
+  version: "9.4.0"
   uri:
   - https://flacon.github.io/
   license: "LGPL-2.1+"
@@ -4735,6 +4735,9 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/flacon
+  atoms:
+  - atom: media-sound/flacon
+    accept_keywords: ~amd64
   provides:
   - category: "media-sound"
     name: "flacon"
@@ -5503,6 +5506,9 @@ packages:
   - category: "kde-apps"
     name: "kate-addons"
     version: ">=0"
+  atoms: media-libs/libkate
+  - atom: 
+    use: -wxwidgets
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -7069,7 +7075,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.7.1+8"
+  version: "0.7.1+9"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -9013,6 +9019,9 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/easytag
+  atoms:
+  - atom: media-sound/easytag
+    use:  flac mp3 mp4 opus speex vorbis wavpack
   provides:
   - category: "media-sound"
     name: "easytag"
@@ -10719,7 +10728,7 @@ packages:
 
 - category: "apps"
   name: "clamtk"
-  version: "6.14+2"
+  version: "6.14+3"
   uri:
   - https://gitlab.com/dave_m/clamtk/wikis/Home
   license: "Artistic GPL-1+"

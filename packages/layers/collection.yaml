@@ -375,28 +375,28 @@ packages:
   - https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker
   - https://wiki.documentfoundation.org/DLP/Libraries/libzmf
   license: "Apache-2.0 BSD-2 GPL-2 GPL-2+ LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0"
-  description: |
-    "Library parsing abiword documents"
-    "Interface library to access tags for identifying languages"
-    "Library parsing various ebook formats"
-    "EPUB generator for librevenge"
-    "Library parsing Apple Keynote presentations"
-    "Library implementing N-gram-based text categorization"
-    "Library parsing Microsoft Publisher documents"
-    "Library parsing many pre-OSX MAC text formats"
-    "Library to generate ODF documents from libwpd and libwpg"
-    "Library parsing QuarkXpress documents"
-    "Microsoft Works file word processor format import filter library"
-    "Simple thesaurus for LibreOffice"
-    "High-performance, full-featured text search engine based off of lucene in C++"
-    "ODBC Interface for Linux"
-    "Collection of multi-dimensional data structure and indexing algorithm"
-    "The RDF Parser Toolkit"
-    "Library that handles Resource Description Framework (RDF)"
-    "High-level interface for the Resource Description Framework"
-    "Library for import of FreeHand drawings"
-    "C++ Library that parses the file format of Aldus/Adobe PageMaker documents"
-    "Library for parsing Zoner Callisto/Draw documents"
+  description: |+
+    Library parsing abiword documents
+    Interface library to access tags for identifying languages
+    Library parsing various ebook formats
+    EPUB generator for librevenge
+    Library parsing Apple Keynote presentations
+    Library implementing N-gram-based text categorization
+    Library parsing Microsoft Publisher documents
+    Library parsing many pre-OSX MAC text formats
+    Library to generate ODF documents from libwpd and libwpg
+    Library parsing QuarkXpress documents
+    Microsoft Works file word processor format import filter library
+    Simple thesaurus for LibreOffice
+    High-performance, full-featured text search engine based off of lucene in C++
+    ODBC Interface for Linux
+    Collection of multi-dimensional data structure and indexing algorithm
+    The RDF Parser Toolkit
+    Library that handles Resource Description Framework (RDF)
+    High-level interface for the Resource Description Framework
+    Library for import of FreeHand drawings
+    C++ Library that parses the file format of Aldus/Adobe PageMaker documents
+    Library for parsing Zoner Callisto/Draw documents
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -420,6 +420,25 @@ packages:
       media-libs/libfreehand
       media-libs/libpagemaker
       media-libs/libzmf
+  atoms:
+  - atom: app-text/libebook
+    use: tools
+  - atom: app-text/libmwaw
+    use: tools
+  - atom: app-text/libqxp
+    use: tools
+  - atom: media-libs/libzmf
+    use: tools
+  - atom: dev-libs/rasqal
+    use: crypt gmp mhash pcre xml
+  - atom: dev-libs/redland 
+    use:berkdb iodbc mysql odbc sqlite # postgres
+  - atom: app-text/liblangtag
+    use: introspection
+  - atom: media-libs/libpagemaker
+    use: tools
+  - atom: app-text/libwps
+    use: tools
   provides:
   - category: "app-text"
     name: "libabw"
@@ -494,6 +513,10 @@ packages:
   category: "layerbase"
   hidden: true
 
+- <<: *def-layers-office-common 
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 - &def-layers-latex
   category: "layers"
