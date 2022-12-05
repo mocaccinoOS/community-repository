@@ -3642,6 +3642,9 @@ packages:
   - category: "dev-libs"
     name: "xmlsec"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/xmlsec"
+    use: "gcrypt gnutls nss openssl"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4819,6 +4822,9 @@ packages:
   - category: "media-gfx"
     name: "fontforge"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/fontforge"
+    use: "gif -gtk jpeg png python readline tiff svg unicode woff2 X"
   requires:
   - <<: *layers-X
   build_requires:
@@ -10990,7 +10996,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.3.5.2+1"
+  version: "7.3.5.2+2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
