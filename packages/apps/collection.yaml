@@ -7318,11 +7318,14 @@ packages:
     emerge.jobs: "1"
     emerge.load_average: "0.9"
     emerge.packages: >-
-      dev-lang/spidermonkey:60;MAKEOPTS="-j1 -l0.9"
+      dev-lang/spidermonkey:60
   provides:
   - category: "dev-lang"
     name: "spidermonkey"
     version: ">=0"
+  atoms:
+  - atom: "dev-lang/spidermonkey"
+    env: "MAKEOPTS=\"-j1 -l0.9\""
   prereqs:
   - =dev-lang/python-2.7.18_p15
   - sys-devel/autoconf:2.1
@@ -10496,6 +10499,7 @@ packages:
   atoms:
   - atom: "media-gfx/openvdb"
     use: "blosc nanovdb numpy python utils zlib avx sse4_2 # cuda"
+    env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-qt
   - <<: *libs-c-blosc
