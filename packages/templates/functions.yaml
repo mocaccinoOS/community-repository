@@ -101,7 +101,7 @@
 - |
   mkdir -p /etc/portage/env; \
   echo -e "{{ ($value | replace "\n" "\\n") }}" >> /etc/portage/env/{{ $filename }}.conf \
-  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env;
+  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env;
 {{- end }}
 {{- end }}
 {{- end }}
