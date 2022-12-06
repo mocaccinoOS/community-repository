@@ -5449,29 +5449,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-ispc
-  category: "apps"
-  name: "ispc"
-  version: "1.17.0-r2+3"
-  uri:
-  - https://ispc.github.io/
-  license: "BSD BSD-2 UoI-NCSA"
-  description: "Intel SPMD Program Compiler"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/ispc
-  provides:
-  - category: "dev-lang"
-    name: "ispc"
-    version: ">=0"
-  prepare:
-  - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild
-  - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild manifest
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &apps-ispc
+#   category: "apps"
+#   name: "ispc"
+#   version: "1.17.0-r2+3"
+#   uri:
+#   - https://ispc.github.io/
+#   license: "BSD BSD-2 UoI-NCSA"
+#   description: "Intel SPMD Program Compiler"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lang/ispc
+#   provides:
+#   - category: "dev-lang"
+#     name: "ispc"
+#     version: ">=0"
+#   prepare:
+#   - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild manifest
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &apps-javatoolkit
   category: "apps"
@@ -13534,82 +13534,82 @@ packages:
 ### dep 7 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "blender"
-  version: "2.93.9+51"
-  uri:
-  - https://www.blender.org
-  - https://www.alembic.io/
-  - https://github.com/embree/embree
-  - http://www.openimagedenoise.org/
-  - http://www.opencollada.org/
-  - https://graphics.pixar.com/opensubdiv/docs/intro.html
-  - http://opensource.imageworks.com/?p
-  - http://partio.us/
-  license: "GPL-3 BL BSD Apache-2.0 MIT"
-  description: |
-    3D Creation/Animation/Publishing System
-    Open framework for storing and sharing scene data
-    Collection of high-performance ray tracing kernels
-    Intel(R) Open Image Denoise library
-    Stream based read/write library for COLLADA files
-    An Open-Source subdivision surface library
-    Advanced shading language for production GI renderers
-    Library for particle IO and manipulation
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/blender
-  provides:
-  - category: "media-gfx"
-    name: "blender"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "alembic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "embree"
-    version: ">=0"
-  - category: "media-libs"
-    name: "oidn"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opencollada"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opensubdiv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "osl"
-    version: ">=0"
-  - category: "media-libs"
-    name: "partio"
-    version: ">=0"
-  prereqs:
-#   - app-doc/doxygen
-#   - dev-python/sphinx
-#   - dev-texlive/texlive-bibtexextra
-#   - dev-texlive/texlive-fontsextra
-#   - dev-texlive/texlive-fontutils
-#   - dev-texlive/texlive-latex
-#   - dev-texlive/texlive-latexextra
-  - app-admin/chrpath
-  - dev-util/valgrind
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-python-zstandard
-  - <<: *apps-ispc
-  - <<: *apps-spacenavd
-  - <<: *libs-c-blosc
-  - <<: *libs-libspnav
-  - <<: *libs-openvdb
-  - <<: *libs-glfw
-  - <<: *libs-lib3ds
-  - <<: *libs-libharu
-  - <<: *libs-ocio-oiio
-  - <<: *libs-ptex
-  - <<: *libs-tbb
-  build_requires:
+# - category: "apps"
+#   name: "blender"
+#   version: "2.93.9+51"
+#   uri:
+#   - https://www.blender.org
+#   - https://www.alembic.io/
+#   - https://github.com/embree/embree
+#   - http://www.openimagedenoise.org/
+#   - http://www.opencollada.org/
+#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
+#   - http://opensource.imageworks.com/?p
+#   - http://partio.us/
+#   license: "GPL-3 BL BSD Apache-2.0 MIT"
+#   description: |
+#     3D Creation/Animation/Publishing System
+#     Open framework for storing and sharing scene data
+#     Collection of high-performance ray tracing kernels
+#     Intel(R) Open Image Denoise library
+#     Stream based read/write library for COLLADA files
+#     An Open-Source subdivision surface library
+#     Advanced shading language for production GI renderers
+#     Library for particle IO and manipulation
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/blender
+#   provides:
+#   - category: "media-gfx"
+#     name: "blender"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "alembic"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "embree"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "oidn"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opencollada"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opensubdiv"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "osl"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "partio"
+#     version: ">=0"
+#   prereqs:
+# #   - app-doc/doxygen
+# #   - dev-python/sphinx
+# #   - dev-texlive/texlive-bibtexextra
+# #   - dev-texlive/texlive-fontsextra
+# #   - dev-texlive/texlive-fontutils
+# #   - dev-texlive/texlive-latex
+# #   - dev-texlive/texlive-latexextra
+#   - app-admin/chrpath
+#   - dev-util/valgrind
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-python-zstandard
+#   - <<: *apps-ispc
+#   - <<: *apps-spacenavd
+#   - <<: *libs-c-blosc
+#   - <<: *libs-libspnav
+#   - <<: *libs-openvdb
+#   - <<: *libs-glfw
+#   - <<: *libs-lib3ds
+#   - <<: *libs-libharu
+#   - <<: *libs-ocio-oiio
+#   - <<: *libs-ptex
+#   - <<: *libs-tbb
+#   build_requires:
   - <<: *layers-qt
 
 - &apps-displaycal-py3
