@@ -828,7 +828,7 @@ packages:
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
-  version: "2.1.3_rc5+1"
+  version: "2.1.3_rc5-r1+1"
   uri:
   - https://sourceforge.net/projects/ftgl/
   license: "MIT"
@@ -870,7 +870,7 @@ packages:
 - &libs-gavl
   category: "libs"
   name: "gavl"
-  version: "1.4.0-r2+1"
+  version: "1.4.0-r2+2"
   uri:
   - http://gmerlin.sourceforge.net
   license: "GPL-3"
@@ -1238,7 +1238,7 @@ packages:
 - &libs-libharu
   category: "libs"
   name: "libharu"
-  version: "2.3.0-r2+1"
+  version: "2.3.0-r3"
   uri:
   - http://www.libharu.org/
   license: "ZLIB"
@@ -1259,7 +1259,7 @@ packages:
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
-  version: "1.17-r1+1"
+  version: "1.17-r1+2"
   uri:
   - https://www.ladspa.org/
   license: "LGPL-2.1"
@@ -1301,7 +1301,7 @@ packages:
 - &libs-lib3ds
   category: "libs"
   name: "lib3ds"
-  version: "2.0.0_rc1-r1+1"
+  version: "2.0.0_rc1-r1+2"
   uri:
   - https://code.google.com/p/lib3ds/
   license: "LGPL-2.1+"
@@ -1469,7 +1469,7 @@ packages:
 - &libs-libdvdcss
   category: "libs"
   name: "libdvdcss"
-  version: "1.4.3+1"
+  version: "1.4.3+2"
   uri:
   - https://www.videolan.org/developers/libdvdcss.html
   license: "GPL-2"
@@ -1490,7 +1490,7 @@ packages:
 - &libs-libebur128
   category: "libs"
   name: "libebur128"
-  version: "1.2.6+1"
+  version: "1.2.6+2"
   uri:
   - https://github.com/jiixyj/libebur128
   license: "MIT"
@@ -1532,7 +1532,7 @@ packages:
 - &libs-libfame
   category: "libs"
   name: "libfame"
-  version: "0.9.1-r3+1"
+  version: "0.9.1-r4"
   uri:
   - http://fame.sourceforge.net/
   license: "GPL-2"
@@ -1574,7 +1574,7 @@ packages:
 - &libs-libheif
   category: "libs"
   name: "libheif"
-  version: "1.12.0-r3"
+  version: "1.13.0"
   uri:
   - https://github.com/strukturag/libheif
   license: "GPL-3"
@@ -1587,6 +1587,8 @@ packages:
   - category: "media-libs"
     name: "libheif"
     version: ">=0"
+  - atoms: "media-libs/libheif"
+    use: "-aom gdk-pixbuf rav1e threads x265"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2050,7 +2052,7 @@ packages:
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
-  version: "1.2.3+1"
+  version: "1.2.3+2"
   uri:
   - https://github.com/devnev/libxdg-basedir
   license: "MIT"
@@ -2790,7 +2792,7 @@ packages:
 - &libs-ptex
   category: "libs"
   name: "ptex"
-  version: "2.3.2+1"
+  version: "2.3.2+2"
   uri:
   - http://ptex.us/
   license: "BSD"
@@ -2837,7 +2839,7 @@ packages:
 - &libs-pystring
   category: "libs"
   name: "pystring"
-  version: "1.1.3-r1+1"
+  version: "1.1.3-r1+2"
   uri:
   - https://github.com/imageworks/pystring
   license: "BSD"
@@ -3051,7 +3053,7 @@ packages:
 - &libs-sdl2-image
   category: "libs"
   name: "sdl2-image"
-  version: "2.0.5_p20210328+1"
+  version: "2.0.5_p20210328+2"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   license: "ZLIB"
@@ -3064,6 +3066,9 @@ packages:
   - category: "media-libs"
     name: "sdl2-image"
     version: ">=0"
+  atoms:
+  - atom: "media-libs"
+    use: "sdl2-image webp"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3504,7 +3509,7 @@ packages:
 - &libs-vamp-plugin-sdk
   category: "libs"
   name: "vamp-plugin-sdk"
-  version: "2.10+1"
+  version: "2.10+2"
   uri:
   - https://www.vamp-plugins.org
   license: "BSD"
@@ -3743,10 +3748,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-zstandard
+- &libs-python-zstandard
   category: "libs"
-  name: "zstandard"
-  version: "0.17.0-r1+1"
+  name: "python-zstandard"
+  version: "0.19.0"
   uri:
   - https://github.com/indygreg/python-zstandard/
   - https://pypi.org/project/zstandard/
@@ -3755,10 +3760,10 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/zstandard
+      dev-python/python-zstandard
   provides:
   - category: "dev-python"
-    name: "zstandard"
+    name: "python-zstandard"
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
@@ -5447,7 +5452,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.17.0-r2+2"
+  version: "1.17.0-r2+3"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -7097,7 +7102,7 @@ packages:
 - &apps-spacenavd
   category: "apps"
   name: "spacenavd"
-  version: "0.8+1"
+  version: "0.8+2"
   uri:
   - http://spacenav.sourceforge.net/
   license: "GPL-3"
@@ -7110,6 +7115,9 @@ packages:
   - category: "app-misc"
     name: "spacenavd"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/spacenavd"
+    use: "X"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7492,7 +7500,7 @@ packages:
 - &apps-vcdimager
   category: "apps"
   name: "vcdimager"
-  version: "2.0.1+2"
+  version: "2.0.1+3"
   uri:
   - https://www.gnu.org/software/vcdimager/
   license: "GPL-2"
@@ -8305,7 +8313,7 @@ packages:
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
-  version: "0.99_beta19-r8+4"
+  version: "0.99_beta19-r11"
   uri:
   - http://libcaca.zoy.org/
   license: "GPL-2 ISC LGPL-2.1 WTFPL-2"
@@ -8318,6 +8326,9 @@ packages:
   - category: "media-libs"
     name: "libcaca"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libcaca"
+    use: "imlib ncurses opengl ruby slang truetype X # mono java"
   requires:
   #- <<: *layers-java
   - <<: *layers-X
@@ -8462,7 +8473,7 @@ packages:
 - &libs-libspnav
   category: "libs"
   name: "libspnav"
-  version: "0.2.3-r1+1"
+  version: "0.2.3-r1+2"
   uri:
   - http://spacenav.sourceforge.net/
   license: "BSD"
@@ -8551,7 +8562,7 @@ packages:
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
-  version: "3.0.0"
+  version: "3.1.1"
   uri:
   - https://www.breakfastquay.com/rubberband/
   license: "GPL-2"
@@ -8564,6 +8575,9 @@ packages:
   - category: "media-libs"
     name: "rubberband"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/rubberband"
+  - use: "jni programs vamp"
   requires:
   - <<: *layers-java
   - <<: *libs-ladspa-sdk
@@ -8704,6 +8718,7 @@ packages:
   atoms:
   - atom: "media-libs/vigra"
     use: "fftw hdf5 jpeg openexr png python tiff valgrind zlib # mpi"
+    env: "MAKEOPTS=\\\"-j5 -l0.9\\\""
   requires:
   - <<: *layers-X
   build_requires:
@@ -8712,7 +8727,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.12-r2"
+  version: "1.2.12-r4"
   uri:
   - http://xine.sourceforge.net/
   license: "GPL-2"
@@ -10469,7 +10484,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.6.0-r2+1"
+  version: "4.6.0-r2+2"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -10482,6 +10497,9 @@ packages:
   - category: "media-libs"
     name: "opencv"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/opencv"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download examples gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -11780,7 +11798,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.7.0-r2+1"
+  version: "1.7.0-r2+2"
   uri:
   - http://www.dyne.org/software/frei0r/
   license: "GPL-2"
@@ -11793,6 +11811,9 @@ packages:
   - category: "media-plugins"
     name: "frei0r-plugins"
     version: ">=0"
+  atoms:
+  - atom: "media-plugins/frei0r-plugins"
+    use: "facedetect scale0tilt"
   requires:
   - <<: *layers-qt
   - <<: *libs-gavl
@@ -12455,6 +12476,9 @@ packages:
   - category: "media-libs"
     name: "rtaudio"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/xine-lib"
+    use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
@@ -13262,7 +13286,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "4+4"
+  version: "5"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -13285,6 +13309,11 @@ packages:
   - category: "dev-cpp"
     name: "robin-map"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/opencolorio"
+    use: "opengl python"
+  - atom: "media-libs/openimageio"
+    use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt5 raw truetype"
   prereqs:
   - dev-cpp/pystring
   preemerge:
@@ -13569,7 +13598,7 @@ packages:
   - dev-util/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *libs-zstandard
+  - <<: *libs-python-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
