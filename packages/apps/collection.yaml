@@ -1946,7 +1946,7 @@ packages:
 - &libs-libsbsms
   category: "libs"
   name: "libsbsms"
-  version: "2.3.0+1"
+  version: "2.3.0+2"
   uri:
   - https://github.com/claytonotey/libsbsms
   license: "GPL-2+"
@@ -2142,7 +2142,7 @@ packages:
 - &libs-lv2
   category: "libs"
   name: "lv2"
-  version: "1.18.4"
+  version: "1.18.8-r1"
   uri:
   - https://lv2plug.in/
   license: "MIT"
@@ -2155,6 +2155,9 @@ packages:
   - category: "dev-libs"
     name: "lv2"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/lv2"
+    use: "plugins"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2500,7 +2503,7 @@ packages:
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
-  version: "3.10.5"
+  version: "3.10.5+1"
   uri:
   - https://github.com/nlohmann/json
   license: "MIT"
@@ -3165,7 +3168,7 @@ packages:
 - &libs-serd
   category: "libs"
   name: "serd"
-  version: "0.30.12"
+  version: "0.30.16"
   uri:
   - http://drobilla.net/software/serd/
   license: "ISC"
@@ -6587,7 +6590,7 @@ packages:
 - &apps-podofo
   category: "apps"
   name: "podofo"
-  version: "0.9.6_p20190928-r100+1"
+  version: "0.9.6_p20190928-r101"
   uri:
   - https://sourceforge.net/projects/podofo/
   license: "GPL-2 LGPL-2.1"
@@ -6600,6 +6603,9 @@ packages:
   - category: "app-text"
     name: "podofo"
     version: ">=0"
+  atoms:
+  - atom: "app-text/podofo"
+    use: "boost idn tools"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7465,7 +7471,7 @@ packages:
 - &apps-twolame
   category: "apps"
   name: "twolame"
-  version: "0.4.0+1"
+  version: "0.4.0+2"
   uri:
   - https://www.twolame.org
   license: "GPL-2"
@@ -8606,7 +8612,7 @@ packages:
 - &libs-sord
   category: "libs"
   name: "sord"
-  version: "0.16.10"
+  version: "0.16.14"
   uri:
   - http://drobilla.net/software/sord/
   license: "ISC"
@@ -9564,7 +9570,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "67.0.0"
+  version: "69.0.0"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -9583,6 +9589,9 @@ packages:
   - category: "app-text"
     name: "cmark"
     version: ">=0"
+  atoms:
+  - atom: "media-video/mkvtoolnix"
+    use: "-wxwidgets"
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
@@ -10458,7 +10467,7 @@ packages:
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
-  version: "0.1.7+5"
+  version: "0.1.7+6"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libvisio
   license: "GPL-2+ LGPL-2.1 MPL-1.1"
@@ -11387,7 +11396,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8-r1+4"
+  version: "1.5.8-r2"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -11400,6 +11409,9 @@ packages:
   - category: "app-office"
     name: "scribus"
     version: ">=0"
+  atoms: 
+  - atom: "app-office/scribus"
+    use: "boost examples hunspell minimal pdf templates # osg: dev-games/openscenegraph # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick # scripts tk: needs dev-python/pillow tk flag"
   requires:
   - <<: *layers-qt
   - <<: *layers-office-common
@@ -11908,6 +11920,9 @@ packages:
   - category: "media-libs"
     name: "sdl2-mixer"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/sdl2-mixer"
+    use: "midi mod playtools tremor wav flac mad mikmod modplug mp3 opus static-libs timidity vorbis # fluidsynth # midi? ( || ( timidity fluidsynth ) )"
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
@@ -12617,7 +12632,7 @@ packages:
 - &libs-sratom
   category: "libs"
   name: "sratom"
-  version: "0.6.10"
+  version: "0.6.14"
   uri:
   - http://drobilla.net/software/sratom/
   license: "ISC"
@@ -12641,7 +12656,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.16-r1"
+  version: "0.10.18"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -12654,6 +12669,9 @@ packages:
   - category: "dev-libs"
     name: "suil"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/suil"
+    use: "gtk gtk2 qt5"
   requires:
   - <<: *layers-qt
   - <<: *libs-lv2
@@ -12936,7 +12954,7 @@ packages:
 - &libs-lilv
   category: "libs"
   name: "lilv"
-  version: "0.24.14"
+  version: "0.24.20"
   uri:
   - http://drobilla.net/software/lilv/
   license: "ISC"
@@ -12949,6 +12967,9 @@ packages:
   - category: "dev-libs"
     name: "lilv"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/lilv"
+    use: "dyn-manifest"
   requires:
   - <<: *layers-X
   - <<: *libs-serd
@@ -13049,7 +13070,7 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "2.4.2-r3"
+  version: "2.4.2-r3+1"
   uri:
   - https://web.audacityteam.org/
   license: "GPL-2"
@@ -13062,6 +13083,9 @@ packages:
   - category: "media-sound"
     name: "audacity"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/audacity"
+    use: "alsa ffmpeg flac id3tag jack ladspa lv2 mad ogg oss portmidi portmixer portsmf sbsms twolame vamp vorbis vst"
   requires:
   - <<: *layers-qt
   - <<: *layers-gnome-common
