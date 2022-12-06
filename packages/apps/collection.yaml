@@ -763,7 +763,7 @@ packages:
 - &libs-flann
   category: "libs"
   name: "flann"
-  version: "1.9.1-r4+1"
+  version: "1.9.1-r4+2"
   uri:
   - https://github.com/mariusmuja/flann
   license: "BSD"
@@ -1601,8 +1601,8 @@ packages:
   - https://ibiblio.org/ggicore/packages/libggi.html
   license: "LGPL-2 MIT"
   description: |
-    "Easy to use, but yet powerful, API for all possible input sources"
-    "Provides an opaque interface to the display's acceleration function"
+    Easy to use, but yet powerful, API for all possible input sources
+    Provides an opaque interface to the display's acceleration function
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -2184,9 +2184,9 @@ packages:
   - ttps://savannah.nongnu.org/projects/m17n
   license: "LGPL-2.1"
   description: |
-    "Multilingual Library for Unix/Linux"
-    "Database for the m17n library"
-    "Library for handling OpenType fonts (OTF)"
+    Multilingual Library for Unix/Linux
+    Database for the m17n library
+    Library for handling OpenType fonts (OTF)
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -2608,8 +2608,8 @@ packages:
   - https://metacpan.org/release/Unicode-UTF8
   license: "Apache-2.0 "
   description: |
-    "Manual text wrapping and reformatting"
-    "Encoding and decoding of UTF-8 encoding form"
+    Manual text wrapping and reformatting
+    Encoding and decoding of UTF-8 encoding form
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4273,8 +4273,8 @@ packages:
   - http://libcpuid.sourceforge.net/
   license: "GPL-3 GPL-3+ BSD-2"
   description: |
-    "A Free software that gathers information on CPU, motherboard and more"
-    "Small C library for x86 CPU detection and feature extraction"
+    A Free software that gathers information on CPU, motherboard and more
+    Small C library for x86 CPU detection and feature extraction
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -4617,8 +4617,8 @@ packages:
   - https://wiki.gentoo.org/wiki/Project:Emacs
   license: "GPL-2+"
   description: |
-    "Manage multiple Emacs versions on one system"
-    "Manages ctags implementations"
+    Manage multiple Emacs versions on one system
+    Manages ctags implementations
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5098,8 +5098,8 @@ packages:
   - https://www.gnu.org/software/chess/chess.html
   license: "GPL-3 GPL-2"
   description: |
-    "Console based chess interface"
-    "Opening book for gnuchess"
+    Console based chess interface
+    Opening book for gnuchess
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -5405,8 +5405,8 @@ packages:
   - https://github.com/ndevilla/iniparser
   license: "GPL-2 MIT"
   description: |
-    "Graphical CD image editor for reading, modifying and writing ISO images"
-    "A free stand-alone ini file parsing library"
+    Graphical CD image editor for reading, modifying and writing ISO images
+    A free stand-alone ini file parsing library
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -6472,7 +6472,7 @@ packages:
   - http://p7zip.sourceforge.net/
   license: "LGPL-2.1 rar? ( unRAR"
   description: |
-    "The UI of the Port of 7-Zip archiver for Unix"
+    The UI of the Port of 7-Zip archiver for Unix
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -8441,7 +8441,7 @@ packages:
 - &libs-libpano13
   category: "libs"
   name: "libpano13"
-  version: "2.9.21+1"
+  version: "2.9.21+2"
   uri:
   - http://panotools.sourceforge.net/
   license: "GPL-2"
@@ -8688,7 +8688,7 @@ packages:
 - &libs-vigra
   category: "libs"
   name: "vigra"
-  version: "1.11.1-r6+2"
+  version: "1.11.1-r6+3"
   uri:
   - https://ukoethe.github.io/vigra/
   license: "MIT"
@@ -8701,6 +8701,9 @@ packages:
   - category: "media-libs"
     name: "vigra"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/vigra"
+    use: "fftw hdf5 jpeg openexr png python tiff valgrind zlib # mpi"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9024,7 +9027,7 @@ packages:
 - &apps-dcraw
   category: "apps"
   name: "dcraw"
-  version: "9.28.0-r+1"
+  version: "9.28.0-r2"
   uri:
   - https://www.cybercom.net/~dcoffin/dcraw
   license: "GPL-2"
@@ -9037,11 +9040,14 @@ packages:
   - category: "media-gfx"
     name: "dcraw"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/dcraw"
+    use: "nls jpeg lcms"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
   - <<: *libs-netpbm
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-codecs
 
 - category: "apps"
   name: "deadbeef"
@@ -10136,16 +10142,16 @@ packages:
   - https://github.com/bobwya/wine.eselect
   license: "BSD BSD-2 GPL-2 GPL-2+ GPL-3 LGPL-2.1 LGPL-2.1+ MIT MPL-1.1 MPL-2.0 Apache-2.0"
   description: |
-    "Free implementation of Windows(tm) on Unix, with Wine Staging patchset"
-    "A Mozilla Gecko based version of Internet Explorer for Wine"
-    "Wine Mono is a replacement for the .NET runtime and class libraries in Wine"
-    "Core desktop menu entries and icons for Wine"
-    "Easy way to install DLLs needed to work around problems in Wine"
-    "Wrapper for Proton (Steam Play) games"
-    "Realtime Policy and Watchdog Daemon"
-    "D3D12 to Vulkan translation library"
-    "A module for (de)serialization to and from VDF, Valve's key-value text format"
-    "Manage active wine version"
+    Free implementation of Windows(tm) on Unix, with Wine Staging patchset
+    A Mozilla Gecko based version of Internet Explorer for Wine
+    Wine Mono is a replacement for the .NET runtime and class libraries in Wine
+    Core desktop menu entries and icons for Wine
+    Easy way to install DLLs needed to work around problems in Wine
+    Wrapper for Proton (Steam Play) games
+    Realtime Policy and Watchdog Daemon
+    D3D12 to Vulkan translation library
+    A module for (de)serialization to and from VDF, Valve's key-value text format
+    Manage active wine version
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -10521,8 +10527,8 @@ packages:
   - https://github.com/ur1katz/casttube
   license: "MIT"
   description: |
-    "Python module to talk to Google Chromecast"
-    "casttube provides a way to interact with the Youtube Chromecast api"
+    Python module to talk to Google Chromecast
+    casttube provides a way to interact with the Youtube Chromecast api
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10574,8 +10580,8 @@ packages:
   - https://metacpan.org/release/AppConfig
   license: "Artistic GPL-1+"
   description: |
-    "The Template Toolkit"
-    "Perl5 module for reading configuration files and parsing command line arguments"
+    The Template Toolkit
+    Perl5 module for reading configuration files and parsing command line arguments
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10632,11 +10638,11 @@ packages:
   - http://helm.cs.unibo.it/mml-widget/
   license: "GPL-2 LGPL-2.1 LGPL-3"
   description: |
-    "Fully featured yet light and fast cross platform word processor"
-    "Tool for conversion of MSWord doc and rtf files to something readable"
-    "A thesaurus lib, tool and database"
-    "A Syntactic English parser"
-    "Rendering engine for MathML documents"
+    Fully featured yet light and fast cross platform word processor
+    Tool for conversion of MSWord doc and rtf files to something readable
+    A thesaurus lib, tool and database
+    A Syntactic English parser
+    Rendering engine for MathML documents
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10704,9 +10710,9 @@ packages:
   - https://gitlab.com/patrakov/dcaenc
   license: "GPL-1 GPL-2 MIT PSF-2 public-domain LGPL-2.1 LGPL-2.1+ BSD"
   description: |
-    "Video editor designed for simple cutting, filtering and encoding tasks"
-    "A/52 (AC-3) audio encoder"
-    "DTS Coherent Acoustics audio encoder"
+    Video editor designed for simple cutting, filtering and encoding tasks
+    A/52 (AC-3) audio encoder
+    DTS Coherent Acoustics audio encoder
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10866,7 +10872,7 @@ packages:
 - &apps-enblend
   category: "apps"
   name: "enblend"
-  version: "4.2.0_p20161007-r1+3"
+  version: "4.2.0_p20161007-r1+4"
   uri:
   - http://enblend.sourceforge.net
   license: "GPL-2+ FDL-1.2+"
@@ -11031,15 +11037,15 @@ packages:
   - https://projects.coin-or.org/CoinMP/
   license: "LGPL-3 MPL-1.1 LGPL-2.1+ MPL-2.0 LGPL-3+ GPL-2 LGPL-2 MIT ZLIB BSD CPL-1.0"
   description: |
-    "A full office productivity suite"
-    "Number to number name and money text conversion libraries"
-    "Import filter for old StarOffice documents"
-    "C++ client library for the CMIS interface"
-    "Standalone file import filter library for spreadsheet documents"
-    "General purpose formula parser & interpreter"
-    "C++ engine for simulating rigid bodies in 2D games"
-    "A quick and light preprocessor, but anyway fully compliant to C99"
-    "COIN-OR lightweight API for COIN-OR libraries CLP, CBC, and CGL"
+    A full office productivity suite
+    Number to number name and money text conversion libraries
+    Import filter for old StarOffice documents
+    C++ client library for the CMIS interface
+    Standalone file import filter library for spreadsheet documents
+    General purpose formula parser & interpreter
+    C++ engine for simulating rigid bodies in 2D games
+    A quick and light preprocessor, but anyway fully compliant to C99
+    COIN-OR lightweight API for COIN-OR libraries CLP, CBC, and CGL
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -11397,8 +11403,8 @@ packages:
   - http://www.underbit.com/products/mad/
   license: "GPL-2"
   description: |
-    "Realtime audio synthesizer allowing you to 'scratch' on sampled audio data"
-    "The MAD audio player"
+    Realtime audio synthesizer allowing you to 'scratch' on sampled audio data
+    The MAD audio player
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -11432,10 +11438,10 @@ packages:
   - http://freepats.opensrc.org/
   license: "GPL-2 free-noncomm "
   description: |
-    "A handy MIDI to WAV converter with OSS and ALSA output support"
-    "Manages configuration of TiMidity++ patchsets"
-    "Eric Welsh's GUS patches for TiMidity"
-    "Free and open set of instrument patches"
+    A handy MIDI to WAV converter with OSS and ALSA output support
+    Manages configuration of TiMidity++ patchsets
+    Eric Welsh's GUS patches for TiMidity
+    Free and open set of instrument patches
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -11880,9 +11886,9 @@ packages:
   - http://bio2jack.sourceforge.net/
   license: "BSD-2 LGPL-2.1 GPL-2+ GPL-3 GPL-3+"
   description: |
-    "Audacious Player - Your music, your way, no exceptions"
-    "Ampache desktop client library"
-    "A library for porting blocked I/O OSS/ALSA audio applications to JACK"
+    Audacious Player - Your music, your way, no exceptions
+    Ampache desktop client library
+    A library for porting blocked I/O OSS/ALSA audio applications to JACK
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -12015,8 +12021,8 @@ packages:
 #   - https://wiki.gnome.org/Apps/Gedit/ThirdPartyPlugins
 #   license: "GPL-2+ CC-BY-SA-3.0"
 #   description: |
-#     "A text editor for the GNOME desktop"
-#     "Collection of extra plugins for the gedit Text Editor"
+#     A text editor for the GNOME desktop
+#     Collection of extra plugins for the gedit Text Editor
 #   labels:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
@@ -12035,7 +12041,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2021.0.0+6"
+  version: "2021.0.0+7"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
@@ -12044,10 +12050,10 @@ packages:
   - http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
   license: "GPL-2+ BSD BSD-2 MIT wxWinLL-3 ZLIB FDL-1.2 GPL-2"
   description: |
-    "GUI for the creation & processing of panoramic images"
-    "Simple templatized C++ library for parsing command line arguments"
-    "platform-independent multi-threading and synchronization library for C++"
-    "SIFT algorithm for automatic panorama creation in C"
+    GUI for the creation & processing of panoramic images
+    Simple templatized C++ library for parsing command line arguments
+    platform-independent multi-threading and synchronization library for C++
+    SIFT algorithm for automatic panorama creation in C
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12065,6 +12071,9 @@ packages:
   - category: "media-gfx"
     name: "hugin"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/hugin"
+    use: "lapack sift python raw"
   requires:
 #   - <<: *layers-X
   - <<: *layers-gnome-common
@@ -12111,9 +12120,9 @@ packages:
   - https://www.qt.io/
   license: "GPL-2+ GPL-3+ BSD GPL-3"
   description: |
-    "Desktop Planetarium"
-    "Cross-platform Sextractor and Astrometry.net-Based internal astrometric solver"
-    "3D data visualization library for the Qt5 framework"
+    Desktop Planetarium
+    Cross-platform Sextractor and Astrometry.net-Based internal astrometric solver
+    3D data visualization library for the Qt5 framework
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12145,8 +12154,8 @@ packages:
   - http://libtimidity.sourceforge.net
   license: "GPL-2 LGPL-2.1"
   description: |
-    "Music On Console - ncurses interface for playing audio files"
-    "MIDI to WAVE converter library"
+    Music On Console - ncurses interface for playing audio files
+    MIDI to WAVE converter library
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -12246,8 +12255,8 @@ packages:
   - https://keep.imfreedom.org/libgnt/libgnt
   license: "GPL-2"
   description: |
-    "GTK Instant Messenger client"
-    "Toolkit for creating text-mode graphical user interfaces"
+    GTK Instant Messenger client
+    Toolkit for creating text-mode graphical user interfaces
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -12356,8 +12365,8 @@ packages:
   - https://github.com/nezticle/qtcompress
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
   description: |
-    "3D photo-realistic skies in real time"
-    "A public API for QZip in an easy to use module"
+    3D photo-realistic skies in real time
+    A public API for QZip in an easy to use module
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12691,8 +12700,8 @@ packages:
   - https://www.qtav.org
   license: "GPL-2 GPL-3+ LGPL-2.1+"
   description: |
-    "Digital photo management application"
-    "Multimedia playback framework based on Qt + FFmpeg"
+    Digital photo management application
+    Multimedia playback framework based on Qt + FFmpeg
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12722,8 +12731,8 @@ packages:
   - https://www.gnu.org/software/guile/
   license: "CPL-1.0 LGPL-3+"
   description: |
-    "Open Source Graph Visualization Software"
-    "GNU Ubiquitous Intelligent Language for Extensions"
+    Open Source Graph Visualization Software
+    GNU Ubiquitous Intelligent Language for Extensions
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12910,9 +12919,9 @@ packages:
   - https://telepathy.freedesktop.org/
   license: "metapackage LGPL-2.1"
   description: |
-    "Meta-package for Telepathy Connection Managers"
-    "A XMPP connection manager, handles single and multi user chats and voice calls"
-    "A link-local XMPP connection manager for Telepathy"
+    Meta-package for Telepathy Connection Managers
+    A XMPP connection manager, handles single and multi user chats and voice calls
+    A link-local XMPP connection manager for Telepathy
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -13121,8 +13130,8 @@ packages:
 #   - https://www.gnu.org/software/unrtf/unrtf.html
 #   license: "GPL-2 GPL-3"
 #   description: |
-#     "WYSIWYM frontend for LaTeX, DocBook, etc"
-#     "Converts RTF files to various formats"
+#     WYSIWYM frontend for LaTeX, DocBook, etc
+#     Converts RTF files to various formats
 #   labels:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
@@ -13511,14 +13520,14 @@ packages:
   - http://partio.us/
   license: "GPL-3 BL BSD Apache-2.0 MIT"
   description: |
-    "3D Creation/Animation/Publishing System"
-    "Open framework for storing and sharing scene data"
-    "Collection of high-performance ray tracing kernels"
-    "Intel(R) Open Image Denoise library"
-    "Stream based read/write library for COLLADA files"
-    "An Open-Source subdivision surface library"
-    "Advanced shading language for production GI renderers"
-    "Library for particle IO and manipulation"
+    3D Creation/Animation/Publishing System
+    Open framework for storing and sharing scene data
+    Collection of high-performance ray tracing kernels
+    Intel(R) Open Image Denoise library
+    Stream based read/write library for COLLADA files
+    An Open-Source subdivision surface library
+    Advanced shading language for production GI renderers
+    Library for particle IO and manipulation
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
