@@ -1111,7 +1111,7 @@ packages:
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
-  version: "0.11.0"
+  version: "0.11.0+1"
   uri:
   - https://github.com/trezor/cython-hidapi
   license: "BSD GPL-3"
@@ -1967,7 +1967,7 @@ packages:
 - &libs-libsoundtouch
   category: "libs"
   name: "libsoundtouch"
-  version: "2.3.1+1"
+  version: "2.3.1+2"
   uri:
   - https://www.surina.net/soundtouch/
   - https://gitlab.com/soundtouch/soundtouch
@@ -1981,6 +1981,9 @@ packages:
   - category: "dev-libs"
     name: "libsoundtouch"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libsoundtouch"
+    use: "openmp"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2427,7 +2430,7 @@ packages:
 - &libs-nas
   category: "libs"
   name: "nas"
-  version: "1.9.5+1"
+  version: "1.9.5+2"
   uri:
   - https://radscan.com/nas.html
   license: "HPND MIT"
@@ -4147,7 +4150,7 @@ packages:
 - &apps-cfortran
   category: "apps"
   name: "cfortran"
-  version: "20110621+1"
+  version: "20110621+2"
   uri:
   - https://www-zeus.desy.de/~burow/cfortran/
   - https://github.com/bastien-roucaries/cfortran
@@ -4338,7 +4341,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "3.8.1-r1+1"
+  version: "4.0.1"
   uri:
   - https://www.darktable.org/
   license: "GPL-3 CC-BY-3.0"
@@ -4351,6 +4354,9 @@ packages:
   - category: "media-gfx"
     name: "darktable"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/darktable"
+    use: "cpu_flags_x86_sse3 # geo cpu_flags_x86_sse3 -cpudetection"
   prereqs:
   - dev-python/jsonschema
   requires:
@@ -7389,7 +7395,7 @@ packages:
 - &apps-tk
   category: "apps"
   name: "tk"
-  version: "8.6.12+1"
+  version: "8.6.12+2"
   uri:
   - http://www.tcl.tk/
   license: "tcltk"
@@ -7402,6 +7408,9 @@ packages:
   - category: "dev-lang"
     name: "tk"
     version: ">=0"
+  atoms:
+  - atom: "dev-lang/tk"
+    use: "threads"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7980,7 +7989,7 @@ packages:
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
-  version: "4.0.0"
+  version: "4.0.0+1"
   uri:
   - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
   license: "ISC"
@@ -7993,6 +8002,9 @@ packages:
   - category: "sci-libs"
     name: "cfitsio"
     version: ">=0"
+  atoms:
+  - atom: "sci-libs/cfitsio bzip2"
+    use: "curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
   requires:
   - <<: *layers-system-x
   - <<: *apps-cfortran
@@ -8304,6 +8316,9 @@ packages:
   - category: "media-libs"
     name: "libao"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libao"
+    use: "alsa nas mmap pulseaudio"
   requires:
   - <<: *layers-X
   - <<: *libs-nas
@@ -8408,7 +8423,7 @@ packages:
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
-  version: "3.3.11.1+1"
+  version: "3.3.11.1-r1"
   uri:
   - http://mikmod.sourceforge.net/
   license: "LGPL-2+ LGPL-2.1"
@@ -8421,6 +8436,9 @@ packages:
   - category: "media-libs"
     name: "libmikmod"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libmikmod"
+    use: "alsa altivec coreaudio nas openal oss pulseaudio threads"
   requires:
   - <<: *layers-X
   - <<: *libs-nas
@@ -11153,7 +11171,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1"
+  version: "2.6.1.1+1"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -11166,6 +11184,9 @@ packages:
   - category: "media-gfx"
     name: "luminance-hdr"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/luminance-hdr"
+    use: "fits openmp sse2"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-cfitsio
@@ -11231,7 +11252,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.3-r1+2"
+  version: "2.3.3-r1+3"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -11447,7 +11468,7 @@ packages:
 - &apps-timidity
   category: "apps"
   name: "timidity"
-  version: "2.15.0-r6+1"
+  version: "2.15.0-r6+2"
   uri:
   - http://timidity.sourceforge.net/
   - https://wiki.gentoo.org/wiki/No_homepage
@@ -11479,6 +11500,9 @@ packages:
   - category: "media-sound"
     name: "timidity-freepats"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/timidity++"
+    use: "alsa ao flac gtk jack nas ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs"
   prereqs:
   - acct-group/audio
   - acct-group/nobody
@@ -11871,7 +11895,7 @@ packages:
 - &libs-sdl2-mixer
   category: "libs"
   name: "sdl2-mixer"
-  version: "2.0.4-r3+1"
+  version: "2.0.4-r3+2"
   uri:
   - https://www.libsdl.org/projects/SDL_mixer/
   license: "ZLIB"
