@@ -211,9 +211,9 @@
 
 {{- $tokens := . | splitList ";" }}
 {{- if eq (len $tokens) 1 }}
-{{- $command = printf "emerge -1 -j ${JOBS} \"%s\"" (index $tokens 0) }}
+{{- $command = printf "emerge -1 -j ${JOBS} %s" (index (printf "\"%s\"" ($tokens | replace " " "\" \"")) 0) }}
 {{- else if eq (len $tokens) 2 }}
-{{- $command = printf "%s emerge -1 -j ${JOBS} \"%s\"" (index $tokens 1) (index $tokens 0) }}
+{{- $command = printf "%s emerge -1 -j ${JOBS} %s" (index $tokens 1) (index (printf "\"%s\"" ($tokens | replace " " "\" \"")) 0) }}
 {{- end }}
 
 {{- $command }}
