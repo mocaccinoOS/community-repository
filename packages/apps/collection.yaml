@@ -13518,7 +13518,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.27"
+  version: "1.4.25+2"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -13531,6 +13531,10 @@ packages:
   - category: "net-misc"
     name: "remmina"
     version: ">=0"
+  atoms:
+  - atom: "net-misc/remmina"
+    use: "appindicator crypt cups examples gnome-keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
+    accept_keywords: "~amd64"
   prepare:
   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/spice-gtk/package.use/01-spice-gtk.use -O /etc/portage/package.use/01-spice-gtk.use
 #   prereqs:
