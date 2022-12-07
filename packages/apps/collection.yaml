@@ -232,6 +232,11 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/spice-gtk
+  prepare:
+  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
+  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/spice-gtk/package.use/01-spice-gtk.use -O /etc/portage/package.use/01-spice-gtk.use
+  preemerge:
+  - app-emulation/spice;USE="-smartcard"
 
 - &apps-vim
   category: "apps"
@@ -2733,35 +2738,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pikepdf
-  category: "libs"
-  name: "pikepdf"
-  version: "6.2.4"
-  uri:
-  - https://github.com/pikepdf/pikepdf/
-  - https://pypi.org/project/pikepdf/
-  license: "MPL-2.0"
-  description: "Python library to work with pdf files based on qpdf"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pikepdf
-  provides:
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
-  #prepare:
-  # Workaround upstream dropping patchsets
-  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
-  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
-  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
-  prereqs:
-  - dev-python/setuptools_scm_git_archive
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-plotutils
   category: "libs"
   name: "plotutils"
@@ -2869,6 +2845,27 @@ packages:
   provides:
   - category: "dev-cpp"
     name: "pystring"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-python-deprecation
+  category: "libs"
+  name: "python-deprecation"
+  version: "2.1.0"
+  uri:
+  - https://deprecation.readthedocs.io/
+  license: "Apache-2.0"
+  description: "A library to handle automated deprecations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/deprecation
+  provides:
+  - category: "dev-python"
+    name: "deprecation"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -8579,6 +8576,36 @@ packages:
   build_requires:
   - <<: *layers-codecs
 
+- &libs-pikepdf
+  category: "libs"
+  name: "pikepdf"
+  version: "6.2.4+1"
+  uri:
+  - https://github.com/pikepdf/pikepdf/
+  - https://pypi.org/project/pikepdf/
+  license: "MPL-2.0"
+  description: "Python library to work with pdf files based on qpdf"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pikepdf
+  provides:
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  #prepare:
+  # Workaround upstream dropping patchsets
+  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
+  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
+  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
+  prereqs:
+  - dev-python/setuptools_scm_git_archive
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-deprecation
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pysol_cards
   category: "libs"
   name: "pysol_cards"
@@ -9336,32 +9363,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-lv2
-  build_requires:
-  - <<: *layers-X
-
-- &apps-img2pdf
-  category: "apps"
-  name: "img2pdf"
-  version: "0.4.4+1"
-  uri:
-  - https://gitlab.mister-muffin.de/josch/img2pdf
-  license: "LGPL-3+"
-  description: "Losslessly convert raster images to PDF"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/img2pdf
-  provides:
-  - category: "media-gfx"
-    name: "img2pdf"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/img2pdf"
-    # use: "# media-gfx/img2pdf gui # needs dev-lang/python tk
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pikepdf
   build_requires:
   - <<: *layers-X
 
@@ -11040,7 +11041,33 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-latex
   requires_final_images: true
-  
+
+- &apps-img2pdf
+  category: "apps"
+  name: "img2pdf"
+  version: "0.4.4+1"
+  uri:
+  - https://gitlab.mister-muffin.de/josch/img2pdf
+  license: "LGPL-3+"
+  description: "Losslessly convert raster images to PDF"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/img2pdf
+  provides:
+  - category: "media-gfx"
+    name: "img2pdf"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/img2pdf"
+    # use: "# media-gfx/img2pdf gui # needs dev-lang/python tk
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-pikepdf
+  build_requires:
+  - <<: *layers-X
+
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
@@ -13535,10 +13562,8 @@ packages:
   - atom: "net-misc/remmina"
     use: "appindicator crypt cups examples gnome-keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
     accept_keywords: "~amd64"
-  prepare:
-  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/spice-gtk/package.use/01-spice-gtk.use -O /etc/portage/package.use/01-spice-gtk.use
-#   prereqs:
-#   - kde-frameworks/kwallet
+  # prereqs:
+  # - kde-frameworks/kwallet
   requires:
   - <<: *layers-gnome-common
   # - <<: *layers-kde-common
