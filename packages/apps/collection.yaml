@@ -959,6 +959,9 @@ packages:
   - category: "x11-libs"
     name: "gl2ps"
     version: ">=0"
+  atoms:
+  - atom: "x11-libs/gl2ps"
+    use: "png zlib"
   requires:
   - <<: *layers-latex
   build_requires:
@@ -1522,7 +1525,7 @@ packages:
 - &libs-libemf
   category: "libs"
   name: "libemf"
-  version: "1.0.13+1"
+  version: "1.0.13+2"
   uri:
   - http://libemf.sourceforge.net/
   license: "LGPL-2.1 GPL-2"
@@ -1628,6 +1631,11 @@ packages:
   - category: "media-libs"
     name: "libggi"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libggi"
+    use: "X"
+  - atom: "media-libs/libgii"
+    use: "X"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2312,6 +2320,9 @@ packages:
   - category: "sci-libs"
     name: "metis"
     version: ">=0"
+  atoms:
+  - atom: "sci-libs/metis"
+    use: "double-precision int64 openmp"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2939,7 +2950,7 @@ packages:
 - &libs-qscintilla
   category: "libs"
   name: "qscintilla"
-  version: "2.13.1"
+  version: "2.13.3"
   uri:
   - https://www.riverbankcomputing.com/software/qscintilla/intro
   license: "GPL-3"
@@ -3367,7 +3378,7 @@ packages:
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
-  version: "2.10.0"
+  version: "2.10.0+1"
   uri:
   - https://metacpan.org/release/Text-CSV
   license: "Artistic GPL-1+"
@@ -4614,7 +4625,7 @@ packages:
 - &apps-epstool
   category: "apps"
   name: "epstool"
-  version: "3.09"
+  version: "3.09+1"
   uri:
   - http://www.ghostgum.com.au/software/epstool.htm
   license: "GPL-2"
@@ -9036,6 +9047,10 @@ packages:
   - category: "sci-chemistry"
     name: "chemtool"
     version: ">=0"
+  atoms:
+  - atom: "sci-chemistry/chemtool"
+    use: "emf gnome nls"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   - <<: *apps-transfig
@@ -9840,6 +9855,9 @@ packages:
   - category: "media-gfx"
     name: "pstoedit"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/pstoedit"
+    use: "emf pptx imagemagick plotutils"
   requires:
   - <<: *layers-X
   - <<: *libs-libemf
@@ -10391,6 +10409,9 @@ packages:
   - category: "sci-libs"
     name: "cholmod"
     version: ">=0"
+  atoms:
+  - atom: "sci-libs/cholmod"
+    use: "lapack matrixops modify partition # cuda"
   requires:
   - <<: *layers-system-x
   - <<: *libs-amd
@@ -10417,6 +10438,9 @@ packages:
   - category: "sci-mathematics"
     name: "glpk"
     version: ">=0"
+  atoms:
+  - atom: "sci-mathematics/glpk"
+    use: "gmp odbc mysql"
   requires:
   - <<: *layers-office-common
   - <<: *libs-amd
@@ -11016,7 +11040,7 @@ packages:
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
-  version: "5.4.3"
+  version: "5.4.4"
   uri:
   - http://www.gnuplot.info/
   license: "gnuplot"
@@ -11029,6 +11053,9 @@ packages:
   - category: "sci-visualization"
     name: "gnuplot"
     version: ">=0"
+  atoms:
+  - atom: "sci-visualization/gnuplot"
+    use: "bitmap gd libcerf regis cairo doc examples ggi latex libcaca lua qt5 readline wxwidgets X # aqua"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
@@ -12029,6 +12056,8 @@ packages:
     use: "nls"
   - atom: "media-plugins/audacious-plugins"
     use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # lirc"
+  - atom: "media-libs/ampache_browser"
+    use: "nls"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbs2b
@@ -12339,6 +12368,9 @@ packages:
   - category: "sci-libs"
     name: "qrupdate"
     version: ">=0"
+  atoms:
+  - atom: "sci-mathematics/octave"
+    use: "fltk glpk gnuplot imagemagick json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java"
   prereqs:
   - *layers-java-packages
   requires:
