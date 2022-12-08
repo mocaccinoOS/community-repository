@@ -12798,7 +12798,7 @@ packages:
 
 - category: "apps"
   name: "deluge"
-  version: "2.1.1-r1"
+  version: "2.1.1-r1+1"
   uri:
   - https://deluge-torrent.org/
   license: "GPL-2"
@@ -12811,6 +12811,9 @@ packages:
   - category: "net-p2p"
     name: "deluge"
     version: ">=0"
+  atoms:
+  - atom: "net-p2p/deluge"
+    use: "console webinterface gtk gui libnotify sound"
   requires:
   - <<: *layers-X
   - category: "entity"
