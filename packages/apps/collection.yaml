@@ -184,6 +184,11 @@ anchors:
   dev-texlive/texlive-fontsrecommended
   dev-python/sphinx
 
+
+################################################################################################################################################################
+### kernel ###
+################################################################################################################################################################
+
 - &kernel-gentoo
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
@@ -195,6 +200,11 @@ anchors:
       sys-kernel/gentoo-kernel
       virtual/dist-kernel
 
+- &kernel-mocaccino-lts-full
+  category: "kernel"
+  name: "mocaccino-lts-full"
+  version: ">=0"
+
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
@@ -205,6 +215,22 @@ anchors:
       x11-drivers/nvidia-drivers
   requires:
   - <<: *kernel-gentoo
+  # - <<: *kernel-mocaccino-lts-full
+  - name: nvpd
+    category: entity
+    version: ">=0"
+
+- &kernel-modules-vhba
+  category: "kernel-modules"
+  name: "vhba"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/vhba
+  requires:
+  - <<: *kernel-gentoo
+  # - <<: *kernel-mocaccino-lts-full
 
 ################################################################################################################################################################
 ### apps ###
@@ -6994,7 +7020,7 @@ packages:
 - &apps-simple-scan
   category: "apps"
   name: "simple-scan"
-  version: "42.5"
+  version: "42.5+1"
   uri:
   - https://gitlab.gnome.org/GNOME/simple-scan
   license: "GPL-3+"
@@ -7007,6 +7033,9 @@ packages:
   - category: "media-gfx"
     name: "simple-scan"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/simple-scan"
+    use: "colord webp"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7519,6 +7548,9 @@ packages:
   - category: "media-sound"
     name: "twolame"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/twolame"
+    use: "sndfile"
   requires:
   - <<: *layers-codecs
   build_requires:
@@ -8986,14 +9018,12 @@ packages:
   - category: "app-cdr"
     name: "cdemu-daemon"
     version: ">=0"
-  - category: "sys-fs"
-    name: "vhba"
-    version: ">=0"
-  prereqs:
-  - virtual/dist-kernel
-  - virtual/linux-sources
+  # prereqs:
+  # - virtual/dist-kernel
+  # - virtual/linux-sources
   requires:
   - <<: *layers-X
+  - <<: *kernel-modules-vhba
   - <<: *libs-libao
   - <<: *libs-libmirage
   build_requires:
@@ -13302,9 +13332,7 @@ packages:
 #     version: ">=0"
 #   atoms:
 #   - atom: "app-office/lyx"
-#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X # dot"
-# #  prereqs:
-# #  - sys-devel/bc
+#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X l10n_he # dot"
 #   requires:
 #   - <<: *layers-gnome-common
 #   - <<: *layers-qt
