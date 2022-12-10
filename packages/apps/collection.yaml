@@ -3746,10 +3746,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-zeroconf
+- &libs-python-zeroconf
   category: "libs"
-  name: "zeroconf"
-  version: "0.38.6"
+  name: "python-zeroconf"
+  version: "0.39.4"
   uri:
   - https://github.com/jstasiak/python-zeroconf/
   - https://pypi.org/project/zeroconf/
@@ -3759,13 +3759,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/ifaddr
-      dev-python/zeroconf
+      dev-python/python-zeroconf
   provides:
   - category: "dev-python"
     name: "ifaddr"
     version: ">=0"
   - category: "dev-python"
-    name: "zeroconf"
+    name: "python-zeroconf"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -10671,7 +10671,7 @@ packages:
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
-  version: "12.1.4+2"
+  version: "12.1.4+3"
   uri:
   - https://github.com/home-assistant-libs/pychromecast
   - https://github.com/ur1katz/casttube
@@ -10691,9 +10691,14 @@ packages:
   - category: "dev-python"
     name: "casttube"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/casttube"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pychromecast"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
-  - <<: *libs-zeroconf
+  - <<: *libs-python-zeroconf
   build_requires:
   - <<: *layers-X
 
@@ -13806,7 +13811,7 @@ packages:
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
   - <<: *libs-wxpython
-  - <<: *libs-zeroconf
+  - <<: *libs-python-zeroconf
   - <<: *apps-argyllcms
   build_requires:
   - <<: *buildbase-gnome-common
