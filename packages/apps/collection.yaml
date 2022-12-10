@@ -12921,7 +12921,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "7.8.0-r1+1"
+  version: "7.8.0-r1+2"
   uri:
   - https://www.digikam.org/
   - https://www.qtav.org
@@ -12940,6 +12940,9 @@ packages:
   - category: "media-gfx"
     name: "digikam"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/digikam"
+    use: "semantic-desktop"
   requires:
   - <<: *layers-plasma
   - <<: *libs-liblqr
@@ -13801,6 +13804,9 @@ packages:
   - category: "media-gfx"
     name: "displaycal-py3"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/displaycal-py3"
+    accept_keywords: "~amd64"
   prepare:
   - sed -i -e '/wxpython/ s/4.1.1/4.0.7-r2/' /var/lib/layman/stefantalpalaru/media-gfx/displaycal-py3/displaycal-py3-3.9.10.ebuild
   - ebuild /var/lib/layman/stefantalpalaru/media-gfx/displaycal-py3/displaycal-py3-3.9.10.ebuild manifest
