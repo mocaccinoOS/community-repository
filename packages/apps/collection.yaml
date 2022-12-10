@@ -2101,6 +2101,9 @@ packages:
   - category: "x11-libs"
     name: "libXaw3d"
     version: ">=0"
+  atoms:
+  - atom: "x11-libs/libXaw3d"
+    use: "xpm"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2265,6 +2268,11 @@ packages:
   - category: "dev-libs"
     name: "libotf"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/libotf"
+    use: "X"
+  - atom: "dev-libs/m17n-lib"
+    use: "X gd libotf libxml2 bidi fontconfig spell xft # anthy"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2417,6 +2425,9 @@ packages:
   - category: "x11-libs"
     name: "motif"
     version: ">=0"
+  atoms:
+  - atom: "x11-libs/motif"
+    use: "jpeg png unicode xft # motif22-compatibility"
   prereqs:
   - dev-util/byacc
   requires:
@@ -8863,6 +8874,8 @@ packages:
   - category: "media-libs"
     name: "xine-lib"
     version: ">=0"
+  - atom: "media-libs/xine-lib"
+    use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
   prereqs:
   - virtual/imagemagick-tools
   requires:
@@ -9262,6 +9275,11 @@ packages:
   - name: emacs-common
     category: app-emacs
     version: '>=0'
+  atoms:
+  - atom: "app-emacs/emacs-common"
+    use: "gui # games"
+  - atom: "app-editors/emacs"
+    use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-eselect-emacs
@@ -11744,7 +11762,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.4.24-r5+8"
+  version: "21.4.24-r5+9"
   uri:
   - https://www.xemacs.org/
   license: "GPL-3+"
@@ -11765,13 +11783,15 @@ packages:
   - category: "x11-libs"
     name: "dnd"
     version: ">=0"
+  atoms:
+  - atom: "app-editors/xemacs"
+    use: "pop dnd xim alsa gif gpm ldap athena motif neXt Xaw3d xface nas X jpeg tiff png xft gdbm berkdb # postgres freewnn mule"
   prereqs:
   - sys-devel/autoconf:2.1
-  optrequires:
-  - <<: *apps-postgresql  
   requires:
   - <<: *layers-X
   - <<: *apps-eselect-emacs
+  # - <<: *apps-postgresql  
   - <<: *libs-compface
   - <<: *libs-nas
   - <<: *libs-gpm
@@ -12649,8 +12669,8 @@ packages:
     name: "rtaudio"
     version: ">=0"
   atoms:
-  - atom: "media-libs/xine-lib"
-    use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
+  - atom: "media-libs/mlt"
+    use: "ffmpeg frei0r gtk jack libsamplerate opencv opengl python qt5 rtaudio rubberband sdl vdpau vidstab xine xml"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
