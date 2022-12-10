@@ -11744,7 +11744,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.4.24-r5+7"
+  version: "21.4.24-r5+8"
   uri:
   - https://www.xemacs.org/
   license: "GPL-3+"
@@ -11767,10 +11767,11 @@ packages:
     version: ">=0"
   prereqs:
   - sys-devel/autoconf:2.1
+  optrequires:
+  - <<: *apps-postgresql  
   requires:
   - <<: *layers-X
   - <<: *apps-eselect-emacs
-  - <<: *apps-postgresql
   - <<: *libs-compface
   - <<: *libs-nas
   - <<: *libs-gpm
