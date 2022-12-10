@@ -624,7 +624,7 @@ packages:
 - &libs-babl
   category: "libs"
   name: "babl"
-  version: "0.1.92-r1"
+  version: "0.1.96-r1"
   uri:
   - https://gegl.org/babl/
   license: "LGPL-3"
@@ -637,6 +637,9 @@ packages:
   - category: "media-libs"
     name: "babl"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/babl"
+    use: "introspection lcms vala"
   #prepare:
   #- sed -i "/gnome2_environment_reset/a \        sed -i -e 's/Description/description/' meson.build || die \# bug 843266" /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild
   #- ebuild /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild manifest
@@ -3011,7 +3014,7 @@ packages:
 - &libs-quazip
   category: "libs"
   name: "quazip"
-  version: "1.2+1"
+  version: "1.3-r2"
   uri:
   - https://stachenov.github.io/quazip/
   license: "LGPL-2.1-with-linking-exception"
@@ -6209,7 +6212,7 @@ packages:
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
-  version: "2.0.2+1"
+  version: "2.0.2-r1"
   uri:
   - https://github.com/mypaint/mypaint-brushes
   license: "CC0-1.0"
@@ -12012,7 +12015,7 @@ packages:
 - &libs-umfpack
   category: "libs"
   name: "umfpack"
-  version: "5.7.9+1"
+  version: "5.7.9+2"
   uri:
   - http://faculty.cse.tamu.edu/davis/suitesparse.html
   license: "GPL-2+"
@@ -12644,7 +12647,7 @@ packages:
 - &libs-gegl
   category: "libs"
   name: "gegl"
-  version: "0.4.36-r1+1"
+  version: "0.4.38"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -12657,6 +12660,9 @@ packages:
   - category: "media-libs"
     name: "gegl"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/gegl"
+    use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
   requires:
   - <<: *layers-X
   - <<: *libs-babl
@@ -13110,7 +13116,7 @@ packages:
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
-  version: "1.6.1-r1+2"
+  version: "1.6.1-r2"
   uri:
   - https://github.com/mypaint/libmypaint
   license: "ISC"
@@ -13123,6 +13129,9 @@ packages:
   - category: "media-libs"
     name: "libmypaint"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libmypaint"
+    use: "gegl introspection nls openmp"
   requires:
   - <<: *layers-X
   - <<: *libs-gegl
@@ -13324,7 +13333,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.32"
+  version: "2.10.32-r1"
   uri:
   - https://www.gimp.org/
   license: "GPL-3 LGPL-3"
@@ -13340,6 +13349,9 @@ packages:
   - category: "media-libs"
     name: "gtk-mac-integration"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/gimp"
+    use: "aalib alsa aqua doc gnome heif jpeg2k mng openexr postscript udev unwind vector-icons webp wmf xpm # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-mypaint-brushes
@@ -13390,7 +13402,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r2+5"
+  version: "2.0.1-r2+6"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -13403,6 +13415,9 @@ packages:
   - category: "media-gfx"
     name: "mypaint"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/mypaint"
+    use: "openmp"
   requires:
   - <<: *layers-X
   - <<: *libs-libmypaint
@@ -13578,7 +13593,7 @@ packages:
   
 - category: "apps"
   name: "krita"
-  version: "5.0.8+3"
+  version: "5.1.1"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -13592,6 +13607,9 @@ packages:
   - category: "media-gfx"
     name: "krita"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/krita"
+    use: "color-management fftw gif gsl heif jpeg mypaint-brush-engine openexr pdf qtmedia raw vc webp"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-quazip
