@@ -9861,7 +9861,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "14.5+1"
+  version: "15.1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -9877,6 +9877,10 @@ packages:
   - category: "app-eselect"
     name: "eselect-postgresql"
     version: ">=0"
+  atoms:
+  - atom: "dev-db/postgresql"
+    use: "icu kerberos ldap llvm nls pam perl python readline server systemd ssl tcl threads uuid xml zlib"
+    accept_keywords: "~amd64"
   prereqs:
   - acct-group/postgres
   - acct-user/postgres
@@ -13339,44 +13343,44 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - &apps-lyx
-#   category: "apps"
-#   name: "lyx"
-#   version: "2.3.6.1-r2"
-#   uri:
-#   - https://www.lyx.org/
-#   - https://www.gnu.org/software/unrtf/unrtf.html
-#   license: "GPL-2 GPL-3"
-#   description: |
-#     WYSIWYM frontend for LaTeX, DocBook, etc
-#     Converts RTF files to various formats
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-text/unrtf
-#       app-office/lyx
-#   provides:
-#   - category: "app-office"
-#     name: "lyx"
-#     version: ">=0"
-#   - category: "app-text"
-#     name: "unrtf"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-office/lyx"
-#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X l10n_he # dot"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *layers-latex
-#   - <<: *apps-dia
-#   - <<: *apps-gnumeric
-#   - <<: *apps-graphviz
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-latex
-#   requires_final_images: true
+- &apps-lyx
+  category: "apps"
+  name: "lyx"
+  version: "2.3.6.1-r2"
+  uri:
+  - https://www.lyx.org/
+  - https://www.gnu.org/software/unrtf/unrtf.html
+  license: "GPL-2 GPL-3"
+  description: |
+    WYSIWYM frontend for LaTeX, DocBook, etc
+    Converts RTF files to various formats
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/unrtf
+      app-office/lyx
+  provides:
+  - category: "app-office"
+    name: "lyx"
+    version: ">=0"
+  - category: "app-text"
+    name: "unrtf"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/lyx"
+    use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X l10n_he # dot"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-latex
+  - <<: *apps-dia
+  - <<: *apps-gnumeric
+  - <<: *apps-graphviz
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-latex
+  requires_final_images: true
 
 - category: "apps"
   name: "mypaint"
