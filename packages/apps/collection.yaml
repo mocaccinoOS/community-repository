@@ -5638,6 +5638,10 @@ packages:
   - category: "media-gfx"
     name: "kcoloredit"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/kcoloredit"
+    use: "handbook"
+    accept_keywords: "~amd64"
   prereqs:
   - kde-frameworks/extra-cmake-modules
   requires:
@@ -7182,7 +7186,7 @@ packages:
 
 - category: "apps"
   name: "soundkonverter"
-  version: "3.0.1-r2+2"
+  version: "3.0.1-r3"
   uri:
   - https://www.linux-apps.com/p/1126634/
   - https://github.com/dfaust/soundkonverter
@@ -7196,6 +7200,10 @@ packages:
   - category: "media-sound"
     name: "soundkonverter"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/soundkonverter"
+    use: "lame"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-plasma
   build_requires:
@@ -7449,7 +7457,7 @@ packages:
 
 - category: "apps"
   name: "systemdgenie"
-  version: "0.99.0+5"
+  version: "0.99.0_p20221120"
   uri:
   - https://invent.kde.org/system/systemdgenie
   license: "GPL-2+"
@@ -7462,6 +7470,9 @@ packages:
   - category: "app-admin"
     name: "systemdgenie"
     version: ">=0"
+  atoms:
+  - atom: "app-admin/systemdgenie"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -9552,6 +9563,9 @@ packages:
   - category: "kde-misc"
     name: "krename"
     version: ">=0"
+  atoms:
+  - atom: "kde-misc/krename"
+    use: "exif pdf taglib truetype"
   requires:
   - <<: *layers-kde-common
   - <<: *apps-podofo
@@ -13063,7 +13077,7 @@ packages:
     
 - category: "apps"
   name: "kdenlive"
-  version: "22.04.3"
+  version: "22.08.3"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
