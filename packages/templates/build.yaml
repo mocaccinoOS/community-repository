@@ -24,11 +24,11 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages := include "cr.packages" .Values }}
+{{ $packages := include "cr.list_package_with_deps" .Values }}
 {{ if $packages }}
 {{ range $packages | splitList " " }}
 {{ $package := . | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" | replace "\"" "" }}
-{{ include "cr.package_setup" $package }}
+{{ include "cr.copy_package_setup_files" $package }}
 {{ end }}
 {{ end }}
 
@@ -58,10 +58,10 @@ steps:
 
 {{ if eq .Values.category "layerbase" }}
 {{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
-{{ include "cr.package_setup" $package }}
+{{ include "cr.copy_package_setup_files" $package }}
 {{ end }}
 
-{{ include "cr.packages_setup" .Values }}
+{{ include "cr.package_setup" .Values }}
 
 {{- if .Values.preemerge }}
 {{- range .Values.preemerge }}

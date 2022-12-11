@@ -1,16 +1,16 @@
 
 ################################################################################
-## cr.packages ###
+## cr.list_package_with_deps ###
 ################################################################################
 
-{{- define "cr.packages" }} 
+{{- define "cr.list_package_with_deps" }} 
 
 {{- $packages := list }}
 
 {{- if .optrequires }}
 {{- range .optrequires }}
 
-{{- $deps := ( include "cr.packages" . ) | splitList " " }}
+{{- $deps := ( include "cr.list_package_with_deps" . ) | splitList " " }}
 {{- $packages = $packages | concat $deps }}
 
 {{- end }}
@@ -19,7 +19,7 @@
 {{- if .requires }}
 {{- range .requires }}
 
-{{- $deps := ( include "cr.packages" . ) | splitList " " }}
+{{- $deps := ( include "cr.list_package_with_deps" . ) | splitList " " }}
 {{- $packages = $packages | concat $deps }}
 
 {{- end }}
@@ -36,10 +36,10 @@
 {{- end }}
 
 ################################################################################
-## cr.packagesetup ###
+## cr.copy_package_setup_files ###
 ################################################################################
 
-{{- define "cr.package_setup" }}
+{{- define "cr.copy_package_setup_files" }}
 {{- $package := . }}
 - |
   set -x; \
@@ -79,6 +79,15 @@
 {{- end }}
 {{- end }}
 
+{{- ( include "cr.package_setup" . ) }}
+
+{{- end }}
+
+################################################################################
+## cr.packages_setup ###
+################################################################################
+
+{{- define "cr.package_setup" }}
 {{- $package := . }}
 
 {{- $filepath := "/etc/portage/package" }}

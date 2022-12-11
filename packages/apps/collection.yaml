@@ -160,6 +160,10 @@ anchors:
   category: "layerbase"
   name: "office-common"
   version: ">=0"
+- &buildbase-office-common
+  category: "buildbase"
+  name: "office-common"
+  version: ">=0"
 
 ################################################################################################################################################################
 ### fonts ###
@@ -220,18 +224,23 @@ anchors:
     category: entity
     version: ">=0"
 
+# - &kernel-modules-vhba
+#   category: "kernel-modules"
+#   name: "vhba"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-fs/vhba
+#   requires:
+#   - <<: *kernel-gentoo
+#   # - <<: *kernel-mocaccino-lts-full
+
 - &kernel-modules-vhba
   category: "kernel-modules"
   name: "vhba"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-fs/vhba
-  requires:
-  - <<: *kernel-gentoo
-  # - <<: *kernel-mocaccino-lts-full
-
+  
 ################################################################################################################################################################
 ### apps ###
 ################################################################################################################################################################
@@ -947,6 +956,9 @@ packages:
   - category: "dev-libs"
     name: "girara"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/girara"
+    use: "libnotify"
   prereqs:
   - dev-libs/check
   requires:
@@ -9607,6 +9619,9 @@ packages:
   - category: "www-client"
     name: "links"
     version: ">=0"
+  atoms:
+  - atom: "www-client/links"
+    use: "brotli freetype libevent lzip bzip2 fbcon gpm jpeg lzma ssl suid svga tiff webp X zlib zstd"
   requires:
   - <<: *layers-X
 #   - <<: *libs-svgalib
@@ -10354,7 +10369,7 @@ packages:
 
 - category: "apps"
   name: "yoshimi"
-  version: "2.2.1+2"
+  version: "2.2.2.1"
   uri:
   - http://yoshimi.sourceforge.net/
   license: "GPL-2"
@@ -10367,6 +10382,9 @@ packages:
   - category: "media-sound"
     name: "yoshimi"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/yoshimi"
+    use: "lv2"
   requires:
   - <<: *layers-X
   - <<: *libs-mxml
@@ -10391,6 +10409,9 @@ packages:
   - category: "app-text"
     name: "zathura"
     version: ">=0"
+  atoms:
+  - atom: "app-text/zathura"
+    use: "synctex doc magic seccomp sqlite"
   prereqs:
   - dev-libs/check
   - dev-python/sphinx
@@ -11878,6 +11899,9 @@ packages:
   - category: "app-text"
     name: "xournal"
     version: ">=0"
+  atoms:
+  - atom: "app-text/xournal"
+    use: "pdf"
   requires:
   - <<: *layers-X
   - <<: *libs-libgnomecanvas
