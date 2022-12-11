@@ -13376,6 +13376,7 @@ packages:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
 #       app-text/unrtf
+#       dev-tex/latex2rtf
 #       app-office/lyx
 #   provides:
 #   - category: "app-office"
@@ -13384,12 +13385,16 @@ packages:
 #   - category: "app-text"
 #     name: "unrtf"
 #     version: ">=0"
+#   - category: "dev-tex"
+#     name: "latex2rtf"
+#     version: ">=0"
 #   atoms:
 #   - atom: "app-office/lyx"
-#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rcs rtf cups latex nls svg X l10n_he # dot"
+#     use: "aspell dia enchant gnumeric html hunspell monolithic-build rtf cups latex nls svg X l10n_he # rcs dot"
 #   requires:
 #   - <<: *layers-gnome-common
 #   - <<: *layers-qt
+#   - <<: *layers-office-common
 #   - <<: *layers-latex
 #   - <<: *apps-dia
 #   - <<: *apps-gnumeric
@@ -13397,6 +13402,7 @@ packages:
 #   build_requires:
 #   - <<: *buildbase-gnome-common
 #   - <<: *buildbase-qt
+#   - <<: *buildbase-office-common
 #   - <<: *buildbase-latex
 #   requires_final_images: true
 
