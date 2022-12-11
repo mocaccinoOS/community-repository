@@ -515,7 +515,7 @@ packages:
 - &def-layers-latex
   category: "layers"
   name: "latex"
-  version: "0.5"
+  version: "0.4"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
@@ -927,6 +927,11 @@ packages:
   - category: "games-puzzle"
     name: "gnome-taquin"
     version: ">=0"
+  atoms:
+  - atom: "games-puzzle/gnome-tetravex"
+    use: "cli gui"
+  - atom: "games-puzzle/atomix"
+    accept_keywords: "~amd64"
   prereqs:
   - dev-libs/check
   - app-text/rarian
@@ -1086,6 +1091,9 @@ packages:
   - category: "kde-apps"
     name: "picmi"
     version: ">=0"
+  atoms:
+  - atom: "kde-apps/kdegames-meta"
+    use: "opengl # python"
   prereqs:
   - kde-frameworks/extra-cmake-modules
   requires:
