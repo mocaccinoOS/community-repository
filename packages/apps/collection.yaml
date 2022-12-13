@@ -13414,22 +13414,22 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-text/unrtf
-      dev-tex/latex2rtf
+#       app-text/unrtf
+#       dev-tex/latex2rtf
       app-office/lyx
   provides:
   - category: "app-office"
     name: "lyx"
     version: ">=0"
-  - category: "app-text"
-    name: "unrtf"
-    version: ">=0"
-  - category: "dev-tex"
-    name: "latex2rtf"
-    version: ">=0"
+  # - category: "app-text"
+  #   name: "unrtf"
+  #   version: ">=0"
+  # - category: "dev-tex"
+  #   name: "latex2rtf"
+  #   version: ">=0"
   atoms:
   - atom: "app-office/lyx"
-    use: "aspell dia enchant gnumeric html hunspell monolithic-build rtf cups latex nls svg X l10n_he # rcs dot"
+    use: "aspell dia enchant gnumeric html hunspell monolithic-build cups latex nls svg X l10n_he # rtf rcs dot"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
