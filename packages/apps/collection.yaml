@@ -13430,8 +13430,8 @@ packages:
   atoms:
   - atom: "app-office/lyx"
     use: "aspell dia enchant gnumeric html hunspell monolithic-build rtf cups latex nls svg X l10n_he # rcs dot"
-  setup:
-  - export TEXI2DVI_USE_RECORDER=yesmaybe
+  - atom: "dev-tex/latex2rtf"
+    env: "TEXI2DVI_USE_RECORDER=yesmaybe"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
