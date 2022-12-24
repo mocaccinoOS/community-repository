@@ -9894,6 +9894,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-openra
+  category: "apps"
+  name: "openra"
+  version: "20190314-r100"
+  uri:
+  -  https://www.openra.net/
+  license: "Apache-2.0 vim"
+  description: |
+    "A free RTS engine supporting games like Command & Conquer, Red Alert and Dune2k"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/openra
+  provides:
+  - category: "games-strategy"
+    name: "openra"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/openra"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-mono
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "openrgb"
   version: "0.7+3"
