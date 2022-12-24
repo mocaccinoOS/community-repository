@@ -453,6 +453,9 @@ packages:
   - category: "media-fonts"
     name: "texcm-ttf"
     version: ">=0"
+  atoms:
+  - atom: "media-fonts/texcm-ttf"
+    license: "bakoma"
 
 - &fonts-wqy-zenhei
   <<: *fonts
@@ -696,6 +699,9 @@ packages:
   - category: "www-plugins"
     name: "chrome-binary-plugins"
     version: ">=0"
+  atoms:
+  - atom: "www-plugins/chrome-binary-plugins"
+    license: "google-chrome"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2310,6 +2316,9 @@ packages:
   - category: "media-sound"
     name: "mac"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/mac"
+    license: "mac"
   requires:
   - <<: *layers-codecs
   build_requires:
@@ -2488,6 +2497,9 @@ packages:
   - category: "dev-libs"
     name: "mxml"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/mxml"
+    license: "Mini-XML"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6189,7 +6201,7 @@ packages:
 - &apps-mono
   category: "apps"
   name: "mono"
-  version: "6.12.0.173"
+  version: "6.12.0.122"
   uri:
   - https://mono-project.com
   license: "MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
@@ -6206,6 +6218,9 @@ packages:
   - category: "dev-dotnet"
     name: "libgdiplus"
     version: ">=0"
+  atoms:
+  - atom: "dev-lang/mono"
+    use: "minimal"
   prereqs:
   - sys-apps/elfix
   requires:
@@ -13205,6 +13220,7 @@ packages:
   atoms:
   - atom: "sci-libs/dcmtk"
     use: "png ssl tcpd tiff threads xml zlib"
+    license: "OFFIS"
   requires:
   - <<: *layers-qt
   - <<: *apps-graphviz
