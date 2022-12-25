@@ -2065,6 +2065,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libsoup-2
+  category: "libs"
+  name: "libsoup-2"
+  version: "2.74.3"
+  uri:
+  - https://wiki.gnome.org/Projects/libsoup
+  license: "LGPL-2.1+"
+  description: "HTTP client/server library for GNOME"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libsoup:2.4
+  provides:
+  - category: "net-libs"
+    name: "libsoup"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/libsoup"
+    use: "gnome introspection ssl vala"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libsrtp
   category: "libs"
   name: "libsrtp"
@@ -10961,6 +10985,7 @@ packages:
   - <<: *layers-office-common
   - <<: *libs-asio
   - <<: *libs-libchamplain
+  - <<: *libs-libsoup-2
   - <<: *libs-t1lib
   - <<: *libs-loudmouth
   - <<: *fonts-texcm-ttf
