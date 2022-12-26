@@ -1300,27 +1300,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-libharu
-  category: "libs"
-  name: "libharu"
-  version: "2.3.0-r3"
-  uri:
-  - http://www.libharu.org/
-  license: "ZLIB"
-  description: "C/C++ library for PDF generation"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libharu
-  provides:
-  - category: "media-libs"
-    name: "libharu"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
@@ -1630,6 +1609,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "libfpx"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libharu
+  category: "libs"
+  name: "libharu"
+  version: "2.3.0-r3"
+  uri:
+  - http://www.libharu.org/
+  license: "ZLIB"
+  description: "C/C++ library for PDF generation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libharu
+  provides:
+  - category: "media-libs"
+    name: "libharu"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1956,6 +1956,48 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libsbsms
+  category: "libs"
+  name: "libsbsms"
+  version: "2.3.0+2"
+  uri:
+  - https://github.com/claytonotey/libsbsms
+  license: "GPL-2+"
+  description: "A library for high quality time and pitch scale modification"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsbsms
+  provides:
+  - category: "dev-libs"
+    name: "libsbsms"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libsfml
+  category: "libs"
+  name: "libsfml"
+  version: "2.5.1-r1"
+  uri:
+  - https://www.sfml-dev.org/
+  license: "ZLIB"
+  description: "Simple and Fast Multimedia Library (SFML)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsfml
+  provides:
+  - category: "media-libs"
+    name: "libsfml"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
 - &libs-libshout
   category: "libs"
   name: "libshout"
@@ -2013,27 +2055,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "libsidplayfp"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-libsbsms
-  category: "libs"
-  name: "libsbsms"
-  version: "2.3.0+2"
-  uri:
-  - https://github.com/claytonotey/libsbsms
-  license: "GPL-2+"
-  description: "A library for high quality time and pitch scale modification"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libsbsms
-  provides:
-  - category: "dev-libs"
-    name: "libsbsms"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -9342,7 +9363,30 @@ packages:
   - ^/usr/share/man/man1/ebrowse.1.bz2$
   - ^/usr/share/man/man1/emacs.1.bz2$
   - ^/usr/share/man/man1/emacsclient.1.bz2$
-  
+
+- &apps-extreme-tuxracer
+  category: "apps"
+  name: "extreme-tuxracer"
+  version: "0.8.2"
+  uri:
+  - https://sourceforge.net/p/extremetuxracer/wiki/Home/
+  license: "GPL-2+"
+  description: |
+    "High speed arctic racing game based on Tux Racer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-action/extreme-tuxracer
+  provides:
+  - category: "games-action"
+    name: "extreme-tuxracer"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libsfml
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "gkrellm"
   version: "2.3.11-r1"
