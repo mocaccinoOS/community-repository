@@ -8272,15 +8272,12 @@ packages:
   - atom: "sci-libs/gdal"
     use: "armadillo curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl pdf png python sqlite test webp zstd # java oracle postgres spatialite xls"
   requires:
-  - <<: *layers-X
   - <<: *layers-sci-libs
   - <<: *libs-xerces-c
   - <<: *libs-libheif
   - <<: *libs-cfitsio
   build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-sci-libs
 
 - &libs-gevent
   category: "libs"
@@ -10732,11 +10729,14 @@ packages:
     use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gdal gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
   requires:
   - <<: *layers-qt
+  - <<: *layers-sci-libs
   - <<: *libs-gdal
   - <<: *libs-tbb
   - <<: *libs-xine-lib
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-openvdb
   category: "libs"
