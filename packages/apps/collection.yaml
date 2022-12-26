@@ -7520,9 +7520,40 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-lang/spidermonkey"
+    use: "jit system-icu"
     env: "MAKEOPTS=\\\"-j1 -l0.9\\\""
   prereqs:
   - =dev-lang/python-2.7.18_p15
+  - sys-devel/autoconf:2.1
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-spidermonkey-102
+  category: "apps"
+  name: "spidermonkey"
+  version: "102.6.0"
+  uri:
+  - https://spidermonkey.dev
+  - https://firefox-source-docs.mozilla.org/js/index.html
+  license: "MPL-2.0"
+  description: "SpiderMonkey is Mozilla's JavaScript engine written in C and C++"
+  labels:
+    emerge.jobs: "1"
+    emerge.load_average: "0.9"
+    emerge.packages: >-
+      dev-lang/spidermonkey:102
+  provides:
+  - category: "dev-lang"
+    name: "spidermonkey"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/spidermonkey"
+    use: "jit"
+    env: "MAKEOPTS=\\\"-j1 -l0.9\\\""
+  prereqs:
+  # - =dev-lang/python-2.7.18_p15
   - sys-devel/autoconf:2.1
   requires:
   - <<: *layers-X
@@ -8175,9 +8206,12 @@ packages:
     use: "-doc exceptions javascript openal threads"
   - atom: "media-libs/simage"
     use: "gif jpeg png qt5 sndfile -tiff vorbis zlib # tiff needs zstd"
+  prepare:
+  - sed -i -e 's/javascript\? \( dev-lang/spidermonkey\:60 \)/javascript\? \( dev-lang/spidermonkey:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
   requires:
   - <<: *layers-qt
-  - <<: *apps-spidermonkey-60  
+  - <<: *apps-spidermonkey-102
   build_requires:
   - <<: *layers-qt
 
@@ -12663,6 +12697,37 @@ packages:
 #   # - <<: *layerbase-ghc
 #   # - <<: *layerbase-haskell
 #   requires_final_images: true
+ 
+# - &apps-speed-dreams
+#   category: "apps"
+#   name: "speed-dreams"
+#   version: "2.2.3"
+#   uri:
+#   - http://www.speed-dreams.org/
+#   - https://sourceforge.net/projects/plib/
+#   license: "GPL-2+ BitstreamVera CC0-1.0 Free-Art-1.2 OFL-1.1"
+#   description: |
+#     Fork of the famous open racing car simulator TORCS
+#     Library for collision detection of three-dimensional objects
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-sports/speed-dreams
+#   provides:
+#   - category: "games-sports"
+#     name: "speed-dreams"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-sports/speed-dreams"
+#     use: "osggraph"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-openscenegraph
+#   - <<: *libs-plib
+#   - <<: *libs-enet
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "stellarium"
