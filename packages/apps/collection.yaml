@@ -2429,30 +2429,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-metis
-  category: "libs"
-  name: "metis"
-  version: "5.1.0-r5+1"
-  uri:
-  - http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
-  license: "Apache-2.0"
-  description: "A package for unstructured serial graph partitioning"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/metis
-  provides:
-  - category: "sci-libs"
-    name: "metis"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/metis"
-    use: "double-precision int64 openmp"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -3469,27 +3445,6 @@ packages:
   provides:
   - category: "dev-python"
     name: "soupsieve"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-suitesparseconfig
-  category: "libs"
-  name: "suitesparseconfig"
-  version: "5.4.0+1"
-  uri:
-  - http://faculty.cse.tamu.edu/davis/suitesparse.html
-  license: "public-domain"
-  description: "Common configurations for all packages in suitesparse"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/suitesparseconfig
-  provides:
-  - category: "sci-libs"
-    name: "suitesparseconfig"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -8058,28 +8013,6 @@ packages:
 ## dep 1 libs ###
 ################################################################################################################################################################
 
-- &libs-amd
-  category: "libs"
-  name: "amd"
-  version: "2.4.6-r1+1"
-  uri:
-  - https://people.engr.tamu.edu/davis/suitesparse.html
-  license: "LGPL-2.1"
-  description: "Library to order a sparse matrix prior to Cholesky factorization"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/amd
-  provides:
-  - category: "sci-libs"
-    name: "amd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
@@ -8171,50 +8104,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-camd
-  category: "libs"
-  name: "camd"
-  version: "2.4.6-r1+1"
-  uri:
-  - https://people.engr.tamu.edu/davis/suitesparse.html
-  license: "LGPL-2.1"
-  description: "Library to order a sparse matrix prior to Cholesky factorization"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/camd
-  provides:
-  - category: "sci-libs"
-    name: "camd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-ccolamd
-  category: "libs"
-  name: "ccolamd"
-  version: "2.9.6+1"
-  uri:
-  - https://people.engr.tamu.edu/davis/suitesparse.html
-  license: "LGPL-2.1"
-  description: "Constrained Column approximate minimum degree ordering algorithm"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/ccolamd
-  provides:
-  - category: "sci-libs"
-    name: "ccolamd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
@@ -8292,28 +8181,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-colamd
-  category: "libs"
-  name: "colamd"
-  version: "2.9.6+1"
-  uri:
-  - https://people.engr.tamu.edu/davis/suitesparse.html
-  license: "LGPL-2.1"
-  description: "Column approximate minimum degree ordering algorithm"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/colamd
-  provides:
-  - category: "sci-libs"
-    name: "colamd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-dee
   category: "libs"
   name: "dee"
@@ -8385,27 +8252,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libgadu
+- &libs-gdal
   category: "libs"
-  name: "libgadu"
-  version: "1.12.2-r1+1"
+  name: "gdal"
+  version: "3.5.3-r1"
   uri:
-  - https://libgadu.net/
-  license: "LGPL-2.1"
-  description: "Client-side library for the Gadu-Gadu protocol"
+  - https://gdal.org/
+  license: "BSD Info-ZIP MIT"
+  description: "Translator library for raster geospatial data formats (includes OGR support)"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/libgadu
+      sci-libs/gdal
   provides:
-  - category: "net-libs"
-    name: "libgadu"
+  - category: "sci-libs"
+    name: "gdal"
     version: ">=0"
+  atoms:
+  - atom: "sci-libs/gdal"
+    use: "armadillo curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl pdf png python sqlite test webp zstd # java oracle postgres spatialite xls"
   requires:
   - <<: *layers-X
-  - <<: *libs-protobuf-c
+  - <<: *layers-sci-libs
+  - <<: *libs-xerces-c
+  - <<: *libs-libheif
+  - <<: *libs-cfitsio
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-gevent
   category: "libs"
@@ -8585,6 +8460,28 @@ packages:
   - <<: *libs-ftgl
   build_requires:
   # - <<: *layers-java
+  - <<: *layers-X
+
+- &libs-libgadu
+  category: "libs"
+  name: "libgadu"
+  version: "1.12.2-r1+1"
+  uri:
+  - https://libgadu.net/
+  license: "LGPL-2.1"
+  description: "Client-side library for the Gadu-Gadu protocol"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libgadu
+  provides:
+  - category: "net-libs"
+    name: "libgadu"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-protobuf-c
+  build_requires:
   - <<: *layers-X
 
 - &libs-libgit2
@@ -9993,7 +9890,7 @@ packages:
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
-  version: "4.1.2+1"
+  version: "4.1.4"
   uri:
   - https://www.open-mpi.org
   license: "BSD"
@@ -10006,6 +9903,9 @@ packages:
   - category: "sys-cluster"
     name: "openmpi"
     version: ">=0"
+  atoms:
+  - atom: "sys-cluster/openmpi"
+    use: "romio"
   requires:
   - <<: *layers-X
   - <<: *apps-hwloc
@@ -10694,35 +10594,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-cholmod
-  category: "libs"
-  name: "cholmod"
-  version: "3.0.14+2"
-  uri:
-  - https://people.engr.tamu.edu/davis/suitesparse.html
-  license: "LGPL-2.1+ GPL-2+ GPL-2+"
-  description: "Sparse Cholesky factorization and update/downdate library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/cholmod
-  provides:
-  - category: "sci-libs"
-    name: "cholmod"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cholmod"
-    use: "lapack matrixops modify partition # cuda"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-amd
-  - <<: *libs-camd
-  - <<: *libs-ccolamd
-  - <<: *libs-colamd
-  - <<: *libs-metis
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-glpk
   category: "libs"
   name: "glpk"
@@ -10744,10 +10615,11 @@ packages:
     use: "gmp odbc mysql"
   requires:
   - <<: *layers-office-common
-  - <<: *libs-amd
-  - <<: *libs-colamd
+  - <<: *layers-sci-libs
   build_requires:
-  - <<: *layers-office-common
+  - <<: *buildbase-office-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-gst-plugins-libnice
   category: "libs"
@@ -10839,32 +10711,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-lpsolve
-  category: "libs"
-  name: "lpsolve"
-  version: "5.5.2.0-r1"
-  uri:
-  - https://sourceforge.net/projects/lpsolve/
-  license: "LGPL-2.1"
-  description: "Mixed Integer Linear Programming (MILP) solver"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-mathematics/lpsolve
-  provides:
-  - category: "sci-mathematics"
-    name: "lpsolve"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-colamd
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.6.0-r4"
+  version: "4.6.0-r4+1"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -10879,9 +10729,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/opencv"
-    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download examples gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gdal gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
   requires:
   - <<: *layers-qt
+  - <<: *libs-gdal
   - <<: *libs-tbb
   - <<: *libs-xine-lib
   build_requires:
@@ -11540,11 +11391,12 @@ packages:
   - media-libs/zxing-cpp
   requires:
   - <<: *layers-gnome-common
+  - <<: *layers-office-common
+  - <<: *layers-sci-libs
+  - <<: *layers-java
   - category: "entity"
     name: "libreoffice"
     version: ">=0"
-  - <<: *layers-office-common
-  - <<: *layers-java
   # - <<: *libs-bsh
   # - <<: *libs-rhino
   - <<: *libs-abseil-cpp
@@ -11552,10 +11404,10 @@ packages:
   - <<: *libs-xmlsec
   - <<: *apps-fontforge
   - <<: *libs-libvisio
-  - <<: *libs-lpsolve
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-office-common
+  - <<: *buildbase-sci-libs
   requires_final_images: true
 
 - category: "apps"
@@ -12266,30 +12118,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-umfpack
-  category: "libs"
-  name: "umfpack"
-  version: "5.7.9+2"
-  uri:
-  - http://faculty.cse.tamu.edu/davis/suitesparse.html
-  license: "GPL-2+"
-  description: "Unsymmetric multifrontal sparse LU factorization library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/umfpack
-  provides:
-  - category: "sci-libs"
-    name: "umfpack"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-amd
-  - <<: *libs-cholmod
-  - <<: *libs-suitesparseconfig
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libunity
   category: "libs"
   name: "libunity"
@@ -12714,11 +12542,6 @@ packages:
   - <<: *apps-pstoedit
   - <<: *apps-transfig
   - <<: *libs-qhull
-  - <<: *libs-camd
-  - <<: *libs-ccolamd
-  - <<: *libs-cholmod
-  - <<: *libs-colamd
-  - <<: *libs-umfpack
   - <<: *libs-glpk
   - <<: *apps-gnuplot
   - <<: *libs-fltk
@@ -12919,10 +12742,12 @@ packages:
     use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
   requires:
   - <<: *layers-X
+  - <<: *layers-sci-libs
   - <<: *libs-babl
-  - <<: *libs-umfpack
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-mlt
   category: "libs"
