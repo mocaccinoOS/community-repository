@@ -725,11 +725,12 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
-  
+
+
 - &def-layers-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.5"
+  version: "0.6"
   uri:
   - https://people.engr.tamu.edu/davis/suitesparse.html
   - https://arma.sourceforge.net
@@ -744,6 +745,8 @@ packages:
   - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
   - https://computing.llnl.gov/projects/sundials
   - https://sourceforge.net/projects/lpsolve/
+  - https://github.com/libLAS/libLAS/
+  - https://laszip.org/
   license: "metapackage"
   description: |
     Library to order a sparse matrix prior to Cholesky factorization
@@ -767,6 +770,8 @@ packages:
     Unsymmetric multifrontal sparse LU factorization library
     Suite of nonlinear solvers
     Mixed Integer Linear Programming (MILP) solver
+    C/C++ library for manipulating the LAS LiDAR format common in GIS
+    Library for free and lossless compression of the LAS LiDAR format
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -793,6 +798,8 @@ packages:
       sci-libs/umfpack
       =sci-libs/sundials-5.8.0
       sci-mathematics/lpsolve
+      sci-geosciences/laszip
+      sci-geosciences/liblas
   provides:
   - category: "sci-libs"
     name: "amd"
@@ -863,6 +870,12 @@ packages:
   - category: "sci-mathematics"
     name: "lpsolve"
     version: ">=0"
+  - category: "sci-geosciences"
+    name: "liblas"
+    version: ">=0"
+  - category: "sci-geosciences"
+    name: "laszip"
+    version: ">=0"
   atoms:
   - atom: "sci-libs/arpack"
     use: "mpi"
@@ -884,6 +897,8 @@ packages:
     use: "int64 openmp threads"
   - atom: "sci-libs/sundials"
     use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
+  # - atom: "sci-geosciences/liblas"
+  #   use: "gdal"
   requires:
   - <<: *layers-X
   - <<: *apps-openmpi
