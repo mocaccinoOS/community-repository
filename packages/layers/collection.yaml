@@ -308,6 +308,9 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-cluster/openmpi
+  atoms:
+  - atom: "sys-cluster/openmpi"
+    use: "romio"
 
 
 packages:
@@ -874,7 +877,7 @@ packages:
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
   - atom: "sci-libs/netcdf"
-    use: "dap hdf tools hdf5 mpi szip"
+    use: "dap hdf tools hdf5 # mpi szip"
   - atom: "sci-libs/proj"
     use: "curl tiff"
   - atom: "sci-libs/superlu_mt"
