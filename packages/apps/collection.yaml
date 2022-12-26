@@ -8252,32 +8252,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gdal
-  category: "libs"
-  name: "gdal"
-  version: "3.5.3-r1"
-  uri:
-  - https://gdal.org/
-  license: "BSD Info-ZIP MIT"
-  description: "Translator library for raster geospatial data formats (includes OGR support)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gdal
-  provides:
-  - category: "sci-libs"
-    name: "gdal"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/gdal"
-    use: "armadillo curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl pdf png python sqlite test webp zstd # java oracle postgres spatialite xls"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-xerces-c
-  - <<: *libs-libheif
-  - <<: *libs-cfitsio
-  build_requires:
-  - <<: *layers-sci-libs
+# >=sci-libs/hdf5-1.12.2-r4 szip cxx
+# - &libs-gdal
+#   category: "libs"
+#   name: "gdal"
+#   version: "3.5.3-r1"
+#   uri:
+#   - https://gdal.org/
+#   license: "BSD Info-ZIP MIT"
+#   description: "Translator library for raster geospatial data formats (includes OGR support)"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sci-libs/gdal
+#   provides:
+#   - category: "sci-libs"
+#     name: "gdal"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sci-libs/gdal"
+#     use: "armadillo curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits geos gif gml hdf5 heif jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl pdf png python sqlite test webp zstd # java oracle postgres spatialite xls"
+#   requires:
+#   - <<: *layers-sci-libs
+#   - <<: *libs-xerces-c
+#   - <<: *libs-libheif
+#   - <<: *libs-cfitsio
+#   build_requires:
+#   - <<: *layers-sci-libs
 
 - &libs-gevent
   category: "libs"
@@ -10726,11 +10727,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/opencv"
-    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gdal gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
   requires:
   - <<: *layers-qt
   - <<: *layers-sci-libs
-  - <<: *libs-gdal
+  # - <<: *libs-gdal
   - <<: *libs-tbb
   - <<: *libs-xine-lib
   build_requires:
