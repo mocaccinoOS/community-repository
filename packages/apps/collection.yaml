@@ -7436,6 +7436,28 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
+- category: "apps"
+  name: "tooth"
+  version: "9999"
+  uri:
+  - https://github.com/GeopJr/Tooth
+  license: "GPL-3"
+  description: "Tooth is a fork of the now archived Tootle, a gtk Mastodon client."
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/tooth
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "net-misc"
+    name: "tooth"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-transfig
   category: "apps"
   name: "transfig"
