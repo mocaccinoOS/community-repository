@@ -726,14 +726,18 @@ packages:
 - &def-layers-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.4"
+  version: "0.5"
   uri:
   - https://people.engr.tamu.edu/davis/suitesparse.html
   - https://arma.sourceforge.net
   - http://www.caam.rice.edu/software/ARPACK/
+  - https://trac.osgeo.org/geotiff/
   - http://faculty.cse.tamu.edu/davis/suitesparse.html
   - http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
   - https://portal.nersc.gov/project/sparse/superlu/
+  - https://www.unidata.ucar.edu/software/netcdf/
+  - http://ogdi.sourceforge.net/
+  - https://proj.org/
   - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
   - https://computing.llnl.gov/projects/sundials
   - https://sourceforge.net/projects/lpsolve/
@@ -746,14 +750,17 @@ packages:
     Sparse Cholesky factorization and update/downdate library
     Arnoldi package library to solve large scale eigenvalue problems
     Extended sparse matrix package
+    Library for reading TIFF files with embedded tags for geographic information
     A package for unstructured serial graph partitioning
     Common configurations for all packages in suitesparse
     Sparse LU factorization library
     Sparse LU factorization for circuit simulation
     Parallel matrix preconditioners library
+    Open Geographical Datastore Interface, a GIS support library
+    PROJ coordinate transformation software
     Algorithm for matrix permutation into block triangular form
     Multithreaded sparse LU factorization library
-    Intel Math Kernel Library
+    Scientific library and interface for array oriented data access
     Unsymmetric multifrontal sparse LU factorization library
     Suite of nonlinear solvers
     Mixed Integer Linear Programming (MILP) solver
@@ -763,18 +770,23 @@ packages:
       sci-libs/amd
       sci-libs/armadillo
       sci-libs/arpack
+      sci-libs/btf
       sci-libs/camd
       sci-libs/ccolamd
       sci-libs/cholmod
       sci-libs/colamd
       sci-libs/cxsparse
+      sci-libs/geos
+      sci-libs/hypre
+      sci-libs/klu
+      sci-libs/libgeotiff
       sci-libs/metis
+      sci-libs/netcdf
+      sci-libs/ogdi
+      sci-libs/proj
       sci-libs/suitesparseconfig
       sci-libs/superlu
       sci-libs/superlu_mt
-      sci-libs/hypre
-      sci-libs/btf
-      sci-libs/klu
       sci-libs/umfpack
       =sci-libs/sundials-5.8.0
       sci-mathematics/lpsolve
@@ -783,7 +795,13 @@ packages:
     name: "amd"
     version: ">=0"
   - category: "sci-libs"
+    name: "armadillo"
+    version: ">=0"
+  - category: "sci-libs"
     name: "arpack"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "btf"
     version: ">=0"
   - category: "sci-libs"
     name: "camd"
@@ -801,7 +819,28 @@ packages:
     name: "cxsparse"
     version: ">=0"
   - category: "sci-libs"
+    name: "hypre"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "geos"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "klu"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "libgeotiff"
+    version: ">=0"
+  - category: "sci-libs"
     name: "metis"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "netcdf"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "ogdi"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "proj"
     version: ">=0"
   - category: "sci-libs"
     name: "suitesparseconfig"
@@ -811,15 +850,6 @@ packages:
     version: ">=0"
   - category: "sci-libs"
     name: "superlu_mt"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "hypre"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "btf"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "klu"
     version: ">=0"
   - category: "sci-libs"
     name: "umfpack"
@@ -839,8 +869,14 @@ packages:
     use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp mpi"
+  - atom: "sci-libs/libgeotiff"
+    use: "jpeg tiff zlib"
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
+  - atom: "sci-libs/netcdf"
+    use: "dap hdf tools hdf5 mpi szip"
+  - atom: "sci-libs/proj"
+    use: "curl tiff"
   - atom: "sci-libs/superlu_mt"
     use: "int64 openmp threads"
   - atom: "sci-libs/sundials"
