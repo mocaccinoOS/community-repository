@@ -174,24 +174,6 @@ anchors:
 ### libs ###
 ################################################################################
 
-- &libs-amd
-  category: "libs"
-  name: "amd"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/amd
-
-- &libs-colamd
-  category: "libs"
-  name: "colamd"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/colamd
-
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -295,15 +277,6 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pysol_cards
-
-- &libs-suitesparseconfig
-  category: "libs"
-  name: "suitesparseconfig"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/suitesparseconfig
 
 - &libs-xxhash
   category: "libs"
@@ -749,48 +722,95 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
-
-
+  
 - &def-layers-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.3"
+  version: "0.4"
   uri:
-  - http://www.caam.rice.edu/software/ARPACK/
   - https://people.engr.tamu.edu/davis/suitesparse.html
+  - https://arma.sourceforge.net
+  - http://www.caam.rice.edu/software/ARPACK/
+  - http://faculty.cse.tamu.edu/davis/suitesparse.html
+  - http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
   - https://portal.nersc.gov/project/sparse/superlu/
   - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
   - https://computing.llnl.gov/projects/sundials
+  - https://sourceforge.net/projects/lpsolve/
   license: "metapackage"
   description: |
+    Library to order a sparse matrix prior to Cholesky factorization
+    Streamlined C++ linear algebra library
+    Constrained Column approximate minimum degree ordering algorithm
+    Column approximate minimum degree ordering algorithm
+    Sparse Cholesky factorization and update/downdate library
     Arnoldi package library to solve large scale eigenvalue problems
     Extended sparse matrix package
+    A package for unstructured serial graph partitioning
+    Common configurations for all packages in suitesparse
     Sparse LU factorization library
+    Sparse LU factorization for circuit simulation
     Parallel matrix preconditioners library
     Algorithm for matrix permutation into block triangular form
-    Sparse LU factorization for circuit simulation
     Multithreaded sparse LU factorization library
+    Intel Math Kernel Library
+    Unsymmetric multifrontal sparse LU factorization library
     Suite of nonlinear solvers
+    Mixed Integer Linear Programming (MILP) solver
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      sci-libs/amd
+      sci-libs/armadillo
       sci-libs/arpack
+      sci-libs/camd
+      sci-libs/ccolamd
+      sci-libs/cholmod
+      sci-libs/colamd
       sci-libs/cxsparse
+      sci-libs/metis
+      sci-libs/suitesparseconfig
       sci-libs/superlu
+      sci-libs/superlu_mt
       sci-libs/hypre
       sci-libs/btf
       sci-libs/klu
-      sci-libs/superlu_mt
+      sci-libs/umfpack
       =sci-libs/sundials-5.8.0
+      sci-mathematics/lpsolve
   provides:
   - category: "sci-libs"
+    name: "amd"
+    version: ">=0"
+  - category: "sci-libs"
     name: "arpack"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "camd"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "ccolamd"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "cholmod"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "colamd"
     version: ">=0"
   - category: "sci-libs"
     name: "cxsparse"
     version: ">=0"
   - category: "sci-libs"
+    name: "metis"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "suitesparseconfig"
+    version: ">=0"
+  - category: "sci-libs"
     name: "superlu"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "superlu_mt"
     version: ">=0"
   - category: "sci-libs"
     name: "hypre"
@@ -802,28 +822,34 @@ packages:
     name: "klu"
     version: ">=0"
   - category: "sci-libs"
-    name: "superlu_mt"
+    name: "umfpack"
     version: ">=0"
   - category: "sci-libs"
     name: "sundials"
     version: ">=0"
+  - category: "sci-mathematics"
+    name: "lpsolve"
+    version: ">=0"
   atoms:
   - atom: "sci-libs/arpack"
     use: "mpi"
+  - atom: "sci-libs/armadillo"
+    use: "arpack superlu blas hdf5 lapack # mkl"
+  - atom: "sci-libs/cholmod"
+    use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp mpi"
+  - atom: "sci-libs/metis"
+    use: "double-precision int64 openmp"
   - atom: "sci-libs/superlu_mt"
     use: "int64 openmp threads"
   - atom: "sci-libs/sundials"
     use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
   requires:
-  - <<: *layers-latex
+  - <<: *layers-X
   - <<: *apps-openmpi
-  - <<: *libs-amd
-  - <<: *libs-colamd
-  - <<: *libs-suitesparseconfig
   build_requires:
-  - <<: *layers-latex
+  - <<: *layers-X
 
 # - <<: *def-layers-sci-libs 
 #   category: "layerbase"
