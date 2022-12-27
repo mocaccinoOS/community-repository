@@ -7522,36 +7522,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-spidermonkey-60
-  category: "libs"
-  name: "spidermonkey"
-  version: "60.5.2_p0-r6+1"
-  uri:
-  - https://spidermonkey.dev
-  - https://firefox-source-docs.mozilla.org/js/index.html
-  license: "MPL-2.0"
-  description: "SpiderMonkey is Mozilla's JavaScript engine written in C and C++"
-  labels:
-    emerge.jobs: "1"
-    emerge.load_average: "0.9"
-    emerge.packages: >-
-      dev-lang/spidermonkey:60
-  provides:
-  - category: "dev-lang"
-    name: "spidermonkey"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/spidermonkey"
-    use: "jit system-icu"
-    env: "MAKEOPTS=\\\"-j1 -l0.9\\\""
-  prereqs:
-  - =dev-lang/python-2.7.18_p15
-  - sys-devel/autoconf:2.1
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-spidermonkey-102
   category: "apps"
   name: "spidermonkey"
@@ -10767,31 +10737,31 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# - &libs-openscenegraph
-#   category: "libs"
-#   name: "openscenegraph"
-#   version: "3.6.5-r114"
-#   uri:
-#   - http://www.openscenegraph.org/
-#   license: "wxWinLL-3 LGPL-2.1"
-#   description: "Open source high performance 3D graphics toolkit"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-games/openscenegraph
-#   provides:
-#   - category: "dev-games"
-#     name: "openscenegraph"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-games/openscenegraph"
-#     use: "curl ffmpeg fltk gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox gdal las openinventor osgapps sdl2 xrandr"
-#   requires:
-#   - <<: *layers-sci-libs
-#   - <<: *libs-coin
-#   - <<: *libs-collada-dom
-#   build_requires:
-#   - <<: *layers-sci-libs
+- &libs-openscenegraph
+  category: "libs"
+  name: "openscenegraph"
+  version: "3.6.5-r114"
+  uri:
+  - http://www.openscenegraph.org/
+  license: "wxWinLL-3 LGPL-2.1"
+  description: "Open source high performance 3D graphics toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-games/openscenegraph
+  provides:
+  - category: "dev-games"
+    name: "openscenegraph"
+    version: ">=0"
+  atoms:
+  - atom: "dev-games/openscenegraph"
+    use: "curl ffmpeg fltk gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox gdal las openinventor osgapps sdl2 xrandr"
+  requires:
+  - <<: *layers-sci-libs
+  - <<: *libs-coin
+  - <<: *libs-collada-dom
+  build_requires:
+  - <<: *layers-sci-libs
 
 - &libs-openvdb
   category: "libs"
