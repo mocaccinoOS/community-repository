@@ -10757,11 +10757,14 @@ packages:
   - atom: "dev-games/openscenegraph"
     use: "curl ffmpeg fltk gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox las openinventor osgapps sdl2 xrandr # gdal"
   requires:
+  - <<: *layers-qt
   - <<: *layers-sci-libs
   - <<: *libs-coin
   - <<: *libs-collada-dom
   build_requires:
-  - <<: *layers-sci-libs
+  - <<: *buildbase-qt
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-openvdb
   category: "libs"

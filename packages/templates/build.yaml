@@ -59,9 +59,8 @@ steps:
 {{ if eq .Values.category "layerbase" }}
 {{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
 {{ include "cr.copy_package_setup_files" $package }}
-{{ end }}
-
 {{ include "cr.package_setup" .Values }}
+{{ end }}
 
 {{- if .Values.preemerge }}
 {{- range .Values.preemerge }}
