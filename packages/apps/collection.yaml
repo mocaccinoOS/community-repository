@@ -9901,6 +9901,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-neverball
+  category: "apps"
+  name: "neverball"
+  version: "1.6.0-r1"
+  uri:
+  - https://neverball.org
+  license: "GPL-2+ IJG"
+  description: "Clone of Super Monkey Ball using SDL/OpenGL"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-puzzle/neverball
+  provides:
+  - category: "games-puzzle"
+    name: "neverball"
+    version: ">=0"
+  atoms:
+  - atom: "games-puzzle/neverball"
+    use: "nls"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *fonts-wqy-microhei
+  - <<: *libs-physfs
+  build_requires:
+  - <<: *layers-X
+
 - &apps-nmapsi
   category: "apps"
   name: "nmapsi"
