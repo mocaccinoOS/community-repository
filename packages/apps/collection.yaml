@@ -291,6 +291,31 @@ anchors:
     emerge.packages: >-
       media-video/vlc
 
+- &apps-xdelta-3
+  category: "apps"
+  name: "xdelta"
+  version: "3.0.11-r1"
+  uri:
+  - http://xdelta.org/
+  license: "GPL-2"
+  description: "Computes changes between binary or text files and creates deltas"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/xdelta:3
+  provides:
+  - category: "dev-util"
+    name: "xdelta"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/xdelta"
+    use: "lzma"
+  requires:
+  - <<: *layers-sytem-x
+  build_requires:
+  - <<: *layers-sytem-x
+
+
 packages:
 
 ################################################################################################################################################################
@@ -384,7 +409,9 @@ packages:
   - category: "media-fonts"
     name: "inconsolata-hellenic"
     version: ">=0"
-
+  atoms:
+  - atom: "media-fonts/inconsolata-hellenic"
+    accept_keywords: "~amd64"
 - <<: *fonts
   name: "roboto"
   version: "2.138+3"
@@ -418,7 +445,10 @@ packages:
   - category: "media-fonts"
     name: "robotomono"
     version: ">=0"
-
+  atoms:
+  - atom: "media-fonts/robotomono"
+    accept_keywords: "~amd64"
+    
 - <<: *fonts
   name: "robotoslab"
   version: "2.000+3"
@@ -436,6 +466,9 @@ packages:
   - category: "media-fonts"
     name: "robotoslab"
     version: ">=0"
+  atoms:
+  - atom: "media-fonts/robotoslab"
+    accept_keywords: "~amd64"
 
 - &fonts-texcm-ttf
   <<: *fonts
@@ -473,6 +506,28 @@ packages:
   - category: "media-fonts"
     name: "wqy-zenhei"
     version: ">=0"
+
+- &fonts-wqy-microhei
+  <<: *fonts
+  name: "wqy-microhei"
+  version: "0.2.0_beta-r1"
+  uri:
+  - http://wenq.org/wqy2/index.cgi
+  license: "Apache-2.0 GPL-3"
+  description: "Droid derived Sans-Serif style CJK font"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/wqy-microhei
+  provides:
+  - category: "media-fonts"
+    name: "wqy-microhei"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/wqy-microhei"
+    use: "X"
+  prerequires:
+  - <<: *apps-xdelta-3
 
 ################################################################################################################################################################
 ### dep 0 libs ###
@@ -10590,6 +10645,9 @@ packages:
   - category: "media-libs"
     name: "allegro"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/allegro"
+    use: "alsa dumb flac gtk jpeg openal opengl opus oss physfs png pulseaudio truetype vorbis webp X xinerama"
   requires:
   - <<: *layers-X
   - <<: *libs-physfs

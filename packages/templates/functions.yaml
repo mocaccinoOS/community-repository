@@ -7,21 +7,16 @@
 
 {{- $packages := list }}
 
-{{- if .optrequires }}
-{{- range .optrequires }}
+{{- $dep := . }}
+
+{{- range ("prerequires optrequires requires" | splitList " ") }}
+{{- if ( index $dep . ) }}
+{{- range ( index $dep . ) }}
 
 {{- $deps := ( include "cr.list_package_with_deps" . ) | splitList " " }}
 {{- $packages = $packages | concat $deps }}
 
 {{- end }}
-{{- end }}
-
-{{- if .requires }}
-{{- range .requires }}
-
-{{- $deps := ( include "cr.list_package_with_deps" . ) | splitList " " }}
-{{- $packages = $packages | concat $deps }}
-
 {{- end }}
 {{- end }}
 
@@ -67,15 +62,15 @@
 
 {{- define "cr.packages_setup" }}
 
-{{- if .optrequires }}
-{{- range .optrequires }}
-{{- ( include "cr.packages_setup" . ) }}
-{{- end }}
-{{- end }}
+{{- $dep := . }}
 
-{{- if .requires }}
-{{- range .requires }}
+{{- range ("prerequires optrequires requires" | splitList " ") }}
+{{- if ( index $dep . ) }}
+{{- range ( index $dep . ) }}
+
 {{- ( include "cr.packages_setup" . ) }}
+
+{{- end }}
 {{- end }}
 {{- end }}
 
@@ -97,12 +92,11 @@
 {{- range .atoms }}
 {{- $atom := . }}
 {{- range ("accept_keywords license unmask use" | splitList " ") }}
-{{- $param := . }}
 {{- $value := (index $atom .) }}
 {{- if $value }}
 - |
-  mkdir -p {{ $filepath }}.{{ $param }}; \
-  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ $param }}/{{ $filename }}.{{ $param }};
+  mkdir -p {{ $filepath }}.{{ . }}; \
+  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }};
 {{- end }}
 {{- end }}
 {{- $value := (index $atom "env" ) }}
@@ -168,8 +162,11 @@
 {{- end }}
 {{- end }}
 
-{{- if .optrequires }}
-{{- range .optrequires }}
+{{- $dep := . }}
+
+{{- range ("prerequires optrequires" | splitList " ") }}
+{{- if ( index $dep . ) }}
+{{- range ( index $dep . ) }}
 
 {{- range include "cr.prereqs_emerge" . | fromJsonArray }}
 {{- if . }}
@@ -179,6 +176,7 @@
 {{- end }}
 {{- end }}
 
+{{- end }}
 {{- end }}
 {{- end }}
 
