@@ -8603,7 +8603,7 @@ packages:
 - &libs-libpano13
   category: "libs"
   name: "libpano13"
-  version: "2.9.21-r1"
+  version: "2.9.21-r1+1"
   uri:
   - http://panotools.sourceforge.net/
   license: "GPL-2"
@@ -8618,11 +8618,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/libpano13"
-    accept_keywords: "~amd64"
+    # accept_keywords: "~amd64"
+    use: "suitesparse"
   requires:
+  - <<: *layers-sci-libs
   - <<: *layers-java
   build_requires:
-  - <<: *layers-java
+  - <<: *layers-sci-libs
 
 - &libs-libspnav
   category: "libs"
@@ -12384,7 +12386,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2022.0.0"
+  version: "2022.0.0+1"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
@@ -12426,8 +12428,10 @@ packages:
   - <<: *apps-enblend
   - <<: *apps-dcraw
   build_requires:
-  - <<: *layers-gnome-common
 #   - <<: *layers-X
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-kcdemu
   category: "apps"
