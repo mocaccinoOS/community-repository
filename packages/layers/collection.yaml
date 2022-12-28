@@ -749,6 +749,7 @@ packages:
   - https://laszip.org/
   license: "metapackage"
   description: |
+    Metapackage for a suite of sparse matrix tools
     Library to order a sparse matrix prior to Cholesky factorization
     Streamlined C++ linear algebra library
     Constrained Column approximate minimum degree ordering algorithm
@@ -759,11 +760,13 @@ packages:
     Library for reading TIFF files with embedded tags for geographic information
     A package for unstructured serial graph partitioning
     Common configurations for all packages in suitesparse
+    Simple but educational LDL^T matrix factorization algorithm
     Sparse LU factorization library
     Sparse LU factorization for circuit simulation
     Parallel matrix preconditioners library
     Open Geographical Datastore Interface, a GIS support library
     PROJ coordinate transformation software
+    Multithreaded multifrontal sparse QR factorization library
     Algorithm for matrix permutation into block triangular form
     Multithreaded sparse LU factorization library
     Scientific library and interface for array oriented data access
@@ -787,16 +790,19 @@ packages:
       sci-libs/geos
       sci-libs/hypre
       sci-libs/klu
+      sci-libs/ldl
       sci-libs/libgeotiff
       sci-libs/metis
       sci-libs/netcdf
       sci-libs/ogdi
       sci-libs/proj
+      sci-libs/spqr
+      sci-libs/suitesparse
       sci-libs/suitesparseconfig
       sci-libs/superlu
       sci-libs/superlu_mt
-      sci-libs/umfpack
       =sci-libs/sundials-5.8.0
+      sci-libs/umfpack
       sci-mathematics/lpsolve
       sci-geosciences/laszip
       sci-geosciences/liblas
@@ -838,6 +844,9 @@ packages:
     name: "klu"
     version: ">=0"
   - category: "sci-libs"
+    name: "ldl"
+    version: ">=0"
+  - category: "sci-libs"
     name: "libgeotiff"
     version: ">=0"
   - category: "sci-libs"
@@ -863,6 +872,9 @@ packages:
     version: ">=0"
   - category: "sci-libs"
     name: "umfpack"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "spqr"
     version: ">=0"
   - category: "sci-libs"
     name: "sundials"
@@ -893,6 +905,10 @@ packages:
     use: "dap tools hdf5 # hdf mpi szip"
   - atom: "sci-libs/proj"
     use: "curl tiff"
+  - atom: "sci-libs/spqr"
+    use: "partition # tbb"
+  - atom: "sci-libs/suitesparse"
+    use: "lapack partition # tbb # cuda"
   - atom: "sci-libs/superlu_mt"
     use: "int64 openmp threads"
   - atom: "sci-libs/sundials"
