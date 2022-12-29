@@ -130,27 +130,27 @@ anchors:
   category: "layers"
   name: "ghc"
   version: ">=0"
-- &layerbase-ghc
-  category: "layerbase"
-  name: "ghc"
-  version: ">=0"
+# - &layerbase-ghc
+#   category: "layerbase"
+#   name: "ghc"
+#   version: ">=0"
 - &buildbase-ghc
   category: "buildbase"
   name: "ghc"
   version: ">=0"
 
-# - &layers-haskell
-#   category: "layers"
-#   name: "haskell"
-#   version: ">=0"
+- &layers-haskell
+  category: "layers"
+  name: "haskell"
+  version: ">=0"
 # - &layerbase-haskell
 #   category: "layerbase"
 #   name: "haskell"
 #   version: ">=0"
-# - &buildbase-haskell
-#   category: "buildbase"
-#   name: "haskell"
-#   version: ">=0"
+- &buildbase-haskell
+  category: "buildbase"
+  name: "haskell"
+  version: ">=0"
 
 ################################################################################
 ### fonts ###
@@ -1269,7 +1269,7 @@ packages:
 - &def-layers-ghc
   category: "layers"
   name: "ghc"
-  version: "9.0.2-r2"
+  version: "9.0.2-r2+1"
   uri:
   - https://www.haskell.org/ghc/
   - http://haskell.org/haskellwiki/Gentoo#haskell-updater
@@ -1299,15 +1299,16 @@ packages:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
+  - app-text/dos2unix
   requires:
   - <<: *layers-system-x
   # - <<: *apps-numactl
   build_requires:
   - <<: *layers-system-x
 
-- <<: *def-layers-ghc 
-  category: "layerbase"
-  hidden: true
+# - <<: *def-layers-ghc 
+#   category: "layerbase"
+#   hidden: true
 
 - <<: *def-layers-ghc 
   category: "buildbase"
@@ -1315,20 +1316,19 @@ packages:
   hidden: true
 
 
-# # dev-haskell/cabal-install is mandatory to be able to build upon this layerbase
-# # >=app-text/pandoc-2.13 need dev-haskell/hslua-module-path
-# # >=app-text/pandoc-2.11.3.1 need dev-haskell/citeproc
-# # >=app-text/pandoc-2.11.3.1 need dev-haskell/commonmark-pandoc
+# dev-haskell/cabal-install is mandatory to be able to build upon this layerbase
+# >=app-text/pandoc-2.13 need dev-haskell/hslua-module-path
+# >=app-text/pandoc-2.11.3.1 need dev-haskell/citeproc
+# >=app-text/pandoc-2.11.3.1 need dev-haskell/commonmark-pandoc
 # - &def-layers-haskell
 #   category: "layers"
 #   name: "haskell"
-#   version: "0.13"
+#   version: "0.14"
 #   labels:
 #     emerge.jobs: "3"
 #     emerge.packages: >-
 #       dev-haskell/adjunctions
 #       dev-haskell/aeson
-#       dev-haskell/aeson-diff
 #       dev-haskell/aeson-pretty
 #       dev-haskell/alex
 #       dev-haskell/ansi-terminal
@@ -1342,7 +1342,6 @@ packages:
 #       dev-haskell/auto-update
 #       dev-haskell/base-compat
 #       dev-haskell/base-compat-batteries
-#       dev-haskell/base-noprelude
 #       dev-haskell/base-orphans
 #       dev-haskell/base-prelude
 #       dev-haskell/base16-bytestring
@@ -1646,9 +1645,6 @@ packages:
 #     name: "aeson"
 #     version: ">=0"
 #   - category: "dev-haskell"
-#     name: "aeson-diff"
-#     version: ">=0"
-#   - category: "dev-haskell"
 #     name: "aeson-pretty"
 #     version: ">=0"
 #   - category: "dev-haskell"
@@ -1686,9 +1682,6 @@ packages:
 #     version: ">=0"
 #   - category: "dev-haskell"
 #     name: "base-compat-batteries"
-#     version: ">=0"
-#   - category: "dev-haskell"
-#     name: "base-noprelude"
 #     version: ">=0"
 #   - category: "dev-haskell"
 #     name: "base-orphans"
@@ -2586,9 +2579,9 @@ packages:
 #   - <<: *buildbase-ghc
 #   requires_final_images: true
 # 
-# - <<: *def-layers-haskell
-#   category: "layerbase"
-#   hidden: true
+# # - <<: *def-layers-haskell
+# #   category: "layerbase"
+# #   hidden: true
 # 
 # - <<: *def-layers-haskell
 #   category: "buildbase"

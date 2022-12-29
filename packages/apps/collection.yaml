@@ -130,27 +130,27 @@ anchors:
   category: "layers"
   name: "ghc"
   version: ">=0"
-- &layerbase-ghc
-  category: "layerbase"
-  name: "ghc"
-  version: ">=0"
+# - &layerbase-ghc
+#   category: "layerbase"
+#   name: "ghc"
+#   version: ">=0"
 - &buildbase-ghc
   category: "buildbase"
   name: "ghc"
   version: ">=0"
 
-# - &layers-haskell
-#   category: "layers"
-#   name: "haskell"
-#   version: ">=0"
+- &layers-haskell
+  category: "layers"
+  name: "haskell"
+  version: ">=0"
 # - &layerbase-haskell
 #   category: "layerbase"
 #   name: "haskell"
 #   version: ">=0"
-# - &buildbase-haskell
-#   category: "buildbase"
-#   name: "haskell"
-#   version: ">=0"
+- &buildbase-haskell
+  category: "buildbase"
+  name: "haskell"
+  version: ">=0"
 
 - &layers-office-common
   category: "layers"
@@ -223,18 +223,6 @@ anchors:
   - name: nvpd
     category: entity
     version: ">=0"
-
-# - &kernel-modules-vhba
-#   category: "kernel-modules"
-#   name: "vhba"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sys-fs/vhba
-#   requires:
-#   - <<: *kernel-gentoo
-#   # - <<: *kernel-mocaccino-lts-full
 
 - &kernel-modules-vhba
   category: "kernel-modules"
@@ -6726,7 +6714,7 @@ packages:
 # - &apps-pandoc
 #   category: "apps"
 #   name: "pandoc"
-#   version: "2.9.2.1+7"
+#   version: "2.18-r2"
 #   uri:
 #   - https://pandoc.org
 #   license: "GPL-2+"
@@ -6734,11 +6722,15 @@ packages:
 #   labels:
 #     emerge.jobs: "1"
 #     emerge.packages: >-
-#       =app-text/pandoc-2.9.2.1
+#        app-text/pandoc
 #   provides:
 #   - category: "app-text"
 #     name: "pandoc"
 #     version: ">=0"
+#   atoms:
+#   - ayom: "app-text/pandoc"
+#     use: "embed-data-files # doc hscolour optimize trypandoc profile"
+#     accept_keywords: "~amd64"
 #   requires:
 #   - <<: *layers-haskell
 #   build_requires:
