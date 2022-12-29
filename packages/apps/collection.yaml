@@ -13988,95 +13988,95 @@ packages:
 ### dep 7 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "blender"
-  version: "3.3.0-r1"
-  uri:
-  - https://www.blender.org
-  - https://www.alembic.io/
-  - https://github.com/embree/embree
-  - http://www.openimagedenoise.org/
-  - http://www.opencollada.org/
-  - https://graphics.pixar.com/opensubdiv/docs/intro.html
-  - http://opensource.imageworks.com/?p
-  - http://partio.us/
-  license: "GPL-3 BL BSD Apache-2.0 MIT"
-  description: |
-    3D Creation/Animation/Publishing System
-    Open framework for storing and sharing scene data
-    Collection of high-performance ray tracing kernels
-    Intel(R) Open Image Denoise library
-    Stream based read/write library for COLLADA files
-    An Open-Source subdivision surface library
-    Advanced shading language for production GI renderers
-    Library for particle IO and manipulation
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/blender:3.3
-  provides:
-  - category: "media-gfx"
-    name: "blender"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "alembic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "embree"
-    version: ">=0"
-  - category: "media-libs"
-    name: "oidn"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opencollada"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opensubdiv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "osl"
-    version: ">=0"
-  - category: "media-libs"
-    name: "partio"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/blender"
-    accept_keywords: "~amd64"
-    use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb osl pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc system-python system-numpy headless"
-  - atom: "media-gfx/alembic"
-    use: "hdf5"
-  - atom: "media-libs/embree"
-    use: "compact-polys ispc raymask ssp tbb # tutorial"
-  - atom: "media-libs/opensubdiv"
-    use: "opencl openmp ptex tbb # cuda"
-  - atom: "media-libs/osl"
-    use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-  prereqs:
-#   - app-doc/doxygen
-#   - dev-python/sphinx
-#   - dev-texlive/texlive-bibtexextra
-#   - dev-texlive/texlive-fontsextra
-#   - dev-texlive/texlive-fontutils
-#   - dev-texlive/texlive-latex
-#   - dev-texlive/texlive-latexextra
-  - app-admin/chrpath
-  - dev-util/valgrind
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-python-zstandard
-  - <<: *apps-ispc
-  - <<: *apps-spacenavd
-  - <<: *libs-c-blosc
-  - <<: *libs-libspnav
-  - <<: *libs-openvdb
-  - <<: *libs-glfw
-  - <<: *libs-lib3ds
-  - <<: *libs-libharu
-  - <<: *libs-ocio-oiio
-  - <<: *libs-ptex
-  - <<: *libs-tbb
-  build_requires:
-  - <<: *layers-qt
+# - category: "apps"
+#   name: "blender"
+#   version: "3.3.0-r1"
+#   uri:
+#   - https://www.blender.org
+#   - https://www.alembic.io/
+#   - https://github.com/embree/embree
+#   - http://www.openimagedenoise.org/
+#   - http://www.opencollada.org/
+#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
+#   - http://opensource.imageworks.com/?p
+#   - http://partio.us/
+#   license: "GPL-3 BL BSD Apache-2.0 MIT"
+#   description: |
+#     3D Creation/Animation/Publishing System
+#     Open framework for storing and sharing scene data
+#     Collection of high-performance ray tracing kernels
+#     Intel(R) Open Image Denoise library
+#     Stream based read/write library for COLLADA files
+#     An Open-Source subdivision surface library
+#     Advanced shading language for production GI renderers
+#     Library for particle IO and manipulation
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/blender:3.3
+#   provides:
+#   - category: "media-gfx"
+#     name: "blender"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "alembic"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "embree"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "oidn"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opencollada"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opensubdiv"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "osl"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "partio"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/blender"
+#     accept_keywords: "~amd64"
+#     use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb osl pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc system-python system-numpy headless"
+#   - atom: "media-gfx/alembic"
+#     use: "hdf5"
+#   - atom: "media-libs/embree"
+#     use: "compact-polys ispc raymask ssp tbb # tutorial"
+#   - atom: "media-libs/opensubdiv"
+#     use: "opencl openmp ptex tbb # cuda"
+#   - atom: "media-libs/osl"
+#     use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+#   prereqs:
+# #   - app-doc/doxygen
+# #   - dev-python/sphinx
+# #   - dev-texlive/texlive-bibtexextra
+# #   - dev-texlive/texlive-fontsextra
+# #   - dev-texlive/texlive-fontutils
+# #   - dev-texlive/texlive-latex
+# #   - dev-texlive/texlive-latexextra
+#   - app-admin/chrpath
+#   - dev-util/valgrind
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-python-zstandard
+#   - <<: *apps-ispc
+#   - <<: *apps-spacenavd
+#   - <<: *libs-c-blosc
+#   - <<: *libs-libspnav
+#   - <<: *libs-openvdb
+#   - <<: *libs-glfw
+#   - <<: *libs-lib3ds
+#   - <<: *libs-libharu
+#   - <<: *libs-ocio-oiio
+#   - <<: *libs-ptex
+#   - <<: *libs-tbb
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-displaycal-py3
   category: "apps"
