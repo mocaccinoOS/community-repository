@@ -3536,28 +3536,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-telepathy-idle
-  category: "libs"
-  name: "telepathy-idle"
-  version: "0.2.2+1"
-  uri:
-  - https://gitlab.freedesktop.org/telepathy/telepathy-idle
-  license: "LGPL-2.1+"
-  description: "Full-featured IRC connection manager for Telepathy"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-irc/telepathy-idle
-  provides:
-  - category: "net-irc"
-    name: "telepathy-idle"
-    version: ">=0"
-  requires:
-  # depends on net-libs/telepathy-glib
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
@@ -13439,7 +13417,6 @@ packages:
   - <<: *libs-farstream
   - <<: *libs-pidgin-opensteamworks
   - <<: *libs-pidgin-sipe
-  - <<: *libs-telepathy-idle
   - <<: *libs-telepathy-rakia
   build_requires:
   - <<: *layers-gnome-common
