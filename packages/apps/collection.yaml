@@ -6711,30 +6711,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - &apps-pandoc
-#   category: "apps"
-#   name: "pandoc"
-#   version: "2.18-r2"
-#   uri:
-#   - https://pandoc.org
-#   license: "GPL-2+"
-#   description: "Conversion between markup formats"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#        app-text/pandoc
-#   provides:
-#   - category: "app-text"
-#     name: "pandoc"
-#     version: ">=0"
-#   atoms:
-#   - ayom: "app-text/pandoc"
-#     use: "embed-data-files # doc hscolour optimize trypandoc profile"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-haskell
-#   build_requires:
-#   - <<: *layers-haskell
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "2.18-r2"
+  uri:
+  - https://pandoc.org
+  license: "GPL-2+"
+  description: "Conversion between markup formats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+       app-text/pandoc
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/pandoc"
+    use: "embed-data-files # doc hscolour optimize trypandoc profile"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *layers-haskell
 
 - &apps-peek
   category: "apps"
@@ -9498,6 +9498,9 @@ packages:
   - category: "games-util"
     name: "goverlay"
     version: ">=0"
+  atoms:
+  - atom: "games-util/goverlay"
+    unmask: "true"
   prereqs:
   - dev-lang/fpc
   - dev-lang/lazarus

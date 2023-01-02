@@ -89,24 +89,30 @@
 {{- $filename := printf "%s-%s" .category .name }}
 
 {{- if .atoms }}
+- |
 {{- range .atoms }}
 {{- $atom := . }}
-{{- range ("accept_keywords license unmask use" | splitList " ") }}
+{{- range ("accept_keywords license use" | splitList " ") }}
 {{- $value := (index $atom .) }}
 {{- if $value }}
-- |
   mkdir -p {{ $filepath }}.{{ . }}; \
-  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }};
+  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
+{{- end }}
+{{- end }}
+{{- range ("unmask" | splitList " ") }}
+{{- if (index $atom .) }}
+  mkdir -p {{ $filepath }}.{{ . }}; \
+  echo -e "{{ $atom.atom }} >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
 {{- end }}
 {{- $value := (index $atom "env" ) }}
 {{- if $value }}
-- |
   mkdir -p /etc/portage/env; \
   echo -e "{{ ($value | replace "\n" "\\n") }}" >> /etc/portage/env/{{ $filename }}.conf; \
-  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env;
+  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 {{- end }}
+  echo;
 {{- end }}
 
 {{- end }}
