@@ -566,6 +566,36 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &libs-AOMediaCodecs
+  category: "libs"
+  name: "AOMediaCodecs"
+  version: "0.10.1"
+  uri:
+  - https://github.com/AOMediaCodec/libavif
+  license: "BSD-2"
+  description: |
+    Scalable Video Technology for AV1 (SVT-AV1 Encoder and Decoder)
+    Library for encoding and decoding .avif files
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/svt-av1
+      media-libs/libavif
+  provides:
+  - category: "media-libs"
+    name: "libavif"
+    version: ">=0"
+  - category: "media-libs"
+    name: "svt-av1"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libavif"
+    use: "aom dav1d extras gdk-pixbuf rav1e svt-av1"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-aopalliance
   category: "libs"
   name: "aopalliance"
@@ -4532,31 +4562,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "darktable"
-  version: "4.0.1"
-  uri:
-  - https://www.darktable.org/
-  license: "GPL-3 CC-BY-3.0"
-  description: "A virtual lighttable and darkroom for photographers"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/darktable
-  provides:
-  - category: "media-gfx"
-    name: "darktable"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/darktable"
-    use: "cpu_flags_x86_sse3 # geo cpu_flags_x86_sse3 -cpudetection"
-  prereqs:
-  - dev-python/jsonschema
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-designer
   category: "apps"
   name: "designer"
@@ -7024,7 +7029,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.8-r1+1"
+  version: "5.8-r4"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -8224,6 +8229,7 @@ packages:
   atoms:
   - atom: "media-libs/coin"
     use: "exceptions javascript openal threads"
+    env: "EMERGE_DEFAULT_OPTS=\\\"\\\""
   - atom: "media-libs/simage"
     use: "gif jpeg png qt5 sndfile -tiff vorbis zlib # tiff needs zstd"
   prepare:
@@ -9261,6 +9267,34 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-plasma
+
+- category: "apps"
+  name: "darktable"
+  version: "4.0.1-r1"
+  uri:
+  - https://www.darktable.org/
+  - https://gmic.eu/
+  license: "GPL-3 CC-BY-3.0"
+  description: "A virtual lighttable and darkroom for photographers"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/darktable
+  provides:
+  - category: "media-gfx"
+    name: "darktable"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/darktable"
+    use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test "
+  prereqs:
+  - dev-python/jsonschema
+  requires:
+  - <<: *layers-X
+  - <<: *libs-AOMediaCodecs
+  - <<: *libs-libheif
+  build_requires:
+  - <<: *layers-X
 
 - &apps-dcraw
   category: "apps"
@@ -12494,10 +12528,10 @@ packages:
   atoms:
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
-  prepare:
-  - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
+  # prepare:
+  # - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
   requires:
-#   - <<: *layers-X
+  # - <<: *layers-X
   - <<: *layers-gnome-common
   - <<: *libs-libpano13
   - <<: *libs-vigra
@@ -12505,7 +12539,7 @@ packages:
   - <<: *apps-enblend
   - <<: *apps-dcraw
   build_requires:
-#   - <<: *layers-X
+  # - <<: *layers-X
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
   requires_final_images: true
