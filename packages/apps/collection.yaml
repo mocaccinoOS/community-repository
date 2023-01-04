@@ -2367,6 +2367,48 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-lpeg
+  category: "libs"
+  name: "lpeg"
+  version: "1.0.2-r101"
+  uri:
+  - http://www.inf.puc-rio.br/~roberto/lpeg/
+  license: "MIT"
+  description: "Parsing Expression Grammars for Lua"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/lpeg
+  provides:
+  - category: "dev-lua"
+    name: "lpeg"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-LuaBitOp
+  category: "libs"
+  name: "LuaBitOp"
+  version: "1.0.2-r1"
+  uri:
+  - http://bitop.luajit.org
+  license: "MIT"
+  description: "Bit Operations Library for the Lua Programming Language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/LuaBitOp
+  provides:
+  - category: "dev-lua"
+    name: "LuaBitOp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-lv2
   category: "libs"
   name: "lv2"
@@ -3712,6 +3754,24 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+# soon used by emacs too
+- &libs-tree-sitter
+  category: "libs"
+  name: "tree-sitter"
+  version: "0.20.7"
+  uri:
+  - https://github.com/tree-sitter/tree-sitter
+  license: "MIT"
+  description: "Tree-sitter is a parser generator tool and an incremental parsing library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tree-sitter
+  provides:
+  - category: "dev-libs"
+    name: "tree-sitter"
+    version: ">=0"
 
 - &libs-udis86
   category: "libs"
