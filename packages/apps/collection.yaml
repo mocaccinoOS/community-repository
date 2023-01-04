@@ -2585,6 +2585,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-msgpack
+  category: "libs"
+  name: "msgpack"
+  version: "3.3.0"
+  uri:
+  - https://msgpack.org/
+  license: "Boost-1.0"
+  description: "MessagePack is a binary-based efficient data interchange format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/msgpack
+  provides:
+  - category: "dev-libs"
+    name: "msgpack"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-plib
   category: "libs"
   name: "plib"
@@ -9526,6 +9547,9 @@ packages:
   atoms:
   - atom: "games-util/goverlay"
     unmask: "true"
+    accept_keywords: "**"
+  - atom: "dev-libs/qt5pas"
+    accept_keywords: "~amd64"
   prereqs:
   - dev-lang/fpc
   - dev-lang/lazarus
@@ -10208,9 +10232,18 @@ packages:
   - category: "net-im"
     name: "qtox"
     version: ">=0"
+  atoms:
+  - atom: "net-im/qtox"
+    use: "spellcheck X # notification"
+  - atom: "net-libs/tox"
+    use: "av ipv6 # daemon dht-node log-debug +log-error log-info log-trace log-warn"
   requires:
   - <<: *layers-kde-common
   - <<: *apps-sqlcipher
+  - <<: *libs-msgpack
+  - category: "entity"
+    name: "tox"
+    version: ">=0"
   build_requires:
   - <<: *layers-kde-common
 
