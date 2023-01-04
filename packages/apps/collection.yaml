@@ -2383,6 +2383,9 @@ packages:
   - category: "dev-lua"
     name: "lpeg"
     version: ">=0"
+  - category: "dev-lang"
+    name: "luajit"
+    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -9984,6 +9987,48 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- &apps-neovim
+  category: "apps"
+  name: "neovim"
+  version: "0.8.1"
+  uri:
+  - https://neovim.io
+  license: "Apache-2.0 vim"
+  description: |
+    "Vim-fork focused on extensibility and agility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/luv
+      dev-lua/mpack
+      app-editors/neovim
+  provides:
+  - category: "app-editors"
+    name: "neovim"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "luv"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "mpack"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/neovim"
+    use: "lto nvimpager tui"
+  prereqs:
+  - dev-lua/busted
+  requires:
+  - <<: *layers-X
+  - <<: *layers-term-libs
+  - <<: *libs-lpeg
+  - <<: *libs-LuaBitOp
+  - <<: *libs-tree-sitter
+  - <<: *libs-msgpack
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-term-libs
+  requires_final_images: true
 
 - &apps-net-snmp
   category: "apps"
