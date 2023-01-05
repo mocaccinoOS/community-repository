@@ -2367,30 +2367,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-lpeg
-  category: "libs"
-  name: "lpeg"
-  version: "1.0.2-r101"
-  uri:
-  - http://www.inf.puc-rio.br/~roberto/lpeg/
-  license: "MIT"
-  description: "Parsing Expression Grammars for Lua"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lua/lpeg
-  provides:
-  - category: "dev-lua"
-    name: "lpeg"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "luajit"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-LuaBitOp
   category: "libs"
   name: "LuaBitOp"
@@ -6001,6 +5977,28 @@ packages:
   - <<: *layers-gnome
 
 - category: "apps"
+  name: "kookbook"
+  version: "0.1"
+  uri:
+  - https://invent.kde.org/utilities/kookbook
+  license: "BSD"
+  description: "Simple recipe manager taking structured markdown for recipes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/kookbook
+  overlays:
+  - name: "kde"
+  provides:
+  - category: "app-misc"
+    name: "kookbook"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "krfb"
   version: "22.08.3"
   uri:
@@ -6219,27 +6217,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "kookbook"
-  version: "0.1"
+- &apps-luajit
+  category: "libs"
+  name: "luajit"
+  version: "1.0.2-r101"
   uri:
-  - https://invent.kde.org/utilities/kookbook
-  license: "BSD"
-  description: "Simple recipe manager taking structured markdown for recipes"
+  - https://luajit.org/
+  license: "MIT"
+  description: "Just-In-Time Compiler for the Lua programming language"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-misc/kookbook
-  overlays:
-  - name: "kde"
+      dev-lang/luajit
   provides:
-  - category: "app-misc"
-    name: "kookbook"
+  - category: "dev-lang"
+    name: "luajit"
     version: ">=0"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-system-x
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "mandelbulber"
@@ -8685,6 +8682,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libmediainfo
+  category: "libs"
+  name: "libmediainfo"
+  version: "22.03+2"
+  uri:
+  - https://mediaarea.net/mediainfo/
+  license: "BSD-2"
+  description: "MediaInfo libraries"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libmediainfo
+  provides:
+  - category: "media-libs"
+    name: "libmediainfo"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  - <<: *libs-tinyxml2
+  - <<: *libs-libzen
+  build_requires:
+  - <<: *layers-codecs
+
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
@@ -8805,28 +8825,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libmediainfo
+- &libs-lpeg
   category: "libs"
-  name: "libmediainfo"
-  version: "22.03+2"
+  name: "lpeg"
+  version: "1.0.2-r101"
   uri:
-  - https://mediaarea.net/mediainfo/
-  license: "BSD-2"
-  description: "MediaInfo libraries"
+  - http://www.inf.puc-rio.br/~roberto/lpeg/
+  license: "MIT"
+  description: "Parsing Expression Grammars for Lua"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libmediainfo
+      dev-lua/lpeg
   provides:
-  - category: "media-libs"
-    name: "libmediainfo"
+  - category: "dev-lua"
+    name: "lpeg"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
-  - <<: *libs-tinyxml2
-  - <<: *libs-libzen
+  - <<: *layers-system-x
+  - <<: *apps-luajit
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-system-x
 
 - &libs-pikepdf
   category: "libs"
@@ -9938,7 +9957,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "72+1"
+  version: "72.0.0"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -9987,48 +10006,6 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
-
-- &apps-neovim
-  category: "apps"
-  name: "neovim"
-  version: "0.8.1"
-  uri:
-  - https://neovim.io
-  license: "Apache-2.0 vim"
-  description: |
-    "Vim-fork focused on extensibility and agility"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lua/luv
-      dev-lua/mpack
-      app-editors/neovim
-  provides:
-  - category: "app-editors"
-    name: "neovim"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "luv"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "mpack"
-    version: ">=0"
-  atoms:
-  - atom: "app-editors/neovim"
-    use: "lto nvimpager tui"
-  prereqs:
-  - dev-lua/busted
-  requires:
-  - <<: *layers-X
-  - <<: *layers-term-libs
-  - <<: *libs-lpeg
-  - <<: *libs-LuaBitOp
-  - <<: *libs-tree-sitter
-  - <<: *libs-msgpack
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-term-libs
-  requires_final_images: true
 
 - &apps-net-snmp
   category: "apps"
@@ -11777,6 +11754,51 @@ packages:
   - <<: *libs-libzen
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-neovim
+  category: "apps"
+  name: "neovim"
+  version: "0.8.1"
+  uri:
+  - https://neovim.io
+  license: "Apache-2.0 vim"
+  description: |
+    "Vim-fork focused on extensibility and agility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/luv
+      dev-lua/mpack
+      app-editors/neovim
+  provides:
+  - category: "app-editors"
+    name: "neovim"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "luv"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "mpack"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libmpack"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/neovim"
+    use: "lto nvimpager tui"
+  prereqs:
+  - dev-lua/busted
+  requires:
+  - <<: *layers-X
+  - <<: *layers-term-libs
+  - <<: *libs-lpeg
+  - <<: *libs-LuaBitOp
+  - <<: *libs-tree-sitter
+  - <<: *libs-msgpack
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-term-libs
+  requires_final_images: true
 
 - &apps-nut
   category: "apps"
