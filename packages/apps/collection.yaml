@@ -12666,6 +12666,32 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "goneovim"
+  version: "0.6.4"
+  uri:
+  - https://github.com/akiyosi/goneovim
+  license: "MIT"
+  description: "A Neovim GUI written in Go, using a Qt binding for Go"
+  labels:
+    emerge.jobs: "1"
+  prepare:
+  - wget https://github.com/akiyosi/goneovim/releases/download/v0.6.4/goneovim-v0.6.4-linux.tar.bz2
+  - wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.ico
+  - wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.desktop
+  - mkdir data
+  - tar -xf goneovim-v0.6.4-linux.tar.bz2 -C data
+  setup:
+  - cp goneovim.ico /usr/share/pixmaps/
+  - cp goneovim.desktop /usr/share/applications/
+  - cp data/goneovim /usr/bin/
+  - cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc/
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-neovim
+  build_requires:
+  - <<: *system-x
+
 - &apps-hugin
   category: "apps"
   name: "hugin"
