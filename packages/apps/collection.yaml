@@ -7653,36 +7653,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-spidermonkey-102
-  category: "apps"
-  name: "spidermonkey"
-  version: "102.6.0"
-  uri:
-  - https://spidermonkey.dev
-  - https://firefox-source-docs.mozilla.org/js/index.html
-  license: "MPL-2.0"
-  description: "SpiderMonkey is Mozilla's JavaScript engine written in C and C++"
-  labels:
-    emerge.jobs: "1"
-    emerge.load_average: "0.9"
-    emerge.packages: >-
-      dev-lang/spidermonkey:102
-  provides:
-  - category: "dev-lang"
-    name: "spidermonkey"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/spidermonkey"
-    use: "jit"
-    env: "MAKEOPTS=\\\"-j1 -l0.9\\\""
-  prereqs:
-  # - =dev-lang/python-2.7.18_p15
-  - sys-devel/autoconf:2.1
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "systemdgenie"
   version: "0.99.0_p20221120"
@@ -8308,7 +8278,7 @@ packages:
 - &libs-coin
   category: "libs"
   name: "coin"
-  version: "4.0.0+2"
+  version: "4.0.0+3"
   uri:
   - https://github.com/coin3d/coin/wiki
   license: "GPL-2 PEL"
@@ -8329,16 +8299,18 @@ packages:
     use: "exceptions javascript openal threads"
     env: "EMERGE_DEFAULT_OPTS=\\\"\\\""
   - atom: "media-libs/simage"
-    use: "gif jpeg png qt5 sndfile -tiff vorbis zlib # tiff needs zstd"
+    use: "gif jpeg png qt5 sndfile tiff vorbis zlib"
   prepare:
   - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild manifest
   requires:
   - <<: *layers-qt
-  - <<: *apps-spidermonkey-102
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-qt
-
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
+  
 - &libs-dee
   category: "libs"
   name: "dee"
