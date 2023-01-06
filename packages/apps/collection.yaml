@@ -12680,12 +12680,12 @@ packages:
   - wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.ico
   - wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.desktop
   - mkdir data
-  - tar -xf goneovim-v0.6.4-linux.tar.bz2 -C data
+  - tar -xf --strip-components=1 goneovim-v0.6.4-linux.tar.bz2 -C data
   setup:
   - cp goneovim.ico /usr/share/pixmaps
   - cp goneovim.desktop /usr/share/applications
-  - cp data/goneovim-v0.6.4-linux/goneovim /usr/bin
-  - cp data/goneovim-v0.6.4-linux/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  - cp data/goneovim /usr/bin
+  - cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
   - <<: *layers-qt
   - <<: *apps-neovim
