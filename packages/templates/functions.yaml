@@ -5,6 +5,8 @@
 
 {{- define "cr.list_package_with_deps" }} 
 
+{{- if not (default .skip false) }}
+
 {{- $packages := list }}
 
 {{- $dep := . }}
@@ -27,6 +29,10 @@
 
 {{- $packages = $packages | uniq }}
 {{- join " " $packages }}
+
+{{- else }}
+{{- "" }}
+{{- end }}
 
 {{- end }}
 
@@ -62,6 +68,8 @@
 
 {{- define "cr.packages_setup" }}
 
+{{- if not (default .skip false) }}
+
 {{- $dep := . }}
 
 {{- range ("prerequires optrequires requires" | splitList " ") }}
@@ -75,6 +83,8 @@
 {{- end }}
 
 {{- ( include "cr.package_setup" . ) }}
+
+{{- end }}
 
 {{- end }}
 
@@ -121,9 +131,12 @@
 ## cr.prereqs ###
 ################################################################################
 
-{{- define "cr.prereqs" }} 
+{{- define "cr.prereqs" }}
 
 {{- $commands := list }}
+
+{{- if not (default .skip false) }}
+
 {{- $command := "" }}
 
 {{- if .overlays }}
@@ -208,6 +221,8 @@
 {{- end }}
 
 {{- end }}
+{{- end }}
+
 {{- end }}
 
 {{- $commands | toJson }}

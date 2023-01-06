@@ -27,15 +27,22 @@ prelude:
 {{ $packages := include "cr.list_package_with_deps" .Values }}
 {{ if $packages }}
 {{ range $packages | splitList " " }}
+{{ if . }}
 {{ $package := . | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" | replace "\"" "" }}
 {{ include "cr.copy_package_setup_files" $package }}
+{{ end }}
 {{ end }}
 {{ end }}
 
 {{ include "cr.packages_setup" .Values }}
 
 {{ range include "cr.prereqs" .Values | fromJsonArray }}
+{{ if contains "\n" . }}
+- |
+{{ . | indent 2 }}
+{{ else }}
 - {{ . }}
+{{ end }}
 {{ end }}
 
 {{ if eq .Values.category "layerbase" }}
@@ -48,13 +55,18 @@ prelude:
 
 steps:
 
-{{- if .Values.setup }}
-{{- range .Values.setup }}
-{{- if . }}
+{{ if .Values.setup }}
+{{ range .Values.setup }}
+{{ if . }}
+{{ if contains "\n" . }}
+- |
+{{ . | indent 2 }}
+{{ else }}
 - {{ . }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
 {{ if eq .Values.category "layerbase" }}
 {{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
@@ -62,42 +74,47 @@ steps:
 {{ include "cr.package_setup" .Values }}
 {{ end }}
 
-{{- if .Values.preemerge }}
-{{- range .Values.preemerge }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
+{{ if .Values.preemerge }}
+{{ range .Values.preemerge }}
+{{ $command := include "cr.emerge" . }}
+{{ if $command }}
 - {{ $command }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
-{{- if .Values.labels }}
-{{- if ( index .Values.labels "emerge.packages" ) }}
-{{- $command := include "cr.emerge" ( index .Values.labels "emerge.packages" ) }}
-{{- if $command }}
+{{ if .Values.labels }}
+{{ if ( index .Values.labels "emerge.packages" ) }}
+{{ $command := include "cr.emerge" ( index .Values.labels "emerge.packages" ) }}
+{{ if $command }}
 - {{ $command }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
-{{- if .Values.unmerge }}
-{{- range .Values.unmerge }}
+{{ if .Values.unmerge }}
+{{ range .Values.unmerge }}
 - emerge -C {{ . }}
-{{- end }}
-{{- end }}
-{{- if .Values.etc_update }}
-{{- if .Values.etc_update.mode }}
+{{ end }}
+{{ end }}
+{{ if .Values.etc_update }}
+{{ if .Values.etc_update.mode }}
 - etc-update -q --automode {{ .Values.etc_update.mode }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
 
-{{- if .Values.completion }}
-{{- range .Values.completion }}
-{{- if . }}
+{{ if .Values.completion }}
+{{ range .Values.completion }}
+{{ if . }}
+{{ if contains "\n" . }}
+- |
+{{ . | indent 2 }}
+{{ else }}
 - {{ . }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
 # {{ if eq .Values.category "layerbase" }}
 # includes:
@@ -148,12 +165,12 @@ excludes:
 #     - ^/var$
 #     - ^/var/db$
 
-{{- if .Values.excludes }}
-{{- range .Values.excludes }}
-{{- if . }}
+{{ if .Values.excludes }}
+{{ range .Values.excludes }}
+{{ if . }}
 - {{ . }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{ end }}
+{{ end }}
+{{ end }}
 
 {{ end }}
