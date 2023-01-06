@@ -12684,9 +12684,11 @@ packages:
     tar -xf goneovim-v0.6.4-linux.tar.bz2 --strip-components=1 -C data
   setup:
   - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
     cp goneovim.ico /usr/share/pixmaps && \
     cp goneovim.desktop /usr/share/applications && \
     cp data/goneovim /usr/bin && \
+    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
   - <<: *layers-qt
