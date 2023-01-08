@@ -1240,6 +1240,88 @@ packages:
   hidden: true
 
 
+- &def-layers-ruby
+  category: "layers"
+  name: "ruby"
+  version: "2.7.7"
+  uri:
+  - https://www.ruby-lang.org/
+  license: "Ruby-BSD BSD-2"
+  description: "An object-oriented scripting language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/ruby
+  provides:
+  - name: eselect-ruby
+    category: app-eselect
+    version: '>=0'
+  - name: ruby
+    category: dev-lang
+    version: '>=0'
+  - name: bundler
+    category: dev-ruby
+    version: '>=0'
+  - name: did_you_mean
+    category: dev-ruby
+    version: '>=0'
+  - name: json
+    category: dev-ruby
+    version: '>=0'
+  - name: kpeg
+    category: dev-ruby
+    version: '>=0'
+  - name: minitest
+    category: dev-ruby
+    version: '>=0'
+  - name: net-telnet
+    category: dev-ruby
+    version: '>=0'
+  - name: power_assert
+    category: dev-ruby
+    version: '>=0'
+  - name: racc
+    category: dev-ruby
+    version: '>=0'
+  - name: rake
+    category: dev-ruby
+    version: '>=0'
+  - name: rdoc
+    category: dev-ruby
+    version: '>=0'
+  - name: rubygems
+    category: dev-ruby
+    version: '>=0'
+  - name: test-unit
+    category: dev-ruby
+    version: '>=0'
+  - name: webrick
+    category: dev-ruby
+    version: '>=0'
+  - name: xmlrpc
+    category: dev-ruby
+    version: '>=0'
+  - name: ruby-ssl
+    category: virtual
+    version: '>=0'
+  - name: rubygems
+    category: virtual
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# - <<: *def-layers-ruby 
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-layers-ruby
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
 - &def-layers-term-libs
   category: "layers"
   name: "term-libs"
