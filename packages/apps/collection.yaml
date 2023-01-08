@@ -11296,7 +11296,7 @@ packages:
 
 - category: "apps"
   name: "bat"
-  version: "0.20.0+1"
+  version: "0.20.0+2"
   uri:
   - https://github.com/sharkdp/bat
   license: "Apache-2.0 BSD BSD-2 CC0-1.0 LGPL-3+ MIT"
@@ -11309,15 +11309,17 @@ packages:
   - category: "sys-apps"
     name: "bat"
     version: ">=0"
+  - category: "dev-libs"
+    name: "oniguruma"
+    version: ">=0"
   atoms:
   - atom: "sys-apps/bat"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-gnome
+  - <<: *layers-sys-fs
   - <<: *libs-libgit2
   build_requires:
-  # due to dev-libs/oniguruma
-  - <<: *layers-gnome
+  - <<: *layers-sys-fs
 
 - &apps-brother-dcp1610w-bin
   category: "apps"
