@@ -8608,6 +8608,9 @@ packages:
   - category: "net-libs"
     name: "libgadu"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/libgadu"
+    ise: "ssl threads"
   requires:
   - <<: *layers-X
   - <<: *libs-protobuf-c
@@ -12399,6 +12402,9 @@ packages:
   - category: "net-libs"
     name: "farstream"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/farstream"
+    use: "introspection"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gupnp-igd
@@ -12964,7 +12970,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.10+1"
+  version: "2.14.10+2"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -12983,6 +12989,9 @@ packages:
   - category: "dev-libs"
     name: "libgnt"
     version: ">=0"
+  atoms:
+  - atom: "net-im/pidgin"
+    use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl tk v4l xscreensaver zephyr zeroconf # aqua"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-farstream
@@ -13386,6 +13395,9 @@ packages:
   - category: "net-libs"
     name: "telepathy-farstream"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/telepathy-farstream"
+    use: "introspection"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-farstream
