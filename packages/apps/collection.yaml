@@ -9999,7 +9999,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.1-r2"
+  version: "5.9.3-r2"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -10012,6 +10012,9 @@ packages:
   - category: "net-analyzer"
     name: "net-snmp"
     version: ">=0"
+  atoms:
+  - atom: "net-analyzer/net-snmp"
+    use: "X bzip2 doc elf kmem ipv6 lm-sensors mfd-rewrites minimal mysql netlink pcap pci perl python smux ssl tcpd ucd-compat zlib # rpm"
   prereqs:
   - app-doc/doxygen
   requires:
