@@ -12624,7 +12624,7 @@ packages:
 - &apps-dosbox
   category: "apps"
   name: "dosbox"
-  version: "0.74.3+2"
+  version: "0.74.3+3"
   uri:
   - https://www.dosbox.com/
   license: "GPL-2"
@@ -12637,6 +12637,9 @@ packages:
   - category: "games-emulation"
     name: "dosbox"
     version: ">=0"
+  atoms:
+  - atom: "games-emulation/dosbox"
+    use: "alsa core-inline hardened opengl X"
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
