@@ -4409,7 +4409,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20220120+3"
+  version: "1.7.0_pre20221215"
   uri:
   - https://celestia.space
   license: "GPL-2+"
@@ -4422,6 +4422,10 @@ packages:
   - category: "sci-astronomy"
     name: "celestia"
     version: ">=0"
+  atoms:
+  - atom: "sci-astronomy/celestia"
+    use: "ffmpeg glut lua nls qt5"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
