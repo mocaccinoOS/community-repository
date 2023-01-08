@@ -126,6 +126,19 @@ anchors:
   name: "perl-libs"
   version: ">=0"
 
+- &layers-ruby
+  category: "layers"
+  name: "ruby"
+  version: ">=0"
+# - &layerbase-ruby
+#   category: "layerbase"
+#   name: "ruby"
+#   version: ">=0"
+- &buildbase-ruby
+  category: "buildbase"
+  name: "ruby"
+  version: ">=0"
+
 - &layers-ghc
   category: "layers"
   name: "ghc"
@@ -6278,6 +6291,13 @@ packages:
   - category: "games-util"
     name: "mangohud"
     version: ">=0"
+  atoms:
+  - atom: "games-util/mangohud"
+    use: "dbus glvnd X -wayland xnvctrl video_cards_nvidia video_cards_amdgpu -abi_x86_32 # wayland"
+    license: "NVIDIA-r2"
+    accept_keywords: "~amd64"
+  - atom: "x11-drivers/nvidia-drivers"
+    use: "static-libs"
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
@@ -13433,7 +13453,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "5.0.1-r2+1"
+  version: "5.0.1-r2+2"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
@@ -13460,12 +13480,15 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-qt
+  - <<: *layers-ruby
   - <<: *layers-java
   - <<: *libs-devil
   - <<: *libs-gts
   - <<: *libs-lasi
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-ruby
+  requires_final_images: true
 
 - &apps-hedgewars
   category: "apps"
