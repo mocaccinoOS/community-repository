@@ -2248,27 +2248,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-libwnck-1
-#   category: "libs"
-#   name: "libwnck"
-#   version: "2.31.0-r1+1"
-#   uri:
-#   - https://developer.gnome.org/libwnck/stable/
-#   license: "LGPL-2+"
-#   description: "A window navigation construction kit"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-libs/libwnck:1
-#   provides:
-#   - category: "x11-libs"
-#     name: "libwnck"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
@@ -3566,6 +3545,9 @@ packages:
   - category: "net-libs"
     name: "sofia-sip"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/sofia-sip"
+    use: "ssl"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -8340,32 +8322,6 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-gnome-common
   requires_final_images: true
-  
-# - &libs-dee
-#   category: "libs"
-#   name: "dee"
-#   version: "1.2.7+2"
-#   uri:
-#   - https://launchpad.net/dee/
-#   license: "GPL-3"
-#   description: "Provide objects allowing to create Model-View-Controller type programs across DBus"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/dee
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "dev-libs"
-#     name: "dee"
-#     version: ">=0"
-#   prepare:
-#   - eselect profile set unity-gentoo:linux/amd64/17.1/jammy
-#   - emerge unity-base/unity-build-env:0/jammy
-#   requires:
-#   - <<: *layers-sys-fs
-#   build_requires:
-#   - <<: *layers-sys-fs
 
 - &libs-dssi
   category: "libs"
@@ -8993,6 +8949,9 @@ packages:
   - category: "net-voip"
     name: "telepathy-rakia"
     version: ">=0"
+  atoms:
+  - atom: "net-voip/telepathy-rakia"
+    use: "ssl"
   prereqs:
   - net-libs/farstream
   - net-libs/telepathy-glib
@@ -12463,30 +12422,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &libs-libunity
-#   category: "libs"
-#   name: "libunity"
-#   version: "7.1.4+1"
-#   uri:
-#   - https://launchpad.net/libunity
-#   license: "GPL-3"
-#   description: "Library for instrumenting and integrating with all aspects of the Unity shell"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/libunity
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "dev-libs"
-#     name: "libunity"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-dee
-#   build_requires:
-#   - <<: *layers-X
-
 - &libs-openscenegraph
   category: "libs"
   name: "openscenegraph"
@@ -13143,31 +13078,6 @@ packages:
 ### dep 4 libs ###
 ################################################################################################################################################################
 
-# - &libs-bamf
-#   category: "libs"
-#   name: "bamf"
-#   version: "0.5.6"
-#   uri:
-#   - https://launchpad.net/bamf
-#   license: "LGPL-3"
-#   description: "BAMF Application Matching Framework"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       unity-base/bamf
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "unity-base"
-#     name: "bamf"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-libunity
-#   - <<: *libs-libwnck-1
-#   build_requires:
-#   - <<: *layers-gnome-common
-
 - &libs-gegl
   category: "libs"
   name: "gegl"
@@ -13293,6 +13203,9 @@ packages:
   - category: "x11-plugins"
     name: "pidgin-sipe"
     version: ">=0"
+  atoms:
+  - atom: "x11-plugins/pidgin-sipe"
+    use: "dbus kerberos ocs2005-message-hack openssl telepathy voice"
   prereqs:
   - net-libs/telepathy-glib
   requires:
@@ -13737,6 +13650,13 @@ packages:
   - category: "net-voip"
     name: "telepathy-salut"
     version: ">=0"
+  atoms:
+  - atom: "net-im/telepathy-connection-managers"
+    use: "meanwhile gadu icq irc msn sip sipe steam xmpp zeroconf # yahoo"
+  - atom: "net-voip/telepathy-gabble"
+    use: "jingle plugins # gnutls"
+  # - atom: "net-voip/telepathy-salut"
+  #   use: "gnutls"
   requires:
   # depends on net-libs/telepathy-glib
   - <<: *layers-gnome-common
@@ -13763,6 +13683,9 @@ packages:
   - category: "net-libs"
     name: "telepathy-qt"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/telepathy-qt"
+    use: "farstream"
   requires:
   - <<: *layers-qt
   - <<: *layers-gnome-common
@@ -13977,29 +13900,6 @@ packages:
   - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *layers-X
-
-# - category: "apps"
-#   name: "plank"
-#   version: "0.11.89_p4"
-#   uri:
-#   - https://github.com/ricotz/plank
-#   license: "GPL-3"
-#   description: "Elegant, simple, clean dock"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-misc/plank
-#   overlays:
-#   - name: "unity-gentoo"
-#   provides:
-#   - category: "x11-misc"
-#     name: "plank"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-bamf
-#   build_requires:
-#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "plantuml"
