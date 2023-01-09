@@ -10249,12 +10249,14 @@ packages:
   atoms:
   - atom: "media-gfx/pstoedit"
     use: "emf pptx imagemagick plotutils"
+  prepare:
+  - texconfig rehash || true
   requires:
-  - <<: *layers-X
+  - <<: *layers-latex
   - <<: *libs-libemf
   - <<: *libs-plotutils
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-latex
 
 - category: "apps"
   name: "qcad"
@@ -12896,9 +12898,9 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *apps-pstoedit
   - <<: *layers-latex
   - <<: *layers-sci-libs
+  - <<: *apps-pstoedit
   - <<: *apps-epstool
   - <<: *apps-transfig
   - <<: *libs-qhull
