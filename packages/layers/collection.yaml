@@ -100,6 +100,19 @@ anchors:
   name: "perl-libs"
   version: ">=0"
 
+- &layers-ruby
+  category: "layers"
+  name: "ruby"
+  version: ">=0"
+# - &layerbase-ruby
+#   category: "layerbase"
+#   name: "ruby"
+#   version: ">=0"
+- &buildbase-ruby
+  category: "buildbase"
+  name: "ruby"
+  version: ">=0"
+
 - &layers-ghc
   category: "layers"
   name: "ghc"
@@ -465,7 +478,7 @@ packages:
 - &def-layers-latex
   category: "layers"
   name: "latex"
-  version: "0.8"
+  version: "0.9"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
@@ -683,12 +696,14 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *layers-perl-libs
+  - <<: *layers-ruby
   - <<: *libs-netpbm
   - <<: *libs-xxhash
   - <<: *fonts-culmus
   build_requires:
   - <<: *buildbase-X
   - <<: *buildbase-perl-libs
+  - <<: *buildbase-ruby 
   requires_final_images: true
 
 # - <<: *def-layers-latex
