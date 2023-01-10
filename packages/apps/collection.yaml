@@ -11767,6 +11767,31 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "mixxx"
+  version: "2.3.3-r1+3"
+  uri:
+  - https://www.mixxx.org
+  license: "GPL-2"
+  description: "Advanced Digital DJ tool based on Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/mixxx
+  provides:
+  - category: "media-sound"
+    name: "mixxx"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libebur128
+  - <<: *libs-vamp-plugin-sdk
+  - <<: *libs-libsoundtouch
+  - <<: *libs-hidapi
+  - <<: *libs-rubberband
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-neovim
   category: "apps"
   name: "neovim"
@@ -11843,31 +11868,6 @@ packages:
     name: "nut"
     version: ">=0"
   - <<: *apps-net-snmp
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
-  name: "mixxx"
-  version: "2.3.3-r1+3"
-  uri:
-  - https://www.mixxx.org
-  license: "GPL-2"
-  description: "Advanced Digital DJ tool based on Qt"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/mixxx
-  provides:
-  - category: "media-sound"
-    name: "mixxx"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libebur128
-  - <<: *libs-vamp-plugin-sdk
-  - <<: *libs-libsoundtouch
-  - <<: *libs-hidapi
-  - <<: *libs-rubberband
   build_requires:
   - <<: *layers-qt
 
@@ -11954,6 +11954,44 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-icoutils
+  build_requires:
+  - <<: *layers-qt
+
+- &apps-qsampler
+  category: "apps"
+  name: "qsampler"
+  version: "0.9.6"
+  uri:
+  - https://qsampler.sourceforge.io/
+  license: "GPL-2"
+  description: "Graphical frontend to the LinuxSampler engine"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qsampler
+  provides:
+  - category: "media-sound"
+    name: "qsampler"
+    version: ">=0"
+  - category: "media-sound"
+    name: "linuxsampler"
+    version: ">=0"
+  - category: "media-libs"
+    name: "liblscp"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libgig"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/qsampler"
+    use: "libgig"
+  - atom: "media-sound/linuxsampler"
+    use: "alsa jack sqlite lv2 sf2"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-lv2
   build_requires:
   - <<: *layers-qt
 
