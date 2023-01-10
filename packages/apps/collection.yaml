@@ -11957,43 +11957,43 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-qsampler
-  category: "apps"
-  name: "qsampler"
-  version: "0.9.6"
-  uri:
-  - https://qsampler.sourceforge.io/
-  license: "GPL-2"
-  description: "Graphical frontend to the LinuxSampler engine"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/qsampler
-  provides:
-  - category: "media-sound"
-    name: "qsampler"
-    version: ">=0"
-  - category: "media-sound"
-    name: "linuxsampler"
-    version: ">=0"
-  - category: "media-libs"
-    name: "liblscp"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libgig"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/qsampler"
-    use: "libgig"
-  - atom: "media-sound/linuxsampler"
-    use: "alsa jack sqlite lv2 sf2"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-dssi
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-lv2
-  build_requires:
-  - <<: *layers-qt
+# - &apps-qsampler
+#   category: "apps"
+#   name: "qsampler"
+#   version: "0.9.6"
+#   uri:
+#   - https://qsampler.sourceforge.io/
+#   license: "GPL-2"
+#   description: "Graphical frontend to the LinuxSampler engine"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/qsampler
+#   provides:
+#   - category: "media-sound"
+#     name: "qsampler"
+#     version: ">=0"
+#   - category: "media-sound"
+#     name: "linuxsampler"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "liblscp"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "libgig"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/qsampler"
+#     use: "libgig"
+#   - atom: "media-sound/linuxsampler"
+#     use: "alsa jack sqlite lv2 sf2"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-dssi
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-lv2
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "rosegarden"
