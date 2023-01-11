@@ -3384,6 +3384,96 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-sdl-gfx
+  category: "libs"
+  name: "sdl-gfx"
+  version: "2.0.26-r1"
+  uri:
+  - http://www.ferzkopp.net/joomla/content/view/19/14/
+  license: "ZLIB"
+  description: "Graphics drawing primitives library for SDL"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-gfx
+  provides:
+  - category: "media-libs"
+    name: "sdl-gfx"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-sdl-image
+  category: "libs"
+  name: "sdl-image"
+  version: "1.2.12_p20220527-r1"
+  uri:
+  - https://github.com/libsdl-org/SDL_image
+  license: "ZLIB"
+  description: "Image file loading library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-image
+  provides:
+  - category: "media-libs"
+    name: "sdl-image"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/sdl-image"
+    use: "gif jpeg png tiff webp"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-sdl-net
+  category: "libs"
+  name: "sdl-net"
+  version: "1.2.8-r2+1"
+  uri:
+  - https://www.libsdl.org/projects/SDL_net/
+  license: "ZLIB"
+  description: "Simple Direct Media Layer Network Support Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-net
+  provides:
+  - category: "media-libs"
+    name: "sdl-net"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-sdl-ttf
+  category: "libs"
+  name: "sdl-ttf"
+  version: "2.0.11_p20220525"
+  uri:
+  - https://github.com/libsdl-org/SDL_ttf
+  license: "ZLIB"
+  description: "Library that allows you to use TrueType fonts in SDL applications"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-ttf
+  provides:
+  - category: "media-libs"
+    name: "sdl-ttf"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/sdl-ttf"
+    use: "X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-sdl2-image
   category: "libs"
   name: "sdl2-image"
@@ -3448,27 +3538,6 @@ packages:
   atoms:
   - atom: "media-libs/sdl2-ttf"
     use: "harfbuzz X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl-net
-  category: "libs"
-  name: "sdl-net"
-  version: "1.2.8-r2+1"
-  uri:
-  - https://www.libsdl.org/projects/SDL_net/
-  license: "ZLIB"
-  description: "Simple Direct Media Layer Network Support Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-net
-  provides:
-  - category: "media-libs"
-    name: "sdl-net"
-    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -12525,6 +12594,33 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
+- &libs-sdl-mixer
+  category: "libs"
+  name: "sdl-mixer"
+  version: "1.2.12_p20221010"
+  uri:
+  - https://www.libsdl.org/projects/SDL_mixer/
+  license: "ZLIB"
+  description: "Simple Direct Media Layer Mixer Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/sdl-mixer
+  provides:
+  - category: "media-libs"
+    name: "sdl-mixer"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/sdl-mixer"
+    use: "midi mod playtools smpeg wav flac mad mikmod modplug mp3 timidity vorbis # fluidsynth # midi? ( || ( timidity fluidsynth ) )"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libmikmod
+  # - <<: *apps-fluidsynth
+  - <<: *apps-timidity
+  build_requires:
+  - <<: *layers-X
+
 - &libs-sdl2-mixer
   category: "libs"
   name: "sdl2-mixer"
@@ -12543,11 +12639,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/sdl2-mixer"
-    use: "midi mod playtools tremor wav flac mad mikmod modplug mp3 opus static-libs timidity vorbis # fluidsynth # midi? ( || ( timidity fluidsynth ) )"
+    use: "midi mod playtools tremor wav flac mad mikmod modplug mp3 opus timidity vorbis # fluidsynth # midi? ( || ( timidity fluidsynth ) )"
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
-#   - <<: *apps-fluidsynth
+  # - <<: *apps-fluidsynth
   - <<: *apps-timidity
   build_requires:
   - <<: *layers-X
@@ -14548,27 +14644,3 @@ packages:
   - <<: *apps-xsane
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-mpg123
-  category: "apps"
-  name: "mpg123"
-  version: "1.31.1"
-  uri:
-  - https://www.mpg123.org/
-  license: "LGPL-2.1"
-  description: "A realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/mpg123
-  provides:
-  - category: "media-sound"
-    name: "mpg123"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/mpg123"
-    use: "-pulseaudio"
-  requires:
-  - <<: *layers-codecs
-  build_requires:
-  - <<: *layers-codecs
