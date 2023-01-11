@@ -13690,6 +13690,36 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-warmux
+  category: "apps"
+  name: "warmux"
+  version: "11.04.1-r2"
+  uri:
+  - https://wiki.gentoo.org/wiki/No_homepage
+  license: "GPL-2+ || ( Apache-2.0 GPL-3 ) UbuntuFontLicense-1.0 vlgothic"
+  description: "A free Worms clone"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/warmux
+  provides:
+  - category: "games-strategy"
+    name: "warmux"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/warmux"
+    use: "unicode"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-sdl-gfx
+  - <<: *libs-sdl-image
+  - <<: *libs-sdl-mixer
+  - <<: *libs-sdl-net
+  - <<: *libs-sdl-ttf 
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep 5 libs ###
 ################################################################################################################################################################
