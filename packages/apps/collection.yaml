@@ -14548,3 +14548,24 @@ packages:
   - <<: *apps-xsane
   build_requires:
   - <<: *layers-gnome-common
+
+- &libs-mpg123
+  category: "libs"
+  name: "mpg123"
+  version: "1.31.1"
+  uri:
+  - https://www.mpg123.org/
+  license: "LGPL-2.1"
+  description: "A realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/mpg123
+  provides:
+  - category: "media-libs"
+    name: "mpg123"
+    version: ">=0"
+  requires:
+  - <<: *layers-codecs
+  build_requires:
+  - <<: *layers-codecs
