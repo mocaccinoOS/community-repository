@@ -3384,102 +3384,11 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-sdl-gfx
-  category: "libs"
-  name: "sdl-gfx"
-  version: "2.0.26-r1"
-  uri:
-  - http://www.ferzkopp.net/joomla/content/view/19/14/
-  license: "ZLIB"
-  description: "Graphics drawing primitives library for SDL"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-gfx
-  provides:
-  - category: "media-libs"
-    name: "sdl-gfx"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl-image
-  category: "libs"
-  name: "sdl-image"
-  version: "1.2.12_p20220527-r1"
-  uri:
-  - https://github.com/libsdl-org/SDL_image
-  license: "ZLIB"
-  description: "Image file loading library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-image
-  provides:
-  - category: "media-libs"
-    name: "sdl-image"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/sdl-image"
-    use: "gif jpeg png tiff webp"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl-net
-  category: "libs"
-  name: "sdl-net"
-  version: "1.2.8-r2+1"
-  uri:
-  - https://www.libsdl.org/projects/SDL_net/
-  license: "ZLIB"
-  description: "Simple Direct Media Layer Network Support Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-net
-  provides:
-  - category: "media-libs"
-    name: "sdl-net"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl-ttf
-  category: "libs"
-  name: "sdl-ttf"
-  version: "2.0.11_p20220525"
-  uri:
-  - https://github.com/libsdl-org/SDL_ttf
-  license: "ZLIB"
-  description: "Library that allows you to use TrueType fonts in SDL applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-ttf
-  provides:
-  - category: "media-libs"
-    name: "sdl-ttf"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/sdl-ttf"
-    use: "X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-sdl2-image
   category: "libs"
   name: "sdl2-image"
   version: "2.0.5_p20210328+2"
   uri:
-  - https://www.libsdl.org/projects/SDL_image/
   license: "ZLIB"
   description: "Image file loading library"
   labels:
@@ -11150,33 +11059,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-sdl-sound
-  category: "libs"
-  name: "sdl-sound"
-  version: "1.0.3_p20220525"
-  uri:
-  - https://icculus.org/SDL_sound/
-  license: "LGPL-2.1+"
-  description: "A library for handling the decoding of various sound file formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl-sound
-  provides:
-  - category: "media-libs"
-    name: "sdl-sound"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/sdl-sound"
-    use: "flac mikmod modplug mp3 mpeg physfs speex vorbis"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-physfs
-  - <<: *libs-libmikmod
-  - <<: *libs-smpeg
-  build_requires:
-  - <<: *layers-X
-
 - &libs-Template-Toolkit
   category: "libs"
   name: "Template-Toolkit"
@@ -12594,27 +12476,65 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-- &libs-sdl-mixer
+- &libs-sdl
   category: "libs"
-  name: "sdl-mixer"
-  version: "1.2.12_p20221010+2"
+  name: "sdl"
+  version: "0.1"
   uri:
+  - http://www.ferzkopp.net/joomla/content/view/19/14/
+  - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
-  license: "ZLIB"
-  description: "Simple Direct Media Layer Mixer Library"
+  - https://www.libsdl.org/projects/SDL_net/
+  - https://icculus.org/SDL_sound/
+  - https://github.com/libsdl-org/SDL_ttf
+  license: "ZLIB LGPL-2.1+"
+  description: |
+    Graphics drawing primitives library for SDL
+    Image file loading library
+    Simple Direct Media Layer Mixer Library
+    Simple Direct Media Layer Network Support Library
+    A library for handling the decoding of various sound file formats
+    Library that allows you to use TrueType fonts in SDL applications
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/sdl-mixer
+      media-libs/sdl-gfx
+      media-libs/sdl-image
+      media-libs/sdl-mixer      
+      media-libs/sdl-net
+      media-libs/sdl-sound
+      media-libs/sdl-ttf
   provides:
+  - category: "media-libs"
+    name: "sdl-gfx"
+    version: ">=0"
+  - category: "media-libs"
+    name: "sdl-image"
+    version: ">=0"
   - category: "media-libs"
     name: "sdl-mixer"
     version: ">=0"
+  - category: "media-libs"
+    name: "sdl-net"
+    version: ">=0"
+  - category: "media-libs"
+    name: "sdl-sound"
+    version: ">=0"
+  - category: "media-libs"
+    name: "sdl-ttf"
+    version: ">=0"
   atoms:
+  - atom: "media-libs/sdl-image"
+    use: "gif jpeg png tiff webp"
   - atom: "media-libs/sdl-mixer"
     use: "midi mod smpeg wav flac mad mikmod modplug mp3 timidity vorbis # playtools fluidsynth # midi? ( || ( timidity fluidsynth ) )"
+  - atom: "media-libs/sdl-sound"
+    use: "flac mikmod modplug mp3 mpeg physfs speex vorbis"
+  - atom: "media-libs/sdl-ttf"
+    use: "X"
   requires:
   - <<: *layers-X
+  - <<: *libs-physfs
   - <<: *libs-libmikmod
   - <<: *libs-smpeg
   # - <<: *apps-fluidsynth
@@ -12778,8 +12698,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
-  - <<: *libs-sdl-net
-  - <<: *libs-sdl-sound
+  - <<: *libs-sdl
   build_requires:
   - <<: *layers-X
 
@@ -13712,11 +13631,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
-  - <<: *libs-sdl-gfx
-  - <<: *libs-sdl-image
-  - <<: *libs-sdl-mixer
-  - <<: *libs-sdl-net
-  - <<: *libs-sdl-ttf 
+  - <<: *libs-sdl
   build_requires:
   - <<: *layers-X
 
