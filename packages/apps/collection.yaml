@@ -875,7 +875,7 @@ packages:
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
-  version: "4.590.0-r2+1"
+  version: "4.590.0-r2+2"
   uri:
   - https://metacpan.org/release/Config-Simple
   license: "Artistic GPL-1+"
@@ -938,7 +938,7 @@ packages:
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
-  version: "1.60.0+1"
+  version: "1.60.0+2"
   uri:
   - https://metacpan.org/release/File-ReadBackwards
   license: "Artistic GPL-1+"
@@ -3517,7 +3517,7 @@ packages:
 - &libs-Switch
   category: "libs"
   name: "Switch"
-  version: "2.170.0-r1+1"
+  version: "2.170.0-r1+2"
   uri:
   - https://metacpan.org/release/Switch
   license: "Artistic GPL-1+"
@@ -3914,7 +3914,7 @@ packages:
 - &libs-xwininfo
   category: "libs"
   name: "xwininfo"
-  version: "1.1.5+1"
+  version: "1.1.5+2"
   uri:
   - https://www.x.org/wiki/
   - https://gitlab.freedesktop.org/xorg/app/xwininfo
@@ -6617,7 +6617,7 @@ packages:
 - &apps-nx
   category: "apps"
   name: "nx"
-  version: "3.5.99.26+5"
+  version: "3.5.99.26+6"
   uri:
   - https://github.com/ArcticaProject/nx-libs
   license: "GPL-2 "
@@ -12023,7 +12023,7 @@ packages:
 
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2-r1"
+  version: "4.1.2.2-r1+1"
   uri:
   - https://wiki.x2go.org/doku.php
   license: "GPL-2"
@@ -12036,6 +12036,9 @@ packages:
   - category: "net-misc"
     name: "x2goclient"
     version: ">=0"
+  atoms:
+  - atom: "net-misc/x2goclient"
+    use: "ldap"
   requires:
   - <<: *layers-plasma
   - <<: *apps-nx
@@ -12044,7 +12047,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.3-r1+3"
+  version: "4.1.0.3-r1+4"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
@@ -12063,6 +12066,9 @@ packages:
   - category: "acct-user"
     name: "x2goprint"
     version: ">=0"
+  atoms:
+  - atom: "net-misc/x2goserver"
+    use: "fuse sqlite # postgres"
   requires:
   - <<: *layers-X
   - <<: *apps-nx
