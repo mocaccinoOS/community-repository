@@ -3384,74 +3384,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-sdl2-image
-  category: "libs"
-  name: "sdl2-image"
-  version: "2.0.5_p20210328+2"
-  uri:
-  license: "ZLIB"
-  description: "Image file loading library"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/sdl2-image
-  provides:
-  - category: "media-libs"
-    name: "sdl2-image"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/sdl2-image"
-    use: "webp"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl2-net
-  category: "libs"
-  name: "sdl2-net"
-  version: "2.0.1"
-  uri:
-  - https://www.libsdl.org/projects/SDL_net/index.html
-  license: "ZLIB"
-  description: "Simple Direct Media Layer Network Support Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl2-net
-  provides:
-  - category: "media-libs"
-    name: "sdl2-net"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-sdl2-ttf
-  category: "libs"
-  name: "sdl2-ttf"
-  version: "2.20.0"
-  uri:
-  - https://www.libsdl.org/projects/SDL_ttf/
-  license: "ZLIB"
-  description: "Library that allows you to use TrueType fonts in SDL applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sdl2-ttf
-  provides:
-  - category: "media-libs"
-    name: "sdl2-ttf"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/sdl2-ttf"
-    use: "harfbuzz X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -10013,34 +9945,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-neverball
-  category: "apps"
-  name: "neverball"
-  version: "1.6.0-r1"
-  uri:
-  - https://neverball.org
-  license: "GPL-2+ IJG"
-  description: "Clone of Super Monkey Ball using SDL/OpenGL"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-puzzle/neverball
-  provides:
-  - category: "games-puzzle"
-    name: "neverball"
-    version: ">=0"
-  atoms:
-  - atom: "games-puzzle/neverball"
-    use: "nls"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *fonts-wqy-microhei
-  - <<: *libs-sdl2-ttf
-  - <<: *libs-physfs
-  build_requires:
-  - <<: *layers-X
-
 - &apps-nmapsi
   category: "apps"
   name: "nmapsi"
@@ -12542,25 +12446,48 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-sdl2-mixer
+- &libs-sdl2
   category: "libs"
-  name: "sdl2-mixer"
-  version: "2.0.4-r3+3"
+  name: "sdl2"
+  version: "0.1"
   uri:
+  - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
+  - https://www.libsdl.org/projects/SDL_net/index.html
+  - https://www.libsdl.org/projects/SDL_ttf/
   license: "ZLIB"
-  description: "Simple Direct Media Layer Mixer Library"
+  description: |
+    Image file loading library
+    Simple Direct Media Layer Network Support Library
+    Library that allows you to use TrueType fonts in SDL applications
+    Simple Direct Media Layer Mixer Library
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
+      media-libs/sdl2-image
+      media-libs/sdl2-net
+      media-libs/sdl2-ttf
       media-libs/sdl2-mixer
   provides:
   - category: "media-libs"
+    name: "sdl2-image"
+    version: ">=0"
+  - category: "media-libs"
     name: "sdl2-mixer"
     version: ">=0"
+  - category: "media-libs"
+    name: "sdl2-net"
+    version: ">=0"
+  - category: "media-libs"
+    name: "sdl2-ttf"
+    version: ">=0"
   atoms:
+  - atom: "media-libs/sdl2-image"
+    use: "webp"
   - atom: "media-libs/sdl2-mixer"
     use: "midi mod tremor wav flac mad mikmod modplug mp3 opus timidity vorbis # playtools fluidsynth # midi? ( || ( timidity fluidsynth ) )"
+  - atom: "media-libs/sdl2-ttf"
+    use: "harfbuzz X"
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
@@ -13223,7 +13150,7 @@ packages:
   - <<: *libs-ladspa-sdk
   - <<: *libs-libebur128
   - <<: *libs-rubberband
-  - <<: *libs-sdl2-image
+  - <<: *libs-sdl2
   - <<: *libs-xine-lib
   - <<: *libs-frei0r-plugins
   build_requires:
@@ -13326,9 +13253,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-sdl2-image
-  - <<: *libs-sdl2-mixer
-  - <<: *libs-sdl2-ttf
+  - <<: *libs-sdl2
   - <<: *libs-smpeg2
   build_requires:
   - <<: *layers-X
@@ -13574,10 +13499,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-physfs
-  - <<: *libs-sdl2-image
-  - <<: *libs-sdl2-mixer
-  - <<: *libs-sdl2-net
-  - <<: *libs-sdl2-ttf
+  - <<: *libs-sdl2
   - <<: *fonts-wqy-zenhei
   build_requires:
   - <<: *buildbase-qt
@@ -13608,6 +13530,34 @@ packages:
   - <<: *apps-mediainfo
   build_requires:
   - <<: *layers-plasma
+
+- &apps-neverball
+  category: "apps"
+  name: "neverball"
+  version: "1.6.0-r1"
+  uri:
+  - https://neverball.org
+  license: "GPL-2+ IJG"
+  description: "Clone of Super Monkey Ball using SDL/OpenGL"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-puzzle/neverball
+  provides:
+  - category: "games-puzzle"
+    name: "neverball"
+    version: ">=0"
+  atoms:
+  - atom: "games-puzzle/neverball"
+    use: "nls"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *fonts-wqy-microhei
+  - <<: *libs-sdl2
+  - <<: *libs-physfs
+  build_requires:
+  - <<: *layers-X
 
 - &apps-warmux
   category: "apps"
