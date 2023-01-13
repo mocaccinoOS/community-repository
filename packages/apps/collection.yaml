@@ -6876,6 +6876,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "polari"
+  version: "43.0"
+  uri:
+  - https://wiki.gnome.org/Apps/Polari
+  license: "GPL-2+"
+  description: "An IRC client for GNOME"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/polari
+  provides:
+  - category: "net-irc"
+    name: "polari"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-powerpanel
   category: "apps"
   name: "powerpanel"
