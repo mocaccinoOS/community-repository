@@ -4581,6 +4581,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "davinci-resolve"
+  version: "18.1.1-r1"
+  uri:
+  - https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion
+  license: "all-rights-reserved"
+  description: "Professional A/V post-production software suite"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/davinci-resolve
+  overlays:
+  - name: "vowstar"
+  provides:
+  - category: "media-video"
+    name: "davinci-resolve"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-designer
   category: "apps"
   name: "designer"
@@ -13504,7 +13526,7 @@ packages:
   prereqs:
   - dev-lang/ghc
   - dev-haskell/parsec
-  - dev-lang/fpc  
+  - dev-lang/fpc
   requires:
   - <<: *layers-qt
   - <<: *libs-physfs
@@ -13514,7 +13536,7 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-ghc
   requires_final_images: true
-    
+
 - category: "apps"
   name: "kdenlive"
   version: "22.08.3+1"
