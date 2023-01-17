@@ -4433,6 +4433,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "clinfo"
+  version: "3.0.21.02.21-r1"
+  uri:
+  - https://github.com/Oblomov/clinfo
+  license: "CC0-1.0"
+  description: "A tool to display info about the system's OpenCL capabilities"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-util/clinfo
+  provides:
+  - category: "dev-util"
+    name: "clinfo"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "colord-kde"
   version: "0.5.0-r2"
   uri:
