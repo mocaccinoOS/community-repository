@@ -4581,30 +4581,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "davinci-resolve"
-  version: "18.1.1-r1"
-  uri:
-  - https://www.blackmagicdesign.com/support/family/davinci-resolve-and-fusion
-  license: "all-rights-reserved"
-  description: "Professional A/V post-production software suite"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/davinci-resolve
-  prepare:
-  - wget https://www.videohelp.com/download/DaVinci_Resolve_18.1.1_Linux.zip?r=KDBZrXVK -O /var/cache/distfiles/DaVinci_Resolve_18.1.1_Linux.zip
-  overlays:
-  - name: "vowstar"
-  provides:
-  - category: "media-video"
-    name: "davinci-resolve"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &apps-designer
   category: "apps"
   name: "designer"
