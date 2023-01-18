@@ -6260,7 +6260,7 @@ packages:
   uri:
   - https://marble.kde.org
   license: "GPL-2"
-  description: "Virtual Globe and World Atlas to learn more about Earth" 
+  description: "Virtual Globe and World Atlas to learn more about Earth"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -6278,12 +6278,32 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "mate-dock-applet"
+  version: "21.10.0"
+  uri:
+  - https://github.com/robint99/dock-applet
+  license: "GPL-3"
+  description: "Application dock for the MATE panel"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      x11-misc/mate-dock-applet
+  provides:
+  - category: "x11-misc"
+    name: "mate-dock-applet"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "mc"
   version: "4.8.28-r1"
   uri:
   - https://midnight-commander.org
   license: "GPL-3"
-  description: "GNU Midnight Commander is a text based file manager"  
+  description: "GNU Midnight Commander is a text based file manager"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
