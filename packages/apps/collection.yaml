@@ -4817,6 +4817,29 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "erlang"
+  version: "25.0.4-r1"
+  uri:
+  - https://www.erlang.org
+  license: "Apache-2.0"
+  description: "Erlang programming language, runtime environment and libraries (OTP)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/erlang
+  provides:
+  - category: "dev-lang"
+    name: "erlang"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "epmd"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "epiphany"
   version: "43.0"
   uri:
