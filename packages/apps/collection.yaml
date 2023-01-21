@@ -10906,7 +10906,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "1.9.6-r1"
+  version: "1.9.8"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -10919,6 +10919,9 @@ packages:
   - category: "sci-libs"
     name: "indilib"
     version: ">=0"
+  atoms:
+  - atom: "sci-libs/indilib"
+    use: "ogg rtlsdr websocket"
   requires:
   - <<: *layers-X
   - <<: *libs-websocketpp
@@ -11096,7 +11099,7 @@ packages:
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
-  version: "7.3+1"
+  version: "7.11"
   uri:
   - https://www.atnf.csiro.au/people/mcalabre/WCS/
   license: "LGPL-3"
@@ -11109,6 +11112,9 @@ packages:
   - category: "sci-astronomy"
     name: "wcslib"
     version: ">=0"
+  atoms:
+  - atom: "sci-astronomy/wcslib"
+    use: "fits"
   requires:
   - <<: *layers-system-x
   - <<: *libs-cfitsio
@@ -12891,7 +12897,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.5.9"
+  version: "3.6.1"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -12918,6 +12924,9 @@ packages:
   - category: "sci-libs"
     name: "stellarsolver"
     version: ">=0"
+  atoms:
+  - atom: "sci-astronomy/kstars"
+    use: "fits indi"
   requires:
   - <<: *layers-plasma
   - <<: *libs-cfitsio
