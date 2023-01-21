@@ -6315,29 +6315,6 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
-  name: "mc"
-  version: "4.8.28-r2"
-  uri:
-  - https://midnight-commander.org
-  license: "GPL-3"
-  description: "GNU Midnight Commander is a text based file manager"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/mc
-  provides:
-  - category: "app-misc"
-    name: "mc"
-    version: ">=0"
-  atoms:
-  - atom: "app-misc/mc"
-    use: "gpm nls -slang unicode"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
   name: "meld"
   version: "3.22.0-r1"
   uri:
@@ -9946,6 +9923,30 @@ packages:
   - <<: *libs-fluid-soundfont
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "mc"
+  version: "4.8.28-r2+1"
+  uri:
+  - https://midnight-commander.org
+  license: "GPL-3"
+  description: "GNU Midnight Commander is a text based file manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/mc
+  provides:
+  - category: "app-misc"
+    name: "mc"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/mc"
+    use: "gpm nls -slang unicode"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-gpm
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-mirage2iso
   category: "apps"
