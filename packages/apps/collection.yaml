@@ -4305,6 +4305,9 @@ packages:
   - category: "www-client"
     name: "brave-bin"
     version: ">=0"
+  atoms:
+  - atom: "www-client/brave-bin"
+    license: "MPL-2.0"
   prereqs:
   - gnome-base/gconf
   requires:
@@ -5254,6 +5257,9 @@ packages:
   - category: "media-gfx"
     name: "geeqie"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/geeqie"
+    use: "exif ffmpegthumbnailer jpeg lcms lua nls pdf tiff xmp # lirc"
   requires:
   - <<: *layers-X
   build_requires:
@@ -6741,6 +6747,10 @@ packages:
   - category: "www-client"
     name: "opera"
     version: ">=0"
+  atoms:
+  - atom: "www-client/opera"
+    use: "-qt5"
+    license: "OPERA-2018"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7536,6 +7546,9 @@ packages:
   - category: "app-backup"
     name: "timeshift"
     version: ">=0"
+  atoms:
+  - atom: "app-backup/timeshift"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -13142,6 +13155,9 @@ packages:
   - category: "sci-astronomy"
     name: "stellarium"
     version: ">=0"
+  atoms:
+  - atom: "sci-astronomy/stellarium"
+    use: "deep-sky media nls stars telescope # gps webengine" 
   requires:
   - <<: *layers-qt
   - <<: *libs-indilib
