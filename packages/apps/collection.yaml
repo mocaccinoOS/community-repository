@@ -10651,6 +10651,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "warzone2100"
+  version: "4.3.3"
+  uri:
+  - https://wz2100.net
+  license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
+  description: "3D real-time strategy game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/warzone2100
+  provides:
+  - category: "games-strategy"
+    name: "warzone2100"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-physfs
+  build_requires:
+  - <<: *layers-X
+  - <<: *libs-physfs
+
 - &apps-wxhexeditor
   category: "apps"
   name: "wxhexeditor"
