@@ -10662,8 +10662,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       games-strategy/warzone2100
-  prereqs:
-  - dev-games/physfs
   provides:
   - category: "games-strategy"
     name: "warzone2100"
@@ -10673,6 +10671,7 @@ packages:
   - <<: *libs-physfs
   build_requires:
   - <<: *layers-X
+  - <<: *libs-physfs
 
 - &apps-wxhexeditor
   category: "apps"
