@@ -565,7 +565,7 @@ packages:
 - &libs-abseil-cpp
   category: "libs"
   name: "abseil-cpp"
-  version: "20211102.0"
+  version: "20220623.1"
   uri:
   - https://abseil.io
   license: "Apache-2.0 BSD"
@@ -1625,6 +1625,9 @@ packages:
   - category: "media-libs"
     name: "libchamplain"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libchamplain"
+    use: "introspection gtk vala"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -3858,6 +3861,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-wxGTK-3.0-gtk3
+  category: "libs"
+  name: "wxGTK"
+  version: "3.0.5.1-r1"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/wxGTK:3.0-gtk3
+  provides:
+  - category: "x11-libs"
+    name: "wxGTK"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 # - &libs-xapian
 #   category: "libs"
 #   name: "xapian"
@@ -3929,7 +3953,7 @@ packages:
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
-  version: "1.2.33+1"
+  version: "1.2.36"
   uri:
   - https://www.aleksey.com/xmlsec
   license: "MIT"
@@ -5591,7 +5615,7 @@ packages:
 - &apps-hwloc
   category: "libs"
   name: "hwloc"
-  version: "2.6.0+1"
+  version: "2.8.0-r1"
   uri:
   - https://www.open-mpi.org/projects/hwloc/
   license: "BSD"
@@ -8925,7 +8949,7 @@ packages:
 - &libs-tbb
   category: "libs"
   name: "tbb"
-  version: "2021.7.0+1"
+  version: "2021.7.0-r1"
   uri:
   - https://www.threadingbuildingblocks.org
   license: "Apache-2.0"
@@ -9395,7 +9419,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.0.1-r1"
+  version: "4.0.1-r1+1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -9412,6 +9436,7 @@ packages:
   atoms:
   - atom: "media-gfx/darktable"
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
+    # darktable needs gcc[graphite] or clang
     env: "compiler-clang"
   prereqs:
   - dev-python/jsonschema
@@ -12204,7 +12229,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.18.1+1"
+  version: "3.20.0"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -12217,6 +12242,9 @@ packages:
   - category: "dev-util"
     name: "valgrind"
     version: ">=0"
+  atoms:
+  - atom: "dev-util/valgrind"
+    use: "mpi"
   requires:
   - <<: *layers-X
   - <<: *apps-openmpi
@@ -12940,6 +12968,7 @@ packages:
   - <<: *libs-libpano13
   - <<: *libs-vigra
   - <<: *libs-flann
+  - <<: *libs-wxGTK-3.0-gtk3
   - <<: *apps-enblend
   - <<: *apps-dcraw
   build_requires:
@@ -13669,7 +13698,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.0.0-r100+1"
+  version: "1.0.0-r100"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3"
