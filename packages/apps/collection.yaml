@@ -661,7 +661,7 @@ packages:
 - &libs-argtable
   category: "libs"
   name: "argtable"
-  version: "2.13-r2"
+  version: "2.13-r3"
   uri:
   - http://argtable.sourceforge.net/
   license: "LGPL-2"
@@ -750,7 +750,7 @@ packages:
 - &libs-babl
   category: "libs"
   name: "babl"
-  version: "0.1.96-r1"
+  version: "0.1.98"
   uri:
   - https://gegl.org/babl/
   license: "LGPL-3"
@@ -2704,6 +2704,9 @@ packages:
   - category: "dev-python"
     name: "msgpack"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/msgpack"
+     use: "native-extensions"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2750,9 +2753,7 @@ packages:
     name: "nas"
     version: ">=0"
   prereqs:
-  - app-text/rman
-  - x11-misc/gccmakedep
-  - x11-misc/imake
+  - app-text/rman x11-misc/gccmakedep x11-misc/imake
   requires:
   - <<: *layers-X
   build_requires:
@@ -2941,7 +2942,7 @@ packages:
 - &libs-pbr
   category: "libs"
   name: "pbr"
-  version: "5.10.0"
+  version: "5.11.0"
   uri:
   - https://opendev.org/openstack/pbr/
   license: "Apache-2.0"
@@ -7664,8 +7665,7 @@ packages:
     name: "transfig"
     version: ">=0"
   prereqs:
-  - app-text/rman
-  - x11-misc/imake
+  - app-text/rman x11-misc/imake
   requires:
   - <<: *layers-X
   build_requires:
@@ -8087,8 +8087,7 @@ packages:
     name: "xli"
     version: ">=0"
   prereqs:
-  - app-text/rman
-  - x11-misc/imake
+  - app-text/rman x11-misc/imake
   requires:
   - <<: *layers-X
   build_requires:
@@ -8750,32 +8749,6 @@ packages:
   - <<: *libs-gupnp-igd
   build_requires:
   - <<: *layers-gnome-common
-
-- &libs-libpano13
-  category: "libs"
-  name: "libpano13"
-  version: "2.9.21-r1+2"
-  uri:
-  - http://panotools.sourceforge.net/
-  license: "GPL-2"
-  description: "Helmut Dersch's panorama toolbox library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libpano13
-  provides:
-  - category: "media-libs"
-    name: "libpano13"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libpano13"
-    # accept_keywords: "~amd64"
-    use: "suitesparse"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-sci-libs
 
 - &libs-libspnav
   category: "libs"
@@ -9749,7 +9722,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.17.0-r2+4"
+  version: "1.18.0"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -11481,28 +11454,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &apps-enblend
-  category: "apps"
-  name: "enblend"
-  version: "4.2.0_p20161007-r5"
-  uri:
-  - http://enblend.sourceforge.net
-  license: "GPL-2+ FDL-1.2+"
-  description: "Image Blending with Multiresolution Splines"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/enblend
-  provides:
-  - category: "media-gfx"
-    name: "enblend"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-vigra
-  build_requires:
-  - <<: *layers-X
-
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
@@ -11728,6 +11679,18 @@ packages:
   - category: "sci-libs"
     name: "coinor-mp"
     version: ">=0"
+  atoms:
+  - atom: "mail-client/geary"
+    use: "ytnef"
+  # needs firebird: firebird 
+  # needs java: scripting-beanshell scripting-javascript 
+  # needs layers-plasma: kde-plasma/kde-cli-tools
+  # no release in a long time: wiki-publisher
+  # not packageable: odk
+  # kde
+  # postgres
+  - atom: "app-office/libreoffice"
+    use: "accessibility base bluetooth -branding clang coinmp cups dbus eds googledrive gstreamer gtk ldap mariadb nlpsolver pdfimport vulkan"
   prereqs:
   # - *layers-java-packages
   - dev-java/ant-core
@@ -12927,19 +12890,23 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2022.0.0+3"
+  version: "2022.0.0+4"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
   - http://zthread.sourceforge.net/
+  - http://panotools.sourceforge.net/
+  - http://enblend.sourceforge.net
   - http://hugin.sourceforge.net/
   - http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
-  license: "GPL-2+ BSD BSD-2 MIT wxWinLL-3 ZLIB FDL-1.2 GPL-2"
+  license: "BSD BSD-2 FDL-1.2 FDL-1.2+ GPL-2 GPL-2+ MIT wxWinLL-3 ZLIB"
   description: |
     GUI for the creation & processing of panoramic images
     Simple templatized C++ library for parsing command line arguments
+    Helmut Dersch's panorama toolbox library
     platform-independent multi-threading and synchronization library for C++
     SIFT algorithm for automatic panorama creation in C
+    Image Blending with Multiresolution Splines
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12951,6 +12918,12 @@ packages:
   - category: "dev-libs"
     name: "zthread"
     version: ">=0"
+  - category: "media-libs"
+    name: "libpano13"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "enblend"
+    version: ">=0"
   - category: "media-gfx"
     name: "autopano-sift-C"
     version: ">=0"
@@ -12958,6 +12931,8 @@ packages:
     name: "hugin"
     version: ">=0"
   atoms:
+  - atom: "media-libs/libpano13"
+    use: "suitesparse"
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
   # prepare:
@@ -12965,11 +12940,11 @@ packages:
   requires:
   # - <<: *layers-X
   - <<: *layers-gnome-common
-  - <<: *libs-libpano13
+  - <<: *layers-sci-libs
+  - <<: *layers-java
   - <<: *libs-vigra
   - <<: *libs-flann
   - <<: *libs-wxGTK-3_0-gtk3
-  - <<: *apps-enblend
   - <<: *apps-dcraw
   build_requires:
   # - <<: *layers-X
@@ -13326,7 +13301,7 @@ packages:
 - &libs-gegl
   category: "libs"
   name: "gegl"
-  version: "0.4.40-r1"
+  version: "0.4.40-r1+1"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
