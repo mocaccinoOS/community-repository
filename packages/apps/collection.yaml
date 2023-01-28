@@ -2250,7 +2250,7 @@ packages:
 - &libs-libsoundtouch
   category: "libs"
   name: "libsoundtouch"
-  version: "2.3.1+2"
+  version: "2.3.2"
   uri:
   - https://www.surina.net/soundtouch/
   - https://gitlab.com/soundtouch/soundtouch
@@ -8874,7 +8874,7 @@ packages:
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
-  version: "3.1.1"
+  version: "3.1.1-r1"
   uri:
   - https://www.breakfastquay.com/rubberband/
   license: "GPL-2"
@@ -8889,7 +8889,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/rubberband"
-  - use: "jni programs vamp"
+    use: "jni programs vamp"
   requires:
   - <<: *layers-java
   - <<: *libs-ladspa-sdk
@@ -8900,7 +8900,7 @@ packages:
 - &libs-sord
   category: "libs"
   name: "sord"
-  version: "0.16.14"
+  version: "0.16.14-r1"
   uri:
   - http://drobilla.net/software/sord/
   license: "ISC"
@@ -11794,7 +11794,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.3-r1+3"
+  version: "2.3.3-r1+4"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -13329,7 +13329,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.8.0+3"
+  version: "7.12.0"
   uri:
   - http://www.mltframework.org/
   license: "GPL-3"
@@ -13454,6 +13454,9 @@ packages:
   - category: "dev-python"
     name: "pygame"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/pygame"
+    use: "midi opengl X"
   requires:
   - <<: *layers-X
   - <<: *libs-sdl2
@@ -13464,7 +13467,7 @@ packages:
 - &libs-sratom
   category: "libs"
   name: "sratom"
-  version: "0.6.14"
+  version: "0.6.14-r1"
   uri:
   - http://drobilla.net/software/sratom/
   license: "ISC"
@@ -13711,7 +13714,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "22.08.3+1"
+  version: "22.08.3-r1"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -13869,7 +13872,7 @@ packages:
 - &libs-lilv
   category: "libs"
   name: "lilv"
-  version: "0.24.20"
+  version: "0.24.20-r1"
   uri:
   - http://drobilla.net/software/lilv/
   license: "ISC"
@@ -14277,7 +14280,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "7.2"
+  version: "7.2+1"
   uri:
   - https://ardour.org/
   license: "AGPL-3"
@@ -14370,7 +14373,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "0.9.28"
+  version: "0.9.29"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
@@ -14383,6 +14386,9 @@ packages:
   - category: "media-sound"
     name: "qtractor"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/qtractor"
+    use: "aubio dssi rubberband ladspa libsamplerate mad osc vorbis sse"
   requires:
   - <<: *layers-qt
   - <<: *libs-aubio
