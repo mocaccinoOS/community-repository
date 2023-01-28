@@ -928,6 +928,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+ 
+- &libs-enchant-0
+  category: "libs"
+  name: "enchant"
+  version: "1.6.1-r2"
+  uri:
+  - https://abiword.github.io/enchant/
+  license: "LGPL-2.1+"
+  description: "Spellchecker wrapping library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/enchant:0
+  provides:
+  - category: "app-text"
+    name: "enchant"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/enchant"
+    use: "aspell # hunspell nuspell voikko"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-enet
   category: "libs"
@@ -1264,6 +1288,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-gst-plugins-v4l2
+  category: "libs"
+  name: "gst-plugins-v4l2"
+  version: "1.20.4"
+  uri:
+  - https://gstreamer.freedesktop.org/
+  license: "GPL-2"
+  description: "plugin for gstreamer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-plugins/gst-plugins-v4l2
+  provides:
+  - category: "media-plugins"
+    name: "gst-plugins-v4l2"
+    version: ">=0"
+  atoms:
+  - atom: "media-plugins/gst-plugins-v4l2"
+    use: "udev"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-gtkglext
   category: "libs"
@@ -2275,7 +2323,7 @@ packages:
 - &libs-libsrtp
   category: "libs"
   name: "libsrtp"
-  version: "2.3.0-r1+1"
+  version: "2.4.2"
   uri:
   - https://github.com/cisco/libsrtp
   license: "BSD"
@@ -8425,7 +8473,7 @@ packages:
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
-  version: "1.20.2"
+  version: "1.20.4"
   uri:
   - https://gstreamer.freedesktop.org/
   license: "GPL-2"
@@ -8463,6 +8511,31 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-Pango
+  build_requires:
+  - <<: *layers-X
+ 
+- &libs-gtkspell
+  category: "libs"
+  name: "gtkspell"
+  version: "2.0.16-r2"
+  uri:
+  - http://gtkspell.sourceforge.net/
+  license: "GPL-2+"
+  description: "Spell checking widget for GTK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/gtkspell:2
+  provides:
+  - category: "app-text"
+    name: "gtkspell"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/gtkspell"
+    use: "introspection"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-enchant-0
   build_requires:
   - <<: *layers-X
 
@@ -9693,8 +9766,6 @@ packages:
   - category: "media-video"
     name: "handbrake"
     version: ">=0"
-  prereqs:
-  - dev-util/intltool
   requires:
   - <<: *layers-X
   - <<: *libs-nv-codec-headers
@@ -10449,8 +10520,6 @@ packages:
   - category: "dev-util"
     name: "regexxer"
     version: ">=0"
-  prereqs:
-  - dev-util/intltool
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtksourceviewmm
@@ -13124,7 +13193,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.10+2"
+  version: "2.14.10-r1"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -13149,6 +13218,8 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-farstream
+  - <<: *libs-gst-plugins-v4l2
+  - <<: *libs-gtkspell
   - <<: *libs-libgadu
   - <<: *libs-meanwhile
   - <<: *apps-tk
