@@ -1886,7 +1886,8 @@ packages:
   - category: "media-libs"
     name: "libheif"
     version: ">=0"
-  - atoms: "media-libs/libheif"
+  atoms:
+  - atom: "media-libs/libheif"
     use: "-aom gdk-pixbuf rav1e threads x265"
   requires:
   - <<: *layers-X
@@ -14524,6 +14525,9 @@ packages:
   - category: "media-gfx"
     name: "xsane"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/xsane"
+    use: "nls jpeg png tiff gimp lcms # ocr"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-netpbm
@@ -14768,7 +14772,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "22.08.3"
+  version: "22.08.3+1"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
@@ -14782,7 +14786,7 @@ packages:
     name: "umbrello"
     version: ">=0"
   atoms:
-  - atoms: "kde-apps/umbrello"
+  - atom: "kde-apps/umbrello"
     use: "php"
   requires:
   - <<: *layers-plasma
