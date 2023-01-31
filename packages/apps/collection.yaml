@@ -9488,7 +9488,7 @@ packages:
   - atom: "media-gfx/darktable"
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
     # darktable needs gcc[graphite] or clang
-    env_profile: "compiler-clang"
+    env_profile: "compiler-clang-makeopts-10"
   prereqs:
   - dev-python/jsonschema
   requires:
@@ -14505,7 +14505,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   # - <<: *layers-kde-common
-  # - <<: *apps-pyhoca-cli
   - <<: *apps-spice-gtk
   build_requires:
   - <<: *buildbase-gnome-common
