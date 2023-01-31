@@ -35,7 +35,7 @@ jobs:
               fi
           done          
           PACKAGES="{\"packages\":[${PACKAGES}]}"
-          echo "::set-output name=matrix-sets::$(jq -rc '[.packages | _nwise(256)]' <<< ${PACKAGES})"
+          echo "matrix-sets=$(jq -rc '[.packages | _nwise(256)]' <<< ${PACKAGES})" >> $GITHUB_OUTPUT
 
   build-set-0:
     name: Set 0
