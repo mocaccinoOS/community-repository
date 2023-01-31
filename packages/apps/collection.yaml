@@ -9489,6 +9489,8 @@ packages:
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
     # darktable needs gcc[graphite] or clang
     env_profile: "compiler-clang-makeopts-10"
+  prepare:
+  - sed -i -e 's/MAKEOPTS="-j10"/MAKEOPTS="-j5"/' /etc/portage/env/compiler-clang-makeopts-10
   prereqs:
   - dev-python/jsonschema
   requires:
