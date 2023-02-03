@@ -800,7 +800,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "103.0.5060.114"
+  version: "109.0.5414.119"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -9470,7 +9470,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.2.0"
+  version: "4.0.1-r1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -9486,13 +9486,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/darktable"
-    use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls openexr tools webp # opencl flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
-    accept_keywords: "~amd64"
+    use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
+    # accept_keywords: "~amd64"
     # darktable needs gcc[graphite] or clang
-    env_profile: "compiler-clang-makeopts-10"
+    # env_profile: "compiler-clang-makeopts-10"
     # env: "MAKEOPTS=\\\"-j5 -l0.9\\\""
-  prepare:
-  - sed -i -e 's/MAKEOPTS="-j10"/MAKEOPTS="-j4 -l0.9"/' /etc/portage/env/compiler-clang-makeopts-10
+  # prepare:
+  # - sed -i -e 's/MAKEOPTS="-j10"/MAKEOPTS="-j4 -l0.9"/' /etc/portage/env/compiler-clang-makeopts-10
   prereqs:
   - dev-python/jsonschema
   requires:
