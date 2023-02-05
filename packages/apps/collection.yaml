@@ -9489,10 +9489,10 @@ packages:
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
     # accept_keywords: "~amd64"
     # darktable needs gcc[graphite] or clang
-    # env_profile: "compiler-clang-makeopts-10"
+    env_profile: "compiler-clang-makeopts-10"
     # env: "MAKEOPTS=\\\"-j5 -l0.9\\\""
-  # prepare:
-  # - sed -i -e 's/MAKEOPTS="-j10"/MAKEOPTS="-j4 -l0.9"/' /etc/portage/env/compiler-clang-makeopts-10
+  prepare:
+  - sed -i -e 's/MAKEOPTS="-j10"/MAKEOPTS="-j4 -l0.9"/' /etc/portage/env/compiler-clang-makeopts-10
   prereqs:
   - dev-python/jsonschema
   requires:
@@ -11161,7 +11161,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "8.2.0-r7+9"
+  version: "10.0.1"
   uri:
   - https://www.openvdb.org
   license: "MPL-2.0"
@@ -11176,7 +11176,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/openvdb"
-    use: "blosc nanovdb numpy python utils zlib avx sse4_2 # cuda"
+    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
     env: "MAKEOPTS=\\\"-j5 -l0.9\\\""
   requires:
   - <<: *layers-qt
