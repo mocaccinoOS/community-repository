@@ -9495,6 +9495,7 @@ packages:
   # - source /etc/profile
   - sed -i '/LUA_COMPAT=/a LLVM_MAX_SLOT=14' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - sed -i '/LUA_COMPAT=pkg_setup() { /a llvm_pkg_setup' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  
   - ebuild /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild manifest
   prereqs:
   - dev-python/jsonschema
@@ -11286,7 +11287,7 @@ packages:
 # https://bugzilla.abisource.com/show_bug.cgi?id=13969
 - category: "apps"
   name: "abiword"
-  version: "3.0.5+8"
+  version: "3.0.5+9"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -11327,7 +11328,7 @@ packages:
   - atom: "x11-libs/gtkmathview"
     use: "mathml svg t1lib"
   - atom: "app-office/abiword"
-    use: "calendar -collab cups -eds goffice grammar introspection latex map math ots plugins readline redland spell wordperfect wmf thesaurus"
+    use: "calendar collab cups -eds goffice grammar introspection latex map math ots plugins readline redland spell wordperfect wmf thesaurus"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-office-common

@@ -196,6 +196,9 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/raptor
+  atoms:
+  - atom: "media-libs/raptor"
+    use: "curl json unicode"
 
 - &libs-Path-Tiny
   category: "libs"
@@ -457,8 +460,6 @@ packages:
     use: "tools"
   - atom: "app-text/libwps"
     use: "tools"
-  prepare:
-  - wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/master/packages/apps/package.use/libs-raptor.use -O /etc/portage/package.use/libs-raptor.use
   requires:
   - <<: *layers-X
   - <<: *libs-raptor
