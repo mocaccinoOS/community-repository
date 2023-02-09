@@ -9469,7 +9469,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.0.1-r1"
+  version: "4.0.1-r1+1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -9493,9 +9493,10 @@ packages:
   # - sed -i '/CC="clang"/i PATH="/usr/lib/llvm/14/bin:${PATH}"' /etc/portage/env/compiler-clang
   # - emerge --unmerge --deselect sys-devel/llvm
   # - source /etc/profile
-  - sed -i '/LUA_COMPAT=/a LLVM_MAX_SLOT=14' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  - sed -i '/LUA_COMPAT=pkg_setup() { /a llvm_pkg_setup' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  
+  # - sed -i '/LUA_COMPAT=/a LLVM_MAX_SLOT=14' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  # - sed -i '/LUA_COMPAT=pkg_setup() { /a llvm_pkg_setup' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  # - grep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"
+  - sed -i '/cmake_src_prepare/i \tgrep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - ebuild /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild manifest
   prereqs:
   - dev-python/jsonschema
