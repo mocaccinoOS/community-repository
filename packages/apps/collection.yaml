@@ -9497,9 +9497,9 @@ packages:
   # - sed -i '/LUA_COMPAT=pkg_setup() { /a llvm_pkg_setup' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   # - grep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"
   - sed -i 's/eerror "Building ${PN} with GCC requires Graphite support."/elog "Building ${PN} with GCC requires Graphite support."/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  - sed -i 's/eerror "Please switch to a version of sys-devel/gcc built with USE=graphite, or use a different compiler."/elog "Please switch to a version of sys-devel/gcc built with USE=graphite, or use a different compiler."/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  - sed -i 's/die "Selected compiler is sys-devel/gcc[-graphite]"/elog "Selected compiler is sys-devel/gcc[-graphite]"/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  - sed -i '/cmake_src_prepare/i \tgrep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  - sed -i 's/eerror "Please switch to a version of sys-devel\/gcc built with USE=graphite, or use a different compiler."/elog "Please switch to a version of sys-devel\/gcc built with USE=graphite, or use a different compiler."/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  - sed -i 's/die "Selected compiler is sys-devel\/gcc\[\-graphite\]"/elog "Selected compiler is sys-devel\/gcc\[\-graphite\]"/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  - sed -i '/cmake_src_prepare/i \\tgrep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - ebuild /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild manifest
   prereqs:
   - dev-python/jsonschema
