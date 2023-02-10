@@ -9500,7 +9500,7 @@ packages:
   - sed -i 's/eerror "Please switch to a version of sys-devel\/gcc built with USE=graphite, or use a different compiler."/elog "Please switch to a version of sys-devel\/gcc built with USE=graphite, or use a different compiler."/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - sed -i 's/die "Selected compiler is sys-devel\/gcc\[\-graphite\]"/elog "Selected compiler is sys-devel\/gcc\[\-graphite\]"/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - sed -i '/cmake_src_prepare/i \\telog "Removing GCC graphite optimizations..."' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
-  - sed -i '/cmake_src_prepare/i \\tgrep -irlZ "\#pragma GCC optimize" . | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
+  - sed -i '/cmake_src_prepare/i \\tgrep -irlZ "\#pragma GCC optimize" /var/tmp/portage/media-gfx/darktable-4.0.1-r1/work/ | xargs -0 sed -i "/\#pragma GCC optimize (/,/)/d"' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - sed -i '/cmake_src_prepare/i \\telog "GCC graphite optimizations removed."' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   - ebuild /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild manifest
   prereqs:
