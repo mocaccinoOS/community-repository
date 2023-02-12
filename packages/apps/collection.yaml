@@ -9490,6 +9490,10 @@ packages:
     # env_profile: "compiler-clang"
   - atom: "sys-devel/gcc"
     use: "graphite"
+    env: |
+      GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
+      CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
+      CXXFLAGS="${CFLAGS}"
   # prepare:
   # - sed -i -e 's/LLVM_MAX_SLOT=14/LLVM_MAX_SLOT=15/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   # - sed -i '/CC="clang"/i PATH="/usr/lib/llvm/14/bin:${PATH}"' /etc/portage/env/compiler-clang
@@ -9508,7 +9512,8 @@ packages:
   # - sed -i '/cmake_src_prepare/i \\telog "GCC graphite optimizations removed."' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   # - ebuild /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild manifest
   # preemerge:
-  # - sys-devel/gcc;USE="graphite"
+  # - sys-devel/gcc
+  # ;USE="graphite"
   prereqs:
   - dev-python/jsonschema
   requires:
