@@ -9469,7 +9469,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.0.1-r1+1"
+  version: "4.0.1-r1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -9488,12 +9488,12 @@ packages:
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
     # darktable needs gcc[graphite] or clang
     # env_profile: "compiler-clang"
-  - atom: "sys-devel/gcc"
-    use: "graphite"
-    env: |
-      GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
-      CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
-      CXXFLAGS="${CFLAGS}"
+  # - atom: "sys-devel/gcc"
+  #   use: "graphite"
+    # env: |
+    #   GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
+    #   CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
+    #   CXXFLAGS="${CFLAGS}"
   # prepare:
   # - sed -i -e 's/LLVM_MAX_SLOT=14/LLVM_MAX_SLOT=15/' /var/db/repos/gentoo/media-gfx/darktable/darktable-4.0.1-r1.ebuild
   # - sed -i '/CC="clang"/i PATH="/usr/lib/llvm/14/bin:${PATH}"' /etc/portage/env/compiler-clang
