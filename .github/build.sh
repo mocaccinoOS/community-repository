@@ -2,6 +2,7 @@
 
 sudo -E luet build \
         --only-target-package \
+        --pull-repository quay.io/mocaccino/desktop \
         --pull-repository quay.io/mocaccino/os-commons \
         --pull-repository quay.io/mocaccino/extra \
         --pull-repository $PULL_REPOSITORY \
