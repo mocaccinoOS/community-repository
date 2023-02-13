@@ -120,6 +120,7 @@
   mkdir -p /etc/portage/env; \
   echo -e "{{ ($value | replace "\n" "\\n") }}" >> /etc/portage/env/{{ $filename }}.conf; \
   echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
+  cat /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 {{- $value := (index $atom "env_profile" ) }}
 {{- if $value }}
