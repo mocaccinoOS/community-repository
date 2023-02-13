@@ -34,6 +34,11 @@ prelude:
 {{ end }}
 {{ end }}
 
+{{ if eq .Values.name "darktable" }}
+{{ $debug := include "cr.packages_setup" .Values }}
+{{ include "cr.dump" $debug }}
+{{ end }}
+
 {{ include "cr.packages_setup" .Values }}
 
 {{ range include "cr.prereqs" .Values | fromJsonArray }}

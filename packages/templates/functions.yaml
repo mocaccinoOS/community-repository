@@ -115,7 +115,7 @@
   echo -e "{{ $atom.atom }} >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
 {{- end }}
-{{- $value := (index $atom "env" ) }}
+{{- $value := (index $atom "env") }}
 {{- if $value }}
   mkdir -p /etc/portage/env; \
   echo -e "{{ ($value | replace "\n" "\\n") }}" >> /etc/portage/env/{{ $filename }}.conf; \
