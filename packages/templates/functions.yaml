@@ -117,6 +117,7 @@
 {{- end }}
 {{- $value := (index $atom "env") }}
 {{- if $value }}
+  set -x; \
   mkdir -p /etc/portage/env; \
   echo -e "{{ ($value | replace "\n" "\\n") }}" >> /etc/portage/env/{{ $filename }}.conf; \
   echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
