@@ -9487,9 +9487,9 @@ packages:
   - atom: "media-gfx/darktable"
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k nls opencl openexr tools webp # flickr gamepad geolocation gmic gnome-keyring graphicsmagick kwallet lto lua midi openmp test"
     env: |
-      GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
-      CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 \${GRAPHITE}"
-      CXXFLAGS="\${CFLAGS}"
+      GRAPHITE=\\\"-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block\\\"
+      CFLAGS=\\\"-O2 -march=x86-64 -msse -msse2 -msse3 \\\${GRAPHITE}\\\"
+      CXXFLAGS=\\\"\\\${CFLAGS}\\\"
   prereqs:
   - dev-python/jsonschema
   requires:
