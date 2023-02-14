@@ -8709,7 +8709,7 @@ packages:
   name: "libgnomecanvas"
   version: "2.30.3-r1+1"
   uri:
-    - https://library.gnome.org/devel/libgnomecanvas/stable/
+  - https://library.gnome.org/devel/libgnomecanvas/stable/
   license: "LGPL-2"
   description: "The Gnome 2 Canvas library"
   labels:
@@ -10023,6 +10023,31 @@ packages:
 #   - <<: *libs-svgalib
   - <<: *libs-gpm
   - <<: *libs-lzip
+  build_requires:
+  - <<: *layers-X
+
+- &apps-linux-wbfs-manager
+  category: "apps"
+  name: "linux-wbfs-manager"
+  version: "0.1.12"
+  uri:
+  - https://code.google.com/p/linux-wbfs-manager/
+  license: "GPL-2"
+  description: "WBFS manager for Linux using GTK+"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-util/linux-wbfs-manager
+  provides:
+  - category: "games-util"
+    name: "linux-wbfs-manager"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/linux-wbfs-manager"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
 
