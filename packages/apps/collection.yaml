@@ -12966,30 +12966,30 @@ packages:
 #   build_requires:
 #   - <<: *layers-qt
 
-- category: "apps"
-  name: "goneovim"
-  version: "0.6.4+3"
-  uri:
-  - https://github.com/akiyosi/goneovim
-  license: "MIT"
-  description: "A Neovim GUI written in Go, using a Qt binding for Go"
-  labels:
-    emerge.jobs: "1"
-  prepare:
-  - |
-    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.4.tar.gz && \
-    mkdir data && \
-    tar -xf v0.6.4.tar.gz --strip-components=1 -C data
-  setup:
-  - |
-    cd data/cmd/goneovim
-    $(go env GOPATH)/bin/qtdeploy build desktop
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-neovim
-    skip: true
-  build_requires:
-  - <<: *layers-qt
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.4+3"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   prepare:
+#   - |
+#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.4.tar.gz && \
+#     mkdir data && \
+#     tar -xf v0.6.4.tar.gz --strip-components=1 -C data
+#   setup:
+#   - |
+#     cd data/cmd/goneovim
+#     $(go env GOPATH)/bin/qtdeploy build desktop
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-hugin
   category: "apps"
