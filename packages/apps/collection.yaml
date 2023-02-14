@@ -258,6 +258,10 @@ anchors:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-drivers/nvidia-drivers
+  atoms:
+  - atom: "x11-drivers/nvidia-drivers"
+    license: "NVIDIA-r2"
+    use: "static-libs"
   requires:
   - <<: *kernel-gentoo
   # - <<: *kernel-mocaccino-lts-full
@@ -1034,8 +1038,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "x11-libs/fltk"
-    use: "cairo examples games opengl threads xft xinerama"
     license: "FLTK LGPL-2"
+    use: "cairo examples games opengl threads xft xinerama"
   requires:
   - <<: *layers-X
   build_requires:
@@ -6372,10 +6376,7 @@ packages:
   atoms:
   - atom: "games-util/mangohud"
     use: "dbus glvnd X -wayland xnvctrl video_cards_nvidia video_cards_amdgpu -abi_x86_32 # wayland"
-    license: "NVIDIA-r2"
     accept_keywords: "~amd64"
-  - atom: "x11-drivers/nvidia-drivers"
-    use: "static-libs"
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
@@ -6826,8 +6827,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "www-client/opera"
-    use: "-qt5"
     license: "OPERA-2018"
+    use: "-qt5"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9236,8 +9237,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/brother-scan4-bin"
-    use: "avahi"
     license: "GPL-2 brother-eula no-source-code"
+    use: "avahi"
   prereqs:
   - virtual/libusb:0
   requires:
@@ -13916,8 +13917,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "sci-libs/dcmtk"
-    use: "png ssl tcpd tiff threads xml zlib"
     license: "OFFIS"
+    use: "png ssl tcpd tiff threads xml zlib"
   requires:
   - <<: *layers-qt
   - <<: *apps-graphviz
