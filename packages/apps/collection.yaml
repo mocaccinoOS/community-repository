@@ -12935,9 +12935,40 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.4"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   prepare:
+#   - |
+#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.4/goneovim-v0.6.4-linux.tar.bz2 && \
+#     wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.ico && \
+#     wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.desktop && \
+#     mkdir data && \
+#     tar -xf goneovim-v0.6.4-linux.tar.bz2 --strip-components=1 -C data
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cp goneovim.ico /usr/share/pixmaps && \
+#     cp goneovim.desktop /usr/share/applications && \
+#     cp data/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *layers-qt
+
 - category: "apps"
   name: "goneovim"
-  version: "0.6.4"
+  version: "0.6.4+1"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -12946,19 +12977,13 @@ packages:
     emerge.jobs: "1"
   prepare:
   - |
-    wget https://github.com/akiyosi/goneovim/releases/download/v0.6.4/goneovim-v0.6.4-linux.tar.bz2 && \
-    wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.ico && \
-    wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.desktop && \
+    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.4.tar.gz && \
     mkdir data && \
-    tar -xf goneovim-v0.6.4-linux.tar.bz2 --strip-components=1 -C data
+    tar -xf v0.6.4.tar.gz --strip-components=1 -C data
   setup:
   - |
-    mkdir -p -m 755 /usr/share/pixmaps && \
-    cp goneovim.ico /usr/share/pixmaps && \
-    cp goneovim.desktop /usr/share/applications && \
-    cp data/goneovim /usr/bin && \
-    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+    cd data/cmd/goneovim
+    $(go env GOPATH)/bin/qtdeploy build desktop
   requires:
   - <<: *layers-qt
   - <<: *apps-neovim
