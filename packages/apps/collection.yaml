@@ -7783,6 +7783,25 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "shortwave"
+  version: 3.1.0+19
+  uri:
+  - https://gitlab.gnome.org/World/Shortwave.git
+  license: "GPL-3"
+  description: "Listen to internet radio"
+  labels:
+    emerge.jobs: "1"
+  prepare:
+  - git clone https://gitlab.gnome.org/World/Shortwave.git
+  - cd Shortwave && git checkout de062d5f2a2f395bb2c3f8149793d4203593e912 && meson --prefix=/usr build && ninja -C build
+  setup:
+  - cd Shortwave && ninja -C build install
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "systemdgenie"
   version: "0.99.0_p20221120"
   uri:
