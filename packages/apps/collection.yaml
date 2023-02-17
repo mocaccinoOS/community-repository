@@ -7802,6 +7802,26 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "st"
+  version: 0.8.4+42
+  uri:
+  - https://st.suckless.org
+  license: "MIT-with-advertising"
+  description: "Simple terminal implementation for X"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      x11-terms/st
+  provides:
+  - name: "st"
+    category: "x11-terms"
+    version: ">=0"
+  requires:
+  - <<: *layers-X"
+  build_requires:
+  - <<: *layers-X"
+
+- category: "apps"
   name: "systemdgenie"
   version: "0.99.0_p20221120"
   uri:
