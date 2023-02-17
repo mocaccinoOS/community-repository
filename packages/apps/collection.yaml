@@ -4116,6 +4116,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "amberol"
+  version: 0.9.2+19
+  uri:
+  - https://gitlab.gnome.org/World/amberol
+  license: "GPL-3+"
+  description: "A small and simple sound and music player that is well integrated with GNOME."
+  prepare:
+  - git clone https://gitlab.gnome.org/World/amberol.git
+  - cd amberol && git checkout c23ec2f11fa441c402b80f7a1733ac9aea65c81d && meson --prefix=/usr build
+  setup:
+  - cd amberol && ninja -C build install
+  excludes:
+  - ^/usr/local/share/icons/hicolor/icon-theme.cache
+  - ^/usr/local/share/applications/mimeinfo.cache
+  - ^/usr/local/share/glib-2.0/schemas/gschemas.compiled
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
