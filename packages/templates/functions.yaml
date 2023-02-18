@@ -216,16 +216,16 @@
 {{- end }}
 {{- end }}
 
-{{- if .completion }}
-{{- range .completion }}
+{{- end }}
+{{- end }}
+
+{{- if .ready }}
+{{- range .ready }}
 {{- if . }}
 {{- if not (has . $commands) }}
 {{- $commands = append $commands . }}
 {{- end }}
 {{- end }}
-{{- end }}
-{{- end }}
-
 {{- end }}
 {{- end }}
 
@@ -301,6 +301,27 @@
 {{- if $command }}
 {{- if not (has $command $commands) }}
 {{- $commands = append $commands $command }}
+{{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{ if .unmerge }}
+{{ range .unmerge }}
+- emerge -C {{ . }}
+{{ end }}
+{{ end }}
+{{ if .etc_update }}
+{{ if .etc_update.mode }}
+- etc-update -q --automode {{ .etc_update.mode }}
+{{ end }}
+{{ end }}
+
+{{- if .completion }}
+{{- range .completion }}
+{{- if . }}
+{{- if not (has . $commands) }}
+{{- $commands = append $commands . }}
 {{- end }}
 {{- end }}
 {{- end }}

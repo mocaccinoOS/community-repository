@@ -5515,6 +5515,53 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-go
+  category: "apps"
+  name: "go"
+  version: "1.19.6"
+  uri:
+  - https://go.dev
+  license: "BSD"
+  description: "A concurrent garbage collected and typesafe programming language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/go
+  provides:
+  - category: "dev-lang"
+    name: "go"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "go-bootstrap"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "google-chrome"
+  version: "108.0.5359.124-r1+11"
+  uri:
+  - https://www.google.com/chrome
+  license: "google-chrome"
+  description: "The web browser from Google"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/google-chrome
+  provides:
+  - name: google-chrome
+    category: www-client
+    version: '>=0'
+  atoms:
+  - atom: "www-client/google-chrome"
+    use: "-qt5"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
 - category: "apps"
   name: "grub-btrfs"
   version: "4.11+2"
@@ -7718,6 +7765,35 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "tor"
+  version: "0.4.6.10+18"
+  uri:
+  - https://www.torproject.org
+  license: "BSD GPL-2"
+  description: "Anonymizing overlay network for TCP"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/tor
+  provides:
+  - name: tor
+    category: "acct-group"
+    version: '>=0'
+  - name: tor
+    category: "acct-user"
+    version: '>=0'
+  - name: tor
+    category: "net-vpn"
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  - category: "entity"
+    name: "tor"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-transfig
   category: "apps"
@@ -13082,15 +13158,25 @@ packages:
 #   description: "A Neovim GUI written in Go, using a Qt binding for Go"
 #   labels:
 #     emerge.jobs: "1"
-#   prepare:
+#   prerequires:
+#   - <<: *apps-go
+#   ready:
 #   - |
-#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.4.tar.gz && \
-#     mkdir data && \
-#     tar -xf v0.6.4.tar.gz --strip-components=1 -C data
+#     export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
+#     $(go env GOPATH)/bin/qtsetup -test=false && \
+#     go get -d -v github.com/akiyosi/goneovim@v0.6.4 && \
+#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
+#     $(go env GOPATH)/bin/qtmoc && \
+#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
+#     $(go env GOPATH)/bin/qtdeploy build desktop
 #   setup:
 #   - |
-#     cd data/cmd/goneovim
-#     $(go env GOPATH)/bin/qtdeploy build desktop
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/deply/linux/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp /root/go/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
 #   requires:
 #   - <<: *layers-qt
 #   - <<: *apps-neovim
