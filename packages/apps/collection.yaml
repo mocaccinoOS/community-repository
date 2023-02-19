@@ -8911,8 +8911,11 @@ packages:
   atoms:
   - atom: "gnome-base/libgnomecanvas"
     use: "glade"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
@@ -14139,7 +14142,7 @@ packages:
 - &libs-gtkmm-2
   category: "libs"
   name: "gtkmm"
-  version: "2.24.5-r1+1"
+  version: "2.24.5-r1+2"
   uri:
   - https://www.gtkmm.org
   license: "LGPL-2.1+"
@@ -14152,10 +14155,13 @@ packages:
   - category: "dev-cpp"
     name: "gtkmm"
     version: ">=0"
+  preemerge:
+  - x11-libs/gtk+:2
   optrequires:
   - <<: *apps-graphviz
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-qt
 
