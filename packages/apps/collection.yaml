@@ -13152,7 +13152,7 @@ packages:
 # go install github.com/akiyosi/goneovim@v0.6.4
 - category: "apps"
   name: "goneovim"
-  version: "0.6.4+3"
+  version: "0.6.4+4"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -13176,11 +13176,13 @@ packages:
   setup:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
-    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp /root/go/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
   - <<: *layers-qt
   - <<: *apps-neovim
