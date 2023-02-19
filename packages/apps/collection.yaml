@@ -1317,10 +1317,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gtk2
+  category: "libs"
+  name: "gtk2"
+  version: "2.24.33-r2"
+  uri:
+  - https://www.gtk.org
+  license: "LGPL-2+"
+  description: "Gimp ToolKit +"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtk+:2
+  provides:
+  - category: "x11-libs"
+    name: "gtk+"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gtkglext
   category: "libs"
   name: "gtkglext"
-  version: "1.2.0-r5+1"
+  version: "1.2.0-r5+2"
   uri:
   - http://gtkglext.sourceforge.net/
   license: "GPL-2+ LGPL-2.1+"
@@ -1335,8 +1356,10 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
 
 - &libs-gtksourceviewmm
   category: "libs"
@@ -5671,7 +5694,7 @@ packages:
 
 - category: "apps"
   name: "hexchat"
-  version: "2.16.1+1"
+  version: "2.16.1+2"
   uri:
   - https://hexchat.github.io/
   license: "GPL-2 MIT"
@@ -5686,8 +5709,10 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-gnome-common
+  - <<: *libs-gtk2
 
 - category: "apps"
   name: "httrack"
@@ -8652,7 +8677,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-Gtk2
+- &libs-perlGtk2
   category: "libs"
   name: "Gtk2"
   version: "1.249.930+1"
@@ -8670,10 +8695,12 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   - <<: *libs-Pango
   build_requires:
   - <<: *layers-X
- 
+  - <<: *libs-gtk2
+
 - &libs-gtkspell
   category: "libs"
   name: "gtkspell"
@@ -15031,7 +15058,7 @@ packages:
 
 - category: "apps"
   name: "dvdshrink"
-  version: "2.6.1_p10-r1+3"
+  version: "2.6.1_p10-r1+4"
   uri:
   - http://dvdshrink.sourceforge.net
   license: "GPL-2"
@@ -15046,7 +15073,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-Gtk2
+  - <<: *libs-perlGtk2
   - <<: *apps-dvd-rw-tools
   - <<: *apps-dvdauthor
   - <<: *apps-gocr
