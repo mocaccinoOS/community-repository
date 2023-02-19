@@ -13149,40 +13149,44 @@ packages:
 #   build_requires:
 #   - <<: *layers-qt
 
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.4+3"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   prerequires:
-#   - <<: *apps-go
-#   ready:
-#   - |
-#     export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
-#     $(go env GOPATH)/bin/qtsetup -test=false && \
-#     go get -d -v github.com/akiyosi/goneovim@v0.6.4 && \
-#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
-#     $(go env GOPATH)/bin/qtmoc && \
-#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
-#     $(go env GOPATH)/bin/qtdeploy build desktop
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/deply/linux/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp /root/go/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *layers-qt
+# go install github.com/akiyosi/goneovim@v0.6.4
+- category: "apps"
+  name: "goneovim"
+  version: "0.6.4+3"
+  uri:
+  - https://github.com/akiyosi/goneovim
+  license: "MIT"
+  description: "A Neovim GUI written in Go, using a Qt binding for Go"
+  labels:
+    emerge.jobs: "1"
+  prerequires:
+  - <<: *apps-go
+  ready:
+  - |
+    go list -m -versions github.com/akiyosi/goneovim
+  - |
+    export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
+    $(go env GOPATH)/bin/qtsetup -test=false && \
+    go get -d -v github.com/akiyosi/goneovim/... && \
+    cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
+    git checkout v0.6.4 -b v0.6.4 && \
+    $(go env GOPATH)/bin/qtmoc && \
+    cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
+    $(go env GOPATH)/bin/qtdeploy build desktop
+  setup:
+  - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    cp /root/go/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+    cp /root/go/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-neovim
+    skip: true
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-hugin
   category: "apps"
