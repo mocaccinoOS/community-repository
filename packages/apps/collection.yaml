@@ -1354,12 +1354,13 @@ packages:
   - category: "x11-libs"
     name: "gtkglext"
     version: ">=0"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
 
 - &libs-gtksourceviewmm
   category: "libs"
@@ -5707,12 +5708,13 @@ packages:
   - category: "net-irc"
     name: "hexchat"
     version: ">=0"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gtk2
 
 - category: "apps"
   name: "httrack"
@@ -8693,13 +8695,14 @@ packages:
   - category: "dev-perl"
     name: "Gtk2"
     version: ">=0"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
   - <<: *libs-Pango
   build_requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
 
 - &libs-gtkspell
   category: "libs"
@@ -13472,6 +13475,8 @@ packages:
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl tk v4l xscreensaver zephyr zeroconf # aqua"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
@@ -13483,7 +13488,6 @@ packages:
   - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gtk2
 
 - category: "apps"
   name: "qsynth"
@@ -13841,13 +13845,14 @@ packages:
   atoms:
   - atom: "media-libs/suil"
     use: "gtk gtk2 qt5"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-qt
   - <<: *libs-gtk2
   - <<: *libs-lv2
   build_requires:
   - <<: *layers-qt
-  - <<: *libs-gtk2
 
 - &libs-telepathy-farstream
   category: "libs"
@@ -14635,6 +14640,8 @@ packages:
     accept_keywords: "~amd64"
   optrequires:
   - <<: *apps-doxygen
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -14652,7 +14659,6 @@ packages:
   - <<: *libs-vamp-plugin-sdk
   build_requires:
   - <<: *layers-qt
-  - <<: *libs-gtk2
 
 - category: "apps"
   name: "krita"
