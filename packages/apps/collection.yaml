@@ -13450,7 +13450,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.10-r1"
+  version: "2.14.10-r1+1"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -13474,6 +13474,7 @@ packages:
     use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl tk v4l xscreensaver zephyr zeroconf # aqua"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-gtk2
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
   - <<: *libs-gtkspell
@@ -13482,6 +13483,7 @@ packages:
   - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
+  - <<: *libs-gtk2
 
 - category: "apps"
   name: "qsynth"
@@ -13823,7 +13825,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.18"
+  version: "0.10.18+1"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -13841,9 +13843,11 @@ packages:
     use: "gtk gtk2 qt5"
   requires:
   - <<: *layers-qt
+  - <<: *libs-gtk2
   - <<: *libs-lv2
   build_requires:
   - <<: *layers-qt
+  - <<: *libs-gtk2
 
 - &libs-telepathy-farstream
   category: "libs"
@@ -14612,7 +14616,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "7.2+1"
+  version: "7.2+2"
   uri:
   - https://ardour.org/
   license: "AGPL-3"
@@ -14633,6 +14637,7 @@ packages:
   - <<: *apps-doxygen
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   - <<: *libs-aubio
   - <<: *libs-gtkmm-2
   - <<: *libs-libgnomecanvas
@@ -14647,6 +14652,7 @@ packages:
   - <<: *libs-vamp-plugin-sdk
   build_requires:
   - <<: *layers-qt
+  - <<: *libs-gtk2
 
 - category: "apps"
   name: "krita"
