@@ -1360,6 +1360,9 @@ packages:
   - category: "x11-libs"
     name: "gtkglext"
     version: ">=0"
+  atoms:
+  - atom: "x11-libs/gtkglext"
+    accept_keywords: "~amd64"
   preemerge:
   - x11-libs/gtk+:2
   requires:
@@ -3975,7 +3978,7 @@ packages:
 - &libs-wxGTK-3_0-gtk3
   category: "libs"
   name: "wxGTK"
-  version: "3.0.5.1-r1+1"
+  version: "3.0.5.1-r1+2"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -3988,6 +3991,9 @@ packages:
   - category: "x11-libs"
     name: "wxGTK"
     version: ">=0"
+  atoms:
+  - atom: "x11-libs/wxGTK"
+    use: "webkit gstreamer libnotify sdl"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -14637,10 +14643,14 @@ packages:
   - category: "dev-python"
     name: "wxpython"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/wxpython"
+    use: "webkit"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *apps-doxygen
+  - <<: *libs-wxGTK-3_0-gtk3
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
