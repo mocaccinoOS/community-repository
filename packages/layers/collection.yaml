@@ -210,6 +210,15 @@ anchors:
       dev-perl/Path-Tiny
       dev-perl/Unicode-UTF8
 
+- &libs-pysol_cards
+  category: "libs"
+  name: "pysol_cards"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pysol_cards
+
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
@@ -259,14 +268,14 @@ anchors:
       dev-perl/Template-Toolkit
       dev-perl/AppConfig
 
-- &libs-pysol_cards
+- &libs-twisted
   category: "libs"
-  name: "pysol_cards"
+  name: "twisted"
   version: ">=0"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/pysol_cards
+      dev-python/twisted
 
 - &libs-xxhash
   category: "libs"
@@ -1031,7 +1040,7 @@ packages:
 
 - category: "layers"
   name: "kdegames"
-  version: "22.08.3"
+  version: "22.08.3+1"
   uri:
   - https://apps.kde.org/categories/games/
   license: "metapackage"
@@ -1193,6 +1202,7 @@ packages:
   - <<: *libs-Template-Toolkit
   - <<: *apps-gnuchess
   - <<: *libs-pysol_cards
+  - <<: *libs-twisted
   build_requires:
   - <<: *layers-kde-common
 

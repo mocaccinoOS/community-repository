@@ -3817,6 +3817,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-twisted
+  category: "libs"
+  name: "twisted"
+  version: "22.10.0"
+  uri:
+  - https://www.twistedmatrix.com/trac/
+  - https://github.com/twisted/incremental
+  license: "MIT"
+  description: |
+    An asynchronous networking framework written in Python
+    Incremental is a small library that versions your Python projects
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/twisted
+  provides:
+  - category: "dev-python"
+    name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "incremental"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-udis86
   category: "libs"
   name: "udis86"
@@ -13917,7 +13944,7 @@ packages:
 
 - category: "apps"
   name: "deluge"
-  version: "2.1.1-r1+1"
+  version: "2.1.1-r1+2"
   uri:
   - https://deluge-torrent.org/
   license: "GPL-2"
@@ -13939,6 +13966,7 @@ packages:
     name: "deluge"
     version: ">=0"
   - <<: *libs-pygame
+  - <<: *libs-twisted
   build_requires:
   - <<: *layers-X
 
