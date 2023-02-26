@@ -9124,6 +9124,34 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-mpg123
+  category: "libs"
+  name: "mpg123"
+  version: "1.31.2"
+  uri:
+  - https://www.mpg123.org/
+  license: "LGPL-2.1"
+  description: "A realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/mpg123
+  provides:
+  - category: "media-sound"
+    name: "mpg123"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-mpg123"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/mpg123"
+    use: "alsa coreaudio ipv6 jack nas oss portaudio pulseaudio sdl int-quality"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-nas
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
@@ -10383,34 +10411,6 @@ packages:
   - <<: *libs-nlohmann_json
   build_requires:
   - <<: *layers-qt
-
-- &apps-mpg123
-  category: "apps"
-  name: "mpg123"
-  version: "1.31.2"
-  uri:
-  - https://www.mpg123.org/
-  license: "LGPL-2.1"
-  description: "A realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/mpg123
-  provides:
-  - category: "media-sound"
-    name: "mpg123"
-    version: ">=0"
-  - category: "app-eselect"
-    name: "eselect-mpg123"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/mpg123"
-    use: "alsa coreaudio ipv6 jack nas oss portaudio pulseaudio sdl int-quality"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-nas
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "musescore"
