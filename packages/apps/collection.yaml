@@ -10726,6 +10726,31 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-qdevicemonitor
+  category: "apps"
+  name: "qdevicemonitor"
+  version: "1.0.1-r2"
+  uri:
+  - https://github.com/alopatindev/qdevicemonitor
+  license: "GPL-3"
+  description: "Crossplatform log viewer for Android, iOS and text files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/qdevicemonitor
+  provides:
+  - category: "dev-util"
+    name: "qdevicemonitor"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/qdevicemonitor"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-android-tools
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "qtox"
   version: "1.17.6-r1+1"
