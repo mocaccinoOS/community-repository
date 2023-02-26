@@ -10729,7 +10729,7 @@ packages:
 - &apps-qdevicemonitor
   category: "apps"
   name: "qdevicemonitor"
-  version: "1.0.1-r2"
+  version: "1.0.1-r2+1"
   uri:
   - https://github.com/alopatindev/qdevicemonitor
   license: "GPL-3"
@@ -10747,9 +10747,12 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
+  - <<: *layers-gnome-common
   - <<: *apps-android-tools
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - category: "apps"
   name: "qtox"
