@@ -9638,7 +9638,7 @@ packages:
 
 - category: "apps"
   name: "chemtool"
-  version: "1.6.14"
+  version: "1.6.14+1"
   uri:
   - http://ruby.chemie.uni-freiburg.de/~martin/chemtool/
   license: "GPL-2"
@@ -10726,33 +10726,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-qdevicemonitor
-  category: "apps"
-  name: "qdevicemonitor"
-  version: "1.0.1-r2+1"
-  uri:
-  - https://github.com/alopatindev/qdevicemonitor
-  license: "GPL-3"
-  description: "Crossplatform log viewer for Android, iOS and text files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/qdevicemonitor
-  provides:
-  - category: "dev-util"
-    name: "qdevicemonitor"
-    version: ">=0"
-  atoms:
-  - atom: "dev-util/qdevicemonitor"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-gnome-common
-  - <<: *apps-android-tools
-  build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-gnome-common
-  requires_final_images: true
+# - &apps-qdevicemonitor
+#   category: "apps"
+#   name: "qdevicemonitor"
+#   version: "1.0.1-r2+1"
+#   uri:
+#   - https://github.com/alopatindev/qdevicemonitor
+#   license: "GPL-3"
+#   description: "Crossplatform log viewer for Android, iOS and text files"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-util/qdevicemonitor
+#   provides:
+#   - category: "dev-util"
+#     name: "qdevicemonitor"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-util/qdevicemonitor"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-gnome-common
+#   - <<: *apps-android-tools
+#   build_requires:
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-gnome-common
+#   requires_final_images: true
 
 - category: "apps"
   name: "qtox"
