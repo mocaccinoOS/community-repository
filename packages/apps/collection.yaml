@@ -3299,10 +3299,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-python-zstandard
+- &libs-zstandard
   category: "libs"
-  name: "python-zstandard"
-  version: "0.19.0"
+  name: "zstandard"
+  version: "0.19.0+1"
   uri:
   - https://github.com/indygreg/python-zstandard/
   - https://pypi.org/project/zstandard/
@@ -3311,10 +3311,10 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/python-zstandard
+      dev-python/zstandard
   provides:
   - category: "dev-python"
-    name: "python-zstandard"
+    name: "zstandard"
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
@@ -15024,7 +15024,7 @@ packages:
   - dev-util/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *libs-python-zstandard
+  - <<: *libs-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
