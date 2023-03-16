@@ -4337,6 +4337,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "billardgl"
+  version: "1.75-r2"
+  uri:
+  - https://sourceforge.net/projects/billardgl/
+  license: "GPL-2"
+  description: "An OpenGL billards game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-sports/billardgl
+  provides:
+  - category: "games-sports"
+    name: "billardgl"
+    version: ">=0"
+  atoms:
+  - atom: "games-sports/billardgl"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
