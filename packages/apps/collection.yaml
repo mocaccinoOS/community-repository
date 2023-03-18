@@ -13526,6 +13526,27 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-ktimetracker
+  category: "apps"
+  name: "ktimetracker"
+  version: "5.0.1-r1"
+  uri:
+  - https://userbase.kde.org/KTimeTracker
+  license: "GPL-2+ FDL-1.2"
+  description: "Todo management and time tracker"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/ktimetracker
+  provides:
+  - category: "app-office"
+    name: "ktimetracker"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-moc
   category: "apps"
   name: "moc"
