@@ -6782,6 +6782,27 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-nmon
+  category: "apps"
+  name: "nmon"
+  version: "16n"
+  uri:
+  - http://nmon.sourceforge.net/
+  license: "GPL-3"
+  description: "Nigel's performance MONitor for CPU, memory, network, disks, etc"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/nmon
+  provides:
+  - category: "sys-process"
+    name: "nmon"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "nnn"
   version: "4.5"
