@@ -8020,6 +8020,31 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "sweeper"
+  version: "22.08.3"
+  uri:
+  - https://apps.kde.org/sweeper/
+  license: "GPL-3"
+  description: "Privacy settings widget to clean unwanted traces on the system"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/sweeper
+  provides:
+  - category: "kde-apps"
+    name: "sweeper"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/sweeper"
+    use: "handbook"
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "systemdgenie"
   version: "0.99.0_p20221120"
   uri:
