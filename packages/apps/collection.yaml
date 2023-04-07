@@ -8204,6 +8204,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-usbmuxd
+  category: "apps"
+  name: "usbmuxd"
+  version: "1.1.1"
+  uri:
+  - https://libimobiledevice.org/
+  license: "GPL-2 GPL-3 LGPL-2.1+"
+  description: "USB multiplex daemon for use with Apple iPhone/iPod Touch devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-pda/usbmuxd
+  provides:
+  - category: "app-pda"
+    name: "usbmuxd"
+    version: ">=0"
+  atoms:
+  - atom: "app-pda/usbmuxd"
+    use: "systemd"
+  requires:
+  - <<: *layers-gnome-common
+  - category: "entity"
+    name: "usbmux"
+    version: ">=0"
+  build_requires:
+  - <<: *buildbase-gnome-common
+
 - &apps-vcdimager
   category: "apps"
   name: "vcdimager"
@@ -10807,33 +10834,34 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-qdevicemonitor
-#   category: "apps"
-#   name: "qdevicemonitor"
-#   version: "1.0.1-r2+1"
-#   uri:
-#   - https://github.com/alopatindev/qdevicemonitor
-#   license: "GPL-3"
-#   description: "Crossplatform log viewer for Android, iOS and text files"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-util/qdevicemonitor
-#   provides:
-#   - category: "dev-util"
-#     name: "qdevicemonitor"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-util/qdevicemonitor"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-gnome-common
-#   - <<: *apps-android-tools
-#   build_requires:
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-gnome-common
-#   requires_final_images: true
+- &apps-qdevicemonitor
+  category: "apps"
+  name: "qdevicemonitor"
+  version: "1.0.1-r2+2"
+  uri:
+  - https://github.com/alopatindev/qdevicemonitor
+  license: "GPL-3"
+  description: "Crossplatform log viewer for Android, iOS and text files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/qdevicemonitor
+  provides:
+  - category: "dev-util"
+    name: "qdevicemonitor"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/qdevicemonitor"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-gnome-common
+  - <<: *apps-android-tools
+  - <<: *apps-usbmuxd
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - category: "apps"
   name: "qtox"
