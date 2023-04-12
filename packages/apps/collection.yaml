@@ -3273,9 +3273,9 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-python-zeroconf
+- &libs-zeroconf
   category: "libs"
-  name: "python-zeroconf"
+  name: "zeroconf"
   version: "0.39.4"
   uri:
   - https://github.com/jstasiak/python-zeroconf/
@@ -3286,13 +3286,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/ifaddr
-      dev-python/python-zeroconf
+      dev-python/zeroconf
   provides:
   - category: "dev-python"
     name: "ifaddr"
     version: ">=0"
   - category: "dev-python"
-    name: "python-zeroconf"
+    name: "zeroconf"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -8777,29 +8777,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gevent
-  category: "libs"
-  name: "gevent"
-  version: "21.12.0+5"
-  uri:
-  - https://www.gevent.org/
-  - https://pypi.org/project/gevent/
-  license: "MIT"
-  description: "Coroutine-based network library"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/gevent
-  provides:
-  - category: "dev-python"
-    name: "gevent"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-greenlet
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
@@ -11654,7 +11631,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
-  - <<: *libs-python-zeroconf
+  - <<: *libs-zeroconf
   build_requires:
   - <<: *layers-X
 
@@ -15193,7 +15170,7 @@ packages:
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
   - <<: *libs-wxpython
-  - <<: *libs-python-zeroconf
+  - <<: *libs-zeroconf
   - <<: *apps-argyllcms
   build_requires:
   - <<: *buildbase-gnome-common
