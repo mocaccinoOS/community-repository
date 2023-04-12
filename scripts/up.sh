@@ -126,8 +126,7 @@ function getCategoryPackageVersion() {
     # echo "Package name: ${CPV[PACKAGE_NAME]}" > /dev/tty
     # echo "Version/slot: ${CPV_INFO[VERSION_SLOT_TYPE]}"
     # echo "Version: ${CPV[VERSION]}" > /dev/tty
-    # echo "Version, major: ${CPV[VERSION_MAJOR]}" > /dev/tty
-    # echo "Version, minor: ${CPV[VERSION_MINOR]}" > /dev/tty
+    # echo "Version, dots: ${CPV[VERSION_DOTS]}" > /dev/tty
     # echo "Version, letter: ${CPV[VERSION_LETTER]}" > /dev/tty
     # echo "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}" > /dev/tty
     # echo "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
@@ -189,7 +188,7 @@ function compareVersions() {
     fi
     
     # no logic based on version specifier, for now    
-    KEYS=(VERSION_MAJOR VERSION_MINOR VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER)
+    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER)
     
     declare -i RESULT=0
 
@@ -204,6 +203,9 @@ function compareVersions() {
                     break
                 else
                     RESULT=$(compareDotsVersions "${CPV1[$KEY]}" "${CPV2[$KEY]}")
+                    if ((${RESULT} != 0)) ; then
+                        break
+                    fi
                 fi
             fi
         else        
@@ -365,7 +367,7 @@ function getLatestVersion() {
                     done
                 done
                 
-                # echo "Sorted: ${EBUILDS[@]}" > /dev/tty
+                echo "Sorted: ${EBUILDS[@]}" > /dev/tty
                 
                 # Search for the preferred version
                 # That is the first stable version or the first version of the same flavor
