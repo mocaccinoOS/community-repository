@@ -460,7 +460,8 @@ echo > packages.up
 
 for PKG in ${PACKAGES} ; do
 
-    PACKAGE=(${PKG//,/ })
+    # PACKAGE=(${PKG//,/ }) # will collapse empty values
+    IFS=',' read -r -a PACKAGE <<< "$PKG"
 
     PACKAGE_CATEGORY_NAME="${PACKAGE[0]}"
     PACKAGE_VERSION="${PACKAGE[1]}"
