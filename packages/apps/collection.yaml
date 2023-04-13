@@ -625,8 +625,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libavif
       media-libs/svt-av1
+      media-libs/libavif
   provides:
   - category: "media-libs"
     name: "libavif"
@@ -2520,30 +2520,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-lv2
-  category: "libs"
-  name: "lv2"
-  version: "1.18.10"
-  uri:
-  - https://lv2plug.in/
-  license: "MIT"
-  description: "A simple but extensible successor of LADSPA"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lv2
-  provides:
-  - category: "dev-libs"
-    name: "lv2"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/lv2"
-    use: "plugins"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-lzip
   category: "libs"
   name: "lzip"
@@ -4148,7 +4124,7 @@ packages:
 
 - category: "apps"
   name: "alacritty"
-  version: "0.9.0-r1+1"
+  version: "0.10.1"
   uri:
   - https://alacritty.org
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 FTL ISC MIT MPL-2.0"
@@ -4161,6 +4137,9 @@ packages:
   - category: "x11-terms"
     name: "alacritty"
     version: ">=0"
+  atoms:
+  - atom: "x11-terms/alacritty"
+    use: "wayland X"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4306,7 +4285,7 @@ packages:
 
 - category: "apps"
   name: "bchunk"
-  version: "1.2.2"
+  version: "1.2.2-r1"
   uri:
   - http://he.fi/bchunk/
   license: "GPL-2+"
@@ -4350,7 +4329,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.16.33"
+  version: "9.16.37-r1"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -4363,6 +4342,9 @@ packages:
   - category: "net-dns"
     name: "bind-tools"
     version: ">=0"
+  atoms:
+  - atom: "net-dns/bind-tools"
+    use: "caps doc gssapi idn libedit readline xml"
   prereqs:
   - dev-python/sphinx
   requires:
@@ -4415,7 +4397,7 @@ packages:
 - &apps-bluefish
   category: "apps"
   name: "bluefish"
-  version: "2.2.12"
+  version: "2.2.12-r2"
   uri:
   - https://bluefish.openoffice.nl/
   license: "GPL-3+"
@@ -4428,6 +4410,9 @@ packages:
   - category: "app-editors"
     name: "bluefish"
     version: ">=0"
+  # atoms:
+  # - atom: "app-editors/bluefish"
+  #   use: "spell nls python # gucharmap"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4436,7 +4421,7 @@ packages:
 - &apps-bottom
   category: "apps"
   name: "bottom"
-  version: "0.6.8+3"
+  version: "0.8.0"
   uri:
   - https://github.com/ClementTsang/bottom
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 MIT MPL-2.0 Unlicense ZLIB"
@@ -4479,7 +4464,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.47.171"
+  version: "1.50.114"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4626,7 +4611,7 @@ packages:
 
 - category: "apps"
   name: "clinfo"
-  version: "3.0.21.02.21-r1"
+  version: "3.0.23.01.25"
   uri:
   - https://github.com/Oblomov/clinfo
   license: "CC0-1.0"
@@ -4649,7 +4634,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "0.5.0-r2"
+  version: "22.12.3"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+ "
@@ -4662,6 +4647,9 @@ packages:
   - category: "kde-misc"
     name: "colord-kde"
     version: ">=0"
+  atoms:
+  - atom: "kde-misc/colord-kde"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-plasma
   build_requires:
@@ -4670,7 +4658,7 @@ packages:
 - &apps-converseen
   category: "apps"
   name: "converseen"
-  version: "0.9.9.0"
+  version: "0.9.10.0"
   uri:
   - https://converseen.fasterland.net/
   license: "GPL-3+"
@@ -4690,7 +4678,7 @@ packages:
 
 - category: "apps"
   name: "cool-retro-term"
-  version: "1.1.1+31"
+  version: "1.1.1-r2"
   uri:
   - https://github.com/Swordfish90/cool-retro-term
   license: "GPL-3 GPL-2"
@@ -4703,6 +4691,9 @@ packages:
     - category: "x11-terms"
       name: "cool-retro-term"
       version: ">=0"
+  atoms:
+  - atom: "x11-terms/cool-retro-term"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -4731,33 +4722,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-cpu-x
-  category: "apps"
-  name: "cpu-x"
-  version: "3.2.4"
-  uri:
-  - https://x0rg.github.io/CPU-X/
-  - http://libcpuid.sourceforge.net/
-  license: "GPL-3 GPL-3+ BSD-2"
-  description: |
-    A Free software that gathers information on CPU, motherboard and more
-    Small C library for x86 CPU detection and feature extraction
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-libs/libcpuid
-      sys-process/cpu-x
-  overlays:
-  - name: "calculate"
-  provides:
-  - category: "sys-process"
-    name: "cpu-x"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "cuetools"
@@ -4909,7 +4873,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.4.1+4"
+  version: "1.4.2.1"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -4922,6 +4886,9 @@ packages:
   - category: "app-containers"
     name: "distrobox"
     version: ">=0"
+  atoms:
+  - atom: "app-containers/distrobox"
+    accept_keywords: "~amd64"
   requires:
   - <<: *apps-docker
   build_requires:
@@ -8788,31 +8755,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-perlGtk2
-  category: "libs"
-  name: "Gtk2"
-  version: "1.249.930+1"
-  uri:
-  - https://metacpan.org/release/Gtk2
-  license: "LGPL-2.1+"
-  description: "Perl bindings for GTK2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-perl/Gtk2
-  provides:
-  - category: "dev-perl"
-    name: "Gtk2"
-    version: ">=0"
-  preemerge:
-  - x11-libs/gtk+:2
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  - <<: *libs-Pango
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gts
   category: "libs"
   name: "gts"
@@ -9172,6 +9114,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-lv2
+  category: "libs"
+  name: "lv2"
+  version: "1.18.10+1"
+  uri:
+  - https://lv2plug.in/
+  license: "MIT"
+  description: "A simple but extensible successor of LADSPA"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lv2
+  provides:
+  - category: "dev-libs"
+    name: "lv2"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/lv2"
+    use: "plugins"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-X
+
 - &libs-mpg123
   category: "libs"
   name: "mpg123"
@@ -9197,6 +9164,31 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-nas
+  build_requires:
+  - <<: *layers-X
+
+- &libs-perlGtk2
+  category: "libs"
+  name: "Gtk2"
+  version: "1.249.930+1"
+  uri:
+  - https://metacpan.org/release/Gtk2
+  license: "LGPL-2.1+"
+  description: "Perl bindings for GTK2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-perl/Gtk2
+  provides:
+  - category: "dev-perl"
+    name: "Gtk2"
+    version: ">=0"
+  preemerge:
+  - x11-libs/gtk+:2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  - <<: *libs-Pango
   build_requires:
   - <<: *layers-X
 
@@ -9775,6 +9767,32 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+- &apps-cpu-x
+  category: "apps"
+  name: "cpu-x"
+  version: "4.5.3"
+  uri:
+  - https://thetumultuousunicornofdarkness.github.io/CPU-X/
+  - http://libcpuid.sourceforge.net/
+  license: "GPL-3 GPL-3+ BSD-2"
+  description: |
+    A Free software that gathers information on CPU, motherboard and more
+    A small C library for x86 (and x86_64) CPU detection and feature extraction
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/libcpuid
+      sys-process/cpu-x
+  provides:
+  - category: "sys-apps"
+    name: "cpu-x"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-glfw
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "darktable"
   version: "4.0.1-r1+1"
@@ -10080,27 +10098,6 @@ packages:
   - <<: *layers-X
   - <<: *libs-nv-codec-headers
   - <<: *libs-zimg
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "helm-synthesizer"
-  version: "0.9.0-r1"
-  uri:
-  - https://tytel.org/helm/
-  license: "GPL-3+"
-  description: "Open source polyphonic software synthesizer with lots of modulation"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/helm
-  provides:
-  - category: "media-sound"
-    name: "helm"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-lv2
   build_requires:
   - <<: *layers-X
 
@@ -11249,32 +11246,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "yoshimi"
-  version: "2.2.2.1+3"
-  uri:
-  - http://yoshimi.sourceforge.net/
-  license: "GPL-2"
-  description: "Software synthesizer based on ZynAddSubFX"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/yoshimi
-  provides:
-  - category: "media-sound"
-    name: "yoshimi"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/yoshimi"
-    use: "lv2"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-mxml
-  - <<: *libs-lv2
-  - <<: *libs-fltk
-  build_requires:
-  - <<: *layers-X
-
 - &apps-zathura
   category: "apps"
   name: "zathura"
@@ -11994,6 +11965,27 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-latex
   requires_final_images: true
+
+- category: "apps"
+  name: "helm-synthesizer"
+  version: "0.9.0-r1"
+  uri:
+  - https://tytel.org/helm/
+  license: "GPL-3+"
+  description: "Open source polyphonic software synthesizer with lots of modulation"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/helm
+  provides:
+  - category: "media-sound"
+    name: "helm"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-X
 
 - &apps-img2pdf
   category: "apps"
@@ -12859,6 +12851,32 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libgnomecanvas
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "yoshimi"
+  version: "2.2.2.1+3"
+  uri:
+  - http://yoshimi.sourceforge.net/
+  license: "GPL-2"
+  description: "Software synthesizer based on ZynAddSubFX"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/yoshimi
+  provides:
+  - category: "media-sound"
+    name: "yoshimi"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/yoshimi"
+    use: "lv2"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-mxml
+  - <<: *libs-lv2
+  - <<: *libs-fltk
   build_requires:
   - <<: *layers-X
 
