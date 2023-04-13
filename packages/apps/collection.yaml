@@ -4494,6 +4494,9 @@ packages:
   - category: "www-client"
     name: "brave-bin"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libpthread-stubs"
+    version: ">=0"
   atoms:
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
@@ -4650,7 +4653,7 @@ packages:
   version: "22.12.3"
   uri:
   - https://invent.kde.org/graphics/colord-kde
-  license: "GPL-2+ "
+  license: "GPL-2+"
   description: "Provides interfaces and session daemon to colord"
   labels:
     emerge.jobs: "3"
@@ -9763,31 +9766,39 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- &apps-cpu-x
-  category: "apps"
-  name: "cpu-x"
-  version: "4.5.3"
-  uri:
-  - https://thetumultuousunicornofdarkness.github.io/CPU-X/
-  - http://libcpuid.sourceforge.net/
-  license: "GPL-3 GPL-3+ BSD-2"
-  description: |
-    A Free software that gathers information on CPU, motherboard and more
-    A small C library for x86 (and x86_64) CPU detection and feature extraction
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-libs/libcpuid
-      sys-process/cpu-x
-  provides:
-  - category: "sys-apps"
-    name: "cpu-x"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-X
+# - &apps-cpu-x
+#   category: "apps"
+#   name: "cpu-x"
+#   version: "4.5.3"
+#   uri:
+#   - https://thetumultuousunicornofdarkness.github.io/CPU-X/
+#   - http://libcpuid.sourceforge.net/
+#   license: "GPL-3 BSD-2"
+#   description: |
+#     A Free software that gathers information on CPU, motherboard and more
+#     A small C library for x86 (and x86_64) CPU detection and feature extraction
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-libs/libcpuid
+#       sys-apps/cpu-x
+#   provides:
+#   - category: "sys-apps"
+#     name: "cpu-x"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libcpuid"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-libs/libcpuid"
+#     accept_keywords: "~amd64"
+#   - atom: "sys-apps/cpu-x"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-glfw
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "darktable"
@@ -12350,35 +12361,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - category: "apps"
-#   name: "onedrive"
-#   version: "2.4.23"
-#   uri:
-#   - https://abraunegg.github.io
-#   license: "GPL-3"
-#   description: "Free Client for OneDrive on Linux"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/onedrive
-#   overlays:
-#   - name: "dlang"
-#   provides:
-#   - category: "net-misc"
-#     name: "onedrive"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-misc/onedrive"
-#     # use: "dmd-2_096 libnotify"
-#     use: "ldc2-1_29 libnotify"
-#     accept_keywords: "~amd64"
-#   # prereqs:
-#   # - =dev-lang/dmd-2.096.1:2.096
-#   # - =dev-lang/ldc2-1.29.0-r1
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "onedrive"
+  version: "2.4.23"
+  uri:
+  - https://abraunegg.github.io
+  license: "GPL-3"
+  description: "Free Client for OneDrive on Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/onedrive
+  overlays:
+  - name: "dlang"
+  provides:
+  - category: "net-misc"
+    name: "onedrive"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/onedrive"
+    use: "dmd-2_093 libnotify"
+    accept_keywords: "~amd64"
+  prereqs:
+  - =dev-lang/dmd-2.093.1:2.093
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "pdfarranger"
