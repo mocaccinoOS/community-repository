@@ -367,7 +367,7 @@ function getLatestVersion() {
                     done
                 done
                 
-                echo "Sorted: ${EBUILDS[@]}" > /dev/tty
+                # echo "Sorted: ${EBUILDS[@]}" > /dev/tty
                 
                 # Search for the preferred version
                 # That is the first stable version or the first version of the same flavor
@@ -421,7 +421,7 @@ fi
 # Ensure Gentoo overlay tree
 
 REFRESH_TREE="${REFRESH_TREE:-false}"
-PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-../../tree}"
+PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-../../portage/tree}"
 
 if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
     rm -r "${PORTAGE_TREE_PATH}"
@@ -441,9 +441,9 @@ fi
 
 # Parse mOS community repo
 
-# PKG_LIST=$(cd ${ROOT_PATH}; luet tree pkglist -f -o json)
+# PACKAGES=$(cd ${ROOT_PATH}; luet tree pkglist -f -o json)
 # | select(.name == "openrgb" or .name == "cfortran" or .name == "wine-staging" or .name == "terminatorx" or .name == "nnn" or .name == "hedgewars")
-PKG_LIST=$(yq r -j ${ROOT_PATH}/packages/${COLLECTION}/collection.yaml \
+PACKAGES=$(yq r -j ${ROOT_PATH}/packages/${COLLECTION}/collection.yaml \
 | jq -r '.packages[] 
 | select(.labels != null and .labels."emerge.packages" != null) 
 | .category + "/" + .name 
@@ -453,21 +453,21 @@ PKG_LIST=$(yq r -j ${ROOT_PATH}/packages/${COLLECTION}/collection.yaml \
 + "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end
 + "," + if (.overlays != null) then [(.overlays[] | .name)] | join(";") else "" end')
 
-# echo $PKG_LIST > packages.list
+# echo $PACKAGES > packages.list
 
 echo > packages.info
 echo > packages.up
 
-for PKG in ${PKG_LIST} ; do
+for PKG in ${PACKAGES} ; do
 
-    IFS=',' read -r -a PKG_INFO <<< "$PKG"
+    PACKAGE=(${PKG//,/ })
 
-    PACKAGE="${PKG_INFO[0]}"
-    PACKAGE_VERSION="${PKG_INFO[1]}"
-    ATOMS="${PKG_INFO[2]//;/ }"
-    ATOM_VERSION="${PKG_INFO[3]}"
-    ATOMS_FLAVORS="${PKG_INFO[4]//;/ }"
-    OVERLAYS="${PKG_INFO[5]//;/ }"
+    PACKAGE_CATEGORY_NAME="${PACKAGE[0]}"
+    PACKAGE_VERSION="${PACKAGE[1]}"
+    ATOMS="${PACKAGE[2]//;/ }"
+    ATOM_VERSION="${PACKAGE[3]}"
+    ATOMS_FLAVORS="${PACKAGE[4]//;/ }"
+    OVERLAYS="${PACKAGE[5]//;/ }"
     
     LINES=()
 
@@ -477,7 +477,7 @@ for PKG in ${PKG_LIST} ; do
     CLOSEST_ATOM=
     CLOSEST_ATOM_VER=
 
-    PACKAGE_NAME=$( echo -e "${PACKAGE}" | sed -e 's/\(.*\)\/\(.*\)/\2/' )
+    PACKAGE_NAME=$( echo -e "${PACKAGE_CATEGORY_NAME}" | sed -e 's/\(.*\)\/\(.*\)/\2/' )
 
     for ATOM in ${ATOMS} ; do
 
@@ -487,7 +487,7 @@ for PKG in ${PKG_LIST} ; do
 #         MORE_STRIPPED_ATOM=($( echo -e "${ATOM}" | sed -e 's/[<>=:]*\(.*\)\/\(.*\)[:-].*/\1 \2/' ))
 # 
 #         MATCHED_ATOM="${STRIPPED_ATOM[0]}/${STRIPPED_ATOM[1]}"
-#         VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE}" "${ATOMS_FLAVORS}" "${STRIPPED_ATOM[0]}" "${STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
+#         VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${STRIPPED_ATOM[0]}" "${STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
 #         
 #         if [[ -z "${VER}" ]] ; then
 #             echo "AAA: ${STRIPPED_ATOM[@]}" >> /dev/tty
@@ -496,7 +496,7 @@ for PKG in ${PKG_LIST} ; do
 #             echo "XXX: ${MORE_STRIPPED_ATOM[0]}" >> /dev/tty
 #             echo "YYY: ${MORE_STRIPPED_ATOM[1]}" >> /dev/tty
 #             MATCHED_ATOM="${MORE_STRIPPED_ATOM[0]}/${MORE_STRIPPED_ATOM[1]}"
-#             VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE}" "${ATOMS_FLAVORS}" "${MORE_STRIPPED_ATOM[0]}" "${MORE_STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
+#             VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${MORE_STRIPPED_ATOM[0]}" "${MORE_STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
 #         fi
 #         
 #         if [[ -z "${VER}" ]] ; then
@@ -505,8 +505,8 @@ for PKG in ${PKG_LIST} ; do
 # 
 #         LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
 # 
-#         LEV=$(levenshtein "${STRIPPED_ATOM[1]}" "${PKG_NAME}");
-#         LEVM=$(levenshtein "${MORE_STRIPPED_ATOM[1]}" "${PKG_NAME}");
+#         LEV=$(levenshtein "${STRIPPED_ATOM[1]}" "${PACKAGE_NAME}");
+#         LEVM=$(levenshtein "${MORE_STRIPPED_ATOM[1]}" "${PACKAGE_NAME}");
 # 
 #         if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEVM ]] ; then
 #             CLOSEST_LEV=$LEVM
@@ -527,7 +527,7 @@ for PKG in ${PKG_LIST} ; do
         ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
         ATOM_NAME="${CPV_ATOM[PACKAGE_NAME]}"
         
-        VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
+        VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
 
         MATCHED_ATOM="\U1FBC4"
         MATCHED_ATOM_VER="\U1FBC4"
@@ -538,8 +538,8 @@ for PKG in ${PKG_LIST} ; do
 
         LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
         
-        LEV=$(levenshtein "${ATOM_NAME}" "${PKG_NAME}");
-
+        LEV=$(levenshtein "${ATOM_NAME}" "${PACKAGE_NAME}");
+        
         if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEV ]] ; then
             CLOSEST_LEV=$LEV
             CLOSEST_ATOM="${MATCHED_ATOM}"
@@ -554,7 +554,7 @@ for PKG in ${PKG_LIST} ; do
         UPGRADE=" \U1F86D \U1FBC4"
         FILES="packages.info packages.up"
     else
-        if [[ ${PKG_INFO[3]} != ${CLOSEST_ATOM_VER} ]] ; then
+        if [[ ${ATOM_VERSION} != ${CLOSEST_ATOM_VER} ]] ; then
             UPGRADE=" \U1F86D ${CLOSEST_ATOM_VER}"
             FILES="packages.info packages.up"
         fi
@@ -565,7 +565,7 @@ for PKG in ${PKG_LIST} ; do
         ATOMS_FLAVORS_FORMATTED="${ATOMS_FLAVORS_FORMATTED// /) })"
     fi
     
-    LINES=("package: ${PACKAGE}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
+    LINES=("package: ${PACKAGE_CATEGORY_NAME}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
     
     for LINE in "${LINES[@]}" ; do
         echo -e "${LINE}" | tee -a $FILES > /dev/null
