@@ -625,8 +625,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/svt-av1
       media-libs/libavif
+      media-libs/svt-av1
   provides:
   - category: "media-libs"
     name: "libavif"
@@ -687,7 +687,7 @@ packages:
 - &libs-asio
   category: "libs"
   name: "asio"
-  version: "1.22.1"
+  version: "1.24.0"
   uri:
   - http://asio.sourceforge.net/
   license: "Boost-1.0"
@@ -708,7 +708,7 @@ packages:
 - &libs-asm
   category: "libs"
   name: "asm"
-  version: "9.3"
+  version: "9.4"
   uri:
   - https://asm.ow2.io
   license: "BSD"
@@ -781,7 +781,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "5.24.6+4"
+  version: "5.26.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -802,10 +802,40 @@ packages:
   build_requires:
   - <<: *apps-grub
 
+- &libs-build
+  category: "libs"
+  name: "build"
+  version: "0.10.0"
+  uri:
+  - https://pypi.org/project/build/
+  - https://github.com/pypa/build/
+  - https://pypi.org/project/pyproject_hooks/
+  license: "MIT"
+  description: |
+    A simple, correct PEP517 package builder
+    Wrappers to build Python packages using PEP 517 hooks
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyproject-hooks
+      dev-python/build
+  provides:
+  - category: "dev-python"
+    name: "build"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyproject-hooks"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-pep517
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "109.0.5414.119"
+  version: "111.0.5563.146"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -850,7 +880,7 @@ packages:
 - &libs-colorama
   category: "libs"
   name: "colorama"
-  version: "0.4.4-r1"
+  version: "0.4.6"
   uri:
   - https://pypi.org/project/colorama/
   - https://github.com/tartley/colorama/
@@ -934,30 +964,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
  
-- &libs-enchant-0
-  category: "libs"
-  name: "enchant"
-  version: "1.6.1-r2"
-  uri:
-  - https://abiword.github.io/enchant/
-  license: "LGPL-2.1+"
-  description: "Spellchecker wrapping library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/enchant:0
-  provides:
-  - category: "app-text"
-    name: "enchant"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/enchant"
-    use: "aspell # hunspell nuspell voikko"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-enet
   category: "libs"
   name: "enet"
@@ -1135,7 +1141,7 @@ packages:
 - &libs-girara
   category: "libs"
   name: "girara"
-  version: "0.3.7"
+  version: "0.3.9"
   uri:
   - https://pwmt.org/projects/girara/
   license: "GPL-2"
@@ -1206,7 +1212,7 @@ packages:
 - &libs-glfw
   category: "libs"
   name: "glfw"
-  version: "3.3.5+2"
+  version: "3.3.8"
   uri:
   - https://www.glfw.org/
   license: "ZLIB"
@@ -1227,7 +1233,7 @@ packages:
 - &libs-gmime-2
   category: "libs"
   name: "gmime-2"
-  version: "2.6.23-r1+1"
+  version: "2.6.23-r2"
   uri:
   - https://github.com/jstedfast/gmime
   - http://spruce.sourceforge.net/gmime/
@@ -1270,7 +1276,7 @@ packages:
 - &libs-greenlet
   category: "libs"
   name: "greenlet"
-  version: "1.1.2-r1"
+  version: "2.0.2"
   uri:
   - https://greenlet.readthedocs.io/en/latest/
   - https://github.com/python-greenlet/greenlet/
@@ -1442,7 +1448,7 @@ packages:
 - &libs-http-parser
   category: "libs"
   name: "http-parser"
-  version: "2.9.4-r1+1"
+  version: "2.9.4-r2"
   uri:
   - https://github.com/nodejs/http-parser
   license: "MIT"
@@ -1464,7 +1470,7 @@ packages:
 - &libs-id3lib
   category: "libs"
   name: "id3lib"
-  version: "3.8.3-r8"
+  version: "3.8.3-r10"
   uri:
   - http://id3lib.sourceforge.net/
   license: "LGPL-2.1"
@@ -1548,7 +1554,7 @@ packages:
 - &libs-kirigami-addons
   category: "libs"
   name: "kirigami-addons"
-  version: "0.6.2"
+  version: "0.7.2"
   uri:
   - https://invent.kde.org/libraries/kirigami-addons
   license: "GPL-2 GPL-3 LGPL-3 LGPL-2.1+"
@@ -1635,7 +1641,7 @@ packages:
 - &libs-libbpf
   category: "libs"
   name: "libbpf"
-  version: "0.8.1"
+  version: "1.1.0"
   uri:
   - https://github.com/libbpf/libbpf
   license: "GPL-2 LGPL-2.1 BSD-2"
@@ -1698,7 +1704,7 @@ packages:
 - &libs-libchamplain
   category: "libs"
   name: "libchamplain"
-  version: "0.12.20+4"
+  version: "0.12.21"
   uri:
   - https://wiki.gnome.org/Projects/libchamplain
   license: "LGPL-2.1+"
@@ -1743,7 +1749,7 @@ packages:
 - &libs-libdispatch
   category: "libs"
   name: "libdispatch"
-  version: "5.3.3-r1"
+  version: "5.7.1"
   uri:
   - https://github.com/apple/swift-corelibs-libdispatch
   license: "Apache-2.0"
@@ -1890,7 +1896,7 @@ packages:
 - &libs-libharu
   category: "libs"
   name: "libharu"
-  version: "2.3.0-r3"
+  version: "2.4.2-r1"
   uri:
   - http://www.libharu.org/
   license: "ZLIB"
@@ -1935,7 +1941,7 @@ packages:
 - &libs-libgii-libggi
   category: "libs"
   name: "libgii"
-  version: "0.1"
+  version: "0.2"
   uri:
   - https://ibiblio.org/ggicore/packages/libgii.html
   - https://ibiblio.org/ggicore/packages/libggi.html
@@ -2187,7 +2193,7 @@ packages:
 - &libs-libofa
   category: "libs"
   name: "libofa"
-  version: "0.9.3-r2+1"
+  version: "0.9.3-r3"
   uri:
   - https://code.google.com/p/musicip-libofa/
   license: "APL-1.0 GPL-2"
@@ -2295,7 +2301,7 @@ packages:
 - &libs-libsidplay
   category: "libs"
   name: "libsidplay"
-  version: "2.1.1-r5+1"
+  version: "2.1.1-r6"
   uri:
   - http://sidplay2.sourceforge.net/
   license: "GPL-2"
@@ -2316,7 +2322,7 @@ packages:
 - &libs-libsidplayfp
   category: "libs"
   name: "libsidplayfp"
-  version: "2.3.1+2"
+  version: "2.4.2"
   uri:
   - https://sourceforge.net/projects/sidplay-residfp/
   license: "GPL-2"
@@ -2386,7 +2392,7 @@ packages:
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
-  version: "1.6.3"
+  version: "1.6.4"
   uri:
   - https://www.x.org/wiki/
   license: "MIT"
@@ -2476,7 +2482,7 @@ packages:
 - &libs-loudmouth
   category: "libs"
   name: "loudmouth"
-  version: "1.5.3-r3+2"
+  version: "1.5.4"
   uri:
   - https://github.com/mcabber/loudmouth
   license: "LGPL-2.1"
@@ -2518,7 +2524,7 @@ packages:
 - &libs-lv2
   category: "libs"
   name: "lv2"
-  version: "1.18.8-r1"
+  version: "1.18.10"
   uri:
   - https://lv2plug.in/
   license: "MIT"
@@ -2624,7 +2630,7 @@ packages:
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
-  version: "2.28.0-r1+1"
+  version: "2.28.1"
   uri:
   - https://tls.mbed.org/
   license: "Apache-2.0"
@@ -2666,7 +2672,7 @@ packages:
 - &libs-mhash
   category: "libs"
   name: "mhash"
-  version: "0.9.9.9-r2+2"
+  version: "0.9.9.9-r3"
   uri:
   - http://mhash.sourceforge.net/
   license: "GPL-2"
@@ -2710,7 +2716,7 @@ packages:
 - &libs-motif
   category: "libs"
   name: "motif"
-  version: "2.3.8-r3"
+  version: "2.3.8-r5"
   uri:
   - https://sourceforge.net/projects/motif/
   license: "LGPL-2.1+ MIT"
@@ -2736,7 +2742,7 @@ packages:
 - &libs-msgpack
   category: "libs"
   name: "msgpack"
-  version: "3.3.0"
+  version: "3.3.0-r1"
   uri:
   - https://msgpack.org/
   license: "Boost-1.0"
@@ -2873,7 +2879,7 @@ packages:
 - &libs-neXtaw
   category: "libs"
   name: "neXtaw"
-  version: "0.15.1-r4"
+  version: "0.15.1-r5"
   uri:
   - https://siag.nu/neXtaw/
   license: "BSD"
@@ -2894,7 +2900,7 @@ packages:
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
-  version: "3.10.5+1"
+  version: "3.11.2-r1"
   uri:
   - https://github.com/nlohmann/json
   license: "MIT"
@@ -2938,7 +2944,7 @@ packages:
 - &libs-nv-codec-headers
   category: "libs"
   name: "nv-codec-headers"
-  version: "11.1.5.1-r1"
+  version: "11.1.5.2"
   uri:
   - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
   license: "MIT"
@@ -3029,7 +3035,7 @@ packages:
 - &libs-pbr
   category: "libs"
   name: "pbr"
-  version: "5.11.0"
+  version: "5.11.1"
   uri:
   - https://opendev.org/openstack/pbr/
   license: "Apache-2.0"
@@ -3047,33 +3053,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pep517
-  category: "libs"
-  name: "pep517"
-  version: "0.12.0-r1"
-  uri:
-  - https://pypi.org/project/pep517/
-  - https://github.com/pypa/pep517/
-  - https://pep517.readthedocs.io/
-  license: "MIT"
-  description: "Wrappers to build Python packages using PEP 517 hooks"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pep517
-  provides:
-  - category: "dev-python"
-    name: "pep517"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-perl-Tk
   category: "libs"
   name: "perl-Tk"
-  version: "804.36.0+1"
+  version: "804.36.0-r1"
   uri:
   - https://metacpan.org/release/Tk
   license: "Artistic GPL-1+ tcltk BSD"
@@ -3189,7 +3172,7 @@ packages:
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
-  version: "1.5.0-r1"
+  version: "1.5.0-r2"
   uri:
   - https://github.com/pyca/pynacl/
   - https://pypi.org/project/PyNaCl/
@@ -3277,7 +3260,7 @@ packages:
 - &libs-zeroconf
   category: "libs"
   name: "zeroconf"
-  version: "0.39.4"
+  version: "0.47.3"
   uri:
   - https://github.com/jstasiak/python-zeroconf/
   - https://pypi.org/project/zeroconf/
@@ -3307,7 +3290,7 @@ packages:
 - &libs-zstandard
   category: "libs"
   name: "zstandard"
-  version: "0.19.0+1"
+  version: "0.20.0"
   uri:
   - https://github.com/indygreg/python-zstandard/
   - https://pypi.org/project/zstandard/
@@ -3392,7 +3375,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.1.0-r4"
+  version: "2.3.0"
   uri:
   - https://github.com/spyder-ide/qtpy/
   license: "MIT"
@@ -3606,7 +3589,7 @@ packages:
 - &libs-sofia-sip
   category: "libs"
   name: "sofia-sip"
-  version: "1.13.8"
+  version: "1.13.9"
   uri:
   - https://github.com/freeswitch/sofia-sip
   license: "LGPL-2.1+ BSD public-domain"
@@ -3630,7 +3613,7 @@ packages:
 - &libs-soupsieve
   category: "libs"
   name: "soupsieve"
-  version: "2.3.2_p1"
+  version: "2.4"
   uri:
   - https://github.com/facelessuser/soupsieve
   license: "MIT"
@@ -3784,7 +3767,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r1"
+  version: "0.8.0_p20210321-r3"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -3920,7 +3903,7 @@ packages:
 - &libs-vc
   category: "libs"
   name: "vc"
-  version: "1.4.2+1"
+  version: "1.4.3"
   uri:
   - https://github.com/VcDevel/Vc
   license: "BSD"
@@ -4075,7 +4058,7 @@ packages:
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
-  version: "1.2.36"
+  version: "1.2.37"
   uri:
   - https://www.aleksey.com/xmlsec
   license: "MIT"
@@ -5721,6 +5704,31 @@ packages:
   - category: "app-misc"
     name: "gtk-sunlight"
     version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+
+- &apps-gtkspell
+  category: "apps"
+  name: "gtkspell"
+  version: "3.0.10-r1"
+  uri:
+  - http://gtkspell.sourceforge.net/
+  license: "GPL-2+"
+  description: "Spell checking widget for GTK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/gtkspell
+  provides:
+  - category: "app-text"
+    name: "gtkspell"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/gtkspell"
+    use: "introspection"
   requires:
   - <<: *layers-X
   build_requires:
@@ -8584,30 +8592,7 @@ packages:
   - <<: *libs-soupsieve
   build_requires:
   - <<: *layers-system-x
-
-- &libs-build
-  category: "libs"
-  name: "build"
-  version: "0.8.0"
-  uri:
-  - https://pypi.org/project/build/
-  - https://github.com/pypa/build/
-  license: "MIT"
-  description: "A simple, correct PEP517 package builder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/build
-  provides:
-  - category: "dev-python"
-    name: "build"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-pep517
-  build_requires:
-  - <<: *layers-system-x
-
+  
 - &libs-c-blosc
   category: "libs"
   name: "c-blosc"
@@ -8829,31 +8814,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gtkspell
-  category: "libs"
-  name: "gtkspell"
-  version: "2.0.16-r2"
-  uri:
-  - http://gtkspell.sourceforge.net/
-  license: "GPL-2+"
-  description: "Spell checking widget for GTK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/gtkspell:2
-  provides:
-  - category: "app-text"
-    name: "gtkspell"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/gtkspell"
-    use: "introspection"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-enchant-0
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gts
   category: "libs"
   name: "gts"
@@ -8995,7 +8955,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.5.0"
+  version: "1.5.2"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception"
@@ -9244,7 +9204,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "6.2.4+1"
+  version: "7.1.1"
   uri:
   - https://github.com/pikepdf/pikepdf/
   - https://pypi.org/project/pikepdf/
@@ -9274,7 +9234,7 @@ packages:
 - &libs-pysol_cards
   category: "libs"
   name: "pysol_cards"
-  version: "0.14.2"
+  version: "0.14.3"
   uri:
   - https://pypi.org/project/pysol-cards/
   license: "Apache-2.0 MIT"
@@ -9417,7 +9377,7 @@ packages:
 - &libs-tix
   category: "libs"
   name: "tix"
-  version: "8.4.3-r2+1"
+  version: "8.4.3-r4"
   uri:
   - http://tix.sourceforge.net/
   license: "BSD"
@@ -13687,7 +13647,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.10-r1+1"
+  version: "2.14.12"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -13716,7 +13676,7 @@ packages:
   - <<: *libs-gtk2
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
-  - <<: *libs-gtkspell
+  - <<: *apps-gtkspell
   - <<: *libs-libgadu
   - <<: *libs-meanwhile
   - <<: *apps-tk
