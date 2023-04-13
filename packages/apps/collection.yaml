@@ -4497,8 +4497,6 @@ packages:
   atoms:
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
-  prereqs:
-  - gnome-base/gconf
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -4996,7 +4994,7 @@ packages:
 
 - category: "apps"
   name: "epiphany"
-  version: "43.0"
+  version: "43.1"
   uri:
   - https://gitlab.gnome.org/GNOME/epiphany
   license: "GPL-3+"
@@ -5214,7 +5212,7 @@ packages:
 
 - category: "apps"
   name: "foliate"
-  version: "2.6.4-r1+1"
+  version: "2.6.4-r2"
   uri:
   - https://github.com/johnfactotum/foliate
   license: "GPL-3+"
@@ -5227,6 +5225,9 @@ packages:
   - category: "app-text"
     name: "foliate"
     version: ">=0"
+  atoms:
+  - atom: "app-text/foliate"
+    use: "handy"
   requires:
   - <<: *layers-gnome
   build_requires:
@@ -5235,7 +5236,7 @@ packages:
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
-  version: "20220308-r1"
+  version: "20230101"
   uri:
   - http://fontforge.sourceforge.net/
   license: "BSD"
@@ -5288,7 +5289,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.12.1+4"
+  version: "1.13.1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -5296,17 +5297,26 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      gui-apps/foot dev-libs/libutf8proc media-libs/fcft
+      gui-apps/foot
+      dev-libs/libutf8proc
+      media-libs/fcft
   provides:
-    - name: libutf8proc
-      category: dev-libs
-      version: '>=0'
-    - name: foot
-      category: gui-apps
-      version: '>=0'
-    - name: fcft
-      category: media-libs
-      version: '>=0'
+    - category: "dev-libs"
+      name: "libutf8proc"
+      version: ">=0"
+    - category: "gui-apps"
+      name: "foot"
+      version: ">=0"
+    - category: "media-libs"
+      name: "fcft"
+      version: ">=0"
+  atoms:
+  - atom: "dev-libs/tllist"
+    accept_keywords: "~amd64"
+  - atom: "gui-apps/foot"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/fcft"
+    accept_keywords: "~amd64"
   prereqs:
   - app-text/scdoc
   - dev-libs/tllist
@@ -5377,27 +5387,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-gconf
-  category: "apps"
-  name: "gconf"
-  version: "3.2.6-r6"
-  uri:
-    - https://projects.gnome.org/gconf/
-  license: "LGPL-2+"
-  description: "GNOME configuration system and daemon"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/gconf
-  provides:
-  - category: "gnome-base"
-    name: "gconf"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "geeqie"
   version: "1.7.3-r1+1"
@@ -5464,7 +5453,7 @@ packages:
 
 - category: "apps"
   name: "gnofract4d"
-  version: "4.3_p20211108"
+  version: "4.3_p20221125"
   uri:
   - https://fract4d.github.io/gnofract4d/
   license: "BSD"
@@ -5505,7 +5494,7 @@ packages:
 - &apps-gnuchess
   category: "apps"
   name: "gnuchess"
-  version: "6.2.9"
+  version: "6.2.9-r1"
   uri:
   - https://www.gnu.org/software/chess/chess.html
   license: "GPL-3 GPL-2"
@@ -5521,9 +5510,12 @@ packages:
   - category: "games-board"
     name: "gnuchess"
     version: ">=0"
-  - category: "games-board-book"
-    name: "gnuchess"
+  - category: "games-board"
+    name: "gnuches-books"
     version: ">=0"
+  atoms:
+  - atom: "games-board/gnuchess-book"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5532,7 +5524,7 @@ packages:
 - &apps-gnumeric
   category: "apps"
   name: "gnumeric"
-  version: "1.12.53-r1+1"
+  version: "1.12.55"
   uri:
   - http://www.gnumeric.org/
   license: "GPL-2"
@@ -5555,7 +5547,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.19.6"
+  version: "1.20.2"
   uri:
   - https://go.dev
   license: "BSD"
@@ -5578,7 +5570,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "108.0.5359.124-r1+11"
+  version: "111.0.5563.146"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -5601,7 +5593,7 @@ packages:
   
 - category: "apps"
   name: "grub-btrfs"
-  version: "4.11+2"
+  version: "4.12"
   uri:
   - https://github.com/Antynea/grub-btrfs
   license: "GPL-3"
@@ -5616,6 +5608,9 @@ packages:
   - category: "app-backup"
     name: "grub-btrfs"
     version: ">=0"
+  atoms:
+  - atom: "app-backup/grub-btrfs"
+    accept_keywords: "~amd64"
   requires:
   - <<: *apps-grub
   build_requires:
@@ -5623,7 +5618,7 @@ packages:
 
 - category: "apps"
   name: "gsmartcontrol"
-  version: "1.1.4"
+  version: "1.1.4-r1"
   uri:
   - https://gsmartcontrol.sourceforge.io/
   license: "GPL-2 GPL-3 Boost-1.0 BSD Unlicense ZLIB"
@@ -5691,7 +5686,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo"
-  version: "0.6_alpha_pre20201116-r1+1"
+  version: "0.6_alpha_pre20221113"
   uri:
   - https://github.com/lpereira/hardinfo
   license: "GPL-2"
@@ -5733,7 +5728,7 @@ packages:
 
 - category: "apps"
   name: "hexchat"
-  version: "2.16.1+2"
+  version: "2.16.1-r1"
   uri:
   - https://hexchat.github.io/
   license: "GPL-2 MIT"
@@ -6070,7 +6065,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.9.6"
+  version: "1.10.0"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -6132,7 +6127,7 @@ packages:
 
 - category: "apps"
   name: "kitty"
-  version: "0.26.5-r1"
+  version: "0.27.1"
   uri:
   - https://sw.kovidgoyal.net/kitty
   license: "GPL-3"
@@ -6179,6 +6174,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# hmm... not anymore in any of the Gentoo overlays, official or not!
 - category: "apps"
   name: "kooha"
   version: "2.0.1"
@@ -6196,6 +6192,9 @@ packages:
   - category: "media-video"
     name: "kooha"
     version: ">=0"
+  atoms:
+  - atom: "media-video/kooha"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome
   build_requires:
@@ -6218,6 +6217,9 @@ packages:
   - category: "app-misc"
     name: "kookbook"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/kookbook"
+    accept_keywords: "**"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -6293,7 +6295,7 @@ packages:
 
 - category: "apps"
   name: "ksnip"
-  version: "1.9.2+1"
+  version: "1.10.0-r1"
   uri:
   - https://github.com/ksnip/ksnip
   license: "GPL-2+"
@@ -6308,6 +6310,9 @@ packages:
   - category: "x11-misc"
     name: "ksnip"
     version: ">=0"
+  atoms:
+  - atom: "x11-misc/ksnip"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -6338,7 +6343,7 @@ packages:
 - &apps-kvantum
   category: "apps"
   name: "kvantum"
-  version: "1.0.1"
+  version: "1.0.7"
   uri:
   - https://github.com/tsujan/Kvantum
   license: "GPL-3"
@@ -6351,6 +6356,9 @@ packages:
   - category: "x11-themes"
     name: "kvantum"
     version: ">=0"
+  atoms:
+  - atom: "x11-themes/kvantum"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -9638,7 +9646,6 @@ packages:
     use: "encode mad vorbis"
   prereqs:
   - x11-misc/makedepend
-  - gnome-base/gconf
   requires:
   - <<: *layers-X
   - <<: *libs-libao
@@ -11439,6 +11446,9 @@ packages:
   - category: "dev-libs"
     name: "libgit2-glib"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/libgit2-glib"
+    use: "ssh vala"
   requires:
   - <<: *layers-X
   - <<: *libs-libgit2
@@ -12359,10 +12369,12 @@ packages:
 #     version: ">=0"
 #   atoms:
 #   - atom: "net-misc/onedrive"
-#     use: "dmd-2_096 libnotify"
+#     # use: "dmd-2_096 libnotify"
+#     use: "ldc2-1_29 libnotify"
 #     accept_keywords: "~amd64"
-#   prereqs:
-#   - =dev-lang/dmd-2.096.1
+#   # prereqs:
+#   # - =dev-lang/dmd-2.096.1:2.096
+#   # - =dev-lang/ldc2-1.29.0-r1
 #   requires:
 #   - <<: *layers-gnome-common
 #   build_requires:
