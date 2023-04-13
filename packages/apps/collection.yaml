@@ -1232,7 +1232,7 @@ packages:
 - &libs-gmime-2
   category: "libs"
   name: "gmime-2"
-  version: "2.6.23-r2"
+  version: "2.6.23-r2+1"
   uri:
   - https://github.com/jstedfast/gmime
   - http://spruce.sourceforge.net/gmime/
@@ -1246,6 +1246,9 @@ packages:
   - category: "dev-libs"
     name: "gmime:2.6"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/gmime:2.6"
+    use: "crypt idn"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2481,7 +2484,7 @@ packages:
 - &libs-loudmouth
   category: "libs"
   name: "loudmouth"
-  version: "1.5.4"
+  version: "1.5.4+1"
   uri:
   - https://github.com/mcabber/loudmouth
   license: "LGPL-2.1"
@@ -2494,6 +2497,9 @@ packages:
   - category: "net-libs"
     name: "loudmouth"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/loudmouth"
+    use: "asyncns ssl openssl"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -2605,7 +2611,7 @@ packages:
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
-  version: "2.28.1"
+  version: "2.28.1+1"
   uri:
   - https://tls.mbed.org/
   license: "Apache-2.0"
@@ -2618,6 +2624,9 @@ packages:
   - category: "net-libs"
     name: "mbedtls"
     version: ">=0"
+  atoms:
+  - atom: "net-libs/mbedtls"
+    use: "havege threads zlib"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3350,7 +3359,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.3.0"
+  version: "2.3.0+1"
   uri:
   - https://github.com/spyder-ide/qtpy/
   license: "MIT"
@@ -3363,6 +3372,9 @@ packages:
   - category: "dev-python"
     name: "QtPy"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/QtPy"
+    use: "pyqt5 gui multimedia network opengl printsupport qml quick sql svg webchannel webengine websockets widgets xml # positioning serialport"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -3756,6 +3768,9 @@ packages:
   - category: "dev-libs"
     name: "tre"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/tre"
+    use: "agrep alloca approx nls profile python"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4891,32 +4906,6 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *apps-docker
-  build_requires:
-  - <<: *layers-system-x
-
-- &apps-dmd
-  category: "apps"
-  name: "dmd"
-  version: "2.096.1"
-  uri:
-  - http://dlang.org/
-  license: "Boost-1.0"
-  description: "Reference compiler for the D programming language"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      =dev-lang/dmd-2.096.1
-  overlays:
-  - name: "dlang"
-  provides:
-  - category: "app-eselect"
-    name: "eselect-dlang"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "dmd"
-    version: "2.096.1"
-  requires:
-  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -12351,28 +12340,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "onedrive"
-  version: "2.4.19"
-  uri:
-  - https://abraunegg.github.io
-  license: "GPL-3"
-  description: "Free Client for OneDrive on Linux"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/onedrive
-  overlays:
-  - name: "dlang"
-  provides:
-  - category: "net-misc"
-    name: "onedrive"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-dmd
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "onedrive"
+#   version: "2.4.23"
+#   uri:
+#   - https://abraunegg.github.io
+#   license: "GPL-3"
+#   description: "Free Client for OneDrive on Linux"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/onedrive
+#   overlays:
+#   - name: "dlang"
+#   provides:
+#   - category: "net-misc"
+#     name: "onedrive"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/onedrive"
+#     use: "dmd-2_096 libnotify"
+#     accept_keywords: "~amd64"
+#   prereqs:
+#   - =dev-lang/dmd-2.096.1
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "pdfarranger"
