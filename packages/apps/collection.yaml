@@ -5494,35 +5494,37 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-# - &apps-gnuchess
-#   category: "apps"
-#   name: "gnuchess"
-#   version: "6.2.9-r1"
-#   uri:
-#   - https://www.gnu.org/software/chess/chess.html
-#   license: "GPL-3 GPL-2"
-#   description: |
-#     Console based chess interface
-#     Opening book for gnuchess
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-board/gnuchess
-#       games-board/gnuchess-book
-#   provides:
-#   - category: "games-board"
-#     name: "gnuchess"
-#     version: ">=0"
-#   - category: "games-board"
-#     name: "gnuches-books"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-board/gnuchess-book"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &apps-gnuchess
+  category: "apps"
+  name: "gnuchess"
+  version: "6.2.9-r1"
+  uri:
+  - https://www.gnu.org/software/chess/chess.html
+  license: "GPL-3 GPL-2"
+  description: |
+    Console based chess interface
+    Opening book for gnuchess
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-board/gnuchess
+      games-board/gnuchess-book
+  provides:
+  - category: "games-board"
+    name: "gnuchess"
+    version: ">=0"
+  - category: "games-board"
+    name: "gnuches-books"
+    version: ">=0"
+  atoms:
+  - atom: "games-board/gnuchess-book"
+    accept_keywords: "~amd64"
+  prereqs:
+  - sys-apps/help2man
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-gnumeric
   category: "apps"
