@@ -1,0 +1,12 @@
+name: Check packages for upgrade availability
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clean:
+    runs-on: [self-hosted, x64]
+    steps:
+      - name: Check packages for upgrade availability
+        run: |
+                ./scripts/run.sh revbump.sh
