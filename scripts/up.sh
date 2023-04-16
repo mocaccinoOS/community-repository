@@ -409,8 +409,9 @@ function getLatestVersion() {
     echo "${VER}"
 }
 
-
+echo "3: ${ROOT_PATH}"
 ROOT_PATH="${ROOT_PATH:-..}"
+echo "4: ${ROOT_PATH}"
 COLLECTION="${COLLECTION:-apps}"
 
 # Remove debug file
