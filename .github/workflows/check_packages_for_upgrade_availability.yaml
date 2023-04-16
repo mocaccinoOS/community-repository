@@ -1,14 +1,13 @@
 name: Check packages for upgrade availability
-
 on:
   workflow_dispatch:
-
 jobs:
   run:
     runs-on: [self-hosted, x64]
+    env:
+      ROOT_PATH="./community-repository"
     steps:
       - uses: actions/checkout@v3
       - name: Check packages for upgrade availability
         run: |
-                ROOT_PATH="./community-repository"
                 ./scripts/run.sh up.sh
