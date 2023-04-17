@@ -118,6 +118,7 @@ jobs:
       uses: actions/download-artifact@v3
     - name: Merge artifacts 🔧
       run: |
+        if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi
         mkdir build || true
         for i in $(ls | grep zip); do
           cp -rfv $i/* build
