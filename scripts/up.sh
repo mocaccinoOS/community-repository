@@ -66,72 +66,94 @@ function getCategoryPackageVersion() {
     # )?
     # $/
     
-    CATEGORY_PACKAGE='^([<>]?=?)(([^\/]+)\/)?([^[:space:]:]+)'
-    VERSION_SLOT='([-:])'
-    # VERSION='((([[:digit:]]+)?(\.([[:digit:]]+))*)?([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+))?)?)?$'
-    VERSION='((([[:digit:]]+)(\.([[:digit:]]+))*)([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+))?)?)?$'
+    CATEGORY_PACKAGE='([<>]?=?)(([^\/]+)\/)?([^[:space:]:]+)'
+    VERSION='((([[:digit:]]+)(\.([[:digit:]]+))*)([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+)))?)'
+    SLOT='(([[:digit:]]+)(\.([[:digit:]]+))*)'
     
-    if [[ "$1" =~ ${CATEGORY_PACKAGE}${VERSION_SLOT}${VERSION} ]] || [[ "$1" =~ ${CATEGORY_PACKAGE} ]] ; then
-        CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
-        CPV[CATEGORY]="${BASH_REMATCH[3]}"
-        CPV[PACKAGE_NAME]="${BASH_REMATCH[4]}"
-        
-        case "${BASH_REMATCH[5]}" in
-            "-")
-                CPV[VERSION_SLOT_TYPE]="version"
-                ;;
-            ":")
-                CPV[VERSION_SLOT_TYPE]="slot"
-                ;;
-            *)
-                CPV[VERSION_SLOT_TYPE]=
-                ;;
-        esac
-        
-        CPV[VERSION]="${BASH_REMATCH[6]}"
-        CPV[VERSION_DOTS]="${BASH_REMATCH[7]}"
-        CPV[VERSION_LETTER]="${BASH_REMATCH[11]}"
+    MATCH=
+    
+    if [[ "$1" =~ ^${CATEGORY_PACKAGE}-${VERSION}:${SLOT}$ ]] ; then
+        MATCH="C/N-V:S"
+        # echo ${MATCH} > /dev/tty
+    else
+        if [[ "$1" =~ ^${CATEGORY_PACKAGE}:${SLOT}$ ]] ; then
+            MATCH="C/N:S"
+            # echo ${MATCH} > /dev/tty
+        else
+            if [[ "$1" =~ ^${CATEGORY_PACKAGE}-${VERSION}$ ]] ; then
+                MATCH="C/N-V"
+                # echo ${MATCH} > /dev/tty
+            else
+                if [[ "$1" =~ ^${CATEGORY_PACKAGE}$ ]] ; then
+                    MATCH="C/N"
+                    # echo ${MATCH} > /dev/tty
+                fi
+            fi
+        fi
+    fi
 
-        CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[13]}"
+    if [[ ! -z "${MATCH}" ]] ; then
+    
+        if [[ "${MATCH}" == *"C/N"* ]] ; then
+            CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
+            CPV[CATEGORY]="${BASH_REMATCH[3]}"
+            CPV[PACKAGE_NAME]="${BASH_REMATCH[4]}"
+        fi
+
+        if [[ "${MATCH}" == *"-V"* ]] ; then
+            CPV[VERSION]="${BASH_REMATCH[5]}"
+            CPV[VERSION_DOTS]="${BASH_REMATCH[6]}"
+            CPV[VERSION_LETTER]="${BASH_REMATCH[10]}"
         
-        case "${BASH_REMATCH[13]}" in
-            "alpha")
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=0
-                ;;
-            "beta")
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=1
-                ;;
-            "pre")
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=2
-                ;;
-            "rc")
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=3
-                ;;
-            "p")
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=4
-                ;;
-             *)
-                CPV[VERSION_PATCH_TYPE_PRIORITY]=5
-                ;;
-        esac
+            CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[12]}"
+            
+            case "${BASH_REMATCH[12]}" in
+                "alpha")
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=0
+                    ;;
+                "beta")
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=1
+                    ;;
+                "pre")
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=2
+                    ;;
+                "rc")
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=3
+                    ;;
+                "p")
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=4
+                    ;;
+                *)
+                    CPV[VERSION_PATCH_TYPE_PRIORITY]=5
+                    ;;
+            esac
+            
+            CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[13]}"
+            CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[16]}"
+        fi
         
-        CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[14]}"
-        CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[17]}"
+        if [[ "${MATCH}" == *":S"* ]] ; then
+            if [[ "${MATCH}" == *"-V"* ]] ; then
+                CPV[SLOT_DOTS]="${BASH_REMATCH[17]}"
+            else
+                CPV[SLOT_DOTS]="${BASH_REMATCH[5]}"
+            fi
+        fi
     fi
 
     # echo "${BASH_REMATCH[@]}" > /dev/tty
-
-    # echo "Version specifier: ${CPV[VERSION_SPECIFIER]}" > /dev/tty
-    # echo "Category: ${CPV[CATEGORY]}" > /dev/tty
-    # echo "Package name: ${CPV[PACKAGE_NAME]}" > /dev/tty
-    # echo "Version/slot: ${CPV_INFO[VERSION_SLOT_TYPE]}"
-    # echo "Version: ${CPV[VERSION]}" > /dev/tty
-    # echo "Version, dots: ${CPV[VERSION_DOTS]}" > /dev/tty
-    # echo "Version, letter: ${CPV[VERSION_LETTER]}" > /dev/tty
-    # echo "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}" > /dev/tty
-    # echo "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
-    # echo "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}" > /dev/tty
-    # echo "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}" > /dev/tty
+    # 
+    # echo "Version specifier: ${CPV_INFO[VERSION_SPECIFIER]}" > /dev/tty
+    # echo "Category: ${CPV_INFO[CATEGORY]}" > /dev/tty
+    # echo "Package name: ${CPV_INFO[PACKAGE_NAME]}" > /dev/tty
+    # echo "Version: ${CPV_INFO[VERSION]}" > /dev/tty
+    # echo "Version, dots: ${CPV_INFO[VERSION_DOTS]}" > /dev/tty
+    # echo "Version, letter: ${CPV_INFO[VERSION_LETTER]}" > /dev/tty
+    # echo "Version, patch type: ${CPV_INFO[VERSION_PATCH_TYPE]}" > /dev/tty
+    # echo "Version, patch type priority: ${CPV_INFO[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
+    # echo "Version, patch level: ${CPV_INFO[VERSION_PATCH_LEVEL]}" > /dev/tty
+    # echo "Version, revision number: ${CPV_INFO[VERSION_REVISION_NUMBER]}" > /dev/tty
+    # echo "Slot, dots: ${CPV_INFO[SLOT_DOTS]}" > /dev/tty
     # echo "" > /dev/tty
     
     declare -p CPV
@@ -188,7 +210,7 @@ function compareVersions() {
     fi
     
     # no logic based on version specifier, for now    
-    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER)
+    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS)
     
     declare -i RESULT=0
 

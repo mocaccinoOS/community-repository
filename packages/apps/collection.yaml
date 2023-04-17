@@ -4479,7 +4479,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.50.114"
+  version: "1.50.119"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -6462,6 +6462,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-lua-5_3
+  category: "libs"
+  name: "lua-5.3"
+  version: "5.3.6-r102"
+  uri:
+  - https://www.lua.org/
+  license: "MIT"
+  description: "A powerful light-weight programming language designed for extending applications"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/lua:5.3
+  provides:
+  - category: "dev-lang"
+    name: "lua"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/lua:5.3"
+    use: "readline"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-luajit
   category: "libs"
   name: "luajit"
@@ -6633,7 +6657,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.35.1-r1"
+  version: "0.35.1-r1+1"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -6653,7 +6677,7 @@ packages:
   - category: "virtual"
     name: "linuxtv-dvb-headers"
     version: '>=0'
-    atoms:
+  atoms:
   - atom: "media-video/mpv"
     use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
   requires:
@@ -6725,7 +6749,7 @@ packages:
 
 - category: "apps"
   name: "news-flash"
-  version: "2.2.4"
+  version: "2.2.4+1"
   uri:
   - https://gitlab.com/news-flash/news_flash_gtk
   license: "GPL-3"
@@ -6743,40 +6767,12 @@ packages:
   atoms:
   - atom: "net-news/news-flash"
     accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- &apps-nmap
-  category: "apps"
-  name: "nmap"
-  version: "7.93-r3"
-  uri:
-  - https://nmap.org/
-  license: "NPSL GPL-2"
-  description: "Network exploration tool and security / port scanner"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/liblinear
-      net-analyzer/nmap
-  provides:
-  - category: "dev-libs"
-    name: "liblinear"
-    version: ">=0"
-  - category: "net-analyzer"
-    name: "nmap"
-    version: ">=0"
-  atoms:
-  - atom: "net-analyzer/nmap"
-    use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
   prereqs:
-  - sec-keys/openpgp-keys-nmap
+  - dev-lang/rust
   requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-gnome-common
 
 - &apps-nmon
   category: "apps"
@@ -7182,7 +7178,7 @@ packages:
 
 - category: "apps"
   name: "popcorntime"
-  version: "0.4.8"
+  version: "0.4.9"
   uri:
   - https://github.com/popcorn-official/popcorn-desktop
   license: "MIT BSD BSD-2 BSD-4 AFL-2.1 Apache-2.0 Ms-PL GPL-2 LGPL-2.1 APSL-2 unRAR OFL CC-BY-SA-3.0 MPL-2.0 android public-domain all-rights-reserved"
@@ -7195,6 +7191,10 @@ packages:
   - category: "media-video"
     name: "popcorntime-bin"
     version: ">=0"
+  atoms:
+  - atom: "media-video/popcorntime-bin"
+    license: "unRAR android all-rights-reserved"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7226,7 +7226,7 @@ packages:
 - &apps-powerpanel
   category: "apps"
   name: "powerpanel"
-  version: "1.4.1"
+  version: "1.4.1-r1"
   uri:
   - https://www.cyberpowersystems.com/
   license: "PowerPanel"
@@ -7241,6 +7241,10 @@ packages:
   - category: "app-misc"
     name: "powerpanel"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/powerpanel"
+    license: "PowerPanel"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7248,7 +7252,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "7.20+25"
+  version: "7.48"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD"
@@ -7263,6 +7267,9 @@ packages:
   - category: "app-emulation"
     name: "proton-ge-custom-bin"
     version: ">=0"
+  atoms:
+  - atom: "app-emulation/proton-ge-custom-bin"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7271,7 +7278,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.3-r2"
+  version: "1.3-r3"
   uri:
   - https://invent.kde.org/libraries/pulseaudio-qt
   license: "LGPL-2.1"
@@ -7291,7 +7298,7 @@ packages:
 
 - category: "apps"
   name: "putty"
-  version: "0.77-r3"
+  version: "0.78"
   uri:
   - https://www.chiark.greenend.org.uk/~sgtatham/putty/
   license: "MIT"
@@ -7304,6 +7311,9 @@ packages:
   - category: "net-misc"
     name: "putty"
     version: ">=0"
+  atoms:
+  - atom: "net-misc/putty"
+    use: "doc gtk gssapi"
   prereqs:
   - app-doc/halibut
   requires:
@@ -7382,7 +7392,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "0.9.7"
+  version: "0.9.8"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -7395,6 +7405,9 @@ packages:
   - category: "media-sound"
     name: "qjackctl"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/qjackctl"
+    use: "alsa dbus portaudio"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -7423,7 +7436,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.8-r4+1"
+  version: "5.9-r3"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -7446,7 +7459,7 @@ packages:
 
 - category: "apps"
   name: "redshift"
-  version: "1.12-r6"
+  version: "1.12-r7"
   uri:
   - http://jonls.dk/redshift
   license: "GPL-3"
@@ -7459,6 +7472,9 @@ packages:
   - category: "x11-misc"
     name: "redshift"
     version: ">=0"
+  atoms:
+  - atom: "x11-misc/redshift"
+    use: "appindicator geoclue gtk nls"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7488,7 +7504,7 @@ packages:
 - &apps-rofi
   category: "apps"
   name: "rofi"
-  version: "1.7.3-r1"
+  version: "1.7.5"
   uri:
   - https://github.com/davatorium/rofi
   license: "MIT"
@@ -7508,7 +7524,7 @@ packages:
 
 - category: "apps"
   name: "scapy"
-  version: "2.4.5+1"
+  version: "2.5.0"
   uri:
   - https://scapy.net/
   - https://github.com/secdev/scapy
@@ -7528,9 +7544,9 @@ packages:
   - <<: *layers-X
 
 - &apps-scour
-  category: "libs"
+  category: "apps"
   name: "scour"
-  version: "0.38.2+1"
+  version: "0.38.2-r1"
   uri:
   - https://github.com/scour-project/scour
   license: "Apache-2.0"
@@ -7575,7 +7591,7 @@ packages:
 - &apps-simplescreenrecorder
   category: "apps"
   name: "simplescreenrecorder"
-  version: "0.4.4"
+  version: "0.4.4-r1"
   uri:
   - https://www.maartenbaert.be/simplescreenrecorder/
   license: "GPL-3"
@@ -7588,6 +7604,9 @@ packages:
   - category: "media-video"
     name: "simplescreenrecorder"
     version: ">=0"
+  atoms:
+  - atom: "media-video/simplescreenrecorder"
+    use: "asm vpx jack mp3 opengl pulseaudio theora v4l vorbis x264"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -7596,7 +7615,7 @@ packages:
 - &apps-skypeforlinux
   category: "apps"
   name: "skypeforlinux"
-  version: "8.85.0.409"
+  version: "8.96.0.207"
   uri:
   - https://www.skype.com/
   license: "Skype-TOS MIT MIT-with-advertising BSD-1 BSD-2 BSD Apache-2.0 Boost-1.0 ISC CC-BY-SA-3.0 CC0-1.0 openssl ZLIB APSL-2 icu Artistic-2 LGPL-2.1"
@@ -7609,6 +7628,10 @@ packages:
   - category: "net-im"
     name: "skypeforlinux"
     version: ">=0"
+  atoms:
+  - atom: "net-im/skypeforlinux"
+    license: "Skype-TOS MIT MIT-with-advertising BSD-1 BSD-2 BSD Apache-2.0 Boost-1.0 ISC CC-BY-SA-3.0 CC0-1.0 openssl ZLIB APSL-2 icu Artistic-2 LGPL-2.1"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   - <<: *layers-gnome-common
@@ -7667,7 +7690,7 @@ packages:
 
 - category: "apps"
   name: "solaar"
-  version: "1.1.3+1"
+  version: "1.1.8-r1"
   uri:
   - https://pwr-solaar.github.io/Solaar/
   license: "GPL-2"
@@ -7680,6 +7703,9 @@ packages:
   - category: "app-misc"
     name: "solaar"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/solaar"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7839,6 +7865,9 @@ packages:
   - category: "kde-apps"
     name: "tokodon"
     version: ">=0"
+  atoms:
+  - atom: "kde-apps/tokodon"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -7883,6 +7912,9 @@ packages:
   - category: "net-misc"
     name: "tooth"
     version: ">=0"
+  atoms:
+  - atom: "net-misc/tooth"
+    accept_keywords: "**"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7890,7 +7922,7 @@ packages:
 
 - category: "apps"
   name: "tor"
-  version: "0.4.6.10+18"
+  version: "0.4.7.13-r1"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -7942,7 +7974,7 @@ packages:
 
 - category: "apps"
   name: "tree"
-  version: "1.8.0"
+  version: "2.0.4"
   uri:
   - http://mama.indstate.edu/users/ice/tree
   license: "GPL-2"
@@ -7962,7 +7994,7 @@ packages:
 
 - category: "apps"
   name: "shntool"
-  version: "3.0.10-r1"
+  version: "3.0.10-r2"
   uri:
   - http://www.etree.org/shnutils/shntool
   license: "GPL-2"
@@ -8001,7 +8033,7 @@ packages:
 
 - category: "apps"
   name: "st"
-  version: "0.8.4+43"
+  version: "0.9"
   uri:
   - https://st.suckless.org
   license: "MIT-with-advertising"
@@ -8024,7 +8056,7 @@ packages:
 
 - category: "apps"
   name: "sweeper"
-  version: "22.08.3"
+  version: "22.12.3"
   uri:
   - https://apps.kde.org/sweeper/
   license: "GPL-3"
@@ -8072,7 +8104,7 @@ packages:
 
 - category: "apps"
   name: "testdisk"
-  version: "7.1-r1+1"
+  version: "7.1-r2"
   uri:
   - https://www.cgsecurity.org/wiki/TestDisk
   license: "GPL-2+"
@@ -8116,7 +8148,7 @@ packages:
 
 - category: "apps"
   name: "tmux"
-  version: "3.2a"
+  version: "3.3a-r1"
   uri:
   - https://tmux.github.io/
   license: "ISC"
@@ -8136,7 +8168,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "3.00-r1+1"
+  version: "3.00-r6"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -8149,6 +8181,9 @@ packages:
   - category: "net-p2p"
     name: "transmission"
     version: ">=0"
+  atoms:
+  - atom: "net-p2p/transmission"
+    use: "-qt5"
   prereqs:
   - acct-group/transmission
   - acct-user/transmission
@@ -8187,7 +8222,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36-r1"
+  version: "0.36.1"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -8278,7 +8313,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "5.6.2867.50"
+  version: "5.7.2921.65"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -8298,7 +8333,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.76.2.23074"
+  version: "1.77.1.23095"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -8341,7 +8376,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "3.2.0-r2+1"
+  version: "3.2.0-r3"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -8382,7 +8417,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "3.6"
+  version: "3.8"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -8454,7 +8489,7 @@ packages:
 - &apps-xli
   category: "apps"
   name: "xli"
-  version: "1.17.0-r5"
+  version: "1.17.0-r6"
   uri:
   - ftp://ftp.ibiblio.org/pub/Linux/apps/graphics/viewers/X/xli-1.16.README
   license: "HPND"
@@ -8539,7 +8574,7 @@ packages:
 
 - category: "apps"
   name: "zsh"
-  version: "5.8.1-r2"
+  version: "5.9-r3"
   uri:
   - https://www.zsh.org/
   license: "ZSH GPL-2"
@@ -10027,32 +10062,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-gnome-nettool
-  category: "apps"
-  name: "gnome-nettool"
-  version: "42.0"
-  uri:
-  - https://gitlab.gnome.org/GNOME/gnome-nettool
-  license: "GPL-2"
-  description: "Graphical front-ends to various networking command-line"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-analyzer/gnome-nettool
-  provides:
-  - category: "net-analyzer"
-    name: "gnome-nettool"
-    version: ">=0"
-  prereqs:
-  - app-text/yelp-tools
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-bind-tools
-  - <<: *apps-netkit-fingerd
-  - <<: *apps-nmap
-  build_requires:
-  - <<: *layers-gnome-common
-
 - category: "apps"
   name: "goverlay"
   version: "0.8.1+4"
@@ -10537,28 +10546,36 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-nmapsi
+- &apps-nmap
   category: "apps"
-  name: "nmapsi"
-  version: "0.5_alpha2"
+  name: "nmap"
+  version: "7.93-r3+1"
   uri:
-  - https://github.com/nmapsi4/nmapsi4
-  license: "GPL-2"
-  description: "Qt frontend to nmap"
+  - https://nmap.org/
+  license: "NPSL GPL-2"
+  description: "Network exploration tool and security / port scanner"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-analyzer/nmapsi
+      dev-libs/liblinear
+      net-analyzer/nmap
   provides:
-  - category: "net-analyzer"
-    name: "nmapsi"
+  - category: "dev-libs"
+    name: "liblinear"
     version: ">=0"
+  - category: "net-analyzer"
+    name: "nmap"
+    version: ">=0"
+  atoms:
+  - atom: "net-analyzer/nmap"
+    use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
+  prereqs:
+  - sec-keys/openpgp-keys-nmap
   requires:
-  - <<: *layers-qt
-  - <<: *apps-bind-tools
-  - <<: *apps-nmap
+  - <<: *layers-sys-fs
+  - <<: *apps-lua-5_3
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "obs-studio"
@@ -11969,6 +11986,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-gnome-nettool
+  category: "apps"
+  name: "gnome-nettool"
+  version: "42.0"
+  uri:
+  - https://gitlab.gnome.org/GNOME/gnome-nettool
+  license: "GPL-2"
+  description: "Graphical front-ends to various networking command-line"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/gnome-nettool
+  provides:
+  - category: "net-analyzer"
+    name: "gnome-nettool"
+    version: ">=0"
+  prereqs:
+  - app-text/yelp-tools
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-bind-tools
+  - <<: *apps-netkit-fingerd
+  - <<: *apps-nmap
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
@@ -12351,6 +12394,29 @@ packages:
   - <<: *buildbase-X
   - <<: *buildbase-term-libs
   requires_final_images: true
+
+- &apps-nmapsi
+  category: "apps"
+  name: "nmapsi"
+  version: "0.5_alpha2"
+  uri:
+  - https://github.com/nmapsi4/nmapsi4
+  license: "GPL-2"
+  description: "Qt frontend to nmap"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/nmapsi
+  provides:
+  - category: "net-analyzer"
+    name: "nmapsi"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-bind-tools
+  - <<: *apps-nmap
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-nut
   category: "apps"
