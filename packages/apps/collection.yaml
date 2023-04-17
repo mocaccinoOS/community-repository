@@ -6161,7 +6161,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "22.08.3"
+  version: "22.12.3"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6511,7 +6511,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.6.8+1"
+  version: "0.6.9"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -6539,7 +6539,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "22.08.3"
+  version: "22.12.3"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -6562,7 +6562,7 @@ packages:
 
 - category: "apps"
   name: "meld"
-  version: "3.22.0-r1"
+  version: "3.22.0-r2"
   uri:
   - http://meldmerge.org/
   license: "GPL-2+"
@@ -6633,7 +6633,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.34.1-r1"
+  version: "0.35.1-r1"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -6653,6 +6653,9 @@ packages:
   - category: "virtual"
     name: "linuxtv-dvb-headers"
     version: '>=0'
+    atoms:
+  - atom: "media-video/mpv"
+    use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
   requires:
   - <<: *layers-X
   build_requires:
@@ -6681,7 +6684,7 @@ packages:
 
 - category: "apps"
   name: "ncdu"
-  version: "1.16-r1"
+  version: "1.18"
   uri:
   - https://dev.yorhel.nl/ncdu/
   license: "MIT"
@@ -6722,7 +6725,7 @@ packages:
 
 - category: "apps"
   name: "news-flash"
-  version: "1.5.1"
+  version: "2.2.4"
   uri:
   - https://gitlab.com/news-flash/news_flash_gtk
   license: "GPL-3"
@@ -6737,6 +6740,9 @@ packages:
   - category: "net-news"
     name: "news-flash"
     version: ">=0"
+  atoms:
+  - atom: "net-news/news-flash"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -6745,7 +6751,7 @@ packages:
 - &apps-nmap
   category: "apps"
   name: "nmap"
-  version: "7.93+3"
+  version: "7.93-r3"
   uri:
   - https://nmap.org/
   license: "NPSL GPL-2"
@@ -6762,6 +6768,9 @@ packages:
   - category: "net-analyzer"
     name: "nmap"
     version: ">=0"
+  atoms:
+  - atom: "net-analyzer/nmap"
+    use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
   prereqs:
   - sec-keys/openpgp-keys-nmap
   requires:
@@ -6792,7 +6801,7 @@ packages:
 
 - category: "apps"
   name: "nnn"
-  version: "4.5"
+  version: "4.7-r1"
   uri:
   - https://github.com/jarun/nnn
   license: "BSD-2"
@@ -6805,6 +6814,9 @@ packages:
   - category: "app-misc"
     name: "nnn"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/nnn"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6859,7 +6871,7 @@ packages:
 
 - category: "apps"
   name: "nrg2iso"
-  version: "0.4-r2+1"
+  version: "0.4-r3"
   uri:
   - http://gregory.kokanosky.free.fr/v4/linux/nrg2iso.en.html
   license: "GPL-2+"
@@ -6880,7 +6892,7 @@ packages:
 - &apps-numactl
   category: "apps"
   name: "numactl"
-  version: "2.0.14+1"
+  version: "2.0.16"
   uri:
   - https://github.com/numactl/numactl
   license: "GPL-2"
@@ -6944,7 +6956,7 @@ packages:
 - &apps-okteta
   category: "apps"
   name: "okteta"
-  version: "0.26.9"
+  version: "0.26.10"
   uri:
   - https://apps.kde.org/okteta/
   - https://utils.kde.org/projects/okteta/
@@ -7077,7 +7089,7 @@ packages:
 - &apps-peek
   category: "apps"
   name: "peek"
-  version: "1.5.1"
+  version: "1.5.1-r1"
   uri:
   - https://github.com/phw/peek
   license: "GPL-3+"
@@ -7090,6 +7102,10 @@ packages:
   - category: "media-video"
     name: "peek"
     version: ">=0"
+  atoms:
+  - atom: "media-video/peek"
+    use: "keybinder"
+    accept_keywords: "~amd64"
   prereqs:
   - app-text/txt2man
   requires:
@@ -7100,7 +7116,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "22.1.2"
+  version: "23.0.1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -7122,7 +7138,7 @@ packages:
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "5.24.5"
+  version: "5.26.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2"
