@@ -7850,7 +7850,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "22.09"
+  version: "23.02.0"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "GPL-3"
@@ -7932,13 +7932,13 @@ packages:
     emerge.packages: >-
       net-vpn/tor
   provides:
-  - name: tor
+  - name: "tor"
     category: "acct-group"
     version: '>=0'
-  - name: tor
+  - name: "tor"
     category: "acct-user"
     version: '>=0'
-  - name: tor
+  - name: "tor"
     category: "net-vpn"
     version: '>=0'
   requires:
@@ -8326,6 +8326,9 @@ packages:
   - category: "www-client"
     name: "vivaldi"
     version: ">=0"
+  atoms:
+  - atom: "www-client/vivaldi"
+    use: "-qt5"
   requires:
   - <<: *layers-X
   build_requires:
@@ -8599,7 +8602,7 @@ packages:
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
-  version: "4.11.1"
+  version: "4.11.2"
   uri:
   - https://www.crummy.com/software/BeautifulSoup/bs4
   license: "MIT"
@@ -8645,7 +8648,7 @@ packages:
 - &libs-cachecontrol
   category: "libs"
   name: "cachecontrol"
-  version: "0.12.12"
+  version: "0.12.12+1"
   uri:
   - https://pypi.org/project/CacheControl/
   license: "Apache-2.0"
@@ -8750,7 +8753,7 @@ packages:
 - &libs-dssi
   category: "libs"
   name: "dssi"
-  version: "1.1.1-r1+1"
+  version: "1.1.1-r2"
   uri:
   - http://dssi.sourceforge.net/
   license: "BSD LGPL-2.1"
@@ -9577,7 +9580,7 @@ packages:
 - &apps-brother-scan4-bin
   category: "apps"
   name: "brother-scan4-bin"
-  version: "0.4.4-r4"
+  version: "0.4.10-r2"
   uri:
   - http://support.brother.com/g/s/id/linux/en/index.html
   license: "GPL-2 brother-eula no-source-code"
