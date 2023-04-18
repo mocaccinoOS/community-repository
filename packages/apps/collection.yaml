@@ -7858,7 +7858,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/tokodon
+      =kde-apps/tokodon-22.09
   overlays:
   - name: "guru"
   provides:
@@ -8528,9 +8528,6 @@ packages:
   - category: "games-board"
     name: "xmahjongg"
     version: ">=0"
-  atoms:
-  - atom: "games-board/xmahjongg"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9696,7 +9693,7 @@ packages:
 - &apps-cdrdao
   category: "apps"
   name: "cdrdao"
-  version: "1.2.4-r2"
+  version: "1.2.4-r1+1"
   uri:
   - http://cdrdao.sourceforge.net
   license: "GPL-2+"
@@ -9722,7 +9719,7 @@ packages:
 
 - category: "apps"
   name: "celluloid"
-  version: "0.21-r1"
+  version: "0.21+1"
   uri:
   - https://celluloid-player.github.io
   license: "GPL-3+"
@@ -9770,7 +9767,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "0.103.8"
+  version: "0.103.7-r1"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -9791,7 +9788,7 @@ packages:
   - acct-user/clamav
   requires:
   - <<: *layers-X
-  # up to the version 1.0.1: dev-libs/tomsfastmath
+  # up to the next version: dev-libs/tomsfastmath
   - <<: *libs-tomsfastmath
   - category: "entity"
     name: "clamav"
@@ -9801,7 +9798,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc2-r2"
+  version: "1.4.0_rc2+1"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -9868,7 +9865,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.2.1"
+  version: "4.0.1-r1+1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -9925,7 +9922,7 @@ packages:
 
 - category: "apps"
   name: "deadbeef"
-  version: "1.9.4"
+  version: "1.9.2-r1"
   uri:
   - https://deadbeef.sourceforge.io
   license: "BSD GPL-2 LGPL-2.1"
@@ -9949,7 +9946,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3-r5"
+  version: "2.4.3+r4"
   uri:
   - https://wiki.gnome.org/Apps/EasyTAG
   license: "GPL-2 GPL-2+ LGPL-2 LGPL-2+ LGPL-2.1+"
@@ -9976,7 +9973,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "28.2-r6"
+  version: "28.1-r4"
   uri:
   - https://www.gnu.org/software/emacs
   license: "GPL-3+ FDL-1.3+ BSD HPND MIT W3C unicode PSF-2"
@@ -10058,9 +10055,6 @@ packages:
   - category: "app-admin"
     name: "gkrellm"
     version: ">=0"
-  atoms:
-  - atom: "app-admin/gkrellm"
-    use: "gnutls hddtemp lm-sensors ntlm ssl X nls"
   requires:
   - <<: *layers-X
   - category: "entity"
@@ -10073,7 +10067,7 @@ packages:
 
 - category: "apps"
   name: "goverlay"
-  version: "0.9.1"
+  version: "0.8.1+4"
   uri:
   - https://github.com/benjamimgois/goverlay
   license: "GPL-3"
@@ -10082,7 +10076,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/qt5pas
-      games-util/goverlay-bin
+      games-util/goverlay
   overlays:
   - name: "thegreatmcpain"
   provides:
@@ -10094,7 +10088,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "games-util/goverlay"
-    use: "opengl vulkan"
+    use: "vulkan"
     unmask: "true"
     accept_keywords: "**"
   - atom: "dev-libs/qt5pas"
@@ -10110,7 +10104,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.0.8"
+  version: "2.0.6-r2+2"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -10180,7 +10174,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "22.12.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -10203,7 +10197,7 @@ packages:
 # TODO: gpg
 - category: "apps"
   name: "kget"
-  version: "22.12.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/kget
   license: "GPL-2"
@@ -10227,7 +10221,7 @@ packages:
 
 - category: "apps"
   name: "kid3"
-  version: "3.9.3"
+  version: "3.9.2-r1"
   uri:
   - https://kid3.kde.org
   license: "GPL-2+"
@@ -10278,7 +10272,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "22.12.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -10299,7 +10293,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "22.12.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -10407,7 +10401,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.12"
+  version: "0.5.11"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -10435,7 +10429,7 @@ packages:
 
 - category: "apps"
   name: "mc"
-  version: "4.8.29"
+  version: "4.8.28-r2+1"
   uri:
   - https://midnight-commander.org
   license: "GPL-3"
@@ -10473,9 +10467,6 @@ packages:
   - category: "app-cdr"
     name: "mirage2iso"
     version: ">=0"
-  atoms:
-  - atom: "app-cdr/mirage2iso"
-    use: "pinentry"
   requires:
   - <<: *layers-codecs
   - <<: *libs-libmirage
@@ -10591,7 +10582,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "29.0.2"
+  version: "28.1.2-r1"
   uri:
   - https://obsproject.com
   license: "GPL-2"
@@ -10604,9 +10595,6 @@ packages:
   - category: "media-video"
     name: "obs-studio"
     version: ">=0"
-  atoms:
-  - atom: "media-video/obs-studio"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *libs-mbedtls
@@ -10616,7 +10604,7 @@ packages:
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
-  version: "4.1.4-r1"
+  version: "4.1.4"
   uri:
   - https://www.open-mpi.org
   license: "BSD"
@@ -10665,7 +10653,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.8-r1"
+  version: "0.7-r1"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -10724,7 +10712,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "5.26.5"
+  version: "5.24.6"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -10900,7 +10888,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "2.5.4"
+  version: "2.5.2"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -10922,9 +10910,6 @@ packages:
   - category: "dev-util"
     name: "maturin"
     version: ">=0"
-  atoms:
-  - atom: "www-client/qutebrowser"
-    use: "adblock # widevine"
   optrequires:
   - <<: *libs-chrome-binary-plugins
   requires:
@@ -11183,7 +11168,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.3.4"
+  version: "4.3.3"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -11234,7 +11219,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "8.5"
+  version: "8.2"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -11316,7 +11301,7 @@ packages:
 - &apps-zathura
   category: "apps"
   name: "zathura"
-  version: "0.5.2-r4"
+  version: "0.4.9"
   uri:
   - https://pwmt.org/projects/zathura/
   license: "GPL-2"
@@ -11343,7 +11328,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "5.14.2.2046"
+  version: "5.11.9.4300-r3+1"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -11359,11 +11344,6 @@ packages:
   - category: "net-im"
     name: "zoom"
     version: ">=0"
-  atoms:
-  - atom: "net-im/zoom"
-    license: "net-im/zoom all-rights-reserved"
-    use: "-bundled-qt"
-    accept_keywords: "~amd64"
   prereqs:
   - dev-util/bbe
   requires:
@@ -11379,7 +11359,7 @@ packages:
 - &libs-allegro
   category: "libs"
   name: "allegro"
-  version: ".2.7.0-r1"
+  version: "5.2.7.0+1"
   uri:
   - https://liballeg.org/
   license: "BSD ZLIB"
@@ -11405,7 +11385,7 @@ packages:
 - &libs-gdal
   category: "libs"
   name: "gdal"
-  version: "3.6.2"
+  version: "3.5.3-r1"
   uri:
   - https://gdal.org/
   license: "BSD Info-ZIP MIT"
@@ -11614,7 +11594,7 @@ packages:
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
-  version: "13.0.7"
+  version: "12.1.4+3"
   uri:
   - https://github.com/home-assistant-libs/pychromecast
   - https://github.com/ur1katz/casttube
@@ -11764,7 +11744,7 @@ packages:
 
 - category: "apps"
   name: "amsynth"
-  version: "1.13.2"
+  version: "1.12.4+1"
   uri:
   - https://github.com/amsynth/amsynth
   license: "GPL-2"
@@ -11777,9 +11757,6 @@ packages:
   - category: "media-sound"
     name: "amsynth"
     version: ">=0"
-  atoms:
-  - atom: "media-sound/amsynth"
-    use: "dssi lv2 nsm vst alsa gtk jack lash oss"
   requires:
   - <<: *layers-X
   - <<: *libs-dssi
@@ -11791,7 +11768,7 @@ packages:
 
 - category: "apps"
   name: "avidemux"
-  version: "2.8.1"
+  version: "2.7.8+2"
   uri:
   - http://fixounet.free.fr/avidemux
   - http://aften.sourceforge.net/
@@ -11826,19 +11803,6 @@ packages:
   - category: "media-sound"
     name: "dcaenc"
     version: ">=0"
-  atoms:
-  - atom: "media-libs/avidemux-core"
-    use: "system-ffmpeg nls sdl vaapi vdpau xv"
-    accept_keywords: "~amd64"
-  - atom: "media-sound/dcaenc"
-    use: "alsa"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/avidemux-plugins"
-    use: "aften amr dcaenc fdk fribidi twolame vpx x265 a52 aac alsa debug dts fontconfig jack lame libsamplerate opengl opus oss pulseaudio qt5 truetype vdpau vorbis x264 xv xvid mmx"
-    accept_keywords: "~amd64"
-  - atom: "media-video/avidemux"
-    use: "nls opengl qt5 sdl vaapi vdpau"
-    accept_keywords: "~amd64"
   prereqs:
   - dev-lang/yasm
   requires:
@@ -11850,7 +11814,7 @@ packages:
 
 - category: "apps"
   name: "bat"
-  version: "0.22.1"
+  version: "0.20.0+2"
   uri:
   - https://github.com/sharkdp/bat
   license: "Apache-2.0 BSD BSD-2 CC0-1.0 LGPL-3+ MIT"
@@ -11953,7 +11917,7 @@ packages:
 - &apps-eclipse-ecj
   category: "apps"
   name: "eclipse-ecj"
-  version: "4.26"
+  version: "4.22-r1"
   uri:
   - https://www.eclipse.org
   license: "EPL-1.0"
@@ -11970,9 +11934,6 @@ packages:
   - category: "dev-java"
     name: "ant-eclipse-ecj"
     version: ">=0"
-  atoms:
-  - atom: "dev-java/eclipse-ecj"
-    use: "ant"
   requires:
   - <<: *layers-java
   - <<: *apps-ant-core
@@ -11982,7 +11943,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.3.1"
+  version: "2.2.9"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -12008,7 +11969,7 @@ packages:
 
 - category: "apps"
   name: "fotoxx"
-  version: "23.32"
+  version: "22.35-r1+1"
   uri:
   - https://kornelix.net/fotoxx/fotoxx.html
   license: "GPL-3+"
@@ -12165,7 +12126,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "22.12.3"
+  version: "22.08.3"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -12296,7 +12257,7 @@ packages:
 
 - category: "apps"
   name: "lollypop"
-  version: "1.4.37"
+  version: "1.4.29+4"
   uri:
   - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -12318,7 +12279,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1"
+  version: "2.6.1.1+2"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -12395,7 +12356,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.8.3"
+  version: "0.8.1"
   uri:
   - https://neovim.io
   license: "Apache-2.0 vim"
@@ -12546,7 +12507,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "5.26.5"
+  version: "5.24.5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -12625,7 +12586,7 @@ packages:
 
 - category: "apps"
   name: "rosegarden"
-  version: "22.12.1"
+  version: "22.06"
   uri:
   - https://github.com/benjamimgois/rosegarden
   license: "GPL-2"
@@ -12649,7 +12610,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8-r5"
+  version: "1.5.8-r4"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -12700,7 +12661,7 @@ packages:
 
 - category: "apps"
   name: "terminatorx"
-  version: "4.2.0"
+  version: "4.1.0+1"
   uri:
   - https://www.terminatorx.org/
   - http://www.underbit.com/products/mad/
@@ -12720,11 +12681,6 @@ packages:
   - category: "media-sound"
     name: "madplay"
     version: ">=0"
-  atoms:
-  - atom: "media-sound/madplay"
-    use: "alsa nls"
-  - atom: "media-sound/terminatorx"
-    use: "alsa jack mad pulseaudio vorbis sox"
   prereqs:
   - app-text/gnome-doc-utils
   requires:
@@ -12801,7 +12757,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.20.0-r2"
+  version: "3.20.0"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -12951,7 +12907,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.2"
+  version: "0.9.1-r2"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -12985,7 +12941,7 @@ packages:
 - &apps-xournal
   category: "apps"
   name: "xournal"
-  version: "0.4.8.2016-r1"
+  version: "0.4.8.2016"
   uri:
   - http://xournal.sourceforge.net/
   license: "GPL-2"
@@ -13009,7 +12965,7 @@ packages:
 
 - category: "apps"
   name: "yoshimi"
-  version: "2.2.3"
+  version: "2.2.2.1+3"
   uri:
   - http://yoshimi.sourceforge.net/
   license: "GPL-2"
@@ -13197,7 +13153,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+2"
+  version: "0.1+1"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -13263,7 +13219,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "0.1+2"
+  version: "0.1+1"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -13652,7 +13608,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.6.2"
+  version: "3.6.1"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -13868,9 +13824,6 @@ packages:
   - category: "media-sound"
     name: "qsynth"
     version: ">=0"
-  atoms:
-  - atom: "media-sound/qsynth"
-    use: "alsa jack pulseaudio"
   requires:
   - <<: *layers-qt
   - <<: *apps-fluidsynth
@@ -13969,7 +13922,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "1.2"
+  version: "1.1"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -14067,7 +14020,7 @@ packages:
 - &libs-paramiko
   category: "libs"
   name: "paramiko"
-  version: "3.0.0"
+  version: "2.11.0+1"
   uri:
   - https://www.paramiko.org/
   - https://github.com/paramiko/paramiko/
@@ -14082,9 +14035,6 @@ packages:
   - category: "dev-python"
     name: "paramiko"
     version: ">=0"
-  atoms:
-  - atom: "dev-python/paramiko"
-    use: "server"
   prereqs:
   - dev-python/mock
   requires:
@@ -14149,7 +14099,7 @@ packages:
 - &libs-pygame
   category: "libs"
   name: "pygame"
-  version: "2.2.0"
+  version: "2.1.2-r1+2"
   uri:
   - https://www.pygame.org/
   license: "LGPL-2.1"
@@ -14199,7 +14149,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.18-r1"
+  version: "0.10.18+1"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -14349,7 +14299,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "7.0.5"
+  version: "5.0.1-r2+3"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
@@ -14389,7 +14339,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.0.2"
+  version: "1.0.0-r100"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3"
@@ -14427,7 +14377,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "22.12.3"
+  version: "22.08.3-r1"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -14537,7 +14487,7 @@ packages:
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.7-r1"
+  version: "3.6.7+r1"
   uri:
   - https://dicom.offis.de/dcmtk.php.en
   license: "OFFIS"
@@ -14658,7 +14608,7 @@ packages:
 - &libs-telepathy-qt
   category: "libs"
   name: "telepathy-qt"
-  version: "0.9.8-r2"
+  version: "0.9.8-r1+1"
   uri:
   - https://telepathy.freedesktop.org/
   license: "LGPL-2.1"
@@ -14761,7 +14711,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.9.6"
+  version: "1.9.5+1"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -14867,7 +14817,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r3"
+  version: "2.0.1-r2+6"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -14920,7 +14870,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "6+3"
+  version: "6+2"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -15001,7 +14951,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "7.3"
+  version: "7.2+2"
   uri:
   - https://ardour.org/
   license: "AGPL-3"
@@ -15097,7 +15047,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "0.9.31"
+  version: "0.9.29"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
@@ -15128,7 +15078,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.30"
+  version: "1.4.27"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -15159,7 +15109,7 @@ packages:
 - &apps-xsane
   category: "apps"
   name: "xsane"
-  version: "0.999-r5"
+  version: "0.999-r4+3"
   uri:
   - http://www.xsane.org/
   license: "GPL-2"
@@ -15283,7 +15233,7 @@ packages:
 - &apps-displaycal-py3
   category: "apps"
   name: "displaycal-py3"
-  version: "3.9.10-r1"
+  version: "3.9.10"
   uri:
   - https://github.com/eoyilmaz/displaycal-py3
   license: "GPL-3"
@@ -15346,7 +15296,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "22.12.3"
+  version: "22.12.0+1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -15418,7 +15368,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "22.12.3"
+  version: "22.08.3+1"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
