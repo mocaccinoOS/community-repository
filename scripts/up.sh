@@ -2,10 +2,10 @@
 
 echo -e "\n\e\033[0;32;1mLooking for upgradable packages...\e[0m!\n"
 
-if [[ $(id -u) -ne 0 ]] ; then
-    echo -e "Must run as \e[5;31;1mroot\e[0m!"
-    exit 1
-fi
+# if [[ $(id -u) -ne 0 ]] ; then
+#     echo -e "Must run as \e[5;31;1mroot\e[0m!"
+#     exit 1
+# fi
 
 function levenshtein {
     if [ "$#" -ne "2" ]; then
