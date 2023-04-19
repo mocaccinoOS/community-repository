@@ -14,9 +14,9 @@ jobs:
         run: |
           curl https://luet.io/install.sh | sudo sh
           export LUET_NOLOCK=true
-          sudo luet install -y repository/mocaccino-extra
-          sudo luet install -y utils/jq
-          sudo luet install -y utils/yq
+          sudo -E luet install -y repository/mocaccino-extra
+          sudo -E luet install -y utils/jq
+          sudo -E luet install -y utils/yq
       - name: Check packages for upgrade availability
         run: |
           ./scripts/up.sh
