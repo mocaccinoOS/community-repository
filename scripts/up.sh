@@ -349,7 +349,7 @@ function getLatestVersion() {
         VER="${EBUILD_CPV[VERSION]}"
         # echo "VER: ${VER}" > /dev/tty
         
-        echo "${ATOM}: ${VER}" >> debug # > /dev/tty
+        # echo "${ATOM}: ${VER}" > /dev/tty # >> "${DEBUG_FILE}"
     else
         if [[ ${USE_PACKAGES_GENTOO_ORG} == true ]] ; then
             # to do: peek newer stable version if exists
@@ -432,18 +432,23 @@ function getLatestVersion() {
 }
 
 
-ROOT_PATH="${ROOT_PATH:-..}"
+ROOT_PATH="${ROOT_PATH:-../..}"
 COLLECTION="${COLLECTION:-apps}"
 
+PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
+PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.info"
+PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.up"
+DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug"
+
 # Remove debug file
-if [[ -f debug ]] ; then
-    rm debug
+if [[ -f "${DEBUG_FILE}" ]] ; then
+    rm "${DEBUG_FILE}"
 fi
 
 # Ensure Gentoo overlay tree
 
 REFRESH_TREE="${REFRESH_TREE:-false}"
-PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-../../portage/tree}"
+PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-${ROOT_PATH}/portage/tree}"
 
 if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
     rm -r "${PORTAGE_TREE_PATH}"
@@ -465,7 +470,7 @@ fi
 
 # PACKAGES=$(cd ${ROOT_PATH}; luet tree pkglist -f -o json)
 # | select(.name == "openrgb" or .name == "cfortran" or .name == "wine-staging" or .name == "terminatorx" or .name == "nnn" or .name == "hedgewars")
-PACKAGES=$(yq r -j ${ROOT_PATH}/packages/${COLLECTION}/collection.yaml \
+PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/collection.yaml \
 | jq -r '.packages[] 
 | select(.labels != null and .labels."emerge.packages" != null) 
 | .category + "/" + .name 
@@ -477,8 +482,9 @@ PACKAGES=$(yq r -j ${ROOT_PATH}/packages/${COLLECTION}/collection.yaml \
 
 # echo $PACKAGES > packages.list
 
-echo > packages.info
-echo > packages.up
+mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
+echo > "${PACKAGES_INFO_FILE}"
+echo > "${PACKAGES_UP_FILE}"
 
 for PKG in ${PACKAGES} ; do
 
@@ -571,15 +577,15 @@ for PKG in ${PACKAGES} ; do
     done
 
     UPGRADE=
-    FILES="packages.info"
+    FILES="${PACKAGES_INFO_FILE}"
     if [[ -z ${CLOSEST_ATOM_VER} ]] ; then
         # No match, mark with 🯄
         UPGRADE=" \U1F86D \U1FBC4"
-        FILES="packages.info packages.up"
+        FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
     else
         if [[ ${ATOM_VERSION} != ${CLOSEST_ATOM_VER} ]] ; then
             UPGRADE=" \U1F86D ${CLOSEST_ATOM_VER}"
-            FILES="packages.info packages.up"
+            FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
         fi
     fi
     
