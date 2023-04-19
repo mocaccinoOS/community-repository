@@ -21,6 +21,7 @@ jobs:
   build:
     if: ${{ inputs.build-sets != '' && inputs.build-sets != '[]' && inputs.build-sets != '[[]]' && fromJson(inputs.build-sets)[inputs.set-id] }}
     strategy:
+      fail-fast: false
       matrix:
         include: ${{ fromJson(inputs.build-sets)[inputs.set-id] }}
     outputs:
@@ -43,7 +44,7 @@ jobs:
           sudo rm -Rf /var/tmp/luet || true
           sudo rm -Rf /var/luet || true
           sudo docker system prune -f -a --volumes || true
-    - name: Release space from worker
+    - name: Release space from worker ♻
       run: |
         echo "Listing top largest packages"
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)

@@ -63,14 +63,14 @@ jobs:
     needs: [build-set-0, build-set-1]
     if: |
       always() &&
-      (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'skipped') &&
-      (needs.build-set-1.result == 'success' || needs.build-set-1.result == 'skipped') 
+      (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
+      (needs.build-set-1.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-1.result == 'skipped') 
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Release space from worker
+    - name: Release space from worker ♻
       run: |
         echo "Listing top largest packages"
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
@@ -118,7 +118,7 @@ jobs:
       uses: actions/download-artifact@v3
     - name: Merge artifacts 🔧
       run: |
-        if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi
+        if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi 
         mkdir build || true
         for i in $(ls | grep zip); do
           cp -rfv $i/* build
