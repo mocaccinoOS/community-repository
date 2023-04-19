@@ -20,7 +20,7 @@ jobs:
       - name: Check packages for upgrade availability
         run: |
           ./scripts/up.sh
-          ls -liah $PWD/reports 
+          ls -liahR $PWD 
       - uses: actions/upload-artifact@v3
         if: success() || failure()
         with:
