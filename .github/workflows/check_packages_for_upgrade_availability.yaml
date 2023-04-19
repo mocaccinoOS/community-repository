@@ -5,7 +5,7 @@ jobs:
   run:
     runs-on: [self-hosted, x64]
     env:
-      ROOT_PATH: ${{ env.GITHUB_REPOSITORY }}
+      ROOT_PATH: $GITHUB_REPOSITORY
     steps:
       - uses: actions/checkout@v3
       - run: |
