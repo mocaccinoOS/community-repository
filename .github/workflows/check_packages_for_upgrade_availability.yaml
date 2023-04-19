@@ -8,9 +8,12 @@ jobs:
       ROOT_PATH: ./community-repository
     steps:
       - uses: actions/checkout@v3
-      - name: Install deps
+      - run: |
+          git fetch --prune --unshallow
+      - name: Install deps 🔧
         run: |
           curl https://luet.io/install.sh | sudo sh
+          export LUET_NOLOCK=true
           sudo luet install -y repository/mocaccino-extra
           sudo luet install -y utils/jq
           sudo luet install -y utils/yq
