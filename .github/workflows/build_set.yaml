@@ -77,9 +77,11 @@ jobs:
         sudo rm -rfv build || true
         df -h
     - run: |
+        sudo groupadd docker
         sudo chmod 666 /var/run/docker.sock
         sudo usermod -aG docker ${USER}
-        sudo setfacl --modify user::rw /var/run/docker.sock
+        sudo chown ${USER} /var/run/docker.sock
+        sudo service docker restart
     - run: |
         git fetch --prune --unshallow
     - name: Login to Quay Registry
