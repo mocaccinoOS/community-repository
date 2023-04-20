@@ -6132,7 +6132,7 @@ packages:
 
 - category: "apps"
   name: "kitty"
-  version: "0.27.1"
+  version: "0.27.1+1"
   uri:
   - https://sw.kovidgoyal.net/kitty
   license: "GPL-3"
@@ -6154,6 +6154,8 @@ packages:
   - category: "x11-terms"
     name: "kitty-terminfo"
     version: ">=0"
+  prerequires:
+  - <<: *apps-go
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7850,26 +7852,27 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "22.09"
+  version: "23.03.90"
   uri:
   - https://invent.kde.org/network/tokodon
-  license: "GPL-3"
+  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
   description: "Mastodon client for Plasma and Plasma Mobile"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
-      =kde-apps/tokodon-22.09
-  overlays:
-  - name: "guru"
+      net-im/tokodon
   provides:
-  - category: "kde-apps"
+  - category: "net-im"
     name: "tokodon"
     version: ">=0"
   atoms:
-  - atom: "kde-apps/tokodon"
+  - atom: "net-im/tokodon"
     accept_keywords: "~amd64"
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
+  - <<: *libs-kirigami-addons
   build_requires:
   - <<: *layers-kde-common
 
@@ -14726,7 +14729,7 @@ packages:
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.13.1+1"
+  version: "1.13.1+2"
   uri:
   - https://github.com/brndnmtthws/conky
   license: "GPL-3 BSD LGPL-2.1 MIT"
@@ -14753,6 +14756,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-hddtemp
+  - <<: *apps-lua-5_3
   # - <<: *apps-xmms2
   - <<: *libs-libircclient
   build_requires:
