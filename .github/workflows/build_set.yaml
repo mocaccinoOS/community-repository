@@ -79,6 +79,7 @@ jobs:
     - run: |
         sudo chmod 666 /var/run/docker.sock
         sudo usermod -aG docker ${USER}
+        sudo setfacl --modify user::rw /var/run/docker.sock
     - run: |
         git fetch --prune --unshallow
     - name: Login to Quay Registry
