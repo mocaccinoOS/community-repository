@@ -80,6 +80,7 @@ jobs:
         git fetch --prune --unshallow
     - name: Login to Quay Registry
       run: |
+        sudo chmod 666 /var/run/docker.sock
         echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
 
     - name: Install deps 🔧
