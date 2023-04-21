@@ -752,6 +752,37 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-ayatana
+  category: "libs"
+  name: "ayatana"
+  version: "0.9.3"
+  uri:
+  - https://github.com/AyatanaIndicators/libayatana-appindicator
+  - https://github.com/AyatanaIndicators/libayatana-indicator
+  - https://github.com/AyatanaIndicators/ayatana-ido
+  license: "GPL-3 LGPL-2.1 LGPL-2 LGPL-3"
+  description: "Ayatana Application Indicators (Shared Library)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/ayatana-ido
+      dev-libs/libayatana-indicator
+      dev-libs/libayatana-appindicator
+  provides:
+  - category: "dev-libs"
+    name: "ayatana-ido"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libayatana-indicator"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libayatana-appindicator"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-babl
   category: "libs"
   name: "babl"
@@ -4479,7 +4510,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.50.119"
+  version: "1.50.121"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4504,6 +4535,29 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-brother-dcp1610w-bin
+  category: "apps"
+  name: "brother-dcp1610w-bin"
+  version: "3.0.1-r1"
+  uri:
+  - http://support.brother.com
+  license: "brother-eula GPL-2"
+  description: "Brother printer driver for DCP-1610W"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-print/brother-dcp1610w-bin
+  overlays:
+  - name: "brother-overlay"
+  provides:
+  - category: "net-print"
+    name: "brother-dcp1610w-bin"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "ccd2iso"
@@ -5327,6 +5381,30 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-fpc
+  category: "apps"
+  name: "fpc"
+  version: "3.2.2"
+  uri:
+  - hhttps://www.freepascal.org/
+  license: "GPL-2 LGPL-2.1-with-linking-exception"
+  description: "Free Pascal Compiler"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/fpc
+  provides:
+  - category: "dev-lang"
+    name: "fpc"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/fpc"
+    use: "source"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-fraqtive
   category: "apps"
@@ -7849,30 +7927,56 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+  
+# Masked for now
+# - category: "apps"
+#   name: "tokodon"
+#   version: "23.03.90"
+#   uri:
+#   - https://invent.kde.org/network/tokodon
+#   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
+#   description: "Mastodon client for Plasma and Plasma Mobile"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-im/tokodon
+#   provides:
+#   - category: "net-im"
+#     name: "tokodon"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-im/tokodon"
+#     accept_keywords: "~amd64"
+#   prereqs:
+#   - kde-frameworks/extra-cmake-modules
+#   requires:
+#   - <<: *layers-kde-common
+#   - <<: *libs-kirigami-addons
+#   build_requires:
+#   - <<: *layers-kde-common
 
 - category: "apps"
   name: "tokodon"
-  version: "23.03.90"
+  version: "23.02.0"
   uri:
   - https://invent.kde.org/network/tokodon
-  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
+  license: "GPL-2 GPL-3 AGPL-3+ CC-BY-SA-4.0 CC0-1.0 GPL-2+ GPL-3 GPL-3+ LGPL-2+ LGPL-2.1+ MIT"
   description: "Mastodon client for Plasma and Plasma Mobile"
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
-      net-im/tokodon
+      kde-apps/tokodon
+  overlays:
+  - name: "guru"
   provides:
-  - category: "net-im"
+  - category: "kde-apps"
     name: "tokodon"
     version: ">=0"
   atoms:
-  - atom: "net-im/tokodon"
+  - atom: "kde-apps/tokodon"
     accept_keywords: "~amd64"
-  prereqs:
-  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
-  - <<: *libs-kirigami-addons
   build_requires:
   - <<: *layers-kde-common
 
@@ -10096,15 +10200,15 @@ packages:
     name: "goverlay"
     version: ">=0"
   atoms:
-  - atom: "games-util/goverlay"
+  - atom: "games-util/goverlay-bin"
     use: "opengl vulkan"
     unmask: "true"
     accept_keywords: "**"
   - atom: "dev-libs/qt5pas"
     accept_keywords: "~amd64"
-  prereqs:
-  - dev-lang/fpc
-  - dev-lang/lazarus
+  # prereqs:
+  # - dev-lang/fpc
+  # - dev-lang/lazarus
   requires:
   - <<: *layers-qt
   - <<: *apps-mangohud
@@ -10693,6 +10797,13 @@ packages:
   - category: "app-misc"
     name: "openrgb-plugin-visualmap"
     version: ">=0"
+  - category: "dev-libs"
+    name: "mdns"
+    version: ">=0"
+  # llvm 17 depends on it
+  - category: "dev-cpp"
+    name: "cpp-httplib"
+    version: ">=0"
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
@@ -11199,8 +11310,13 @@ packages:
   - category: "games-strategy"
     name: "warzone2100"
     version: ">=0"
+  - category: "games-util"
+    name: "basis_universal"
+    version: ">=0"
   atoms:
   - atom: "games-strategy/warzone2100"
+    accept_keywords: "~amd64"
+  - atom: "games-util/basis_universal"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
@@ -11878,7 +11994,7 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &apps-brother-dcp1610w-bin
+- &apps-brother-dcp1610w-bin-brscan4
   category: "apps"
   name: "brother-dcp1610w-bin"
   version: "1.0-r1"
@@ -12192,6 +12308,39 @@ packages:
   - <<: *apps-transcode
   build_requires:
   - <<: *layers-plasma
+
+- &apps-lazarus
+  category: "apps"
+  name: "lazarus"
+  version: "2.0.12"
+  uri:
+  - hhttps://www.freepascal.org/
+  license: "GPL-2 LGPL-2.1-with-linking-exception"
+  description: "Feature rich visual programming environment emulating Delphi"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-lang/lazarus
+  provides:
+  - category: "dev-lang"
+    name: "lazarus"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libqt5pas"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/lazarus"
+    use: "extras gui # gtk2"
+  - atom: "dev-libs/libqt5pas"
+    accept_keywords: "~amd64"
+  prereqs:
+  - net-misc/rsync
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-fpc
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-libreoffice
   category: "apps"
@@ -14398,7 +14547,7 @@ packages:
   license: "GPL-2 Apache-2.0 FDL-1.3"
   description: "A turn-based strategy, artillery, action and comedy game"
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
       games-strategy/hedgewars
   provides:
@@ -15132,7 +15281,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.30"
+  version: "1.4.30+1"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -15154,6 +15303,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   # - <<: *layers-kde-common
+  - <<: *libs-ayatana
   - <<: *apps-spice-gtk
   build_requires:
   - <<: *buildbase-gnome-common

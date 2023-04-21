@@ -447,7 +447,7 @@ fi
 
 # Ensure Gentoo overlay tree
 
-REFRESH_TREE="${REFRESH_TREE:-false}"
+REFRESH_TREE="${REFRESH_TREE:-true}"
 PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-${ROOT_PATH}/portage/tree}"
 
 if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
