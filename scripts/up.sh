@@ -66,25 +66,25 @@ function getCategoryPackageVersion() {
     # )?
     # $/
     
-    CATEGORY_PACKAGE='([<>]?=?)(([^\/]+)\/)?([^[:space:]:]+)'
-    VERSION='((([[:digit:]]+)(\.([[:digit:]]+))*)([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+)))?)'
-    SLOT='(([[:digit:]]+)(\.([[:digit:]]+))*)'
+    CATEGORY_PACKAGE_REGEX='([<>]?=?)(([^\/]+)\/)?([^[:space:]:]+)'
+    VERSION_REGEX='((([[:digit:]]+)(\.([[:digit:]]+))*)([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+)))?)'
+    SLOT_REGEX='((([[:digit:]]+)(\.([[:digit:]]+))*)(-(.*))?)'
     
     MATCH=
     
-    if [[ "$1" =~ ^${CATEGORY_PACKAGE}-${VERSION}:${SLOT}$ ]] ; then
+    if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}-${VERSION_REGEX}:${SLOT_REGEX}$ ]] ; then
         MATCH="C/N-V:S"
         # echo ${MATCH} > /dev/tty
     else
-        if [[ "$1" =~ ^${CATEGORY_PACKAGE}:${SLOT}$ ]] ; then
+        if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}:${SLOT_REGEX}$ ]] ; then
             MATCH="C/N:S"
             # echo ${MATCH} > /dev/tty
         else
-            if [[ "$1" =~ ^${CATEGORY_PACKAGE}-${VERSION}$ ]] ; then
+            if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}-${VERSION_REGEX}$ ]] ; then
                 MATCH="C/N-V"
                 # echo ${MATCH} > /dev/tty
             else
-                if [[ "$1" =~ ^${CATEGORY_PACKAGE}$ ]] ; then
+                if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}$ ]] ; then
                     MATCH="C/N"
                     # echo ${MATCH} > /dev/tty
                 fi
@@ -97,7 +97,7 @@ function getCategoryPackageVersion() {
         if [[ "${MATCH}" == *"C/N"* ]] ; then
             CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
             CPV[CATEGORY]="${BASH_REMATCH[3]}"
-            CPV[PACKAGE_NAME]="${BASH_REMATCH[4]}"
+            CPV[NAME]="${BASH_REMATCH[4]}"
         fi
 
         if [[ "${MATCH}" == *"-V"* ]] ; then
@@ -134,27 +134,36 @@ function getCategoryPackageVersion() {
         
         if [[ "${MATCH}" == *":S"* ]] ; then
             if [[ "${MATCH}" == *"-V"* ]] ; then
-                CPV[SLOT_DOTS]="${BASH_REMATCH[17]}"
+                CPV[SLOT]="${BASH_REMATCH[17]}"
+                CPV[SLOT_DOTS]="${BASH_REMATCH[18]}"
+                CPV[SLOT_SUFFIX]="${BASH_REMATCH[22]}"
             else
-                CPV[SLOT_DOTS]="${BASH_REMATCH[5]}"
+                CPV[SLOT]="${BASH_REMATCH[5]}"
+                CPV[SLOT_DOTS]="${BASH_REMATCH[6]}"
+                CPV[SLOT_SUFFIX]="${BASH_REMATCH[10]}"
             fi
         fi
     fi
 
-    # echo "${BASH_REMATCH[@]}" > /dev/tty
-    # 
-    # echo "Version specifier: ${CPV_INFO[VERSION_SPECIFIER]}" > /dev/tty
-    # echo "Category: ${CPV_INFO[CATEGORY]}" > /dev/tty
-    # echo "Package name: ${CPV_INFO[PACKAGE_NAME]}" > /dev/tty
-    # echo "Version: ${CPV_INFO[VERSION]}" > /dev/tty
-    # echo "Version, dots: ${CPV_INFO[VERSION_DOTS]}" > /dev/tty
-    # echo "Version, letter: ${CPV_INFO[VERSION_LETTER]}" > /dev/tty
-    # echo "Version, patch type: ${CPV_INFO[VERSION_PATCH_TYPE]}" > /dev/tty
-    # echo "Version, patch type priority: ${CPV_INFO[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
-    # echo "Version, patch level: ${CPV_INFO[VERSION_PATCH_LEVEL]}" > /dev/tty
-    # echo "Version, revision number: ${CPV_INFO[VERSION_REVISION_NUMBER]}" > /dev/tty
-    # echo "Slot, dots: ${CPV_INFO[SLOT_DOTS]}" > /dev/tty
-    # echo "" > /dev/tty
+    if [[ $2 == "debug" ]] ; then
+        echo "$1" > /dev/tty
+        echo "${BASH_REMATCH[@]}" > /dev/tty
+        
+        echo "Version specifier: ${CPV[VERSION_SPECIFIER]}" > /dev/tty
+        echo "Category: ${CPV[CATEGORY]}" > /dev/tty
+        echo "Name: ${CPV[NAME]}" > /dev/tty
+        echo "Version: ${CPV[VERSION]}" > /dev/tty
+        echo "Version, dots: ${CPV[VERSION_DOTS]}" > /dev/tty
+        echo "Version, letter: ${CPV[VERSION_LETTER]}" > /dev/tty
+        echo "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}" > /dev/tty
+        echo "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
+        echo "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}" > /dev/tty
+        echo "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}" > /dev/tty
+        echo "Slot: ${CPV[SLOT]}" > /dev/tty
+        echo "Slot, dots: ${CPV[SLOT_DOTS]}" > /dev/tty
+        echo "Slot, suffix: ${CPV[SLOT_SUFFIX]}" > /dev/tty
+        echo "" > /dev/tty
+    fi
     
     declare -p CPV
 }
@@ -190,6 +199,7 @@ function compareDotsVersions() {
 }
 
 function compareVersions() {
+    # Returned values
     # $1 < $2 --> -1
     # $1 == $2 --> 0
     # $1 > $2 --> 1
@@ -205,12 +215,12 @@ function compareVersions() {
     # echo "2: ${CPV2[@]}" > /dev/tty
     
     # category and name must be the same, does not make sense to compare different atoms
-    if [[ ${CPV1[CATEGORY]} != ${CPV2[CATEGORY]} || ${CPV1[PACKAGE_NAME]} != ${CPV2[PACKAGE_NAME]} ]] ; then
+    if [[ ${CPV1[CATEGORY]} != ${CPV2[CATEGORY]} || ${CPV1[NAME]} != ${CPV2[NAME]} ]] ; then
         echo "-2"
     fi
     
     # no logic based on version specifier, for now    
-    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS)
+    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS, SLOT_SUFFIX)
     
     declare -i RESULT=0
 
@@ -241,9 +251,9 @@ function compareVersions() {
                     break
                 else
                     # if [[ ${CPV1[$KEY]} -gt ${CPV2[$KEY]} ]] ; then
-                    # echo "${CPV1[$KEY]} > ${CPV2[$KEY]}" > /dev/tty
-                    RESULT=1
-                    break
+                        # echo "${CPV1[$KEY]} > ${CPV2[$KEY]}" > /dev/tty
+                        RESULT=1
+                        break
                     # fi
                 fi
             fi
@@ -272,17 +282,26 @@ function getFlavorFromFile() {
     echo "${FLAVOR}"
 }
 
+function getSlotFromFile() {
+    local EBUILD=$1
+    
+    local SLOT=$(sed -En 's/SLOT="(.*)"/\1/p' "${EBUILD}")
+
+    echo "${SLOT}"
+}
+
 function getLatestVersion() {
 
     local USE_PACKAGES_GENTOO_ORG=${USE_PACKAGES_GENTOO_ORG:-false}
     
     local ROOT_PATH=$1
-    local PACKAGE=$2
-    local ATOMS_FLAVORS=($3)
-    local ATOM_CATEGORY=$4
-    local ATOM_NAME=$5
-    local PORTAGE_TREE_PATH=$6
-    local OVERLAYS=($7)
+    local PORTAGE_TREE_PATH=$2
+    local OVERLAYS=($3)
+    local PACKAGE=$4
+    local ATOMS_FLAVORS=($5)
+    local ATOM_CATEGORY=$6
+    local ATOM_NAME=$7
+    local ATOM_SLOT=$8
 
     local ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
 
@@ -390,16 +409,20 @@ function getLatestVersion() {
                 done
                 
                 # echo "Sorted: ${EBUILDS[@]}" > /dev/tty
-                
+            
                 # Search for the preferred version
                 # That is the first stable version or the first version of the same flavor
                 for EBUILD in "${EBUILDS[@]}"; do
                     local EBUILD_FLAVOR=$(getFlavorFromFile "${PORTAGE_TREE_PATH}/${ATOM}/${EBUILD}.ebuild" "${TESTING}" "${STABLE}")
+                    local EBUILD_SLOT=$(getSlotFromFile "${PORTAGE_TREE_PATH}/${ATOM}/${EBUILD}.ebuild")
                     
                     # echo "${EBUILD} flavor: ${EBUILD_FLAVOR}" > /dev/tty
                     # echo "${ATOM} flavor: ${ATOM_FLAVOR}" > /dev/tty
-                    
-                    if [[ "${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}" ]] ; then
+                    # echo "${EBUILD} slot: ${EBUILD_SLOT}" > /dev/tty
+                    # echo "${ATOM} slot: ${ATOM_SLOT}" > /dev/tty
+
+                    if [[ (( -z "${ATOM_SLOT}" ) || ( ! -z "${ATOM_SLOT}" && "${EBUILD_SLOT}" == "${ATOM_SLOT}"))
+                       && ("${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}") ]] ; then
                         local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
                         # echo "1: $tmp" > /dev/tty
                         eval "${tmp/CPV=/EBUILD_CPV=}"
@@ -512,51 +535,16 @@ for PKG in ${PACKAGES} ; do
 
         echo -e "${ATOM}"
 
-#         STRIPPED_ATOM=($( echo -e "${ATOM}" | sed -e 's/[<>=:]*\(.*\)\/\(.*\)[:]*.*/\1 \2/' ))
-#         MORE_STRIPPED_ATOM=($( echo -e "${ATOM}" | sed -e 's/[<>=:]*\(.*\)\/\(.*\)[:-].*/\1 \2/' ))
-# 
-#         MATCHED_ATOM="${STRIPPED_ATOM[0]}/${STRIPPED_ATOM[1]}"
-#         VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${STRIPPED_ATOM[0]}" "${STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
-#         
-#         if [[ -z "${VER}" ]] ; then
-#             echo "AAA: ${STRIPPED_ATOM[@]}" >> /dev/tty
-#             echo "BBB: ${MORE_STRIPPED_ATOM[@]}" >> /dev/tty
-#             echo "ZZZ: ${ATOM}" >> /dev/tty
-#             echo "XXX: ${MORE_STRIPPED_ATOM[0]}" >> /dev/tty
-#             echo "YYY: ${MORE_STRIPPED_ATOM[1]}" >> /dev/tty
-#             MATCHED_ATOM="${MORE_STRIPPED_ATOM[0]}/${MORE_STRIPPED_ATOM[1]}"
-#             VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${MORE_STRIPPED_ATOM[0]}" "${MORE_STRIPPED_ATOM[1]}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
-#         fi
-#         
-#         if [[ -z "${VER}" ]] ; then
-#             MATCHED_ATOM=
-#         fi
-# 
-#         LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
-# 
-#         LEV=$(levenshtein "${STRIPPED_ATOM[1]}" "${PACKAGE_NAME}");
-#         LEVM=$(levenshtein "${MORE_STRIPPED_ATOM[1]}" "${PACKAGE_NAME}");
-# 
-#         if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEVM ]] ; then
-#             CLOSEST_LEV=$LEVM
-#             CLOSEST_ATOM="${MORE_STRIPPED_ATOM[0]}/${MORE_STRIPPED_ATOM[1]}"
-#             CLOSEST_ATOM_VER=$VER
-#         fi
-#         if [[ $CLOSEST_LEV -gt $LEV ]] ; then
-#             CLOSEST_LEV=$LEV
-#             CLOSEST_ATOM="${STRIPPED_ATOM[0]}/${STRIPPED_ATOM[1]}"
-#             CLOSEST_ATOM_VER=$VER
-#         fi
-
         tmp=$(getCategoryPackageVersion "${ATOM}")
         # echo "1: $tmp" > /dev/tty
         eval "${tmp/CPV=/CPV_ATOM=}"
         # echo "1: ${CPV_ATOM[@]}" > /dev/tty
         
         ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
-        ATOM_NAME="${CPV_ATOM[PACKAGE_NAME]}"
+        ATOM_NAME="${CPV_ATOM[NAME]}"
+        ATOM_SLOT="${CPV_ATOM[SLOT]}"
         
-        VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}")
+        VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
 
         MATCHED_ATOM="\U1FBC4"
         MATCHED_ATOM_VER="\U1FBC4"
