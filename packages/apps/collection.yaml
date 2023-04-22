@@ -4510,7 +4510,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.50.121"
+  version: "1.50.125"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4554,6 +4554,9 @@ packages:
   - category: "net-print"
     name: "brother-dcp1610w-bin"
     version: ">=0"
+  atoms:
+  - atom: "net-print/brother-dcp1610w-bin"
+    license: "brother-eula"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7977,6 +7980,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
+  - <<: *libs-kirigami-addons
   build_requires:
   - <<: *layers-kde-common
 
@@ -8588,6 +8592,9 @@ packages:
   - category: "x11-misc"
     name: "xaos"
     version: ">=0"
+  atoms:
+  - atom: "x11-misc/xaos"
+    accept_keywords: "~amd64"
   preeqs:
   - app-doc/doxygen
   - media-gfx/graphviz
@@ -10152,7 +10159,7 @@ packages:
 
 - category: "apps"
   name: "gkrellm"
-  version: "2.3.11-r1"
+  version: "2.3.11-r4"
   uri:
   - http://www.gkrellm.net/
   license: "GPL-3+"
@@ -11498,7 +11505,7 @@ packages:
 - &libs-allegro
   category: "libs"
   name: "allegro"
-  version: ".2.7.0-r1"
+  version: "5.2.7.0-r1"
   uri:
   - https://liballeg.org/
   license: "BSD ZLIB"
@@ -12336,11 +12343,11 @@ packages:
   prereqs:
   - net-misc/rsync
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
   - <<: *apps-fpc
   - <<: *libs-gtk2
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
 
 - &apps-libreoffice
   category: "apps"
@@ -14007,7 +14014,7 @@ packages:
 
 - category: "apps"
   name: "qsynth"
-  version: "0.9.8"
+  version: "0.9.10"
   uri:
   - https://qsynth.sourceforge.io/
   license: "GPL-2"
@@ -15446,8 +15453,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/displaycal-py3
-  overlays:
-  - name: "stefantalpalaru"
   provides:
   - category: "media-gfx"
     name: "displaycal-py3"
