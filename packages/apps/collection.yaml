@@ -10159,7 +10159,7 @@ packages:
 
 - category: "apps"
   name: "gkrellm"
-  version: "2.3.11-r4"
+  version: "2.3.11-r4+1"
   uri:
   - http://www.gkrellm.net/
   license: "GPL-3+"
@@ -10182,6 +10182,7 @@ packages:
     version: ">=0"
   - <<: *apps-hddtemp
   - <<: *libs-libntlm
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -12108,7 +12109,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.3.1"
+  version: "2.3.1+1"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -12122,7 +12123,7 @@ packages:
     name: "fluidsynth"
     version: ">=0"
   atoms:
-  - atom: "media-libs/fluidsynth"
+  - atom: "media-sound/fluidsynth"
     use: "alsa dbus examples ipv6 jack ladspa lash network oss pipewire portaudio pulseaudio readline sdl sndfile systemd"
   requires:
   - <<: *layers-X
