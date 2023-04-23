@@ -78,6 +78,12 @@ jobs:
         df -h
     - run: |
         git fetch --prune --unshallow
+    - run: |
+        sudo service docker stop
+        cd /var/run/docker/libcontainerd
+        sudo rm -rf containerd/*
+        sudo rm -f docker-containerd.pid
+        sudo service docker start
     - name: Login to Quay Registry
       run: |
         sudo chmod 666 /var/run/docker.sock
