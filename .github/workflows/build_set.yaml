@@ -79,10 +79,10 @@ jobs:
     - run: |
         git fetch --prune --unshallow
     - run: |
-        sudo service docker stop
-        cd /var/run/docker/libcontainerd
-        sudo rm -rf containerd/*
-        sudo rm -f docker-containerd.pid
+        sudo service docker stop || true
+        cd /var/run/docker/libcontainerd || true
+        sudo rm -rf containerd/* || true
+        sudo rm -f docker-containerd.pid || true
         sudo service docker start
     - name: Login to Quay Registry
       run: |
