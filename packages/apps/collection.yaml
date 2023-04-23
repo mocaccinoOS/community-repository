@@ -12555,50 +12555,50 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-neovim
-  category: "apps"
-  name: "neovim"
-  version: "0.8.3"
-  uri:
-  - https://neovim.io
-  license: "Apache-2.0 vim"
-  description: |
-    "Vim-fork focused on extensibility and agility"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lua/luv
-      dev-lua/mpack
-      app-editors/neovim
-  provides:
-  - category: "app-editors"
-    name: "neovim"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "luv"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "mpack"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libmpack"
-    version: ">=0"
-  atoms:
-  - atom: "app-editors/neovim"
-    use: "lto nvimpager tui"
-  prereqs:
-  - dev-lua/busted
-  requires:
-  - <<: *layers-X
-  - <<: *layers-term-libs
-  - <<: *libs-lpeg
-  - <<: *libs-LuaBitOp
-  - <<: *libs-tree-sitter
-  - <<: *libs-msgpack
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-term-libs
-  requires_final_images: true
+# - &apps-neovim
+#   category: "apps"
+#   name: "neovim"
+#   version: "0.8.3"
+#   uri:
+#   - https://neovim.io
+#   license: "Apache-2.0 vim"
+#   description: |
+#     "Vim-fork focused on extensibility and agility"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lua/luv
+#       dev-lua/mpack
+#       app-editors/neovim
+#   provides:
+#   - category: "app-editors"
+#     name: "neovim"
+#     version: ">=0"
+#   - category: "dev-lua"
+#     name: "luv"
+#     version: ">=0"
+#   - category: "dev-lua"
+#     name: "mpack"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libmpack"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-editors/neovim"
+#     use: "lto nvimpager tui"
+#   prereqs:
+#   - dev-lua/busted
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-term-libs
+#   - <<: *libs-lpeg
+#   - <<: *libs-LuaBitOp
+#   - <<: *libs-tree-sitter
+#   - <<: *libs-msgpack
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *buildbase-term-libs
+#   requires_final_images: true
 
 - &apps-nmapsi
   category: "apps"
@@ -13685,46 +13685,46 @@ packages:
 #   build_requires:
 #   - <<: *layers-qt
 
-# go install github.com/akiyosi/goneovim@v0.6.4
-- category: "apps"
-  name: "goneovim"
-  version: "0.6.4+4"
-  uri:
-  - https://github.com/akiyosi/goneovim
-  license: "MIT"
-  description: "A Neovim GUI written in Go, using a Qt binding for Go"
-  labels:
-    emerge.jobs: "1"
-  prerequires:
-  - <<: *apps-go
-  ready:
-  - |
-    go list -m -versions github.com/akiyosi/goneovim
-  - |
-    export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
-    $(go env GOPATH)/bin/qtsetup -test=false && \
-    go get -d -v github.com/akiyosi/goneovim/... && \
-    cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
-    git checkout v0.6.4 -b v0.6.4 && \
-    $(go env GOPATH)/bin/qtmoc && \
-    cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
-    $(go env GOPATH)/bin/qtdeploy build desktop
-  setup:
-  - |
-    mkdir -p -m 755 /usr/share/pixmaps && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-neovim
-    skip: true
-  build_requires:
-  - <<: *layers-qt
+# # go install github.com/akiyosi/goneovim@v0.6.4
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.4+4"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   prerequires:
+#   - <<: *apps-go
+#   ready:
+#   - |
+#     go list -m -versions github.com/akiyosi/goneovim
+#   - |
+#     export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
+#     $(go env GOPATH)/bin/qtsetup -test=false && \
+#     go get -d -v github.com/akiyosi/goneovim/... && \
+#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
+#     git checkout v0.6.4 -b v0.6.4 && \
+#     $(go env GOPATH)/bin/qtmoc && \
+#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
+#     $(go env GOPATH)/bin/qtdeploy build desktop
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-hugin
   category: "apps"
@@ -14588,30 +14588,30 @@ packages:
   - <<: *buildbase-ghc
   requires_final_images: true
 
-- category: "apps"
-  name: "kdenlive"
-  version: "22.12.3"
-  uri:
-  - https://kdenlive.org/en/
-  license: "GPL-3"
-  description: "Non-linear video editing suite by KDE"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kdenlive
-  provides:
-  - category: "kde-apps"
-    name: "kdenlive"
-    version: ">=0"
-  atoms:
-  - atom: "kde-apps/kdenlive"
-    use: "semantic-desktop share v4l # gles2-only"
-  requires:
-  - <<: *layers-plasma
-  - <<: *libs-mlt
-  - <<: *apps-mediainfo
-  build_requires:
-  - <<: *layers-plasma
+# - category: "apps"
+#   name: "kdenlive"
+#   version: "22.12.3"
+#   uri:
+#   - https://kdenlive.org/en/
+#   license: "GPL-3"
+#   description: "Non-linear video editing suite by KDE"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-apps/kdenlive
+#   provides:
+#   - category: "kde-apps"
+#     name: "kdenlive"
+#     version: ">=0"
+#   atoms:
+#   - atom: "kde-apps/kdenlive"
+#     use: "semantic-desktop share v4l # gles2-only"
+#   requires:
+#   - <<: *layers-plasma
+#   - <<: *libs-mlt
+#   - <<: *apps-mediainfo
+#   build_requires:
+#   - <<: *layers-plasma
 
 - &apps-neverball
   category: "apps"
