@@ -3,7 +3,7 @@
 ## cr.list_package_with_deps ###
 ################################################################################
 
-{{- define "cr.list_package_with_deps" }} 
+{{- define "cr.list_package_with_deps" }}
 
 {{- if not (default .skip false) }}
 
@@ -42,94 +42,89 @@
 
 {{- define "cr.copy_package_setup_files" }}
 {{- $package := . }}
-- |
-  set -x; \
-  mkdir -p /etc/portage/package.accept_keywords; \
-  if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
-    cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
-  fi; \
-  mkdir -p /etc/portage/package.license; \
-  if [ -e "package.license/{{ $package }}.license" ]; then \
-    cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
-  fi; \
-  mkdir -p /etc/portage/package.unmask; \
-  if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
-    cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
-  fi; \
-  mkdir -p /etc/portage/package.use; \
-  if [ -e "package.use/{{ $package }}.use" ]; then \
-    cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
-  fi;
+set -x; \
+mkdir -p /etc/portage/package.accept_keywords; \
+if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
+cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
+fi; \
+mkdir -p /etc/portage/package.license; \
+if [ -e "package.license/{{ $package }}.license" ]; then \
+cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
+fi; \
+mkdir -p /etc/portage/package.unmask; \
+if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
+cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
+fi; \
+mkdir -p /etc/portage/package.use; \
+if [ -e "package.use/{{ $package }}.use" ]; then \
+cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
+fi;
 {{- end }}
 
-################################################################################
-## cr.packages_setup ###
-################################################################################
-
-{{- define "cr.packages_setup" }}
-
-{{- if not (default .skip false) }}
-
-{{- $dep := . }}
-
-{{- range ("prerequires optrequires requires" | splitList " ") }}
-{{- if ( index $dep . ) }}
-{{- range ( index $dep . ) }}
-
-{{- ( include "cr.packages_setup" . ) }}
-
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- ( include "cr.package_setup" . ) }}
-
-{{- end }}
-
-{{- end }}
 
 ################################################################################
 ## cr.package_setup ###
 ################################################################################
 
 {{- define "cr.package_setup" }}
-{{- $package := . }}
+
+{{- $command := "" }}
+
+{{- $command = ( include "cr.copy_package_setup_files" ( printf "%s-%s" .category .name ) | trim ) }}
+
+{{- if .atoms }}
 
 {{- $filepath := "/etc/portage/package" }}
 {{- $filename := printf "%s-%s" .category .name }}
 
-{{- if .atoms }}
-- |
 {{- range .atoms }}
+
 {{- $atom := . }}
+
 {{- range ("accept_keywords license use" | splitList " ") }}
-{{- $value := (index $atom .) }}
+
+{{- $command = printf "%sfind %s.%s/ -type f -a \\( -name \"*.%s\" \\) -a -exec sed -i -e \"/%s/d\" {} +; \\\n" $command $filepath . . ( $atom.atom | replace "/" "\\/" ) }}
+
+{{- $value := ( index $atom . ) }}
+
 {{- if $value }}
-  mkdir -p {{ $filepath }}.{{ . }}; \
-  echo -e "{{ $atom.atom }} {{ ($value | replace "\n" "\\n") }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
-{{- end }}
-{{- end }}
-{{- range ("unmask" | splitList " ") }}
-{{- if (index $atom .) }}
-  mkdir -p {{ $filepath }}.{{ . }}; \
-  echo -e "{{ $atom.atom }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
-{{- end }}
-{{- end }}
-{{- $value := (index $atom "env") }}
-{{- if $value }}
-  mkdir -p /etc/portage/env; \
-  echo -e "{{ ($value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf; \
-  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
-{{- end }}
-{{- $value := (index $atom "env_profile" ) }}
-{{- if $value }}
-  mkdir -p /etc/portage/env; \
-  echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
+{{- $command = printf "%smkdir -p %s.%s; \\\n" $command $filepath . }}
+{{- $command = printf "%secho -e \"%s %s\" >> %s.%s/%s.%s; \\\n" $command $atom.atom ( $value | replace "\n" "\\n" ) $filepath . $filename . }}
 {{- end }}
 
 {{- end }}
-  echo;
+
+{{- range ("unmask" | splitList " ") }}
+
+{{- if (index $atom .) }}
+{{- $command = printf "%smkdir -p %s.%s; \\\n" $command $filepath . }}
+{{- $command = printf "%secho -e \"\\\"%s\\\" >> %s.%s/%s.%s; \\\n" $command $atom.atom $filepath . $filename . }}
 {{- end }}
+
+{{- end }}
+
+{{- $value := (index $atom "env") }}
+
+{{- if $value }}
+{{- $command = printf "%smkdir -p /etc/portage/env; \\\n" $command }}
+{{- $command = printf "%secho -e \"%s\" >> /etc/portage/env/%s.conf; \\\n" $command ( $value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) $filename }}
+{{- $command = printf "%secho -e \"%s %s.conf\" >> /etc/portage/package.env/%s.env; \\\n" $command $atom.atom $filename $filename }}
+{{- end }}
+
+{{- $value := (index $atom "env_profile" ) }}
+
+{{- if $value }}
+{{- $command = printf "%smkdir -p /etc/portage/env; \\\n" $command }}
+{{- $command = printf "%secho -e \"%s %s\" >> /etc/portage/package.env/%s.env; \\\n" $command $atom.atom $value $filename }}
+{{- end }}
+
+{{- end }}
+
+{{- $command = printf "%secho;" $command }}
+
+{{- end }}
+
+{{- $command }}
 
 {{- end }}
 
@@ -236,29 +231,10 @@
 {{- end }}
 
 ################################################################################
-## cr.emerge ###
-################################################################################
-
-{{- define "cr.emerge" }}
-
-{{- $command := "" }}
-
-{{- $tokens := . | splitList ";" }}
-{{- if eq (len $tokens) 1 }}
-{{- $command = printf "emerge -1 -j ${JOBS} %s" (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
-{{- else if eq (len $tokens) 2 }}
-{{- $command = printf "%s emerge -1 -j ${JOBS} %s" (index $tokens 1) (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
-{{- end }}
-
-{{- $command }}
-
-{{- end }}
-
-################################################################################
 ## cr.prereqs_emerge ###
 ################################################################################
 
-{{- define "cr.prereqs_emerge" }} 
+{{- define "cr.prereqs_emerge" }}
 
 {{- $commands := list }}
 
@@ -300,6 +276,12 @@
 {{- $command := include "cr.emerge" ( index .labels "emerge.packages" ) }}
 {{- if $command }}
 {{- if not (has $command $commands) }}
+
+{{- $package_setup := include "cr.package_setup" . }}
+{{- if $package_setup }}
+{{- $commands = append $commands $package_setup }}
+{{- end }}
+
 {{- $commands = append $commands $command }}
 {{- end }}
 {{- end }}
@@ -330,6 +312,25 @@
 {{- end }}
 
 {{- $commands | toJson }}
+
+{{- end }}
+
+################################################################################
+## cr.emerge ###
+################################################################################
+
+{{- define "cr.emerge" }}
+
+{{- $command := "" }}
+
+{{- $tokens := . | splitList ";" }}
+{{- if eq (len $tokens) 1 }}
+{{- $command = printf "emerge -1 -j ${JOBS} %s" (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
+{{- else if eq (len $tokens) 2 }}
+{{- $command = printf "%s emerge -1 -j ${JOBS} %s" (index $tokens 1) (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
+{{- end }}
+
+{{- $command }}
 
 {{- end }}
 

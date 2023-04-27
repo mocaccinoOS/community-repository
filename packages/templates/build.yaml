@@ -25,16 +25,7 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 {{ $packages := include "cr.list_package_with_deps" .Values }}
-{{ if $packages }}
-{{ range $packages | splitList " " }}
-{{ if . }}
-{{ $package := . | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" | replace "\"" "" }}
-{{ include "cr.copy_package_setup_files" $package }}
-{{ end }}
-{{ end }}
-{{ end }}
-
-{{ include "cr.packages_setup" .Values }}
+- echo "Packages, by dependency:" {{ $packages }}
 
 {{ range include "cr.prereqs" .Values | fromJsonArray }}
 {{ if contains "\n" . }}
@@ -51,6 +42,18 @@ prelude:
   rm -rf /etc/portage/package.license || true; \
   rm -rf /etc/portage/package.unmask || true; \
   rm -rf /etc/portage/package.use || true;
+{{ else }}
+
+{{ $package_setup := include "cr.package_setup" .Values }}
+{{ if $package_setup }}
+{{ if contains "\n" $package_setup }}
+- |
+{{ $package_setup | indent 2 }}
+{{ else }}
+- {{ $package_setup }}
+{{ end }}
+{{ end }}
+
 {{ end }}
 
 steps:
@@ -68,10 +71,19 @@ steps:
 {{ end }}
 
 {{ if eq .Values.category "layerbase" }}
-{{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
-{{ include "cr.copy_package_setup_files" $package }}
 
-{{ include "cr.package_setup" .Values }}
+{{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
+
+{{ $package_setup := include "cr.package_setup" . }}
+{{ if $package_setup }}
+{{ if contains "\n" $package_setup }}
+- |
+{{ $package_setup | indent 2 }}
+{{ else }}
+- {{ $package_setup }}
+{{ end }}
+{{ end }}
+
 {{ end }}
 
 {{ if .Values.preemerge }}

@@ -12503,10 +12503,37 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# - &apps-mediainfo
+#   category: "apps"
+#   name: "mediainfo"
+#   version: "22.09+1"
+#   uri:
+#   - https://mediaarea.net/mediainfo/
+#   license: "BSD-2"
+#   description: "MediaInfo supplies technical and tag information about media files"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-video/mediainfo
+#   provides:
+#   - category: "media-video"
+#     name: "mediainfo"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-video/mediainfo"
+#     use: "curl mms wxwidgets"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-wxGTK-3_0-gtk3
+#   - <<: *libs-libmediainfo
+#   - <<: *libs-libzen
+#   build_requires:
+#   - <<: *layers-gnome-common
+
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
-  version: "22.09+1"
+  version: "22.09+6"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2"
@@ -12521,12 +12548,25 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-video/mediainfo"
+    use: "curl mms -wxwidgets"
+  requires:
+  - <<: *layers-codecs
+  - <<: *libs-libmediainfo
+  - <<: *libs-libzen
+  build_requires:
+  - <<: *layers-codecs
+
+- &apps-mediainfo-gui
+  <<: *apps-mediainfo
+  category: "apps"
+  name: "mediainfo-gui"
+  atoms:
+  - atom: "media-video/mediainfo"
     use: "curl mms wxwidgets"
   requires:
   - <<: *layers-gnome-common
+  - <<: *apps-mediainfo
   - <<: *libs-wxGTK-3_0-gtk3
-  - <<: *libs-libmediainfo
-  - <<: *libs-libzen
   build_requires:
   - <<: *layers-gnome-common
 
@@ -12555,50 +12595,50 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-neovim
-#   category: "apps"
-#   name: "neovim"
-#   version: "0.8.3+1"
-#   uri:
-#   - https://neovim.io
-#   license: "Apache-2.0 vim"
-#   description: |
-#     "Vim-fork focused on extensibility and agility"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-lua/luv
-#       dev-lua/mpack
-#       app-editors/neovim
-#   provides:
-#   - category: "app-editors"
-#     name: "neovim"
-#     version: ">=0"
-#   - category: "dev-lua"
-#     name: "luv"
-#     version: ">=0"
-#   - category: "dev-lua"
-#     name: "mpack"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "libmpack"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-editors/neovim"
-#     use: "lto nvimpager tui"
-#   prereqs:
-#   - dev-lua/busted
-#   requires:
-#   - <<: *layers-X
-#   - <<: *layers-term-libs
-#   - <<: *libs-lpeg
-#   - <<: *libs-LuaBitOp
-#   - <<: *libs-tree-sitter
-#   - <<: *libs-msgpack
-#   build_requires:
-#   - <<: *buildbase-X
-#   - <<: *buildbase-term-libs
-#   requires_final_images: true
+- &apps-neovim
+  category: "apps"
+  name: "neovim"
+  version: "0.8.3+1"
+  uri:
+  - https://neovim.io
+  license: "Apache-2.0 vim"
+  description: |
+    "Vim-fork focused on extensibility and agility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/luv
+      dev-lua/mpack
+      app-editors/neovim
+  provides:
+  - category: "app-editors"
+    name: "neovim"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "luv"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "mpack"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libmpack"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/neovim"
+    use: "lto nvimpager tui"
+  prereqs:
+  - dev-lua/busted
+  requires:
+  - <<: *layers-X
+  - <<: *layers-term-libs
+  - <<: *libs-lpeg
+  - <<: *libs-LuaBitOp
+  - <<: *libs-tree-sitter
+  - <<: *libs-msgpack
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-term-libs
+  requires_final_images: true
 
 - &apps-nmapsi
   category: "apps"
@@ -14588,30 +14628,30 @@ packages:
   - <<: *buildbase-ghc
   requires_final_images: true
 
-# - category: "apps"
-#   name: "kdenlive"
-#   version: "22.12.3"
-#   uri:
-#   - https://kdenlive.org/en/
-#   license: "GPL-3"
-#   description: "Non-linear video editing suite by KDE"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-apps/kdenlive
-#   provides:
-#   - category: "kde-apps"
-#     name: "kdenlive"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-apps/kdenlive"
-#     use: "semantic-desktop share v4l # gles2-only"
-#   requires:
-#   - <<: *layers-plasma
-#   - <<: *libs-mlt
-#   - <<: *apps-mediainfo
-#   build_requires:
-#   - <<: *layers-plasma
+- category: "apps"
+  name: "kdenlive"
+  version: "22.12.3"
+  uri:
+  - https://kdenlive.org/en/
+  license: "GPL-3"
+  description: "Non-linear video editing suite by KDE"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kdenlive
+  provides:
+  - category: "kde-apps"
+    name: "kdenlive"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/kdenlive"
+    use: "semantic-desktop share v4l # gles2-only"
+  requires:
+  - <<: *layers-plasma
+  - <<: *libs-mlt
+  - <<: *apps-mediainfo
+  build_requires:
+  - <<: *layers-plasma
 
 - &apps-neverball
   category: "apps"
