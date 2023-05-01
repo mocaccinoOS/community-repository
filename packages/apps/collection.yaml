@@ -9718,6 +9718,31 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-bedrock-server
+  category: "apps"
+  name: "bedrock-server"
+  version: "1.19.73.02"
+  uri:
+  - https://www.bedrock.net/
+  license: "Mojang"
+  description: "The official bedrock (non-java) based server for the sandbox video game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-server/bedrock-server
+  provides:
+  - category: "games-server"
+    name: "bedrock-server"
+    version: ">=0"
+  atoms:
+  - atom: "games-server/bedrock-server"
+    license: "Mojang"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-dtach
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-brother-scan4-bin
   category: "apps"
   name: "brother-scan4-bin"
@@ -10607,13 +10632,13 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-misc/minecraft-server
+      games-server/minecraft-server
   provides:
-  - category: "app-misc"
+  - category: "games-server"
     name: "minecraft-server"
     version: ">=0"
   atoms:
-  - atom: "app-misc/minecraft-server"
+  - atom: "games-server/minecraft-server"
     license: "Mojang"
   requires:
   - <<: *layers-java
