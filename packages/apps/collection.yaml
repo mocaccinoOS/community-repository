@@ -4987,6 +4987,27 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
+- &apps-dtach
+  category: "apps"
+  name: "dtach"
+  version: "0.9-r1"
+  uri:
+  - http://dtach.sourceforge.net/
+  license: "GPL-2+"
+  description: "Emulates the detach feature of screen"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/dtach
+  provides:
+  - category: "app-misc"
+    name: "dtach"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-dvdauthor
   category: "apps"
   name: "dvdauthor"
@@ -12532,7 +12553,7 @@ packages:
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
-  version: "22.09+6"
+  version: "22.09+7"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2"
