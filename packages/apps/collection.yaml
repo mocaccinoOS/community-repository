@@ -10596,6 +10596,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-minecraft-server
+  category: "apps"
+  name: "minecraft-server"
+  version: "1.19.4"
+  uri:
+  - https://www.minecraft.net/
+  license: "Mojang"
+  description: "The official server for the sandbox video game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/minecraft-server
+  provides:
+  - category: "app-misc"
+    name: "minecraft-server"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/minecraft-server"
+    license: "Mojang"
+  requires:
+  - <<: *layers-java
+  - <<: *apps-dtach
+  build_requires:
+  - <<: *layers-java
+
 - &apps-mirage2iso
   category: "apps"
   name: "mirage2iso"
