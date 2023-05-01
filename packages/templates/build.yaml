@@ -81,7 +81,7 @@ steps:
 
 {{ if eq .Values.category "layerbase" }}
 
-{{ $package_setup := include "cr.package_setup" . }}
+{{ $package_setup := include "cr.package_setup" .Values }}
 {{ if $package_setup }}
 {{ if contains "\n" $package_setup }}
 - |
