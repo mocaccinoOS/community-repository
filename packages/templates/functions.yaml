@@ -11,12 +11,16 @@
 
 {{- $dep := . }}
 
-{{- range ("prerequires optrequires requires" | splitList " ") }}
+{{- range ("requires prerequires optrequires" | splitList " ") }}
 {{- if ( index $dep . ) }}
 {{- range ( index $dep . ) }}
 
-{{- $deps := ( include "cr.list_package_with_deps" . ) | splitList " " }}
-{{- $packages = $packages | concat $deps }}
+{{- range ( include "cr.list_package_with_deps" . ) | splitList " " }}
+{{- if not (has . $packages) }}
+{{- $packages = . | append $packages }}
+{{- end }}
+
+{{- end }}
 
 {{- end }}
 {{- end }}
@@ -29,6 +33,32 @@
 
 {{- $packages = $packages | uniq }}
 {{- join " " $packages }}
+
+{{- else }}
+{{- "" }}
+{{- end }}
+
+{{- end }}
+
+################################################################################
+## cr.index_dict_package_with_deps ###
+################################################################################
+
+{{- define "cr.index_dict_package_with_deps" }}
+
+{{- if . }}
+
+{{- $packages := dict }}
+{{- $index := 0 }}
+
+{{- range . | splitList " " }}
+{{- if . }}
+{{- $_ := set $packages ( . | replace "\"" "" ) $index }}
+{{- $index = add1 $index }}
+{{- end }}
+{{- end }}
+
+{{- $packages | toJson }}
 
 {{- else }}
 {{- "" }}
@@ -70,7 +100,7 @@ fi;
 
 {{- $command := "" }}
 
-{{- $command = ( include "cr.copy_package_setup_files" ( printf "%s-%s" .category .name ) | trim ) }}
+{{- $command = ( include "cr.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) | trim ) }}
 
 {{- if .atoms }}
 

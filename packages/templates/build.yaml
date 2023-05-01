@@ -25,7 +25,7 @@ unpack: {{ .Values.unpack }}
 
 prelude:
 {{ $packages := include "cr.list_package_with_deps" .Values }}
-- echo "Packages, by dependency:" {{ $packages }}
+- echo "Packages:" {{ $packages }}
 
 {{ range include "cr.prereqs" .Values | fromJsonArray }}
 {{ if contains "\n" . }}
@@ -70,9 +70,16 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ if eq .Values.category "layerbase" }}
+{{ if .Values.preemerge }}
+{{ range .Values.preemerge }}
+{{ $command := include "cr.emerge" . }}
+{{ if $command }}
+- {{ $command }}
+{{ end }}
+{{ end }}
+{{ end }}
 
-{{ $package := printf "%s-%s" .Values.category .Values.name | replace "layerbase-" "layers-" | replace "buildbase-" "layers-" }}
+{{ if eq .Values.category "layerbase" }}
 
 {{ $package_setup := include "cr.package_setup" . }}
 {{ if $package_setup }}
@@ -84,15 +91,6 @@ steps:
 {{ end }}
 {{ end }}
 
-{{ end }}
-
-{{ if .Values.preemerge }}
-{{ range .Values.preemerge }}
-{{ $command := include "cr.emerge" . }}
-{{ if $command }}
-- {{ $command }}
-{{ end }}
-{{ end }}
 {{ end }}
 
 {{ if .Values.labels }}
