@@ -1,68 +1,106 @@
 
 ################################################################################
-## cr.list_package_with_deps ###
+## cr.list_packages_with_deps ###
 ################################################################################
 
-{{- define "cr.list_package_with_deps" }}
+{{- define "cr.list_packages_with_deps" }}
 
-{{- if not (default .skip false) }}
+  {{- if not (default .skip false) }}
 
-{{- $packages := list }}
+    {{- $packages := list }}
 
-{{- $dep := . }}
+    {{- $dep := . }}
 
-{{- range ("requires prerequires optrequires" | splitList " ") }}
-{{- if ( index $dep . ) }}
-{{- range ( index $dep . ) }}
+    {{- range ( "requires prerequires optrequires" | splitList " " ) }}
+      {{- if ( index $dep . ) }}
+        {{- range ( index $dep . ) }}
 
-{{- range ( include "cr.list_package_with_deps" . ) | splitList " " }}
-{{- if not (has . $packages) }}
-{{- $packages = . | append $packages }}
-{{- end }}
+          {{- range ( include "cr.list_packages_with_deps" . ) | splitList " " }}
+            {{- if not (has . $packages) }}
+              {{- $packages = . | append $packages }}
+            {{- end }}
+          {{- end }}
 
-{{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
 
-{{- end }}
-{{- end }}
-{{- end }}
+    {{- range ( "prereqs preemerge" | splitList " " ) }}
+      {{- if ( index $dep . ) }}
+        {{- range ( index $dep . ) }}
 
-{{- $package := printf "\"%s-%s\"" .category .name }}
-{{- if not (has $package $packages) }}
-{{- $packages = $package | append $packages }}
-{{- end }}
+          {{- $required := printf "\"%s\"" . }}
+          
+          {{- if not (has $required $packages) }}
+            {{- $packages = $required | append $packages }}
+          {{- end }}
 
-{{- $packages = $packages | uniq }}
-{{- join " " $packages }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
 
-{{- else }}
-{{- "" }}
-{{- end }}
+    {{- $package := printf "\"%s-%s\"" .category .name }}
+    {{- if not (has $package $packages) }}
+      {{- $packages = $package | append $packages }}
+    {{- end }}
+
+    {{- /*$packages = $packages | uniq */}}
+    {{- join " " $packages }}
+
+  {{- else }}
+    {{- "" }}
+  {{- end }}
 
 {{- end }}
 
 ################################################################################
-## cr.index_dict_package_with_deps ###
+## cr.map_packages_with_deps ###
 ################################################################################
 
-{{- define "cr.index_dict_package_with_deps" }}
+{{- define "cr.map_packages_with_deps" }}
 
-{{- if . }}
+  {{- $packages := dict }}
+  
+  {{- if not (default .skip false) }}
+  
+    {{- $package := . }}
+    {{- $requiredBy := printf "%s-%s" .category .name }}
+    
+    {{- range ("requires prerequires optrequires" | splitList " ") }}
+      {{- if ( index $package . ) }}
+        {{- range ( index $package . ) }}
 
-{{- $packages := dict }}
-{{- $index := 0 }}
+          {{- $required := printf "%s-%s" .category .name }}
 
-{{- range . | splitList " " }}
-{{- if . }}
-{{- $_ := set $packages ( . | replace "\"" "" ) $index }}
-{{- $index = add1 $index }}
-{{- end }}
-{{- end }}
+          {{- range $k, $v := ( ( include "cr.map_packages_with_deps" . ) | fromJson ) }}
+            {{- $_ := set $packages $k $v }}
+          {{- end }}
 
-{{- $packages | toJson }}
+          {{- if not ( hasKey $packages $required ) }}
+            {{- $_ := set $packages $required $requiredBy }}
+          {{- end }}
 
-{{- else }}
-{{- "" }}
-{{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+
+    {{- range ("prereqs preemerge" | splitList " ") }}
+      {{- if ( index $package . ) }}
+        {{- range ( index $package . ) }}
+        
+          {{- $required := printf "\"%s\"" . }}
+
+          {{- if not ( hasKey $packages $required ) }}
+            {{- $_ := set $packages $required $requiredBy }}
+          {{- end }}
+
+        {{- end }}
+      {{- end }}
+    {{- end }}
+
+  {{- end }}
+  
+  {{- $packages | toJson }}
 
 {{- end }}
 
@@ -164,39 +202,88 @@ fi;
 
 {{- define "cr.prereqs" }}
 
+{{- $packages := index . 1 }}
+{{- $previous_package := index . 2 }}
+
 {{- $commands := list }}
+
+{{- with index . 0 }}
 
 {{- if not (default .skip false) }}
 
+{{- $current_package := printf "%s-%s" .category .name }}
+
 {{- $command := "" }}
+
+{{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
+
+{{- if $enqueue }}
+{{- $commands = append $commands ( printf "echo \"cr.prereqs (%s required by %s)\"" $current_package ( $previous_package | default "itself" ) ) }}
+{{- else }}
+{{- $commands = append $commands ( printf "echo \"cr.prereqs (%s required by %s, skipping, should be required by %s)\"" $current_package ( $previous_package | default "itself" ) ( get $packages $current_package ) ) }}
+{{- end }}
+
+{{- if $enqueue }}
+
+{{- $package := . }}
+
+{{- if .requires }}
+{{- range .requires }}
+
+{{- range include "cr.prereqs_emerge" ( list . $packages $current_package ) | fromJsonArray }}
+{{- if . }}
+{{- /*if not (has . $commands) */}}
+{{- $commands = append $commands . }}
+{{- /*end */}}
+{{- end }}
+{{- end }}
+
+{{- end }}
+{{- end }}
+
+{{- range ("prerequires optrequires" | splitList " ") }}
+{{- if ( index $package . ) }}
+{{- range ( index $package . ) }}
+
+{{- range include "cr.prereqs_emerge" ( list . $packages $current_package ) | fromJsonArray }}
+{{- if . }}
+{{- /*if not (has . $commands) */}}
+{{- $commands = append $commands . }}
+{{- /*end */}}
+{{- end }}
+{{- end }}
+
+{{- end }}
+{{- end }}
+{{- end }}
 
 {{- if .overlays }}
 {{- $command := printf "USE=\"-subversion -mercurial\" emerge app-portage/layman" }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 {{- $commands = append $commands $command }}
-{{- end }}
+{{- /*end */}}
 {{- $command := printf "layman -L" }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 {{- $commands = append $commands $command }}
-{{- end }}
+{{- /*end */}}
 {{- range .overlays }}
 {{- if .url }}
 {{- $command = printf "echo \"y\" | layman -o %s -f -a %s" .url .name }}
 {{- else }}
 {{- $command = printf "echo \"y\" | layman -a %s" .name }}
 {{- end }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 {{- $commands = append $commands $command }}
-{{- end }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 
 {{- if .prepare }}
 {{- range .prepare }}
 {{- if . }}
-{{- if not (has . $commands) }}
+{{- /*if not (has . $commands) */}}
 {{- $commands = append $commands . }}
-{{- end }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -205,53 +292,25 @@ fi;
 {{- range .prereqs }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 {{- $commands = append $commands $command }}
+{{- /*end */}}
 {{- end }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- $dep := . }}
-
-{{- range ("prerequires optrequires" | splitList " ") }}
-{{- if ( index $dep . ) }}
-{{- range ( index $dep . ) }}
-
-{{- range include "cr.prereqs_emerge" . | fromJsonArray }}
-{{- if . }}
-{{- if not (has . $commands) }}
-{{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- end }}
-{{- end }}
-{{- end }}
-
-{{- if .requires }}
-{{- range .requires }}
-
-{{- range include "cr.prereqs_emerge" . | fromJsonArray }}
-{{- if . }}
-{{- if not (has . $commands) }}
-{{- $commands = append $commands . }}
-{{- end }}
-{{- end }}
-{{- end }}
-
 {{- end }}
 {{- end }}
 
 {{- if .ready }}
 {{- range .ready }}
 {{- if . }}
-{{- if not (has . $commands) }}
+{{- /*if not (has . $commands) */}}
 {{- $commands = append $commands . }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
+
+{{- end }}
+
 {{- end }}
 
 {{- end }}
@@ -266,26 +325,85 @@ fi;
 
 {{- define "cr.prereqs_emerge" }}
 
+{{- $packages := index . 1 }}
+{{- $previous_package := index . 2 }}
+
 {{- $commands := list }}
+
+{{- with index . 0 }}
 
 {{- if not (default .skip false) }}
 
+{{- $current_package := printf "%s-%s" .category .name }}
+
 {{- $command := "" }}
 
-{{- range include "cr.prereqs" . | fromJsonArray }}
+{{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
+
+{{- if $enqueue }}
+{{- $commands = append $commands ( printf "echo \"cr.prereqs_emerge (%s required by %s)\"" $current_package ( $previous_package | default "itself" ) ) }}
+{{- else }}
+{{- $commands = append $commands ( printf "echo \"cr.prereqs_emerge (%s required by %s, skipping, should be required by %s)\"" $current_package ( $previous_package | default "itself" ) ( get $packages $current_package ) ) }}
+{{- end }}
+
+{{- if $enqueue }}
+
+{{- range include "cr.prereqs" ( list . $packages $previous_package ) | fromJsonArray }}
 {{- if . }}
-{{- if not (has . $commands) }}
+{{- /*if not (has . $commands) */}}
 {{- $commands = append $commands . }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
+
+{{- range include "cr.emerge_atom" ( list . $packages $previous_package ) | fromJsonArray }}
+{{- if . }}
+{{- /*if not (has . $commands) */}}
+{{- $commands = append $commands . }}
+{{- /*end */}}
 {{- end }}
+{{- end }}
+
+{{- end }}
+
+{{- end }}
+
+{{- end }}
+
+{{- $commands | toJson }}
+
+{{- end }}
+
+################################################################################
+## cr.emerge_atom ###
+################################################################################
+
+{{- define "cr.emerge_atom" }}
+
+{{- $packages := index . 1 }}
+{{- $previous_package := index . 2 }}
+
+{{- $layerbase_package_setup_only := false }}
+{{- if gt ( len . ) 3 }}
+  {{- $layerbase_package_setup_only = index . 3 }}
+{{- end }}
+
+{{- $commands := list }}
+
+{{- with index . 0 }}
+
+{{- if not (default .skip false) }}
+
+{{- $current_package := printf "%s-%s" .category .name }}
+
+{{- $command := "" }}
 
 {{- if .setup }}
 {{- range .setup }}
 {{- if . }}
-{{- if not (has . $commands) }}
+{{- /*if not (has . $commands) */}}
 {{- $commands = append $commands . }}
-{{- end }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -294,9 +412,9 @@ fi;
 {{- range .preemerge }}
 {{- $command := include "cr.emerge" . }}
 {{- if $command }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 {{- $commands = append $commands $command }}
-{{- end }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -305,15 +423,17 @@ fi;
 {{- if ( index .labels "emerge.packages" ) }}
 {{- $command := include "cr.emerge" ( index .labels "emerge.packages" ) }}
 {{- if $command }}
-{{- if not (has $command $commands) }}
+{{- /*if not (has $command $commands) */}}
 
+{{- if or ( not $layerbase_package_setup_only ) ( and ( $layerbase_package_setup_only ) ( eq .category "layerbase" ) ) }}
 {{- $package_setup := include "cr.package_setup" . }}
 {{- if $package_setup }}
 {{- $commands = append $commands $package_setup }}
 {{- end }}
+{{- end }}
 
 {{- $commands = append $commands $command }}
-{{- end }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -332,11 +452,13 @@ fi;
 {{- if .completion }}
 {{- range .completion }}
 {{- if . }}
-{{- if not (has . $commands) }}
+{{- /*if not (has . $commands) */}}
 {{- $commands = append $commands . }}
+{{- /*end */}}
 {{- end }}
 {{- end }}
 {{- end }}
+
 {{- end }}
 
 {{- end }}
@@ -403,9 +525,9 @@ fi;
 ################################################################################
 
 {{- define "cr.dump" }}
-{{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}
+  {{- . | printf "\nThe output of the dumped var is: \n%s" | fail }}
 {{- end }}
 
 {{- define "cr.dumpJson" }}
-{{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
+  {{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
 {{- end }}

@@ -24,10 +24,11 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages := include "cr.list_package_with_deps" .Values }}
-- echo "Packages:" {{ $packages }}
+{{ $packages_list := include "cr.list_packages_with_deps" .Values }}
+- echo "Packages:" {{ $packages_list }}
+{{ $packages := include "cr.map_packages_with_deps" .Values | fromJson }}
 
-{{ range include "cr.prereqs" .Values | fromJsonArray }}
+{{ range include "cr.prereqs" ( list .Values $packages "" ) | fromJsonArray }}
 {{ if contains "\n" . }}
 - |
 {{ . | indent 2 }}
@@ -57,74 +58,16 @@ prelude:
 {{ end }}
 
 steps:
-{{ if .Values.setup }}
-{{ range .Values.setup }}
-{{ if . }}
-{{ if contains "\n" . }}
+{{- range ( include "cr.emerge_atom" ( list .Values $packages "" true ) | fromJsonArray ) }}
+{{- if . }}
+{{- if contains "\n" . }}
 - |
 {{ . | indent 2 }}
-{{ else }}
+{{- else }}
 - {{ . }}
-{{ end }}
-{{ end }}
-{{ end }}
-{{ end }}
-
-{{ if .Values.preemerge }}
-{{ range .Values.preemerge }}
-{{ $command := include "cr.emerge" . }}
-{{ if $command }}
-- {{ $command }}
-{{ end }}
-{{ end }}
-{{ end }}
-
-{{ if eq .Values.category "layerbase" }}
-
-{{ $package_setup := include "cr.package_setup" .Values }}
-{{ if $package_setup }}
-{{ if contains "\n" $package_setup }}
-- |
-{{ $package_setup | indent 2 }}
-{{ else }}
-- {{ $package_setup }}
-{{ end }}
-{{ end }}
-
-{{ end }}
-
-{{ if .Values.labels }}
-{{ if ( index .Values.labels "emerge.packages" ) }}
-{{ $command := include "cr.emerge" ( index .Values.labels "emerge.packages" ) }}
-{{ if $command }}
-- {{ $command }}
-{{ end }}
-{{ end }}
-{{ end }}
-
-{{ if .Values.unmerge }}
-{{ range .Values.unmerge }}
-- emerge -C {{ . }}
-{{ end }}
-{{ end }}
-{{ if .Values.etc_update }}
-{{ if .Values.etc_update.mode }}
-- etc-update -q --automode {{ .Values.etc_update.mode }}
-{{ end }}
-{{ end }}
-
-{{ if .Values.completion }}
-{{ range .Values.completion }}
-{{ if . }}
-{{ if contains "\n" . }}
-- |
-{{ . | indent 2 }}
-{{ else }}
-- {{ . }}
-{{ end }}
-{{ end }}
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
 
 # {{ if eq .Values.category "layerbase" }}
 # includes:
