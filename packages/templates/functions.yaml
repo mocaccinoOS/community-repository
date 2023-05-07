@@ -5,7 +5,7 @@
 
 {{- define "cr.list_packages_with_deps" }}
 
-  {{- if not (default .skip false) }}
+  {{- if not ( default .skip false ) }}
 
     {{- $packages := list }}
 
@@ -16,7 +16,7 @@
         {{- range ( index $dep . ) }}
 
           {{- range ( include "cr.list_packages_with_deps" . ) | splitList " " }}
-            {{- if not (has . $packages) }}
+            {{- if not ( has . $packages ) }}
               {{- $packages = . | append $packages }}
             {{- end }}
           {{- end }}
@@ -31,7 +31,7 @@
 
           {{- $required := printf "\"%s\"" . }}
           
-          {{- if not (has $required $packages) }}
+          {{- if not ( has $required $packages ) }}
             {{- $packages = $required | append $packages }}
           {{- end }}
 
@@ -40,7 +40,7 @@
     {{- end }}
 
     {{- $package := printf "\"%s-%s\"" .category .name }}
-    {{- if not (has $package $packages) }}
+    {{- if not ( has $package $packages ) }}
       {{- $packages = $package | append $packages }}
     {{- end }}
 
@@ -61,12 +61,12 @@
 
   {{- $packages := dict }}
   
-  {{- if not (default .skip false) }}
+  {{- if not ( default .skip false ) }}
   
     {{- $package := . }}
     {{- $requiredBy := printf "%s-%s" .category .name }}
     
-    {{- range ("requires prerequires optrequires" | splitList " ") }}
+    {{- range ( "requires prerequires optrequires" | splitList " " ) }}
       {{- if ( index $package . ) }}
         {{- range ( index $package . ) }}
 
@@ -84,7 +84,7 @@
       {{- end }}
     {{- end }}
 
-    {{- range ("prereqs preemerge" | splitList " ") }}
+    {{- range ( "prereqs preemerge" | splitList " " ) }}
       {{- if ( index $package . ) }}
         {{- range ( index $package . ) }}
         
@@ -110,25 +110,25 @@
 
 {{- define "cr.copy_package_setup_files" }}
 {{- $package := . }}
-set -x; \
-mkdir -p /etc/portage/package.accept_keywords; \
-if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
-cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
-fi; \
-mkdir -p /etc/portage/package.license; \
-if [ -e "package.license/{{ $package }}.license" ]; then \
-cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
-fi; \
-mkdir -p /etc/portage/package.unmask; \
-if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
-cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
-fi; \
-mkdir -p /etc/portage/package.use; \
-if [ -e "package.use/{{ $package }}.use" ]; then \
-cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
-fi;
+- |
+  set -x; \
+  mkdir -p /etc/portage/package.accept_keywords; \
+  if [ -e "package.accept_keywords/{{ $package }}.accept_keywords" ]; then \
+  cp -rf package.accept_keywords/{{ $package }}.accept_keywords /etc/portage/package.accept_keywords/{{ $package }}.accept_keywords; \
+  fi; \
+  mkdir -p /etc/portage/package.license; \
+  if [ -e "package.license/{{ $package }}.license" ]; then \
+  cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
+  fi; \
+  mkdir -p /etc/portage/package.unmask; \
+  if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
+  cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
+  fi; \
+  mkdir -p /etc/portage/package.use; \
+  if [ -e "package.use/{{ $package }}.use" ]; then \
+  cp -rf package.use/{{ $package }}.use /etc/portage/package.use/{{ $package }}.use; \
+  fi;
 {{- end }}
-
 
 ################################################################################
 ## cr.package_setup ###
@@ -136,63 +136,45 @@ fi;
 
 {{- define "cr.package_setup" }}
 
-{{- $command := "" }}
-
-{{- $command = ( include "cr.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) | trim ) }}
+{{- include "cr.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) }}
 
 {{- if .atoms }}
 
 {{- $filepath := "/etc/portage/package" }}
 {{- $filename := printf "%s-%s" .category .name }}
-
+- |
+  set -x; \
 {{- range .atoms }}
-
 {{- $atom := . }}
-
-{{- range ("accept_keywords license use" | splitList " ") }}
-
-{{- $command = printf "%sfind %s.%s/ -type f -a \\( -name \"*.%s\" \\) -a -exec sed -i -e \"/%s/d\" {} +; \\\n" $command $filepath . . ( $atom.atom | replace "/" "\\/" ) }}
-
+{{- range ( "accept_keywords license use" | splitList " " ) }}
+  find {{ $filepath }}.{{ . }}/ -type f -a \( -name "*.{{ . }}" \) -a -exec sed -i -e "/{{ $atom.atom | replace "/" "\\/" }}/d" {} +; \
 {{- $value := ( index $atom . ) }}
-
 {{- if $value }}
-{{- $command = printf "%smkdir -p %s.%s; \\\n" $command $filepath . }}
-{{- $command = printf "%secho -e \"%s %s\" >> %s.%s/%s.%s; \\\n" $command $atom.atom ( $value | replace "\n" "\\n" ) $filepath . $filename . }}
+  mkdir -p {{ $filepath }}.{{ . }}; \
+  echo -e "{{ $atom.atom }} {{ $value | replace "\n" "\\n" }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
-
 {{- end }}
-
-{{- range ("unmask" | splitList " ") }}
-
-{{- if (index $atom .) }}
-{{- $command = printf "%smkdir -p %s.%s; \\\n" $command $filepath . }}
-{{- $command = printf "%secho -e \"\\\"%s\\\" >> %s.%s/%s.%s; \\\n" $command $atom.atom $filepath . $filename . }}
+{{- range ( "unmask" | splitList " " ) }}
+{{- if ( index $atom . ) }}
+  mkdir -p {{ $filepath }}.{{ . }}; \
+  echo -e "{{ $atom.atom }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
-
 {{- end }}
-
-{{- $value := (index $atom "env") }}
-
+{{- $value := ( index $atom "env" ) }}
 {{- if $value }}
-{{- $command = printf "%smkdir -p /etc/portage/env; \\\n" $command }}
-{{- $command = printf "%secho -e \"%s\" >> /etc/portage/env/%s.conf; \\\n" $command ( $value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) $filename }}
-{{- $command = printf "%secho -e \"%s %s.conf\" >> /etc/portage/package.env/%s.env; \\\n" $command $atom.atom $filename $filename }}
+  mkdir -p /etc/portage/env; \
+  echo -e "{{ ( $value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf; \
+  echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
-
-{{- $value := (index $atom "env_profile" ) }}
-
+{{- $value := ( index $atom "env_profile" ) }}
 {{- if $value }}
-{{- $command = printf "%smkdir -p /etc/portage/env; \\\n" $command }}
-{{- $command = printf "%secho -e \"%s %s\" >> /etc/portage/package.env/%s.env; \\\n" $command $atom.atom $value $filename }}
+  mkdir -p /etc/portage/env; \
+  echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 
 {{- end }}
-
-{{- $command = printf "%secho;" $command }}
-
+  echo;
 {{- end }}
-
-{{- $command }}
 
 {{- end }}
 
@@ -205,22 +187,18 @@ fi;
 {{- $packages := index . 1 }}
 {{- $previous_package := index . 2 }}
 
-{{- $commands := list }}
-
 {{- with index . 0 }}
 
-{{- if not (default .skip false) }}
+{{- if not ( default .skip false ) }}
 
 {{- $current_package := printf "%s-%s" .category .name }}
-
-{{- $command := "" }}
 
 {{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
 
 {{- if $enqueue }}
-{{- $commands = append $commands ( printf "echo \"cr.prereqs (%s required by %s)\"" $current_package ( $previous_package | default "itself" ) ) }}
+- echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
 {{- else }}
-{{- $commands = append $commands ( printf "echo \"cr.prereqs (%s required by %s, skipping, should be required by %s)\"" $current_package ( $previous_package | default "itself" ) ( get $packages $current_package ) ) }}
+- echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
 {{- end }}
 
 {{- if $enqueue }}
@@ -230,71 +208,46 @@ fi;
 {{- if .requires }}
 {{- range .requires }}
 
-{{- range include "cr.prereqs_emerge" ( list . $packages $current_package ) | fromJsonArray }}
-{{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
-{{- end }}
-{{- end }}
+{{- include "cr.prereqs_emerge" ( list . $packages $current_package ) }}
 
 {{- end }}
 {{- end }}
 
-{{- range ("prerequires optrequires" | splitList " ") }}
+{{- range ( "prerequires optrequires" | splitList " " ) }}
 {{- if ( index $package . ) }}
 {{- range ( index $package . ) }}
 
-{{- range include "cr.prereqs_emerge" ( list . $packages $current_package ) | fromJsonArray }}
-{{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
-{{- end }}
-{{- end }}
+{{- include "cr.prereqs_emerge" ( list . $packages $current_package ) }}
 
 {{- end }}
 {{- end }}
 {{- end }}
 
 {{- if .overlays }}
-{{- $command := printf "USE=\"-subversion -mercurial\" emerge app-portage/layman" }}
-{{- /*if not (has $command $commands) */}}
-{{- $commands = append $commands $command }}
-{{- /*end */}}
-{{- $command := printf "layman -L" }}
-{{- /*if not (has $command $commands) */}}
-{{- $commands = append $commands $command }}
-{{- /*end */}}
+- |
+  USE="-subversion -mercurial" emerge app-portage/layman; \
+  layman -L;
 {{- range .overlays }}
 {{- if .url }}
-{{- $command = printf "echo \"y\" | layman -o %s -f -a %s" .url .name }}
+- echo "y" | layman -o {{ .url }} -f -a {{ .name }}
 {{- else }}
-{{- $command = printf "echo \"y\" | layman -a %s" .name }}
+- echo "y" | layman -a {{ .name }}
 {{- end }}
-{{- /*if not (has $command $commands) */}}
-{{- $commands = append $commands $command }}
-{{- /*end */}}
 {{- end }}
 {{- end }}
 
 {{- if .prepare }}
 {{- range .prepare }}
 {{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
+{{- include "cr.get_single_or_multi_line_item" . }}
 {{- end }}
 {{- end }}
 {{- end }}
 
 {{- if .prereqs }}
 {{- range .prereqs }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- /*if not (has $command $commands) */}}
-{{- $commands = append $commands $command }}
-{{- /*end */}}
+{{- if . }}
+{{ include "cr.emerge" . }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -302,9 +255,7 @@ fi;
 {{- if .ready }}
 {{- range .ready }}
 {{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
+{{- include "cr.get_single_or_multi_line_item" . }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -314,8 +265,6 @@ fi;
 {{- end }}
 
 {{- end }}
-
-{{- $commands | toJson }}
 
 {{- end }}
 
@@ -328,49 +277,31 @@ fi;
 {{- $packages := index . 1 }}
 {{- $previous_package := index . 2 }}
 
-{{- $commands := list }}
-
 {{- with index . 0 }}
 
-{{- if not (default .skip false) }}
+{{- if not ( default .skip false ) }}
 
 {{- $current_package := printf "%s-%s" .category .name }}
-
-{{- $command := "" }}
 
 {{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
 
 {{- if $enqueue }}
-{{- $commands = append $commands ( printf "echo \"cr.prereqs_emerge (%s required by %s)\"" $current_package ( $previous_package | default "itself" ) ) }}
+- echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
 {{- else }}
-{{- $commands = append $commands ( printf "echo \"cr.prereqs_emerge (%s required by %s, skipping, should be required by %s)\"" $current_package ( $previous_package | default "itself" ) ( get $packages $current_package ) ) }}
+- echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
 {{- end }}
 
 {{- if $enqueue }}
 
-{{- range include "cr.prereqs" ( list . $packages $previous_package ) | fromJsonArray }}
-{{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
-{{- end }}
-{{- end }}
+{{- include "cr.prereqs" ( list . $packages $previous_package ) }}
 
-{{- range include "cr.emerge_atom" ( list . $packages $previous_package ) | fromJsonArray }}
-{{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
-{{- end }}
-{{- end }}
+{{- include "cr.emerge_atom" ( list . $packages $previous_package ) }}
 
 {{- end }}
 
 {{- end }}
 
 {{- end }}
-
-{{- $commands | toJson }}
 
 {{- end }}
 
@@ -388,53 +319,35 @@ fi;
   {{- $layerbase_package_setup_only = index . 3 }}
 {{- end }}
 
-{{- $commands := list }}
-
 {{- with index . 0 }}
 
-{{- if not (default .skip false) }}
+{{- if not ( default .skip false ) }}
 
 {{- $current_package := printf "%s-%s" .category .name }}
-
-{{- $command := "" }}
 
 {{- if .setup }}
 {{- range .setup }}
 {{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
+{{- include "cr.get_single_or_multi_line_item" . }}
 {{- end }}
 {{- end }}
 {{- end }}
 
 {{- if .preemerge }}
 {{- range .preemerge }}
-{{- $command := include "cr.emerge" . }}
-{{- if $command }}
-{{- /*if not (has $command $commands) */}}
-{{- $commands = append $commands $command }}
-{{- /*end */}}
-{{- end }}
+{{- include "cr.emerge" . }}
 {{- end }}
 {{- end }}
 
 {{- if .labels }}
 {{- if ( index .labels "emerge.packages" ) }}
-{{- $command := include "cr.emerge" ( index .labels "emerge.packages" ) }}
-{{- if $command }}
-{{- /*if not (has $command $commands) */}}
 
 {{- if or ( not $layerbase_package_setup_only ) ( and ( $layerbase_package_setup_only ) ( eq .category "layerbase" ) ) }}
-{{- $package_setup := include "cr.package_setup" . }}
-{{- if $package_setup }}
-{{- $commands = append $commands $package_setup }}
-{{- end }}
+{{- include "cr.package_setup" . }}
 {{- end }}
 
-{{- $commands = append $commands $command }}
-{{- /*end */}}
-{{- end }}
+{{- include "cr.emerge" ( index .labels "emerge.packages" ) }}
+
 {{- end }}
 {{- end }}
 
@@ -452,9 +365,7 @@ fi;
 {{- if .completion }}
 {{- range .completion }}
 {{- if . }}
-{{- /*if not (has . $commands) */}}
-{{- $commands = append $commands . }}
-{{- /*end */}}
+{{- include "cr.get_single_or_multi_line_item" . }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -462,8 +373,6 @@ fi;
 {{- end }}
 
 {{- end }}
-
-{{- $commands | toJson }}
 
 {{- end }}
 
@@ -473,16 +382,27 @@ fi;
 
 {{- define "cr.emerge" }}
 
-{{- $command := "" }}
-
 {{- $tokens := . | splitList ";" }}
-{{- if eq (len $tokens) 1 }}
-{{- $command = printf "emerge -1 -j ${JOBS} %s" (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
-{{- else if eq (len $tokens) 2 }}
-{{- $command = printf "%s emerge -1 -j ${JOBS} %s" (index $tokens 1) (printf "\"%s\"" ((index $tokens 0) | replace " " "\" \"")) }}
+{{- if eq ( len $tokens ) 1 }}
+- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
+{{- else if eq ( len $tokens ) 2 }}
+- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- end }}
 
-{{- $command }}
+{{- end }}
+
+################################################################################
+## cr.get_single_or_multi_line_item ###
+################################################################################
+
+{{- define "cr.get_single_or_multi_line_item" }}
+
+{{- if contains "\n" . }}
+- |
+{{ . | indent 2 }}
+{{- else }}
+- {{ . }}
+{{- end }}
 
 {{- end }}
 
@@ -493,17 +413,17 @@ fi;
 {{- define "cr.flatten_list" -}}
   {{- $output := list -}}
   {{- range . -}}
-    {{- if (kindIs "slice" . ) -}}
-      {{- $output = (concat $output ( get (fromYaml (include "cr.flatten_list" . ) )  "list" ) ) -}}
+    {{- if ( kindIs "slice" . ) -}}
+      {{- $output = ( concat $output ( get (fromYaml ( include "cr.flatten_list" . ) )  "list" ) ) -}}
     {{- else -}}
-      {{- $output = (append $output . ) -}}
+      {{- $output = ( append $output . ) -}}
     {{- end -}}
   {{- end -}}
-  {{- toYaml (dict "list" $output) -}}
+  {{- toYaml ( dict "list" $output ) -}}
 {{- end -}}
 
 {{- define "cr.flatten" -}}
-  {{- get ( fromYaml (include "cr.flatten_list" . ) ) "list"  | toYaml }}
+  {{- get ( fromYaml ( include "cr.flatten_list" . ) ) "list" | toYaml }}
 {{- end -}}
 
 {{- define "cr.flatten_map" -}}
@@ -531,3 +451,14 @@ fi;
 {{- define "cr.dumpJson" }}
   {{- . | toPrettyJson | printf "\nThe JSON output of the dumped var is: \n%s" | fail }}
 {{- end }}
+
+{{- define "cr.dumpList" }}
+
+{{- $debug := "" }}
+{{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
+{{- $debug = printf "%s\n%s" $debug . }}
+{{- end }}
+{{- template "cr.dump" $debug }}
+
+{{- end }}
+
