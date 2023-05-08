@@ -205,9 +205,9 @@ function compareVersions() {
     # $1 > $2 --> 1
     
     local tmp=$(getCategoryPackageVersion "$1")
-    # echo "1: $tmp" > /dev/tty
+    # echo "$tmp" > /dev/tty
     eval "${tmp/CPV=/CPV1=}"
-    # echo "1: ${CPV1[@]}" > /dev/tty
+    # echo "${CPV1[@]}" > /dev/tty
     
     local tmp=$(getCategoryPackageVersion "$2")
     # echo "2: $tmp" > /dev/tty
@@ -290,6 +290,19 @@ function getSlotFromFile() {
     echo "${SLOT}"
 }
 
+function getPythonCompatFromFile() {
+    local EBUILD=$1
+    local PYTHON_COMPAT=
+    
+    if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
+        PYTHON_COMPAT=$(curl --silent "${EBUILD}" | sed -En 's/PYTHON_COMPAT=(.*)/\1/p' - 2>/dev/null)
+    else    
+        PYTHON_COMPAT=$(sed -En 's/PYTHON_COMPAT=(.*)/\1/p' "${EBUILD}" 2>/dev/null)
+    fi
+
+    echo "${PYTHON_COMPAT}"
+}
+
 function getLatestVersion() {
 
     local USE_PACKAGES_GENTOO_ORG=${USE_PACKAGES_GENTOO_ORG:-false}
@@ -306,6 +319,7 @@ function getLatestVersion() {
     local ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
 
     local VER=
+    local EFN=
     
     # Get mOS repo atom flavor (stable/testing)
     local ATOM_FLAVORS_FILE=${ROOT_PATH}/package.accept_keywords/${PACKAGE//\//-}.accept_keywords
@@ -338,37 +352,43 @@ function getLatestVersion() {
             
     # Get Gentoo web/repo atom version
     if [ "${#OVERLAYS[@]}" -gt 0 ] ; then
+        local BASE_URL="https://gpo.zugaina.org"
+    
         local FLAVOR=$([[ "${ATOM_FLAVOR}" == "${STABLE}" ]] && echo "${STABLE}" || echo "${TESTING}")
 
         # one overlay only, so far
         OVERLAY="${OVERLAYS[0]}"
 
-        local ATOM_FLAVOR_EBUILD=$(curl --silent "https://gpo.zugaina.org/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
+        local ATOM_FLAVOR_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
+        local ATOM_FLAVOR_EBUILD_HREF=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "string((//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/following::a[contains(@class, 'lgw')]/@href)[1])" - 2>/dev/null)
         
         # check for newer version that is stable
         local LATEST_STABLE_EBUILD=
         if [[ "${ATOM_FLAVOR}" == "${TESTING}" ]] ; then
-            LATEST_STABLE_EBUILD=$(curl --silent "https://gpo.zugaina.org/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${TESTING}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
+            LATEST_STABLE_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${TESTING}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
+            LATEST_STABLE_EBUILD_HREF=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "string((//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${TESTING}')]/preceding::a[contains(@class, 'lgw')]/@href)[1])" - 2>/dev/null)
         fi
         
         local EBUILD="${ATOM_FLAVOR_EBUILD}"
+        local EBUILD_HREF="${ATOM_FLAVOR_EBUILD_HREF}"
         if [[ ! -z "${LATEST_STABLE_EBUILD}" && "${LATEST_STABLE_EBUILD}" != "${ATOM_FLAVOR_EBUILD}" ]] ; then
             local COMPARISON_RESULT=$(compareVersions "${ATOM_CATEGORY}/${LATEST_STABLE_EBUILD}" "${ATOM_CATEGORY}/${ATOM_FLAVOR_EBUILD}")
             
             if [[ ((${COMPARISON_RESULT} == 1)) ]] ; then
                 EBUILD="${LATEST_STABLE_EBUILD}"
+                EBUILD_HREF="${LATEST_STABLE_EBUILD_HREF}"
             fi
         fi
         
         local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
-        # echo "1: $tmp" > /dev/tty
+        # echo "$tmp" > /dev/tty
         eval "${tmp/CPV=/EBUILD_CPV=}"
-        # echo "1: ${EBUILD_CPV[@]}" > /dev/tty
+        # echo "${EBUILD_CPV[@]}" > /dev/tty
 
         VER="${EBUILD_CPV[VERSION]}"
         # echo "VER: ${VER}" > /dev/tty
-        
-        # echo "${ATOM}: ${VER}" > /dev/tty # >> "${DEBUG_FILE}"
+        EFN="${BASE_URL}/${EBUILD_HREF}"
+        # echo "EFN: ${EFN}" > /dev/tty
     else
         if [[ ${USE_PACKAGES_GENTOO_ORG} == true ]] ; then
             # to do: peek newer stable version if exists
@@ -424,12 +444,15 @@ function getLatestVersion() {
                     if [[ (( -z "${ATOM_SLOT}" ) || ( ! -z "${ATOM_SLOT}" && "${EBUILD_SLOT}" == "${ATOM_SLOT}"))
                        && ("${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}") ]] ; then
                         local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
-                        # echo "1: $tmp" > /dev/tty
+                        # echo "${tmp}" > /dev/tty
                         eval "${tmp/CPV=/EBUILD_CPV=}"
-                        # echo "1: ${EBUILD_CPV[@]}" > /dev/tty
+                        # echo "${EBUILD_CPV[@]}" > /dev/tty
         
                         VER="${EBUILD_CPV[VERSION]}"
                         # echo "VER: ${VER}" > /dev/tty
+                        EFN="${EBUILD}"
+                        # echo "EFN: ${EFN}" > /dev/tty
+                        
                         break;
                     fi
                 done
@@ -437,12 +460,14 @@ function getLatestVersion() {
                 # If the searched flavor was not found, peek the first available version
                 if [[ -z "${VER}" ]] ; then
                     local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/"${EBUILDS[0]}"")
-                    # echo "1: $tmp" > /dev/tty
+                    # echo "${tmp}" > /dev/tty
                     eval "${tmp/CPV=/EBUILD_CPV=}"
-                    # echo "1: ${EBUILD_CPV[@]}" > /dev/tty
+                    # echo "${EBUILD_CPV[@]}" > /dev/tty
     
                     VER="${EBUILD_CPV[VERSION]}"
                     # echo "VER: ${VER}" > /dev/tty
+                    EFN="${EBUILD}"
+                    # echo "EFN: ${EFN}" > /dev/tty
                 fi
             fi
         fi
@@ -451,7 +476,12 @@ function getLatestVersion() {
     # echo "VER: ${VER}" > /dev/tty
     # echo "" > /dev/tty
     
-    echo "${VER}"
+    declare -A VERINFO
+    
+    VERINFO[VERSION]="${VER}"
+    VERINFO[EBUILD_FILE_NAME]="${EFN}"
+    
+    declare -p VERINFO
 }
 
 
@@ -461,6 +491,9 @@ COLLECTION="${COLLECTION:-apps}"
 PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
 PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.info"
 PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.up"
+
+IS_WEB_URL_REGEX="(https?|ftp)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]"
+
 DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug"
 
 # Remove debug file
@@ -500,7 +533,7 @@ PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/coll
 + "," + .version 
 + "," + (.labels."emerge.packages" | sub(" "; ";"; "g")) 
 + "," + (.version | split("+") | .[0]) 
-+ "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end
++ "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end 
 + "," + if (.overlays != null) then [(.overlays[] | .name)] | join(";") else "" end')
 
 # echo $PACKAGES > packages.list
@@ -521,6 +554,9 @@ for PKG in ${PACKAGES} ; do
     ATOMS_FLAVORS="${PACKAGE[4]//;/ }"
     OVERLAYS="${PACKAGE[5]//;/ }"
     
+    EBUILD=
+    PYTHON_COMPAT=
+    
     LINES=()
 
     # REVBUMP_CHAR="${REVBUMP_CHAR:-+}"
@@ -536,15 +572,28 @@ for PKG in ${PACKAGES} ; do
         echo -e "${ATOM}"
 
         tmp=$(getCategoryPackageVersion "${ATOM}")
-        # echo "1: $tmp" > /dev/tty
+        # echo "$tmp" > /dev/tty
         eval "${tmp/CPV=/CPV_ATOM=}"
-        # echo "1: ${CPV_ATOM[@]}" > /dev/tty
-        
+        # echo "${CPV_ATOM[@]}" > /dev/tty
+
         ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
         ATOM_NAME="${CPV_ATOM[NAME]}"
         ATOM_SLOT="${CPV_ATOM[SLOT]}"
+
+        tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
+        # echo "$tmp" > /dev/tty
+        eval "${tmp/VERINFO=/EBUILD_INFO=}"
+        # echo "${EBUILD_INFO[@]}" > /dev/tty
         
-        VER=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
+        VER="${EBUILD_INFO[VERSION]}"
+        EBUILD="${EBUILD_INFO[EBUILD_FILE_NAME]}"
+
+        if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
+            PYTHON_COMPAT=$(getPythonCompatFromFile "${EBUILD}")
+        else
+            PYTHON_COMPAT=$(getPythonCompatFromFile "${PORTAGE_TREE_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
+        fi
+        # echo "${EBUILD} python compat: ${PYTHON_COMPAT}" > /dev/tty
 
         MATCHED_ATOM="\U1FBC4"
         MATCHED_ATOM_VER="\U1FBC4"
@@ -583,6 +632,9 @@ for PKG in ${PACKAGES} ; do
     fi
     
     LINES=("package: ${PACKAGE_CATEGORY_NAME}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
+    if [[ ! -z "${PYTHON_COMPAT}" ]] ; then
+        LINES+=("python compat: ${PYTHON_COMPAT}") 
+    fi
     
     for LINE in "${LINES[@]}" ; do
         echo -e "${LINE}" | tee -a $FILES > /dev/null
