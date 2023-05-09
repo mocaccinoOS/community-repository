@@ -4688,6 +4688,9 @@ packages:
   - category: "dev-python"
     name: "cgroup-utils"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/cgroup-utils"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4959,6 +4962,9 @@ packages:
   - category: "app-text"
     name: "diffpdf"
     version: ">=0"
+  atoms:
+  - atom: "app-text/diffpdf"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -5486,6 +5492,10 @@ packages:
   - category: "x11-misc"
     name: "fraqtive"
     version: ">=0"
+  atoms:
+  - atom: "x11-misc/fraqtive"
+    use: "sse2"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -5506,6 +5516,9 @@ packages:
   - category: "sci-astronomy"
     name: "galaxy"
     version: ">=0"
+  atoms:
+  - atom: "sci-astronomy/galaxy"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -5591,6 +5604,9 @@ packages:
   - category: "media-sound"
     name: "gmtp"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/gmtp"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -5806,11 +5822,13 @@ packages:
   - category: "app-misc"
     name: "gtk-sunlight"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/gtk-sunlight"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
 
 - &apps-gtkspell
   category: "apps"
@@ -7010,6 +7028,9 @@ packages:
 #   - category: "app-editors"
 #     name: "notepadqq"
 #     version: ">=0"
+#   atoms:
+#   - atom: "app-editors/notepadqq"
+#     accept_keywords: "**"
 #   requires:
 #   - <<: *layers-qt
 #   build_requires:
@@ -7071,6 +7092,9 @@ packages:
   - category: "app-crypt"
     name: "nwipe"
     version: ">=0"
+  atoms:
+  - atom: "app-crypt/nwipe"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -7181,6 +7205,9 @@ packages:
   - category: "www-client"
     name: "otter"
     version: ">=0"
+  atoms:
+  - atom: "www-client/otter"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -9841,6 +9868,14 @@ packages:
 #   - category: "x11-plugins"
 #     name: "cairo-dock-plugins"
 #     version: ">=0"
+  atoms:
+  - atom: "x11-misc/cairo-dock"
+    accept_keywords: "~amd64"
+  - atom: "x11-plugins/cairo-dock-plugins"
+    use: "x11-plugins/cairo-dock-plugins alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
+    accept_keywords: "~amd64"
+  - atom: "x11-themes/cairo-dock-themes"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtkglext
@@ -12739,6 +12774,9 @@ packages:
   - category: "net-analyzer"
     name: "nmapsi"
     version: ">=0"
+  atoms:
+  - atom: "net-analyzer/nmapsi"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *apps-bind-tools
@@ -15752,6 +15790,10 @@ packages:
   - category: "app-cdr"
     name: "dvdshrink"
     version: ">=0"
+  atoms:
+  - atom: "app-cdr/dvdshrink"
+    use: "gtk"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-perlGtk2
