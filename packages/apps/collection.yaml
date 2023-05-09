@@ -3987,6 +3987,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-wxGTK
+  category: "libs"
+  name: "wxGTK"
+  version: "3.2.2.1-r2"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/wxGTK:3.0-gtk3
+  provides:
+  - category: "x11-libs"
+    name: "wxGTK"
+    version: ">=0"
+  atoms:
+  - atom: "x11-libs/wxGTK"
+    use: "webkit gstreamer libnotify sdl"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-wxGTK-3_0-gtk3
   category: "libs"
   name: "wxGTK"
@@ -4242,6 +4266,7 @@ packages:
   - virtual/libusb:0
   requires:
   - <<: *layers-X
+  # needs antity for acct-group/android-0::gentoo
   build_requires:
   - <<: *layers-X
 
@@ -11229,6 +11254,9 @@ packages:
   - name: "gentoo-zh"
   provides:
   - category: "app-backup"
+    name: "snapper"
+    version: ">=0"
+  - category: "app-backup"
     name: "snapper-gui"
     version: ">=0"
   atoms:
@@ -15235,7 +15263,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *apps-doxygen
-  - <<: *libs-wxGTK-3_0-gtk3
+  - <<: *libs-wxGTK
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
