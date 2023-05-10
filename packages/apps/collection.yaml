@@ -3912,6 +3912,9 @@ packages:
   - category: "dev-libs"
     name: "udis86"
     version: ">=0"
+  prepare: 
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
   prereqs:
   - dev-lang/yasm
   requires:
