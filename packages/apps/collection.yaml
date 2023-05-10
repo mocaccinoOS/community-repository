@@ -15220,8 +15220,10 @@ packages:
   atoms:
   - atom: "app-office/lyx"
     use: "aspell dia enchant gnumeric html hunspell monolithic-build cups latex nls svg X l10n_he # rtf rcs dot"
-  # prepare: 
+  prepare: 
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/app-office/lyx/lyx-2.3.6.1-r2.ebuild
+  - ebuild /var/db/repos/gentoo/app-office/lyx/lyx-2.3.6.1-r2.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
