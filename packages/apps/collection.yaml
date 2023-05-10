@@ -1114,6 +1114,9 @@ packages:
   - category: "media-sound"
     name: "fluid-soundfont"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/fluid-soundfont"
+    use: "timidity"
   prereqs:
   - app-eselect/eselect-timidity
   requires:
@@ -2057,6 +2060,9 @@ packages:
   - category: "net-libs"
     name: "libircclient"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/libircclient"
+    use: "doc ipv6 ssl threads # static-libs"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2169,6 +2175,9 @@ packages:
   - category: "dev-libs"
     name: "libmirage"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/libmirage"
+    use: "introspection"
   prereqs:
   - dev-util/intltool
   requires:
@@ -2342,6 +2351,9 @@ packages:
   - category: "media-libs"
     name: "libshout"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/libshout"
+    use: "speex theora"
   requires:
   - <<: *layers-codecs
   build_requires:
@@ -3033,6 +3045,9 @@ packages:
   - category: "dev-libs"
     name: "ossp-uuid"
     version: ">=0"
+  atoms:
+  - atom: "dev-libs/ossp-uuid"
+    use: "cxx perl"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3618,6 +3633,9 @@ packages:
   - category: "media-libs"
     name: "smpeg"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/smpeg"
+    use: "opengl"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3639,6 +3657,9 @@ packages:
   - category: "media-libs"
     name: "smpeg2"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/smpeg2"
+    use: "mmx"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3726,6 +3747,9 @@ packages:
   - category: "media-libs"
     name: "t1lib"
     version: ">=0"
+  atoms:
+  - atom: "media-libs/t1lib"
+    use: "X"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4330,6 +4354,9 @@ packages:
   - category: "sys-power"
     name: "apcupsd"
     version: ">=0"
+  atoms:
+  - atom: "sys-power/apcupsd"
+    use: "nmp usb modbus cgi # gnome"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4351,6 +4378,9 @@ packages:
   - category: "dev-util"
     name: "argouml"
     version: ">=0"
+  atoms:
+  - atom: "dev-util/argouml"
+    use: "doc"
   requires:
   - <<: *layers-java
   build_requires:
@@ -4573,6 +4603,9 @@ packages:
   - category: "app-cdr"
     name: "brasero"
     version: ">=0"
+  atoms:
+  - atom: "app-cdr/brasero"
+    use: "-css"
   requires:
   - <<: *layers-gnome
   build_requires:
@@ -4922,6 +4955,9 @@ packages:
   - category: "dev-qt"
     name: "designer"
     version: ">=0"
+  atoms:
+  - atom: "dev-qt/designer"
+    use: "declarative"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -5097,6 +5133,9 @@ packages:
   - category: "media-video"
     name: "dvdauthor"
     version: ">=0"
+  atoms:
+  - atom: "media-video/dvdauthor"
+    use: "imagemagick"
   requires:
   - <<: *layers-X
   build_requires:
@@ -5566,6 +5605,9 @@ packages:
   - category: "media-video"
     name: "gaupol"
     version: ">=0"
+  atoms:
+  - atom: "media-video/gaupol"
+    use: "spell"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -5917,6 +5959,9 @@ packages:
   - category: "app-admin"
     name: "hddtemp"
     version: ">=0"
+  atoms:
+  - atom: "app-admin/hddtemp"
+    use: "network-cron nls"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6650,6 +6695,9 @@ packages:
   - category: "sys-apps"
     name: "lshw"
     version: ">=0"
+  atoms:
+  - atom: "sys-apps/lshw"
+    use: "gtk sqlite"
   requires:
   - <<: *layers-X
   build_requires:
@@ -6812,6 +6860,9 @@ packages:
   - category: "media-sound"
     name: "milkytracker"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/milkytracker"
+    use: "alsa jack"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7244,7 +7295,7 @@ packages:
   version: "16.02-r8+2"
   uri:
   - http://p7zip.sourceforge.net/
-  license: "LGPL-2.1 rar? ( unRAR"
+  license: "LGPL-2.1 unRAR"
   description: |
     The UI of the Port of 7-Zip archiver for Unix
   labels:
@@ -7255,6 +7306,9 @@ packages:
   - category: "app-arch"
     name: "p7zip"
     version: ">=0"
+  atoms:
+  - atom: "app-arch/p7zip"
+    use: "kde wxwidgets # rar -> unRAR license"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7562,6 +7616,9 @@ packages:
   - category: "net-irc"
     name: "quassel"
     version: ">=0"
+  atoms:
+  - atom: "net-irc/quassel"
+    use: "gui"
   requires:
   - <<: *layers-kde-common
   - category: "entity"
@@ -8026,6 +8083,9 @@ packages:
   - category: "app-shells"
     name: "tcsh"
     version: ">=0"
+  atoms:
+  - atom: "app-shells/tcsh"
+    use: "doc nls"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -8628,6 +8688,9 @@ packages:
   - category: "net-wireless"
     name: "wavemon"
     version: ">=0"
+  atoms:
+  - atom: "net-wireless/wavemon"
+    use: "caps"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -8675,6 +8738,9 @@ packages:
   - category: "sys-fs"
     name: "avfs"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/worker"
+    use: "avfs dbus libnotify lua magic xinerama xft"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9793,6 +9859,9 @@ packages:
   - category: "dev-util"
     name: "astyle"
     version: ">=0"
+  atoms:
+  - atom: "dev-util/astyle"
+    use: "java"
   requires:
   - <<: *layers-java
   build_requires:
@@ -10815,6 +10884,9 @@ packages:
   - category: "media-sound"
     name: "musescore"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/musescore"
+    use: "osc omr portmidi sf3 sfz webengine alsa jack mp3 portaudio pulseaudio"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -11314,6 +11386,9 @@ packages:
   - category: "media-video"
     name: "smplayer"
     version: ">=0"
+  atoms:
+  - atom: "media-video/smplayer"
+    use: "autoshutdown mpris"
   requires:
   - <<: *layers-qt
   # - <<: *media-video/mplayer
@@ -11432,6 +11507,9 @@ packages:
   - category: "media-tv"
     name: "v4l-utils"
     version: ">=0"
+  atoms:
+  - atom: "media-tv/v4l-utils"
+    use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbpf
@@ -11478,6 +11556,9 @@ packages:
   - category: "media-sound"
     name: "vkeybd"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/vkeybd"
+    use: "alsa lash oss"
   requires:
   - <<: *layers-X
   - <<: *apps-tk
@@ -12837,6 +12918,9 @@ packages:
   - category: "sys-power"
     name: "nut"
     version: ">=0"
+  atoms:
+  - atom: "sys-power/nut"
+    use: "cgi snmp usb ssl tcpd xml zeroconf # ipmi split-usr"
   prereqs:
   - acct-group/nut
   - acct-user/nut
@@ -13407,6 +13491,9 @@ packages:
   - category: "media-sound"
     name: "zynaddsubfx"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/zynaddsubfx"
+    use: "dssi alsa fltk jack lash portaudio"
   requires:
   - <<: *layers-X
   - <<: *libs-mxml
@@ -13844,6 +13931,9 @@ packages:
 #   - category: "app-editors"
 #     name: "gedit"
 #     version: ">=0"
+#   atoms:
+#   - atom: "app-editors/gedit-plugins"
+#     use: "charmap git terminal vala"
 #   requires:
 #   - <<: *layers-gnome-common
 #   - <<: *libs-libgit2-glib
@@ -14092,6 +14182,9 @@ packages:
   - category: "media-libs"
     name: "libtimidity"
     version: ">=0"
+  atoms:
+  - atom: "media-sound/moc"
+    use: "aac alsa cache curl ffmpeg flac jack libsamplerate mad magic modplug musepack oss sid sndfile sndio speex timidity tremor unicode vorbis wavpack"
   optrequires:
   - <<: *apps-timidity
   requires:
@@ -14424,6 +14517,8 @@ packages:
   atoms:
   - atom: "media-libs/mlt"
     use: "ffmpeg frei0r gtk jack libsamplerate opencv opengl python qt5 rtaudio rubberband sdl vdpau vidstab xine xml"
+  - atom: "media-libs/rtaudio"
+    use: "alsa jack pulseaudio"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
@@ -15715,6 +15810,9 @@ packages:
   - category: "app-text"
     name: "gocr"
     version: ">=0"
+  atoms:
+  - atom: "app-text/gocr"
+    use: "scanner tk"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-netpbm
