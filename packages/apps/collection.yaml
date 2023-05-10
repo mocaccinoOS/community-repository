@@ -3899,7 +3899,7 @@ packages:
 - &libs-udis86
   category: "libs"
   name: "udis86"
-  version: "1.7.2-r1+1"
+  version: "1.7.2-r1+2"
   uri:
   - http://udis86.sourceforge.net/
   license: "BSD"
@@ -4282,7 +4282,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "34.0.0+1"
+  version: "34.0.0+2"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -4306,7 +4306,9 @@ packages:
   - virtual/libusb:0
   requires:
   - <<: *layers-X
-  # needs antity for acct-group/android-0::gentoo
+  - category: "entity"
+    name: "android"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
@@ -14174,7 +14176,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.12+1"
+  version: "2.14.12+2"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
