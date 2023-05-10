@@ -252,7 +252,7 @@ anchors:
 
 - &kernel-gentoo
   category: "kernel-modules"
-  name: "nvidia-drivers-lts"
+  name: "mocaccino-lts-sources"
   version: ">=0"
   labels:
     emerge.jobs: "1"
@@ -15626,6 +15626,9 @@ packages:
     use: "opencl openmp ptex tbb # cuda"
   - atom: "media-libs/osl"
     use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
   prereqs:
 #   - app-doc/doxygen
 #   - dev-python/sphinx
