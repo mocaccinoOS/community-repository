@@ -5845,8 +5845,8 @@ packages:
     use: "systemd"
     accept_keywords: "~amd64"
   prepare:
-  - sed -i -e 's/PATCHES=\(.*\)${PN}\(.*\)/PATCHES=\14.11\2/' /var/db/repos/gentoo/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  - ebuild /var/db/repos/gentoo/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
+  - sed -i -e 's/PATCHES=\(.*\)${PN}\(.*\)/PATCHES=\14.11\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  - ebuild /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
   requires:
   - <<: *apps-grub
   build_requires:
