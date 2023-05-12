@@ -161,6 +161,15 @@ anchors:
 ### libs ###
 ################################################################################
 
+- &libs-gtk2
+  category: "libs"
+  name: "gtk2"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtk+:2
+
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -321,7 +330,7 @@ packages:
 - &def-layers-office-common
   category: "layers"
   name: "office-common"
-  version: "1.0+1"
+  version: "1.0+2"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -473,6 +482,7 @@ packages:
     use: "tools"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   - <<: *libs-raptor
   - <<: *libs-mhash
   build_requires:
@@ -934,7 +944,7 @@ packages:
 
 - category: "layers"
   name: "gnome-games"
-  version: "1.2"
+  version: "1.2+1"
   uri:
   - https://wiki.gnome.org/Apps/Atomix
   - https://wiki.gnome.org/Apps/Five%20or%20more
@@ -1042,7 +1052,7 @@ packages:
 
 - category: "layers"
   name: "kdegames"
-  version: "22.08.3+1"
+  version: "22.12.3"
   uri:
   - https://apps.kde.org/categories/games/
   license: "metapackage"
