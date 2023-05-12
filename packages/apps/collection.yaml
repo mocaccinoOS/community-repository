@@ -5840,13 +5840,21 @@ packages:
   - category: "app-backup"
     name: "grub-btrfs"
     version: ">=0"
+  - category: "sys-fs"
+    name: "inotify-tools"
+    version: ">=0"
   atoms:
   - atom: "app-backup/grub-btrfs"
     use: "systemd"
     accept_keywords: "~amd64"
   prepare:
-  # - sed -i -e 's/PATCHES=\(.*\)${PN}\(.*\)/PATCHES=\14.11\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  - sed -i -e 's/doman/# doman/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - sed -i -e 's/86c86/121c121/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - sed -i -e '/\\ No newline at end of file/d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  - sed -i -e '/86c86/,$d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
   - ebuild /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
   requires:
   - <<: *apps-grub
@@ -10498,10 +10506,6 @@ packages:
   atoms:
   - atom: "dev-lang/ispc"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e '/${FILESDIR}\/${PN}/s/-9999-llvm.patch/-1.18.0-llvm.patch/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.17.0-r2.ebuild
-  # # - sed -i -e 's/LLVM_MAX_SLOT=14/LLVM_MAX_SLOT=15/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.18.0.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.18.0.ebuild manifest
   requires:
   - <<: *layers-system-x
   # - <<: *apps-clang-14
