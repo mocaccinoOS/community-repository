@@ -13913,10 +13913,8 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *kernel-gentoo
   - <<: *apps-cdemu
-  prereqs:
-  - virtual/dist-kernel
-  - virtual/linux-sources
   build_requires:
   - <<: *layers-X
 
@@ -14102,11 +14100,9 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  prereqs:
-  - virtual/dist-kernel
-  - virtual/linux-sources
   requires:
   - <<: *layers-kde-common
+  - <<: *kernel-gentoo
   - <<: *apps-cdemu
   build_requires:
   - <<: *layers-kde-common
