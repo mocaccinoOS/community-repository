@@ -251,7 +251,7 @@ anchors:
 ################################################################################################################################################################
 
 - &kernel-gentoo
-  category: "kernel-modules"
+  category: "kernel-sources"
   name: "mocaccino-lts-sources"
   version: ">=0"
   labels:
@@ -278,8 +278,9 @@ anchors:
   - atom: "x11-drivers/nvidia-drivers"
     license: "NVIDIA-r2"
     use: "static-libs"
-  requires:
+  prerequires:
   - <<: *kernel-gentoo
+  requires:
   # - <<: *kernel-mocaccino-lts-full
   - name: nvpd
     category: entity
@@ -13911,9 +13912,10 @@ packages:
   - category: "app-cdr"
     name: "gcdemu"
     version: ">=0"
+  prerequires:
+  - <<: *kernel-gentoo
   requires:
   - <<: *layers-X
-  - <<: *kernel-gentoo
   - <<: *apps-cdemu
   build_requires:
   - <<: *layers-X
@@ -14100,9 +14102,10 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
+  prerequires:
+  - <<: *kernel-gentoo
   requires:
   - <<: *layers-kde-common
-  - <<: *kernel-gentoo
   - <<: *apps-cdemu
   build_requires:
   - <<: *layers-kde-common
