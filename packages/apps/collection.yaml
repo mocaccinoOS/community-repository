@@ -13914,6 +13914,9 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-cdemu
+  prereqs:
+  - virtual/dist-kernel
+  - virtual/linux-sources
   build_requires:
   - <<: *layers-X
 
@@ -14099,6 +14102,9 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
+  prereqs:
+  - virtual/dist-kernel
+  - virtual/linux-sources
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
