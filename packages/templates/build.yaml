@@ -30,7 +30,7 @@ prelude:
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "mediainfo-gui" }}
+{{/* if eq .Values.name "haskell" }}
 {{ template "cr.dumpList" ( include "cr.prereqs" ( list .Values $packages "" ) ) }}
 {{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
@@ -45,6 +45,14 @@ prelude:
   rm -rf /etc/portage/package.unmask || true; \
   rm -rf /etc/portage/package.use || true;
 {{ else }}
+
+{{/* debug */}}
+{{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
+{{/* if eq .Values.name "haskell" }}
+{{ template "cr.dumpList" ( include "cr.package_setup" .Values ) }}
+{{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
+{{ end */}}
+{{/* end debug */}}
 
 {{ include "cr.package_setup" .Values }}
 
