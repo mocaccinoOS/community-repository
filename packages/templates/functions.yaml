@@ -140,11 +140,19 @@
 
 {{- if .atoms }}
 
+{{- $count := 0 }}
 {{- $filepath := "/etc/portage/package" }}
 {{- $filename := printf "%s-%s" .category .name }}
+
+{{- range .atoms }}
+
+{{- add1 $count }}
+
+{{- if eq ( mod $count 50 ) 1 }}
 - |
   set -x; \
-{{- range .atoms }}
+{{- end }}
+
 {{- $atom := . }}
 {{- range ( "accept_keywords license use" | splitList " " ) }}
   find {{ $filepath }}.{{ . }}/ -type f -a \( -name "*.{{ . }}" \) -a -exec sed -i -e "/{{ $atom.atom | replace "/" "\\/" }}/d" {} +; \
@@ -172,8 +180,16 @@
   echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 
-{{- end }}
+{{- if eq ( mod $count 50 ) 0 }}
   echo;
+{{- end }}
+
+{{- end }}
+
+{{- if ne ( mod $count 50 ) 0 }}
+  echo;
+{{- end }}
+
 {{- end }}
 
 {{- end }}
