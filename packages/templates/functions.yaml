@@ -138,6 +138,8 @@
 
 {{- include "cr.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) }}
 
+{{- $package := . }}
+
 {{- if .atoms }}
 
 {{- $count := 0 }}
@@ -169,12 +171,18 @@
 {{- end }}
 {{- end }}
 {{- $value := ( index $atom "env" ) }}
+{{- if not $value }}
+{{- $value := $package.env }}
+{{- end }}
 {{- if $value }}
   mkdir -p /etc/portage/env; \
   echo -e "{{ ( $value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf; \
   echo -e "{{ $atom.atom }} {{ $filename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 {{- $value := ( index $atom "env_profile" ) }}
+{{- if not $value }}
+{{- $value := $package.env_profile }}
+{{- end }}
 {{- if $value }}
   mkdir -p /etc/portage/env; \
   echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
