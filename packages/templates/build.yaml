@@ -30,7 +30,7 @@ prelude:
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "haskell" }}
+{{/* if eq .Values.name "openvdb" }}
 {{ template "cr.dumpList" ( include "cr.prereqs" ( list .Values $packages "" ) ) }}
 {{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
