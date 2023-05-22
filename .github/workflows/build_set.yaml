@@ -78,13 +78,13 @@ jobs:
         df -h
     - run: |
         git fetch --prune --unshallow
-    - run: |
-        # sudo service docker stop || true
-        # cd /var/run/docker/libcontainerd || true
-        # sudo rm -rf containerd/* || true
-        # sudo rm -f docker-containerd.pid || true
-        # sudo service docker start
-        sudo chmod 666 /var/run/docker.sock
+    # - run: |
+    #     # sudo service docker stop || true
+    #     # cd /var/run/docker/libcontainerd || true
+    #     # sudo rm -rf containerd/* || true
+    #     # sudo rm -f docker-containerd.pid || true
+    #     # sudo service docker start
+    #     sudo chmod 666 /var/run/docker.sock
     - name: Login to Quay Registry
       run: |
         echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
