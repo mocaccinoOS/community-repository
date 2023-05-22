@@ -228,11 +228,13 @@
 
 {{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
 
-{{- if $enqueue }}
-- echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
+{{-/* debug */}}
+{{-/* if $enqueue }}
+- set -x; echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
 {{- else }}
-- echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
-{{- end }}
+- set -x; echo "cr.prereqs ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
+{{- end */}}
+{{-/* end debug */}}
 
 {{- if $enqueue }}
 
@@ -318,11 +320,13 @@
 
 {{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
 
-{{- if $enqueue }}
-- echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
+{{-/* debug */}}
+{{-/* if $enqueue }}
+- set -x; echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }})"
 {{- else }}
-- echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
-{{- end }}
+- set -x; echo "cr.prereqs_emerge ({{ $current_package }} required by {{ $previous_package | default "itself" }}, skipping, should be required by {{ get $packages $current_package }})"
+{{- end */}}
+{{-/* end debug */}}
 
 {{- if $enqueue }}
 
