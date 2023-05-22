@@ -85,6 +85,9 @@ jobs:
     #     # sudo rm -f docker-containerd.pid || true
     #     # sudo service docker start
     - run: |
+        set -x; \
+        systemctl status docker
+    - run: |
         sudo chmod 666 /var/run/docker.sock
 
     - name: Login to Quay Registry
