@@ -79,16 +79,13 @@ jobs:
     - run: |
         git fetch --prune --unshallow
     # - run: |
+    #     sudo chmod 666 /var/run/docker.sock
+    # - run: |
     #     # sudo service docker stop || true
     #     # cd /var/run/docker/libcontainerd || true
     #     # sudo rm -rf containerd/* || true
     #     # sudo rm -f docker-containerd.pid || true
     #     # sudo service docker start
-    - run: |
-        set -x; \
-        dockerd
-    - run: |
-        sudo chmod 666 /var/run/docker.sock
 
     - name: Login to Quay Registry
       run: |
