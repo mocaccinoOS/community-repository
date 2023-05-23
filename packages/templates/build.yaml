@@ -111,6 +111,9 @@ excludes:
 #     - ^/var/db$
 
 {{ if .Values.excludes }}
+{{ if eq .Values.category "buildbase" }}
+excludes:
+{{ end }}
 {{ range .Values.excludes }}
 {{ if . }}
 - {{ . }}
