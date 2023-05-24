@@ -14030,7 +14030,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2022.0.0+11"
+  version: "2022.0.0+12"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
@@ -14075,8 +14075,9 @@ packages:
     use: "suitesparse"
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
-  # prepare:
-  # - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
+  prepare:
+  - sed -i -e 's/3.0-gtk3/3.2-gtk3/' /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild
+  - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
   requires:
   # - <<: *layers-X
   - <<: *layers-gnome-common
@@ -14084,7 +14085,7 @@ packages:
   - <<: *layers-java
   - <<: *libs-vigra
   - <<: *libs-flann
-  - <<: *libs-wxGTK-3_0-gtk3
+  - <<: *libs-wxGTK
   - <<: *apps-dcraw
   build_requires:
   # - <<: *layers-X
