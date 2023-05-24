@@ -6764,6 +6764,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-ly
+  category: "apps"
+  name: "ly"
+  version: "0.5.3"
+  uri:
+  - https://github.com/nullgemm/ly
+  license: "WTFPL-2"
+  description: "Ly - a TUI display manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/ly
+  atoms:
+  - atom: "x11-misc/ly"
+    accept_keywords: "~amd64"
+  overlays:
+  - name: "gentoo-zh"
+  provides:
+  - category: "x11-misc"
+    name: "ly"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "mandelbulber"
   version: "2.28-r1"
@@ -8133,7 +8159,7 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  
+
 - category: "apps"
   name: "tokodon"
   version: "23.04.1"
