@@ -6027,6 +6027,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "hunspell-dictionaries"
+  version: "1.7.2"
+  uri:
+  - https://hunspell.github.io/
+  license: "MPL-1.1 GPL-2 LGPL-2.1"
+  description: "Spell checker, morphological analyzer library and command-line tool"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/hunspell
+  provides:
+  - category: "app-text"
+    name: "hunspell"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/hunspell"
+    use: "l10n_af l10n_bg l10n_ca l10n_cs l10n_cy l10n_da l10n_de l10n_de-1901 l10n_el l10n_en l10n_eo l10n_es l10n_et l10n_fo l10n_fr l10n_ga l10n_gl l10n_he l10n_hr l10n_hu l10n_ia l10n_id l10n_is l10n_it l10n_kk l10n_km l10n_ku l10n_lt l10n_lv l10n_mi l10n_mk l10n_ms l10n_nb l10n_nl l10n_nn l10n_pl l10n_pt l10n_pt-BR l10n_ro l10n_ru l10n_sk l10n_sl l10n_sq l10n_sv l10n_sw l10n_tn l10n_uk l10n_zu"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "hwinfo"
   version: "22.1"
   uri:
