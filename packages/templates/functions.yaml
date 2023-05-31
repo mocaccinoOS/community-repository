@@ -259,15 +259,16 @@
 {{- end }}
 
 {{- if .overlays }}
-- |
-  USE="-subversion -mercurial" emerge app-portage/layman; \
-  layman -L;
+- emerge -1 app-eselect/eselect-repository
 {{- range .overlays }}
-{{- if .url }}
-- echo "y" | layman -o {{ .url }} -f -a {{ .name }}
-{{- else }}
-- echo "y" | layman -a {{ .name }}
-{{- end }}
+# todo: url
+- |
+  eselect repository enable {{ .name }}; \
+# {{- if .url }}
+
+# {{- else }}
+  emaint sync -r {{ .name }}
+# {{- end }}
 {{- end }}
 {{- end }}
 

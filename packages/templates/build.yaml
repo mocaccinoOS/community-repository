@@ -88,6 +88,10 @@ excludes:
 - ^/var/db/repos
 - ^/var/lib/portage
 - ^/var/log
+# should this be kept for layerbases and buildbases ?
+{{ if .Values.overlays }}
+- ^/etc/portage/repos.conf/eselect-repo.conf
+{{ end }}
 # devel split
 # - ^/usr/include
 # - ^/luetbuild
