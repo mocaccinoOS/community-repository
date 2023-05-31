@@ -265,7 +265,6 @@
 - |
   eselect repository enable {{ .name }}; \
 {{/*- if .url }}
-
 {{- else */}}
   emaint sync -r {{ .name }}
 {{/*-  end */}}
@@ -426,6 +425,7 @@
 {{- else if eq ( len $tokens ) 2 }}
 - {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- end }}
+- etc-update -q --automode -5
 
 {{- end }}
 
