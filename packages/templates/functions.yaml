@@ -261,14 +261,14 @@
 {{- if .overlays }}
 - emerge -1 app-eselect/eselect-repository
 {{- range .overlays }}
-# todo: url
+{{/*- todo: url */}}
 - |
   eselect repository enable {{ .name }}; \
-# {{- if .url }}
+{{/*- if .url }}
 
-# {{- else }}
+{{- else */}}
   emaint sync -r {{ .name }}
-# {{- end }}
+{{/*-  end */}}
 {{- end }}
 {{- end }}
 
