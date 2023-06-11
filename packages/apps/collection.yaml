@@ -5415,6 +5415,34 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "freeoffice"
+  version: "1064"
+  uri:
+  - https://www.freeoffice.com
+  license: "SoftMaker"
+  description: "A complete, free Microsoft Office-compatible alternative office suite."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/freeoffice
+  overlays:
+  - name: "gentoo-zh"
+  provides:
+  - category: "app-office"
+    name: "freeoffice"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/freeoffice"
+    license: "SoftMaker"
+  prereqs:
+  - app-admin/chrpath
+  - app-arch/xz-utils
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "foliate"
   version: "2.6.4-r3"
   uri:
