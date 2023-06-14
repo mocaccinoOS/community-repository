@@ -421,9 +421,9 @@
 
 {{- $tokens := . | splitList ";" }}
 {{- if eq ( len $tokens ) 1 }}
-- emerge --info --verbose -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
+- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- else if eq ( len $tokens ) 2 }}
-- {{ ( index $tokens 1 ) }} emerge --info --verbose -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
+- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- end }}
 - etc-update -q --automode -5
 
