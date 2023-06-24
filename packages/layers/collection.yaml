@@ -327,6 +327,148 @@ packages:
 ## layers ###
 ################################################################################
 
+
+- &def-layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: "0.5+4"
+  uri:
+  - https://metacpan.org
+  license: "metapackage"
+  description: "Perl libs to support various packages"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      virtual/perl-if
+      dev-perl/Spreadsheet-ParseExcel
+      dev-perl/List-MoreUtils-XS
+      dev-perl/List-MoreUtils
+      dev-perl/File-ShareDir
+      dev-perl/libintl-perl
+      dev-perl/HTML-Tree
+  provides:
+  - category: "dev-perl"
+    name: "File-ShareDir"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "HTML-Tree"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "libintl-perl"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "List-MoreUtils-XS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Spreadsheet-ParseExcel"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-if"
+    version: ">=0"
+  prereqs:
+  - virtual/perl-IPC-Cmd
+  - dev-perl/File-ShareDir-Install
+  requires:
+  - <<: *layers-X
+  - <<: *libs-Text-CSV
+  build_requires:
+  - <<: *layers-X
+
+# - <<: *def-layers-perl-libs 
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-layers-perl-libs
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
+- &def-layers-ruby
+  category: "layers"
+  name: "ruby"
+  version: "3.0.6-r2+2"
+  uri:
+  - https://www.ruby-lang.org/
+  license: "Ruby-BSD BSD-2"
+  description: "An object-oriented scripting language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/ruby:3.0
+  provides:
+  - name: eselect-ruby
+    category: app-eselect
+    version: '>=0'
+  - name: ruby
+    category: dev-lang
+    version: '>=0'
+  - name: bundler
+    category: dev-ruby
+    version: '>=0'
+  - name: did_you_mean
+    category: dev-ruby
+    version: '>=0'
+  - name: json
+    category: dev-ruby
+    version: '>=0'
+  - name: kpeg
+    category: dev-ruby
+    version: '>=0'
+  - name: minitest
+    category: dev-ruby
+    version: '>=0'
+  - name: net-telnet
+    category: dev-ruby
+    version: '>=0'
+  - name: power_assert
+    category: dev-ruby
+    version: '>=0'
+  - name: racc
+    category: dev-ruby
+    version: '>=0'
+  - name: rake
+    category: dev-ruby
+    version: '>=0'
+  - name: rdoc
+    category: dev-ruby
+    version: '>=0'
+  - name: rubygems
+    category: dev-ruby
+    version: '>=0'
+  - name: test-unit
+    category: dev-ruby
+    version: '>=0'
+  - name: webrick
+    category: dev-ruby
+    version: '>=0'
+  - name: xmlrpc
+    category: dev-ruby
+    version: '>=0'
+  - name: ruby-ssl
+    category: virtual
+    version: '>=0'
+  - name: rubygems
+    category: virtual
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# - <<: *def-layers-ruby 
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-layers-ruby
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
 - &def-layers-office-common
   category: "layers"
   name: "office-common"
@@ -1217,147 +1359,6 @@ packages:
   - <<: *libs-twisted
   build_requires:
   - <<: *layers-kde-common
-
-
-- &def-layers-perl-libs
-  category: "layers"
-  name: "perl-libs"
-  version: "0.5+3"
-  uri:
-  - https://metacpan.org
-  license: "metapackage"
-  description: "Perl libs to support various packages"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      virtual/perl-if
-      dev-perl/Spreadsheet-ParseExcel
-      dev-perl/List-MoreUtils-XS
-      dev-perl/List-MoreUtils
-      dev-perl/File-ShareDir
-      dev-perl/libintl-perl
-      dev-perl/HTML-Tree
-  provides:
-  - category: "dev-perl"
-    name: "File-ShareDir"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "HTML-Tree"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "libintl-perl"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "List-MoreUtils"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "List-MoreUtils-XS"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Spreadsheet-ParseExcel"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-if"
-    version: ">=0"
-  prereqs:
-  - virtual/perl-IPC-Cmd
-  - dev-perl/File-ShareDir-Install
-  requires:
-  - <<: *layers-X
-  - <<: *libs-Text-CSV
-  build_requires:
-  - <<: *layers-X
-
-# - <<: *def-layers-perl-libs 
-#   category: "layerbase"
-#   hidden: true
-
-- <<: *def-layers-perl-libs
-  category: "buildbase"
-  unpack: true
-  hidden: true
-
-
-- &def-layers-ruby
-  category: "layers"
-  name: "ruby"
-  version: "3.0.6-r2+1"
-  uri:
-  - https://www.ruby-lang.org/
-  license: "Ruby-BSD BSD-2"
-  description: "An object-oriented scripting language"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/ruby:3.0
-  provides:
-  - name: eselect-ruby
-    category: app-eselect
-    version: '>=0'
-  - name: ruby
-    category: dev-lang
-    version: '>=0'
-  - name: bundler
-    category: dev-ruby
-    version: '>=0'
-  - name: did_you_mean
-    category: dev-ruby
-    version: '>=0'
-  - name: json
-    category: dev-ruby
-    version: '>=0'
-  - name: kpeg
-    category: dev-ruby
-    version: '>=0'
-  - name: minitest
-    category: dev-ruby
-    version: '>=0'
-  - name: net-telnet
-    category: dev-ruby
-    version: '>=0'
-  - name: power_assert
-    category: dev-ruby
-    version: '>=0'
-  - name: racc
-    category: dev-ruby
-    version: '>=0'
-  - name: rake
-    category: dev-ruby
-    version: '>=0'
-  - name: rdoc
-    category: dev-ruby
-    version: '>=0'
-  - name: rubygems
-    category: dev-ruby
-    version: '>=0'
-  - name: test-unit
-    category: dev-ruby
-    version: '>=0'
-  - name: webrick
-    category: dev-ruby
-    version: '>=0'
-  - name: xmlrpc
-    category: dev-ruby
-    version: '>=0'
-  - name: ruby-ssl
-    category: virtual
-    version: '>=0'
-  - name: rubygems
-    category: virtual
-    version: '>=0'
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# - <<: *def-layers-ruby 
-#   category: "layerbase"
-#   hidden: true
-
-- <<: *def-layers-ruby
-  category: "buildbase"
-  unpack: true
-  hidden: true
 
 
 - &def-layers-term-libs
