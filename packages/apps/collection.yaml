@@ -4767,38 +4767,38 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &apps-clang-14
-#   category: "apps"
-#   name: "clang-14"
-#   version: "14.0.6-r1"
-#   uri:
-#   - https://llvm.org/
-#   license: "Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT"
-#   description: "C language family frontend for LLVM"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sys-devel/clang:14
-#   provides:
-#   - category: "sys-devel"
-#     name: "clang"
-#     version: ">=0"
-#   - category: "sys-devel"
-#     name: "llvm"
-#     version: ">=0"
-#   - category: "sys-libs"
-#     name: "compiler-rt"
-#     version: ">=0"
-#   - category: "sys-libs"
-#     name: "compiler-rt-sanitizers"
-#     version: ">=0"
-#   - category: "sys-devel"
-#     name: "clang-runtime"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &apps-clang-15
+  category: "apps"
+  name: "clang-15"
+  version: "15.0.7-r1"
+  uri:
+  - https://llvm.org/
+  license: "Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT"
+  description: "C language family frontend for LLVM"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-devel/clang:15
+  provides:
+  - category: "sys-devel"
+    name: "clang"
+    version: ">=0"
+  - category: "sys-devel"
+    name: "llvm"
+    version: ">=0"
+  - category: "sys-libs"
+    name: "compiler-rt"
+    version: ">=0"
+  - category: "sys-libs"
+    name: "compiler-rt-sanitizers"
+    version: ">=0"
+  - category: "sys-devel"
+    name: "clang-runtime"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "clinfo"
@@ -5655,29 +5655,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "geeqie"
-  version: "2.0.1-r4"
-  uri:
-  - http://www.geeqie.org
-  license: "GPL-2"
-  description: "A lightweight GTK image viewer forked from GQview"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/geeqie
-  provides:
-  - category: "media-gfx"
-    name: "geeqie"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/geeqie"
-    use: "exif ffmpegthumbnailer jpeg lcms lua nls pdf tiff xmp # lirc"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "gftp"
   version: "2.9.1b+1"
   uri:
@@ -5888,15 +5865,15 @@ packages:
   - atom: "app-backup/grub-btrfs"
     use: "systemd"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  - sed -i -e 's/doman/# doman/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - sed -i -e 's/86c86/121c121/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - sed -i -e '/\\ No newline at end of file/d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  - sed -i -e '/86c86/,$d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  - ebuild /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
+  # prepare:
+  # - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # - sed -i -e 's/doman/# doman/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # # - sed -i -e 's/86c86/121c121/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # # - sed -i -e '/\\ No newline at end of file/d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - sed -i -e '/86c86/,$d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - ebuild /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
   requires:
   - <<: *apps-grub
   build_requires:
@@ -10445,6 +10422,30 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "geeqie"
+  version: "2.0.1-r4"
+  uri:
+  - http://www.geeqie.org
+  license: "GPL-2"
+  description: "A lightweight GTK image viewer forked from GQview"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/geeqie
+  provides:
+  - category: "media-gfx"
+    name: "geeqie"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/geeqie"
+    use: "exif ffmpegthumbnailer jpeg lcms lua nls pdf tiff xmp # lirc"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-lua-5_3
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "gkrellm"
   version: "2.3.11-r4+1"
   uri:
@@ -10559,7 +10560,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.19.0+1"
+  version: "1.19.0+2"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -10576,6 +10577,7 @@ packages:
   - atom: "dev-lang/ispc"
   requires:
   - <<: *layers-system-x
+  - <<: *apps-clang-15
   build_requires:
   - <<: *layers-system-x
 
@@ -15745,7 +15747,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.3.6-r1"
+  version: "3.3.6-r1+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
