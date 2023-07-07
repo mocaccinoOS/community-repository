@@ -2899,28 +2899,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-nas
-  category: "libs"
-  name: "nas"
-  version: "1.9.5+2"
-  uri:
-  - https://radscan.com/nas.html
-  license: "HPND MIT"
-  description: "Network Audio System"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/nas
-  provides:
-  - category: "media-libs"
-    name: "nas"
-    version: ">=0"
-  prereqs:
-  - app-text/rman x11-misc/gccmakedep x11-misc/imake
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-nas
+#   category: "libs"
+#   name: "nas"
+#   version: "1.9.5+2"
+#   uri:
+#   - https://radscan.com/nas.html
+#   license: "HPND MIT"
+#   description: "Network Audio System"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/nas
+#   provides:
+#   - category: "media-libs"
+#     name: "nas"
+#     version: ">=0"
+#   prereqs:
+#   - app-text/rman x11-misc/gccmakedep x11-misc/imake
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-netpbm
   category: "libs"
@@ -9239,10 +9239,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/libao"
-    use: "alsa nas mmap pulseaudio"
+    use: "alsa mmap pulseaudio # nas"
   requires:
   - <<: *layers-X
-  - <<: *libs-nas
+  # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
 
@@ -9419,10 +9419,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/libmikmod"
-    use: "alsa altivec coreaudio nas openal oss pulseaudio threads"
+    use: "alsa altivec coreaudio openal oss pulseaudio threads # nas"
   requires:
   - <<: *layers-X
-  - <<: *libs-nas
+  # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
 
@@ -9566,10 +9566,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/mpg123"
-    use: "alsa coreaudio ipv6 jack nas oss portaudio pulseaudio sdl int-quality"
+    use: "alsa coreaudio ipv6 jack oss portaudio pulseaudio sdl int-quality # nas"
   requires:
   - <<: *layers-X
-  - <<: *libs-nas
+  # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
 
@@ -13287,7 +13287,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/timidity++"
-    use: "alsa ao flac gtk jack nas ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs"
+    use: "alsa ao flac gtk jack ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs # nas"
   - atom: "media-sound/timidity-eawpatches"
     license: "free-noncomm"
   prereqs:
@@ -13309,7 +13309,7 @@ packages:
   # - <<: *apps-emacs
   - <<: *apps-tk
   - <<: *libs-libao
-  - <<: *libs-nas
+  # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
 
@@ -13429,7 +13429,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-editors/xemacs"
-    use: "pop dnd xim alsa gif gpm ldap athena motif neXt Xaw3d xface nas X jpeg tiff png xft gdbm berkdb # postgres freewnn mule"
+    use: "pop dnd xim alsa gif gpm ldap athena motif neXt Xaw3d xface X jpeg tiff png xft gdbm berkdb # postgres freewnn mule # nas"
   prereqs:
   - sys-devel/autoconf:2.1
   requires:
@@ -13437,7 +13437,7 @@ packages:
   - <<: *apps-eselect-emacs
   # - <<: *apps-postgresql  
   - <<: *libs-compface
-  - <<: *libs-nas
+  # - <<: *libs-nas
   - <<: *libs-gpm
   - <<: *libs-libXaw3d
   - <<: *libs-motif
