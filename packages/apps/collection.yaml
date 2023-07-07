@@ -8853,27 +8853,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-xpad
-  category: "apps"
-  name: "xpad"
-  version: "5.8.0-r1"
-  uri:
-  - https://launchpad.net/xpad
-  license: "GPL-3"
-  description: "A sticky note application for GTK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/xpad
-  provides:
-  - category: "x11-misc"
-    name: "xpad"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome
-  build_requires:
-  - <<: *layers-gnome
-
 - &apps-xsensors
   category: "apps"
   name: "xsensors"
@@ -11784,6 +11763,28 @@ packages:
   - <<: *libs-XML-LibXML
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-xpad
+  category: "apps"
+  name: "xpad"
+  version: "5.8.0-r1+1"
+  uri:
+  - https://launchpad.net/xpad
+  license: "GPL-3"
+  description: "A sticky note application for GTK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/xpad
+  provides:
+  - category: "x11-misc"
+    name: "xpad"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-ayatana
+  build_requires:
+  - <<: *layers-gnome
 
 - &apps-zathura
   category: "apps"
