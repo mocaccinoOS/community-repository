@@ -10423,7 +10423,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.0.1-r4"
+  version: "2.0.1-r4+1"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -10440,10 +10440,11 @@ packages:
   - atom: "media-gfx/geeqie"
     use: "exif ffmpegthumbnailer jpeg lcms lua lua_single_target_lua5-3 nls pdf tiff xmp # lirc"
   requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
   - <<: *apps-lua-5_3
+  - <<: *apps-vim
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "gkrellm"
