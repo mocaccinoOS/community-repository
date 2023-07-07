@@ -5327,30 +5327,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- category: "apps"
-  name: "filezilla"
-  version: "3.64.0"
-  uri:
-  - https://filezilla-project.org/
-  license: "GPL-2"
-  description: "FTP client with lots of useful features and an intuitive interface"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-libs/libfilezilla
-      net-ftp/filezilla
-  provides:
-  - category: "dev-libs"
-    name: "libfilezilla"
-    version: ">=0"
-  - category: "net-ftp"
-    name: "filezilla"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &apps-firejail
   category: "apps"
   name: "firejail"
@@ -10420,6 +10396,31 @@ packages:
   - <<: *libs-libsfml
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "filezilla"
+  version: "3.64.0+1"
+  uri:
+  - https://filezilla-project.org/
+  license: "GPL-2"
+  description: "FTP client with lots of useful features and an intuitive interface"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-libs/libfilezilla
+      net-ftp/filezilla
+  provides:
+  - category: "dev-libs"
+    name: "libfilezilla"
+    version: ">=0"
+  - category: "net-ftp"
+    name: "filezilla"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-wxGTK
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "geeqie"
