@@ -2452,6 +2452,33 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+  
+- &libs-libupnpp
+  category: "libs"
+  name: "libupnpp"
+  version: "0.22.5"
+  uri:
+  - https://www.lesbonscomptes.com/upmpdcli
+  - https://framagit.org/medoc92/npupnp
+  license: "GPL-2 BSD"
+  description: |
+    The libupnpp C++ library wraps libupnp for easier use by upmpdcli and upplay
+    A C++ base UPnP library, derived from Portable UPnP, a.k.a libupnp
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libupnpp
+  provides:
+  - category: "net-libs"
+    name: "libupnpp"
+    version: ">=0"
+  - category: "net-libs"
+    name: "libnpupnp"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-libXaw3d
   category: "libs"
@@ -11551,6 +11578,40 @@ packages:
   - <<: *libs-libdv
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "upplay"
+  version: "1.6.6"
+  uri:
+  - http://www.lesbonscomptes.com/upplay
+  - https://github.com/sailfishos/qtmpris
+  license: "GPL-2 LGPL-2.1"
+  description: |
+    A Qt-based UPnP audio Control point
+    MPRIS v.2 specification implementation for Qt and QML plugin
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/upplay
+  overlays:
+  - name: "robert7k"
+  provides:
+  - category: "media-sound"
+    name: "upplay"
+    version: ">=0"
+  - category: "media-libs"
+    name: "qtmpris"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/upplay"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/qtmpris"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libupnpp
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-v4l-utils
   category: "apps"
