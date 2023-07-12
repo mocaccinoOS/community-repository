@@ -304,6 +304,15 @@ anchors:
     emerge.packages: >-
       app-containers/docker
 
+- &apps-docker-cli
+  category: "app-containers"
+  name: "docker-cli"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/docker-cli
+
 - &apps-grub
   category: "apps"
   name: "grub"
@@ -5114,6 +5123,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "docker-compose"
+  version: "2.17.2+3"
+  uri:
+  - https://github.com/docker/compose
+  license: "Apache-2.0"
+  description: "Multi-container orchestration for Docker"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/docker-compose
+  provides:
+  - category: "app-containers"
+    name: "docker-compose"
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-docker-cli
+  build_requires:
+  - <<: *layers-system-x
+  
 - category: "apps"
   name: "dolphin-plugins-git"
   version: "23.04.2"
@@ -10691,7 +10721,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "22.12.3"
+  version: "23.04.2"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
