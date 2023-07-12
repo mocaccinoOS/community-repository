@@ -10281,25 +10281,37 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-docker-cli
+- &apps-docker-tools
   category: "apps"
-  name: "docker-cli"
-  version: "23.0.3"
+  name: "docker-tools"
+  version: "0.1"
   uri:
   - https://www.docker.com/
+  - https://github.com/docker/compose
+  - https://github.com/docker/buildx
   license: "Apache-2.0"
-  description: "The command line binary for docker"
+  description: |
+    The command line binary for docker
+    Multi-container orchestration for Docker
+    Docker CLI plugin for extended build capabilities with BuildKit
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-containers/docker-cli
+      app-containers/docker-compose
+      app-containers/docker-buildx
   provides:
   - category: "app-containers"
     name: "docker-cli"
     version: '>=0'
+  - category: "app-containers"
+    name: "docker-compose"
+    version: '>=0'
+  - category: "app-containers"
+    name: "docker-buildx"
+    version: '>=0'
   requires:
   - <<: *layers-system-x
-  - <<: *apps-go
   - <<: *apps-docker
   build_requires:
   - <<: *layers-system-x
@@ -12458,29 +12470,6 @@ packages:
   - <<: *apps-clamav
   build_requires:
   - <<: *layers-X
-
-- &apps-docker-compose
-  category: "apps"
-  name: "docker-compose"
-  version: "2.17.2+3"
-  uri:
-  - https://github.com/docker/compose
-  license: "Apache-2.0"
-  description: "Multi-container orchestration for Docker"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-containers/docker-compose
-  provides:
-  - category: "app-containers"
-    name: "docker-compose"
-    version: '>=0'
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-go
-  - <<: *apps-docker-cli
-  build_requires:
-  - <<: *layers-system-x
 
 - &apps-dvd-rw-tools
   category: "apps"
