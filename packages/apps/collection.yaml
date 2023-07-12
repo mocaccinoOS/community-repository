@@ -8105,7 +8105,7 @@ packages:
 - &apps-sqlcipher
   category: "apps"
   name: "sqlcipher"
-  version: "4.5.1+1"
+  version: "4.5.1+2"
   uri:
   - https://www.zetetic.net/sqlcipher
   license: "BSD"
@@ -10281,40 +10281,40 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-docker-tools
-  category: "apps"
-  name: "docker-tools"
-  version: "0.1"
-  uri:
-  - https://www.docker.com/
-  - https://github.com/docker/compose
-  - https://github.com/docker/buildx
-  license: "Apache-2.0"
-  description: |
-    The command line binary for docker
-    Multi-container orchestration for Docker
-    Docker CLI plugin for extended build capabilities with BuildKit
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-containers/docker-cli
-      app-containers/docker-compose
-      app-containers/docker-buildx
-  provides:
-  - category: "app-containers"
-    name: "docker-cli"
-    version: '>=0'
-  - category: "app-containers"
-    name: "docker-compose"
-    version: '>=0'
-  - category: "app-containers"
-    name: "docker-buildx"
-    version: '>=0'
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-docker
-  build_requires:
-  - <<: *layers-system-x
+# - &apps-docker-tools
+#   category: "apps"
+#   name: "docker-tools"
+#   version: "0.1"
+#   uri:
+#   - https://www.docker.com/
+#   - https://github.com/docker/compose
+#   - https://github.com/docker/buildx
+#   license: "Apache-2.0"
+#   description: |
+#     The command line binary for docker
+#     Multi-container orchestration for Docker
+#     Docker CLI plugin for extended build capabilities with BuildKit
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-containers/docker-cli
+#       app-containers/docker-compose
+#       app-containers/docker-buildx
+#   provides:
+#   - category: "app-containers"
+#     name: "docker-cli"
+#     version: '>=0'
+#   - category: "app-containers"
+#     name: "docker-compose"
+#     version: '>=0'
+#   - category: "app-containers"
+#     name: "docker-buildx"
+#     version: '>=0'
+#   requires:
+#   - <<: *layers-system-x
+#   - <<: *apps-docker
+#   build_requires:
+#   - <<: *layers-system-x
 
 - category: "apps"
   name: "easytag"
