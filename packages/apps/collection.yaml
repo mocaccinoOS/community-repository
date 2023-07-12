@@ -1604,30 +1604,6 @@ packages:
   build_requires:
   - <<: *layers-java
 
-- &libs-kirigami-addons
-  category: "libs"
-  name: "kirigami-addons"
-  version: "0.9.0"
-  uri:
-  - https://invent.kde.org/libraries/kirigami-addons
-  license: "GPL-2 GPL-3 LGPL-3 LGPL-2.1+"
-  description: "Visual end user components for Kirigami-based applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/kirigami-addons
-  provides:
-  - category: "dev-libs"
-    name: "kirigami-addons"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/kirigami-addons"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
@@ -4322,6 +4298,29 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "alligator"
+  version: "23.04.3"
+  uri:
+  - https://apps.kde.org/alligator/
+  license: "GPL-2+"
+  description: "A convergent RSS/Atom feed reader for Plasma"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-news/alligator
+  provides:
+  - category: "net-news"
+    name: "alligator"
+    version: ">=0"
+  atoms:
+  - atom: "net-news/alligator"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "amberol"
   version: 0.9.2+19
   uri:
@@ -4852,7 +4851,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "23.04.2"
+  version: "23.04.2+1"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+"
@@ -8175,32 +8174,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "tokodon"
-  version: "23.04.3"
-  uri:
-  - https://invent.kde.org/network/tokodon
-  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
-  description: "Mastodon client for Plasma and Plasma Mobile"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/tokodon
-  provides:
-  - category: "net-im"
-    name: "tokodon"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/tokodon"
-    accept_keywords: "~amd64"
-  prereqs:
-  - kde-frameworks/extra-cmake-modules
-  requires:
-  - <<: *layers-kde-common
-  - <<: *libs-kirigami-addons
-  build_requires:
-  - <<: *layers-kde-common
-
-- category: "apps"
   name: "tophat"
   version: "9999"
   uri:
@@ -8498,6 +8471,31 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "tokodon"
+  version: "23.04.3"
+  uri:
+  - https://invent.kde.org/network/tokodon
+  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
+  description: "Mastodon client for Plasma and Plasma Mobile"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/tokodon
+  provides:
+  - category: "net-im"
+    name: "tokodon"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/tokodon"
+    accept_keywords: "~amd64"
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "transmission"
@@ -9834,30 +9832,6 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "alligator"
-  version: "23.04.3"
-  uri:
-  - https://apps.kde.org/alligator/
-  license: "GPL-2+"
-  description: "A convergent RSS/Atom feed reader for Plasma"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-news/alligator
-  provides:
-  - category: "net-news"
-    name: "alligator"
-    version: ">=0"
-  atoms:
-  - atom: "net-news/alligator"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *libs-kirigami-addons
-  build_requires:
-  - <<: *layers-kde-common
-
 - &apps-ant-core
   category: "apps"
   name: "ant-core"
@@ -10767,7 +10741,6 @@ packages:
 #   - <<: *libs-qtpositioning-geoclue
 #   requires:
 #   - <<: *layers-kde-common
-#   - <<: *libs-kirigami-addons
 #   build_requires:
 #   - <<: *layers-kde-common
 
