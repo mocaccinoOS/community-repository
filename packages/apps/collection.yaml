@@ -8269,30 +8269,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "tuba"
-  version: "0.3.2"
-  uri:
-  - https://github.com/GeopJr/Tuba
-  license: "CC-BY-3.0 GPL-3+"
-  description: "Mastodon client, previously known as Tooth"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/tuba
-  overlays:
-  - name: "guru"
-  provides:
-  - category: "net-misc"
-    name: "tuba"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/tuba"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# Can be enabled once gui-libs/gtksourceview:5.0 is in gnome-common
+# - category: "apps"
+#   name: "tuba"
+#   version: "0.3.2"
+#   uri:
+#   - https://github.com/GeopJr/Tuba
+#   license: "CC-BY-3.0 GPL-3+"
+#   description: "Mastodon client, previously known as Tooth"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/tuba
+#   overlays:
+#   - name: "guru"
+#   provides:
+#   - category: "net-misc"
+#     name: "tuba"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/tuba"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "shntool"
