@@ -4804,7 +4804,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sys-devel/clang:15
+      =sys-devel/clang-15.0.7-r1
+  # sys-devel/clang:15
   provides:
   - category: "sys-devel"
     name: "clang"
@@ -8550,7 +8551,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.1+1"
+  version: "0.36.1+2"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -8563,8 +8564,8 @@ packages:
   - category: "net-firewall"
     name: "ufw"
     version: ">=0"
-  prereqs:
-  - dev-lang/rust-bin
+  # prereqs:
+  # - dev-lang/rust-bin
   requires:
   - <<: *layers-system-x
   build_requires:
