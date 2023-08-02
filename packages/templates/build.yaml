@@ -39,7 +39,7 @@ prelude:
 
 {{ $prereqs := include "cr.prereqs" ( list .Values $packages "" ) }}
 - |
-{{ ( include "cr.merge_shell_commands" $prereqs ) | indent 2 }}
+{{ ( include "cr.merge_shell_commands" $prereqs ) | toYaml | indent 2 }}
 
 {{ if eq .Values.category "layerbase" }}
 - |
