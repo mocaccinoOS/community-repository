@@ -454,7 +454,7 @@
 {{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
 {{- $command = printf "%s\n%s; \\" $command ( trimAll "; \n" . ) }}
 {{- end }}
-{{- $command = printf "%s\necho;" $command . }}
+{{- $command = printf "%s\necho;" $command }}
 
 {{- $command }}
 
