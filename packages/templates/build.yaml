@@ -30,13 +30,16 @@ prelude:
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "openvdb" }}
+{{/* if eq .Values.name "blender" }}
+{{ template "cr.dump" ( include "cr.merge_shell_commands" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) }}
 {{ template "cr.dumpList" ( include "cr.prereqs" ( list .Values $packages "" ) ) }}
 {{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
 {{/* end debug */}}
 
-{{ include "cr.prereqs" ( list .Values $packages "" ) }}
+{{ $prereqs := include "cr.prereqs" ( list .Values $packages "" ) }}
+- |
+{{ ( include "cr.merge_shell_commands" $prereqs ) | indent 2 }}
 
 {{ if eq .Values.category "layerbase" }}
 - |
@@ -48,7 +51,7 @@ prelude:
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "haskell" }}
+{{/* if eq .Values.name "blender" }}
 {{ template "cr.dumpList" ( include "cr.package_setup" .Values ) }}
 {{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
