@@ -5135,6 +5135,31 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
+- category: "apps"
+  name: "drawio-desktop-bin"
+  version: "19.0.3"
+  uri:
+  - https://github.com/jgraph/drawio-desktop
+  license: "Apache-2.0"
+  description: "Diagram drawing application built on web technology"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/drawio-desktop-bin
+  overlays:
+  - name: "nest"
+  provides:
+  - category: "app-office"
+    name: "drawio-desktop-bin"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/drawio-desktop-bin"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-dtach
   category: "apps"
   name: "dtach"
