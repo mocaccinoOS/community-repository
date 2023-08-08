@@ -5057,26 +5057,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "diff-pdf"
-  version: "0.5.1"
-  uri:
-  - https://vslavik.github.io/diff-pdf/
-  license: "GPL-2+ LGPL-2+"
-  description: "A simple tool for visually comparing two PDF files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/diff-pdf
-  provides:
-  - category: "app-text"
-    name: "diff-pdf"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &apps-diffpdf
   category: "apps"
   name: "diffpdf"
@@ -6784,9 +6764,9 @@ packages:
   - <<: *layers-system-x
 
 - &apps-luajit
-  category: "libs"
+  category: "apps"
   name: "luajit"
-  version: "2.1.0_beta3_p20220127-r2"
+  version: "2.1.0_beta3_p20220127-r2+1"
   uri:
   - https://luajit.org/
   license: "MIT"
@@ -6975,37 +6955,6 @@ packages:
     use: "minimal"
   prereqs:
   - sys-apps/elfix
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &apps-mpv
-  category: "apps"
-  name: "mpv"
-  version: "0.35.1-r2"
-  uri:
-  - https://mpv.io/
-  - https://github.com/mpv-player/mpv
-  license: "LGPL-2.1+ GPL-2+ BSD ISC"
-  description: "Media player based on MPlayer and mplayer2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-video/mpv
-  provides:
-  - category: "media-libs"
-    name: "libplacebo"
-    version: '>=0'
-  - category: "media-video"
-    name: "mpv"
-    version: '>=0'
-  - category: "virtual"
-    name: "linuxtv-dvb-headers"
-    version: '>=0'
-  atoms:
-  - atom: "media-video/mpv"
-    use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9534,7 +9483,7 @@ packages:
 - &libs-lpeg
   category: "libs"
   name: "lpeg"
-  version: "1.0.2-r101+1"
+  version: "1.0.2-r101+2"
   uri:
   - http://www.inf.puc-rio.br/~roberto/lpeg/
   license: "MIT"
@@ -10178,8 +10127,6 @@ packages:
   - acct-user/clamav
   requires:
   - <<: *layers-X
-  # up to the version 1.0.1: dev-libs/tomsfastmath
-  # - <<: *libs-tomsfastmath
   - category: "entity"
     name: "clamav"
     version: ">=0"
@@ -10333,6 +10280,27 @@ packages:
   - <<: *libs-libdispatch
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "diff-pdf"
+  version: "0.5.1+1"
+  uri:
+  - https://vslavik.github.io/diff-pdf/
+  license: "GPL-2+ LGPL-2+"
+  description: "A simple tool for visually comparing two PDF files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/diff-pdf
+  provides:
+  - category: "app-text"
+    name: "diff-pdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *wxGTK
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-docker-tools
   category: "apps"
@@ -11046,6 +11014,38 @@ packages:
   - <<: *libs-nlohmann_json
   build_requires:
   - <<: *layers-qt
+
+- &apps-mpv
+  category: "apps"
+  name: "mpv"
+  version: "0.35.1-r2+1"
+  uri:
+  - https://mpv.io/
+  - https://github.com/mpv-player/mpv
+  license: "LGPL-2.1+ GPL-2+ BSD ISC"
+  description: "Media player based on MPlayer and mplayer2"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/mpv
+  provides:
+  - category: "media-libs"
+    name: "libplacebo"
+    version: '>=0'
+  - category: "media-video"
+    name: "mpv"
+    version: '>=0'
+  - category: "virtual"
+    name: "linuxtv-dvb-headers"
+    version: '>=0'
+  atoms:
+  - atom: "media-video/mpv"
+    use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-luajit
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "musescore"
