@@ -10057,26 +10057,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "celluloid"
-  version: "0.21-r1"
-  uri:
-  - https://celluloid-player.github.io
-  license: "GPL-3+"
-  description: "A simple GTK+ frontend for mpv"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/celluloid
-  provides:
-  - category: "media-video"
-    name: "celluloid"
-    version: ">=0"
-  requires:
-  - <<: *apps-mpv
-  build_requires:
-  - <<: *apps-mpv
-
-- category: "apps"
   name: "chemtool"
   version: "1.6.14+2"
   uri:
@@ -12524,6 +12504,26 @@ packages:
   - <<: *apps-brother-scan4-bin
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "celluloid"
+  version: "0.21-r1"
+  uri:
+  - https://celluloid-player.github.io
+  license: "GPL-3+"
+  description: "A simple GTK+ frontend for mpv"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/celluloid
+  provides:
+  - category: "media-video"
+    name: "celluloid"
+    version: ">=0"
+  requires:
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *apps-mpv
 
 - category: "apps"
   name: "clamtk"
