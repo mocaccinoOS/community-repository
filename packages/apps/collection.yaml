@@ -8301,29 +8301,6 @@ packages:
 #   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "shntool"
-  version: "3.0.10-r2+1"
-  uri:
-  - http://www.etree.org/shnutils/shntool
-  license: "GPL-2"
-  description: "A multi-purpose WAVE data processing and reporting utility"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/shntool
-  atoms:
-  - atom: "media-sound/shntool"
-    use: "alac mac shorten flac sox wavpack"
-  provides:
-  - category: "media-sound"
-    name: "shntool"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
   name: "shortwave"
   version: 3.1.0+19
   uri:
@@ -11528,6 +11505,30 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libglade
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "shntool"
+  version: "3.0.10-r2+1"
+  uri:
+  - http://www.etree.org/shnutils/shntool
+  license: "GPL-2"
+  description: "A multi-purpose WAVE data processing and reporting utility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/shntool
+  atoms:
+  - atom: "media-sound/shntool"
+    use: "alac mac shorten flac sox wavpack"
+  provides:
+  - category: "media-sound"
+    name: "shntool"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-mac
   build_requires:
   - <<: *layers-X
 
