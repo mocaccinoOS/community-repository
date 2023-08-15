@@ -3791,33 +3791,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-Text-CSV
-  category: "libs"
-  name: "Text-CSV"
-  version: "2.20.0"
-  uri:
-  - https://metacpan.org/release/Text-CSV
-  license: "Artistic GPL-1+"
-  description: "Manipulate comma-separated value strings"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-CSV
-  provides:
-  - category: "dev-perl"
-    name: "Text-CSV"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-CSV_XS"
-    version: ">=0"
-  atoms:
-  - atom: "dev-perl/Text-CSV"
-    use: "xs"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-Text-Reform
   category: "libs"
   name: "Text-Reform"
@@ -12557,7 +12530,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-Text-CSV
+  - <<: *layers-perl-libs
   - <<: *apps-clamav
   build_requires:
   - <<: *layers-X
