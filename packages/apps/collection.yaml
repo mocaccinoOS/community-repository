@@ -629,6 +629,27 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &libs-async-timeout
+  category: "libs"
+  name: "async-timeout"
+  version: "4.0.2-r1"
+  uri:
+  - https://github.com/aio-libs/async-timeout/
+  license: "GPL-2"
+  description: "Timeout context manager for asyncio programs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/async-timeout
+  provides:
+  - category: "dev-python"
+    name: "async-timeout"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-AOMediaCodecs
   category: "libs"
   name: "AOMediaCodecs"
@@ -3366,7 +3387,7 @@ packages:
 - &libs-zeroconf
   category: "libs"
   name: "zeroconf"
-  version: "0.71.4"
+  version: "0.71.4+1"
   uri:
   - https://github.com/jstasiak/python-zeroconf/
   - https://pypi.org/project/zeroconf/
@@ -3376,20 +3397,19 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/ifaddr
-      dev-python/async-timeout
       dev-python/zeroconf
   provides:
   - category: "dev-python"
     name: "ifaddr"
     version: ">=0"
   - category: "dev-python"
-    name: "async-timeout"
-    version: ">=0"
-  - category: "dev-python"
     name: "zeroconf"
     version: ">=0"
+  prereqs:
+  - dev-python/async-timeout
   requires:
   - <<: *layers-system-x
+  - <<: *libs-async-timeout
   build_requires:
   - <<: *layers-system-x
 
@@ -3948,7 +3968,7 @@ packages:
   - category: "dev-libs"
     name: "udis86"
     version: ">=0"
-  prepare: 
+  prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
   prereqs:
