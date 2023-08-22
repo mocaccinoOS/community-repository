@@ -8899,7 +8899,7 @@ packages:
   - <<: *libs-soupsieve
   build_requires:
   - <<: *layers-system-x
-  
+
 - &libs-c-blosc
   category: "libs"
   name: "c-blosc"
@@ -9585,6 +9585,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-redis
+  category: "libs"
+  name: "redis"
+  version: "4.5.5"
+  uri:
+  - https://github.com/redis/redis-py/
+  license: "MIT"
+  description: "Python client for Redis key-value store"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/redis
+  provides:
+  - category: "dev-python"
+    name: "redis"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -9727,6 +9748,27 @@ packages:
   - <<: *apps-tk
   build_requires:
   - <<: *layers-X
+
+- &libs-toolz
+  category: "libs"
+  name: "toolz"
+  version: "0.12.0"
+  uri:
+  - https://github.com/pytoolz/toolz/
+  license: "BSD"
+  description: "List processing tools and functional utilities"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/toolz
+  provides:
+  - category: "dev-python"
+    name: "toolz"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-vigra
   category: "libs"
@@ -10816,7 +10858,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.13-r2+4"
+  version: "0.5.13-r2+5"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -10824,6 +10866,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      dev-python/moddb
+      dev-python/pypresence
+      dev-python/pyrate-limiter
       x11-apps/xgamma
       games-util/lutris
   provides:
@@ -10836,9 +10881,18 @@ packages:
   atoms:
   - atom: "games-util/lutris"
     accept_keywords: "~amd64"
+  prereqs:
+  - dev-python/soupsieve
+  - dev-python/beautifulsoup4
+  - dev-python/toolz
+  - dev-python/redis
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-beautifulsoup4
   - <<: *libs-fluid-soundfont
+  - <<: *libs-toolz
+  - <<: *libs-redis
+  - <<: *libs-soupsieve
   build_requires:
   - <<: *layers-gnome-common
 
