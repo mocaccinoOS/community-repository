@@ -10,11 +10,6 @@ anchors:
   name: "system-x"
   version: ">=0"
 
-- &layers-codecs
-  category: "layers"
-  name: "codecs"
-  version: ">=0"
-
 - &layers-sys-fs
   category: "layers"
   name: "sys-fs"
@@ -1672,9 +1667,9 @@ packages:
     name: "ladspa-sdk"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-lasi
   category: "libs"
@@ -1756,9 +1751,9 @@ packages:
     name: "libbs2b"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libcerf
   category: "libs"
@@ -1906,9 +1901,9 @@ packages:
     name: "libebur128"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libemf
   category: "libs"
@@ -2211,9 +2206,9 @@ packages:
   prereqs:
   - dev-util/intltool
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   
 - &libs-libmp4v2
   category: "libs"
@@ -2295,9 +2290,9 @@ packages:
     name: "libofa"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libopenmpt
   category: "libs"
@@ -2385,9 +2380,9 @@ packages:
   - atom: "media-libs/libshout"
     use: "speex theora"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libsidplay
   category: "libs"
@@ -2720,9 +2715,9 @@ packages:
   - atom: "media-sound/mac"
     license: "mac"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-mbedtls
   category: "libs"
@@ -4016,9 +4011,9 @@ packages:
     name: "vamp-plugin-sdk"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-vc
   category: "libs"
@@ -7972,12 +7967,12 @@ packages:
   prereqs:
   - acct-user/sndiod
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   - category: "entity"
     name: "sndio"
     version: ">=0"
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - category: "apps"
   name: "solaar"
@@ -8521,9 +8516,9 @@ packages:
   - atom: "media-sound/twolame"
     use: "sndfile"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &apps-ufw
   category: "apps"
@@ -8594,9 +8589,9 @@ packages:
     name: "vcdimager"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - category: "apps"
   name: "video-trimmer"
@@ -9008,10 +9003,10 @@ packages:
     name: "cmt-plugins"
     version: ">=0"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   - <<: *libs-ladspa-sdk
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-coin
   category: "libs"
@@ -9350,11 +9345,11 @@ packages:
   - atom: "media-libs/libmediainfo"
     use: "curl mms"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   - <<: *libs-tinyxml2
   - <<: *libs-libzen
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &libs-libmikmod
   category: "libs"
@@ -10997,10 +10992,10 @@ packages:
   - atom: "app-cdr/mirage2iso"
     use: "pinentry"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   - <<: *libs-libmirage
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - category: "apps"
   name: "mkvtoolnix"
@@ -13083,11 +13078,11 @@ packages:
   - atom: "media-video/mediainfo"
     use: "curl mms -wxwidgets"
   requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
   - <<: *libs-libmediainfo
   - <<: *libs-libzen
   build_requires:
-  - <<: *layers-codecs
+  - <<: *layers-X
 
 - &apps-mediainfo-gui
   <<: *apps-mediainfo
