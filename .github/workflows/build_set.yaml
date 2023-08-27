@@ -70,14 +70,14 @@ jobs:
         sudo apt-get autoremove -y
         sudo apt-get clean
         echo
-        echo "Finding the Current Storage Location" 
-        docker info -f '{{ .DockerRootDir }}'
-        echo
         echo "Listing top largest packages"
         pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
         head -n 30 <<< "${pkgs}"
         echo
         sudo rm -rfv build || true
+        echo "Finding the Current Storage Location" 
+        docker info -f '{{ .DockerRootDir }}'
+        echo
         df -h
     - run: |
         git fetch --prune --unshallow
