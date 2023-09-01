@@ -1468,6 +1468,27 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-gts
+  category: "libs"
+  name: "gts"
+  version: "20121130+3"
+  uri:
+  - http://gts.sourceforge.net/
+  license: "LGPL-2"
+  description: "GNU Triangulated Surface Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/gts
+  provides:
+  - category: "sci-libs"
+    name: "gts"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
@@ -2940,30 +2961,6 @@ packages:
 #   - <<: *layers-X
 #   build_requires:
 #   - <<: *layers-X
-
-- &libs-netpbm
-  category: "libs"
-  name: "netpbm"
-  version: "11.2.0"
-  uri:
-  - http://netpbm.sourceforge.net/
-  license: "GPL-2"
-  description: "A set of utilities for converting to/from the netpbm (and related) formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/netpbm
-  provides:
-  - category: "media-libs"
-    name: "netpbm"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/netpbm"
-    use: "jpeg png postscript cpu_flags_x86_sse2 -svga tiff X xml"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-neXtaw
   category: "libs"
@@ -4992,6 +4989,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &apps-dcraw
+  category: "apps"
+  name: "dcraw"
+  version: "9.28.0-r2+2"
+  uri:
+  - https://www.cybercom.net/~dcoffin/dcraw
+  license: "GPL-2"
+  description: "Command-line decoder for raw digital photos"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/dcraw
+  provides:
+  - category: "media-gfx"
+    name: "dcraw"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/dcraw"
+    use: "nls jpeg lcms"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-designer
   category: "apps"
@@ -9108,28 +9129,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gts
-  category: "libs"
-  name: "gts"
-  version: "20121130+3"
-  uri:
-  - http://gts.sourceforge.net/
-  license: "LGPL-2"
-  description: "GNU Triangulated Surface Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gts
-  provides:
-  - category: "sci-libs"
-    name: "gts"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-netpbm
-  build_requires:
-  - <<: *layers-X
-
 # - &libs-guava
 #   category: "libs"
 #   name: "guava"
@@ -10220,31 +10219,6 @@ packages:
   - <<: *libs-libheif
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-dcraw
-  category: "apps"
-  name: "dcraw"
-  version: "9.28.0-r2+2"
-  uri:
-  - https://www.cybercom.net/~dcoffin/dcraw
-  license: "GPL-2"
-  description: "Command-line decoder for raw digital photos"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/dcraw
-  provides:
-  - category: "media-gfx"
-    name: "dcraw"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/dcraw"
-    use: "nls jpeg lcms"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-netpbm
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "deadbeef"
@@ -15947,7 +15921,6 @@ packages:
     use: "nls jpeg png tiff gimp lcms # ocr"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-netpbm
   - <<: *apps-gimp
   build_requires:
   - <<: *layers-gnome-common
@@ -16109,7 +16082,6 @@ packages:
     use: "scanner tk"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-netpbm
   - <<: *apps-xli
   - <<: *apps-tk
   - <<: *apps-xsane
@@ -16184,7 +16156,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-netpbm
   - <<: *apps-gocr
   build_requires:
   - <<: *layers-gnome-common
