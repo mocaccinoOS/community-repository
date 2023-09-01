@@ -4811,7 +4811,7 @@ packages:
 - &apps-clang-15
   category: "apps"
   name: "clang-15"
-  version: "15.0.7-r3"
+  version: "15.0.7-r3+1"
   uri:
   - https://llvm.org/
   license: "Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT"
@@ -4819,7 +4819,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =sys-devel/clang-15.0.7-r1
+      =sys-devel/clang-15.0.7-r3
   # sys-devel/clang:15
   provides:
   - category: "sys-devel"
@@ -10595,7 +10595,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.19.0+2"
+  version: "1.19.0+3"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -15689,7 +15689,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "6+10"
+  version: "6+11"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -16017,7 +16017,7 @@ packages:
   - atom: "media-gfx/alembic"
     use: "hdf5"
   - atom: "media-libs/embree"
-    use: "compact-polys raymask ssp tbb # ispc tutorial"
+    use: "compact-polys ispc raymask ssp tbb # tutorial"
   - atom: "media-libs/opensubdiv"
     use: "opencl openmp ptex tbb # cuda"
   - atom: "media-libs/osl"
@@ -16038,7 +16038,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-zstandard
-#  - <<: *apps-ispc
+  - <<: *apps-ispc
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
   - <<: *libs-libspnav
