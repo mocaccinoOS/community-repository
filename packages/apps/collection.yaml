@@ -8486,7 +8486,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "23.08.0"
+  version: "23.08.0+1"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -8506,6 +8506,8 @@ packages:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
+  - <<: *apps-luajit
+  - <<: *apps-mpv
   build_requires:
   - <<: *layers-kde-common
 
@@ -13652,6 +13654,15 @@ packages:
     version: ">=0"
   - category: "x11-libs"
     name: "dnd"
+    version: ">=0"
+  - category: "app-xemacs"
+    name: "fsf-compat"
+    version: ">=0"
+  - category: "app-xemacs"
+    name: "mule-base"
+    version: ">=0"
+  - category: "app-xemacs"
+    name: "apel"
     version: ">=0"
   atoms:
   - atom: "app-editors/xemacs"
