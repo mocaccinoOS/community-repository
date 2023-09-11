@@ -1140,6 +1140,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+  
+- &libs-freeipmi
+  category: "libs"
+  name: "freeipmi"
+  version: "1.6.10-r1"
+  uri:
+  - https://www.gnu.org/software/freeipmi/
+  license: "GPL-3"
+  description: "Provides Remote-Console and System Management Software as per IPMI v1.5/2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/freeipmi
+  provides:
+  - category: "sys-libs"
+    name: "freeipmi"
+    version: ">=0"
+  atoms:
+  - atom: "sys-libs/freeipmi"
+    use: "nagios without-root"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-ftgl
   category: "libs"
@@ -5560,14 +5584,14 @@ packages:
       dev-libs/libutf8proc
       media-libs/fcft
   provides:
-    - category: "dev-libs"
-      name: "libutf8proc"
-      version: ">=0"
     - category: "gui-apps"
       name: "foot"
       version: ">=0"
     - category: "media-libs"
       name: "fcft"
+      version: ">=0"
+    - category: "dev-libs"
+      name: "libutf8proc"
       version: ">=0"
   atoms:
   - atom: "gui-apps/foot"
@@ -5588,7 +5612,7 @@ packages:
   name: "fpc"
   version: "3.2.2"
   uri:
-  - hhttps://www.freepascal.org/
+  - https://www.freepascal.org/
   license: "GPL-2 LGPL-2.1-with-linking-exception"
   description: "Free Pascal Compiler"
   labels:
@@ -10864,6 +10888,15 @@ packages:
   - category: "x11-apps"
     name: "xgamma"
     version: ">=0"
+  - category: "dev-python"
+    name: "pyrate-limiter"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pypresence"
+    version: ">=0"
+  - category: "dev-python"
+    name: "moddb"
+    version: ">=0"
   atoms:
   - atom: "games-util/lutris"
     accept_keywords: "~amd64"
@@ -13165,7 +13198,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.0-r2"
+  version: "2.8.0-r2+1"
   uri:
   - https://www.networkupstools.org
   license: "GPL-2"
@@ -13197,6 +13230,7 @@ packages:
     name: "nut"
     version: ">=0"
   - <<: *apps-net-snmp
+  - <<: *libs-freeipmi
   - <<: *apps-i2c-tools
   build_requires:
   - <<: *layers-qt
