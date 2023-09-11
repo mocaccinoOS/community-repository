@@ -8485,33 +8485,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "tokodon"
-  version: "23.08.0+1"
-  uri:
-  - https://invent.kde.org/network/tokodon
-  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
-  description: "Mastodon client for Plasma and Plasma Mobile"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/tokodon
-  provides:
-  - category: "net-im"
-    name: "tokodon"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/tokodon"
-    accept_keywords: "~amd64"
-  prereqs:
-  - kde-frameworks/extra-cmake-modules
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-luajit
-  - <<: *apps-mpv
-  build_requires:
-  - <<: *layers-kde-common
-
-- category: "apps"
   name: "transmission"
   version: "4.0.3-r1+1"
   uri:
@@ -13540,6 +13513,33 @@ packages:
   # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "tokodon"
+  version: "23.08.0+1"
+  uri:
+  - https://invent.kde.org/network/tokodon
+  license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
+  description: "Mastodon client for Plasma and Plasma Mobile"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/tokodon
+  provides:
+  - category: "net-im"
+    name: "tokodon"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/tokodon"
+    accept_keywords: "~amd64"
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-luajit
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *layers-kde-common
 
 - &apps-valgrind
   category: "apps"
