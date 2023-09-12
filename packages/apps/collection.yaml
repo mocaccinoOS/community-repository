@@ -14334,14 +14334,15 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  prerequires:
-  - <<: *apps-go
+  # prerequires:
+  # - <<: *apps-go
   prepare:
   - git clone https://github.com/akiyosi/goneovim
   - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.7
   setup:
   - |
     cd goneovim && make qt_bindings && make deps && make app
+  - |
     mkdir -p -m 755 /usr/share/pixmaps && \
     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
