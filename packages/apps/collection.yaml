@@ -14327,7 +14327,7 @@ packages:
 
 - category: "apps"
   name: "goneovim"
-  version: "0.6.7+2"
+  version: "0.6.7+3"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -14344,17 +14344,15 @@ packages:
     cd goneovim && make qt_bindings && make deps && make app
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    cd goneovim && \
+    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    find -name goneovim
+    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  # excludes:
-  # - ^/usr/local/share/icons/hicolor/icon-theme.cache
-  # - ^/usr/local/share/applications/mimeinfo.cache
-  # - ^/usr/local/share/glib-2.0/schemas/gschemas.compiled
+    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
   - <<: *layers-qt
   - <<: *apps-neovim
