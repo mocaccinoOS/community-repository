@@ -14334,9 +14334,9 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  # prerequires:
-  # - <<: *apps-go
-  prepare:
+  prerequires:
+  - <<: *apps-go
+  ready:
   - git clone https://github.com/akiyosi/goneovim
   - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.7
   setup:
