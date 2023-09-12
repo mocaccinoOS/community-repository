@@ -14327,7 +14327,7 @@ packages:
 
 - category: "apps"
   name: "goneovim"
-  version: "0.6.7+3"
+  version: "0.6.7+4"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -14336,12 +14336,9 @@ packages:
     emerge.jobs: "1"
   prerequires:
   - <<: *apps-go
-  ready:
   - git clone https://github.com/akiyosi/goneovim
-  - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.7
-  setup:
-  - |
-    cd goneovim && make qt_bindings && make deps && make app
+  - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.7 && make qt_bindings && make deps && make app
+  ready:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
     cd goneovim && \
