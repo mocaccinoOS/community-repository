@@ -9906,6 +9906,9 @@ packages:
   - atom: "games-strategy/0ad"
     use: "editor lobby nvtt pch verify-sig"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha-r1.ebuild
+  - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha-r1.ebuild manifest
   prereqs:
   - app-crypt/minisign
   prerequires:
