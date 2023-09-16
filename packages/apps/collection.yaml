@@ -1321,6 +1321,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gloox
+  category: "libs"
+  name: "gloox"
+  version: "1.0.24-r1"
+  uri:
+  - https://camaya.net/gloox/
+  license: "GPL-3"
+  description: "A portable high-level Jabber/XMPP library for C++"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/gloox
+  provides:
+  - category: "net-libs"
+    name: "gloox"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/gloox"
+    use: "gnutls idn ssl zlib"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gmime-2
   category: "libs"
   name: "gmime-2"
