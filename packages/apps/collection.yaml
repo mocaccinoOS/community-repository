@@ -4889,29 +4889,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "clinfo"
-  version: "3.0.23.01.25"
-  uri:
-  - https://github.com/Oblomov/clinfo
-  license: "CC0-1.0"
-  description: "A tool to display info about the system's OpenCL capabilities"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-util/clinfo
-  provides:
-  - category: "dev-util"
-    name: "clinfo"
-    version: ">=0"
-  atoms:
-  - atom: "dev-util/clinfo"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "colord-kde"
   version: "23.04.3-r1"
   uri:
@@ -9887,40 +9864,40 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.0.26_alpha"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "editor lobby nvtt pch verify-sig"
-    accept_keywords: "~amd64"
-  prepare:
-  - echo $SHELL || true
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-  prereqs:
-  - app-crypt/minisign
-  prerequires:
-  - <<: *apps-premake-5
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-enet
-  - <<: *libs-gloox
-  - <<: *libs-wxGTK-3_0-gtk3
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.0.26_alpha"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "editor lobby nvtt pch verify-sig"
+#     accept_keywords: "~amd64"
+#   # prepare:
+#   # - echo $SHELL || true
+#   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
+#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+#   prereqs:
+#   - app-crypt/minisign
+#   prerequires:
+#   - <<: *apps-premake-5
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-enet
+#   - <<: *libs-gloox
+#   - <<: *libs-wxGTK-3_0-gtk3
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-ant-core
   category: "apps"
@@ -11481,7 +11458,7 @@ packages:
 
 - category: "apps"
   name: "qtox"
-  version: "1.17.6-r1+1"
+  version: "1.17.6-r1+2"
   uri:
   - https://qtox.github.io
   license: "GPL-3+"
@@ -12514,7 +12491,7 @@ packages:
 
 - category: "apps"
   name: "avidemux"
-  version: "2.8.1"
+  version: "2.8.1+1"
   uri:
   - http://fixounet.free.fr/avidemux
   - http://aften.sourceforge.net/
