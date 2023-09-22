@@ -12625,6 +12625,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-cantor
+  category: "apps"
+  name: "cantor"
+  version: "23.04.3"
+  uri:
+  - https://apps.kde.org/cantor/
+  license: "GPL-2"
+  description: "Interface for doing mathematics and scientific computing"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/cantor
+  provides:
+  - category: "kde-apps"
+    name: "cantor"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/cantor"
+    use: "analitza lua postscript python # julia qalculate R"
+  requires:
+  - <<: *layers-kde-common
+  # - <<: *apps-R
+  - <<: *apps-luajit
+  - <<: *libs-analitza
+  build_requires:
+  - <<: *layers-kde-common
+
 - category: "apps"
   name: "celluloid"
   version: "0.21-r1"
