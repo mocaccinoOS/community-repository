@@ -14334,107 +14334,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-gedit
-#   category: "apps"
-#   name: "gedit"
-#   version: "42.2"
-#   uri:
-#   - https://wiki.gnome.org/Apps/Gedit
-#   - https://wiki.gnome.org/Apps/Gedit/ThirdPartyPlugins
-#   license: "GPL-2+ CC-BY-SA-3.0"
-#   description: |
-#     A text editor for the GNOME desktop
-#     Collection of extra plugins for the gedit Text Editor
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-editors/gedit
-#       app-editors/gedit-plugins
-#   provides:
-#   - category: "app-editors"
-#     name: "gedit"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-editors/gedit-plugins"
-#     use: "charmap git terminal vala"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-libgit2-glib
-#   build_requires:
-#   - <<: *layers-gnome-common
-
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.7"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   prepare:
-#   - |
-#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.7/goneovim-v0.6.7-linux.tar.bz2 && \
-#     wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.ico && \
-#     wget https://github.com/akiyosi/goneovim/blob/eb1ed9b5ad0e581202bfecf88616a33672ef93e8/cmd/goneovim/goneovim.desktop && \
-#     mkdir data && \
-#     tar -xf goneovim-v0.6.7-linux.tar.bz2 --strip-components=1 -C data
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cp goneovim.ico /usr/share/pixmaps && \
-#     cp goneovim.desktop /usr/share/applications && \
-#     cp data/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *layers-qt
-
-# # go install github.com/akiyosi/goneovim@v0.6.7
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.7"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   prerequires:
-#   - <<: *apps-go
-#   ready:
-#   - |
-#     go list -m -versions github.com/akiyosi/goneovim
-#   - |
-#     export GO111MODULE=off; go get -v github.com/therecipe/qt/cmd/... && \
-#     $(go env GOPATH)/bin/qtsetup -test=false && \
-#     go get -d -v github.com/akiyosi/goneovim/... && \
-#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim && \
-#     git checkout v0.6.7 -b v0.6.7 && \
-#     $(go env GOPATH)/bin/qtmoc && \
-#     cd $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim && \
-#     $(go env GOPATH)/bin/qtdeploy build desktop
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp $(go env GOPATH)/src/github.com/akiyosi/goneovim/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *layers-qt
-
 - category: "apps"
   name: "goneovim"
   version: "0.6.7+4"
@@ -14618,6 +14517,48 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- category: "apps"
+  name: "labplot"
+  version: "2.10.1"
+  uri:
+  - https://labplot.kde.org/
+  - https://sourceforge.net/projects/matio/
+  license: "GPL-2 BSD-2"
+  description: |
+    Scientific data analysis and visualisation based on KDE Frameworks
+    Library for reading and writing matlab files
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-visualization/labplot
+  provides:
+  - category: "sci-visualization"
+    name: "labplot"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "matio"
+    version: ">=0"
+  atoms:
+  - atom: "sci-visualization/labplot"
+    use: "cantor excel fftw fits hdf5 libcerf markdown matio netcdf root serial # origin"
+    accept_keywords: "~amd64"
+  - atom: "sci-libs/matio"
+    use: "hdf5 sparse # doc examples"
+    accept_keywords: "~amd64"
+  prereqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  - <<: *layers-sci-libs
+  - <<: *libs-qxlsx
+  - <<: *apps-cantor
+  - <<: *libs-cfitsio
+  - <<: *libs-libcerf
+  build_requires:
+  - <<: *buildbase-kde-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-moc
   category: "apps"
