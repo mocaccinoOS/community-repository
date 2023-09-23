@@ -265,7 +265,7 @@
 - |
   eselect repository enable {{ .enable }}; \
   emaint sync -r {{ .enable }}
-{{- else if and ( .add .type .url ) }}
+{{- else if and .add .type .url }}
 - |
   eselect repository add {{ .add }} {{ .type }} {{ .url }} ; \
   emaint sync -r {{ .add }}
