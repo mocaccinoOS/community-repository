@@ -6406,6 +6406,33 @@ packages:
   - <<: *layers-kde-apps-minimal
 
 - category: "apps"
+  name: "kaffeine"
+  version: "14.0.13"
+  uri:
+  - https://trinitydesktop.org
+  license: "GPL-2"
+  description: "Media player for TDE using Xine and GStreamer backends."
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      trinity-apps/kaffeine::trinity-official
+  overlays:
+  - name: "trinity-official"
+  provides:
+  - category: "trinity-apps"
+    name: "kaffeine"
+    version: ">=0"
+  atoms:
+  - atom: "trinity-apps/kaffeine"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-trinity
+  - <<: *libs-xine-lib
+  build_requires:
+  - <<: *layers-trinity
+  - <<: *libs-xine-lib
+
+- category: "apps"
   name: "kcharselect"
   version: "23.04.3"
   uri:
