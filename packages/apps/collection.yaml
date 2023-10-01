@@ -453,7 +453,8 @@ packages:
   - atom: "media-fonts/inconsolata-hellenic"
     accept_keywords: "~amd64"
 
-- <<: *fonts
+- &fonts-roboto
+  <<: *fonts
   name: "roboto"
   version: "2.138+3"
   uri:
@@ -1109,6 +1110,27 @@ packages:
   provides:
   - category: "sci-libs"
     name: "flann"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-flatbuffers
+  category: "libs"
+  name: "flatbuffers"
+  version: "23.5.26"
+  uri:
+  - https://flatbuffers.dev/
+  license: "Apache-2.0"
+  description: "Memory efficient serialization library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/flatbuffers
+  provides:
+  - category: "dev-libs"
+    name: "flatbuffers"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -6167,7 +6189,7 @@ packages:
   - <<: *layers-system-x
 
 - &apps-hwloc
-  category: "libs"
+  category: "apps"
   name: "hwloc"
   version: "2.9.1"
   uri:
@@ -12997,6 +13019,52 @@ packages:
   build_requires:
   - <<: *layers-trinity
   - <<: *libs-xine-lib
+
+- &apps-kodi
+  category: "apps"
+  name: "kodi"
+  version: "19.5-r1"
+  uri:
+  - https://kodi.tv/
+  - https://github.com/graeme-hill/crossguid
+  - http://fstrcmp.sourceforge.net/
+  - https://github.com/juhovh/shairplay
+  license: "BSD MIT GPL-3+ LGPL-2.1"
+  description: |
+    A free and open source media-player and entertainment hub
+    Lightweight cross platform C++ GUID/UUID library
+    Make fuzzy comparisons of strings and byte arrays
+    Apple airplay and raop protocol server
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/kodi
+  provides:
+  - category: "media-tv"
+    name: "kodi"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "crossguid"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libfstrcmp"
+    version: ">=0"
+  - category: "net-libs"
+    name: "shairplay"
+    version: ">=0"
+  atoms:
+  - atom: "media-tv/kodi"
+    use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients lcms libusb mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf # cec gbm gles lirc mysql power-control raspberry-pi test wayland"
+  - atom: "net-libs/shairplay"
+    use: "playfair"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-abseil-cpp
+  - <<: *libs-libao
+  - <<: *libs-rapidjson
+  - <<: *fonts-roboto
+  build_requires:
+  - <<: *layers-X
 
 - &apps-lazarus
   category: "apps"
