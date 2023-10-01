@@ -534,7 +534,7 @@ PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/coll
 + "," + (.labels."emerge.packages" | sub(" "; ";"; "g")) 
 + "," + (.version | split("+") | .[0]) 
 + "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end 
-+ "," + if (.overlays != null) then [(.overlays[] | .name)] | join(";") else "" end')
++ "," + if (.overlays != null) then [(.overlays[] | ( .enable // .add ))] | join(";") else "" end')
 
 # echo $PACKAGES > packages.list
 
