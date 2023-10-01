@@ -13023,22 +13023,25 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "19.5-r1+1"
+  version: "19.5-r1+2"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
   - http://fstrcmp.sourceforge.net/
   - https://github.com/juhovh/shairplay
-  license: "BSD MIT GPL-3+ LGPL-2.1"
+  - https://github.com/kodi-pvr/pvr.iptvsimple
+  license: "BSD GPL-2 GPL-3+ LGPL-2.1 MIT"
   description: |
     A free and open source media-player and entertainment hub
     Lightweight cross platform C++ GUID/UUID library
     Make fuzzy comparisons of strings and byte arrays
     Apple airplay and raop protocol server
+    Kodi's IPTVSimple client addon
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/kodi
+      media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "media-tv"
     name: "kodi"
@@ -13055,16 +13058,22 @@ packages:
   - category: "dev-cpp"
     name: "waylandpp"
     version: ">=0"
+  - category: "media-plugins"
+    name: "kodi-pvr-iptvsimple"
+    version: ">=0"
   atoms:
   - atom: "media-tv/kodi"
     use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
   - atom: "net-libs/shairplay"
     use: "playfair"
+  - atom: "media-plugins/kodi-pvr-iptvsimple"
+    accept_keywords: "~amd64"
   prereqs:
   - *layers-java-packages
   requires:
   - <<: *layers-X
   - <<: *libs-abseil-cpp
+  - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
   - <<: *fonts-roboto
