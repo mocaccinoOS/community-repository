@@ -692,6 +692,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &libs-appdirs
+  category: "libs"
+  name: "appdirs"
+  version: "1.4.4-r3"
+  uri:
+  - https://github.com/ActiveState/appdirs/
+  license: "MIT"
+  description: "Module for determining appropriate platform-specific dirs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/appdirs
+  provides:
+  - category: "dev-python"
+    name: "appdirs"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -12937,7 +12958,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.2.2-r4"
+  version: "1.2.2-r4+1"
   uri:
   - https://inkscape.org/
   license: "GPL-2 LGPL-2.1"
@@ -12955,6 +12976,7 @@ packages:
     use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-appdirs
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
   - <<: *libs-lockfile
