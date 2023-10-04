@@ -7040,8 +7040,11 @@ packages:
   version: "1.04.00-r1"
   uri:
   - http://milkytracker.org
+  -  https://www.music.mcgill.ca/~gary/rtmidi
   license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT"
-  description: "FastTracker 2 inspired music tracker"
+  description: |
+    FastTracker 2 inspired music tracker
+    A set of C++ classes that provide a common API for realtime MIDI input/output
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -7049,6 +7052,9 @@ packages:
   provides:
   - category: "media-sound"
     name: "milkytracker"
+    version: ">=0"
+  - category: "media-libs"
+    name: "rtmidi"
     version: ">=0"
   atoms:
   - atom: "media-sound/milkytracker"
