@@ -16238,7 +16238,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.3.6-r1+6"
+  version: "3.5.1-r1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -16261,7 +16261,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/blender:3.3
+      media-gfx/blender:3.5
   provides:
   - category: "media-gfx"
     name: "blender"
@@ -16277,6 +16277,9 @@ packages:
     version: ">=0"
   - category: "media-libs"
     name: "opencollada"
+    version: ">=0"
+  - category: "media-libs"
+    name: "openpgl"
     version: ">=0"
   - category: "media-libs"
     name: "opensubdiv"
@@ -16295,6 +16298,8 @@ packages:
     use: "hdf5"
   - atom: "media-libs/embree"
     use: "compact-polys ispc raymask ssp tbb # tutorial"
+  - atom: "media-libs/openpgl"
+    accept_keywords: "~amd64"
   - atom: "media-libs/opensubdiv"
     use: "opencl openmp ptex tbb # cuda"
   - atom: "media-libs/osl"
