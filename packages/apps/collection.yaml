@@ -5455,6 +5455,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-ffmpeg-4
+  category: "apps"
+  name: "ffmpeg"
+  version: "4.4.4-r3"
+  uri:
+  - https://ffmpeg.org/
+  license: "metapackage"
+  description: "Complete solution to record/convert/stream audio and video. Includes libavcodec"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/ffmpeg:0/56.58.58
+  provides:
+  - category: "media-video"
+    name: "ffmpeg"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/ffmpeg"
+    use: "amr bluray cpudetection encode fdk gnutls gpl gsm iconv ieee1394 jack jpeg2k libaom libass mp3 network openal openh264 openssl opus postproc sdl speex test theora truetype v4l vaapi vdpau vidstab vorbis vpx vulkan webp x264 x265 xvid zlib"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "ffmpegthumbs"
   version: "23.04.3+1"
@@ -9914,7 +9938,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.13-r2+1"
+  version: "1.2.13-r2+2"
   uri:
   - http://xine.sourceforge.net/
   license: "GPL-2"
@@ -11820,6 +11844,7 @@ packages:
     use: "a52 aac alsa altivec dv dvd iconv imagemagick jpeg lzo mjpeg mp3 mpeg nuv ogg oss pic postproc sdl theora truetype v4l vorbis X x264 xml xvid"
   requires:
   - <<: *layers-X
+  - <<: *apps-ffmpeg-4
   - <<: *libs-libdv
   build_requires:
   - <<: *layers-X
@@ -13016,7 +13041,7 @@ packages:
   - <<: *apps-dvd-rw-tools
   - <<: *apps-cdrdao
   - <<: *apps-vcdimager
-  - <<: *apps-transcode
+  # - <<: *apps-transcode
   build_requires:
   - <<: *layers-plasma
 
@@ -13093,7 +13118,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-tv/kodi"
-    use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients lcms mariadb nfs optical pulseaudio samba -system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
+    use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
   - atom: "net-libs/shairplay"
     use: "playfair"
   - atom: "media-plugins/kodi-pvr-iptvsimple"
@@ -13103,6 +13128,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-abseil-cpp
+  - <<: *apps-ffmpeg-4
   - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
@@ -14735,6 +14761,7 @@ packages:
   - <<: *apps-timidity
   requires:
   - <<: *layers-X
+  - <<: *apps-ffmpeg-4
   - <<: *libs-libao
   - <<: *libs-libsidplay
   - <<: *apps-sndio
@@ -16211,7 +16238,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.3.6-r1+7"
+  version: "3.3.6-r1+6"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -16234,7 +16261,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/blender:3.5
+      media-gfx/blender:3.3
   provides:
   - category: "media-gfx"
     name: "blender"
