@@ -5455,29 +5455,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-ffmpeg-4
-  category: "apps"
-  name: "ffmpeg"
-  version: "4.4.4-r3"
-  uri:
-  - https://ffmpeg.org/
-  license: "metapackage"
-  description: "Complete solution to record/convert/stream audio and video. Includes libavcodec"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/ffmpeg:0/56.58.58
-  provides:
-  - category: "media-video"
-    name: "ffmpeg"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/ffmpeg"
-    use: "amr bluray cpudetection encode fdk gnutls gpl gsm iconv ieee1394 jack jpeg2k libaom libass mp3 network openal openh264 openssl opus postproc sdl speex test theora truetype v4l vaapi vdpau vidstab vorbis vpx vulkan webp x264 x265 xvid zlib"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &apps-ffmpeg-4
+#   category: "apps"
+#   name: "ffmpeg"
+#   version: "4.4.4-r3"
+#   uri:
+#   - https://ffmpeg.org/
+#   license: "metapackage"
+#   description: "Complete solution to record/convert/stream audio and video. Includes libavcodec"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-video/ffmpeg:0/56.58.58
+#   provides:
+#   - category: "media-video"
+#     name: "ffmpeg"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-video/ffmpeg"
+#     use: "amr bluray cpudetection encode fdk gnutls gpl gsm iconv ieee1394 jack jpeg2k libaom libass mp3 network openal openh264 openssl opus postproc sdl speex test theora truetype v4l vaapi vdpau vidstab vorbis vpx vulkan webp x264 x265 xvid zlib"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "ffmpegthumbs"
@@ -11844,7 +11844,7 @@ packages:
     use: "a52 aac alsa altivec dv dvd iconv imagemagick jpeg lzo mjpeg mp3 mpeg nuv ogg oss pic postproc sdl theora truetype v4l vorbis X x264 xml xvid"
   requires:
   - <<: *layers-X
-  - <<: *apps-ffmpeg-4
+  # - <<: *apps-ffmpeg-4
   - <<: *libs-libdv
   build_requires:
   - <<: *layers-X
@@ -13128,7 +13128,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-abseil-cpp
-  - <<: *apps-ffmpeg-4
+  # - <<: *apps-ffmpeg-4
   - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
@@ -14761,7 +14761,7 @@ packages:
   - <<: *apps-timidity
   requires:
   - <<: *layers-X
-  - <<: *apps-ffmpeg-4
+  # - <<: *apps-ffmpeg-4
   - <<: *libs-libao
   - <<: *libs-libsidplay
   - <<: *apps-sndio
