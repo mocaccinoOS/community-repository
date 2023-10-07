@@ -13078,7 +13078,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "19.5-r1+3"
+  version: "20.2-r2"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -13095,8 +13095,12 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-tv/kodi
+      media-tv/kodi::sunny-overlay
       media-plugins/kodi-pvr-iptvsimple
+  overlays:
+  - add: "sunny-overlay"
+    type: "git"
+    url: "https://github.com/dguglielmi/sunny-overlay.git"
   provides:
   - category: "media-tv"
     name: "kodi"
@@ -13119,6 +13123,7 @@ packages:
   atoms:
   - atom: "media-tv/kodi"
     use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
+    accept_keywords: "~amd64"
   - atom: "net-libs/shairplay"
     use: "playfair"
   - atom: "media-plugins/kodi-pvr-iptvsimple"
