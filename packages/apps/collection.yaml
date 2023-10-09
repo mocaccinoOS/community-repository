@@ -9938,7 +9938,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.13-r2+2"
+  version: "1.2.13-r2+3"
   uri:
   - http://xine.sourceforge.net/
   license: "GPL-2"
@@ -9951,6 +9951,7 @@ packages:
   - category: "media-libs"
     name: "xine-lib"
     version: ">=0"
+  atoms:
   - atom: "media-libs/xine-lib"
     use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
   prereqs:
@@ -10980,43 +10981,43 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-linuxtv-utils
-  category: "apps"
-  name: "linuxtv-utils"
-  version: "0.1"
-  uri:
-  - https://www.linuxtv.org/
-  - https://git.linuxtv.org/v4l-utils.git
-  license: "GPL-2 GPL-2+ LGPL-2.1+"
-  description: |
-    Small utils for DVB to scan, zap, view signal strength
-    Separate utilities ebuild from upstream v4l-utils package
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-tv/v4l-utils
-      media-tv/dtv-scan-tables
-      media-tv/linuxtv-dvb-apps
-  provides:
-  - category: "media-tv"
-    name: "linuxtv-dvb-apps"
-    version: ">=0"
-  - category: "media-tv"
-    name: "dtv-scan-tables"
-    version: ">=0"
-  - category: "media-tv"
-    name: "v4l-utils"
-    version: ">=0"
-  atoms:
-  - atom: "media-tv/linuxtv-dvb-apps"
-    use: "usb # alevt"
-  - atom: "media-tv/v4l-utils"
-    use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libbpf
-  build_requires:
-  - <<: *layers-qt
+# - &apps-linuxtv-utils
+#   category: "apps"
+#   name: "linuxtv-utils"
+#   version: "0.1"
+#   uri:
+#   - https://www.linuxtv.org/
+#   - https://git.linuxtv.org/v4l-utils.git
+#   license: "GPL-2 GPL-2+ LGPL-2.1+"
+#   description: |
+#     Small utils for DVB to scan, zap, view signal strength
+#     Separate utilities ebuild from upstream v4l-utils package
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-tv/v4l-utils
+#       media-tv/dtv-scan-tables
+#       media-tv/linuxtv-dvb-apps
+#   provides:
+#   - category: "media-tv"
+#     name: "linuxtv-dvb-apps"
+#     version: ">=0"
+#   - category: "media-tv"
+#     name: "dtv-scan-tables"
+#     version: ">=0"
+#   - category: "media-tv"
+#     name: "v4l-utils"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-tv/linuxtv-dvb-apps"
+#     use: "usb # alevt"
+#   - atom: "media-tv/v4l-utils"
+#     use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-libbpf
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-linux-wbfs-manager
   category: "apps"
@@ -11920,6 +11921,31 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-libupnpp
+  build_requires:
+  - <<: *layers-qt
+
+- &apps-v4l-utils
+  category: "apps"
+  name: "v4l-utils"
+  version: "1.22.1-r1+2"
+  uri:
+  - https://git.linuxtv.org/v4l-utils.git
+  license: "GPL-2+ LGPL-2.1+"
+  description: "Separate utilities ebuild from upstream v4l-utils package"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/v4l-utils
+  provides:
+  - category: "media-tv"
+    name: "v4l-utils"
+    version: ">=0"
+  atoms:
+  - atom: "media-tv/v4l-utils"
+    use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libbpf
   build_requires:
   - <<: *layers-qt
 
