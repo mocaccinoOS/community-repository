@@ -6867,29 +6867,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- category: "apps"
-  name: "linuxtv-dvb-apps"
-  version: "1.1.1.20140321-r2"
-  uri:
-  - https://www.linuxtv.org/
-  license: "GPL-2"
-  description: "Small utils for DVB to scan, zap, view signal strength"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-tv/linuxtv-dvb-apps
-  provides:
-  - category: "media-tv"
-    name: "linuxtv-dvb-apps"
-    version: ">=0"
-  atoms:
-  - atom: "media-tv/linuxtv-dvb-apps"
-    use: "usb # alevt"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-lshw
   category: "apps"
   name: "lshw"
@@ -11908,23 +11885,36 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-v4l-utils
+- &apps-linuxtv-utils
   category: "apps"
-  name: "v4l-utils"
-  version: "1.22.1-r1+2"
+  name: "linuxtv-utils"
+  version: "0.1"
   uri:
+  - https://www.linuxtv.org/
   - https://git.linuxtv.org/v4l-utils.git
-  license: "GPL-2+ LGPL-2.1+"
-  description: "Separate utilities ebuild from upstream v4l-utils package"
+  license: "GPL-2 GPL-2+ LGPL-2.1+"
+  description: |
+    Small utils for DVB to scan, zap, view signal strength
+    Separate utilities ebuild from upstream v4l-utils package
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/v4l-utils
+      media-tv/dtv-scan-tables
+      media-tv/linuxtv-dvb-apps
   provides:
+  - category: "media-tv"
+    name: "linuxtv-dvb-apps"
+    version: ">=0"
+  - category: "media-tv"
+    name: "dtv-scan-tables"
+    version: ">=0"
   - category: "media-tv"
     name: "v4l-utils"
     version: ">=0"
   atoms:
+  - atom: "media-tv/linuxtv-dvb-apps"
+    use: "usb # alevt"
   - atom: "media-tv/v4l-utils"
     use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
   requires:
@@ -11991,7 +11981,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-video/vdr"
-    use: "keyboard mainmenuhooks menuorg permashift pinplugin systemd ttxtsubs # naludump verbose"
+    use: "keyboard mainmenuhooks menuorg permashift systemd ttxtsubs # naludump pinplugin verbose"
   - atom: "media-plugins/vdr-remote"
     use: "systemd"
   - atom: "media-plugins/vdr-weatherng"
