@@ -11951,7 +11951,7 @@ packages:
 
 - category: "apps"
   name: "vdr"
-  version: "2.6.4"
+  version: "2.6.4+1"
   uri:
   - http://www.tvdr.de/
   - http://www.escape-edv.de/endriss/vdr/
@@ -11981,9 +11981,6 @@ packages:
   - category: "media-video"
     name: "vdr"
     version: ">=0"
-  - category: "media-video"
-    name: "vdr"
-    version: ">=0"
   - category: "app-eselect"
     name: "eselect-vdr"
     version: ">=0"
@@ -12005,6 +12002,15 @@ packages:
   - category: "media-plugins"
     name: "vdr-xineliboutput"
     version: ">=0"
+  - category: "sys-process"
+    name: "wait_on_pid"
+    version: ">=0"
+  - category: "virtual"
+    name: "linuxtv-dvb-headers"
+    version: ">=0"
+  - category: "media-tv"
+    name: "gentoo-vdr-scripts"
+    version: ">=0"
   atoms:
   - atom: "media-video/vdr"
     use: "keyboard mainmenuhooks menuorg permashift systemd ttxtsubs # naludump pinplugin verbose"
@@ -12022,6 +12028,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-xine-lib
+  - <<: *apps-twolame
   - category: "entity"
     name: "vdr"
     version: ">=0"
