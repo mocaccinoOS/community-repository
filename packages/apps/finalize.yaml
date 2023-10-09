@@ -17,3 +17,7 @@ install:
 {{ if and (eq .Values.category "apps") (eq .Values.name "xemacs") }}
 - eselect gnuclient update ifunset
 {{ end }}
+
+{{ if and (eq .Values.category "apps") (eq .Values.name "vdr") }}
+- usermod -a -G audio,cdrom,video,lp,usb,input,dialout vdr
+{{ end }}

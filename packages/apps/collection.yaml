@@ -272,8 +272,8 @@ anchors:
   - <<: *kernel-gentoo
   requires:
   # - <<: *kernel-mocaccino-lts-full
-  - name: nvpd
-    category: entity
+  - name: "nvpd"
+    category: "entity"
     version: ">=0"
 
 - &kernel-modules-vhba
@@ -6867,6 +6867,29 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "linuxtv-dvb-apps"
+  version: "1.1.1.20140321-r2"
+  uri:
+  - https://www.linuxtv.org/
+  license: "GPL-2"
+  description: "Small utils for DVB to scan, zap, view signal strength"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/linuxtv-dvb-apps
+  provides:
+  - category: "media-tv"
+    name: "linuxtv-dvb-apps"
+    version: ">=0"
+  atoms:
+  - atom: "media-tv/linuxtv-dvb-apps"
+    use: "usb # alevt"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-lshw
   category: "apps"
   name: "lshw"
@@ -11909,6 +11932,83 @@ packages:
   - <<: *libs-libbpf
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "vdr"
+  version: "2.6.4"
+  uri:
+  - http://www.tvdr.de/
+  - http://www.escape-edv.de/endriss/vdr/
+  - https://bitbucket.org/powARman/dvbhddevice
+  - https://projects.vdr-developer.org/projects/plg-pvr350
+  - https://sourceforge.net/projects/xineliboutput/
+  license: "metapackage"
+  description: |
+    Video Disk Recorder - turns a pc into a powerful set top box for DVB
+    VDR Plugin: use various devices for controlling vdr (keyboards, lirc...)
+    VDR Plugin: output device for the 'Full Featured' SD DVB Card
+    VDR Plugin: output device for the 'Full Featured' TechnoTrend S2-6400 DVB Card
+    VDR plugin: show weather for specified place
+    VDR plugin: use a PVR350 as output device
+    VDR Plugin: Xinelib PlugIn
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/vdr
+      media-plugins/vdr-remote
+      media-plugins/vdr-dvbsddevice
+      media-plugins/vdr-dvbhddevice
+      media-plugins/vdr-weatherng
+      media-plugins/vdr-pvr350
+      media-plugins/vdr-xineliboutput
+  provides:
+  - category: "media-video"
+    name: "vdr"
+    version: ">=0"
+  - category: "media-video"
+    name: "vdr"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-vdr"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-remote"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-dvbsddevice"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-dvbhddevice"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-weatherng"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-pvr350"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-xineliboutput"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/vdr"
+    use: "keyboard mainmenuhooks menuorg naludump permashift pinplugin systemd ttxtsubs # verbose"
+  - atom: "media-plugins/vdr-remote"
+    use: "systemd"
+  - atom: "media-plugins/vdr-weatherng"
+    use: "dxr3"
+  - atom: "media-plugins/vdr-pvr350"
+    accept_keywords: "~amd64"
+  - atom: "media-plugins/vdr-xineliboutput"
+    use: "bluray cec dbus fbcon jpeg nls opengl vdpau vdr X xine xinerama # caps"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-xine-lib
+  - category: "entity"
+    name: "vdr"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
 
 - &apps-visual-regexp
   category: "apps"
