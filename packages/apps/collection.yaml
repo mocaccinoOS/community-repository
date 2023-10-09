@@ -6886,9 +6886,9 @@ packages:
   - atom: "media-tv/linuxtv-dvb-apps"
     use: "usb # alevt"
   requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
 
 - &apps-lshw
   category: "apps"
@@ -11991,7 +11991,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-video/vdr"
-    use: "keyboard mainmenuhooks menuorg naludump permashift pinplugin systemd ttxtsubs # verbose"
+    use: "keyboard mainmenuhooks menuorg permashift pinplugin systemd ttxtsubs # naludump verbose"
   - atom: "media-plugins/vdr-remote"
     use: "systemd"
   - atom: "media-plugins/vdr-weatherng"
