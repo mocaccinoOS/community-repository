@@ -10980,6 +10980,44 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-linuxtv-utils
+  category: "apps"
+  name: "linuxtv-utils"
+  version: "0.1"
+  uri:
+  - https://www.linuxtv.org/
+  - https://git.linuxtv.org/v4l-utils.git
+  license: "GPL-2 GPL-2+ LGPL-2.1+"
+  description: |
+    Small utils for DVB to scan, zap, view signal strength
+    Separate utilities ebuild from upstream v4l-utils package
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/v4l-utils
+      media-tv/dtv-scan-tables
+      media-tv/linuxtv-dvb-apps
+  provides:
+  - category: "media-tv"
+    name: "linuxtv-dvb-apps"
+    version: ">=0"
+  - category: "media-tv"
+    name: "dtv-scan-tables"
+    version: ">=0"
+  - category: "media-tv"
+    name: "v4l-utils"
+    version: ">=0"
+  atoms:
+  - atom: "media-tv/linuxtv-dvb-apps"
+    use: "usb # alevt"
+  - atom: "media-tv/v4l-utils"
+    use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libbpf
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-linux-wbfs-manager
   category: "apps"
   name: "linux-wbfs-manager"
@@ -11885,44 +11923,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-linuxtv-utils
-  category: "apps"
-  name: "linuxtv-utils"
-  version: "0.1"
-  uri:
-  - https://www.linuxtv.org/
-  - https://git.linuxtv.org/v4l-utils.git
-  license: "GPL-2 GPL-2+ LGPL-2.1+"
-  description: |
-    Small utils for DVB to scan, zap, view signal strength
-    Separate utilities ebuild from upstream v4l-utils package
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-tv/v4l-utils
-      media-tv/dtv-scan-tables
-      media-tv/linuxtv-dvb-apps
-  provides:
-  - category: "media-tv"
-    name: "linuxtv-dvb-apps"
-    version: ">=0"
-  - category: "media-tv"
-    name: "dtv-scan-tables"
-    version: ">=0"
-  - category: "media-tv"
-    name: "v4l-utils"
-    version: ">=0"
-  atoms:
-  - atom: "media-tv/linuxtv-dvb-apps"
-    use: "usb # alevt"
-  - atom: "media-tv/v4l-utils"
-    use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libbpf
-  build_requires:
-  - <<: *layers-qt
-
 - category: "apps"
   name: "vdr"
   version: "2.6.4"
@@ -11986,6 +11986,7 @@ packages:
     use: "systemd"
   - atom: "media-plugins/vdr-weatherng"
     use: "dxr3"
+    license: "GPL-2 stardock-images"
     accept_keywords: "~amd64"
   - atom: "media-plugins/vdr-pvr350"
     accept_keywords: "~amd64"
