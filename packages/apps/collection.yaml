@@ -9034,6 +9034,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "yamllint"
+  version: "1.32.0"
+  uri:
+  - https://pypi.org/project/yamllint/
+  license: "GPL-3"
+  description: "A linter for YAML files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/yamllint
+  provides:
+  - category: "dev-util"
+    name: "yamllint"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "zsh"
   version: "5.9-r4"
   uri:
