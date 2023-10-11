@@ -217,26 +217,6 @@ anchors:
   - <<: *layers-system-x
 
 ################################################################################################################################################################
-### apps refs ###
-################################################################################################################################################################
-  
-- &apps-premake-5
-  category: "dev-util"
-  name: "premake"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/premake:5
-  atoms:
-  - atom: "dev-util/premake"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
 
@@ -298,6 +278,22 @@ anchors:
   category: "apps"
   name: "grub"
   version: ">=0"
+
+- &apps-premake-5
+  category: "dev-util"
+  name: "premake"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/premake:5
+  atoms:
+  - atom: "dev-util/premake"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-spice-gtk
   category: "apps"
@@ -5429,6 +5425,29 @@ packages:
   - name: eselect-emacs
     category: app-eselect
     version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "ext4magic"
+  version: "0.3.2-r1"
+  uri:
+  - https://sourceforge.net/projects/ext4magic/
+  license: "GPL-2"
+  description: "Tool for recovery of deleted or overwritten files on ext3/ext4 filesystems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/ext4magic
+  provides:
+  - category: "sys-fs"
+    name: "ext4magic"
+    version: ">=0"
+  atoms:
+  - atom: "sys-fs/ext4magic"
+    use: "expert-mode file-attr"
   requires:
   - <<: *layers-system-x
   build_requires:
