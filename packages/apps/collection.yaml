@@ -5928,6 +5928,26 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
+- category: "apps"
+  name: "gnome-tweaks"
+  version: "40.10-r1"
+  uri:
+  - https://wiki.gnome.org/Apps/Tweaks
+  license: "GPL-3+ CC0-1.0"
+  description: "Customize advanced GNOME options"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-extra/gnome-tweaks
+  provides:
+  - category: "gnome-extra"
+    name: "gnome-tweaks"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
+
 - &apps-gnuchess
   category: "apps"
   name: "gnuchess"
