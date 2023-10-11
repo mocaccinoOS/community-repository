@@ -1797,7 +1797,8 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "libs"
+- &libs-leptonica
+  category: "libs"
   name: "leptonica"
   version: "1.83.1"
   uri:
@@ -11944,7 +11945,8 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
+- &apps-tesseract
+  category: "apps"
   name: "tesseract"
   version: "5.3.0"
   uri:
@@ -13937,7 +13939,7 @@ packages:
     use: "ocr"
   requires:
   - <<: *layers-kde-common
-  - <<: *leptonica
+  #- <<: *libs-leptonica
   - <<: *apps-tesseract
   build_requires:
   - <<: *layers-kde-common
