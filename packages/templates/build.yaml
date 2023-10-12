@@ -1,4 +1,4 @@
-{{ define "build" }}
+{{ define "community.build" }}
 
 env:
 {{ if .Values.labels }}
@@ -24,22 +24,22 @@ unpack: {{ .Values.unpack }}
 {{ end }}
 
 prelude:
-{{ $packages_list := include "cr.list_packages_with_deps" .Values }}
+{{ $packages_list := include "community.list_packages_with_deps" .Values }}
 - echo "Packages:" {{ $packages_list }}
-{{ $packages := include "cr.map_packages_with_deps" .Values | fromJson }}
+{{ $packages := include "community.map_packages_with_deps" .Values | fromJson }}
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
 {{/* if eq .Values.name "kaffeine-tde" }}
-{{ template "cr.dump" ( include "cr.merge_shell_commands" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) }}
-{{ template "cr.dumpList" ( include "cr.prereqs" ( list .Values $packages "" ) ) }}
-{{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
+{{ template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
+{{ template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
+{{ include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
 {{/* end debug */}}
 
-{{ $prereqs := include "cr.prereqs" ( list .Values $packages "" ) }}
+{{ $prereqs := include "community.prereqs" ( list .Values $packages "" ) }}
 - |
-{{ ( include "cr.merge_shell_commands" $prereqs ) | indent 2 }}
+{{ ( include "community.merge_shell_commands" $prereqs ) | indent 2 }}
 
 {{ if eq .Values.category "layerbase" }}
 - |
@@ -52,17 +52,17 @@ prelude:
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
 {{/* if eq .Values.name "blender" }}
-{{ template "cr.dumpList" ( include "cr.package_setup" .Values ) }}
-{{ include "cr.dumpJson" ( get ( ( printf "debug:\n %s" ( include "cr.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
+{{ template "community.dumpList" ( include "community.package_setup" .Values ) }}
+{{ include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
 {{ end */}}
 {{/* end debug */}}
 
-{{ include "cr.package_setup" .Values }}
+{{ include "community.package_setup" .Values }}
 
 {{ end }}
 
 steps:
-{{- include "cr.emerge_atom" ( list .Values $packages "" true ) }}
+{{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
 # {{ if eq .Values.category "layerbase" }}
 # includes:
