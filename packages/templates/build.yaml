@@ -1,78 +1,78 @@
-{{ define "community.build" }}
+{{- define "community.build" }}
 
 env:
-{{ if .Values.labels }}
+{{- if .Values.labels }}
 - JOBS={{ ( index .Values.labels "emerge.jobs" ) | default "3" }}
-{{ else }}
+{{- else }}
 - JOBS=3
-{{ end }}
+{{- end }}
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox"
 
 requires:
-{{ range .Values.build_requires }}
+{{- range .Values.build_requires }}
 - category: {{ .category }}
   name: {{ .name }}
   version: ">=0"
-{{ end }}
+{{- end }}
 
-{{ if .Values.requires_final_images }}
+{{- if .Values.requires_final_images }}
 requires_final_images: {{ .Values.requires_final_images }}
-{{ end }}
+{{- end }}
 
-{{ if .Values.unpack }}
+{{- if .Values.unpack }}
 unpack: {{ .Values.unpack }}
-{{ end }}
+{{- end }}
 
 prelude:
-{{ $packages_list := include "community.list_packages_with_deps" .Values }}
+{{- $packages_list := include "community.list_packages_with_deps" .Values }}
 - echo "Packages:" {{ $packages_list }}
-{{ $packages := include "community.map_packages_with_deps" .Values | fromJson }}
+{{- $packages := include "community.map_packages_with_deps" .Values | fromJson }}
 
-{{/* debug */}}
-{{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "kaffeine-tde" }}
-{{ template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
-{{ template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
-{{ include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
-{{ end */}}
-{{/* end debug */}}
+{{/*- debug */}}
+{{/*- depends on which comes first out of the below debug functions, only the first one will be executed */}}
+{{/*- if eq .Values.name "kaffeine-tde" }}
+{{- template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
+{{- template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
+{{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
+{{- end */}}
+{{/*- end debug */}}
 
-{{ $prereqs := include "community.prereqs" ( list .Values $packages "" ) }}
+{{- $prereqs := include "community.prereqs" ( list .Values $packages "" ) }}
 - |
 {{ ( include "community.merge_shell_commands" $prereqs ) | indent 2 }}
 
-{{ if eq .Values.category "layerbase" }}
+{{- if eq .Values.category "layerbase" }}
 - |
   rm -rf /etc/portage/package.accept_keywords || true; \
   rm -rf /etc/portage/package.license || true; \
   rm -rf /etc/portage/package.unmask || true; \
   rm -rf /etc/portage/package.use || true;
-{{ else }}
+{{- else }}
 
-{{/* debug */}}
-{{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/* if eq .Values.name "blender" }}
-{{ template "community.dumpList" ( include "community.package_setup" .Values ) }}
-{{ include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
-{{ end */}}
-{{/* end debug */}}
+{{/*- debug */}}
+{{/*- depends on which comes first out of the below debug functions, only the first one will be executed */}}
+{{/*- if eq .Values.name "blender" }}
+{{- template "community.dumpList" ( include "community.package_setup" .Values ) }}
+{{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
+{{- end */}}
+{{/*- end debug */}}
 
-{{ include "community.package_setup" .Values }}
+{{- include "community.package_setup" .Values }}
 
-{{ end }}
+{{- end }}
 
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
-# {{ if eq .Values.category "layerbase" }}
+# {{- if eq .Values.category "layerbase" }}
 # includes:
 # - ^/etc/portage/package.accept_keywords/.*
 # - ^/etc/portage/package.license/.*
 # - ^/etc/portage/package.unmask/.*
 # - ^/etc/portage/package.use/.*
-# {{ end }}
+# {{- end }}
 
-{{ if ne .Values.category "buildbase" }}
+{{- if ne .Values.category "buildbase" }}
 excludes:
 - ^/etc/csh.env
 - ^/etc/environment.d/10-gentoo-env.conf
@@ -85,21 +85,21 @@ excludes:
 - ^/var/cache/edb
 - ^/var/cache/distfiles
 - ^/var/cache/fontconfig
-{{ if ne .Values.category "layerbase" }}
+{{- if ne .Values.category "layerbase" }}
 - ^/var/db/pkg
-{{ end }}
+{{- end }}
 - ^/var/db/repos
 - ^/var/lib/portage
 - ^/var/log
 # should this be kept for layerbases and buildbases ?
-{{ if .Values.overlays }}
+{{- if .Values.overlays }}
 - ^/etc/portage/repos.conf/eselect-repo.conf
-{{ end }}
+{{- end }}
 # devel split
 # - ^/usr/include
 # - ^/luetbuild
 # - ^/tmp
-{{ end }}
+{{- end }}
 
 # {{ if eq .Values.category "layerbase" }}
 # subpackages:
@@ -117,15 +117,15 @@ excludes:
 #     - ^/var$
 #     - ^/var/db$
 
-{{ if .Values.excludes }}
-{{ if eq .Values.category "buildbase" }}
+{{- if .Values.excludes }}
+{{- if eq .Values.category "buildbase" }}
 excludes:
-{{ end }}
-{{ range .Values.excludes }}
-{{ if . }}
+{{- end }}
+{{- range .Values.excludes }}
+{{- if . }}
 - {{ . }}
-{{ end }}
-{{ end }}
-{{ end }}
+{{- end }}
+{{- end }}
+{{- end }}
 
-{{ end }}
+{{- end }}
