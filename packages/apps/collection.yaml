@@ -667,26 +667,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-aopalliance
-  category: "libs"
-  name: "aopalliance"
-  version: "1.0-r3+1"
-  uri:
-  - http://aopalliance.sourceforge.net/
-  license: "public-domain"
-  description: "Aspect-Oriented Programming (AOP) Alliance classes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/aopalliance
-  provides:
-  - category: "dev-java"
-    name: "aopalliance"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
+# - &libs-aopalliance
+#   category: "libs"
+#   name: "aopalliance"
+#   version: "1.0-r3+1"
+#   uri:
+#   - http://aopalliance.sourceforge.net/
+#   license: "public-domain"
+#   description: "Aspect-Oriented Programming (AOP) Alliance classes"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-java/aopalliance
+#   provides:
+#   - category: "dev-java"
+#     name: "aopalliance"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-java
+#   build_requires:
+#   - <<: *layers-java
 
 - &libs-appdirs
   category: "libs"
@@ -1385,30 +1385,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gloox
-  category: "libs"
-  name: "gloox"
-  version: "1.0.24-r1+1"
-  uri:
-  - https://camaya.net/gloox/
-  license: "GPL-3"
-  description: "A portable high-level Jabber/XMPP library for C++"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/gloox
-  provides:
-  - category: "net-libs"
-    name: "gloox"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/gloox"
-    use: "gnutls idn ssl zlib"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
+# - &libs-gloox
+#   category: "libs"
+#   name: "gloox"
+#   version: "1.0.24-r1+1"
+#   uri:
+#   - https://camaya.net/gloox/
+#   license: "GPL-3"
+#   description: "A portable high-level Jabber/XMPP library for C++"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/gloox
+#   provides:
+#   - category: "net-libs"
+#     name: "gloox"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-libs/gloox"
+#     use: "gnutls idn ssl zlib"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-sys-fs
+#   build_requires:
+#   - <<: *layers-sys-fs
 
 - &libs-gmime-2
   category: "libs"
@@ -10053,40 +10053,40 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.0.26_alpha"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "editor lobby nvtt pch verify-sig"
-    accept_keywords: "~amd64"
-  # prepare:
-  # - echo $SHELL || true
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-  prereqs:
-  - app-crypt/minisign
-  prerequires:
-  - <<: *apps-premake-5
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-enet
-  - <<: *libs-gloox
-  - <<: *libs-wxGTK-3_0-gtk3
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.0.26_alpha"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "editor lobby nvtt pch verify-sig"
+#     accept_keywords: "~amd64"
+#   # prepare:
+#   # - echo $SHELL || true
+#   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
+#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+#   prereqs:
+#   - app-crypt/minisign
+#   prerequires:
+#   - <<: *apps-premake-5
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-enet
+#   - <<: *libs-gloox
+#   - <<: *libs-wxGTK-3_0-gtk3
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-ant-core
   category: "apps"
