@@ -10729,6 +10729,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-gopls
+  category: "apps"
+  name: "gopls"
+  version: "0.9.5"
+  uri:
+  - https://github.com/golang/tools/blob/master/gopls/README.md
+  license: "BSD"
+  description: |
+    "Go please" is the official Go language server
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-go/gopls
+  provides:
+  - category: "dev-go"
+    name: "gopls"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "goverlay"
   version: "0.9.1"
