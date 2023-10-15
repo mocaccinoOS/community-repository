@@ -4859,6 +4859,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+  category: "apps"
+  name: "cartridges"
+  version: "2.3"
+  uri:
+  - https://github.com/kra-mo/cartridges/
+  license: "GPL-3+"
+  description: "Simple game launcher written in Python using GTK4 and Libadwaita"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-util/cartridges
+  provides:
+  - category: "games-util"
+    name: "cartridges"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/cartridges"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "ccd2iso"
   version: "0.3-r1"
