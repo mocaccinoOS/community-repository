@@ -6743,6 +6743,28 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "khronos"
+  version: "4.0.1"
+  uri:
+  - https://apps.gnome.org/app/io.github.lainsce.Khronos
+  license: "GPL-3"
+  description: "A GTK4 time tracker for tasks"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/khronos
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-office"
+    name: "khronos"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "kruler"
   version: "23.04.3"
   uri:
