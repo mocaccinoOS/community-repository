@@ -358,6 +358,23 @@ packages:
 ### fonts ###
 ################################################################################################################################################################
 
+- &fonts-cascadia-code
+  <<: *fonts
+  name: "cascadia-code"
+  version: "2111.01"
+  uri:
+  - https://github.com/microsoft/cascadia-code
+  license: "OFL-1.1"
+  description: "A monospaced font developed for Windows Terminal"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/cascadia-code
+  provides:
+  - category: "media-fonts"
+    name: "cascadia-code"
+    version: ">=0"
+
 - &fonts-culmus
   <<: *fonts
   name: "culmus"
