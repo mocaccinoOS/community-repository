@@ -1623,7 +1623,7 @@ packages:
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
-  version: "1.6.0+1"
+  version: "1.6.0+2"
   uri:
   - http://gupnp.org
   - https://gitlab.gnome.org/GNOME/gupnp-igd
@@ -1632,7 +1632,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/gupnp-igd
+      net-libs/gupnp-igd:0
   provides:
   - category: "net-libs"
     name: "gupnp-igd"
@@ -3046,30 +3046,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-python-msgpack
-  category: "libs"
-  name: "python-msgpack"
-  version: "1.0.7"
-  uri:
-  - https://msgpack.org/
-  license: "Apache-2.0"
-  description: "MessagePack (de)serializer for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/msgpack
-  provides:
-  - category: "dev-python"
-    name: "msgpack"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/msgpack"
-    use: "native-extensions"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-mxml
   category: "libs"
   name: "mxml"
@@ -3525,35 +3501,24 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-zeroconf
+- &libs-cython
   category: "libs"
-  name: "zeroconf"
-  version: "0.115.2"
+  name: "cython"
+  version: "3.0.2-r1"
   uri:
-  - https://github.com/jstasiak/python-zeroconf/
-  - https://pypi.org/project/zeroconf/
-  license: "LGPL-2.1"
-  description: "Pure Python Multicast DNS Service Discovery Library (Bonjour/Avahi compatible)"
+  - https://cython.org/
+  license: "Apache-2.0"
+  description: "A Python to C compiler"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/ifaddr
-      dev-python/zeroconf
+      dev-python/cython
   provides:
-  - category: "dev-python"
-    name: "ifaddr"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zeroconf"
-    version: ">=0"
   - category: "dev-python"
     name: "cython"
     version: ">=0"
-  prereqs:
-  - dev-python/async-timeout
   requires:
   - <<: *layers-system-x
-  - <<: *libs-async-timeout
   build_requires:
   - <<: *layers-system-x
 
@@ -9235,28 +9200,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-cachecontrol
-  category: "libs"
-  name: "cachecontrol"
-  version: "0.13.1"
-  uri:
-  - https://pypi.org/project/CacheControl/
-  license: "Apache-2.0"
-  description: "httplib2 caching for requests"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/cachecontrol
-  provides:
-  - category: "dev-python"
-    name: "cachecontrol"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-python-msgpack
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
@@ -9653,7 +9596,7 @@ packages:
 - &libs-libnice
   category: "libs"
   name: "libnice"
-  version: "0.1.21"
+  version: "0.1.21+1"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -9796,6 +9739,31 @@ packages:
   # - <<: *libs-nas
   build_requires:
   - <<: *layers-X
+
+- &libs-python-msgpack
+  category: "libs"
+  name: "python-msgpack"
+  version: "1.0.7+1"
+  uri:
+  - https://msgpack.org/
+  license: "Apache-2.0"
+  description: "MessagePack (de)serializer for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/msgpack
+  provides:
+  - category: "dev-python"
+    name: "msgpack"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/msgpack"
+    use: "native-extensions"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-cython
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-perlGtk2
   category: "libs"
@@ -10116,6 +10084,37 @@ packages:
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-X
+  
+- &libs-zeroconf
+  category: "libs"
+  name: "zeroconf"
+  version: "0.115.2+1"
+  uri:
+  - https://github.com/jstasiak/python-zeroconf/
+  - https://pypi.org/project/zeroconf/
+  license: "LGPL-2.1"
+  description: "Pure Python Multicast DNS Service Discovery Library (Bonjour/Avahi compatible)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/ifaddr
+      dev-python/zeroconf
+  provides:
+  - category: "dev-python"
+    name: "ifaddr"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zeroconf"
+    version: ">=0"
+  prereqs:
+  - dev-python/async-timeout
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-async-timeout
+  - <<: *libs-cython
+  build_requires:
+  - <<: *layers-system-x
+
 
 ################################################################################################################################################################
 ### dep 1 apps ###
@@ -11497,8 +11496,11 @@ packages:
   version: "29.1.3-r2"
   uri:
   - https://obsproject.com
-  license: "GPL-2"
-  description: "Software for Recording and Streaming Live Video Content"
+  - https://jmvalin.ca/demo/rnnoise/
+  license: "GPL-2 BSD"
+  description: |
+    Software for Recording and Streaming Live Video Content
+    Recurrent neural network for audio noise reduction
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -11506,6 +11508,9 @@ packages:
   provides:
   - category: "media-video"
     name: "obs-studio"
+    version: ">=0"
+  - category: "media-libs"
+    name: "rnnoise"
     version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
@@ -12541,6 +12546,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-cachecontrol
+  category: "libs"
+  name: "cachecontrol"
+  version: "0.13.1"
+  uri:
+  - https://pypi.org/project/CacheControl/
+  license: "Apache-2.0"
+  description: "httplib2 caching for requests"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cachecontrol
+  provides:
+  - category: "dev-python"
+    name: "cachecontrol"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-python-msgpack
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-gdal
   category: "libs"
   name: "gdal"
@@ -13319,37 +13346,6 @@ packages:
   - <<: *libs-pikepdf
   build_requires:
   - <<: *layers-X
-
-- &apps-inkscape
-  category: "apps"
-  name: "inkscape"
-  version: "1.2.2-r4+1"
-  uri:
-  - https://inkscape.org/
-  license: "GPL-2 LGPL-2.1"
-  description: "SVG based generic vector-drawing program"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/inkscape
-  provides:
-  - category: "media-gfx"
-    name: "inkscape"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/inkscape"
-    use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-appdirs
-  - <<: *libs-cachecontrol
-  - <<: *libs-cssselect
-  - <<: *libs-lockfile
-  - <<: *libs-gdl
-  - <<: *apps-scour
-  - <<: *libs-libvisio
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "k3b"
@@ -14494,7 +14490,7 @@ packages:
 - &libs-farstream
   category: "libs"
   name: "farstream"
-  version: "0.2.9-r1"
+  version: "0.2.9-r1+1"
   uri:
   - https://www.freedesktop.org/wiki/Software/Farstream
   license: "LGPL-2.1+"
@@ -14925,7 +14921,7 @@ packages:
     SIFT algorithm for automatic panorama creation in C
     Image Blending with Multiresolution Splines
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/hugin
   provides:
@@ -14969,6 +14965,37 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
   requires_final_images: true
+
+- &apps-inkscape
+  category: "apps"
+  name: "inkscape"
+  version: "1.2.2-r4+1"
+  uri:
+  - https://inkscape.org/
+  license: "GPL-2 LGPL-2.1"
+  description: "SVG based generic vector-drawing program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/inkscape
+  provides:
+  - category: "media-gfx"
+    name: "inkscape"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/inkscape"
+    use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-appdirs
+  - <<: *libs-cachecontrol
+  - <<: *libs-cssselect
+  - <<: *libs-lockfile
+  - <<: *libs-gdl
+  - <<: *apps-scour
+  - <<: *libs-libvisio
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-kcdemu
   category: "apps"
@@ -15729,7 +15756,7 @@ packages:
     Digital photo management application
     Multimedia playback framework based on Qt + FFmpeg
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/digikam
   provides:
@@ -16415,8 +16442,11 @@ packages:
   version: "7.5-r3"
   uri:
   - https://ardour.org/
-  license: "AGPL-3"
-  description: "Digital Audio Workstation"
+  - https://libwebsockets.org/
+  license: "AGPL-3 MIT"
+  description: |
+    Digital Audio Workstation
+    A flexible pure-C library for implementing network protocols
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -16424,6 +16454,9 @@ packages:
   provides:
   - category: "media-sound"
     name: "ardour"
+    version: ">=0"
+  - category: "net-libs"
+    name: "libwebsockets"
     version: ">=0"
   atoms:
   - atom: "media-sound/ardour"
