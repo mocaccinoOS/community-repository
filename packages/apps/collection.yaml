@@ -12718,35 +12718,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  # category: "libs"
-  # name: "opencv"
-  # version: "4.8.0-r1"
-  # uri:
-  # - https://opencv.org
-  # license: "Apache-2.0"
-  # description: "A collection of algorithms and sample code for various computer vision problems"
-  # labels:
-  #   emerge.jobs: "1"
-  #   emerge.packages: >-
-  #     media-libs/opencv
-  # provides:
-  # - category: "media-libs"
-  #   name: "opencv"
-  #   version: ">=0"
-  # atoms:
-  # - atom: "media-libs/opencv"
-  #   use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
-  # requires:
-  # - <<: *layers-qt
-  # - <<: *layers-sci-libs
-  # # - <<: *libs-gdal
-  # - <<: *libs-tbb
-  # - <<: *libs-xine-lib
-  # build_requires:
-  # - <<: *buildbase-qt
-  # - <<: *buildbase-sci-libs
-  # requires_final_images: true- &libs-opencv
-
+- &libs-opencv
+  category: "libs"
+  name: "opencv"
+  version: "4.7.0"
+  uri:
+  - https://opencv.org
+  license: "Apache-2.0"
+  description: "A collection of algorithms and sample code for various computer vision problems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opencv
+  provides:
+  - category: "media-libs"
+    name: "opencv"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/opencv"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-sci-libs
+  # - <<: *libs-gdal
+  - <<: *libs-tbb
+  - <<: *libs-xine-lib
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-openvdb
   category: "libs"
@@ -13717,51 +13717,51 @@ packages:
   - <<: *libs-rubberband
   build_requires:
   - <<: *layers-qt
-# 
-# - &apps-neovim
-#   category: "apps"
-#   name: "neovim"
-#   version: "0.9.2"
-#   uri:
-#   - https://neovim.io
-#   license: "Apache-2.0 vim"
-#   description: |
-#     "Vim-fork focused on extensibility and agility"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-lua/luv
-#       dev-lua/mpack
-#       app-editors/neovim
-#   provides:
-#   - category: "app-editors"
-#     name: "neovim"
-#     version: ">=0"
-#   - category: "dev-lua"
-#     name: "luv"
-#     version: ">=0"
-#   - category: "dev-lua"
-#     name: "mpack"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "libmpack"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-editors/neovim"
-#     use: "lto nvimpager tui"
-#   prereqs:
-#   - dev-lua/busted
-#   requires:
-#   - <<: *layers-X
-#   - <<: *layers-term-libs
-#   - <<: *libs-lpeg
-#   - <<: *libs-LuaBitOp
-#   - <<: *libs-tree-sitter
-#   - <<: *libs-msgpack
-#   build_requires:
-#   - <<: *buildbase-X
-#   - <<: *buildbase-term-libs
-#   requires_final_images: true
+
+- &apps-neovim
+  category: "apps"
+  name: "neovim"
+  version: "0.9.1"
+  uri:
+  - https://neovim.io
+  license: "Apache-2.0 vim"
+  description: |
+    "Vim-fork focused on extensibility and agility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lua/luv
+      dev-lua/mpack
+      app-editors/neovim
+  provides:
+  - category: "app-editors"
+    name: "neovim"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "luv"
+    version: ">=0"
+  - category: "dev-lua"
+    name: "mpack"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libmpack"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/neovim"
+    use: "lto nvimpager tui"
+  prereqs:
+  - dev-lua/busted
+  requires:
+  - <<: *layers-X
+  - <<: *layers-term-libs
+  - <<: *libs-lpeg
+  - <<: *libs-LuaBitOp
+  - <<: *libs-tree-sitter
+  - <<: *libs-msgpack
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-term-libs
+  requires_final_images: true
 
 - &apps-nmapsi
   category: "apps"
@@ -14900,71 +14900,71 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-hugin
-#   category: "apps"
-#   name: "hugin"
-#   version: "2022.0.0+16"
-#   uri:
-#   - http://hugin.sf.net
-#   - http://tclap.sourceforge.net
-#   - http://zthread.sourceforge.net/
-#   - http://panotools.sourceforge.net/
-#   - http://enblend.sourceforge.net
-#   - http://hugin.sourceforge.net/
-#   - http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
-#   license: "BSD BSD-2 FDL-1.2 FDL-1.2+ GPL-2 GPL-2+ MIT wxWinLL-3 ZLIB"
-#   description: |
-#     GUI for the creation & processing of panoramic images
-#     Simple templatized C++ library for parsing command line arguments
-#     Helmut Dersch's panorama toolbox library
-#     platform-independent multi-threading and synchronization library for C++
-#     SIFT algorithm for automatic panorama creation in C
-#     Image Blending with Multiresolution Splines
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/hugin
-#   provides:
-#   - category: "dev-cpp"
-#     name: "tclap"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "zthread"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "libpano13"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "enblend"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "autopano-sift-C"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "hugin"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-libs/libpano13"
-#     use: "suitesparse"
-#   - atom: "media-gfx/hugin"
-#     use: "lapack sift python raw"
-#   # prepare:
-#   # - sed -i -e 's/3.0-gtk3/3.2-gtk3/' /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild
-#   # - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
-#   requires:
-#   # - <<: *layers-X
-#   - <<: *layers-gnome-common
-#   - <<: *layers-sci-libs
-#   - <<: *layers-java
-#   - <<: *libs-vigra
-#   - <<: *libs-flann
-#   - <<: *libs-wxGTK-3_0-gtk3
-#   - <<: *apps-dcraw
-#   build_requires:
-#   # - <<: *layers-X
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-hugin
+  category: "apps"
+  name: "hugin"
+  version: "2022.0.0+15"
+  uri:
+  - http://hugin.sf.net
+  - http://tclap.sourceforge.net
+  - http://zthread.sourceforge.net/
+  - http://panotools.sourceforge.net/
+  - http://enblend.sourceforge.net
+  - http://hugin.sourceforge.net/
+  - http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
+  license: "BSD BSD-2 FDL-1.2 FDL-1.2+ GPL-2 GPL-2+ MIT wxWinLL-3 ZLIB"
+  description: |
+    GUI for the creation & processing of panoramic images
+    Simple templatized C++ library for parsing command line arguments
+    Helmut Dersch's panorama toolbox library
+    platform-independent multi-threading and synchronization library for C++
+    SIFT algorithm for automatic panorama creation in C
+    Image Blending with Multiresolution Splines
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/hugin
+  provides:
+  - category: "dev-cpp"
+    name: "tclap"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "zthread"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libpano13"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "enblend"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "autopano-sift-C"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "hugin"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libpano13"
+    use: "suitesparse"
+  - atom: "media-gfx/hugin"
+    use: "lapack sift python raw"
+  # prepare:
+  # - sed -i -e 's/3.0-gtk3/3.2-gtk3/' /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild
+  # - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
+  requires:
+  # - <<: *layers-X
+  - <<: *layers-gnome-common
+  - <<: *layers-sci-libs
+  - <<: *layers-java
+  - <<: *libs-vigra
+  - <<: *libs-flann
+  - <<: *libs-wxGTK-3_0-gtk3
+  - <<: *apps-dcraw
+  build_requires:
+  # - <<: *layers-X
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-inkscape
   category: "apps"
@@ -15745,39 +15745,39 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "digikam"
-#   version: "8.1.0-r1+2"
-#   uri:
-#   - https://www.digikam.org/
-#   - https://www.qtav.org
-#   license: "GPL-2 GPL-3+ LGPL-2.1+"
-#   description: |
-#     Digital photo management application
-#     Multimedia playback framework based on Qt + FFmpeg
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/digikam
-#   provides:
-#   - category: "media-libs"
-#     name: "qtav"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "digikam"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/digikam"
-#     use: "semantic-desktop"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *libs-liblqr
-#   - <<: *libs-opencv
-#   - <<: *apps-hugin
-#   build_requires:
-#   - <<: *buildbase-kde-common
-#   - <<: *buildbase-gnome-common
-#   requires_final_images: true
+- category: "apps"
+  name: "digikam"
+  version: "8.1.0-r1+1"
+  uri:
+  - https://www.digikam.org/
+  - https://www.qtav.org
+  license: "GPL-2 GPL-3+ LGPL-2.1+"
+  description: |
+    Digital photo management application
+    Multimedia playback framework based on Qt + FFmpeg
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/digikam
+  provides:
+  - category: "media-libs"
+    name: "qtav"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "digikam"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/digikam"
+    use: "semantic-desktop"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-liblqr
+  - <<: *libs-opencv
+  - <<: *apps-hugin
+  build_requires:
+  - <<: *buildbase-kde-common
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - &apps-graphviz
   category: "apps"
