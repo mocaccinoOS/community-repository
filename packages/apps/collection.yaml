@@ -10030,30 +10030,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-vigra
-  category: "libs"
-  name: "vigra"
-  version: "1.11.1-r9+3"
-  uri:
-  - https://ukoethe.github.io/vigra/
-  license: "MIT"
-  description: "C++ computer vision library emphasizing customizable algorithms and structures"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/vigra
-  provides:
-  - category: "media-libs"
-    name: "vigra"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/vigra"
-    use: "fftw hdf5 jpeg openexr png python tiff valgrind zlib # mpi"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
@@ -14909,6 +14885,7 @@ packages:
   - http://tclap.sourceforge.net
   - http://zthread.sourceforge.net/
   - http://panotools.sourceforge.net/
+  - https://ukoethe.github.io/vigra/
   - http://enblend.sourceforge.net
   - http://hugin.sourceforge.net/
   - http://user.cs.tu-berlin.de/~nowozin/autopano-sift/
@@ -14919,6 +14896,7 @@ packages:
     Helmut Dersch's panorama toolbox library
     platform-independent multi-threading and synchronization library for C++
     SIFT algorithm for automatic panorama creation in C
+    C++ computer vision library emphasizing customizable algorithms and structures
     Image Blending with Multiresolution Splines
   labels:
     emerge.jobs: "3"
@@ -14934,6 +14912,9 @@ packages:
   - category: "media-libs"
     name: "libpano13"
     version: ">=0"
+  - category: "media-libs"
+    name: "vigra"
+    version: ">=0"
   - category: "media-gfx"
     name: "enblend"
     version: ">=0"
@@ -14946,6 +14927,9 @@ packages:
   atoms:
   - atom: "media-libs/libpano13"
     use: "suitesparse"
+  - atom: "media-libs/vigra"
+    use: "fftw hdf5 jpeg openexr png python tiff valgrind zlib # mpi"
+    env: "MAKEOPTS=\"-j5 -l0.9\""
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
   # prepare:
@@ -14956,7 +14940,6 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-sci-libs
   - <<: *layers-java
-  - <<: *libs-vigra
   - <<: *libs-flann
   - <<: *libs-wxGTK-3_0-gtk3
   - <<: *apps-dcraw
