@@ -7365,12 +7365,12 @@ packages:
     cp -r data/usr /; \
     cp -r data/var /; \
     ln -s /bin/ip /sbin/ip
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
-  excludes:
-  - ^/usr/lib/systemd/system/pam_namespace.service
 
 # - category: "apps"
 #   name: "notepadqq"
@@ -10642,14 +10642,6 @@ packages:
     use: "gui # games"
   - atom: "app-editors/emacs"
     use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-eselect-emacs
-  - <<: *libs-gpm
-  - <<: *libs-liblockfile
-  - <<: *libs-m17n-lib
-  build_requires:
-  - <<: *layers-gnome-common
   excludes:
   - ^/usr/bin/ctags$
   - ^/usr/bin/etags$
@@ -10661,6 +10653,14 @@ packages:
   - ^/usr/share/man/man1/ebrowse.1.bz2$
   - ^/usr/share/man/man1/emacs.1.bz2$
   - ^/usr/share/man/man1/emacsclient.1.bz2$
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-eselect-emacs
+  - <<: *libs-gpm
+  - <<: *libs-liblockfile
+  - <<: *libs-m17n-lib
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-extreme-tuxracer
   category: "apps"
@@ -12137,7 +12137,7 @@ packages:
 
 - category: "apps"
   name: "vdr"
-  version: "2.6.4+3"
+  version: "2.6.4+4"
   uri:
   - http://www.tvdr.de/
   - http://www.escape-edv.de/endriss/vdr/
@@ -12214,6 +12214,8 @@ packages:
   prereqs:
   - acct-group/vdr
   - acct-user/vdr
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
   - <<: *layers-X
   - <<: *libs-xine-lib
@@ -14290,18 +14292,6 @@ packages:
     use: "pop dnd xim alsa gif gpm ldap athena motif neXt Xaw3d xface X jpeg tiff png xft gdbm berkdb # postgres freewnn mule # nas"
   prereqs:
   - sys-devel/autoconf:2.1
-  requires:
-  - <<: *layers-X
-  - <<: *apps-eselect-emacs
-  # - <<: *apps-postgresql  
-  - <<: *libs-compface
-  # - <<: *libs-nas
-  - <<: *libs-gpm
-  - <<: *libs-libXaw3d
-  - <<: *libs-motif
-  - <<: *libs-neXtaw
-  build_requires:
-  - <<: *layers-X
   excludes:
   - ^/usr/bin/ctags$
   - ^/usr/bin/etags$
@@ -14320,6 +14310,18 @@ packages:
   - ^/usr/share/man/man1/gnuclient.1$
   - ^/usr/share/man/man1/gnudoit.1$
   - ^/usr/share/man/man1/gnuserv.1.bz2$
+  requires:
+  - <<: *layers-X
+  - <<: *apps-eselect-emacs
+  # - <<: *apps-postgresql  
+  - <<: *libs-compface
+  # - <<: *libs-nas
+  - <<: *libs-gpm
+  - <<: *libs-libXaw3d
+  - <<: *libs-motif
+  - <<: *libs-neXtaw
+  build_requires:
+  - <<: *layers-X
 
 - &apps-xmms2
   category: "apps"
