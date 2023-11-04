@@ -1086,7 +1086,7 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
- 
+
 - &libs-enet
   category: "libs"
   name: "enet"
@@ -3392,11 +3392,11 @@ packages:
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
-  version: "1.5.0-r3"
+  version: "1.5.0-r3+1"
   uri:
   - https://github.com/pyca/pynacl/
   - https://pypi.org/project/PyNaCl/
-  license: "Apache-2.0 "
+  license: "Apache-2.0"
   description: "Python binding to the Networking and Cryptography (NaCl) library"
   labels:
     emerge.jobs: "1"
@@ -4983,6 +4983,7 @@ packages:
   - category: "sys-devel"
     name: "clang-runtime"
     version: ">=0"
+  env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5262,7 +5263,7 @@ packages:
   version: "23.04.3"
   uri:
   - https://apps.kde.org/dolphin_plugins/
-  license: "GPL-2 "
+  license: "GPL-2"
   description: "Dolphin plugin for Git integration"
   labels:
     emerge.jobs: "1"
@@ -5276,6 +5277,38 @@ packages:
   - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-apps-minimal
+
+- &apps-dotnet-common
+  category: "apps"
+  name: "dotnet-common"
+  version: "0.1"
+  uri:
+  - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
+  - https://dotnet.microsoft.com/
+  license: "GPL-2+ MIT"
+  description: |
+    Eselect module for management of multiple dotnet versions
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/app-eselect
+      ~dev-dotnet/dotnet-runtime-nugets-3.1.32
+      ~dev-dotnet/dotnet-runtime-nugets-6.0.22
+  provides:
+  - category: "kde-apps"
+    name: "app-eselect"
+    version: ">=0"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "3.1.32"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "6.0.22"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "drawio-desktop-bin"
@@ -7408,27 +7441,6 @@ packages:
   provides:
   - category: "app-cdr"
     name: "nrg2iso"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &apps-numactl
-  category: "apps"
-  name: "numactl"
-  version: "2.0.16-r1"
-  uri:
-  - https://github.com/numactl/numactl
-  license: "GPL-2"
-  description: "Utilities and libraries for NUMA systems"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/numactl
-  provides:
-  - category: "sys-process"
-    name: "numactl"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -9711,6 +9723,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-lttng-ust
+  category: "libs"
+  name: "lttng-ust"
+  version: "2.12.1"
+  uri:
+  - https://lttng.org
+  license: "GPL-2"
+  description: "Linux Trace Toolkit - UST library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/lttng-ust:0/2.12
+  provides:
+  - category: "dev-util"
+    name: "lttng-ust"
+    version: ">=0"
+  # atoms:
+  # - atom: "dev-util/lttng-ust"
+  #   use: "numa"
+  requires:
+  - <<: *layers-sys-fs
+  # - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-lv2
   category: "libs"
   name: "lv2"
@@ -10613,6 +10650,69 @@ packages:
   - <<: *apps-docker
   build_requires:
   - <<: *layers-system-x
+
+- &apps-dotnet-6
+  category: "apps"
+  name: "dotnet-sdk-6"
+  version: "6.0.404-r1"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: ".NET is a free, cross-platform, open-source developer platform"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-sdk-bin:6.0
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-sdk-bin"
+    version: ">=0"
+  atoms:
+  - atom: "dev-dotnet/dotnet-sdk-bin"
+    accept_keywords: "~amd64"
+  prepare:
+  # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
+  - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-dotnet-common
+  = <<: *libs-lttng-ust
+  build_requires:
+  - <<: *layers-sys-fs
+
+- &apps-dotnet-7
+  category: "apps"
+  name: "dotnet-sdk-7"
+  version: "7.0.401-r1"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET is a free, cross-platform, open-source developer platform
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-sdk-bin:7.0/7.0.11
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-sdk-bin"
+    version: ">=0"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "7.0.11"
+  atoms:
+  - atom: "dev-dotnet/dotnet-runtime-nugets"
+    accept_keywords: "~amd64"
+  prepare:
+  # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
+  - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-dotnet-common
+  = <<: *libs-lttng-ust
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "easytag"
@@ -12954,6 +13054,33 @@ packages:
   - <<: *libs-liblo
   - <<: *libs-lv2
   - <<: *apps-lash
+  build_requires:
+  - <<: *layers-X
+
+- &apps-avalonia-ilspy
+  category: "apps"
+  name: "avalonia-ilspy"
+  version: "7.2_rc"
+  uri:
+  - https://github.com/icsharpcode/AvaloniaILSpy/
+  license: "MIT"
+  description: "Avalonia-based .NET Decompiler, port of ILSpy"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/avalonia-ilspy
+  provides:
+  - category: "dev-dotnet"
+    name: "avalonia-ilspy"
+    version: ">=0"
+  atoms:
+  - atom: "dev-dotnet/avalonia-ilspy"
+    accept_keywords: "~amd64"
+  prereqs:
+  - dev-dotnet/csharp-gentoodotnetinfo
+  requires:
+  - <<: *layers-X
+  - <<: *apps-dotnet-6
   build_requires:
   - <<: *layers-X
 
