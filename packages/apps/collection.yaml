@@ -3431,6 +3431,30 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-python-msgpack
+  category: "libs"
+  name: "python-msgpack"
+  version: "1.0.7+1"
+  uri:
+  - https://msgpack.org/
+  license: "Apache-2.0"
+  description: "MessagePack (de)serializer for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/msgpack
+  provides:
+  - category: "dev-python"
+    name: "msgpack"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/msgpack"
+    use: "native-extensions"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pystring
   category: "libs"
   name: "pystring"
@@ -3518,27 +3542,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &libs-cython
-  category: "libs"
-  name: "cython"
-  version: "3.0.2-r1"
-  uri:
-  - https://cython.org/
-  license: "Apache-2.0"
-  description: "A Python to C compiler"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/cython
-  provides:
-  - category: "dev-python"
-    name: "cython"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-zstandard
   category: "libs"
@@ -9818,31 +9821,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-python-msgpack
-  category: "libs"
-  name: "python-msgpack"
-  version: "1.0.7+1"
-  uri:
-  - https://msgpack.org/
-  license: "Apache-2.0"
-  description: "MessagePack (de)serializer for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/msgpack
-  provides:
-  - category: "dev-python"
-    name: "msgpack"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/msgpack"
-    use: "native-extensions"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-cython
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-perlGtk2
   category: "libs"
   name: "Gtk2"
@@ -10165,7 +10143,6 @@ packages:
   requires:
   - <<: *layers-system-x
   - <<: *libs-async-timeout
-  - <<: *libs-cython
   build_requires:
   - <<: *layers-system-x
 
