@@ -5299,7 +5299,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.2"
+  version: "0.3"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5319,6 +5319,9 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
     version: "3.1.32"
+  completion:
+  # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
+  - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10687,9 +10690,6 @@ packages:
   atoms:
   - atom: "dev-dotnet/dotnet-sdk-bin"
     accept_keywords: "~amd64"
-  prepare:
-  # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
-  - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
@@ -10721,9 +10721,6 @@ packages:
   atoms:
   - atom: "dev-dotnet/dotnet-runtime-nugets"
     accept_keywords: "~amd64"
-  prepare:
-  # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
-  - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
