@@ -100,10 +100,10 @@ stubs:
   category: "layers"
   name: "sci-libs"
   version: ">=0"
-# - &layerbase-sci-libs
-#   category: "layerbase"
-#   name: "sci-libs"
-#   version: ">=0"
+- &layerbase-sci-libs
+  category: "layerbase"
+  name: "sci-libs"
+  version: ">=0"
 - &buildbase-sci-libs
   category: "buildbase"
   name: "sci-libs"
@@ -12720,7 +12720,7 @@ packages:
   - <<: *layers-sci-libs
   build_requires:
   - <<: *buildbase-office-common
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &libs-gst-plugins-libnice
@@ -12847,7 +12847,7 @@ packages:
   - <<: *libs-xine-lib
   build_requires:
   - <<: *buildbase-qt
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &libs-openvdb
@@ -13733,7 +13733,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-office-common
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - category: "apps"
@@ -14720,7 +14720,7 @@ packages:
   - <<: *libs-gdal
   build_requires:
   - <<: *buildbase-qt
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &libs-sdl
@@ -15099,7 +15099,7 @@ packages:
   build_requires:
   # - <<: *layers-X
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &apps-inkscape
@@ -15257,7 +15257,7 @@ packages:
   - <<: *libs-libcerf
   build_requires:
   - <<: *buildbase-kde-common
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 # - &apps-moc
@@ -15364,7 +15364,7 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   - <<: *buildbase-latex
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &apps-pidgin
@@ -15592,7 +15592,7 @@ packages:
   - <<: *libs-babl
   build_requires:
   - <<: *buildbase-X
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &libs-mlt
@@ -15913,7 +15913,7 @@ packages:
   build_requires:
   - <<: *buildbase-kde-common
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - &apps-graphviz
