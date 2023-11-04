@@ -9,3 +9,19 @@ install:
 {{ range .Values.requires | uniq }}
 - env-update && source /etc/profile
 {{ end }}
+
+{{ if and (eq .Values.category "apps") (or (eq .Values.name "emacs") (eq .Values.name "xemacs")) }}
+- eselect ctags update ifunset
+- eselect emacs update ifunset
+{{ end }}
+{{ if and (eq .Values.category "apps") (eq .Values.name "xemacs") }}
+- eselect gnuclient update ifunset
+{{ end }}
+
+{{ if and (eq .Values.category "apps") (eq .Values.name "vdr") }}
+- usermod -a -G audio,cdrom,video,lp,usb,input,dialout vdr
+{{ end }}
+
+{{ if and (eq .Values.category "apps") (or (eq .Values.name "dotnet-sdk-6") (eq .Values.name "dotnet-sdk-7")) }}
+- eselect dotnet update ifunset
+{{ end }}
