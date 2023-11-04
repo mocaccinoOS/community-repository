@@ -274,6 +274,22 @@ stubs:
     emerge.packages: >-
       app-containers/docker
 
+- &apps-csharp-gentoodotnetinfo
+  category: "dev-util"
+  name: "csharp-gentoodotnetinfo"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/csharp-gentoodotnetinfo
+  atoms:
+  - atom: "dev-dotnet/csharp-gentoodotnetinfo"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-grub
   category: "apps"
   name: "grub"
@@ -5281,7 +5297,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.1"
+  version: "0.2"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5294,7 +5310,6 @@ packages:
     emerge.packages: >-
       app-eselect/eselect-dotnet
       ~dev-dotnet/dotnet-runtime-nugets-3.1.32
-      ~dev-dotnet/dotnet-runtime-nugets-6.0.22
   provides:
   - category: "app-eselect"
     name: "eselect-dotnet"
@@ -5302,9 +5317,6 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
     version: "3.1.32"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: "6.0.22"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10662,11 +10674,14 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-sdk-bin:6.0
+      dev-dotnet/dotnet-sdk-bin:6.0/6.0.12
   provides:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "6.0.12"
   atoms:
   - atom: "dev-dotnet/dotnet-sdk-bin"
     accept_keywords: "~amd64"
@@ -13076,8 +13091,8 @@ packages:
   atoms:
   - atom: "dev-dotnet/avalonia-ilspy"
     accept_keywords: "~amd64"
-  prereqs:
-  - dev-dotnet/csharp-gentoodotnetinfo
+  prerequires:
+  - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
   - <<: *apps-dotnet-6
