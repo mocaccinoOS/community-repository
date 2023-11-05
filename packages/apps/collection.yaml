@@ -1214,6 +1214,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-fluid-soundfont
+  category: "libs"
+  name: "fluid-soundfont"
+  version: "3.1"
+  uri:
+  - http://musescore.org/en/handbook/soundfont
+  license: "MIT"
+  description: "The Fluid R3 soundfont"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluid-soundfont
+  provides:
+  - category: "media-sound"
+    name: "fluid-soundfont"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/fluid-soundfont"
+    use: "timidity"
+  prereqs:
+  - app-eselect/eselect-timidity
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
 - &libs-freeipmi
   category: "libs"
   name: "freeipmi"
@@ -9872,6 +9898,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-redis
+  category: "libs"
+  name: "redis"
+  version: "5.0.0"
+  uri:
+  - https://github.com/redis/redis-py/
+  license: "MIT"
+  description: "Python client for Redis key-value store"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/redis
+  provides:
+  - category: "dev-python"
+    name: "redis"
+    version: ">=0"
+  prereqs:
+  - dev-python/async-timeout
+  requires:
+  - <<: *libs-async-timeout
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -10014,6 +10064,27 @@ packages:
   - <<: *apps-tk
   build_requires:
   - <<: *layers-X
+
+- &libs-toolz
+  category: "libs"
+  name: "toolz"
+  version: "0.12.0"
+  uri:
+  - https://github.com/pytoolz/toolz/
+  license: "BSD"
+  description: "List processing tools and functional utilities"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/toolz
+  provides:
+  - category: "dev-python"
+    name: "toolz"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-xine-lib
   category: "libs"
@@ -11241,6 +11312,61 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "lutris"
+  version: "0.5.14"
+  uri:
+  - https://lutris.net
+  license: "GPL-3+ CC0-1.0"
+  description: "An open source gaming platform for GNU/Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/moddb
+      dev-python/pypresence
+      dev-python/pyrate-limiter
+      x11-apps/xgamma
+      games-util/lutris
+  provides:
+  - category: "games-util"
+    name: "lutris"
+    version: ">=0"
+  - category: "x11-apps"
+    name: "xgamma"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyrate-limiter"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pypresence"
+    version: ">=0"
+  - category: "dev-python"
+    name: "moddb"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/lutris"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/moddb"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pypresence"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pyrate-limiter"
+    accept_keywords: "~amd64"
+  prereqs:
+  - dev-python/soupsieve
+  - dev-python/beautifulsoup4
+  - dev-python/toolz
+  - dev-python/redis
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-beautifulsoup4
+  - <<: *libs-fluid-soundfont
+  - <<: *libs-toolz
+  - <<: *libs-redis
+  - <<: *libs-soupsieve
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "mc"
