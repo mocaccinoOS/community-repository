@@ -3849,27 +3849,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-soupsieve
-  category: "libs"
-  name: "soupsieve"
-  version: "2.5"
-  uri:
-  - https://github.com/facelessuser/soupsieve
-  license: "MIT"
-  description: "A modern CSS selector implementation for BeautifulSoup"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/soupsieve
-  provides:
-  - category: "dev-python"
-    name: "soupsieve"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-Switch
   category: "libs"
   name: "Switch"
@@ -9184,28 +9163,6 @@ packages:
 ## dep 1 libs ###
 ################################################################################################################################################################
 
-- &libs-beautifulsoup4
-  category: "libs"
-  name: "beautifulsoup4"
-  version: "4.12.2+1"
-  uri:
-  - https://www.crummy.com/software/BeautifulSoup/bs4
-  license: "MIT"
-  description: "Pythonic idioms for iterating, searching, and modifying an HTML/XML parse tree"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/beautifulsoup4
-  provides:
-  - category: "dev-python"
-    name: "beautifulsoup4"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-soupsieve
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-c-blosc
   category: "libs"
   name: "c-blosc"
@@ -13624,7 +13581,6 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-beautifulsoup4
   build_requires:
   - <<: *layers-gnome-common
 
