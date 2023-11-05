@@ -10668,7 +10668,7 @@ packages:
   - atom: "dev-dotnet/dotnet-sdk-bin"
     accept_keywords: "~amd64"
   prepare: 
-  - sed -i -e 's/eselect dotnet update ifunset/echo \'eselect dotnet update ifunset\' disabled/' /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.404-r1.ebuild
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.404-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.404-r1.ebuild manifest
   requires:
   - <<: *layers-sys-fs
@@ -10702,7 +10702,7 @@ packages:
   - atom: "dev-dotnet/dotnet-runtime-nugets"
     accept_keywords: "~amd64"
   prepare: 
-  - sed -i -e 's/eselect dotnet update ifunset/echo \'eselect dotnet update ifunset\' disabled/' /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.401-r1.ebuild
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.401-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.401-r1.ebuild manifest
   requires:
   - <<: *layers-sys-fs
