@@ -3337,6 +3337,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libprojectm
+  category: "libs"
+  name: "libprojectm"
+  version: "3.1.12"
+  uri:
+  - https://github.com/projectM-visualizer/projectm
+  license: "LGPL-2"
+  description: "A graphical music visualization plugin similar to milkdrop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libprojectm
+  provides:
+  - category: "media-libs"
+    name: "libprojectm"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libprojectm"
+    use: "gles2 sdl # qt5"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-protobuf-c
   category: "libs"
   name: "protobuf-c"
@@ -10353,7 +10377,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc2-r3+3"
+  version: "1.4.0_rc2-r3+4"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -10377,6 +10401,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-gnome-common
+  - <<: *libs-libprojectm
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-gnome-common
