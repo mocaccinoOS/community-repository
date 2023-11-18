@@ -11731,32 +11731,6 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
-
-- &libs-qmk
-  category: "libs"
-  name: "qmk"
-  version: "1.1.2"
-  uri:
-  - https://github.com/qmk/qmk_cli
-  license: "MIT"
-  description: "A program to help users work with QMK Firmware"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-embedded/qmk
-  overlays:
-  - enable: "salfter"
-  provides:
-  - category: "dev-embedded"
-    name: "qmk"
-    version: ">=0"
-  requires:
-  # due to dev-python/pillow
-  - <<: *layers-X
-  - <<: *libs-appdirs
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "qtox"
   version: "1.17.6-r1+5"
