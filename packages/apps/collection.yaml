@@ -13122,6 +13122,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "dillo"
+  version: "3.0.5-r3"
+  uri:
+  - https://www.dillo.org
+  license: "GPL-3"
+  description: "Lean FLTK based web browser"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      www-client/dillo
+  overlays:
+  - enable: "KBrown-pub"
+  provides:
+  - category: "www-client"
+    name: "dillo"
+    version: ">=0"
+  requires:
+  - <<: *layers-fltk
+  build_requires:
+  - <<: *layers-fltk
+
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd-rw-tools"
