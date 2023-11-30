@@ -5279,7 +5279,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.3"
+  version: "0.3.1"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5291,14 +5291,14 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-eselect/eselect-dotnet
-      ~dev-dotnet/dotnet-runtime-nugets-3.1.32
+      ~dev-dotnet/dotnet-runtime-nugets:3.1
   provides:
   - category: "app-eselect"
     name: "eselect-dotnet"
     version: ">=0"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "3.1.32"
+    version: ">=0"
   completion:
   # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
   - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
@@ -10559,7 +10559,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.404-r1+3"
+  version: "6.0.417"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10567,20 +10567,20 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-sdk-bin:6.0/6.0.12
+      dev-dotnet/dotnet-sdk-bin:6.0
   provides:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
-    version: "6.0.12"
+    version: ">=0"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "6.0.12"
+    version: ">=0"
   atoms:
   - atom: "dev-dotnet/dotnet-sdk-bin"
     accept_keywords: "~amd64"
   prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.404-r1.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.404-r1.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild manifest
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
@@ -10591,7 +10591,7 @@ packages:
 - &apps-dotnet-7
   category: "apps"
   name: "dotnet-sdk-7"
-  version: "7.0.401-r1+3"
+  version: "7.0.404"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10601,20 +10601,56 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-sdk-bin:7.0/7.0.11
+      dev-dotnet/dotnet-sdk-bin:7.0
   provides:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "7.0.11"
+    version: ">=0"
   atoms:
   - atom: "dev-dotnet/dotnet-runtime-nugets"
     accept_keywords: "~amd64"
   prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.401-r1.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.401-r1.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild manifest
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-dotnet-common
+  - <<: *libs-lttng-ust
+  build_requires:
+  - <<: *layers-sys-fs
+
+- &apps-dotnet-8
+  category: "apps"
+  name: "dotnet-sdk-8"
+  version: "8.0.100"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET is a free, cross-platform, open-source developer platform
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-sdk-bin:8.0
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-sdk-bin"
+    version: ">=0"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: ">=0"
+  atoms:
+  - atom: "dev-dotnet/dotnet-sdk-bin"
+    accept_keywords: "~amd64"
+  - atom: "dev-dotnet/dotnet-runtime-nugets"
+    accept_keywords: "~amd64"
+  prepare: 
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild manifest
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
@@ -12933,7 +12969,7 @@ packages:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
-  - <<: *apps-dotnet-6
+  - <<: *apps-dotnet-8
   build_requires:
   - <<: *layers-X
 
