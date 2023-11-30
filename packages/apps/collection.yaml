@@ -10622,40 +10622,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &apps-dotnet-8
-  category: "apps"
-  name: "dotnet-sdk-8"
-  version: "8.0.100"
-  uri:
-  - https://dotnet.microsoft.com/
-  license: "MIT"
-  description: |
-    .NET is a free, cross-platform, open-source developer platform
-    .NET runtime nugets
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-dotnet/dotnet-sdk-bin:8.0/8.0.0
-  provides:
-  - category: "dev-dotnet"
-    name: "dotnet-sdk-bin"
-    version: ">=0"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: "8.0.100"
-  atoms:
-  - atom: "dev-dotnet/dotnet-runtime-nugets"
-    accept_keywords: "~amd64"
-  prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild manifest
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *apps-dotnet-common
-  - <<: *libs-lttng-ust
-  build_requires:
-  - <<: *layers-sys-fs
-
 - category: "apps"
   name: "easytag"
   version: "2.4.3-r5+1"
@@ -12967,7 +12933,7 @@ packages:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
-  - <<: *apps-dotnet-8
+  - <<: *apps-dotnet-6
   build_requires:
   - <<: *layers-X
 
