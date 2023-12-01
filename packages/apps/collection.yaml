@@ -5279,7 +5279,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.3.1"
+  version: "0.4"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5292,16 +5292,67 @@ packages:
     emerge.packages: >-
       app-eselect/eselect-dotnet
       dev-dotnet/dotnet-runtime-nugets:3.1
+      dev-dotnet/dotnet-runtime-nugets:6.0.25
   provides:
   - category: "app-eselect"
     name: "eselect-dotnet"
     version: ">=0"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: ">=0"
+    version: "3.1"
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "6.0.25"
   completion:
   # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
   - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &apps-dotnet-runtime-nugets-7
+  category: "apps"
+  name: "dotnet-runtime-nugets-7"
+  version: "7.0.14"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-runtime-nugets:7.0.14
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "7.0.14"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
+- &apps-dotnet-runtime-nugets-8
+  category: "apps"
+  name: "dotnet-runtime-nugets-8"
+  version: "8.0.0"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-runtime-nugets:8.0.0
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "8.0.0"
+  atoms:
+  - atom: "dev-dotnet/dotnet-runtime-nugets:8.0.0"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10559,7 +10610,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417"
+  version: "6.0.417+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10572,12 +10623,6 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: ">=0"
-  atoms:
-  - atom: "dev-dotnet/dotnet-sdk-bin"
-    accept_keywords: "~amd64"
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild manifest
@@ -10591,13 +10636,11 @@ packages:
 - &apps-dotnet-7
   category: "apps"
   name: "dotnet-sdk-7"
-  version: "7.0.404"
+  version: "7.0.404+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
-  description: |
-    .NET is a free, cross-platform, open-source developer platform
-    .NET runtime nugets
+  description: ".NET is a free, cross-platform, open-source developer platform"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10606,18 +10649,13 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: ">=0"
-  atoms:
-  - atom: "dev-dotnet/dotnet-runtime-nugets"
-    accept_keywords: "~amd64"
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild manifest
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
+  - <<: *apps-dotnet-runtime-nugets-7
   - <<: *libs-lttng-ust
   build_requires:
   - <<: *layers-sys-fs
@@ -10625,13 +10663,11 @@ packages:
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.100"
+  version: "8.0.100+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
-  description: |
-    .NET is a free, cross-platform, open-source developer platform
-    .NET runtime nugets
+  description: ".NET is a free, cross-platform, open-source developer platform"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10640,13 +10676,8 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: ">=0"
   atoms:
-  - atom: "dev-dotnet/dotnet-sdk-bin"
-    accept_keywords: "~amd64"
-  - atom: "dev-dotnet/dotnet-runtime-nugets"
+  - atom: "dev-dotnet/dotnet-sdk-bin:8.0"
     accept_keywords: "~amd64"
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild
@@ -10654,6 +10685,8 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
+  - <<: *apps-dotnet-runtime-nugets-7
+  - <<: *apps-dotnet-runtime-nugets-8
   - <<: *libs-lttng-ust
   build_requires:
   - <<: *layers-sys-fs
