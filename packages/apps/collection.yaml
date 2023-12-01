@@ -109,6 +109,19 @@ stubs:
   name: "sci-libs"
   version: ">=0"
 
+- &layers-clang-15
+  category: "layers"
+  name: "clang-15"
+  version: ">=0"
+- &layerbase-clang-15
+  category: "layerbase"
+  name: "clang-15"
+  version: ">=0"
+- &buildbase-clang-15
+  category: "buildbase"
+  name: "clang-15"
+  version: ">=0"
+
 - &layers-ghc
   category: "layers"
   name: "ghc"
@@ -4947,41 +4960,6 @@ packages:
   atoms:
   - atom: "dev-python/cgroup-utils"
     accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &apps-clang-15
-  category: "apps"
-  name: "clang-15"
-  version: "15.0.7-r3+3"
-  uri:
-  - https://llvm.org/
-  license: "Apache-2.0-with-LLVM-exceptions UoI-NCSA MIT"
-  description: "C language family frontend for LLVM"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =sys-devel/clang-15.0.7-r3
-  # sys-devel/clang:15
-  provides:
-  - category: "sys-devel"
-    name: "clang"
-    version: ">=0"
-  - category: "sys-devel"
-    name: "llvm"
-    version: ">=0"
-  - category: "sys-libs"
-    name: "compiler-rt"
-    version: ">=0"
-  - category: "sys-libs"
-    name: "compiler-rt-sanitizers"
-    version: ">=0"
-  - category: "sys-devel"
-    name: "clang-runtime"
-    version: ">=0"
-  env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10982,7 +10960,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.19.0+7"
+  version: "1.19.0+8"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -10996,10 +10974,11 @@ packages:
     name: "ispc"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
-  - <<: *apps-clang-15
+  # - <<: *layers-system-x
+  - <<: *layers-clang-15
   build_requires:
-  - <<: *layers-system-x
+  # - <<: *layers-system-x
+  - <<: *layers-clang-15
 
 - &apps-kalgebra
   category: "apps"
@@ -16791,7 +16770,9 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-clang-15
+  requres_final_images: true
 
 - &apps-displaycal-py3
   category: "apps"
