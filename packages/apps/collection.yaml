@@ -5257,7 +5257,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.4"
+  version: "0.5"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5285,14 +5285,14 @@ packages:
   # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
   - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-dotnet-runtime-nugets-7
   category: "apps"
   name: "dotnet-runtime-nugets-7"
-  version: "7.0.14"
+  version: "7.0.14+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5307,14 +5307,14 @@ packages:
     name: "dotnet-runtime-nugets"
     version: "7.0.14"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.0"
+  version: "8.0.0+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5332,9 +5332,9 @@ packages:
   - atom: "dev-dotnet/dotnet-runtime-nugets:8.0.0"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "drawio-desktop-bin"
