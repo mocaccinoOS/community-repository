@@ -10960,7 +10960,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.19.0+8"
+  version: "1.19.0+9"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -10973,12 +10973,14 @@ packages:
   - category: "dev-lang"
     name: "ispc"
     version: ">=0"
+  prepare:
+  - sed -i -e 's/LLVM_MAX_SLOT=15/LLVM_MAX_SLOT=16/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild
+  - sed -i -e '/ispc-1.19.0-gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild
+  - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild manifest
   requires:
-  # - <<: *layers-system-x
-  - <<: *layers-clang-15
+  - <<: *layers-system-x
   build_requires:
-  # - <<: *layers-system-x
-  - <<: *layers-clang-15
+  - <<: *layers-system-x
 
 - &apps-kalgebra
   category: "apps"
@@ -16675,7 +16677,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.6.5+7"
+  version: "3.6.5+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
