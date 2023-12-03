@@ -10979,9 +10979,10 @@ packages:
   - sed -i '/gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
   - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild manifest
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
+  - <<: *libs-tbb
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-X
 
 - &apps-kalgebra
   category: "apps"
