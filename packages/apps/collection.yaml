@@ -10960,7 +10960,7 @@ packages:
 - &apps-ispc
   category: "apps"
   name: "ispc"
-  version: "1.19.0+9"
+  version: "1.21.0"
   uri:
   - https://ispc.github.io/
   license: "BSD BSD-2 UoI-NCSA"
@@ -10974,9 +10974,10 @@ packages:
     name: "ispc"
     version: ">=0"
   prepare:
-  - sed -i -e 's/LLVM_MAX_SLOT=15/LLVM_MAX_SLOT=16/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild
-  - sed -i -e '/ispc-1.19.0-gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild
-  - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild manifest
+  - cp /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
+  - sed -i -e 's/LLVM_MAX_SLOT=15/LLVM_MAX_SLOT=16/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
+  - sed -i -e '/ispc-1.21.0-gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
+  - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild manifest
   requires:
   - <<: *layers-system-x
   build_requires:
