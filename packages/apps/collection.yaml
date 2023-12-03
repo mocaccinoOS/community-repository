@@ -109,18 +109,18 @@ stubs:
   name: "sci-libs"
   version: ">=0"
 
-- &layers-clang-15
-  category: "layers"
-  name: "clang-15"
-  version: ">=0"
-- &layerbase-clang-15
-  category: "layerbase"
-  name: "clang-15"
-  version: ">=0"
-- &buildbase-clang-15
-  category: "buildbase"
-  name: "clang-15"
-  version: ">=0"
+# - &layers-clang-15
+#   category: "layers"
+#   name: "clang-15"
+#   version: ">=0"
+# - &layerbase-clang-15
+#   category: "layerbase"
+#   name: "clang-15"
+#   version: ">=0"
+# - &buildbase-clang-15
+#   category: "buildbase"
+#   name: "clang-15"
+#   version: ">=0"
 
 - &layers-ghc
   category: "layers"
@@ -16679,7 +16679,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.6.5+1"
+  version: "3.6.5+8"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -16761,7 +16761,6 @@ packages:
   - dev-util/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *layers-clang-15
   - <<: *libs-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
@@ -16775,9 +16774,7 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *layerbase-clang-15
-  requres_final_images: true
+  - <<: *layers-qt
 
 - &apps-displaycal-py3
   category: "apps"
