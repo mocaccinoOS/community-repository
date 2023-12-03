@@ -16439,7 +16439,7 @@ packages:
   - <<: *libs-pystring
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *layers-qt
 
 - &libs-wxpython
   category: "libs"
@@ -16756,8 +16756,8 @@ packages:
   - app-admin/chrpath
   - dev-util/valgrind
   requires:
-  - <<: *layers-clang-15
   - <<: *layers-qt
+  - <<: *layers-clang-15
   - <<: *libs-zstandard
   - <<: *apps-ispc
   - <<: *apps-spacenavd
@@ -16771,8 +16771,8 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-clang-15
   - <<: *buildbase-qt
+  - <<: *layerbase-clang-15
   requres_final_images: true
 
 - &apps-displaycal-py3
