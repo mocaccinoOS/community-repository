@@ -10976,7 +10976,7 @@ packages:
   prepare:
   - cp /var/db/repos/gentoo/dev-lang/ispc/ispc-1.19.0.ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
   - sed -i -e 's/LLVM_MAX_SLOT=15/LLVM_MAX_SLOT=16/' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
-  - sed -i -e '/ispc-1.21.0-gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
+  - sed -i '/gcc13.patch/d' /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild
   - ebuild /var/db/repos/gentoo/dev-lang/ispc/ispc-1.21.0.ebuild manifest
   requires:
   - <<: *layers-system-x
