@@ -1123,6 +1123,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-cubeb
+  category: "libs"
+  name: "cubeb"
+  version: "0.2_p20220922"
+  uri:
+  - https://github.com/mozilla/cubeb
+  license: "ISC"
+  description: "Cross-platform audio library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/cubeb
+  provides:
+  - category: "media-libs"
+    name: "cubeb"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-enet
   category: "libs"
   name: "enet"
@@ -3775,6 +3796,27 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-rtmidi
+  category: "libs"
+  name: "rtmidi"
+  version: "6.0.0"
+  uri:
+  - https://www.music.mcgill.ca/~gary/rtmidi
+  license: "RtMidi"
+  description: "A set of C++ classes that provide a common API for realtime MIDI input/output"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/rtmidi
+  provides:
+  - category: "media-libs"
+    name: "rtmidi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-send2trash
   category: "libs"
@@ -7254,14 +7296,14 @@ packages:
   - category: "media-sound"
     name: "milkytracker"
     version: ">=0"
-  - category: "media-libs"
-    name: "rtmidi"
-    version: ">=0"
   atoms:
   - atom: "media-sound/milkytracker"
     use: "alsa jack"
+  prereqs:
+  - media-libs/rtmidi
   requires:
   - <<: *layers-X
+  - <<: *libs-rtmidi
   build_requires:
   - <<: *layers-X
 
@@ -14070,9 +14112,13 @@ packages:
   prereqs:
   - dev-libs/flatbuffers
   - dev-libs/xxhash
+  - media-libs/rtmidi
+  - media-libs/cubeb
   requires:
   - <<: *layers-qt6
   - <<: *libs-flatbuffers
+  - <<: *libs-cubeb
+  - <<: *libs-rtmidi
   - <<: *libs-xxhash
   build_requires:
   - <<: *layers-qt6
