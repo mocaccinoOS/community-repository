@@ -33,6 +33,11 @@ stubs:
   name: "qt"
   version: ">=0"
 
+- &layers-qt6
+  category: "layers"
+  name: "qt6"
+  version: ">=0"
+
 - &layers-kde-common
   category: "layers"
   name: "kde-common"
@@ -14038,6 +14043,33 @@ packages:
   - <<: *libs-liblrdf
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "rpcs3"
+  version: "0.0.29-r2"
+  uri:
+  - https://github.com/RPCS3/rpcs3
+  license: "GPL-2"
+  description: "PlayStation 3 emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-emulation/rpcs3
+  overlays:
+  - enable: "stefantalpalaru"
+  provides:
+  - category: "games-emulation"
+    name: "rpcs3"
+    version: ">=0"
+  atoms:
+  - atom: "games-emulation/rpcs3"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt6
+  - <<: *libs-flatbuffers
+  - <<: *libs-xxhash
+  build_requires:
+  - <<: *layers-qt6
 
 - category: "apps"
   name: "scribus"
