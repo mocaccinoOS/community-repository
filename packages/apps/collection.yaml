@@ -15422,31 +15422,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "pcsx2"
-  version: "1.7.5214"
-  uri:
-  - https://pcsx2.net
-  license: "GPL-3+ Apache-2.0 BSD BSD-2 BSD-4 Boost-1.0 CC0-1.0 GPL-2+"
-  description: "PlayStation 2 emulator"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      games-emulation/pcsx2
-  provides:
-  - category: "games-emulation"
-    name: "pcsx2"
-    version: ">=0"
-  atoms:
-  - atom: "games-emulation/pcsx2"
-    use: "cpu_flags_x86_sse4_1 vulkan wayland"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt6
-  - <<: *libs-sdl2
-  build_requires:
-  - <<: *layers-qt6
-
-- category: "apps"
   name: "qsynth"
   version: "0.9.12"
   uri:
