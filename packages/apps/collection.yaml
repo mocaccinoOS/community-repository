@@ -5634,6 +5634,30 @@ packages:
 #   - <<: *layers-X
 
 - category: "apps"
+  name: "featherpad"
+  version: "1.4.1"
+  uri:
+  - https://github.com/tsujan/FeatherPad
+  license: "GPL-3+"
+  description: "Lightweight Qt6 Plain-Text Editor for Linux"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/featherpad
+  provides:
+  - category: "app-editors"
+    name: "featherpad"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/featherpad"
+    use: "qt6"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt6
+  build_requires:
+  - <<: *layers-qt6
+
+- category: "apps"
   name: "ffmpegthumbs"
   version: "23.08.3"
   uri:
