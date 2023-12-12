@@ -4445,27 +4445,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-xxhash
-  category: "libs"
-  name: "xxhash"
-  version: "0.8.2"
-  uri:
-  - https://xxhash.com
-  license: "BSD-2 GPL-2+"
-  description: "Extremely fast non-cryptographic hash algorithm"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/xxhash
-  provides:
-  - category: "dev-libs"
-    name: "xxhash"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -14088,7 +14067,7 @@ packages:
 
 - category: "apps"
   name: "rpcs3"
-  version: "0.0.29-r2"
+  version: "0.0.29-r2+1"
   uri:
   - https://github.com/RPCS3/rpcs3
   license: "GPL-2"
@@ -14114,7 +14093,6 @@ packages:
     accept_keywords: "~amd64"
   prereqs:
   - dev-libs/flatbuffers
-  - dev-libs/xxhash
   - media-libs/rtmidi
   - media-libs/cubeb
   requires:
@@ -14122,7 +14100,6 @@ packages:
   - <<: *libs-flatbuffers
   - <<: *libs-cubeb
   - <<: *libs-rtmidi
-  - <<: *libs-xxhash
   build_requires:
   - <<: *layers-qt6
 
