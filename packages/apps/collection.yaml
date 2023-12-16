@@ -6023,6 +6023,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "gitkraken"
+  version: "9.11.0-r2"
+  uri:
+  - https://www.gitkraken.com
+  license: "EULA"
+  description: "cross-platform Git client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-vcs/gitkraken
+  overlays:
+  - enable: "ppfeufer-gentoo-overlay"
+  provides:
+  - category: "dev-vcs"
+    name: "gitkraken"
+    version: ">=0"
+  atoms:
+  - atom: "dev-vcs/gitkraken"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-gmtp
   category: "apps"
   name: "gmtp"
