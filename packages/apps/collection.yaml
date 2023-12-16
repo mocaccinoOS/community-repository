@@ -10888,6 +10888,31 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "freeciv"
+  version: "3.0.1-r1"
+  uri:
+  - https://www.freeciv.org
+  license: "GPL-2+"
+  description: "Multiplayer strategy game (Civilization Clone)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      games-strategy/freeciv
+  provides:
+  - category: "games-strategy"
+    name: "freeciv"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/freeciv"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-sdl2
+  - <<: *apps-lua-5_3
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "geeqie"
   version: "2.1-r1"
   uri:
