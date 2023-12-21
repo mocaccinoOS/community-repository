@@ -8021,6 +8021,33 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "qbittorrent"
+  version: "4.6.1"
+  uri:
+  - https://www.qbittorrent.org
+  license: "GPL-2"
+  description: "BitTorrent client in C++ and Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-p2p/qbittorrent
+  provides:
+  - category: "net-p2p"
+    name: "qbittorrent"
+    version: ">=0"
+  atoms:
+  - atom: "net-p2p/qbittorrent"
+    use: "qt6"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt6
+  - category: "entity"
+    name: "qbittorrent"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt6
+
+- category: "apps"
   name: "quassel"
   version: "0.14.0-r1"
   uri:
