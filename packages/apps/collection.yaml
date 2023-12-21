@@ -8048,6 +8048,29 @@ packages:
   - <<: *layers-qt6
 
 - category: "apps"
+  name: "qmplay2"
+  version: "23.10.22"
+  uri:
+  - https://github.com/zaps166/QMPlay2
+  license: "LGPL-3"
+  description: "A Qt-based video player, which can play most formats and codecs"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-video/qmplay2
+  provides:
+  - category: "media-video"
+    name: "qmplay2"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/qmplay2"
+    use: "vaapi vdpau vulkan qt6"
+  requires:
+  - <<: *layers-qt6
+  build_requires:
+  - <<: *layers-qt6
+
+- category: "apps"
   name: "quassel"
   version: "0.14.0-r1"
   uri:
