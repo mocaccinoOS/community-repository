@@ -9197,6 +9197,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "wireshark"
+  version: "4.0.8"
+  uri:
+  - https://www.wireshark.org
+  license: "LGPL-3"
+  description: "Network protocol analyzer (sniffer)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-analyzer/wireshark
+  provides:
+  - category: "net-analyzer"
+    name: "wireshark"
+    version: ">=0"
+  atoms:
+  - atom: "net-analyzer/wireshark"
+    use: "qt6 wifi"
+  requires:
+  - <<: *layers-qt6
+  - category: "entity"
+    name: "pcap"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-qt6
+
 - &apps-worker
   category: "apps"
   name: "worker"
