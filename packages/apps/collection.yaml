@@ -7336,6 +7336,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "minidlna"
+  version: "1.3.3"
+  uri:
+  - https://sourceforge.net/projects/minidlna/
+  license: "BSD GPL-2"
+  description: "DLNA/UPnP-AV compliant media server"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/minidlna
+  provides:
+  - category: "net-misc"
+    name: "minidlna"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/minidlna"
+    use: "zeroconf"
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "minidlna"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
 - &apps-mono
   category: "apps"
   name: "mono"
