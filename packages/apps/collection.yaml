@@ -14218,44 +14218,6 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
-  name: "rpcs3"
-  version: "0.0.29-r3"
-  uri:
-  - https://github.com/RPCS3/rpcs3
-  license: "GPL-2"
-  description: "PlayStation 3 emulator"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-emulation/rpcs3
-  overlays:
-  - enable: "tatsh-overlay"
-  provides:
-  - category: "dev-libs"
-    name: "wolfssl"
-    version: ">=0"
-  - category: "games-emulation"
-    name: "rpcs3"
-    version: ">=0"
-  atoms:
-  - atom: "games-emulation/rpcs3"
-    use: "joystick vulkan wayland"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/wolfssl"
-    accept_keywords: "~amd64"
-  prereqs:
-  - dev-libs/flatbuffers
-  - media-libs/rtmidi
-  - media-libs/cubeb
-  requires:
-  - <<: *layers-qt6
-  - <<: *libs-flatbuffers
-  - <<: *libs-cubeb
-  - <<: *libs-rtmidi
-  build_requires:
-  - <<: *layers-qt6
-
-- category: "apps"
   name: "scribus"
   version: "1.5.8-r6+1"
   uri:
