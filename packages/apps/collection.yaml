@@ -5629,6 +5629,32 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
+- &apps-fig2dev
+  category: "apps"
+  name: "fig2dev"
+  version: "3.2.5e-r1"
+  uri:
+  - https://www.xfig.org/
+  license: "BSD"
+  description: "Set of tools for creating TeX documents with graphics"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/fig2dev
+  provides:
+  - category: "media-gfx"
+    name: "fig2dev"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/fig2dev"
+    env: "MAKEOPTS=\"-j1\""
+  prereqs:
+  - app-text/rman x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "filelight"
   version: "23.08.3"
@@ -5713,37 +5739,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- category: "apps"
-  name: "freeoffice"
-  version: "1068"
-  uri:
-  - https://www.freeoffice.com
-  license: "SoftMaker"
-  description: "A complete, free Microsoft Office-compatible alternative office suite."
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/freeoffice
-  overlays:
-  - enable: "gentoo-zh"
-  provides:
-  - category: "app-office"
-    name: "freeoffice"
-    version: ">=0"
-  atoms:
-  - atom: "app-office/freeoffice"
-    license: "SoftMaker"
-    accept_keywords: "~amd64"
-  prereqs:
-  - app-admin/chrpath
-  - app-arch/xz-utils
-  excludes:
-  - ^/usr/share/mime/application/vnd.ms-word.xml$
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "foliate"
@@ -5907,6 +5902,37 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "freeoffice"
+  version: "1068"
+  uri:
+  - https://www.freeoffice.com
+  license: "SoftMaker"
+  description: "A complete, free Microsoft Office-compatible alternative office suite."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/freeoffice
+  overlays:
+  - enable: "gentoo-zh"
+  provides:
+  - category: "app-office"
+    name: "freeoffice"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/freeoffice"
+    license: "SoftMaker"
+    accept_keywords: "~amd64"
+  prereqs:
+  - app-admin/chrpath
+  - app-arch/xz-utils
+  excludes:
+  - ^/usr/share/mime/application/vnd.ms-word.xml$
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "galaxy"
@@ -15389,7 +15415,7 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "8.3.0-r1"
+  version: "8.3.0-r1+1"
   uri:
   - https://www.gnu.org/software/octave/
   license: "GPL-3"
@@ -15418,7 +15444,7 @@ packages:
   - <<: *layers-sci-libs
   - <<: *apps-pstoedit
   - <<: *apps-epstool
-  - <<: *apps-transfig
+  - <<: *apps-fig2dev
   - <<: *libs-qhull
   - <<: *libs-glpk
   - <<: *apps-gnuplot
