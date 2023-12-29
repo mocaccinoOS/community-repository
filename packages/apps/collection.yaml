@@ -1504,33 +1504,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-greenlet
-  category: "libs"
-  name: "greenlet"
-  version: "3.0.2"
-  uri:
-  - https://greenlet.readthedocs.io/en/latest/
-  - https://github.com/python-greenlet/greenlet/
-  - https://pypi.org/project/greenlet/
-  license: "MIT"
-  description: "Lightweight in-process concurrent programming"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/greenlet
-      virtual/python-greenlet
-  provides:
-  - category: "dev-python"
-    name: "greenlet"
-    version: ">=0"
-  - category: "virtual"
-    name: "python-greenlet"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-gst-plugins-v4l2
   category: "libs"
   name: "gst-plugins-v4l2"
