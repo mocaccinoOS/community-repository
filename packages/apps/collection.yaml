@@ -2603,33 +2603,33 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
-- &libs-libupnpp
-  category: "libs"
-  name: "libupnpp"
-  version: "0.23.0"
-  uri:
-  - https://www.lesbonscomptes.com/upmpdcli
-  - https://framagit.org/medoc92/npupnp
-  license: "GPL-2 BSD"
-  description: |
-    The libupnpp C++ library wraps libupnp for easier use by upmpdcli and upplay
-    A C++ base UPnP library, derived from Portable UPnP, a.k.a libupnp
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libupnpp
-  provides:
-  - category: "net-libs"
-    name: "libupnpp"
-    version: ">=0"
-  - category: "net-libs"
-    name: "libnpupnp"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
+#   
+# - &libs-libupnpp
+#   category: "libs"
+#   name: "libupnpp"
+#   version: "0.23.0"
+#   uri:
+#   - https://www.lesbonscomptes.com/upmpdcli
+#   - https://framagit.org/medoc92/npupnp
+#   license: "GPL-2 BSD"
+#   description: |
+#     The libupnpp C++ library wraps libupnp for easier use by upmpdcli and upplay
+#     A C++ base UPnP library, derived from Portable UPnP, a.k.a libupnp
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/libupnpp
+#   provides:
+#   - category: "net-libs"
+#     name: "libupnpp"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "libnpupnp"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-sys-fs
+#   build_requires:
+#   - <<: *layers-sys-fs
 
 - &libs-libXaw3d
   category: "libs"
@@ -12248,11 +12248,16 @@ packages:
   - category: "media-sound"
     name: "upplay"
     version: ">=0"
+  - category: "net-libs"
+    name: "libupnpp"
+    version: ">=0"
   - category: "media-libs"
     name: "qtmpris"
     version: ">=0"
   atoms:
   - atom: "media-sound/upplay"
+    accept_keywords: "~amd64"
+  - atom: "net-libs/libupnpp"
     accept_keywords: "~amd64"
   - atom: "media-libs/qtmpris"
     accept_keywords: "~amd64"
@@ -12260,7 +12265,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
-  - <<: *libs-libupnpp
+  # - <<: *libs-libupnpp
   build_requires:
   - <<: *layers-qt
 
