@@ -10267,41 +10267,43 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.0.26_alpha"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "lobby -editor -nvtt -pch -verify-sig"
-    accept_keywords: "~amd64"
-  # prepare:
-  # - echo $SHELL || true
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-  prereqs:
-  - app-crypt/minisign
-  prerequires:
-  - <<: *apps-premake-5
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-enet
-  - <<: *libs-gloox
-  #  Required for editor
-  # - <<: *libs-wxGTK-3_0-gtk3
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.0.26_alpha"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "lobby -editor -nvtt -pch -verify-sig"
+#     accept_keywords: "~amd64"
+#   # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.11.
+#   # PYTHON_COMPAT=( python3_10 )
+#   # prepare:
+#   # - echo $SHELL || true
+#   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
+#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+#   prereqs:
+#   - app-crypt/minisign
+#   prerequires:
+#   - <<: *apps-premake-5
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-enet
+#   - <<: *libs-gloox
+#   #  Required for editor
+#   # - <<: *libs-wxGTK-3_0-gtk3
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-ant-core
   category: "apps"
