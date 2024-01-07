@@ -427,8 +427,8 @@
 {{- else if eq ( len $tokens ) 2 }}
 - {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- end }}
-- rm -rf /etc/portage/gnupg
-- rm -r /var/cache/binpkgs/*
+- rm -rf /etc/portage/gnupg || true;
+- rm -rf /var/cache/binpkgs/* || true;
 - etc-update -q --automode -5
 
 {{- end }}
