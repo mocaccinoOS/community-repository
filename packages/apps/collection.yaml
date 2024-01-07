@@ -12231,31 +12231,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-transcode
-#   category: "apps"
-#   name: "transcode"
-#   version: "1.1.7-r6+5"
-#   uri:
-#   - https://wiki.gentoo.org/wiki/No_homepage
-#   license: "GPL-2"
-#   description: "Utilities for transcoding video and audio codecs in different containers"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-video/transcode
-#   provides:
-#   - category: "media-video"
-#     name: "transcode"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-video/transcode"
-#     use: "a52 aac alsa altivec dv dvd iconv imagemagick jpeg lzo mjpeg mp3 mpeg nuv ogg oss pic postproc sdl theora truetype v4l vorbis X x264 xml xvid"
-#   requires:
-#   - <<: *layers-X
-#   # - <<: *apps-ffmpeg-4
-#   - <<: *libs-libdv
-#   build_requires:
-#   - <<: *layers-X
+- &apps-tigervnc
+  category: "apps"
+  name: "tigervnc"
+  version: "1.13.1-r3"
+  uri:
+  - https://tigervnc.org
+  license: "GPL-2"
+  description: "Remote desktop viewer display system"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/tigervnc
+  provides:
+  - category: "net-misc"
+    name: "tigervnc"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/tigervnc"
+    use: "dri3 drm server viewer opengl xinerama" # java gnutls nls
+  requires:
+  - <<: *layers-X
+  - <<: *libs-fltk
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "upplay"
@@ -17149,42 +17148,3 @@ packages:
   - <<: *apps-kdevelop
   build_requires:
   - <<: *layers-plasma
-
-################################################################################################################################################################
-### dep 9 libs ###
-################################################################################################################################################################
-
-################################################################################################################################################################
-### dep 9 apps ###
-################################################################################################################################################################
-
-# - category: "apps"
-#   name: "dvdshrink"
-#   version: "2.6.1_p10-r1+4"
-#   uri:
-#   - http://dvdshrink.sourceforge.net
-#   license: "GPL-2"
-#   description: "Scriptable DVD copy software"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       app-cdr/dvdshrink
-#   provides:
-#   - category: "app-cdr"
-#     name: "dvdshrink"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-cdr/dvdshrink"
-#     use: "gtk"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-perlGtk2
-#   - <<: *apps-dvd-rw-tools
-#   - <<: *apps-dvdauthor
-#   - <<: *apps-gocr
-#   - <<: *apps-subtitleripper
-#   - <<: *apps-transcode
-#   - <<: *apps-xsane
-#   build_requires:
-#   - <<: *layers-gnome-common
