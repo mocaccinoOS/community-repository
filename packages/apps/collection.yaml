@@ -12159,7 +12159,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.13.1-r3+1"
+  version: "1.13.1-r3+3"
   uri:
   - https://tigervnc.org
   license: "GPL-2"
@@ -12175,6 +12175,8 @@ packages:
   atoms:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama" # java gnutls nls
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
   - <<: *layers-X
   - <<: *libs-fltk
