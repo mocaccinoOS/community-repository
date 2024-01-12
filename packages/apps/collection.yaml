@@ -8624,32 +8624,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-transfig
-  category: "apps"
-  name: "transfig"
-  version: "3.2.5e-r1"
-  uri:
-  - https://www.xfig.org/
-  license: "BSD"
-  description: "Set of tools for creating TeX documents with graphics"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/transfig
-  provides:
-  - category: "media-gfx"
-    name: "transfig"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/transfig"
-    env: "MAKEOPTS=\"-j1\""
-  prereqs:
-  - app-text/rman x11-misc/imake
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "tree"
   version: "2.1.1"
@@ -10454,7 +10428,7 @@ packages:
 
 - category: "apps"
   name: "chemtool"
-  version: "1.6.14-r1"
+  version: "1.6.14-r1+1"
   uri:
   - http://ruby.chemie.uni-freiburg.de/~martin/chemtool/
   license: "GPL-2"
@@ -10474,7 +10448,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
-  - <<: *apps-transfig
+  - <<: *apps-fig2dev
   - <<: *libs-libemf
   build_requires:
   - <<: *layers-X
