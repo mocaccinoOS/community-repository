@@ -726,6 +726,86 @@ packages:
   hidden: true
 
 
+- &def-layers-webkit-gtk
+  category: "layers"
+  name: "webkit-gtk"
+  version: "2.42.4"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/webkit-gtk:4
+  provides:
+  - category: "net-libs"
+    name: "webkit-gtk"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/webkit-gtk"
+    env: "MAKEOPTS=\"-l0.9\""
+    # use: "keyring lcms pdf spell"
+    # env: "MAKEOPTS=\"-j5 -l0.9\""
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- <<: *def-layers-webkit-gtk
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-layers-webkit-gtk
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
+- &def-layers-term-libs
+  category: "layers"
+  name: "term-libs"
+  version: "0.1+10"
+  uri:
+  - http://www.leonerd.org.uk/code/libtermkey/
+  - https://www.leonerd.org.uk/code/libvterm/
+  - https://github.com/neovim/unibilium/
+  license: "metapackage"
+  description: |
+    Library for easy processing of keyboard entry from terminal-based programs
+    An abstract library implementation of a VT220/xterm/ECMA-48 terminal emulator
+    A very basic terminfo library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libtermkey
+      dev-libs/libvterm
+      dev-libs/unibilium
+  provides:
+  - category: "dev-libs"
+    name: "libtermkey"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libvterm"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "unibilium"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# - <<: *def-layers-term-libs 
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-layers-term-libs
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
 - category: "layers"
   name: "gnome-games"
   version: "1.2+7"
@@ -1001,50 +1081,6 @@ packages:
   - <<: *libs-twisted
   build_requires:
   - <<: *layers-kde-common
-
-
-- &def-layers-term-libs
-  category: "layers"
-  name: "term-libs"
-  version: "0.1+10"
-  uri:
-  - http://www.leonerd.org.uk/code/libtermkey/
-  - https://www.leonerd.org.uk/code/libvterm/
-  - https://github.com/neovim/unibilium/
-  license: "metapackage"
-  description: |
-    Library for easy processing of keyboard entry from terminal-based programs
-    An abstract library implementation of a VT220/xterm/ECMA-48 terminal emulator
-    A very basic terminfo library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libtermkey
-      dev-libs/libvterm
-      dev-libs/unibilium
-  provides:
-  - category: "dev-libs"
-    name: "libtermkey"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libvterm"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "unibilium"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# - <<: *def-layers-term-libs 
-#   category: "layerbase"
-#   hidden: true
-
-- <<: *def-layers-term-libs
-  category: "buildbase"
-  unpack: true
-  hidden: true
 
 
 # - &def-layers-clang-15
