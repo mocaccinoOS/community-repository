@@ -726,42 +726,6 @@ packages:
   hidden: true
 
 
-- &def-layers-webkit-gtk
-  category: "layers"
-  name: "webkit-gtk"
-  version: "2.42.4"
-  uri:
-  - https://wxwidgets.org/
-  license: "wxWinLL-3 GPL-2"
-  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/webkit-gtk:4
-  provides:
-  - category: "net-libs"
-    name: "webkit-gtk"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/webkit-gtk"
-    env: "MAKEOPTS=\"-l0.9\""
-    # use: "keyring lcms pdf spell"
-    # env: "MAKEOPTS=\"-j5 -l0.9\""
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- <<: *def-layers-webkit-gtk
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-layers-webkit-gtk
-  category: "buildbase"
-  unpack: true
-  hidden: true
-
-
 - &def-layers-term-libs
   category: "layers"
   name: "term-libs"

@@ -166,19 +166,6 @@ stubs:
   name: "office-common"
   version: ">=0"
 
-- &layers-webkit-gtk
-  category: "layers"
-  name: "webkit-gtk"
-  version: ">=0"
-- &layerbase-webkit-gtk
-  category: "layerbase"
-  name: "webkit-gtk"
-  version: ">=0"
-- &buildbase-webkit-gtk
-  category: "buildbase"
-  name: "webkit-gtk"
-  version: ">=0"
-
 - &layers-term-libs
   category: "layers"
   name: "term-libs"
@@ -4239,14 +4226,14 @@ packages:
   - atom: "x11-libs/wxGTK"
     use: "webkit gstreamer libnotify sdl"
   requires:
-  - <<: *layers-webkit-gtk
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-webkit-gtk
+  - <<: *layers-gnome-common
 
 - &libs-wxGTK-3_0-gtk3
   category: "libs"
   name: "wxGTK-3_0-gtk3"
-  version: "3.0.5.1-r1+7"
+  version: "3.0.5.1-r1+8"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -4261,11 +4248,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "x11-libs/wxGTK"
-    use: "webkit gstreamer libnotify sdl"
+    use: "gstreamer libnotify sdl" # webkit
   requires:
-  - <<: *layers-webkit-gtk
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-webkit-gtk
+  - <<: *layers-gnome-common
 
 # - &libs-xapian
 #   category: "libs"
@@ -16881,7 +16868,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-displaycal-py3
+# - &apps-displaycal-py3
   category: "apps"
   name: "displaycal-py3"
   version: "3.9.10-r3"
