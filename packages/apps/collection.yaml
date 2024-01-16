@@ -4206,10 +4206,36 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-webkit-gtk
+  category: "libs"
+  name: "webkit-gtk"
+  version: "2.42.4"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/webkit-gtk:4
+  provides:
+  - category: "net-libs"
+    name: "webkit-gtk"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/webkit-gtk"
+    env: "MAKEOPTS=\"-l0.9\""
+    # use: "keyring lcms pdf spell"
+    # env: "MAKEOPTS=\"-j5 -l0.9\""
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-wxGTK
   category: "libs"
   name: "wxGTK"
-  version: "3.2.2.1-r3"
+  version: "3.2.2.1-r3+1"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -4225,18 +4251,16 @@ packages:
   atoms:
   - atom: "x11-libs/wxGTK"
     use: "webkit gstreamer libnotify sdl"
-  - atom: "net-libs/webkit-gtk"
-    env: "MAKEOPTS=\"-l0.9\""
-    # env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-webkit-gtk
   build_requires:
   - <<: *layers-gnome-common
 
 - &libs-wxGTK-3_0-gtk3
   category: "libs"
   name: "wxGTK-3_0-gtk3"
-  version: "3.0.5.1-r1+7"
+  version: "3.0.5.1-r1+8"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -4252,11 +4276,9 @@ packages:
   atoms:
   - atom: "x11-libs/wxGTK"
     use: "webkit gstreamer libnotify sdl"
-  - atom: "net-libs/webkit-gtk"
-    env: "MAKEOPTS=\"-l0.9\""
-    # env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-webkit-gtk
   build_requires:
   - <<: *layers-gnome-common
 
