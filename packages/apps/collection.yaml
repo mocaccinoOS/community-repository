@@ -16962,6 +16962,9 @@ packages:
   atoms:
   - atom: "dev-util/kdevelop"
     use: "gdbui hex plasma qmake # reviewboard subversion"
+  prepare:
+  - sed -i -e 's/LLVM_MAX_SLOT=16/LLVM_MAX_SLOT=17/' /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-23.08.4.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-23.08.4.ebuild manifest
   requires:
   - <<: *layers-plasma
   - <<: *apps-okteta
