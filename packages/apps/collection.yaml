@@ -9386,7 +9386,7 @@ packages:
 - &libs-coin
   category: "libs"
   name: "coin"
-  version: "4.0.0+3"
+  version: "4.0.0+4"
   uri:
   - https://github.com/coin3d/coin/wiki
   license: "GPL-2 PEL"
@@ -9415,9 +9415,8 @@ packages:
   - <<: *layers-qt
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-gnome-common
-  requires_final_images: true
+  - <<: *layers-qt
+  - <<: *layers-gnome-common
 
 - &libs-dssi
   category: "libs"
