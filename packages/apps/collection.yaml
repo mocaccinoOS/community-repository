@@ -16868,7 +16868,7 @@ packages:
 
 - category: "apps"
   name: "displaycal-py3"
-  version: "3.9.10-r3"
+  version: "3.9.10-r3+1"
   uri:
   - https://github.com/eoyilmaz/displaycal-py3
   license: "GPL-3"
@@ -16889,7 +16889,6 @@ packages:
   # - ebuild /var/lib/layman/stefantalpalaru/media-gfx/displaycal-py3/displaycal-py3-3.9.10.ebuild manifest
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-qt
   - <<: *libs-build
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
@@ -16897,9 +16896,7 @@ packages:
   - <<: *libs-zeroconf
   - <<: *apps-argyllcms
   build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  requires_final_images: true
+  - <<: *layers-gnome-common
 
 - &apps-kdevelop
   category: "apps"
