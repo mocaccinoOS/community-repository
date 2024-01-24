@@ -331,7 +331,7 @@ stubs:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-spice-gtk
+- &apps-qemu
   category: "apps"
   name: "spice-gtk"
   version: ">=0"
@@ -341,10 +341,8 @@ stubs:
       net-misc/spice-gtk
   prepare:
   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
-  # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/spice-gtk/package.use/01-spice-gtk.use -O /etc/portage/package.use/01-spice-gtk.use
-  preemerge:
-  - app-emulation/spice
-  #- app-emulation/spice;USE="-smartcard"
+  # preemerge:
+  # - app-emulation/spice;USE="-smartcard"
 
 - &apps-vim
   category: "apps"
@@ -16742,7 +16740,7 @@ packages:
   - <<: *layers-gnome-common
   # - <<: *layers-kde-common
   - <<: *libs-ayatana
-  - <<: *apps-spice-gtk
+  - <<: *apps-qemu
   build_requires:
   - <<: *buildbase-gnome-common
   # - <<: *buildbase-kde-common
