@@ -502,6 +502,25 @@ packages:
   - atom: "media-fonts/inconsolata-hellenic"
     accept_keywords: "~amd64"
 
+- <<: *fonts
+  name: "noto-extra"
+  version: "20230930"
+  uri:
+  - https://fonts.google.com/noto
+  license: "OFL-1.1"
+  description: "Google's font family that aims to support all the world's languages"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/noto
+  provides:
+  - category: "media-fonts"
+    name: "noto"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/noto"
+    use: "extra"
+
 - &fonts-roboto
   <<: *fonts
   name: "roboto"
