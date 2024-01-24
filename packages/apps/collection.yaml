@@ -341,8 +341,8 @@ stubs:
       net-misc/spice-gtk
   prepare:
   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
-  # preemerge:
-  # - app-emulation/spice;USE="-smartcard"
+  preemerge:
+  - app-emulation/spice;USE="-smartcard"
 
 - &apps-vim
   category: "apps"
