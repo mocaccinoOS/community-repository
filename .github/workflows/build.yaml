@@ -12,7 +12,7 @@ jobs:
     outputs:
       matrix-sets: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install deps
         run: |
           curl https://luet.io/install.sh | sudo sh
@@ -69,7 +69,7 @@ jobs:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Release space from worker ♻
       run: |
         echo "Listing top largest packages"
