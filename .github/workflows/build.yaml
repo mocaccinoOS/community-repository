@@ -113,12 +113,12 @@ jobs:
       run: |
         curl https://luet.io/install.sh | sudo sh
     - name: Install Go
-      uses: actions/setup-go@v3
+      uses: actions/setup-go@v4
       with:
           go-version: '^1.16'
 
     - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
     - name: Merge artifacts 🔧
       run: |
         # if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi 
