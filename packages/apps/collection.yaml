@@ -6773,6 +6773,26 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "konqueror"
+  version: "23.08.4-r1"
+  uri:
+  - https://apps.kde.org/konqueror/
+  license: "GPL-2"
+  description: "Web browser and file manager based on KDE Frameworks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/konqueror
+  provides:
+  - category: "kde-apps"
+    name: "konqueror"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "kooha"
   version: "2.2.3"
   uri:
