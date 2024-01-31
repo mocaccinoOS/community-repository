@@ -7918,7 +7918,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "7.48"
+  version: "8.28"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD"
@@ -7928,7 +7928,7 @@ packages:
     emerge.packages: >-
       app-emulation/proton-ge-custom-bin
   overlays:
-  - enable: "touchfish-os"
+  - enable: "kzd"
   provides:
   - category: "app-emulation"
     name: "proton-ge-custom-bin"
@@ -7939,8 +7939,7 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-X
 
 - category: "apps"
   name: "pulseaudio-qt"
