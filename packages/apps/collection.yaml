@@ -248,6 +248,7 @@ stubs:
       sys-kernel/gentoo-sources
       sys-kernel/gentoo-kernel
       virtual/dist-kernel
+  env: "USE=\"dracut\""  
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
@@ -13632,7 +13633,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.6.4.1"
+  version: "7.5.9.2+1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -13657,7 +13658,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-office/libreoffice
+      =app-office/libreoffice-7.5.9.2
   provides:
   - category: "app-office"
     name: "libreoffice"
