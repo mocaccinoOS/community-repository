@@ -8502,7 +8502,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.0"
+  version: "0.8.0+1"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -10254,7 +10254,7 @@ packages:
 - &apps-ant-core
   category: "apps"
   name: "ant-core"
-  version: "1.10.9-r5"
+  version: "1.10.9-r5+1"
   uri:
   - https://ant.apache.org/
   license: "Apache-2.0"
@@ -10267,9 +10267,10 @@ packages:
   - category: "dev-java"
     name: "ant-core"
     version: ">=0"
+  prerequires:
+  - <<: *apps-javatoolkit  
   requires:
   - <<: *layers-java
-#  - <<: *apps-javatoolkit
   build_requires:
   - <<: *layers-java
 
@@ -11629,7 +11630,7 @@ packages:
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
-  version: "4.1.4-r1+3"
+  version: "4.1.4-r1+4"
   uri:
   - https://www.open-mpi.org
   license: "BSD"
@@ -12053,7 +12054,7 @@ packages:
 
 - category: "apps"
   name: "snapper-gui"
-  version: "220626+4"
+  version: "220626+5"
   uri:
   - https://github.com/ricardomv/snapper-gui
   license: "GPL-2+"
@@ -12845,7 +12846,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "10.0.1+5"
+  version: "10.0.1+6"
   uri:
   - https://www.openvdb.org
   license: "MPL-2.0"
@@ -13658,7 +13659,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =app-office/libreoffice-7.5.9.2
+      app-office/libreoffice
   provides:
   - category: "app-office"
     name: "libreoffice"
@@ -16153,7 +16154,7 @@ packages:
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.7-r1+4"
+  version: "3.6.7-r1+5"
   uri:
   - https://dicom.offis.de/dcmtk.php.en
   license: "OFFIS"
