@@ -249,6 +249,9 @@ stubs:
       sys-kernel/gentoo-kernel
       virtual/dist-kernel
   env: "USE=\"dracut\""
+  prepare:
+  - mkdir -p linux
+  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O linux/.config
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
@@ -11456,7 +11459,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "77.0.0"
+  version: "77.0.0+1"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -11931,7 +11934,7 @@ packages:
 - &apps-R
   category: "apps"
   name: "R"
-  version: "4.3.1-r1"
+  version: "4.3.1-r1+1"
   uri:
   - https://www.r-project.org
   license: "LGPL-2.1"
@@ -12125,7 +12128,7 @@ packages:
 - &apps-tesseract
   category: "apps"
   name: "tesseract"
-  version: "5.3.0"
+  version: "5.3.0+1"
   uri:
   - https://github.com/tesseract-ocr
   license: "Apache-2.0"
@@ -12794,7 +12797,7 @@ packages:
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
-  version: "0.1.7+7"
+  version: "0.1.7+8"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libvisio
   license: "GPL-2+ LGPL-2.1 MPL-1.1"
@@ -12967,7 +12970,7 @@ packages:
 # https://bugzilla.abisource.com/show_bug.cgi?id=13969
 - category: "apps"
   name: "abiword"
-  version: "3.0.5+15"
+  version: "3.0.5+16"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -13756,7 +13759,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+3"
+  version: "2.6.1.1-r1+4"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -14137,7 +14140,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8-r6+2"
+  version: "1.5.8-r6+3"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -14914,7 +14917,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "3.2.1-r8+8"
+  version: "3.2.1-r8+9"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -16626,7 +16629,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.2"
+  version: "8.2+1"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
