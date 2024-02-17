@@ -273,7 +273,7 @@ stubs:
   prerequires:
   - <<: *kernel-gentoo
   requires:
-  # - <<: *kernel-mocaccino-lts-full
+  - <<: *kernel-mocaccino-lts-full
   - name: "nvpd"
     category: "entity"
     version: ">=0"
@@ -12970,7 +12970,7 @@ packages:
 # https://bugzilla.abisource.com/show_bug.cgi?id=13969
 - category: "apps"
   name: "abiword"
-  version: "3.0.5+16"
+  version: "3.0.5+17"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -13012,6 +13012,8 @@ packages:
     use: "mathml svg t1lib"
   - atom: "app-office/abiword"
     use: "calendar collab cups -eds goffice grammar introspection latex map math ots plugins readline redland spell wordperfect wmf thesaurus"
+  preemerge:
+  - x11-libs/gtk+:2
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-office-common
