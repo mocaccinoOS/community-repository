@@ -1146,9 +1146,9 @@ packages:
 - &def-layers-haskell
   category: "layers"
   name: "haskell"
-  version: "0.14+6"
+  version: "0.14+8"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-haskell/aeson
       dev-haskell/aeson-pretty
@@ -2088,36 +2088,6 @@ packages:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
-  ready:
-  - echo '>>>envvar<<<'
-  - portageq envvar USE | xargs -n 1
-  - echo '>>>euse hscolour<<<'
-  - euse -I hscolour
-  - echo '>>>euse profile<<<'
-  - euse -I profile
-  - echo '>>>quse hscolour<<<'
-  - quse hscolour
-  - echo '>>>quse profile<<<'
-  - quse profile
-  - echo '>>>eix hscolour<<<'
-  - eix --installed-with-use hscolour
-  - echo '>>>eix profile<<<'
-  - eix --installed-with-use profile
-  completion:
-  - echo '>>>envvar<<<'
-  - portageq envvar USE | xargs -n 1
-  - echo '>>>euse hscolour<<<'
-  - euse -I hscolour
-  - echo '>>>euse profile<<<'
-  - euse -I profile
-  - echo '>>>quse hscolour<<<'
-  - quse hscolour
-  - echo '>>>quse profile<<<'
-  - quse profile
-  - echo '>>>eix hscolour<<<'
-  - eix --installed-with-use hscolour
-  - echo '>>>eix profile<<<'
-  - eix --installed-with-use profile
   env: "USE=\"hscolour profile\""
   atoms:
   - atom: "dev-haskell/aeson"
