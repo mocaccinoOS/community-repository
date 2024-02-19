@@ -1183,6 +1183,7 @@ packages:
       dev-haskell/byteorder
       dev-haskell/cabal
       dev-haskell/cabal-doctest
+      dev-haskell/cabal-install
       dev-haskell/call-stack
       dev-haskell/case-insensitive
       dev-haskell/cassava
@@ -2088,7 +2089,8 @@ packages:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
-  env: "USE=\"hscolour profile\""
+  # env: "USE=\"hscolour profile\""
+  env: "MAKEOPTS=\"-j5 -l0.9\""
   atoms:
   - atom: "dev-haskell/aeson"
     accept_keywords: "~amd64"
@@ -2566,7 +2568,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/zlib"
     accept_keywords: "~amd64"
-  env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-ghc
   build_requires:
