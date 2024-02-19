@@ -1127,10 +1127,10 @@ packages:
   - =dev-python/sphinx-6.2.1
   - app-text/dos2unix
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   # - <<: *apps-numactl
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 # - <<: *def-layers-ghc 
 #   category: "layerbase"
@@ -1146,17 +1146,15 @@ packages:
 - &def-layers-haskell
   category: "layers"
   name: "haskell"
-  version: "0.14+7"
+  version: "0.14+6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      dev-haskell/adjunctions
       dev-haskell/aeson
       dev-haskell/aeson-pretty
       dev-haskell/alex
       dev-haskell/ansi-terminal
       dev-haskell/ansi-terminal-types
-      dev-haskell/ansi-wl-pprint
       dev-haskell/appar
       dev-haskell/asn1-encoding
       dev-haskell/asn1-parse
@@ -1165,16 +1163,17 @@ packages:
       dev-haskell/async
       dev-haskell/attoparsec
       dev-haskell/attoparsec-aeson
+      dev-haskell/attoparsec-iso8601
       dev-haskell/auto-update
-      dev-haskell/barbies
       dev-haskell/base-compat
       dev-haskell/base-compat-batteries
       dev-haskell/base-orphans
+      dev-haskell/base-unicode-symbols
       dev-haskell/base16-bytestring
+      dev-haskell/base64
       dev-haskell/base64-bytestring
       dev-haskell/basement
       dev-haskell/bifunctors
-      dev-haskell/binary
       dev-haskell/bitvec
       dev-haskell/blaze-builder
       dev-haskell/blaze-html
@@ -1182,36 +1181,24 @@ packages:
       dev-haskell/boring
       dev-haskell/bsb-http-chunked
       dev-haskell/byteorder
-      dev-haskell/bytestring-builder
-      dev-haskell/c2hs
       dev-haskell/cabal
       dev-haskell/cabal-doctest
-      dev-haskell/cabal-install
       dev-haskell/call-stack
       dev-haskell/case-insensitive
+      dev-haskell/cassava
       dev-haskell/cereal
-      dev-haskell/charset
       dev-haskell/citeproc
-      dev-haskell/clock
       dev-haskell/cmdargs
-      dev-haskell/code-page
       dev-haskell/colour
       dev-haskell/commonmark
       dev-haskell/commonmark-extensions
       dev-haskell/commonmark-pandoc
       dev-haskell/comonad
-      dev-haskell/concurrent-output
       dev-haskell/conduit
       dev-haskell/conduit-extra
-      dev-haskell/connection
       dev-haskell/constraints
       dev-haskell/contravariant
       dev-haskell/cookie
-      dev-haskell/crypto-api
-      dev-haskell/crypto-api-tests
-      dev-haskell/cryptohash-md5
-      dev-haskell/cryptohash-sha1
-      dev-haskell/cryptohash-sha256
       dev-haskell/crypton
       dev-haskell/crypton-connection
       dev-haskell/crypton-x509
@@ -1227,52 +1214,31 @@ packages:
       dev-haskell/data-default-instances-old-locale
       dev-haskell/data-fix
       dev-haskell/dec
-      dev-haskell/diff
       dev-haskell/digest
+      dev-haskell/digits
       dev-haskell/distributive
       dev-haskell/dlist
       dev-haskell/doclayout
       dev-haskell/doctemplates
-      dev-haskell/doctest
       dev-haskell/easy-file
-      dev-haskell/echo
-      dev-haskell/ed25519
-      dev-haskell/edit-distance
       dev-haskell/emojis
-      dev-haskell/enclosed-exceptions
-      dev-haskell/entropy
-      dev-haskell/erf
-      dev-haskell/errors
-      dev-haskell/exceptions
-      dev-haskell/extensible-exceptions
-      dev-haskell/extra
       dev-haskell/fail
       dev-haskell/fast-logger
       dev-haskell/file-embed
-      dev-haskell/fingertree
       dev-haskell/foldable1-classes-compat
-      dev-haskell/foldl
-      dev-haskell/foundation
-      dev-haskell/free
-      dev-haskell/generic-deriving
       dev-haskell/generically
-      dev-haskell/generics-sop
-      dev-haskell/getopt-generics
-      dev-haskell/ghc-paths
       dev-haskell/glob
-      dev-haskell/hackage-security
+      dev-haskell/gridtables
       dev-haskell/haddock-library
       dev-haskell/happy
       dev-haskell/hashable
       dev-haskell/haskell-lexer
-      dev-haskell/haskell-src-exts
-      dev-haskell/hedgehog
-      dev-haskell/hostname
       dev-haskell/hourglass
       dev-haskell/hscolour
       dev-haskell/hslua
       dev-haskell/hslua-aeson
       dev-haskell/hslua-classes
+      dev-haskell/hslua-cli
       dev-haskell/hslua-core
       dev-haskell/hslua-list
       dev-haskell/hslua-marshalling
@@ -1281,108 +1247,72 @@ packages:
       dev-haskell/hslua-module-system
       dev-haskell/hslua-module-text
       dev-haskell/hslua-module-version
+      dev-haskell/hslua-module-zip
       dev-haskell/hslua-objectorientation
       dev-haskell/hslua-packaging
+      dev-haskell/hslua-repl
       dev-haskell/hslua-typing
-      dev-haskell/hspec
-      dev-haskell/hspec-contrib
-      dev-haskell/hspec-core
-      dev-haskell/hspec-discover
-      dev-haskell/hspec-expectations
-      dev-haskell/hspec-meta
-      dev-haskell/hsyaml
-      dev-haskell/http
+      dev-haskell/http-api-data
       dev-haskell/http-client
       dev-haskell/http-client-tls
       dev-haskell/http-date
+      dev-haskell/http-media
       dev-haskell/http-types
       dev-haskell/http2
-      dev-haskell/httpd-shed
       dev-haskell/hunit
       dev-haskell/indexed-traversable
       dev-haskell/indexed-traversable-instances
       dev-haskell/integer-logarithms
-      dev-haskell/invariant
       dev-haskell/iproute
       dev-haskell/ipynb
+      dev-haskell/isocline
       dev-haskell/jira-wiki-markup
       dev-haskell/juicypixels
-      dev-haskell/kan-extensions
-      dev-haskell/language-c
-      dev-haskell/lens
       dev-haskell/libyaml
-      dev-haskell/lifted-async
-      dev-haskell/lifted-base
-      dev-haskell/logging-facade
-      dev-haskell/logict
       dev-haskell/lpeg
       dev-haskell/lua
-      dev-haskell/lua-arbitrary
-      dev-haskell/lukko
-      dev-haskell/math-functions
       dev-haskell/memory
-      dev-haskell/microlens
-      dev-haskell/microlens-aeson
       dev-haskell/mime-types
       dev-haskell/mmorph
-      dev-haskell/mockery
       dev-haskell/monad-control
       dev-haskell/mono-traversable
       dev-haskell/mtl
-      dev-haskell/mtl-compat
-      dev-haskell/mwc-random
-      dev-haskell/nanospec
-      dev-haskell/nats
       dev-haskell/network
-      dev-haskell/network-bsd
       dev-haskell/network-byte-order
-      dev-haskell/network-info
       dev-haskell/network-uri
       dev-haskell/old-locale
       dev-haskell/old-time
       dev-haskell/onetuple
+      dev-haskell/only
       dev-haskell/optparse-applicative
+      dev-haskell/ordered-containers
+      dev-haskell/pandoc
+      dev-haskell/pandoc-lua-engine
       dev-haskell/pandoc-lua-marshal
+      dev-haskell/pandoc-server
       dev-haskell/pandoc-types
-      dev-haskell/parallel
       dev-haskell/parsec
-      dev-haskell/parsers
-      dev-haskell/pcre-light
       dev-haskell/pem
-      dev-haskell/pgp-wordlist
       dev-haskell/pretty-show
       dev-haskell/prettyprinter
       dev-haskell/prettyprinter-ansi-terminal
-      dev-haskell/prettyprinter-compat-ansi-wl-pprint
       dev-haskell/primitive
-      dev-haskell/profunctors
       dev-haskell/psqueues
-      dev-haskell/puremd5
       dev-haskell/quickcheck
-      dev-haskell/quickcheck-instances
-      dev-haskell/quickcheck-io
       dev-haskell/random
-      dev-haskell/raw-strings-qq
       dev-haskell/recv
-      dev-haskell/reducers
-      dev-haskell/reflection
       dev-haskell/regex-base
-      dev-haskell/regex-posix
-      dev-haskell/resolv
+      dev-haskell/regex-tdfa
       dev-haskell/resourcet
-      dev-haskell/retry
       dev-haskell/safe
       dev-haskell/safe-exceptions
       dev-haskell/scientific
       dev-haskell/semialign
       dev-haskell/semigroupoids
       dev-haskell/semigroups
-      dev-haskell/setenv
-      dev-haskell/setlocale
+      dev-haskell/servant
+      dev-haskell/servant-server
       dev-haskell/sha
-      dev-haskell/shelly
-      dev-haskell/silently
-      dev-haskell/simple-reflect
       dev-haskell/simple-sendfile
       dev-haskell/singleton-bool
       dev-haskell/skylighting
@@ -1391,7 +1321,6 @@ packages:
       dev-haskell/skylighting-format-blaze-html
       dev-haskell/skylighting-format-context
       dev-haskell/skylighting-format-latex
-      dev-haskell/smallcheck
       dev-haskell/socks
       dev-haskell/some
       dev-haskell/sop-core
@@ -1401,35 +1330,16 @@ packages:
       dev-haskell/stm
       dev-haskell/streaming-commons
       dev-haskell/strict
-      dev-haskell/string-qq
-      dev-haskell/stringbuilder
+      dev-haskell/string-conversions
       dev-haskell/syb
       dev-haskell/tagged
       dev-haskell/tagsoup
-      dev-haskell/tar
-      dev-haskell/tasty
-      dev-haskell/tasty-expected-failure
-      dev-haskell/tasty-golden
-      dev-haskell/tasty-hedgehog
-      dev-haskell/tasty-hslua
-      dev-haskell/tasty-hunit
-      dev-haskell/tasty-kat
-      dev-haskell/tasty-lua
-      dev-haskell/tasty-quickcheck
-      dev-haskell/tasty-smallcheck
-      dev-haskell/tasty-th
       dev-haskell/temporary
-      dev-haskell/temporary-rc
-      dev-haskell/terminal-size
-      dev-haskell/test-framework
-      dev-haskell/test-framework-hunit
-      dev-haskell/test-framework-quickcheck2
       dev-haskell/texmath
       dev-haskell/text
       dev-haskell/text-conversions
       dev-haskell/text-icu
       dev-haskell/text-short
-      dev-haskell/tf-random
       dev-haskell/th-abstraction
       dev-haskell/th-compat
       dev-haskell/th-lift
@@ -1437,17 +1347,14 @@ packages:
       dev-haskell/these
       dev-haskell/time-compat
       dev-haskell/time-manager
-      dev-haskell/timeit
       dev-haskell/tls
-      dev-haskell/transformers
+      dev-haskell/toml-parser
       dev-haskell/transformers-base
       dev-haskell/transformers-compat
-      dev-haskell/tree-diff
-      dev-haskell/trifecta
       dev-haskell/type-equality
       dev-haskell/typed-process
+      dev-haskell/typst
       dev-haskell/typst-symbols
-      dev-haskell/unbounded-delays
       dev-haskell/unicode-collation
       dev-haskell/unicode-data
       dev-haskell/unicode-transforms
@@ -1458,25 +1365,18 @@ packages:
       dev-haskell/unliftio-core
       dev-haskell/unordered-containers
       dev-haskell/utf8-string
-      dev-haskell/uuid
       dev-haskell/uuid-types
       dev-haskell/vault
       dev-haskell/vector
       dev-haskell/vector-algorithms
-      dev-haskell/vector-th-unbox
-      dev-haskell/void
       dev-haskell/wai
+      dev-haskell/wai-app-static
+      dev-haskell/wai-cors
       dev-haskell/wai-extra
       dev-haskell/wai-logger
       dev-haskell/warp
-      dev-haskell/wcwidth
       dev-haskell/witherable
-      dev-haskell/wl-pprint-annotated
       dev-haskell/word8
-      dev-haskell/x509
-      dev-haskell/x509-store
-      dev-haskell/x509-system
-      dev-haskell/x509-validation
       dev-haskell/xml
       dev-haskell/xml-conduit
       dev-haskell/xml-types
@@ -1484,9 +1384,6 @@ packages:
       dev-haskell/zip-archive
       dev-haskell/zlib
   provides:
-  - category: "dev-haskell"
-    name: "adjunctions"
-    version: ">=0"
   - category: "dev-haskell"
     name: "aeson"
     version: ">=0"
@@ -1501,9 +1398,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "ansi-terminal-types"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "ansi-wl-pprint"
     version: ">=0"
   - category: "dev-haskell"
     name: "appar"
@@ -1530,10 +1424,10 @@ packages:
     name: "attoparsec-aeson"
     version: ">=0"
   - category: "dev-haskell"
-    name: "auto-update"
+    name: "attoparsec-iso8601"
     version: ">=0"
   - category: "dev-haskell"
-    name: "barbies"
+    name: "auto-update"
     version: ">=0"
   - category: "dev-haskell"
     name: "base-compat"
@@ -1545,7 +1439,13 @@ packages:
     name: "base-orphans"
     version: ">=0"
   - category: "dev-haskell"
+    name: "base-unicode-symbols"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "base16-bytestring"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "base64"
     version: ">=0"
   - category: "dev-haskell"
     name: "base64-bytestring"
@@ -1555,9 +1455,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "bifunctors"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "binary"
     version: ">=0"
   - category: "dev-haskell"
     name: "bitvec"
@@ -1581,19 +1478,10 @@ packages:
     name: "byteorder"
     version: ">=0"
   - category: "dev-haskell"
-    name: "bytestring-builder"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "c2hs"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "cabal"
     version: ">=0"
   - category: "dev-haskell"
     name: "cabal-doctest"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "cabal-install"
     version: ">=0"
   - category: "dev-haskell"
     name: "call-stack"
@@ -1602,22 +1490,16 @@ packages:
     name: "case-insensitive"
     version: ">=0"
   - category: "dev-haskell"
-    name: "cereal"
+    name: "cassava"
     version: ">=0"
   - category: "dev-haskell"
-    name: "charset"
+    name: "cereal"
     version: ">=0"
   - category: "dev-haskell"
     name: "citeproc"
     version: ">=0"
   - category: "dev-haskell"
-    name: "clock"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "cmdargs"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "code-page"
     version: ">=0"
   - category: "dev-haskell"
     name: "colour"
@@ -1635,16 +1517,10 @@ packages:
     name: "comonad"
     version: ">=0"
   - category: "dev-haskell"
-    name: "concurrent-output"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "conduit"
     version: ">=0"
   - category: "dev-haskell"
     name: "conduit-extra"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "connection"
     version: ">=0"
   - category: "dev-haskell"
     name: "constraints"
@@ -1654,21 +1530,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "cookie"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "crypto-api"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "crypto-api-tests"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "cryptohash-md5"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "cryptohash-sha1"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "cryptohash-sha256"
     version: ">=0"
   - category: "dev-haskell"
     name: "crypton"
@@ -1716,10 +1577,10 @@ packages:
     name: "dec"
     version: ">=0"
   - category: "dev-haskell"
-    name: "diff"
+    name: "digest"
     version: ">=0"
   - category: "dev-haskell"
-    name: "digest"
+    name: "digits"
     version: ">=0"
   - category: "dev-haskell"
     name: "distributive"
@@ -1734,43 +1595,10 @@ packages:
     name: "doctemplates"
     version: ">=0"
   - category: "dev-haskell"
-    name: "doctest"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "easy-file"
     version: ">=0"
   - category: "dev-haskell"
-    name: "echo"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "ed25519"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "edit-distance"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "emojis"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "enclosed-exceptions"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "entropy"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "erf"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "errors"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "exceptions"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "extensible-exceptions"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "extra"
     version: ">=0"
   - category: "dev-haskell"
     name: "fail"
@@ -1782,40 +1610,16 @@ packages:
     name: "file-embed"
     version: ">=0"
   - category: "dev-haskell"
-    name: "fingertree"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "foldable1-classes-compat"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "foldl"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "foundation"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "free"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "generic-deriving"
     version: ">=0"
   - category: "dev-haskell"
     name: "generically"
     version: ">=0"
   - category: "dev-haskell"
-    name: "generics-sop"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "getopt-generics"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "ghc-paths"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "glob"
     version: ">=0"
   - category: "dev-haskell"
-    name: "hackage-security"
+    name: "gridtables"
     version: ">=0"
   - category: "dev-haskell"
     name: "haddock-library"
@@ -1828,15 +1632,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "haskell-lexer"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "haskell-src-exts"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hedgehog"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hostname"
     version: ">=0"
   - category: "dev-haskell"
     name: "hourglass"
@@ -1852,6 +1647,9 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "hslua-classes"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-cli"
     version: ">=0"
   - category: "dev-haskell"
     name: "hslua-core"
@@ -1878,37 +1676,22 @@ packages:
     name: "hslua-module-version"
     version: ">=0"
   - category: "dev-haskell"
+    name: "hslua-module-zip"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "hslua-objectorientation"
     version: ">=0"
   - category: "dev-haskell"
     name: "hslua-packaging"
     version: ">=0"
   - category: "dev-haskell"
+    name: "hslua-repl"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "hslua-typing"
     version: ">=0"
   - category: "dev-haskell"
-    name: "hspec"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hspec-contrib"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hspec-core"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hspec-discover"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hspec-expectations"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hspec-meta"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "hsyaml"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "http"
+    name: "http-api-data"
     version: ">=0"
   - category: "dev-haskell"
     name: "http-client"
@@ -1920,13 +1703,13 @@ packages:
     name: "http-date"
     version: ">=0"
   - category: "dev-haskell"
+    name: "http-media"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "http-types"
     version: ">=0"
   - category: "dev-haskell"
     name: "http2"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "httpd-shed"
     version: ">=0"
   - category: "dev-haskell"
     name: "hunit"
@@ -1941,13 +1724,13 @@ packages:
     name: "integer-logarithms"
     version: ">=0"
   - category: "dev-haskell"
-    name: "invariant"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "iproute"
     version: ">=0"
   - category: "dev-haskell"
     name: "ipynb"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "isocline"
     version: ">=0"
   - category: "dev-haskell"
     name: "jira-wiki-markup"
@@ -1956,28 +1739,7 @@ packages:
     name: "juicypixels"
     version: ">=0"
   - category: "dev-haskell"
-    name: "kan-extensions"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "language-c"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "lens"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "libyaml"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "lifted-async"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "lifted-base"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "logging-facade"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "logict"
     version: ">=0"
   - category: "dev-haskell"
     name: "lpeg"
@@ -1986,31 +1748,13 @@ packages:
     name: "lua"
     version: ">=0"
   - category: "dev-haskell"
-    name: "lua-arbitrary"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "lukko"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "math-functions"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "memory"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "microlens"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "microlens-aeson"
     version: ">=0"
   - category: "dev-haskell"
     name: "mime-types"
     version: ">=0"
   - category: "dev-haskell"
     name: "mmorph"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "mockery"
     version: ">=0"
   - category: "dev-haskell"
     name: "monad-control"
@@ -2022,28 +1766,10 @@ packages:
     name: "mtl"
     version: ">=0"
   - category: "dev-haskell"
-    name: "mtl-compat"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "mwc-random"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "nanospec"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "nats"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "network"
     version: ">=0"
   - category: "dev-haskell"
-    name: "network-bsd"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "network-byte-order"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "network-info"
     version: ">=0"
   - category: "dev-haskell"
     name: "network-uri"
@@ -2058,31 +1784,34 @@ packages:
     name: "onetuple"
     version: ">=0"
   - category: "dev-haskell"
+    name: "only"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "optparse-applicative"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "ordered-containers"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc-lua-engine"
     version: ">=0"
   - category: "dev-haskell"
     name: "pandoc-lua-marshal"
     version: ">=0"
   - category: "dev-haskell"
-    name: "pandoc-types"
+    name: "pandoc-server"
     version: ">=0"
   - category: "dev-haskell"
-    name: "parallel"
+    name: "pandoc-types"
     version: ">=0"
   - category: "dev-haskell"
     name: "parsec"
     version: ">=0"
   - category: "dev-haskell"
-    name: "parsers"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "pcre-light"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "pem"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "pgp-wordlist"
     version: ">=0"
   - category: "dev-haskell"
     name: "pretty-show"
@@ -2094,58 +1823,28 @@ packages:
     name: "prettyprinter-ansi-terminal"
     version: ">=0"
   - category: "dev-haskell"
-    name: "prettyprinter-compat-ansi-wl-pprint"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "primitive"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "profunctors"
     version: ">=0"
   - category: "dev-haskell"
     name: "psqueues"
     version: ">=0"
   - category: "dev-haskell"
-    name: "puremd5"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "quickcheck"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "quickcheck-instances"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "quickcheck-io"
     version: ">=0"
   - category: "dev-haskell"
     name: "random"
     version: ">=0"
   - category: "dev-haskell"
-    name: "raw-strings-qq"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "recv"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "reducers"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "reflection"
     version: ">=0"
   - category: "dev-haskell"
     name: "regex-base"
     version: ">=0"
   - category: "dev-haskell"
-    name: "regex-posix"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "resolv"
+    name: "regex-tdfa"
     version: ">=0"
   - category: "dev-haskell"
     name: "resourcet"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "retry"
     version: ">=0"
   - category: "dev-haskell"
     name: "safe"
@@ -2166,22 +1865,13 @@ packages:
     name: "semigroups"
     version: ">=0"
   - category: "dev-haskell"
-    name: "setenv"
+    name: "servant"
     version: ">=0"
   - category: "dev-haskell"
-    name: "setlocale"
+    name: "servant-server"
     version: ">=0"
   - category: "dev-haskell"
     name: "sha"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "shelly"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "silently"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "simple-reflect"
     version: ">=0"
   - category: "dev-haskell"
     name: "simple-sendfile"
@@ -2206,9 +1896,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "skylighting-format-latex"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "smallcheck"
     version: ">=0"
   - category: "dev-haskell"
     name: "socks"
@@ -2238,10 +1925,7 @@ packages:
     name: "strict"
     version: ">=0"
   - category: "dev-haskell"
-    name: "string-qq"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "stringbuilder"
+    name: "string-conversions"
     version: ">=0"
   - category: "dev-haskell"
     name: "syb"
@@ -2253,58 +1937,7 @@ packages:
     name: "tagsoup"
     version: ">=0"
   - category: "dev-haskell"
-    name: "tar"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-expected-failure"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-golden"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-hedgehog"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-hslua"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-hunit"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-kat"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-lua"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-quickcheck"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-smallcheck"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tasty-th"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "temporary"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "temporary-rc"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "terminal-size"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "test-framework"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "test-framework-hunit"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "test-framework-quickcheck2"
     version: ">=0"
   - category: "dev-haskell"
     name: "texmath"
@@ -2320,9 +1953,6 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "text-short"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "tf-random"
     version: ">=0"
   - category: "dev-haskell"
     name: "th-abstraction"
@@ -2346,13 +1976,10 @@ packages:
     name: "time-manager"
     version: ">=0"
   - category: "dev-haskell"
-    name: "timeit"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "tls"
     version: ">=0"
   - category: "dev-haskell"
-    name: "transformers"
+    name: "toml-parser"
     version: ">=0"
   - category: "dev-haskell"
     name: "transformers-base"
@@ -2361,22 +1988,16 @@ packages:
     name: "transformers-compat"
     version: ">=0"
   - category: "dev-haskell"
-    name: "tree-diff"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "trifecta"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "type-equality"
     version: ">=0"
   - category: "dev-haskell"
     name: "typed-process"
     version: ">=0"
   - category: "dev-haskell"
-    name: "typst-symbols"
+    name: "typst"
     version: ">=0"
   - category: "dev-haskell"
-    name: "unbounded-delays"
+    name: "typst-symbols"
     version: ">=0"
   - category: "dev-haskell"
     name: "unicode-collation"
@@ -2409,9 +2030,6 @@ packages:
     name: "utf8-string"
     version: ">=0"
   - category: "dev-haskell"
-    name: "uuid"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "uuid-types"
     version: ">=0"
   - category: "dev-haskell"
@@ -2424,13 +2042,13 @@ packages:
     name: "vector-algorithms"
     version: ">=0"
   - category: "dev-haskell"
-    name: "vector-th-unbox"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "void"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "wai"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "wai-app-static"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "wai-cors"
     version: ">=0"
   - category: "dev-haskell"
     name: "wai-extra"
@@ -2442,28 +2060,10 @@ packages:
     name: "warp"
     version: ">=0"
   - category: "dev-haskell"
-    name: "wcwidth"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "witherable"
     version: ">=0"
   - category: "dev-haskell"
-    name: "wl-pprint-annotated"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "word8"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "x509"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "x509-store"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "x509-system"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "x509-validation"
     version: ">=0"
   - category: "dev-haskell"
     name: "xml"
@@ -2488,9 +2088,38 @@ packages:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
+  ready:
+  - echo '>>>envvar<<<'
+  - portageq envvar USE | xargs -n 1
+  - echo '>>>euse hscolour<<<'
+  - euse -I hscolour
+  - echo '>>>euse profile<<<'
+  - euse -I profile
+  - echo '>>>quse hscolour<<<'
+  - quse hscolour
+  - echo '>>>quse profile<<<'
+  - quse profile
+  - echo '>>>eix hscolour<<<'
+  - eix --installed-with-use hscolour
+  - echo '>>>eix profile<<<'
+  - eix --installed-with-use profile
+  completion:
+  - echo '>>>envvar<<<'
+  - portageq envvar USE | xargs -n 1
+  - echo '>>>euse hscolour<<<'
+  - euse -I hscolour
+  - echo '>>>euse profile<<<'
+  - euse -I profile
+  - echo '>>>quse hscolour<<<'
+  - quse hscolour
+  - echo '>>>quse profile<<<'
+  - quse profile
+  - echo '>>>eix hscolour<<<'
+  - eix --installed-with-use hscolour
+  - echo '>>>eix profile<<<'
+  - eix --installed-with-use profile
+  env: "USE=\"hscolour profile\""
   atoms:
-  - atom: "dev-haskell/adjunctions"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/aeson"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/aeson-diff"
@@ -2502,9 +2131,6 @@ packages:
   - atom: "dev-haskell/ansi-terminal"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/ansi-terminal-types"
-    accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/ansi-wl-pprint"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/appar"
     accept_keywords: "~amd64"
@@ -2522,12 +2148,8 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/attoparsec-aeson"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/auto-update"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/barbies"
-    accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/base-compat"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/base-compat-batteries"
@@ -2536,7 +2158,11 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/base-orphans"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/base-unicode-symbols"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/base16-bytestring"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/base64"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/base64-bytestring"
     accept_keywords: "~amd64"
@@ -2544,8 +2170,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/bifunctors"
     use: "semigroups tagged"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/binary"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/bitvec"
     accept_keywords: "~amd64"
@@ -2558,20 +2182,13 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/boring"
     accept_keywords: "~amd64"
-    use: " hscolour profile"
   - atom: "dev-haskell/bsb-http-chunked"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/bytestring-builder"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/byteorder"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/c2hs"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/cabal"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/cabal-doctest"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/cabal-install"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/call-stack"
     accept_keywords: "~amd64"
@@ -2579,17 +2196,11 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/cereal"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/charset"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/citeproc"
     use: "executable"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/clock"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/cmdargs"
     use: "quotation"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/code-page"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/colour"
     accept_keywords: "~amd64"
@@ -2602,13 +2213,9 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/commonmark-pandoc"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/concurrent-output"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/conduit"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/conduit-extra"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/connection"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/constraints"
     accept_keywords: "~amd64"
@@ -2617,40 +2224,23 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/cookie"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/crypto-api"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/crypto-api-tests"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/cryptohash-md5"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/cryptohash-sha1"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/cryptohash-sha256"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/crypton"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/crypton-connection"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/crypton-x509"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/crypton-x509-store"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/crypton-x509-system"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/crypton-x509-validation"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/cryptonite"
     accept_keywords: "~amd64"
     use: "integer-gmp"
   - atom: "dev-haskell/data-array-byte"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/data-default"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/data-default-class"
@@ -2665,9 +2255,9 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/dec"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/diff"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/digest"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/digits"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/distributive"
     accept_keywords: "~amd64"
@@ -2677,31 +2267,9 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/doctemplates"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/doctest"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/easy-file"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/echo"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/ed25519"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/edit-distance"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/emojis"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/enclosed-exceptions"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/entropy"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/erf"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/errors"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/exceptions"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/extensible-exceptions"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/extra"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/fail"
     accept_keywords: "~amd64"
@@ -2709,46 +2277,23 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/file-embed"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/fingertree"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/foldable1-classes-compat"
-    accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/foldl"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/foundation"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/free"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/generic-deriving"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/generically"
     accept_keywords: "~amd64"
-    use: "hscolour profile"    
-  - atom: "dev-haskell/generics-sop"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/getopt-generics"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/ghc-paths"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/glob"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/hackage-security"
+  - atom: "dev-haskell/gridtables"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/haddock-library"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/happy"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hashable"
-    use: "gmp"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hedgehog"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/haskell-lexer"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/haskell-src-exts"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hostname"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hourglass"
     accept_keywords: "~amd64"
@@ -2760,11 +2305,12 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-classes"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/hslua-cli"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-core"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-list"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/hslua-marshalling"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-module-doclayout"
@@ -2777,32 +2323,17 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-module-version"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/hslua-module-zip"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-objectorientation"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-packaging"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/hslua-repl"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/hslua-typing"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/hspec"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hspec-contrib"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hspec-core"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hspec-discover"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hspec-expectations"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hspec-meta"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/hsyaml"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/http"
-    use: "network-uri"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/http-client"
-    use: "network-uri"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/http-client-tls"
     accept_keywords: "~amd64"
@@ -2812,9 +2343,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/http2"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/httpd-shed"
-    use: "network-bsd network-uri"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/hunit"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/indexed-traversable"
@@ -2823,56 +2351,29 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/integer-logarithms"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/invariant"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/iproute"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/ipynb"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/isocline"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/jira-wiki-markup"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/juicypixels"
+    accept_keywords: "~amd64"
     use: "mmap"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/kan-extensions"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/language-c"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/lens"
-    use: "inlining j safe trustworthy"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/libyaml"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/lifted-async"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/lifted-base"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/logging-facade"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/logict"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/lpeg"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/lua"
     use: "system-lua"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/lua-arbitrary"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/lukko"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/math-functions"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/memory"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/microlens"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/microlens-aeson"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/mime-types"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/mmorph"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/mockery"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/monad-control"
     accept_keywords: "~amd64"
@@ -2880,26 +2381,11 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/mtl"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/mtl-compat"
-    accept_keywords: "~amd64"
-    use: "profile"
-  - atom: "dev-haskell/mwc-random"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/nanospec"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/nats"
-    use: "inary hashable template-haskell"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/network"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/network-bsd"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/network-byte-order"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/network-uri"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/network-info"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/old-locale"
     accept_keywords: "~amd64"
@@ -2907,24 +2393,23 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/onetuple"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/ordered-containers"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/pandoc"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/pandoc-lua-engine"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/optparse-applicative"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/pandoc-lua-marshal"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/pandoc-types"
+  - atom: "dev-haskell/pandoc-server"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/parallel"
+  - atom: "dev-haskell/pandoc-types"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/parsec"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/parsers"
-    use: "attoparsec parsec"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/pcre-light"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/pem"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/pgp-wordlist"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/pretty-show"
     accept_keywords: "~amd64"
@@ -2934,45 +2419,22 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/prettyprinter-ansi-terminal"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/profunctors"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/psqueues"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/puremd5"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/quickcheck"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/quickcheck-instances"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/quickcheck-io"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/random"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/raw-strings-qq"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/recv"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/reducers"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/reflection"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/regex-base"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/regex-posix"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/resolv"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/resourcet"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/retry"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/safe"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/safe-exceptions"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/scientific"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/semialign"
@@ -2983,20 +2445,9 @@ packages:
   - atom: "dev-haskell/semigroups"
     use: "binary transformers"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/setenv"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/setlocale"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/sha"
+    accept_keywords: "~amd64"
     use: "exe"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/shelly"
-    use: "lifted"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/silently"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/simple-reflect"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/simple-sendfile"
     use: "allow-bsd"
     accept_keywords: "~amd64"
@@ -3007,26 +2458,18 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/skylighting-core"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/skylighting-format-ansi"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/skylighting-format-blaze-html"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/skylighting-format-context"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/skylighting-format-latex"
-    accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/smallcheck"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/socks"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/some"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
   - atom: "dev-haskell/sop-core"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/split"
@@ -3042,55 +2485,17 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/strict"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/string-qq"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/stringbuilder"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/syb"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/tagged"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/tagsoup"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/tar"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-expected-failure"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-golden"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-hedgehog"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-hslua"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-hunit"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-kat"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-lua"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-quickcheck"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-smallcheck"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-th"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/temporary"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/temporary-rc"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/terminal-size"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/test-framework"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/test-framework-hunit"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/test-framework-quickcheck2"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/texmath"
-    use: "executable network-uri"
     accept_keywords: "~amd64"
+    use: "executable network-uri"
   - atom: "dev-haskell/text"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/text-conversions"
@@ -3098,8 +2503,6 @@ packages:
   - atom: "dev-haskell/text-icu"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/text-short"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tf-random"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/th-abstraction"
     accept_keywords: "~amd64"
@@ -3115,36 +2518,29 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/time-manager"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/timeit"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/tls"
-    use: "compat network"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/transformers"
+    use: "compat network"
+  - atom: "dev-haskell/toml-parser"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/transformers-base"
+    accept_keywords: "~amd64"
     use: "orphaninstances"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/transformers-compat"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tree-diff"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/trifecta"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/type-equality"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/typed-process"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/typst-symbols"
+  - atom: "dev-haskell/typst"
     accept_keywords: "~amd64"
-    use: "hscolour profile"
-  - atom: "dev-haskell/unbounded-delays"
+  - atom: "dev-haskell/typst-symbols"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/utf8-string"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/unicode-collation"
-    use: "executable"
     accept_keywords: "~amd64"
+    use: "executable"
   - atom: "dev-haskell/unicode-data"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/unicode-transforms"
@@ -3161,8 +2557,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/unordered-containers"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/uuid"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/uuid-types"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/vault"
@@ -3173,35 +2567,20 @@ packages:
   - atom: "dev-haskell/vector-algorithms"
     use: "bench boundschecks properties"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/vector-th-unbox"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/void"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/wai"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/wai-cors"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/wai-extra"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/wai-logger"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/warp"
+    accept_keywords: "~amd64"
     use: "allow-sendfilefd"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/wcwidth"
-    use: "cli"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/witherable"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/word8"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/wl-pprint-annotated"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/x509"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/x509-store"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/x509-system"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/x509-validation"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/xml"
     accept_keywords: "~amd64"
@@ -3220,7 +2599,6 @@ packages:
   env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-ghc
-  # - <<: *apps-numactl
   build_requires:
   - <<: *buildbase-ghc
   requires_final_images: true
