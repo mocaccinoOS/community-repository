@@ -7743,30 +7743,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-pandoc
-  category: "apps"
-  name: "pandoc"
-  version: "3+1"
-  uri:
-  - https://pandoc.org
-  license: "GPL-2+"
-  description: "Conversion between markup formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-       app-text/pandoc
-  provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/pandoc"
-    use: "embed-data-files # doc hscolour optimize trypandoc profile"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-haskell
-  build_requires:
-  - <<: *layers-haskell
+# - &apps-pandoc
+#   category: "apps"
+#   name: "pandoc"
+#   version: "3+1"
+#   uri:
+#   - https://pandoc.org
+#   license: "GPL-2+"
+#   description: "Conversion between markup formats"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#        app-text/pandoc
+#   provides:
+#   - category: "app-text"
+#     name: "pandoc"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-text/pandoc"
+#     use: "embed-data-files # doc hscolour optimize trypandoc profile"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-haskell
+#   build_requires:
+#   - <<: *layers-haskell
 
 - &apps-peek
   category: "apps"
@@ -10923,7 +10923,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.1-r1"
+  version: "2.1-r1+1"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -10947,7 +10947,7 @@ packages:
     use: "exif ffmpegthumbnailer jpeg lcms lua lua_single_target_lua5-3 nls pdf tiff xmp # lirc"
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-lua-5_3
+  # - <<: *apps-lua-5_3
   # - <<: *apps-vim
   build_requires:
   - <<: *layers-gnome-common
@@ -11572,7 +11572,7 @@ packages:
 - &apps-nmap
   category: "apps"
   name: "nmap"
-  version: "7.94"
+  version: "7.94+1"
   uri:
   - https://nmap.org/
   license: "NPSL GPL-2"
@@ -11596,7 +11596,7 @@ packages:
   - sec-keys/openpgp-keys-nmap
   requires:
   - <<: *layers-sys-fs
-  - <<: *apps-lua-5_3
+  # - <<: *apps-lua-5_3
   build_requires:
   - <<: *layers-sys-fs
 
@@ -16218,7 +16218,7 @@ packages:
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.19.6-r2"
+  version: "1.19.6-r2+1"
   uri:
   - https://github.com/brndnmtthws/conky
   license: "GPL-3 BSD LGPL-2.1 MIT"
@@ -16248,7 +16248,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-hddtemp
-  - <<: *apps-lua-5_3
+  # - <<: *apps-lua-5_3
   # - <<: *apps-xmms2
   - <<: *libs-libircclient
   build_requires:
@@ -16751,7 +16751,6 @@ packages:
   - category: "media-libs"
     name: "partio"
     version: ">=0"
-  env: "MAKEOPTS=\"-l0.9\""
   atoms:
   - atom: "media-gfx/blender"
     use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
@@ -16770,6 +16769,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/osl"
     use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  env: "MAKEOPTS=\"-l0.9\""
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
