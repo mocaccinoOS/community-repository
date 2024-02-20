@@ -1287,10 +1287,8 @@ packages:
       dev-haskell/only
       dev-haskell/optparse-applicative
       dev-haskell/ordered-containers
-      dev-haskell/pandoc
       dev-haskell/pandoc-lua-engine
       dev-haskell/pandoc-lua-marshal
-      dev-haskell/pandoc-server
       dev-haskell/pandoc-types
       dev-haskell/parsec
       dev-haskell/pem
@@ -1384,6 +1382,8 @@ packages:
       dev-haskell/yaml
       dev-haskell/zip-archive
       dev-haskell/zlib
+      dev-haskell/pandoc
+      dev-haskell/pandoc-server
   provides:
   - category: "dev-haskell"
     name: "aeson"
@@ -1483,6 +1483,9 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "cabal-doctest"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "cabal-install"
     version: ">=0"
   - category: "dev-haskell"
     name: "call-stack"
@@ -2084,13 +2087,6 @@ packages:
   - category: "dev-haskell"
     name: "zlib"
     version: ">=0"
-  prereqs:
-  - app-text/dos2unix
-  - app-text/docbook-xml-dtd
-  - app-text/docbook-xsl-stylesheets
-  - dev-python/sphinx
-  # env: "USE=\"hscolour profile\""
-  env: "MAKEOPTS=\"-j5 -l0.9\""
   atoms:
   - atom: "dev-haskell/aeson"
     accept_keywords: "~amd64"
@@ -2568,6 +2564,13 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/zlib"
     accept_keywords: "~amd64"
+  env: "MAKEOPTS=\"-j5 -l0.9\""
+  # env: "USE=\"hscolour profile\""
+  prereqs:
+  - app-text/dos2unix
+  - app-text/docbook-xml-dtd
+  - app-text/docbook-xsl-stylesheets
+  - dev-python/sphinx
   requires:
   - <<: *layers-ghc
   build_requires:
