@@ -248,10 +248,10 @@ stubs:
       sys-kernel/gentoo-sources
       sys-kernel/gentoo-kernel
       virtual/dist-kernel
-  env: "USE=\"dracut\""
-  prepare:
-  - mkdir -p /usr/src/linux
-  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
+  # env: "USE=\"dracut\""
+  # prepare:
+  # - mkdir -p /usr/src/linux
+  # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
@@ -7221,7 +7221,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.6.9-r1+5"
+  version: "0.6.9-r1+6"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
