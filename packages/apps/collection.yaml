@@ -166,6 +166,19 @@ stubs:
   name: "office-common"
   version: ">=0"
 
+- &layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: ">=0"
+# - &layerbase-perl-libs
+#   category: "layerbase"
+#   name: "perl-libs"
+#   version: ">=0"
+# - &buildbase-perl-libs
+#   category: "buildbase"
+#   name: "perl-libs"
+#   version: ">=0"
+  
 - &layers-term-libs
   category: "layers"
   name: "term-libs"
@@ -192,47 +205,6 @@ stubs:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-################################################################################################################################################################
-### libs refs ###
-################################################################################################################################################################
-
-# https://bugs.gentoo.org/727334
-- &libs-sphinx-packages >-
-  dev-texlive/texlive-fontsrecommended
-  dev-python/sphinx
-
-- &libs-qtpositioning-geoclue
-  category: "dev-qt"
-  name: "qtpositioning"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-qt/qtpositioning
-  atoms:
-  - atom: "dev-qt/qtpositioning"
-    use: "geoclue"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
-- &libs-tllist
-  category: "dev-libs"
-  name: "tllist"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tllist
-  atoms:
-  - atom: "dev-libs/tllist"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 ################################################################################################################################################################
 ### kernel refs ###
@@ -284,6 +256,95 @@ stubs:
   version: ">=0"
 
 ################################################################################################################################################################
+### libs refs ###
+################################################################################################################################################################
+
+- &libs-gtk2
+  category: "libs"
+  name: "gtk2"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtk+:2
+
+- &libs-libglade
+  category: "libs"
+  name: "libglade"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/libglade
+      
+- &libs-mhash
+  category: "libs"
+  name: "mhash"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/mhash
+
+- &libs-qtpositioning-geoclue
+  category: "dev-qt"
+  name: "qtpositioning"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-qt/qtpositioning
+  atoms:
+  - atom: "dev-qt/qtpositioning"
+    use: "geoclue"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- &libs-raptor
+  category: "libs"
+  name: "raptor"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/raptor
+  atoms:
+  - atom: "media-libs/raptor"
+    use: "curl json unicode"
+
+# https://bugs.gentoo.org/727334
+- &libs-sphinx-packages >-
+  dev-texlive/texlive-fontsrecommended
+  dev-python/sphinx
+
+- &libs-tllist
+  category: "dev-libs"
+  name: "tllist"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tllist
+  atoms:
+  - atom: "dev-libs/tllist"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-twisted
+  category: "libs"
+  name: "twisted"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/twisted
+
+################################################################################################################################################################
 ### apps refs ###
 ################################################################################################################################################################
 
@@ -318,6 +379,30 @@ stubs:
   category: "apps"
   name: "grub"
   version: ">=0"
+
+- &apps-hwloc
+  category: "apps"
+  name: "hwloc"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwloc
+  atoms:
+  - atom: "sys-apps/hwloc"
+    use: "cairo cpuid cuda pci svg udev xml X"
+  
+- &apps-openmpi
+  category: "apps"
+  name: "openmpi"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-cluster/openmpi
+  atoms:
+  - atom: "sys-cluster/openmpi"
+    use: "romio"
 
 - &apps-premake-5
   category: "dev-util"
@@ -1566,33 +1651,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gtk2
-  category: "libs"
-  name: "gtk2"
-  version: "2.24.33-r3+3"
-  uri:
-  - https://www.gtk.org
-  license: "LGPL-2+"
-  description: "Gimp ToolKit +"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gtk+:2
-  provides:
-  - category: "x11-libs"
-    name: "gtk+"
-    version: ">=0"
-  - category: "x11-themes"
-    name: "gnome-themes-standard"
-    version: ">=0"
-  - category: "x11-themes"
-    name: "gtk-engines-adwaita"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gtkglext
   category: "libs"
   name: "gtkglext"
@@ -2232,28 +2290,6 @@ packages:
     use: "X"
   requires:
   - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-libglade
-  category: "libs"
-  name: "libglade"
-  version: "2.6.4-r3+4"
-  uri:
-  - https://library.gnome.org/devel/libglade/stable/
-  license: "LGPL-2"
-  description: "Library to construct graphical interfaces at runtime"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/libglade
-  provides:
-  - category: "gnome-base"
-    name: "libglade"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -2931,29 +2967,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-mhash
-  category: "libs"
-  name: "mhash"
-  version: "0.9.9.9-r3+3"
-  uri:
-  - http://mhash.sourceforge.net/
-  license: "GPL-2"
-  description: "Library providing a uniform interface to a large number of hash algorithms"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-crypt/mhash
-  provides:
-  - category: "app-crypt"
-    name: "mhash"
-    version: ">=0"
-  prereqs:
-  - dev-lang/yasm
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-MIME-tools
   category: "libs"
   name: "MIME-tools"
@@ -3221,34 +3234,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-Path-Tiny
-  category: "libs"
-  name: "Path-Tiny"
-  version: "0.144.0+1"
-  uri:
-  - https://metacpan.org/release/Path-Tiny
-  - https://metacpan.org/release/Unicode-UTF8
-  license: "Apache-2.0 "
-  description: |
-    Manual text wrapping and reformatting
-    Encoding and decoding of UTF-8 encoding form
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Path-Tiny
-      dev-perl/Unicode-UTF8
-  provides:
-  - category: "dev-perl"
-    name: "Path-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Unicode-UTF8"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-pbr
   category: "libs"
@@ -3632,30 +3617,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-qtpy
-  category: "libs"
-  name: "qtpy"
-  version: "2.4.1-r1"
-  uri:
-  - https://github.com/spyder-ide/qtpy/
-  license: "MIT"
-  description: "Abstraction layer on top of PyQt and PySide with additional custom QWidgets"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/QtPy
-  provides:
-  - category: "dev-python"
-    name: "QtPy"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/QtPy"
-    use: "pyqt5 gui multimedia network opengl printsupport qml quick sql svg webchannel webengine websockets widgets xml # positioning serialport"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-quazip
   category: "libs"
   name: "quazip"
@@ -3677,27 +3638,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-random2
-  category: "libs"
-  name: "random2"
-  version: "1.0.2"
-  uri:
-  - https://pypi.org/project/random2/
-  license: "PSF-2"
-  description: "Python-2.7 random module ported to python-3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/random2
-  provides:
-  - category: "dev-python"
-    name: "random2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-rapidjson
   category: "libs"
   name: "rapidjson"
@@ -3718,30 +3658,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-raptor
-  category: "libs"
-  name: "raptor"
-  version: "2.0.15-r8+2"
-  uri:
-  - https://github.com/swh/LRDF
-  license: "Apache-2.0 GPL-2 LGPL-2.1"
-  description: "Library for manipulation of RDF files in LADSPA plugins"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/raptor
-  provides:
-  - category: "media-libs"
-    name: "raptor"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/raptor"
-    use: "curl json unicode"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-rtl-sdr
   category: "libs"
@@ -3972,27 +3888,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-Text-Reform
-  category: "libs"
-  name: "Text-Reform"
-  version: "1.200.0-r2+2"
-  uri:
-  - https://metacpan.org/release/Text-Reform
-  license: "Artistic GPL-1+"
-  description: "Manual text wrapping and reformatting"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-Reform
-  provides:
-  - category: "dev-perl"
-    name: "Text-Reform"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-tinyxml2
   category: "libs"
   name: "tinyxml2"
@@ -4082,36 +3977,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-twisted
-  category: "libs"
-  name: "twisted"
-  version: "23.10.0"
-  uri:
-  - https://www.twistedmatrix.com/trac/
-  - https://github.com/twisted/incremental
-  license: "MIT"
-  description: |
-    An asynchronous networking framework written in Python
-    Incremental is a small library that versions your Python projects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/twisted
-  provides:
-  - category: "dev-python"
-    name: "twisted"
-    version: ">=0"
-  - category: "dev-python"
-    name: "incremental"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-interface"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-udis86
   category: "libs"
@@ -6096,38 +5961,6 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-- &apps-gnuchess
-  category: "apps"
-  name: "gnuchess"
-  version: "6.2.9-r1+1"
-  uri:
-  - https://www.gnu.org/software/chess/chess.html
-  license: "GPL-3 GPL-2"
-  description: |
-    Console based chess interface
-    Opening book for gnuchess
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-board/gnuchess
-      games-board/gnuchess-book
-  provides:
-  - category: "games-board"
-    name: "gnuchess"
-    version: ">=0"
-  - category: "games-board"
-    name: "gnuches-books"
-    version: ">=0"
-  atoms:
-  - atom: "games-board/gnuchess-book"
-    accept_keywords: "~amd64"
-  prereqs:
-  - sys-apps/help2man
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-gnumeric
   category: "apps"
   name: "gnumeric"
@@ -6419,30 +6252,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &apps-hwloc
-  category: "apps"
-  name: "hwloc"
-  version: "2.9.2"
-  uri:
-  - https://www.open-mpi.org/projects/hwloc/
-  license: "BSD"
-  description: "Displays the hardware topology in convenient formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwloc
-  provides:
-  - category: "sys-apps"
-    name: "hwloc"
-    version: ">=0"
-  atoms:
-  - atom: "sys-apps/hwloc"
-    use: "cairo cpuid cuda pci svg udev xml X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "iat"
@@ -9986,28 +9795,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pysol-cards
-  category: "libs"
-  name: "pysol-cards"
-  version: "0.16.0"
-  uri:
-  - https://pypi.org/project/pysol-cards/
-  license: "Apache-2.0 MIT"
-  description: "Deal PySol FreeCell cards"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pysol-cards
-  provides:
-  - category: "dev-python"
-    name: "pysol-cards"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-random2
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -10106,28 +9893,6 @@ packages:
   - <<: *libs-sofia-sip
   build_requires:
   - <<: *layers-gnome-common
-
-- &libs-Text-Autoformat
-  category: "libs"
-  name: "Text-Autoformat"
-  version: "1.750.0+3"
-  uri:
-  - https://metacpan.org/release/Text-Autoformat
-  license: "Artistic GPL-1+"
-  description: "Automatic text wrapping and reformatting"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-Autoformat
-  provides:
-  - category: "dev-perl"
-    name: "Text-Autoformat"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-Text-Reform
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-tix
   category: "libs"
@@ -11630,31 +11395,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-openmpi
-  category: "apps"
-  name: "openmpi"
-  version: "4.1.4-r1+4"
-  uri:
-  - https://www.open-mpi.org
-  license: "BSD"
-  description: "A high-performance message passing library (MPI)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-cluster/openmpi
-  provides:
-  - category: "sys-cluster"
-    name: "openmpi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-hwloc
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "openrgb"
   version: "0.9"
@@ -12906,35 +12646,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-zeroconf
-  build_requires:
-  - <<: *layers-X
-
-- &libs-Template-Toolkit
-  category: "libs"
-  name: "Template-Toolkit"
-  version: "3.101.0+1"
-  uri:
-  - https://metacpan.org/release/Template-Toolkit
-  - https://metacpan.org/release/AppConfig
-  license: "Artistic GPL-1+"
-  description: |
-    The Template Toolkit
-    Perl5 module for reading configuration files and parsing command line arguments
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Template-Toolkit
-      dev-perl/AppConfig
-  provides:
-  - category: "dev-perl"
-    name: "Template-Toolkit"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "AppConfig"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-Text-Autoformat
   build_requires:
   - <<: *layers-X
 

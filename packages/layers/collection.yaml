@@ -90,10 +90,10 @@ stubs:
 #   category: "layerbase"
 #   name: "perl-libs"
 #   version: ">=0"
-- &buildbase-perl-libs
-  category: "buildbase"
-  name: "perl-libs"
-  version: ">=0"
+# - &buildbase-perl-libs
+#   category: "buildbase"
+#   name: "perl-libs"
+#   version: ">=0"
 
 - &layers-ruby
   category: "layers"
@@ -169,33 +169,6 @@ stubs:
 ### libs ###
 ################################################################################
 
-- &libs-gtk2
-  category: "libs"
-  name: "gtk2"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gtk+:2
-
-- &libs-libglade
-  category: "libs"
-  name: "libglade"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/libglade
-
-- &libs-mhash
-  category: "libs"
-  name: "mhash"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-crypt/mhash
-
 - &libs-netpbm
   category: "libs"
   name: "netpbm"
@@ -204,18 +177,6 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/netpbm
-
-- &libs-raptor
-  category: "libs"
-  name: "raptor"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/raptor
-  atoms:
-  - atom: "media-libs/raptor"
-    use: "curl json unicode"
 
 - &libs-Path-Tiny
   category: "libs"
@@ -226,61 +187,6 @@ stubs:
     emerge.packages: >-
       dev-perl/Path-Tiny
       dev-perl/Unicode-UTF8
-
-- &libs-pysol-cards
-  category: "libs"
-  name: "pysol-cards"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pysol-cards
-
-- &libs-qtpy
-  category: "libs"
-  name: "qtpy"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/QtPy
-
-- &libs-Text-Reform
-  category: "libs"
-  name: "Text-Reform"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-Reform
-
-- &libs-Text-Autoformat
-  category: "libs"
-  name: "Text-Autoformat"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-Autoformat
-
-- &libs-Template-Toolkit
-  category: "libs"
-  name: "Template-Toolkit"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Template-Toolkit
-      dev-perl/AppConfig
-
-- &libs-twisted
-  category: "libs"
-  name: "twisted"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/twisted
 
 - &libs-xxhash
   category: "libs"
@@ -295,33 +201,273 @@ stubs:
 ### apps ###
 ################################################################################
 
+
+packages:
+
+################################################################################################################################################################
+### dep 0 libs ###
+################################################################################################################################################################
+
+- &libs-gtk2
+  category: "libs"
+  name: "gtk2"
+  version: "2.24.33-r3+4"
+  uri:
+  - https://www.gtk.org
+  license: "LGPL-2+"
+  description: "Gimp ToolKit +"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtk+:2
+  provides:
+  - category: "x11-libs"
+    name: "gtk+"
+    version: ">=0"
+  - category: "x11-themes"
+    name: "gnome-themes-standard"
+    version: ">=0"
+  - category: "x11-themes"
+    name: "gtk-engines-adwaita"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-libglade
+  category: "libs"
+  name: "libglade"
+  version: "2.6.4-r3+5"
+  uri:
+  - https://library.gnome.org/devel/libglade/stable/
+  license: "LGPL-2"
+  description: "Library to construct graphical interfaces at runtime"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-base/libglade
+  provides:
+  - category: "gnome-base"
+    name: "libglade"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-X
+
+- &libs-mhash
+  category: "libs"
+  name: "mhash"
+  version: "0.9.9.9-r3+4"
+  uri:
+  - http://mhash.sourceforge.net/
+  license: "GPL-2"
+  description: "Library providing a uniform interface to a large number of hash algorithms"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/mhash
+  provides:
+  - category: "app-crypt"
+    name: "mhash"
+    version: ">=0"
+  prereqs:
+  - dev-lang/yasm
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-qtpy
+  category: "libs"
+  name: "qtpy"
+  version: "2.4.1-r1+1"
+  uri:
+  - https://github.com/spyder-ide/qtpy/
+  license: "MIT"
+  description: "Abstraction layer on top of PyQt and PySide with additional custom QWidgets"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/QtPy
+  provides:
+  - category: "dev-python"
+    name: "QtPy"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/QtPy"
+    use: "pyqt5 gui multimedia network opengl printsupport qml quick sql svg webchannel webengine websockets widgets xml # positioning serialport"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- &libs-random2
+  category: "libs"
+  name: "random2"
+  version: "1.0.2+1"
+  uri:
+  - https://pypi.org/project/random2/
+  license: "PSF-2"
+  description: "Python-2.7 random module ported to python-3"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/random2
+  provides:
+  - category: "dev-python"
+    name: "random2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-raptor
+  category: "libs"
+  name: "raptor"
+  version: "2.0.15-r8+3"
+  uri:
+  - https://github.com/swh/LRDF
+  license: "Apache-2.0 GPL-2 LGPL-2.1"
+  description: "Library for manipulation of RDF files in LADSPA plugins"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/raptor
+  provides:
+  - category: "media-libs"
+    name: "raptor"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/raptor"
+    use: "curl json unicode"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-twisted
+  category: "libs"
+  name: "twisted"
+  version: "23.10.0+1"
+  uri:
+  - https://www.twistedmatrix.com/trac/
+  - https://github.com/twisted/incremental
+  license: "MIT"
+  description: |
+    An asynchronous networking framework written in Python
+    Incremental is a small library that versions your Python projects
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/twisted
+  provides:
+  - category: "dev-python"
+    name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "incremental"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-interface"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+################################################################################################################################################################
+### dep 1 libs ###
+################################################################################################################################################################
+
+- &libs-pysol-cards
+  category: "libs"
+  name: "pysol-cards"
+  version: "0.16.0+1"
+  uri:
+  - https://pypi.org/project/pysol-cards/
+  license: "Apache-2.0 MIT"
+  description: "Deal PySol FreeCell cards"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pysol-cards
+  provides:
+  - category: "dev-python"
+    name: "pysol-cards"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-random2
+  build_requires:
+  - <<: *layers-system-x
+
+################################################################################################################################################################
+### dep 2 libs ###
+################################################################################################################################################################
+
+################################################################################
+### dep 1 apps ###
+################################################################################ 
+
 - &apps-gnuchess
   category: "apps"
   name: "gnuchess"
-  version: ">=0"
+  version: "6.2.9-r1+2"
+  uri:
+  - https://www.gnu.org/software/chess/chess.html
+  license: "GPL-3 GPL-2"
+  description: |
+    Console based chess interface
+    Opening book for gnuchess
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       games-board/gnuchess
+      games-board/gnuchess-book
+  provides:
+  - category: "games-board"
+    name: "gnuchess"
+    version: ">=0"
+  - category: "games-board"
+    name: "gnuches-books"
+    version: ">=0"
+  atoms:
+  - atom: "games-board/gnuchess-book"
+    accept_keywords: "~amd64"
+  prereqs:
+  - sys-apps/help2man
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
-- &apps-openmpi
+- &apps-hwloc
   category: "apps"
-  name: "openmpi"
-  version: ">=0"
+  name: "hwloc"
+  version: "2.9.2"
+  uri:
+  - https://www.open-mpi.org/projects/hwloc/
+  license: "BSD"
+  description: "Displays the hardware topology in convenient formats"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sys-cluster/openmpi
+      sys-apps/hwloc
+  provides:
+  - category: "sys-apps"
+    name: "hwloc"
+    version: ">=0"
   atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio"
-
-
-packages:
-
-################################################################################
-## libs ###
-################################################################################
+  - atom: "sys-apps/hwloc"
+    use: "cairo cpuid cuda pci svg udev xml X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 # - &apps-numactl
 #   category: "apps"
@@ -343,6 +489,31 @@ packages:
 #   - <<: *layers-system-x
 #   build_requires:
 #   - <<: *layers-system-x
+
+- &apps-openmpi
+  category: "apps"
+  name: "openmpi"
+  version: "4.1.6"
+  uri:
+  - https://www.open-mpi.org
+  license: "BSD"
+  description: "A high-performance message passing library (MPI)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-cluster/openmpi
+  provides:
+  - category: "sys-cluster"
+    name: "openmpi"
+    version: ">=0"
+  atoms:
+  - atom: "sys-cluster/openmpi"
+    use: "romio"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-hwloc
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################
 ## layers ###
@@ -522,7 +693,7 @@ packages:
 - &def-layers-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.8+22"
+  version: "0.8+20"
   uri:
   - https://people.engr.tamu.edu/davis/suitesparse.html
   - https://arma.sourceforge.net
@@ -768,6 +939,68 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
+
+
+- &def-layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: "0.1"
+  uri:
+  - https://metacpan.org/release/Path-Tiny
+  - https://metacpan.org/release/Unicode-UTF8
+  - https://metacpan.org/release/Text-Reform
+  - https://metacpan.org/release/Text-Autoformat
+  - https://metacpan.org/release/Template-Toolkit
+  - https://metacpan.org/release/AppConfig
+  license: "metapackage (Apache 2.0 Artistic GPL-1)"
+  description: |
+    Manual text wrapping and reformatting
+    Encoding and decoding of UTF-8 encoding form
+    Manual text wrapping and reformatting
+    Automatic text wrapping and reformatting
+    The Template Toolkit
+    Perl5 module for reading configuration files and parsing command line arguments
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Path-Tiny
+      dev-perl/Unicode-UTF8
+      dev-perl/Text-Reform
+      dev-perl/Text-Autoformat
+      dev-perl/Template-Toolkit
+      dev-perl/AppConfig
+  provides:
+  - category: "dev-perl"
+    name: "Path-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-UTF8"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Reform"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Autoformat"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Template-Toolkit"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "AppConfig"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+# - <<: *def-layers-perl-libs 
+#   category: "layerbase"
+#   hidden: true
+
+# - <<: *def-layers-perl-libs
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 
 - category: "layers"
@@ -1035,11 +1268,8 @@ packages:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
+  - <<: *layers-perl-libs
   - <<: *libs-qtpy
-  - <<: *libs-Path-Tiny
-  - <<: *libs-Text-Reform
-  - <<: *libs-Text-Autoformat
-  - <<: *libs-Template-Toolkit
   - <<: *apps-gnuchess
   - <<: *libs-pysol-cards
   - <<: *libs-twisted
