@@ -210,45 +210,55 @@ stubs:
 ### kernel refs ###
 ################################################################################################################################################################
 
+# - &kernel-gentoo
+#   category: "kernel-sources"
+#   name: "mocaccino-lts-sources"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-kernel/gentoo-sources
+#       sys-kernel/gentoo-kernel
+#       virtual/dist-kernel
+#   env: "USE=\"dracut\""
+#   # prepare:
+#   # - mkdir -p /usr/src/linux
+#   # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 - &kernel-gentoo
   category: "kernel-sources"
   name: "mocaccino-lts-sources"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-kernel/gentoo-sources
-      sys-kernel/gentoo-kernel
-      virtual/dist-kernel
-  env: "USE=\"dracut\""
-  # prepare:
-  # - mkdir -p /usr/src/linux
-  # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
   name: "mocaccino-lts-full"
   version: ">=0"
 
+# - &kernel-modules-nvidia-drivers-lts
+#   category: "kernel-modules"
+#   name: "nvidia-drivers-lts"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       x11-drivers/nvidia-drivers
+#   atoms:
+#   - atom: "x11-drivers/nvidia-drivers"
+#     license: "NVIDIA-r2"
+#     use: "static-libs"
+#   prerequires:
+#   - <<: *kernel-gentoo
+#   requires:
+#   - <<: *kernel-mocaccino-lts-full
+#   - name: "nvpd"
+#     category: "entity"
+#     version: ">=0"
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-drivers/nvidia-drivers
-  atoms:
-  - atom: "x11-drivers/nvidia-drivers"
-    license: "NVIDIA-r2"
-    use: "static-libs"
-  prerequires:
-  - <<: *kernel-gentoo
-  requires:
-  - <<: *kernel-mocaccino-lts-full
-  - name: "nvpd"
-    category: "entity"
-    version: ">=0"
+#   requires:
+#   - <<: *kernel-mocaccino-lts-full
 
 - &kernel-modules-vhba
   category: "kernel-modules"
@@ -485,7 +495,7 @@ packages:
 - &fonts-cascadia-code
   <<: *fonts
   name: "cascadia-code"
-  version: "2111.01"
+  version: "2111.01+1"
   uri:
   - https://github.com/microsoft/cascadia-code
   license: "OFL-1.1"
@@ -502,7 +512,7 @@ packages:
 - &fonts-culmus
   <<: *fonts
   name: "culmus"
-  version: "0.120-r6+2"
+  version: "0.120-r6+3"
   uri:
   - http://culmus.sourceforge.net/
   license: "GPL-2 LICENSE-BITSTREAM MIT"
@@ -524,7 +534,7 @@ packages:
 - &fonts-fontawesome
   <<: *fonts
   name: "fontawesome"
-  version: "6.1.1"
+  version: "6.1.1+1"
   uri:
   - https://fontawesome.com
   license: "CC-BY-4.0 OFL-1.1"
@@ -541,7 +551,7 @@ packages:
 - &fonts-font-cursor-misc
   <<: *fonts
   name: "font-cursor-misc"
-  version: "1.0.4"
+  version: "1.0.4+1"
   uri:
   - https://www.x.org/wiki
   license: "MIT"
@@ -557,7 +567,7 @@ packages:
 
 - <<: *fonts
   name: "inconsolata"
-  version: "20140821+3"
+  version: "20140821+4"
   uri:
   - https://fonts.google.com/specimen/Inconsolata?preview.text_type=custom
   license: "OFL-1.1"
@@ -573,7 +583,7 @@ packages:
 
 - <<: *fonts
   name: "inconsolata-hellenic"
-  version: "1.19-r1"
+  version: "1.19-r1+1"
   uri:
   - https://www.cosmix.org/software/
   license: "OFL-1.1"
@@ -592,7 +602,7 @@ packages:
 
 - <<: *fonts
   name: "noto-cjk"
-  version: "20190416"
+  version: "20190416+1"
   uri:
   - https://github.com/googlefonts/noto-cjk
   license: "OFL-1.1"
@@ -608,7 +618,7 @@ packages:
 
 - <<: *fonts
   name: "noto-extra"
-  version: "20230930"
+  version: "20230930+1"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -628,7 +638,7 @@ packages:
 - &fonts-roboto
   <<: *fonts
   name: "roboto"
-  version: "2.138+3"
+  version: "2.138+4"
   uri:
   - https://github.com/google/roboto
   license: "Apache-2.0"
@@ -644,7 +654,7 @@ packages:
 
 - <<: *fonts
   name: "robotomono"
-  version: "3.000_pre20200508"
+  version: "3.000_pre20200508+1"
   uri:
   - https://github.com/googlefonts/RobotoMono
   license: "OFL-1.1"
@@ -665,7 +675,7 @@ packages:
 
 - <<: *fonts
   name: "robotoslab"
-  version: "2.000_p20210826"
+  version: "2.000_p20210826+1"
   uri:
   - https://github.com/googlefonts/robotoslab
   license: "Apache-2.0"
@@ -691,7 +701,7 @@ packages:
   - http://www.mozilla.org/projects/mathml/fonts/
   license: "bakoma"
   description: "TeX's Computer Modern Fonts for MathML"
-  version: "1.0"
+  version: "1.0+1"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -707,7 +717,7 @@ packages:
 - &fonts-wqy-zenhei
   <<: *fonts
   name: "wqy-zenhei"
-  version: "0.9.46"
+  version: "0.9.46+1"
   uri:
   - http://wenq.org/wqy2/index.cgi?ZenHei
   license: "GPL-2-with-font-exception"
@@ -724,7 +734,7 @@ packages:
 - &fonts-wqy-microhei
   <<: *fonts
   name: "wqy-microhei"
-  version: "0.2.0_beta-r1"
+  version: "0.2.0_beta-r1+1"
   uri:
   - http://wenq.org/wqy2/index.cgi
   license: "Apache-2.0 GPL-3"
@@ -750,7 +760,7 @@ packages:
 - &libs-abseil-cpp
   category: "libs"
   name: "abseil-cpp"
-  version: "20230125.2"
+  version: "20230125.2+1"
   uri:
   - https://abseil.io
   license: "Apache-2.0 BSD"
@@ -771,7 +781,7 @@ packages:
 - &libs-analitza
   category: "libs"
   name: "analitza"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://kde.org/
   license: "GPL-2"
@@ -792,31 +802,10 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &libs-async-timeout
-  category: "libs"
-  name: "async-timeout"
-  version: "4.0.3"
-  uri:
-  - https://github.com/aio-libs/async-timeout/
-  license: "GPL-2"
-  description: "Timeout context manager for asyncio programs"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/async-timeout
-  provides:
-  - category: "dev-python"
-    name: "async-timeout"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-AOMediaCodecs
   category: "libs"
   name: "AOMediaCodecs"
-  version: "0.10.1+6"
+  version: "0.10.1+7"
   uri:
   - https://github.com/AOMediaCodec/libavif
   license: "BSD-2"
@@ -867,7 +856,7 @@ packages:
 - &libs-appdirs
   category: "libs"
   name: "appdirs"
-  version: "1.4.4-r3"
+  version: "1.4.4-r3+1"
   uri:
   - https://github.com/ActiveState/appdirs/
   license: "MIT"
@@ -888,7 +877,7 @@ packages:
 - &libs-argtable
   category: "libs"
   name: "argtable"
-  version: "2.13-r4"
+  version: "2.13-r4+1"
   uri:
   - http://argtable.sourceforge.net/
   license: "LGPL-2"
@@ -909,7 +898,7 @@ packages:
 - &libs-asio
   category: "libs"
   name: "asio"
-  version: "1.28.1"
+  version: "1.28.1+1"
   uri:
   - http://asio.sourceforge.net/
   license: "Boost-1.0"
@@ -929,7 +918,7 @@ packages:
 
 - &libs-asm
   category: "libs"
-  name: "asm"
+  name: "asm+1"
   version: "9.6"
   uri:
   - https://asm.ow2.io
@@ -948,10 +937,31 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &libs-async-timeout
+  category: "libs"
+  name: "async-timeout"
+  version: "4.0.3+1"
+  uri:
+  - https://github.com/aio-libs/async-timeout/
+  license: "GPL-2"
+  description: "Timeout context manager for asyncio programs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/async-timeout
+  provides:
+  - category: "dev-python"
+    name: "async-timeout"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-aubio
   category: "libs"
   name: "aubio"
-  version: "0.4.9-r2+3"
+  version: "0.4.9-r2+4"
   uri:
   - https://aubio.org/
   license: "GPL-3"
@@ -977,7 +987,7 @@ packages:
 - &libs-ayatana
   category: "libs"
   name: "ayatana"
-  version: "0.9.3"
+  version: "0.9.3+1"
   uri:
   - https://github.com/AyatanaIndicators/libayatana-appindicator
   - https://github.com/AyatanaIndicators/libayatana-indicator
@@ -1008,7 +1018,7 @@ packages:
 - &libs-babl
   category: "libs"
   name: "babl"
-  version: "0.1.106"
+  version: "0.1.106+1"
   uri:
   - https://gegl.org/babl/
   license: "LGPL-3"
@@ -1035,7 +1045,7 @@ packages:
 - &libs-botan
   category: "libs"
   name: "botan"
-  version: "3.2.0-r1"
+  version: "3.2.0-r1+1"
   uri:
   - https://botan.randombit.net/
   license: "BSD-2"
@@ -1064,7 +1074,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "5.27.10"
+  version: "5.27.10+1"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1088,7 +1098,7 @@ packages:
 - &libs-build
   category: "libs"
   name: "build"
-  version: "1.0.3"
+  version: "1.0.3+1"
   uri:
   - https://pypi.org/project/build/
   - https://github.com/pypa/build/
@@ -1117,7 +1127,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "121.0.6167.160"
+  version: "121.0.6167.184"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1141,7 +1151,7 @@ packages:
 - &libs-collada-dom
   category: "libs"
   name: "collada-dom"
-  version: "2.5.0-r1"
+  version: "2.5.0-r1+1"
   uri:
   - https://github.com/rdiankov/collada-dom
   license: "MIT"
@@ -1162,7 +1172,7 @@ packages:
 - &libs-colorama
   category: "libs"
   name: "colorama"
-  version: "0.4.6+1"
+  version: "0.4.6+2"
   uri:
   - https://pypi.org/project/colorama/
   - https://github.com/tartley/colorama/
@@ -1186,7 +1196,7 @@ packages:
 - &libs-compface
   category: "libs"
   name: "compface"
-  version: "1.5.2"
+  version: "1.5.2+1"
   uri:
   - http://www.xemacs.org/Download/optLibs.html
   license: "MIT"
@@ -1207,7 +1217,7 @@ packages:
 - &libs-Config-Simple
   category: "libs"
   name: "Config-Simple"
-  version: "4.590.0-r2+3"
+  version: "4.590.0-r2+4"
   uri:
   - https://metacpan.org/release/Config-Simple
   license: "Artistic GPL-1+"
@@ -1228,7 +1238,7 @@ packages:
 - &libs-cssselect
   category: "libs"
   name: "cssselect"
-  version: "1.2.0+1"
+  version: "1.2.0+2"
   uri:
   - https://cssselect.readthedocs.io/en/latest/
   license: "BSD"
@@ -1249,7 +1259,7 @@ packages:
 - &libs-cubeb
   category: "libs"
   name: "cubeb"
-  version: "0.2_p20231121"
+  version: "0.2_p20231121+1"
   uri:
   - https://github.com/mozilla/cubeb
   license: "ISC"
@@ -1270,7 +1280,7 @@ packages:
 - &libs-enet
   category: "libs"
   name: "enet"
-  version: "1.3.17"
+  version: "1.3.17+1"
   uri:
   - http://enet.bespin.org/
   license: "MIT"
@@ -1291,7 +1301,7 @@ packages:
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
-  version: "1.60.0+3"
+  version: "1.60.0+4"
   uri:
   - https://metacpan.org/release/File-ReadBackwards
   license: "Artistic GPL-1+"
@@ -1312,7 +1322,7 @@ packages:
 - &libs-flann
   category: "libs"
   name: "flann"
-  version: "1.9.1-r5+2"
+  version: "1.9.1-r5+3"
   uri:
   - https://github.com/mariusmuja/flann
   license: "BSD"
@@ -1333,7 +1343,7 @@ packages:
 - &libs-flatbuffers
   category: "libs"
   name: "flatbuffers"
-  version: "23.5.26"
+  version: "23.5.26+1"
   uri:
   - https://flatbuffers.dev/
   license: "Apache-2.0"
@@ -1354,7 +1364,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.3.5-r4+6"
+  version: "1.3.5-r4+7"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -1379,7 +1389,7 @@ packages:
 - &libs-freeipmi
   category: "libs"
   name: "freeipmi"
-  version: "1.6.11"
+  version: "1.6.11+1"
   uri:
   - https://www.gnu.org/software/freeipmi/
   license: "GPL-3"
@@ -1404,7 +1414,7 @@ packages:
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
-  version: "2.1.3_rc5-r1+1"
+  version: "2.1.3_rc5-r1+2"
   uri:
   - https://sourceforge.net/projects/ftgl/
   license: "MIT"
@@ -1425,7 +1435,7 @@ packages:
 - &libs-game-music-emu
   category: "libs"
   name: "game-music-emu"
-  version: "0.6.3+1"
+  version: "0.6.3+2"
   uri:
   - https://bitbucket.org/mpyne/game-music-emu/wiki/Home
   license: "LGPL-2.1"
@@ -1446,7 +1456,7 @@ packages:
 - &libs-gavl
   category: "libs"
   name: "gavl"
-  version: "1.4.0-r3"
+  version: "1.4.0-r3+1"
   uri:
   - http://gmerlin.sourceforge.net
   license: "GPL-3"
@@ -1467,7 +1477,7 @@ packages:
 - &libs-girara
   category: "libs"
   name: "girara"
-  version: "0.4.0-r1"
+  version: "0.4.0-r1+1"
   uri:
   - https://pwmt.org/projects/girara/
   license: "GPL-2"
@@ -1493,7 +1503,7 @@ packages:
 - &libs-gdl
   category: "libs"
   name: "gdl"
-  version: "3.40.0+1"
+  version: "3.40.0+2"
   uri:
   - https://github.com/gnudatalanguage/gdl
   license: "GPL-2"
@@ -1514,7 +1524,7 @@ packages:
 - &libs-gl2ps
   category: "libs"
   name: "gl2ps"
-  version: "1.4.2"
+  version: "1.4.2+1"
   uri:
   - http://www.geuz.org/gl2ps/
   license: "LGPL-2"
@@ -1538,7 +1548,7 @@ packages:
 - &libs-glfw
   category: "libs"
   name: "glfw"
-  version: "3.3.8"
+  version: "3.3.8+1"
   uri:
   - https://www.glfw.org/
   license: "ZLIB"
@@ -1556,35 +1566,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-gloox
-#   category: "libs"
-#   name: "gloox"
-#   version: "1.0.24-r1+1"
-#   uri:
-#   - https://camaya.net/gloox/
-#   license: "GPL-3"
-#   description: "A portable high-level Jabber/XMPP library for C++"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-libs/gloox
-#   provides:
-#   - category: "net-libs"
-#     name: "gloox"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-libs/gloox"
-#     use: "gnutls idn ssl zlib"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-sys-fs
-#   build_requires:
-#   - <<: *layers-sys-fs
+- &libs-gloox
+  category: "libs"
+  name: "gloox"
+  version: "1.0.24-r1+2"
+  uri:
+  - https://camaya.net/gloox/
+  license: "GPL-3"
+  description: "A portable high-level Jabber/XMPP library for C++"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/gloox
+  provides:
+  - category: "net-libs"
+    name: "gloox"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/gloox"
+    use: "gnutls idn ssl zlib"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
 
 - &libs-gmime-2
   category: "libs"
   name: "gmime-2"
-  version: "2.6.23-r2+1"
+  version: "2.6.23-r2+2"
   uri:
   - https://github.com/jstedfast/gmime
   - http://spruce.sourceforge.net/gmime/
@@ -1609,7 +1619,7 @@ packages:
 - &libs-gpm
   category: "libs"
   name: "gpm"
-  version: "1.20.7-r5"
+  version: "1.20.7-r5+1"
   uri:
   - https://www.nico.schottelius.org/software/gpm/
   license: "GPL-2"
@@ -1630,7 +1640,7 @@ packages:
 - &libs-gst-plugins-v4l2
   category: "libs"
   name: "gst-plugins-v4l2"
-  version: "1.20.6"
+  version: "1.20.6+1"
   uri:
   - https://gstreamer.freedesktop.org/
   license: "GPL-2"
@@ -1654,7 +1664,7 @@ packages:
 - &libs-gtkglext
   category: "libs"
   name: "gtkglext"
-  version: "1.2.0-r6"
+  version: "1.2.0-r6+1"
   uri:
   - http://gtkglext.sourceforge.net/
   license: "GPL-2+ LGPL-2.1+"
@@ -1681,7 +1691,7 @@ packages:
 - &libs-gtksourceviewmm
   category: "libs"
   name: "gtksourceviewmm"
-  version: "3.18.0-r2"
+  version: "3.18.0-r2+1"
   uri:
   - https://wiki.gnome.org/Projects/GtkSourceView
   license: "LGPL-2.1"
@@ -1702,7 +1712,7 @@ packages:
 - &libs-gts
   category: "libs"
   name: "gts"
-  version: "20121130+3"
+  version: "20121130+4"
   uri:
   - http://gts.sourceforge.net/
   license: "LGPL-2"
@@ -1723,7 +1733,7 @@ packages:
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
-  version: "1.6.0+2"
+  version: "1.6.0+3"
   uri:
   - http://gupnp.org
   - https://gitlab.gnome.org/GNOME/gupnp-igd
@@ -1748,7 +1758,7 @@ packages:
 - &libs-hidapi
   category: "libs"
   name: "hidapi"
-  version: "0.13.1-r1"
+  version: "0.13.1-r1+1"
   uri:
   - https://github.com/trezor/cython-hidapi
   license: "BSD GPL-3"
@@ -1769,7 +1779,7 @@ packages:
 - &libs-http-parser
   category: "libs"
   name: "http-parser"
-  version: "2.9.4-r2"
+  version: "2.9.4-r2+1"
   uri:
   - https://github.com/nodejs/http-parser
   license: "MIT"
@@ -1791,7 +1801,7 @@ packages:
 - &libs-id3lib
   category: "libs"
   name: "id3lib"
-  version: "3.8.3-r10"
+  version: "3.8.3-r10+1"
   uri:
   - http://id3lib.sourceforge.net/
   license: "LGPL-2.1"
@@ -1812,7 +1822,7 @@ packages:
 - &libs-javax-inject
   category: "libs"
   name: "javax-inject"
-  version: "1-r4+1"
+  version: "1-r4+2"
   uri:
   - https://github.com/javax-inject/javax-inject
   license: "Apache-2.0"
@@ -1833,7 +1843,7 @@ packages:
 - &libs-jbigkit
   category: "libs"
   name: "jbigkit"
-  version: "2.1+1"
+  version: "2.1+2"
   uri:
   - http://www.cl.cam.ac.uk/~mgk25/jbigkit/
   license: "GPL-2"
@@ -1854,7 +1864,7 @@ packages:
 - &libs-jsr305
   category: "libs"
   name: "jsr305"
-  version: "3.0.2-r1"
+  version: "3.0.2-r1+1"
   uri:
   - https://jcp.org/en/jsr/detail?id
   license: "BSD"
@@ -1875,7 +1885,7 @@ packages:
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
-  version: "1.17-r2"
+  version: "1.17-r2+1"
   uri:
   - https://www.ladspa.org/
   license: "LGPL-2.1"
@@ -1896,7 +1906,7 @@ packages:
 - &libs-lasi
   category: "libs"
   name: "lasi"
-  version: "1.1.3+2"
+  version: "1.1.3+3"
   uri:
   - http://www.unifont.org/lasi
   license: "GPL-2"
@@ -1917,7 +1927,7 @@ packages:
 - &libs-leptonica
   category: "libs"
   name: "leptonica"
-  version: "1.83.1"
+  version: "1.83.1+1"
   uri:
   - http://www.leptonica.org/
   license: "Apache-2.0"
@@ -1941,7 +1951,7 @@ packages:
 - &libs-lib3ds
   category: "libs"
   name: "lib3ds"
-  version: "2.0.0_rc1-r1+2"
+  version: "2.0.0_rc1-r1+3"
   uri:
   - https://code.google.com/p/lib3ds/
   license: "LGPL-2.1+"
@@ -1962,7 +1972,7 @@ packages:
 - &libs-libbpf
   category: "libs"
   name: "libbpf"
-  version: "1.3.0"
+  version: "1.3.0+1"
   uri:
   - https://github.com/libbpf/libbpf
   license: "GPL-2 LGPL-2.1 BSD-2"
@@ -1983,7 +1993,7 @@ packages:
 - &libs-libbs2b
   category: "libs"
   name: "libbs2b"
-  version: "3.1.0-r2+2"
+  version: "3.1.0-r2+3"
   uri:
   - http://bs2b.sourceforge.net/
   license: "MIT"
@@ -2004,7 +2014,7 @@ packages:
 - &libs-libcerf
   category: "libs"
   name: "libcerf"
-  version: "1.17"
+  version: "1.17+1"
   uri:
   - https://jugit.fz-juelich.de/mlz/libcerf
   license: "MIT"
@@ -2025,7 +2035,7 @@ packages:
 - &libs-libchamplain
   category: "libs"
   name: "libchamplain"
-  version: "0.12.21"
+  version: "0.12.21+1"
   uri:
   - https://wiki.gnome.org/Projects/libchamplain
   license: "LGPL-2.1+"
@@ -2049,7 +2059,7 @@ packages:
 - &libs-libdiscid
   category: "libs"
   name: "libdiscid"
-  version: "0.6.4"
+  version: "0.6.4+1"
   uri:
   - http://musicbrainz.org/doc/libdiscid
   license: "LGPL-2.1"
@@ -2070,7 +2080,7 @@ packages:
 - &libs-libdispatch
   category: "libs"
   name: "libdispatch"
-  version: "5.8"
+  version: "5.8+1"
   uri:
   - https://github.com/apple/swift-corelibs-libdispatch
   license: "Apache-2.0"
@@ -2091,7 +2101,7 @@ packages:
 - &libs-libdv
   category: "libs"
   name: "libdv"
-  version: "1.0.0-r4+1"
+  version: "1.0.0-r4+2"
   uri:
   - http://libdv.sourceforge.net/
   license: "GPL-2"
@@ -2112,7 +2122,7 @@ packages:
 - &libs-libdvdcss
   category: "libs"
   name: "libdvdcss"
-  version: "1.4.3+2"
+  version: "1.4.3+3"
   uri:
   - https://www.videolan.org/developers/libdvdcss.html
   license: "GPL-2"
@@ -2133,7 +2143,7 @@ packages:
 - &libs-libebur128
   category: "libs"
   name: "libebur128"
-  version: "1.2.6+2"
+  version: "1.2.6+3"
   uri:
   - https://github.com/jiixyj/libebur128
   license: "MIT"
@@ -2154,7 +2164,7 @@ packages:
 - &libs-libemf
   category: "libs"
   name: "libemf"
-  version: "1.0.13+3"
+  version: "1.0.13+4"
   uri:
   - http://libemf.sourceforge.net/
   license: "LGPL-2.1 GPL-2"
@@ -2175,7 +2185,7 @@ packages:
 - &libs-libfame
   category: "libs"
   name: "libfame"
-  version: "0.9.1-r4"
+  version: "0.9.1-r4+1"
   uri:
   - http://fame.sourceforge.net/
   license: "GPL-2"
@@ -2196,7 +2206,7 @@ packages:
 - &libs-libfpx
   category: "libs"
   name: "libfpx"
-  version: "1.3.1_p10+1"
+  version: "1.3.1_p10+2"
   uri:
   - https://github.com/ImageMagick/libfpx
   license: "Flashpix"
@@ -2214,56 +2224,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libharu
-  category: "libs"
-  name: "libharu"
-  version: "2.4.2-r1"
-  uri:
-  - http://www.libharu.org/
-  license: "ZLIB"
-  description: "C/C++ library for PDF generation"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libharu
-  provides:
-  - category: "media-libs"
-    name: "libharu"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-libheif
-  category: "libs"
-  name: "libheif"
-  version: "1.15.2"
-  uri:
-  - https://github.com/strukturag/libheif
-  license: "GPL-3"
-  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libheif
-  provides:
-  - category: "media-libs"
-    name: "libheif"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libheif"
-    use: "aom gdk-pixbuf rav1e threads x265"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-AOMediaCodecs
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libgii-libggi
   category: "libs"
   name: "libgii"
-  version: "0.2+12"
+  version: "0.2+12+1"
   uri:
   - https://ibiblio.org/ggicore/packages/libgii.html
   - https://ibiblio.org/ggicore/packages/libggi.html
@@ -2293,10 +2257,56 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libharu
+  category: "libs"
+  name: "libharu"
+  version: "2.4.2-r1+1"
+  uri:
+  - http://www.libharu.org/
+  license: "ZLIB"
+  description: "C/C++ library for PDF generation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libharu
+  provides:
+  - category: "media-libs"
+    name: "libharu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-libheif
+  category: "libs"
+  name: "libheif"
+  version: "1.15.2+1"
+  uri:
+  - https://github.com/strukturag/libheif
+  license: "GPL-3"
+  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libheif
+  provides:
+  - category: "media-libs"
+    name: "libheif"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libheif"
+    use: "aom gdk-pixbuf rav1e threads x265"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-AOMediaCodecs
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libircclient
   category: "libs"
   name: "libircclient"
-  version: "1.10+1"
+  version: "1.10+2"
   uri:
   - http://www.ulduzsoft.com/libircclient/
   license: "LGPL-2+"
@@ -2320,7 +2330,7 @@ packages:
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/ktorrent/
   - https://userbase.kde.org/KTorrent
@@ -2342,7 +2352,7 @@ packages:
 - &libs-liblo
   category: "libs"
   name: "liblo"
-  version: "0.31+1"
+  version: "0.31+2"
   uri:
   - https://sourceforge.net/projects/liblo/
   license: "LGPL-2.1"
@@ -2366,7 +2376,7 @@ packages:
 - &libs-liblockfile
   category: "libs"
   name: "liblockfile"
-  version: "1.17"
+  version: "1.17+1"
   uri:
   - https://github.com/miquels/liblockfile
   license: "LGPL-2"
@@ -2390,7 +2400,7 @@ packages:
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
-  version: "0.4.2-r1+1"
+  version: "0.4.2-r1+2"
   uri:
   - http://liblqr.wikidot.com/
   license: "GPL-3 LGPL-3"
@@ -2411,7 +2421,7 @@ packages:
 - &libs-libmirage
   category: "libs"
   name: "libmirage"
-  version: "3.2.7"
+  version: "3.2.7+1"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -2437,7 +2447,7 @@ packages:
 - &libs-libmp4v2
   category: "libs"
   name: "libmp4v2"
-  version: "2.1.3-r1"
+  version: "2.1.3-r1+1"
   uri:
   - http://liblqr.wikidot.com/
   license: "GPL-3 LGPL-3"
@@ -2458,7 +2468,7 @@ packages:
 - &libs-libnova
   category: "libs"
   name: "libnova"
-  version: "0.16.0+1"
+  version: "0.16.0+2"
   uri:
   - http://libnova.sourceforge.net/
   license: "LGPL-2"
@@ -2479,7 +2489,7 @@ packages:
 - &libs-libntlm
   category: "libs"
   name: "libntlm"
-  version: "1.6"
+  version: "1.6+1"
   uri:
   - https://www.nongnu.org/libntlm/
   license: "LGPL-2"
@@ -2500,7 +2510,7 @@ packages:
 - &libs-libopenmpt
   category: "libs"
   name: "libopenmpt"
-  version: "0.6.6+1"
+  version: "0.6.6+2"
   uri:
   - https://lib.openmpt.org/libopenmpt/
   license: "BSD"
@@ -2521,10 +2531,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libprojectm
+  category: "libs"
+  name: "libprojectm"
+  version: "3.1.12+1"
+  uri:
+  - https://github.com/projectM-visualizer/projectm
+  license: "LGPL-2"
+  description: "A graphical music visualization plugin similar to milkdrop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libprojectm
+  provides:
+  - category: "media-libs"
+    name: "libprojectm"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libprojectm"
+    use: "gles2 sdl qt5"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-libsbsms
   category: "libs"
   name: "libsbsms"
-  version: "2.3.0+2"
+  version: "2.3.0+3"
   uri:
   - https://github.com/claytonotey/libsbsms
   license: "GPL-2+"
@@ -2545,7 +2579,7 @@ packages:
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
-  version: "2.6.0"
+  version: "2.6.0+1"
   uri:
   - https://www.sfml-dev.org/
   license: "ZLIB"
@@ -2566,7 +2600,7 @@ packages:
 - &libs-libshout
   category: "libs"
   name: "libshout"
-  version: "2.4.6+1"
+  version: "2.4.6+2"
   uri:
   - https://www.icecast.org/
   license: "LGPL-2"
@@ -2590,7 +2624,7 @@ packages:
 - &libs-libsidplay
   category: "libs"
   name: "libsidplay"
-  version: "2.1.1-r7"
+  version: "2.1.1-r7+1"
   uri:
   - http://sidplay2.sourceforge.net/
   license: "GPL-2"
@@ -2611,7 +2645,7 @@ packages:
 - &libs-libsidplayfp
   category: "libs"
   name: "libsidplayfp"
-  version: "2.6.0"
+  version: "2.6.0+1"
   uri:
   - https://sourceforge.net/projects/sidplay-residfp/
   license: "GPL-2"
@@ -2632,7 +2666,7 @@ packages:
 - &libs-libsoundtouch
   category: "libs"
   name: "libsoundtouch"
-  version: "2.3.2"
+  version: "2.3.2+1"
   uri:
   - https://www.surina.net/soundtouch/
   - https://gitlab.com/soundtouch/soundtouch
@@ -2657,7 +2691,7 @@ packages:
 - &libs-libsrtp
   category: "libs"
   name: "libsrtp"
-  version: "2.4.2+1"
+  version: "2.4.2+2"
   uri:
   - https://github.com/cisco/libsrtp
   license: "BSD"
@@ -2681,7 +2715,7 @@ packages:
 # - &libs-libupnpp
 #   category: "libs"
 #   name: "libupnpp"
-#   version: "0.23.0"
+#   version: "0.23.0+1"
 #   uri:
 #   - https://www.lesbonscomptes.com/upmpdcli
 #   - https://framagit.org/medoc92/npupnp
@@ -2708,7 +2742,7 @@ packages:
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
-  version: "1.6.5"
+  version: "1.6.5+1"
   uri:
   - https://www.x.org/wiki/
   license: "MIT"
@@ -2732,7 +2766,7 @@ packages:
 - &libs-libxdg-basedir
   category: "libs"
   name: "libxdg-basedir"
-  version: "1.2.3+2"
+  version: "1.2.3+3"
   uri:
   - https://github.com/devnev/libxdg-basedir
   license: "MIT"
@@ -2753,7 +2787,7 @@ packages:
 - &libs-libzen
   category: "libs"
   name: "libzen"
-  version: "0.4.41"
+  version: "0.4.41+1"
   uri:
   - https://github.com/MediaArea/ZenLib
   license: "ZLIB"
@@ -2776,7 +2810,7 @@ packages:
 - &libs-log4cplus
   category: "libs"
   name: "log4cplus"
-  version: "2.0.7+2"
+  version: "2.0.7+3"
   uri:
   - https://log4cplus.sourceforge.io/
   - https://github.com/log4cplus/log4cplus
@@ -2798,7 +2832,7 @@ packages:
 - &libs-loudmouth
   category: "libs"
   name: "loudmouth"
-  version: "1.5.4+2"
+  version: "1.5.4+3"
   uri:
   - https://github.com/mcabber/loudmouth
   license: "LGPL-2.1"
@@ -2822,7 +2856,7 @@ packages:
 - &libs-LuaBitOp
   category: "libs"
   name: "LuaBitOp"
-  version: "1.0.2-r1"
+  version: "1.0.2-r1+1"
   uri:
   - http://bitop.luajit.org
   license: "MIT"
@@ -2843,7 +2877,7 @@ packages:
 - &libs-lzip
   category: "libs"
   name: "lzip"
-  version: "1.23"
+  version: "1.24"
   uri:
   - https://www.nongnu.org/lzip/lzip.html
   license: "GPL-2+"
@@ -2864,7 +2898,7 @@ packages:
 - &libs-m17n-lib
   category: "libs"
   name: "m17n-lib"
-  version: "1.8.0"
+  version: "1.8.0+1"
   uri:
   - ttps://savannah.nongnu.org/projects/m17n
   license: "LGPL-2.1"
@@ -2901,7 +2935,7 @@ packages:
 - &libs-mac
   category: "libs"
   name: "mac"
-  version: "4.11.4.5.7-r1+3"
+  version: "4.11.4.5.7-r1+4"
   uri:
   - https://www.monkeysaudio.com
   license: "mac"
@@ -2925,7 +2959,7 @@ packages:
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
-  version: "2.28.7"
+  version: "2.28.71+1"
   uri:
   - https://tls.mbed.org/
   license: "Apache-2.0"
@@ -2949,7 +2983,7 @@ packages:
 - &libs-meanwhile
   category: "libs"
   name: "meanwhile"
-  version: "1.0.2-r1+1"
+  version: "1.0.2-r1+2"
   uri:
   - http://meanwhile.sourceforge.net/
   license: "LGPL-2"
@@ -2970,7 +3004,7 @@ packages:
 - &libs-MIME-tools
   category: "libs"
   name: "MIME-tools"
-  version: "5.510.0-r1"
+  version: "5.510.0-r1+1"
   uri:
   - https://metacpan.org/release/MIME-tools
   license: "Artistic GPL-1+"
@@ -2991,7 +3025,7 @@ packages:
 - &libs-motif
   category: "libs"
   name: "motif"
-  version: "2.3.8-r5"
+  version: "2.3.8-r5+1"
   uri:
   - https://sourceforge.net/projects/motif/
   license: "LGPL-2.1+ MIT"
@@ -3017,7 +3051,7 @@ packages:
 - &libs-msgpack
   category: "libs"
   name: "msgpack"
-  version: "6.0.0-r1"
+  version: "6.0.0-r1+1"
   uri:
   - https://msgpack.org/
   license: "Boost-1.0"
@@ -3041,7 +3075,7 @@ packages:
 - &libs-plib
   category: "libs"
   name: "plib"
-  version: "1.8.5-r4"
+  version: "1.8.5-r4+1"
   uri:
   - http://plib.sourceforge.net/
   license: "LGPL-2"
@@ -3062,7 +3096,7 @@ packages:
 - &libs-portsmf
   category: "libs"
   name: "portsmf"
-  version: "239"
+  version: "239+1"
   uri:
   - https://codeberg.org/tenacityteam/portsmf
   license: "MIT"
@@ -3083,7 +3117,7 @@ packages:
 - &libs-mxml
   category: "libs"
   name: "mxml"
-  version: "3.3.1-r1"
+  version: "3.3.1-r1+1"
   uri:
   - https://github.com/michaelrsweet/mxml
   license: "Mini-XML"
@@ -3107,7 +3141,7 @@ packages:
 # - &libs-nas
 #   category: "libs"
 #   name: "nas"
-#   version: "1.9.5+2"
+#   version: "1.9.5+3"
 #   uri:
 #   - https://radscan.com/nas.html
 #   license: "HPND MIT"
@@ -3130,7 +3164,7 @@ packages:
 - &libs-neXtaw
   category: "libs"
   name: "neXtaw"
-  version: "0.15.1-r5"
+  version: "0.15.1-r5+1"
   uri:
   - https://siag.nu/neXtaw/
   license: "BSD"
@@ -3151,7 +3185,7 @@ packages:
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
-  version: "3.11.2-r1"
+  version: "3.11.2-r1+1"
   uri:
   - https://github.com/nlohmann/json
   license: "MIT"
@@ -3172,7 +3206,7 @@ packages:
 - &libs-nv-codec-headers
   category: "libs"
   name: "nv-codec-headers"
-  version: "12.1.14.0"
+  version: "12.1.14.0+1"
   uri:
   - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
   license: "MIT"
@@ -3193,7 +3227,7 @@ packages:
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
-  version: "1.6.2-r7+1"
+  version: "1.6.2-r7+2"
   uri:
   - http://www.ossp.org/pkg/lib/uuid/
   license: "ISC"
@@ -3217,7 +3251,7 @@ packages:
 - &libs-Pango
   category: "libs"
   name: "Pango"
-  version: "1.227.0-r2+1"
+  version: "1.227.0-r2+2"
   uri:
   - https://metacpan.org/release/Pango
   license: "LGPL-2.1+"
@@ -3238,7 +3272,7 @@ packages:
 - &libs-pbr
   category: "libs"
   name: "pbr"
-  version: "6.0.0"
+  version: "6.0.0+1"
   uri:
   - https://opendev.org/openstack/pbr/
   license: "Apache-2.0"
@@ -3259,7 +3293,7 @@ packages:
 - &libs-perl-Tk
   category: "libs"
   name: "perl-Tk"
-  version: "804.36.0-r2"
+  version: "804.36.0-r2+1"
   uri:
   - https://metacpan.org/release/Tk
   license: "Artistic GPL-1+ tcltk BSD"
@@ -3280,7 +3314,7 @@ packages:
 - &libs-physfs
   category: "libs"
   name: "physfs"
-  version: "3.0.2-r1+2"
+  version: "3.0.2-r1+3"
   uri:
   - https://icculus.org/physfs/
   license: "ZLIB"
@@ -3304,7 +3338,7 @@ packages:
 - &libs-plotutils
   category: "libs"
   name: "plotutils"
-  version: "2.6-r2+3"
+  version: "2.6-r2+4"
   uri:
   - https://www.gnu.org/software/plotutils/
   license: "GPL-2"
@@ -3328,34 +3362,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libprojectm
-  category: "libs"
-  name: "libprojectm"
-  version: "3.1.12"
-  uri:
-  - https://github.com/projectM-visualizer/projectm
-  license: "LGPL-2"
-  description: "A graphical music visualization plugin similar to milkdrop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libprojectm
-  provides:
-  - category: "media-libs"
-    name: "libprojectm"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libprojectm"
-    use: "gles2 sdl qt5"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-protobuf-c
   category: "libs"
   name: "protobuf-c"
-  version: "1.4.1-r1"
+  version: "1.4.1-r1+1"
   uri:
   - https://github.com/protobuf-c/protobuf-c
   license: "BSD-2"
@@ -3376,7 +3386,7 @@ packages:
 - &libs-ptex
   category: "libs"
   name: "ptex"
-  version: "2.4.2"
+  version: "2.4.2+1"
   uri:
   - http://ptex.us/
   license: "BSD"
@@ -3399,7 +3409,7 @@ packages:
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
-  version: "1.5.0-r3+1"
+  version: "1.5.0-r3+2"
   uri:
   - https://github.com/pyca/pynacl/
   - https://pypi.org/project/PyNaCl/
@@ -3423,7 +3433,7 @@ packages:
 - &libs-python-msgpack
   category: "libs"
   name: "python-msgpack"
-  version: "1.0.7+1"
+  version: "1.0.7+2"
   uri:
   - https://msgpack.org/
   license: "Apache-2.0"
@@ -3447,7 +3457,7 @@ packages:
 - &libs-pystring
   category: "libs"
   name: "pystring"
-  version: "1.1.3-r1+2"
+  version: "1.1.3-r1+3"
   uri:
   - https://github.com/imageworks/pystring
   license: "BSD"
@@ -3468,7 +3478,7 @@ packages:
 - &libs-python-deprecation
   category: "libs"
   name: "python-deprecation"
-  version: "2.1.0-r1"
+  version: "2.1.0-r1+1"
   uri:
   - https://deprecation.readthedocs.io/
   license: "Apache-2.0"
@@ -3489,7 +3499,7 @@ packages:
 - &libs-python-distutils-extra
   category: "libs"
   name: "python-distutils-extra"
-  version: "2.47+2"
+  version: "2.47+3"
   uri:
   - https://salsa.debian.org/python-team/packages/python-distutils-extra/
   - https://launchpad.net/python-distutils-extra/
@@ -3508,56 +3518,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-qxlsx
-  category: "libs"
-  name: "qxlsx"
-  version: "1.4.6"
-  uri:
-  - https://github.com/QtExcel/QXlsx
-  license: "MIT"
-  description: "Excel file(*.xlsx) reader/writer library using Qt"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-libs/qxlsx
-  provides:
-  - category: "dev-libs"
-    name: "qxlsx"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/qxlsx"
-    use: "qt5" 
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
-- &libs-zstandard
-  category: "libs"
-  name: "zstandard"
-  version: "0.22.0"
-  uri:
-  - https://github.com/indygreg/python-zstandard/
-  - https://pypi.org/project/zstandard/
-  license: "BSD"
-  description: "Zstandard Bindings for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/zstandard
-  provides:
-  - category: "dev-python"
-    name: "zstandard"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-qcustomplot
   category: "libs"
   name: "qcustomplot"
-  version: "2.0.1+1"
+  version: "2.0.1+2"
   uri:
   - https://www.qcustomplot.com/
   license: "GPL-3"
@@ -3578,7 +3542,7 @@ packages:
 - &libs-qhull
   category: "libs"
   name: "qhull"
-  version: "2020.2-r3"
+  version: "2020.2-r3+1"
   uri:
   - http://www.qhull.org
   license: "BSD"
@@ -3599,7 +3563,7 @@ packages:
 - &libs-qscintilla
   category: "libs"
   name: "qscintilla"
-  version: "2.14.1"
+  version: "2.14.1+1"
   uri:
   - https://www.riverbankcomputing.com/software/qscintilla/intro
   license: "GPL-3"
@@ -3620,7 +3584,7 @@ packages:
 - &libs-quazip
   category: "libs"
   name: "quazip"
-  version: "1.4-r1"
+  version: "1.4-r1+1"
   uri:
   - https://stachenov.github.io/quazip/
   license: "LGPL-2.1-with-linking-exception"
@@ -3638,10 +3602,34 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-qxlsx
+  category: "libs"
+  name: "qxlsx"
+  version: "1.4.7"
+  uri:
+  - https://github.com/QtExcel/QXlsx
+  license: "MIT"
+  description: "Excel file(*.xlsx) reader/writer library using Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-libs/qxlsx
+  provides:
+  - category: "dev-libs"
+    name: "qxlsx"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/qxlsx"
+    use: "qt5" 
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-rapidjson
   category: "libs"
   name: "rapidjson"
-  version: "1.1.0-r4"
+  version: "1.1.0-r4+1"
   uri:
   - https://rapidjson.org/
   license: "MIT"
@@ -3662,7 +3650,7 @@ packages:
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
-  version: "0.6.0_p2020802+1"
+  version: "0.6.0_p2020802+2"
   uri:
   - https://sdr.osmocom.org/trac/wiki/rtl-sdr
   license: "GPL-2"
@@ -3683,7 +3671,7 @@ packages:
 - &libs-rtmidi
   category: "libs"
   name: "rtmidi"
-  version: "6.0.0"
+  version: "6.0.0+1"
   uri:
   - https://www.music.mcgill.ca/~gary/rtmidi
   license: "RtMidi"
@@ -3704,7 +3692,7 @@ packages:
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
-  version: "1.8.2"
+  version: "1.8.2+1"
   uri:
   - https://github.com/arsenetar/send2trash/
   - https://pypi.org/project/Send2Trash/
@@ -3726,7 +3714,7 @@ packages:
 - &libs-serd
   category: "libs"
   name: "serd"
-  version: "0.32.0"
+  version: "0.32.0+1"
   uri:
   - http://drobilla.net/software/serd/
   license: "ISC"
@@ -3747,7 +3735,7 @@ packages:
 - &libs-smpeg
   category: "libs"
   name: "smpeg"
-  version: "0.4.4-r12"
+  version: "0.4.4-r1+1"
   uri:
   - https://icculus.org/smpeg/
   license: "LGPL-2+"
@@ -3771,7 +3759,7 @@ packages:
 - &libs-smpeg2
   category: "libs"
   name: "smpeg2"
-  version: "2.0.0-r4"
+  version: "2.0.0-r4+1"
   uri:
   - https://icculus.org/smpeg/
   license: "LGPL-2+"
@@ -3795,7 +3783,7 @@ packages:
 - &libs-sofia-sip
   category: "libs"
   name: "sofia-sip"
-  version: "1.13.9"
+  version: "1.13.9+1"
   uri:
   - https://github.com/freeswitch/sofia-sip
   license: "LGPL-2.1+ BSD public-domain"
@@ -3819,7 +3807,7 @@ packages:
 - &libs-Switch
   category: "libs"
   name: "Switch"
-  version: "2.170.0-r1+3"
+  version: "2.170.0-r1+4"
   uri:
   - https://metacpan.org/release/Switch
   license: "Artistic GPL-1+"
@@ -3840,7 +3828,7 @@ packages:
 - &libs-t1lib
   category: "libs"
   name: "t1lib"
-  version: "5.1.2-r3+1"
+  version: "5.1.2-r3+2"
   uri:
   - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
   license: "LGPL-2 GPL-2"
@@ -3864,7 +3852,7 @@ packages:
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
-  version: "2.30.0"
+  version: "2.30.0+1"
   uri:
   - https://metacpan.org/release/Text-CSV
   license: "Artistic GPL-1+"
@@ -3891,7 +3879,7 @@ packages:
 - &libs-tinyxml2
   category: "libs"
   name: "tinyxml2"
-  version: "9.0.0-r1"
+  version: "9.0.0-r1+1"
   uri:
   - http://www.grinninglizard.com/tinyxml2/
   license: "ZLIB"
@@ -3912,7 +3900,7 @@ packages:
 - &libs-tomsfastmath
   category: "libs"
   name: "tomsfastmath"
-  version: "0.13.1-r1+1"
+  version: "0.13.1-r1+2"
   uri:
   - https://www.libtom.net/TomsFastMath/
   - https://github.com/libtom/tomsfastmath
@@ -3934,7 +3922,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+1"
+  version: "0.8.0_p20210321-r3+2"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -3960,7 +3948,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "0.20.8-r1"
+  version: "0.20.8-r1+1"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3981,7 +3969,7 @@ packages:
 - &libs-udis86
   category: "libs"
   name: "udis86"
-  version: "1.7.2-r1+2"
+  version: "1.7.2-r1+3"
   uri:
   - http://udis86.sourceforge.net/
   license: "BSD"
@@ -4007,7 +3995,7 @@ packages:
 - &libs-uthash
   category: "libs"
   name: "uthash"
-  version: "2.3.0"
+  version: "2.3.0+1"
   uri:
   - https://troydhanson.github.io/uthash/index.html
   license: "BSD-1"
@@ -4028,7 +4016,7 @@ packages:
 - &libs-vamp-plugin-sdk
   category: "libs"
   name: "vamp-plugin-sdk"
-  version: "2.10+2"
+  version: "2.10+3"
   uri:
   - https://www.vamp-plugins.org
   license: "BSD"
@@ -4049,7 +4037,7 @@ packages:
 - &libs-vc
   category: "libs"
   name: "vc"
-  version: "1.4.3"
+  version: "1.4.3+1"
   uri:
   - https://github.com/VcDevel/Vc
   license: "BSD"
@@ -4070,7 +4058,7 @@ packages:
 - &libs-vdf
   category: "libs"
   name: "vdf"
-  version: "3.4-r1+1"
+  version: "3.4-r1+2"
   uri:
   - https://github.com/ValvePython/vdf
   license: "MIT"
@@ -4091,7 +4079,7 @@ packages:
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
-  version: "0.8.2+1"
+  version: "0.8.2+2"
   uri:
   - https://www.zaphoyd.com/websocketpp
   license: "BSD"
@@ -4112,7 +4100,7 @@ packages:
 - &libs-wxGTK
   category: "libs"
   name: "wxGTK"
-  version: "3.2.2.1-r3+1"
+  version: "3.2.2.1-r3+2"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -4136,7 +4124,7 @@ packages:
 - &libs-wxGTK-3_0-gtk3
   category: "libs"
   name: "wxGTK-3_0-gtk3"
-  version: "3.0.5.1-r1+8"
+  version: "3.0.5.1-r1+9"
   uri:
   - https://wxwidgets.org/
   license: "wxWinLL-3 GPL-2"
@@ -4160,7 +4148,7 @@ packages:
 # - &libs-xapian
 #   category: "libs"
 #   name: "xapian"
-#   version: "1.4.18-r1"
+#   version: "1.4.18-r1+1"
 #   uri:
 #   - https://www.xapian.org/
 #   license: "GPL-2"
@@ -4181,7 +4169,7 @@ packages:
 - &libs-xerces-c
   category: "libs"
   name: "xerces-c"
-  version: "3.2.4-r2"
+  version: "3.2.4-r2+1"
   uri:
   - https://xerces.apache.org/xerces-c/
   license: "Apache-2.0"
@@ -4205,7 +4193,7 @@ packages:
 - &libs-XML-LibXML
   category: "libs"
   name: "XML-LibXML"
-  version: "2.20.900"
+  version: "2.20.900+1"
   uri:
   - https://metacpan.org/release/XML-LibXML
   license: "Artistic GPL-1+"
@@ -4228,7 +4216,7 @@ packages:
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
-  version: "1.3.3-r1"
+  version: "1.3.3-r1+1"
   uri:
   - https://www.aleksey.com/xmlsec
   license: "MIT"
@@ -4252,7 +4240,7 @@ packages:
 - &libs-xwininfo
   category: "libs"
   name: "xwininfo"
-  version: "1.1.6"
+  version: "1.1.6+1"
   uri:
   - https://www.x.org/wiki/
   - https://gitlab.freedesktop.org/xorg/app/xwininfo
@@ -4274,7 +4262,7 @@ packages:
 - &libs-zimg
   category: "libs"
   name: "zimg"
-  version: "3.0.4"
+  version: "3.0.4+1"
   uri:
   - https://github.com/sekrit-twc/zimg
   license: "WTFPL-2"
@@ -4292,13 +4280,35 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-zstandard
+  category: "libs"
+  name: "zstandard"
+  version: "0.22.0+2"
+  uri:
+  - https://github.com/indygreg/python-zstandard/
+  - https://pypi.org/project/zstandard/
+  license: "BSD"
+  description: "Zstandard Bindings for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/zstandard
+  provides:
+  - category: "dev-python"
+    name: "zstandard"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 ################################################################################################################################################################
 ### dep 0 apps ###
 ################################################################################################################################################################
 
 - category: "apps"
   name: "alacritty"
-  version: "0.12.3"
+  version: "0.12.3+1"
   uri:
   - https://alacritty.org
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 FTL ISC MIT MPL-2.0"
@@ -4321,7 +4331,7 @@ packages:
 
 - category: "apps"
   name: "alligator"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/alligator/
   license: "GPL-2+"
@@ -4334,9 +4344,6 @@ packages:
   - category: "net-news"
     name: "alligator"
     version: ">=0"
-  atoms:
-  - atom: "net-news/alligator"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -4344,7 +4351,7 @@ packages:
 
 - category: "apps"
   name: "amberol"
-  version: 0.9.2+19
+  version: "0.9.2+20"
   uri:
   - https://gitlab.gnome.org/World/amberol
   license: "GPL-3+"
@@ -4366,7 +4373,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "34.0.1"
+  version: "34.0.1+1"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -4399,7 +4406,7 @@ packages:
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
-  version: "3.14.14-r3+3"
+  version: "3.14.14-r3+4"
   uri:
   - http://www.apcupsd.org/
   license: "GPL-2"
@@ -4425,7 +4432,7 @@ packages:
 - &apps-argouml
   category: "apps"
   name: "argouml"
-  version: "0.34-r1"
+  version: "0.34-r1+1"
   uri:
   - https://argouml-tigris-org.github.io/
   license: "MPL-1.1 GPL-2"
@@ -4449,7 +4456,7 @@ packages:
 - &apps-argyllcms
   category: "apps"
   name: "argyllcms"
-  version: "2.1.2-r3+1"
+  version: "2.1.2-r3+2"
   uri:
   - http://www.argyllcms.com/
   license: "AGPL-3"
@@ -4471,7 +4478,7 @@ packages:
 
 - category: "apps"
   name: "b5i2iso"
-  version: "0.2-r2"
+  version: "0.2-r2+1"
   uri:
   - https://web.archive.org/web/20100116120705/b5i2iso.berlios.de
   license: "GPL-2"
@@ -4491,7 +4498,7 @@ packages:
 
 - category: "apps"
   name: "bchunk"
-  version: "1.2.2-r1"
+  version: "1.2.2-r1+1"
   uri:
   - http://he.fi/bchunk/
   license: "GPL-2+"
@@ -4511,7 +4518,7 @@ packages:
 
 - category: "apps"
   name: "billardgl"
-  version: "1.75-r2"
+  version: "1.75-r2+1"
   uri:
   - https://sourceforge.net/projects/billardgl/
   license: "GPL-2"
@@ -4535,7 +4542,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.16.42"
+  version: "9.16.48"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -4560,7 +4567,7 @@ packages:
 
 - category: "apps"
   name: "bin2iso"
-  version: "19b-r3"
+  version: "19b-r3+1"
   uri:
   - http://users.andara.com/~doiron/bin2iso/
   license: "public-domain"
@@ -4580,7 +4587,7 @@ packages:
 
 - category: "apps"
   name: "bleachbit"
-  version: "4.6.0"
+  version: "4.6.0+1"
   uri:
   - https://bleachbit.org/
   license: "GPL-3"
@@ -4603,7 +4610,7 @@ packages:
 - &apps-bluefish
   category: "apps"
   name: "bluefish"
-  version: "2.2.13"
+  version: "2.2.13+1"
   uri:
   - https://bluefish.openoffice.nl/
   license: "GPL-3+"
@@ -4627,7 +4634,7 @@ packages:
 - &apps-bottom
   category: "apps"
   name: "bottom"
-  version: "0.9.6"
+  version: "0.9.6+1"
   uri:
   - https://github.com/ClementTsang/bottom
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 MIT MPL-2.0 Unlicense ZLIB"
@@ -4650,7 +4657,7 @@ packages:
 
 - category: "apps"
   name: "brasero"
-  version: "3.12.3"
+  version: "3.12.3+1"
   uri:
   - https://wiki.gnome.org/Apps/Brasero
   license: "GPL-2+ CC-BY-SA-3.0"
@@ -4673,7 +4680,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.62.153"
+  version: "1.62.153+1"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4702,7 +4709,7 @@ packages:
 - &apps-brother-dcp1610w-bin
   category: "apps"
   name: "brother-dcp1610w-bin"
-  version: "3.0.1-r1"
+  version: "3.0.1-r1+1"
   uri:
   - http://support.brother.com
   license: "brother-eula GPL-2"
@@ -4725,9 +4732,9 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  category: "apps"
+- category: "apps"
   name: "cartridges"
-  version: "2.7.2-r1"
+  version: "2.7.3"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -4750,7 +4757,7 @@ packages:
 
 - category: "apps"
   name: "ccd2iso"
-  version: "0.3-r1"
+  version: "0.3-r1+1"
   uri:
   - https://sourceforge.net/projects/ccd2iso/
   license: "GPL-2+"
@@ -4770,7 +4777,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20221215+1"
+  version: "1.7.0_pre20221215+2"
   uri:
   - https://celestia.space
   license: "GPL-2+"
@@ -4795,7 +4802,7 @@ packages:
 - &apps-cfortran
   category: "apps"
   name: "cfortran"
-  version: "20110621+4"
+  version: "20110621+5"
   uri:
   - https://www-zeus.desy.de/~burow/cfortran/
   - https://github.com/bastien-roucaries/cfortran
@@ -4817,7 +4824,7 @@ packages:
 - &apps-cgroup-utils
   category: "apps"
   name: "cgroup-utils"
-  version: "0.8-r1+1"
+  version: "0.8-r1+2"
   uri:
   - https://github.com/peo3/cgroup-utils
   license: "GPL-2"
@@ -4840,7 +4847,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+"
@@ -4861,7 +4868,7 @@ packages:
 - &apps-converseen
   category: "apps"
   name: "converseen"
-  version: "0.9.11.1"
+  version: "0.9.11.1+1"
   uri:
   - https://converseen.fasterland.net/
   license: "GPL-3+"
@@ -4881,7 +4888,7 @@ packages:
 
 - category: "apps"
   name: "cool-retro-term"
-  version: "1.2.0"
+  version: "1.2.0+1"
   uri:
   - https://github.com/Swordfish90/cool-retro-term
   license: "GPL-3 GPL-2"
@@ -4905,7 +4912,7 @@ packages:
 - &apps-coquillo
   category: "apps"
   name: "coquillo"
-  version: "2.0.1"
+  version: "2.0.1+1"
   uri:
   - https://www.linux-apps.com/content/show.php/Coquillo?content=141896
   license: "LGPL-3"
@@ -4928,7 +4935,7 @@ packages:
 
 - category: "apps"
   name: "cuetools"
-  version: "1.4.1-r1"
+  version: "1.4.1-r1+1"
   uri:
   - https://github.com/svend/cuetools
   license: "GPL-2"
@@ -4948,7 +4955,7 @@ packages:
 
 - category: "apps"
   name: "curses-hexedit"
-  version: "0.9.7-r1"
+  version: "0.9.7-r1+1"
   uri:
   - https://www.rogoyski.com/adam/programs/hexedit/
   license: "GPL-2+"
@@ -4969,7 +4976,7 @@ packages:
 - &apps-dcraw
   category: "apps"
   name: "dcraw"
-  version: "9.28.0-r4"
+  version: "9.28.0-r4+1"
   uri:
   - https://www.cybercom.net/~dcoffin/dcraw
   license: "GPL-2"
@@ -4993,7 +5000,7 @@ packages:
 - &apps-designer
   category: "apps"
   name: "designer"
-  version: "5.15.12"
+  version: "5.15.12+1"
   uri:
   - https://www.qt.io/
   license: "GPL-2 GPL-3 LGPL-3 FDL-1.3"
@@ -5017,7 +5024,7 @@ packages:
 - &apps-dia
   category: "apps"
   name: "dia"
-  version: "0.97.3-r1+6"
+  version: "0.97.3-r1+7"
   uri:
   - https://wiki.gnome.org/Apps/Dia
   license: "GPL-2"
@@ -5042,7 +5049,7 @@ packages:
 - &apps-diffpdf
   category: "apps"
   name: "diffpdf"
-  version: "2.1.3-r2"
+  version: "2.1.3-r2+1"
   uri:
   - https://www.qtrac.eu/diffpdf.html
   license: "GPL-2"
@@ -5065,7 +5072,7 @@ packages:
 
 - category: "apps"
   name: "diffuse"
-  version: "0.8.2"
+  version: "0.8.2+1"
   uri:
   - http://diffuse.sourceforge.net/
   license: "GPL-2"
@@ -5086,7 +5093,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.6.0.1"
+  version: "1.6.0.1+1"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -5109,7 +5116,7 @@ packages:
   
 - category: "apps"
   name: "dolphin-plugins-git"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/dolphin_plugins/
   license: "GPL-2"
@@ -5130,7 +5137,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.5"
+  version: "0.6"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5165,7 +5172,7 @@ packages:
 - &apps-dotnet-runtime-nugets-7
   category: "apps"
   name: "dotnet-runtime-nugets-7"
-  version: "7.0.14+1"
+  version: "7.0.16"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5174,11 +5181,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:7.0.14
+      dev-dotnet/dotnet-runtime-nugets:7.0.16
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "7.0.14"
+    version: "7.0.16"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -5187,7 +5194,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.0+1"
+  version: "8.0.2-r1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5196,14 +5203,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:8.0.0
+      dev-dotnet/dotnet-runtime-nugets:8.0.2-r1
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "8.0.0"
-  atoms:
-  - atom: "dev-dotnet/dotnet-runtime-nugets:8.0.0"
-    accept_keywords: "~amd64"
+    version: "8.0.2-r1"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -5211,7 +5215,7 @@ packages:
 
 - category: "apps"
   name: "drawio-desktop-bin"
-  version: "21.6.8"
+  version: "21.6.8+1"
   uri:
   - https://github.com/jgraph/drawio-desktop
   license: "Apache-2.0"
@@ -5237,7 +5241,7 @@ packages:
 - &apps-dtach
   category: "apps"
   name: "dtach"
-  version: "0.9-r1"
+  version: "0.9-r1+1"
   uri:
   - http://dtach.sourceforge.net/
   license: "GPL-2+"
@@ -5258,7 +5262,7 @@ packages:
 - &apps-dvdauthor
   category: "apps"
   name: "dvdauthor"
-  version: "0.7.2-r2"
+  version: "0.7.2-r2+1"
   uri:
   - http://dvdauthor.sourceforge.net/
   license: "GPL-2"
@@ -5281,7 +5285,7 @@ packages:
 
 - category: "apps"
   name: "elisa"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/elisa
   license: "LGPL-3+"
@@ -5302,7 +5306,7 @@ packages:
 
 - category: "apps"
   name: "erlang"
-  version: "26.2.1"
+  version: "26.2.1+1"
   uri:
   - https://www.erlang.org
   license: "Apache-2.0"
@@ -5325,7 +5329,7 @@ packages:
 
 - category: "apps"
   name: "epiphany"
-  version: "44.6"
+  version: "44.6+1"
   uri:
   - https://gitlab.gnome.org/GNOME/epiphany
   license: "GPL-3+"
@@ -5346,7 +5350,7 @@ packages:
 - &apps-epstool
   category: "apps"
   name: "epstool"
-  version: "3.09+1"
+  version: "3.09+2"
   uri:
   - http://www.ghostgum.com.au/software/epstool.htm
   license: "GPL-2"
@@ -5367,7 +5371,7 @@ packages:
 - &apps-eselect-emacs
   category: "apps"
   name: "eselect-emacs"
-  version: "1.19"
+  version: "1.19+1"
   uri:
   - https://wiki.gentoo.org/wiki/Project:Emacs
   license: "GPL-2+"
@@ -5393,7 +5397,7 @@ packages:
 
 - category: "apps"
   name: "ext4magic"
-  version: "0.3.2-r1"
+  version: "0.3.2-r1+1"
   uri:
   - https://sourceforge.net/projects/ext4magic/
   license: "GPL-2"
@@ -5417,7 +5421,7 @@ packages:
 # should be in main repo
 - category: "apps"
   name: "extundelete"
-  version: "0.2.4-r2"
+  version: "0.2.4-r2+1"
   uri:
   - https://extundelete.sourceforge.net/
   license: "GPL-2"
@@ -5438,7 +5442,7 @@ packages:
 # - &apps-ffmpeg-4
 #   category: "apps"
 #   name: "ffmpeg"
-#   version: "4.4.4-r3"
+#   version: "4.4.4-r3+1"
 #   uri:
 #   - https://ffmpeg.org/
 #   license: "metapackage"
@@ -5461,7 +5465,7 @@ packages:
 
 - category: "apps"
   name: "ffmpegthumbs"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://kde.org/
   license: "GPL-2+"
@@ -5482,7 +5486,7 @@ packages:
 - &apps-fig2dev
   category: "apps"
   name: "fig2dev"
-  version: "3.2.9-r2"
+  version: "3.2.9-r2+1"
   uri:
   - https://www.xfig.org/
   license: "BSD"
@@ -5506,7 +5510,7 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "filelight"
+  name: "filelight+1"
   version: "23.08.4"
   uri:
   - https://apps.kde.org/filelight/
@@ -5529,7 +5533,7 @@ packages:
 - &apps-firejail
   category: "apps"
   name: "firejail"
-  version: "0.9.72+1"
+  version: "0.9.72+2"
   uri:
   - https://firejail.wordpress.com/
   license: "GPL-2"
@@ -5549,7 +5553,7 @@ packages:
 
 - category: "apps"
   name: "fish"
-  version: "3.4.0+1"
+  version: "3.6.1"
   uri:
   - http://fishshell.com/
   license: "GPL-2"
@@ -5569,7 +5573,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "10.0.0-r1"
+  version: "10.0.0-r1+1"
   uri:
   - https://flacon.github.io/
   license: "LGPL-2.1+"
@@ -5592,7 +5596,7 @@ packages:
 
 - category: "apps"
   name: "foliate"
-  version: "2.6.4-r3"
+  version: "2.6.4-r3+1"
   uri:
   - https://github.com/johnfactotum/foliate
   license: "GPL-3+"
@@ -5616,7 +5620,7 @@ packages:
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
-  version: "20230101+1"
+  version: "20230101+2"
   uri:
   - http://fontforge.sourceforge.net/
   license: "BSD"
@@ -5645,7 +5649,7 @@ packages:
 
 - category: "apps"
   name: "foobillard"
-  version: "3.0a-r1+3"
+  version: "3.0a-r1+4"
   uri:
   - http://foobillard.sourceforge.net/
   license: "GPL-2"
@@ -5669,7 +5673,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.16.2"
+  version: "1.16.2+1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -5707,7 +5711,7 @@ packages:
 - &apps-fpc
   category: "apps"
   name: "fpc"
-  version: "3.2.2"
+  version: "3.2.2+1"
   uri:
   - https://www.freepascal.org/
   license: "GPL-2 LGPL-2.1-with-linking-exception"
@@ -5731,7 +5735,7 @@ packages:
 - &apps-fraqtive
   category: "apps"
   name: "fraqtive"
-  version: "0.4.8-r2"
+  version: "0.4.8-r2+1"
   uri:
   - https://fraqtive.mimec.org/
   license: "GPL-2"
@@ -5755,7 +5759,7 @@ packages:
 
 - category: "apps"
   name: "freeoffice"
-  version: "1068"
+  version: "1068+1"
   uri:
   - https://www.freeoffice.com
   license: "SoftMaker"
@@ -5786,7 +5790,7 @@ packages:
 
 - category: "apps"
   name: "galaxy"
-  version: "2.2-r1"
+  version: "2.2-r1+1"
   uri:
   - http://www.kornelix.com/galaxy.html
   license: "GPL-3"
@@ -5810,7 +5814,7 @@ packages:
 - &apps-gaupol
   category: "apps"
   name: "gaupol"
-  version: "1.13"
+  version: "1.13+1"
   uri:
   - https://otsaloma.io/gaupol/
   license: "GPL-2+"
@@ -5833,7 +5837,7 @@ packages:
 
 - category: "apps"
   name: "gftp"
-  version: "2.9.1b+1"
+  version: "2.9.1b+2"
   uri:
   - https://github.com/masneyb/gftp
   license: "GPL-2"
@@ -5853,7 +5857,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "9.11.1"
+  version: "9.12.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -5880,7 +5884,7 @@ packages:
 - &apps-gmtp
   category: "apps"
   name: "gmtp"
-  version: "1.3.11-r3+3"
+  version: "1.3.11-r3+4"
   uri:
   - http://gmtp.sourceforge.net/
   license: "GPL-2+"
@@ -5903,7 +5907,7 @@ packages:
 
 - category: "apps"
   name: "gnofract4d"
-  version: "4.3_p20221125-r1+1"
+  version: "4.3_p20221125-r1+2"
   uri:
   - https://fract4d.github.io/gnofract4d/
   license: "BSD"
@@ -5923,7 +5927,7 @@ packages:
 
 - category: "apps"
   name: "gnome-shell-frippery"
-  version: "45.0"
+  version: "45.0+1"
   uri:
   - http://frippery.org/extensions/index.html
   license: "GPL-2+"
@@ -5943,7 +5947,7 @@ packages:
 
 - category: "apps"
   name: "gnome-tweaks"
-  version: "45.0"
+  version: "45.0+1"
   uri:
   - https://wiki.gnome.org/Apps/Tweaks
   license: "GPL-3+ CC0-1.0"
@@ -5964,7 +5968,7 @@ packages:
 - &apps-gnumeric
   category: "apps"
   name: "gnumeric"
-  version: "1.12.55+2"
+  version: "1.12.55+3"
   uri:
   - http://www.gnumeric.org/
   license: "GPL-2"
@@ -5987,7 +5991,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.21.6"
+  version: "1.21.7"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6010,7 +6014,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "121.0.6167.160"
+  version: "121.0.6167.184"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6034,7 +6038,7 @@ packages:
   
 - category: "apps"
   name: "grub-btrfs"
-  version: "4.13"
+  version: "4.13+1"
   uri:
   - https://github.com/Antynea/grub-btrfs
   license: "GPL-3"
@@ -6072,7 +6076,7 @@ packages:
 
 - category: "apps"
   name: "gsmartcontrol"
-  version: "1.1.4-r1"
+  version: "1.1.4-r1+1"
   uri:
   - https://gsmartcontrol.sourceforge.io/
   license: "GPL-2 GPL-3 Boost-1.0 BSD Unlicense ZLIB"
@@ -6095,7 +6099,7 @@ packages:
 - &apps-gtk-sunlight
   category: "apps"
   name: "gtk-sunlight"
-  version: "0.4.2-r2"
+  version: "0.4.2-r2+1"
   uri:
   - http://realtimesunlightwallpaper.weebly.com/
   license: "GPL-1"
@@ -6119,7 +6123,7 @@ packages:
 - &apps-gtkspell
   category: "apps"
   name: "gtkspell"
-  version: "3.0.10-r1"
+  version: "3.0.10-r1+1"
   uri:
   - http://gtkspell.sourceforge.net/
   license: "GPL-2+"
@@ -6142,7 +6146,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo"
-  version: "0.6_alpha_pre20221113"
+  version: "0.6_alpha_pre20221113+1"
   uri:
   - https://github.com/lpereira/hardinfo
   license: "GPL-2"
@@ -6164,7 +6168,7 @@ packages:
 - &apps-hddtemp
   category: "apps"
   name: "hddtemp"
-  version: "0.3_beta15-r29+1"
+  version: "0.3_beta15-r29+2"
   uri:
   - https://savannah.nongnu.org/projects/hddtemp/
   license: "GPL-2"
@@ -6187,7 +6191,7 @@ packages:
 
 - category: "apps"
   name: "hexchat"
-  version: "2.16.1-r1+2"
+  version: "2.16.1-r1+3"
   uri:
   - https://hexchat.github.io/
   license: "GPL-2 MIT"
@@ -6210,7 +6214,7 @@ packages:
 
 - category: "apps"
   name: "httrack"
-  version: "3.49.5"
+  version: "3.49.5+1"
   uri:
   - https://www.httrack.com/
   license: "GPL-3"
@@ -6230,7 +6234,7 @@ packages:
 
 - category: "apps"
   name: "hwinfo"
-  version: "23.2-r1"
+  version: "23.2-r1+1"
   uri:
   - https://github.com/openSUSE/hwinfo/
   license: "GPL-2"
@@ -6255,7 +6259,7 @@ packages:
 
 - category: "apps"
   name: "iat"
-  version: "0.1.7-r1"
+  version: "0.1.7-r1+1"
   uri:
   - https://www.berlios.de/software/iso9660-analyzer-tool
   license: "GPL-2"
@@ -6276,7 +6280,7 @@ packages:
 - &apps-i2c-tools
   category: "apps"
   name: "i2c-tools"
-  version: "4.3"
+  version: "4.3+1"
   uri:
   - https://www.kernel.org/pub/software/utils/i2c-tools
   license: "GPL-2"
@@ -6297,7 +6301,7 @@ packages:
 - &apps-icoutils
   category: "apps"
   name: "icoutils"
-  version: "0.32.3+8"
+  version: "0.32.3+9"
   uri:
   - http://www.nongnu.org/icoutils/
   license: "GPL-2"
@@ -6320,7 +6324,7 @@ packages:
 - &apps-imwheel
   category: "apps"
   name: "imwheel"
-  version: "1.0.0_pre13_p20100827+1"
+  version: "1.0.0_pre13_p20100827+2"
   uri:
   - http://imwheel.sourceforge.net/
   license: "GPL-2"
@@ -6340,7 +6344,7 @@ packages:
 
 - category: "apps"
   name: "isomaster"
-  version: "1.3.16"
+  version: "1.3.16+1"
   uri:
   - http://littlesvr.ca/isomaster
   - https://github.com/ndevilla/iniparser
@@ -6367,7 +6371,7 @@ packages:
 
 - category: "apps"
   name: "iptraf-ng"
-  version: "1.2.1"
+  version: "1.2.1+1"
   uri:
   - https://github.com/iptraf-ng/iptraf-ng
   license: "GPL-2 FDL-1.1"
@@ -6388,7 +6392,7 @@ packages:
 - &apps-javatoolkit
   category: "apps"
   name: "javatoolkit"
-  version: "0.6.7+2"
+  version: "0.6.7+3"
   uri:
   - https://wiki.gentoo.org/wiki/Project:Java
   license: "GPL-2"
@@ -6408,7 +6412,7 @@ packages:
 
 - category: "apps"
   name: "joe"
-  version: "4.6-r2"
+  version: "4.6-r2+1"
   uri:
   - https://sourceforge.net/projects/joe-editor
   license: "GPL-1+ CC-BY-3.0"
@@ -6429,7 +6433,7 @@ packages:
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kapptemplate
   license: "GPL-2"
@@ -6449,7 +6453,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -6475,7 +6479,7 @@ packages:
 
 - category: "apps"
   name: "kcharselect"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kcharselect
   license: "GPL-2"
@@ -6495,7 +6499,7 @@ packages:
 
 - category: "apps"
   name: "kcoloredit"
-  version: "2.0.0_p20171121-r1"
+  version: "2.0.0_p20171121-r1+1"
   uri:
   - https://userbase.kde.org/KColorEdit
   license: "GPL-2"
@@ -6521,7 +6525,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.10.7"
+  version: "1.10.7+1"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -6542,7 +6546,7 @@ packages:
 - &apps-kdocker
   category: "apps"
   name: "kdocker"
-  version: "5.4"
+  version: "5.4+1"
   uri:
   - https://github.com/user-none/KDocker
   license: "GPL-2+"
@@ -6563,7 +6567,7 @@ packages:
 - &apps-kgpg
   category: "apps"
   name: "kgpg"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kgpg/
   license: "GPL-2"
@@ -6583,7 +6587,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6603,7 +6607,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "23.08.4-r1+1"
+  version: "23.08.4-r1+2"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6623,7 +6627,7 @@ packages:
 
 - category: "apps"
   name: "kooha"
-  version: "2.2.3"
+  version: "2.2.3+1"
   uri:
   - https://github.com/SeaDve/Kooha
   license: "GPL-3"
@@ -6648,7 +6652,7 @@ packages:
 
 - category: "apps"
   name: "kookbook"
-  version: "0.1"
+  version: "0.2"
   uri:
   - https://invent.kde.org/utilities/kookbook
   license: "BSD"
@@ -6673,7 +6677,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/krfb
   license: "GPL-2"
@@ -6696,7 +6700,7 @@ packages:
 
 - category: "apps"
   name: "khronos"
-  version: "4.0.1"
+  version: "4.0.1+1"
   uri:
   - https://apps.gnome.org/app/io.github.lainsce.Khronos
   license: "GPL-3"
@@ -6721,7 +6725,7 @@ packages:
 
 - category: "apps"
   name: "kruler"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/kruler/
   license: "GPL-2+ FDL-1.2"
@@ -6746,7 +6750,7 @@ packages:
 
 - category: "apps"
   name: "krusader"
-  version: "2.8.0-r1"
+  version: "2.8.0-r1+1"
   uri:
   - https://krusader.org
   license: "GPL-2+"
@@ -6766,7 +6770,7 @@ packages:
 
 - category: "apps"
   name: "ksnip"
-  version: "1.10.1"
+  version: "1.10.1+1"
   uri:
   - https://github.com/ksnip/ksnip
   license: "GPL-2+"
@@ -6789,32 +6793,10 @@ packages:
   build_requires:
   - <<: *layers-kde-apps-minimal
 
-# Replaced by Plasma System Monitor
-# - category: "apps"
-#   name: "ksysguard"
-#   version: "5.22.0+3"
-#   uri:
-#   - https://apps.kde.org/ksysguard/
-#   - https://userbase.kde.org/KSysGuard
-#   license: "GPL-2+"
-#   description: "Network-enabled resource usage monitor"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-plasma/ksysguard
-#   provides:
-#   - category: "kde-plasma"
-#     name: "ksysguard"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-plasma
-#   build_requires:
-#   - <<: *layers-plasma
-
 - &apps-kvantum
   category: "apps"
   name: "kvantum"
-  version: "1.0.10"
+  version: "1.0.10+1"
   uri:
   - https://github.com/tsujan/Kvantum
   license: "GPL-3"
@@ -6838,7 +6820,7 @@ packages:
 - &apps-lash
   category: "apps"
   name: "lash"
-  version: "0.5.4-r5+5"
+  version: "0.5.4-r5+6"
   uri:
   - http://www.nongnu.org/lash/
   license: "GPL-2"
@@ -6862,7 +6844,7 @@ packages:
 
 - category: "apps"
   name: "latte-dock"
-  version: "0.10.77_p20230115"
+  version: "0.10.77_p20230115+1"
   uri:
   - https://apps.kde.org/latte-dock
   license: "GPL-2+"
@@ -6886,7 +6868,7 @@ packages:
 - &apps-librecad
   category: "apps"
   name: "librecad"
-  version: "2.2.0"
+  version: "2.2.0+1"
   uri:
   - https://www.librecad.org/
   license: "GPL-2"
@@ -6910,7 +6892,7 @@ packages:
 - &apps-lshw
   category: "apps"
   name: "lshw"
-  version: "02.19.2b_p20220831-r1"
+  version: "02.19.2b_p20220831-r1+1"
   uri:
   - https://www.ezix.org/project/wiki/HardwareLiSter
   license: "GPL-2"
@@ -6934,7 +6916,7 @@ packages:
 - &apps-lua-5_3
   category: "libs"
   name: "lua-5.3"
-  version: "5.3.6-r102"
+  version: "5.3.6-r102+1"
   uri:
   - https://www.lua.org/
   license: "MIT"
@@ -6958,7 +6940,7 @@ packages:
 - &apps-luajit
   category: "apps"
   name: "luajit"
-  version: "2.1.0_beta3_p20220127-r2+1"
+  version: "2.1.0_beta3_p20220127-r2+2"
   uri:
   - https://luajit.org/
   license: "MIT"
@@ -6979,7 +6961,7 @@ packages:
 - &apps-ly
   category: "apps"
   name: "ly"
-  version: "0.6.0-r1"
+  version: "0.6.0-r1+1"
   uri:
   - https://github.com/nullgemm/ly
   license: "WTFPL-2"
@@ -7004,7 +6986,7 @@ packages:
 
 - category: "apps"
   name: "mandelbulber"
-  version: "2.28-r1"
+  version: "2.28-r1+1"
   uri:
   - https://www.mandelbulber.com
   license: "CC-BY-4.0 GPL-3"
@@ -7030,7 +7012,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.6.9-r1+5"
+  version: "0.6.9-r1+6"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -7058,7 +7040,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7081,7 +7063,7 @@ packages:
 
 - category: "apps"
   name: "meld"
-  version: "3.22.0-r2+1"
+  version: "3.22.0-r2+2"
   uri:
   - http://meldmerge.org/
   license: "GPL-2+"
@@ -7101,7 +7083,7 @@ packages:
 
 - category: "apps"
   name: "milkytracker"
-  version: "1.04.00-r1+1"
+  version: "1.04.00-r1+2"
   uri:
   - http://milkytracker.org
   -  https://www.music.mcgill.ca/~gary/rtmidi
@@ -7130,7 +7112,7 @@ packages:
 
 - category: "apps"
   name: "minidlna"
-  version: "1.3.3"
+  version: "1.3.3+1"
   uri:
   - https://sourceforge.net/projects/minidlna/
   license: "BSD GPL-2"
@@ -7157,7 +7139,7 @@ packages:
 - &apps-mono
   category: "apps"
   name: "mono"
-  version: "6.12.0.182"
+  version: "6.12.0.199-r2"
   uri:
   - https://mono-project.com
   license: "MIT LGPL-2.1 GPL-2 BSD-4 NPL-1.1 Ms-PL GPL-2-with-linking-exception IDPL"
@@ -7187,7 +7169,7 @@ packages:
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
-  version: "2.0.2-r1"
+  version: "2.0.2-r1+1"
   uri:
   - https://github.com/mypaint/mypaint-brushes
   license: "CC0-1.0"
@@ -7207,7 +7189,7 @@ packages:
 
 - category: "apps"
   name: "ncdu"
-  version: "1.19"
+  version: "1.19+1"
   uri:
   - https://dev.yorhel.nl/ncdu/
   license: "MIT"
@@ -7228,7 +7210,7 @@ packages:
 - &apps-netkit-fingerd
   category: "apps"
   name: "netkit-fingerd"
-  version: "0.17-r3"
+  version: "0.17-r3+1"
   uri:
   - https://wiki.linuxfoundation.org/networking/netkit
   license: "BSD"
@@ -7248,7 +7230,7 @@ packages:
 
 # - category: "apps"
 #   name: "news-flash"
-#   version: "2.2.4+3"
+#   version: "2.2.4+4"
 #   uri:
 #   - https://gitlab.com/news-flash/news_flash_gtk
 #   license: "GPL-3"
@@ -7276,7 +7258,7 @@ packages:
 - &apps-nmon
   category: "apps"
   name: "nmon"
-  version: "16n"
+  version: "16n+1"
   uri:
   - http://nmon.sourceforge.net/
   license: "GPL-3"
@@ -7296,7 +7278,7 @@ packages:
 
 - category: "apps"
   name: "nnn"
-  version: "4.9"
+  version: "4.9+1"
   uri:
   - https://github.com/jarun/nnn
   license: "BSD-2"
@@ -7319,7 +7301,7 @@ packages:
 
 - category: "apps"
   name: "nordvpn"
-  version: "3.14.2+5"
+  version: "3.14.2+6"
   uri:
   - https://nordvpn.com
   license: "NordVPN"
@@ -7370,7 +7352,7 @@ packages:
 
 - category: "apps"
   name: "nrg2iso"
-  version: "0.4-r3"
+  version: "0.4-r3+1"
   uri:
   - http://gregory.kokanosky.free.fr/v4/linux/nrg2iso.en.html
   license: "GPL-2+"
@@ -7390,7 +7372,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.35"
+  version: "0.35+1"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -7414,7 +7396,7 @@ packages:
 - &apps-nx
   category: "apps"
   name: "nx"
-  version: "3.5.99.26+7"
+  version: "3.5.99.26+8"
   uri:
   - https://github.com/ArcticaProject/nx-libs
   license: "GPL-2 "
@@ -7440,7 +7422,7 @@ packages:
 - &apps-okteta
   category: "apps"
   name: "okteta"
-  version: "0.26.14"
+  version: "0.26.14+1"
   uri:
   - https://apps.kde.org/okteta/
   - https://utils.kde.org/projects/okteta/
@@ -7463,7 +7445,7 @@ packages:
 - &apps-openjade
   category: "apps"
   name: "openjade"
-  version: "1.3.2-r9"
+  version: "1.3.2-r9+1"
   uri:
   - http://openjade.sourceforge.net
   license: "MIT"
@@ -7483,7 +7465,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "107.0.5045.15"
+  version: "107.0.5045.21"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -7507,7 +7489,7 @@ packages:
 
 - category: "apps"
   name: "otter"
-  version: "1.0.03"
+  version: "1.0.03+1"
   uri:
   - http://www.cs.unm.edu/~mccune/otter/
   license: "otter"
@@ -7530,7 +7512,7 @@ packages:
 
 - category: "apps"
   name: "p7zip-ui"
-  version: "16.02-r8+2"
+  version: "16.02-r8+3"
   uri:
   - http://p7zip.sourceforge.net/
   license: "LGPL-2.1 unRAR"
@@ -7555,7 +7537,7 @@ packages:
 # - &apps-pandoc
 #   category: "apps"
 #   name: "pandoc"
-#   version: "3+1"
+#   version: "3+2"
 #   uri:
 #   - https://pandoc.org
 #   license: "GPL-2+"
@@ -7580,7 +7562,7 @@ packages:
 - &apps-peek
   category: "apps"
   name: "peek"
-  version: "1.5.1-r1"
+  version: "1.5.1-r1+1"
   uri:
   - https://github.com/phw/peek
   license: "GPL-3+"
@@ -7607,7 +7589,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "23.3.2-r1"
+  version: "24."
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -7629,7 +7611,7 @@ packages:
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "5.27.10"
+  version: "5.27.10+1"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2"
@@ -7650,7 +7632,7 @@ packages:
 - &apps-podofo
   category: "apps"
   name: "podofo"
-  version: "0.10.3"
+  version: "0.10.3+1"
   uri:
   - https://sourceforge.net/projects/podofo/
   license: "GPL-2 LGPL-2.1"
@@ -7673,7 +7655,7 @@ packages:
 
 - category: "apps"
   name: "popcorntime"
-  version: "0.4.9"
+  version: "0.5.0-r1"
   uri:
   - https://github.com/popcorn-official/popcorn-desktop
   license: "MIT BSD BSD-2 BSD-4 AFL-2.1 Apache-2.0 Ms-PL GPL-2 LGPL-2.1 APSL-2 unRAR OFL CC-BY-SA-3.0 MPL-2.0 android public-domain all-rights-reserved"
@@ -7697,7 +7679,7 @@ packages:
 
 - category: "apps"
   name: "polari"
-  version: "45.0"
+  version: "45.0+1"
   uri:
   - https://wiki.gnome.org/Apps/Polari
   license: "GPL-2+"
@@ -7721,7 +7703,7 @@ packages:
 - &apps-powerpanel
   category: "apps"
   name: "powerpanel"
-  version: "1.4.1-r1+1"
+  version: "1.4.1-r1+2"
   uri:
   - https://www.cyberpowersystems.com/
   license: "PowerPanel"
@@ -7747,7 +7729,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "8.32"
+  version: "8.32+1"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -7773,7 +7755,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.3-r3"
+  version: "1.3-r3+1"
   uri:
   - https://invent.kde.org/libraries/pulseaudio-qt
   license: "LGPL-2.1"
@@ -7793,7 +7775,7 @@ packages:
 
 - category: "apps"
   name: "putty"
-  version: "0.80"
+  version: "0.80+1"
   uri:
   - https://www.chiark.greenend.org.uk/~sgtatham/putty/
   license: "MIT"
@@ -7819,7 +7801,7 @@ packages:
 - &apps-pycodestyle
   category: "apps"
   name: "pycodestyle"
-  version: "2.11.1"
+  version: "2.11.1+1"
   uri:
   - https://pycodestyle.pycqa.org/en/latest/
   - https://github.com/PyCQA/pycodestyle/
@@ -7841,7 +7823,7 @@ packages:
 
 - category: "apps"
   name: "qbittorrent"
-  version: "4.6.3"
+  version: "4.6.3+1"
   uri:
   - https://www.qbittorrent.org
   license: "GPL-2"
@@ -7868,7 +7850,7 @@ packages:
 
 - category: "apps"
   name: "qmplay2"
-  version: "23.10.22"
+  version: "23.10.22-r1"
   uri:
   - https://github.com/zaps166/QMPlay2
   license: "LGPL-3"
@@ -7891,7 +7873,7 @@ packages:
 
 - category: "apps"
   name: "quassel"
-  version: "0.14.0-r2"
+  version: "0.14.0-r2+1"
   uri:
   - https://quassel-irc.org
   license: "GPL-3"
@@ -7918,7 +7900,7 @@ packages:
 - &apps-qhexedit2
   category: "apps"
   name: "qhexedit2"
-  version: "0.8.9_p20210525-r2+2"
+  version: "0.8.9_p20210525-r2+3"
   uri:
   - https://github.com/Simsys/qhexedit2/
   license: "GPL-2"
@@ -7943,7 +7925,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "0.9.12"
+  version: "0.9.12+1"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -7967,7 +7949,7 @@ packages:
 - &apps-qjoypad
   category: "apps"
   name: "qjoypad"
-  version: "4.3.1"
+  version: "4.3.1+1"
   uri:
   - https://github.com/panzi/qjoypad
   license: "GPL-2"
@@ -7990,7 +7972,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.9-r3"
+  version: "5.9-r3+1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -8013,7 +7995,7 @@ packages:
 
 - category: "apps"
   name: "redshift"
-  version: "1.12-r10+1"
+  version: "1.12-r10+2"
   uri:
   - http://jonls.dk/redshift
   license: "GPL-3"
@@ -8038,7 +8020,7 @@ packages:
 - &apps-rhino
   category: "apps"
   name: "rhino"
-  version: "1.7.14+1"
+  version: "1.7.14+2"
   uri:
   - https://github.com/mozilla/rhino
   license: "MPL-1.1 GPL-2"
@@ -8059,7 +8041,7 @@ packages:
 - &apps-rofi
   category: "apps"
   name: "rofi"
-  version: "1.7.5"
+  version: "1.7.5+1"
   uri:
   - https://github.com/davatorium/rofi
   license: "MIT"
@@ -8079,7 +8061,7 @@ packages:
 
 - category: "apps"
   name: "scapy"
-  version: "2.5.0+1"
+  version: "2.5.0+2"
   uri:
   - https://scapy.net/
   - https://github.com/secdev/scapy
@@ -8101,7 +8083,7 @@ packages:
 - &apps-scour
   category: "apps"
   name: "scour"
-  version: "0.38.2-r1+1"
+  version: "0.38.2-r1+2"
   uri:
   - https://github.com/scour-project/scour
   license: "Apache-2.0"
@@ -8122,7 +8104,7 @@ packages:
 - &apps-simple-scan
   category: "apps"
   name: "simple-scan"
-  version: "44.0"
+  version: "44.0+1"
   uri:
   - https://gitlab.gnome.org/GNOME/simple-scan
   license: "GPL-3+"
@@ -8146,7 +8128,7 @@ packages:
 - &apps-simplescreenrecorder
   category: "apps"
   name: "simplescreenrecorder"
-  version: "0.4.4-r3+1"
+  version: "0.4.4-r3+2"
   uri:
   - https://www.maartenbaert.be/simplescreenrecorder/
   license: "GPL-3"
@@ -8170,7 +8152,7 @@ packages:
 - &apps-skypeforlinux
   category: "apps"
   name: "skypeforlinux"
-  version: "8.110.76.107+1"
+  version: "8.110.76.107+2"
   uri:
   - https://www.skype.com/
   license: "Skype-TOS MIT MIT-with-advertising BSD-1 BSD-2 BSD Apache-2.0 Boost-1.0 ISC CC-BY-SA-3.0 CC0-1.0 openssl ZLIB APSL-2 icu Artistic-2 LGPL-2.1"
@@ -8196,7 +8178,7 @@ packages:
 # Figure it out later
 # - category: "apps"
 #   name: "smb4k"
-#   version: "3.1.3+1"
+#   version: "3.1.3+2"
 #   uri:
 #   - https://apps.kde.org/smb4k
 #   license: "GPL-2"
@@ -8217,7 +8199,7 @@ packages:
 - &apps-sndio
   category: "apps"
   name: "sndio"
-  version: "1.8.0-r1"
+  version: "1.8.0-r1+1"
   uri:
   - http://www.sndio.org/
   license: "ISC"
@@ -8242,7 +8224,7 @@ packages:
 
 - category: "apps"
   name: "solaar"
-  version: "1.1.9+1"
+  version: "1.1.9+2"
   uri:
   - https://pwr-solaar.github.io/Solaar/
   license: "GPL-2"
@@ -8265,7 +8247,7 @@ packages:
 
 - category: "apps"
   name: "soundkonverter"
-  version: "3.0.1-r3"
+  version: "3.0.1-r3+1"
   uri:
   - https://www.linux-apps.com/p/1126634/
   - https://github.com/dfaust/soundkonverter
@@ -8291,7 +8273,7 @@ packages:
 - &apps-spacenavd
   category: "apps"
   name: "spacenavd"
-  version: "0.8+2"
+  version: "0.8+3"
   uri:
   - http://spacenav.sourceforge.net/
   license: "GPL-3"
@@ -8314,7 +8296,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.0+1"
+  version: "0.8.0+2"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -8335,7 +8317,7 @@ packages:
 - &apps-sqlcipher
   category: "apps"
   name: "sqlcipher"
-  version: "4.5.1+2"
+  version: "4.5.1+3"
   uri:
   - https://www.zetetic.net/sqlcipher
   license: "BSD"
@@ -8356,7 +8338,7 @@ packages:
 - &apps-tcsh
   category: "apps"
   name: "tcsh"
-  version: "6.24.01-r1"
+  version: "6.24.01-r1+1"
   uri:
   - https://www.tcsh.org/
   license: "BSD"
@@ -8380,7 +8362,7 @@ packages:
 - &apps-timeshift
   category: "apps"
   name: "timeshift"
-  version: "23.07.1"
+  version: "23.07.1+1"
   uri:
   - https://github.com/linuxmint/timeshift
   license: "LGPL-3"
@@ -8405,7 +8387,7 @@ packages:
 
 - category: "apps"
   name: "tophat"
-  version: "9999"
+  version: "9999+1"
   uri:
   - https://github.com/fflewddur/tophat
   license: "GPL-3"
@@ -8429,33 +8411,8 @@ packages:
   - <<: *layers-gnome
 
 - category: "apps"
-  name: "tooth"
-  version: "9999"
-  uri:
-  - https://github.com/GeopJr/Tooth
-  license: "GPL-3"
-  description: "Tooth is a fork of the now archived Tootle, a gtk Mastodon client."
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/tooth
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-misc"
-    name: "tooth"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/tooth"
-    accept_keywords: "**"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "tor"
-  version: "0.4.8.10"
+  version: "0.4.8.10+1"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -8484,7 +8441,7 @@ packages:
 
 - category: "apps"
   name: "tree"
-  version: "2.1.1"
+  version: "2.1.1+1"
   uri:
   - http://mama.indstate.edu/users/ice/tree
   license: "GPL-2"
@@ -8502,35 +8459,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# Can be enabled once gui-libs/gtksourceview:5.0 is in gnome-common
-# - category: "apps"
-#   name: "tuba"
-#   version: "0.3.2"
-#   uri:
-#   - https://github.com/GeopJr/Tuba
-#   license: "CC-BY-3.0 GPL-3+"
-#   description: "Mastodon client, previously known as Tooth"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       net-misc/tuba
-#   overlays:
-#   - enable: "guru"
-#   provides:
-#   - category: "net-misc"
-#     name: "tuba"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-misc/tuba"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "tuba"
+  version: "0.6.3"
+  uri:
+  - https://github.com/GeopJr/Tuba
+  license: "GPL-3 CC-BY-SA-4.0"
+  description: "Browse the Fediverse (GTK client)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/tuba
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-misc"
+    name: "tuba"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "shortwave"
-  version: 3.2.0
+  version: "3.2.0+2"
   uri:
   - https://gitlab.gnome.org/World/Shortwave.git
   license: "GPL-3"
@@ -8549,7 +8502,7 @@ packages:
 
 - category: "apps"
   name: "st"
-  version: "0.9"
+  version: "0.9+1"
   uri:
   - https://st.suckless.org
   license: "MIT-with-advertising"
@@ -8572,7 +8525,7 @@ packages:
 
 - category: "apps"
   name: "sweeper"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/sweeper/
   license: "GPL-3"
@@ -8597,7 +8550,7 @@ packages:
 
 - category: "apps"
   name: "systemdgenie"
-  version: "0.99.0_p20221120"
+  version: "0.99.0_p20221120+1"
   uri:
   - https://invent.kde.org/system/systemdgenie
   license: "GPL-2+"
@@ -8620,7 +8573,7 @@ packages:
 
 - category: "apps"
   name: "testdisk"
-  version: "7.1-r2"
+  version: "7.1-r2+1"
   uri:
   - https://www.cgsecurity.org/wiki/TestDisk
   license: "GPL-2+"
@@ -8641,7 +8594,7 @@ packages:
 - &apps-tk
   category: "apps"
   name: "tk"
-  version: "8.6.13"
+  version: "8.6.13+1"
   uri:
   - http://www.tcl.tk/
   license: "tcltk"
@@ -8664,7 +8617,7 @@ packages:
 
 - category: "apps"
   name: "tmux"
-  version: "3.3a-r1"
+  version: "3.3a-r1+1"
   uri:
   - https://tmux.github.io/
   license: "ISC"
@@ -8684,7 +8637,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "4.0.4"
+  version: "4.0.4+1"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -8714,7 +8667,7 @@ packages:
 - &apps-twolame
   category: "apps"
   name: "twolame"
-  version: "0.4.0+2"
+  version: "0.4.0+3"
   uri:
   - https://www.twolame.org
   license: "GPL-2"
@@ -8738,7 +8691,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.1+2"
+  version: "0.36.1+3"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -8761,7 +8714,7 @@ packages:
 - &apps-usbmuxd
   category: "apps"
   name: "usbmuxd"
-  version: "1.1.1"
+  version: "1.1.1+1"
   uri:
   - https://libimobiledevice.org/
   license: "GPL-2 GPL-3 LGPL-2.1+"
@@ -8788,7 +8741,7 @@ packages:
 - &apps-vcdimager
   category: "apps"
   name: "vcdimager"
-  version: "2.0.1+3"
+  version: "2.0.1+4"
   uri:
   - https://www.gnu.org/software/vcdimager/
   license: "GPL-2"
@@ -8810,7 +8763,7 @@ packages:
 
 - category: "apps"
   name: "video-trimmer"
-  version: "0.8.0+16"
+  version: "0.8.0+17"
   uri:
   - https://gitlab.gnome.org/YaLTeR/video-trimmer
   license: "GPL-3"
@@ -8829,7 +8782,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "6.5.3206.59"
+  version: "6.5.3206.61"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -8854,7 +8807,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.85.2.24019"
+  version: "1.86.2.24053"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -8877,11 +8830,11 @@ packages:
 
 - category: "apps"
   name: "w_scan"
+  version: "20170107+1"
   uri:
   - http://wirbel.htpc-forum.de/w_scan/index2.html
   license: "GPL-2"
   description: "Scan for DVB-C/DVB-T/DVB-S channels without prior knowledge of frequencies"
-  version: "20170107"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -8897,7 +8850,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "3.2.0-r3"
+  version: "3.2.0-r3+1"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -8918,7 +8871,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.6.2"
+  version: "0.6.2+1"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -8943,7 +8896,7 @@ packages:
 
 - category: "apps"
   name: "wavemon"
-  version: "0.9.3-r1"
+  version: "0.9.3-r1+1"
   uri:
   - https://github.com/uoaerg/wavemon/
   license: "GPL-3"
@@ -8966,7 +8919,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.1.2"
+  version: "4.1.2+1"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -8989,7 +8942,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.0.11"
+  version: "4.0.11+1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -9016,7 +8969,7 @@ packages:
 - &apps-worker
   category: "apps"
   name: "worker"
-  version: "4.6.1-r100+1"
+  version: "4.6.1-r100+2"
   uri:
   - http://www.boomerangsworld.de/cms/worker/
   license: "GPL-2"
@@ -9043,7 +8996,7 @@ packages:
 - &apps-xaos
   category: "apps"
   name: "xaos"
-  version: "4.2.1_p20210828"
+  version: "4.2.1_p20210828+1"
   uri:
   - https://xaos-project.github.io/
   license: "GPL-2"
@@ -9070,7 +9023,7 @@ packages:
 - &apps-xli
   category: "apps"
   name: "xli"
-  version: "1.17.0-r6"
+  version: "1.17.0-r6+1"
   uri:
   - ftp://ftp.ibiblio.org/pub/Linux/apps/graphics/viewers/X/xli-1.16.README
   license: "HPND"
@@ -9093,7 +9046,7 @@ packages:
 - &apps-xmahjongg
   category: "apps"
   name: "xmahjongg"
-  version: "3.7-r2"
+  version: "3.7-r2+1"
   uri:
   - http://www.lcdf.org/xmahjongg/
   license: "AGPL-3"
@@ -9117,7 +9070,7 @@ packages:
 - &apps-xsensors
   category: "apps"
   name: "xsensors"
-  version: "0.80"
+  version: "0.80+1"
   uri:
   - https://github.com/Mystro256/xsensors/
   license: "GPL-2"
@@ -9137,7 +9090,7 @@ packages:
 
 - category: "apps"
   name: "yamllint"
-  version: "1.32.0"
+  version: "1.32.0+1"
   uri:
   - https://pypi.org/project/yamllint/
   license: "GPL-3"
@@ -9157,7 +9110,7 @@ packages:
 
 - category: "apps"
   name: "zsh"
-  version: "5.9-r4"
+  version: "5.9-r4+1"
   uri:
   - https://www.zsh.org/
   license: "ZSH GPL-2"
@@ -9981,43 +9934,43 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-# - category: "apps"
-#   name: "0ad"
-#   version: "0.0.26_alpha"
-#   uri:
-#   - https://play0ad.com/
-#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-#   description: "A free, real-time strategy game"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-strategy/0ad
-#   provides:
-#   - category: "games-strategy"
-#     name: "0ad"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-strategy/0ad"
-#     use: "lobby -editor -nvtt -pch -verify-sig"
-#     accept_keywords: "~amd64"
-#   # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.11.
-#   # PYTHON_COMPAT=( python3_10 )
-#   # prepare:
-#   # - echo $SHELL || true
-#   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-#   prereqs:
-#   - app-crypt/minisign
-#   prerequires:
-#   - <<: *apps-premake-5
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-enet
-#   - <<: *libs-gloox
-#   #  Required for editor
-#   # - <<: *libs-wxGTK-3_0-gtk3
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "0ad"
+  version: "0.0.26_alpha-r1"
+  uri:
+  - https://play0ad.com/
+  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+  description: "A free, real-time strategy game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/0ad
+  provides:
+  - category: "games-strategy"
+    name: "0ad"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/0ad"
+    use: "lobby -editor -nvtt -pch -verify-sig"
+    accept_keywords: "~amd64"
+  # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.11.
+  # PYTHON_COMPAT=( python3_10 )
+  # prepare:
+  # - echo $SHELL || true
+  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
+  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+  prereqs:
+  - app-crypt/minisign
+  prerequires:
+  - <<: *apps-premake-5
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-enet
+  - <<: *libs-gloox
+  #  Required for editor
+  # - <<: *libs-wxGTK-3_0-gtk3
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-ant-core
   category: "apps"
@@ -15951,7 +15904,7 @@ packages:
   prereqs:
   - app-text/docbook2X
   optrequires:
-  # - <<: *kernel-modules-nvidia-drivers-lts
+  - <<: *kernel-modules-nvidia-drivers-lts
   - <<: *apps-apcupsd
   - <<: *apps-cmus
   # - <<: *apps-moc
