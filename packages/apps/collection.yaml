@@ -916,27 +916,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-asm
-  category: "libs"
-  name: "asm+1"
-  version: "9.6"
-  uri:
-  - https://asm.ow2.io
-  license: "BSD"
-  description: "Bytecode manipulation framework for Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/asm
-  provides:
-  - category: "dev-java"
-    name: "asm"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
 - &libs-async-timeout
   category: "libs"
   name: "async-timeout"
@@ -4351,14 +4330,14 @@ packages:
 
 - category: "apps"
   name: "amberol"
-  version: "0.9.2+20"
+  version: "0.10.3"
   uri:
   - https://gitlab.gnome.org/World/amberol
   license: "GPL-3+"
   description: "A small and simple sound and music player that is well integrated with GNOME."
   prepare:
   - git clone https://gitlab.gnome.org/World/amberol.git
-  - cd amberol && git checkout c23ec2f11fa441c402b80f7a1733ac9aea65c81d && meson --prefix=/usr build
+  - cd amberol && git checkout 31137155adb25a2e3a80de83b09e723dc2d78f4a && meson --prefix=/usr build
   setup:
   - cd amberol && ninja -C build install
   excludes:
@@ -5149,15 +5128,11 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-eselect/eselect-dotnet
-      dev-dotnet/dotnet-runtime-nugets:3.1
       dev-dotnet/dotnet-runtime-nugets:6.0.25
   provides:
   - category: "app-eselect"
     name: "eselect-dotnet"
     version: ">=0"
-  - category: "dev-dotnet"
-    name: "dotnet-runtime-nugets"
-    version: "3.1"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
     version: "6.0.25"
@@ -5172,7 +5147,7 @@ packages:
 - &apps-dotnet-runtime-nugets-7
   category: "apps"
   name: "dotnet-runtime-nugets-7"
-  version: "7.0.16"
+  version: "7.0.14+2"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5181,7 +5156,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:7.0.16
+      dev-dotnet/dotnet-runtime-nugets:7.0.14
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
@@ -5194,7 +5169,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.2-r1"
+  version: "8.0.0+2"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5203,11 +5178,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:8.0.2-r1
+      dev-dotnet/dotnet-runtime-nugets:8.0.0
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "8.0.2-r1"
+    version: "8.0.0"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -6650,30 +6625,31 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-- category: "apps"
-  name: "kookbook"
-  version: "0.2"
-  uri:
-  - https://invent.kde.org/utilities/kookbook
-  license: "BSD"
-  description: "Simple recipe manager taking structured markdown for recipes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/kookbook
-  overlays:
-  - enable: "kde"
-  provides:
-  - category: "app-misc"
-    name: "kookbook"
-    version: ">=0"
-  atoms:
-  - atom: "app-misc/kookbook"
-    accept_keywords: "**"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
+# # needs a qt6 buildbase
+# - category: "apps"
+#   name: "kookbook"
+#   version: "0.2"
+#   uri:
+#   - https://invent.kde.org/utilities/kookbook
+#   license: "BSD"
+#   description: "Simple recipe manager taking structured markdown for recipes"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-misc/kookbook
+#   overlays:
+#   - enable: "kde"
+#   provides:
+#   - category: "app-misc"
+#     name: "kookbook"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-misc/kookbook"
+#     accept_keywords: "**"
+#   requires:
+#   - <<: *layers-kde-common
+#   build_requires:
+#   - <<: *layers-kde-common
 
 - category: "apps"
   name: "krfb"
@@ -7012,7 +6988,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.6.9-r1+6"
+  version: "0.6.9-r1+7"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -7528,7 +7504,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-arch/p7zip"
-    use: "kde wxwidgets # rar -> unRAR license"
+    use: "natspec rar"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -10437,7 +10413,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417+1"
+  version: "6.0.417-r4"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10463,7 +10439,7 @@ packages:
 - &apps-dotnet-7
   category: "apps"
   name: "dotnet-sdk-7"
-  version: "7.0.404+1"
+  version: "7.0.404-r4"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10490,7 +10466,7 @@ packages:
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.100+1"
+  version: "8.0.100-r4"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10503,9 +10479,6 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  atoms:
-  - atom: "dev-dotnet/dotnet-sdk-bin:8.0"
-    accept_keywords: "~amd64"
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild manifest
