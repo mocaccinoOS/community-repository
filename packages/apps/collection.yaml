@@ -7505,6 +7505,7 @@ packages:
   atoms:
   - atom: "app-arch/p7zip"
     use: "natspec rar"
+    license: "unRAR"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -8435,27 +8436,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "tuba"
-  version: "0.6.3"
-  uri:
-  - https://github.com/GeopJr/Tuba
-  license: "GPL-3 CC-BY-SA-4.0"
-  description: "Browse the Fediverse (GTK client)"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/tuba
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-misc"
-    name: "tuba"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# # needs >=gui-libs/gtk-4.12.4 gstreamer
+# - category: "apps"
+#   name: "tuba"
+#   version: "0.6.3"
+#   uri:
+#   - https://github.com/GeopJr/Tuba
+#   license: "GPL-3 CC-BY-SA-4.0"
+#   description: "Browse the Fediverse (GTK client)"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       net-misc/tuba
+#   overlays:
+#   - enable: "guru"
+#   provides:
+#   - category: "net-misc"
+#     name: "tuba"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "shortwave"
