@@ -257,8 +257,12 @@ stubs:
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
   version: ">=0"
-#   requires:
-#   - <<: *kernel-mocaccino-lts-full
+  atoms:
+  - atom: "x11-drivers/nvidia-drivers"
+    license: "NVIDIA-r2"
+    use: "static-libs"
+  requires:
+  - <<: *kernel-mocaccino-lts-full
 
 - &kernel-modules-vhba
   category: "kernel-modules"
@@ -6868,7 +6872,7 @@ packages:
 - &apps-lshw
   category: "apps"
   name: "lshw"
-  version: "02.20.2b"
+  version: "02.19.2b_p20220831-r1+2"
   uri:
   - https://www.ezix.org/project/wiki/HardwareLiSter
   license: "GPL-2"
@@ -6884,7 +6888,8 @@ packages:
   atoms:
   - atom: "sys-apps/lshw"
     use: "gtk sqlite"
-    accept_keywords: "~amd64"
+  prepare: 
+  - ebuild /var/db/repos/gentoo/sys-apps/lshw/lshw-02.19.2b_p20220831-r1.ebuild manifest
   requires:
   - <<: *layers-X
   build_requires:
@@ -7292,11 +7297,22 @@ packages:
   - mkdir data
   - tar -xf nordvpn_3.17.2_amd64/data.tar.gz -C data
   setup:
+  # /bin + /sbin + /usr/sbin --> /usr/bin
+  # /lib  -->  /usr/lib
+  # /lib64 --> /usr/lib64
+  # - |
+  #   cp -r data/etc /; \
+  #   cp -r data/usr /; \
+  #   cp -r data/var /; \
+  #   ln -s /bin/ip /sbin/ip
+  # cannot overwrite non-directory '/usr/sbin' with directory 'data/usr/sbin'
   - |
-    cp -r data/etc /; \
-    cp -r data/usr/. /; \
-    cp -r data/var /; \
-    ln -s /usr/bin/ip /usr/sbin/ip
+    cp -a data/etc/. /etc/; \
+    cp -a data/usr/bin/. /usr/bin/; \
+    cp -a data/usr/lib/. /usr/lib/; \
+    cp -a data/usr/sbin/. /usr/bin/; \
+    cp -a data/usr/share/. /usr/share/; \
+    cp -a data/var/. /var/
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
