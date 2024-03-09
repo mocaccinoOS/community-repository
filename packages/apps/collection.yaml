@@ -234,37 +234,25 @@ stubs:
   name: "mocaccino-lts-full"
   version: ">=0"
 
-# - &kernel-modules-nvidia-drivers-lts
-#   category: "kernel-modules"
-#   name: "nvidia-drivers-lts"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-drivers/nvidia-drivers
-#   atoms:
-#   - atom: "x11-drivers/nvidia-drivers"
-#     license: "NVIDIA-r2"
-#     use: "static-libs"
-#   prerequires:
-#   - <<: *kernel-gentoo
-#   requires:
-#   - <<: *kernel-mocaccino-lts-full
-#   - name: "nvpd"
-#     category: "entity"
-#     version: ">=0"
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
+  version: ">=0"
   labels:
     emerge.jobs: "1"
-  version: ">=0"
+    emerge.packages: >-
+      x11-drivers/nvidia-drivers
   atoms:
   - atom: "x11-drivers/nvidia-drivers"
     license: "NVIDIA-r2"
     use: "static-libs"
+  prerequires:
+  - <<: *kernel-gentoo
   requires:
   - <<: *kernel-mocaccino-lts-full
+  - name: "nvpd"
+    category: "entity"
+    version: ">=0"
 
 - &kernel-modules-vhba
   category: "kernel-modules"
@@ -6891,7 +6879,7 @@ packages:
   - atom: "sys-apps/lshw"
     use: "gtk sqlite"
   prepare:
-  - ebuild /var/db/repos/gentoo/sys-apps/lshw/lshw-02.19.2b_p20220831-r1.ebuild digest
+  # - ebuild /var/db/repos/gentoo/sys-apps/lshw/lshw-02.19.2b_p20220831-r1.ebuild digest
   - ebuild /var/db/repos/gentoo/sys-apps/lshw/lshw-02.19.2b_p20220831-r1.ebuild manifest
   requires:
   - <<: *layers-X
@@ -12308,7 +12296,7 @@ packages:
 - &libs-allegro
   category: "libs"
   name: "allegro"
-  version: "4.4.3.1-r1"
+  version: "4.4.3.1-r1+1"
   uri:
   - https://liballeg.org/
   license: "BSD ZLIB"
@@ -12334,7 +12322,7 @@ packages:
 - &libs-cachecontrol
   category: "libs"
   name: "cachecontrol"
-  version: "0.13.1"
+  version: "0.14.0"
   uri:
   - https://pypi.org/project/CacheControl/
   license: "Apache-2.0"
@@ -12356,7 +12344,7 @@ packages:
 - &libs-gdal
   category: "libs"
   name: "gdal"
-  version: "3.8.0"
+  version: "3.8.0+1"
   uri:
   - https://gdal.org/
   license: "BSD Info-ZIP MIT"
@@ -12383,7 +12371,7 @@ packages:
 - &libs-glpk
   category: "libs"
   name: "glpk"
-  version: "5.0-r1"
+  version: "5.0-r1+1"
   uri:
   - https://www.gnu.org/software/glpk/
   license: "GPL-3"
@@ -12410,7 +12398,7 @@ packages:
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
-  version: "0.1.21"
+  version: "0.1.21+1"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -12432,7 +12420,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.0.4"
+  version: "2.0.4+1"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -12460,7 +12448,7 @@ packages:
 - &libs-libgit2-glib
   category: "apps"
   name: "libgit2-glib"
-  version: "1.2.0"
+  version: "1.2.0+1"
   uri:
   - https://wiki.gnome.org/Projects/Libgit2-glib
   license: "LGPL-2+"
@@ -12485,7 +12473,7 @@ packages:
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
-  version: "0.1.7+8"
+  version: "0.1.7+8+1"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libvisio
   license: "GPL-2+ LGPL-2.1 MPL-1.1"
@@ -12506,7 +12494,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.8.1-r1"
+  version: "4.8.1-r1+1"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -12537,7 +12525,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "10.0.1+6"
+  version: "10.0.1+7"
   uri:
   - https://www.openvdb.org
   license: "MPL-2.0"
@@ -12566,7 +12554,7 @@ packages:
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
-  version: "13.0.7+1"
+  version: "13.0.7+2"
   uri:
   - https://github.com/home-assistant-libs/pychromecast
   - https://github.com/ur1katz/casttube
@@ -12600,7 +12588,7 @@ packages:
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
-  version: "7.12+1"
+  version: "7.12+2"
   uri:
   - https://www.atnf.csiro.au/people/mcalabre/WCS/
   license: "LGPL-3"
@@ -12628,7 +12616,7 @@ packages:
 
 - category: "apps"
   name: "amsynth"
-  version: "1.13.2"
+  version: "1.13.2+1"
   uri:
   - https://github.com/amsynth/amsynth
   license: "GPL-2"
@@ -12656,7 +12644,7 @@ packages:
 - &apps-avalonia-ilspy
   category: "apps"
   name: "avalonia-ilspy"
-  version: "7.2_rc-r1"
+  version: "7.2_rc-r1+1"
   uri:
   - https://github.com/icsharpcode/AvaloniaILSpy/
   license: "MIT"
@@ -12682,7 +12670,7 @@ packages:
 
 - category: "apps"
   name: "avidemux"
-  version: "2.8.1+2"
+  version: "2.8.1+3"
   uri:
   - http://fixounet.free.fr/avidemux
   - http://aften.sourceforge.net/
@@ -12741,7 +12729,7 @@ packages:
 
 - category: "apps"
   name: "bat"
-  version: "0.24.0"
+  version: "0.24.0+1"
   uri:
   - https://github.com/sharkdp/bat
   license: "Apache-2.0 BSD BSD-2 CC0-1.0 LGPL-3+ MIT"
@@ -12769,7 +12757,7 @@ packages:
 - &apps-brother-dcp1610w-bin-brscan4
   category: "apps"
   name: "brother-dcp1610w-bin-brscan4"
-  version: "1.0-r1"
+  version: "1.0-r1+1"
   uri:
   - http://support.brother.com
   license: "GPL-2"
@@ -12793,7 +12781,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -12819,7 +12807,7 @@ packages:
 
 - category: "apps"
   name: "celluloid"
-  version: "0.21-r1+1"
+  version: "0.21-r1+2"
   uri:
   - https://celluloid-player.github.io
   license: "GPL-3+"
@@ -12839,7 +12827,7 @@ packages:
 
 - category: "apps"
   name: "clamtk"
-  version: "6.17"
+  version: "6.17+1"
   uri:
   - https://gitlab.com/dave_m/clamtk/wikis/Home
   license: "Artistic GPL-1+"
@@ -12868,7 +12856,7 @@ packages:
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd-rw-tools"
-  version: "7.1-r4+4"
+  version: "7.1-r4+5"
   uri:
   - http://fy.chalmers.se/~appro/linux/DVD+RW
   license: "GPL-2"
@@ -12891,7 +12879,7 @@ packages:
 - &apps-eclipse-ecj
   category: "apps"
   name: "eclipse-ecj"
-  version: "4.26"
+  version: "4.26+1"
   uri:
   - https://www.eclipse.org
   license: "EPL-1.0"
@@ -12920,7 +12908,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.3.4-r1"
+  version: "2.3.4-r1+1"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -12945,19 +12933,19 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "fotoxx"
+  name: "fotocx"
   version: "23.70"
   uri:
-  - https://kornelix.net/fotoxx/fotoxx.html
+  - https://kornelix.net/fotocx/fotocx.html
   license: "GPL-3+"
   description: "Program for improving image files made with a digital camera"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/fotoxx
+      media-gfx/fotocx
   provides:
   - category: "media-gfx"
-    name: "fotoxx"
+    name: "fotocx"
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
@@ -12969,7 +12957,7 @@ packages:
 - &apps-gnome-nettool
   category: "apps"
   name: "gnome-nettool"
-  version: "42.0+1"
+  version: "42.0+2"
   uri:
   - https://gitlab.gnome.org/GNOME/gnome-nettool
   license: "GPL-2"
@@ -12995,7 +12983,7 @@ packages:
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
-  version: "5.4.10"
+  version: "5.4.10+1"
   uri:
   - http://www.gnuplot.info/
   license: "gnuplot"
@@ -13027,7 +13015,7 @@ packages:
 
 - category: "apps"
   name: "helm-synthesizer"
-  version: "0.9.0-r2"
+  version: "0.9.0-r2+1"
   uri:
   - https://tytel.org/helm/
   license: "GPL-3+"
@@ -13049,7 +13037,7 @@ packages:
 - &apps-img2pdf
   category: "apps"
   name: "img2pdf"
-  version: "0.4.4-r1+1"
+  version: "0.4.4-r1+2"
   uri:
   - https://gitlab.mister-muffin.de/josch/img2pdf
   license: "LGPL-3+"
@@ -13074,7 +13062,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "23.08.4"
+  version: "23.08.4+1"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -13101,7 +13089,7 @@ packages:
 
 - category: "apps"
   name: "kaffeine-tde"
-  version: "14.1.1"
+  version: "14.1.1+1"
   uri:
   - https://trinitydesktop.org
   license: "GPL-2"
@@ -13132,7 +13120,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "20.3-r1+2"
+  version: "20.5"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -13204,7 +13192,7 @@ packages:
 - &apps-lazarus
   category: "apps"
   name: "lazarus"
-  version: "2.0.12+1"
+  version: "2.0.12+2"
   uri:
   - hhttps://www.freepascal.org/
   license: "GPL-2 LGPL-2.1-with-linking-exception"
@@ -13237,7 +13225,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "7.5.9.2+1"
+  version: "7.6.4.1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -13338,7 +13326,7 @@ packages:
 
 - category: "apps"
   name: "lollypop"
-  version: "1.4.37+1"
+  version: "1.4.37+2"
   uri:
   - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -13359,7 +13347,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+4"
+  version: "2.6.1.1-r1+5"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -13384,7 +13372,7 @@ packages:
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
-  version: "23.04"
+  version: "23.04+1"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2"
@@ -13423,7 +13411,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.6"
+  version: "2.3.6+1"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -13449,7 +13437,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.9.5"
+  version: "0.9.5+1"
   uri:
   - https://neovim.io
   license: "Apache-2.0 vim"
@@ -13494,7 +13482,7 @@ packages:
 - &apps-nmapsi
   category: "apps"
   name: "nmapsi"
-  version: "0.5_alpha2-r1"
+  version: "0.5_alpha2-r1+1"
   uri:
   - https://github.com/nmapsi4/nmapsi4
   license: "GPL-2"
@@ -13520,7 +13508,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.0-r3"
+  version: "2.8.0-r3+1"
   uri:
   - https://www.networkupstools.org
   license: "GPL-2"
@@ -13560,7 +13548,7 @@ packages:
 
 - category: "apps"
   name: "onedrive"
-  version: "2.4.25"
+  version: "2.4.25+1"
   uri:
   - https://abraunegg.github.io
   license: "GPL-3"
@@ -13569,15 +13557,21 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/onedrive
+      net-misc/onedrivegui 
   overlays:
   - enable: "dlang"
   provides:
   - category: "net-misc"
     name: "onedrive"
     version: ">=0"
+  - category: "net-misc"
+    name: "onedrivegui"
+    version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
     use: "dmd-2_093 libnotify"
+    accept_keywords: "~amd64"
+  - atom: "net-misc/onedrivegui"
     accept_keywords: "~amd64"
   prereqs:
   - =dev-lang/dmd-2.093.1:2.093
@@ -13589,7 +13583,7 @@ packages:
 - &apps-openra
   category: "apps"
   name: "openra"
-  version: "20231010-r1+2"
+  version: "20231010-r1+3"
   uri:
   -  https://www.openra.net/
   license: "Apache-2.0 vim"
@@ -13615,7 +13609,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.10.0"
+  version: "1.10.0+1"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   license: "GPL-3"
@@ -13637,7 +13631,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "5.27.10"
+  version: "5.27.10+1"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -13654,7 +13648,7 @@ packages:
 
 - category: "apps"
   name: "q4wine"
-  version: "1.3.13+1"
+  version: "1.3.13+2"
   uri:
   - https://q4wine.brezblock.org.ua/
   license: "GPL-3"
@@ -13676,47 +13670,47 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-qsampler
-#   category: "apps"
-#   name: "qsampler"
-#   version: "0.9.6"
-#   uri:
-#   - https://qsampler.sourceforge.io/
-#   license: "GPL-2"
-#   description: "Graphical frontend to the LinuxSampler engine"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/qsampler
-#   provides:
-#   - category: "media-sound"
-#     name: "qsampler"
-#     version: ">=0"
-#   - category: "media-sound"
-#     name: "linuxsampler"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "liblscp"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "libgig"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/qsampler"
-#     use: "libgig"
-#   - atom: "media-sound/linuxsampler"
-#     use: "alsa jack sqlite lv2 sf2"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-dssi
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-lv2
-#   build_requires:
-#   - <<: *layers-qt
+- &apps-qsampler
+  category: "apps"
+  name: "qsampler"
+  version: "0.9.12"
+  uri:
+  - https://qsampler.sourceforge.io/
+  license: "GPL-2"
+  description: "Graphical frontend to the LinuxSampler engine"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qsampler
+  provides:
+  - category: "media-sound"
+    name: "qsampler"
+    version: ">=0"
+  - category: "media-sound"
+    name: "linuxsampler"
+    version: ">=0"
+  - category: "media-libs"
+    name: "liblscp"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libgig"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/qsampler"
+    use: "libgig"
+  - atom: "media-sound/linuxsampler"
+    use: "alsa jack sqlite lv2 sf2"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "rosegarden"
-  version: "23.12"
+  version: "23.12+1"
   uri:
   - https://github.com/benjamimgois/rosegarden
   license: "GPL-2"
@@ -13740,7 +13734,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.5.8-r6+3"
+  version: "1.6.1-r1"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -13793,7 +13787,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.12.2+2"
+  version: "3.12.2+3"
   uri:
   - https://sqlitebrowser.org/
   license: "GPL-3+ MPL-2.0"
@@ -13816,7 +13810,7 @@ packages:
 
 - category: "apps"
   name: "terminatorx"
-  version: "4.2.0+2"
+  version: "4.2.0+3"
   uri:
   - https://www.terminatorx.org/
   - http://www.underbit.com/products/mad/
@@ -13854,7 +13848,7 @@ packages:
 - &apps-timidity
   category: "apps"
   name: "timidity"
-  version: "2.15.0-r6+4"
+  version: "2.15.0-r6+5"
   uri:
   - http://timidity.sourceforge.net/
   - https://wiki.gentoo.org/wiki/No_homepage
@@ -13916,7 +13910,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "23.08.4"
+  version: "23.08.5"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -13944,7 +13938,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.21.0-r2"
+  version: "3.21.0-r2+1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -13968,7 +13962,7 @@ packages:
 
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2-r1+3"
+  version: "4.1.2.2-r1+4"
   uri:
   - https://wiki.x2go.org/doku.php
   license: "GPL-2"
@@ -13992,7 +13986,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.3-r2+1"
+  version: "4.1.0.3-r2+2"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
@@ -14034,7 +14028,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.5.35"
+  version: "21.5.35+1"
   uri:
   - https://www.xemacs.org/
   license: "GPL-3+"
@@ -14103,7 +14097,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.3-r1+2"
+  version: "0.9.3-r1+3"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -14136,7 +14130,7 @@ packages:
 - &apps-xournal
   category: "apps"
   name: "xournal"
-  version: "0.4.8.2016-r1"
+  version: "0.4.8.2016-r1+1"
   uri:
   - http://xournal.sourceforge.net/
   license: "GPL-2"
@@ -14160,7 +14154,7 @@ packages:
 
 - category: "apps"
   name: "yoshimi"
-  version: "2.3.1.3"
+  version: "2.3.1.3+1"
   uri:
   - http://yoshimi.sourceforge.net/
   license: "GPL-2"
@@ -14186,7 +14180,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r1"
+  version: "3.0.6-r1+1"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
