@@ -219,24 +219,20 @@ stubs:
 ### kernel refs ###
 ################################################################################################################################################################
 
-# - &kernel-gentoo
-#   category: "kernel-sources"
-#   name: "mocaccino-lts-sources"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sys-kernel/gentoo-sources
-#       sys-kernel/gentoo-kernel
-#       virtual/dist-kernel
-#   env: "USE=\"dracut\""
-#   # prepare:
-#   # - mkdir -p /usr/src/linux
-#   # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 - &kernel-gentoo
   category: "kernel-sources"
   name: "mocaccino-lts-sources"
   version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-kernel/gentoo-sources
+      sys-kernel/gentoo-kernel
+      virtual/dist-kernel
+  env: "USE=\"dracut\""
+  # prepare:
+  # - mkdir -p /usr/src/linux
+  # - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
