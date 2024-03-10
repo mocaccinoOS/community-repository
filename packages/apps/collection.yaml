@@ -13556,22 +13556,22 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/onedrive
-      net-misc/onedrivegui
+  #     net-misc/onedrivegui
   overlays:
   - enable: "dlang"
   provides:
   - category: "net-misc"
     name: "onedrive"
     version: ">=0"
-  - category: "net-misc"
-    name: "onedrivegui"
-    version: ">=0"
+  # - category: "net-misc"
+  #   name: "onedrivegui"
+  #   version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
     use: "dmd-2_106 libnotify"
     accept_keywords: "~amd64"
-  - atom: "net-misc/onedrivegui"
-    accept_keywords: "~amd64"
+  # - atom: "net-misc/onedrivegui"
+  #   accept_keywords: "~amd64"
   prereqs:
   - =dev-lang/dmd-2.106.1:2.106
   requires:
@@ -14315,35 +14315,35 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-openscenegraph
-  category: "libs"
-  name: "openscenegraph"
-  version: "3.6.5-r114+3"
-  uri:
-  - http://www.openscenegraph.org/
-  license: "wxWinLL-3 LGPL-2.1"
-  description: "Open source high performance 3D graphics toolkit"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-games/openscenegraph
-  provides:
-  - category: "dev-games"
-    name: "openscenegraph"
-    version: ">=0"
-  atoms:
-  - atom: "dev-games/openscenegraph"
-    use: "curl ffmpeg fltk gdal gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox las openinventor osgapps sdl2 xrandr"
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-sci-libs
-  - <<: *libs-coin
-  - <<: *libs-collada-dom
-  - <<: *libs-gdal
-  build_requires:
-  - <<: *buildbase-qt
-  - <<: *layerbase-sci-libs
-  requires_final_images: true
+# - &libs-openscenegraph
+#   category: "libs"
+#   name: "openscenegraph"
+#   version: "3.6.5-r114+3"
+#   uri:
+#   - http://www.openscenegraph.org/
+#   license: "wxWinLL-3 LGPL-2.1"
+#   description: "Open source high performance 3D graphics toolkit"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-games/openscenegraph
+#   provides:
+#   - category: "dev-games"
+#     name: "openscenegraph"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-games/openscenegraph"
+#     use: "curl ffmpeg fltk gdal gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox las openinventor osgapps sdl2 xrandr"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-sci-libs
+#   - <<: *libs-coin
+#   - <<: *libs-collada-dom
+#   - <<: *libs-gdal
+#   build_requires:
+#   - <<: *buildbase-qt
+#   - <<: *layerbase-sci-libs
+#   requires_final_images: true
 
 - &libs-sdl
   category: "libs"
@@ -15054,35 +15054,35 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-speed-dreams
-  category: "apps"
-  name: "speed-dreams"
-  version: "2.2.3+1"
-  uri:
-  - http://www.speed-dreams.org/
-  license: "GPL-2+ BitstreamVera CC0-1.0 Free-Art-1.2 OFL-1.1"
-  description: |
-    Fork of the famous open racing car simulator TORCS
-    Library for collision detection of three-dimensional objects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-sports/speed-dreams
-  provides:
-  - category: "games-sports"
-    name: "speed-dreams"
-    version: ">=0"
-  atoms:
-  - atom: "games-sports/speed-dreams"
-    use: "osggraph"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-openscenegraph
-  - <<: *libs-plib
-  - <<: *libs-enet
-  build_requires:
-  - <<: *layers-X
+# - &apps-speed-dreams
+#   category: "apps"
+#   name: "speed-dreams"
+#   version: "2.2.3+1"
+#   uri:
+#   - http://www.speed-dreams.org/
+#   license: "GPL-2+ BitstreamVera CC0-1.0 Free-Art-1.2 OFL-1.1"
+#   description: |
+#     Fork of the famous open racing car simulator TORCS
+#     Library for collision detection of three-dimensional objects
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-sports/speed-dreams
+#   provides:
+#   - category: "games-sports"
+#     name: "speed-dreams"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-sports/speed-dreams"
+#     use: "osggraph"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-openscenegraph
+#   - <<: *libs-plib
+#   - <<: *libs-enet
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "stellarium"
