@@ -24,6 +24,15 @@ stubs:
   name: "X"
   version: ">=0"
 
+- &layers-qemu
+  category: "layers"
+  name: "qemu"
+  version: ">=0"
+- &buildbase-qemu
+  category: "buildbase"
+  name: "qemu"
+  version: ">=0"
+
 - &layers-qt
   category: "layers"
   name: "qt"
@@ -424,18 +433,18 @@ stubs:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-qemu
-  category: "apps"
-  name: "qemu"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/spice-gtk
-  prepare:
-  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
-  preemerge:
-  - app-emulation/spice;USE="-smartcard"
+# - &apps-spice-gtk
+#   category: "apps"
+#   name: "spice-gtk"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/spice-gtk
+#   prepare:
+#   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
+#   preemerge:
+#   - app-emulation/spice;USE="-smartcard"
 
 - &apps-vim
   category: "apps"
@@ -11653,6 +11662,40 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "remmina"
+  version: "1.4.34"
+  uri:
+  - https://remmina.org/
+  license: "GPL-2+-with-openssl-exception"
+  description: "A GTK+ RDP, SPICE, VNC and SSH client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/remmina
+  provides:
+  - category: "net-misc"
+    name: "remmina"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/remmina"
+    use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
+    accept_keywords: "~amd64"
+  # prereqs:
+  # - kde-frameworks/kwallet
+  # prerequires:
+  # - <<: *apps-spice-gtk
+  requires:
+  - <<: *layers-gnome-common
+  # - <<: *layers-kde-common
+  - <<: *layers-qemu
+  - <<: *libs-ayatana
+  build_requires:
+  - <<: *buildbase-gnome-common
+  # - <<: *buildbase-kde-common
+  - <<: *buildbase-qemu
+  requires_final_images: true
+
 - &apps-rotoscope
   category: "apps"
   name: "rotoscope"
@@ -15405,36 +15448,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "deluge"
-  version: "2.1.1-r4+1"
-  uri:
-  - https://deluge-torrent.org/
-  license: "GPL-2"
-  description: "BitTorrent client with a client/server model"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-p2p/deluge
-  provides:
-  - category: "net-p2p"
-    name: "deluge"
-    version: ">=0"
-  atoms:
-  - atom: "net-p2p/deluge"
-    use: "console webinterface gui libnotify sound"
-    accept_keywords: "~amd64"
-  optrequires:
-  - <<: *libs-pygame
-  requires:
-  - <<: *layers-X
-  - category: "entity"
-    name: "deluge"
-    version: ">=0"
-  - <<: *libs-twisted
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "digikam"
   version: "8.1.0-r1+3"
   uri:
@@ -15657,7 +15670,7 @@ packages:
 - &libs-gtkmm-2
   category: "libs"
   name: "gtkmm"
-  version: "2.24.5-r1+2"
+  version: "2.24.5-r1+3"
   uri:
   - https://www.gtkmm.org
   license: "LGPL-2.1+"
@@ -15683,7 +15696,7 @@ packages:
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.7-r1+5"
+  version: "3.6.7-r1+6"
   uri:
   - https://dicom.offis.de/dcmtk.php.en
   license: "OFFIS"
@@ -15709,7 +15722,7 @@ packages:
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
-  version: "1.6.1-r2+2"
+  version: "1.6.1-r2+3"
   uri:
   - https://github.com/mypaint/libmypaint
   license: "ISC"
@@ -15734,7 +15747,7 @@ packages:
 - &libs-lilv
   category: "libs"
   name: "lilv"
-  version: "0.24.22-r1"
+  version: "0.24.22-r1+1"
   uri:
   - http://drobilla.net/software/lilv/
   license: "ISC"
@@ -15762,7 +15775,7 @@ packages:
 - &libs-telepathy-connection-managers
   category: "libs"
   name: "telepathy-connection-managers"
-  version: "2-r2+2"
+  version: "2-r2+3"
   uri:
   - https://telepathy.freedesktop.org/
   license: "metapackage LGPL-2.1"
@@ -15804,7 +15817,7 @@ packages:
 - &libs-telepathy-qt
   category: "libs"
   name: "telepathy-qt"
-  version: "0.9.8-r2+1"
+  version: "0.9.8-r2+2"
   uri:
   - https://telepathy.freedesktop.org/
   license: "LGPL-2.1"
@@ -15835,7 +15848,7 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "3.3.3"
+  version: "3.3.3+1"
   uri:
   - https://web.audacityteam.org/
   license: "GPL-2"
@@ -15874,7 +15887,7 @@ packages:
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.19.6-r2+1"
+  version: "1.19.6-r2+2"
   uri:
   - https://github.com/brndnmtthws/conky
   license: "GPL-3 BSD LGPL-2.1 MIT"
@@ -15910,10 +15923,40 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "deluge"
+  version: "2.1.1-r4+2"
+  uri:
+  - https://deluge-torrent.org/
+  license: "GPL-2"
+  description: "BitTorrent client with a client/server model"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-p2p/deluge
+  provides:
+  - category: "net-p2p"
+    name: "deluge"
+    version: ">=0"
+  atoms:
+  - atom: "net-p2p/deluge"
+    use: "console webinterface gui libnotify sound"
+    accept_keywords: "~amd64"
+  optrequires:
+  - <<: *libs-pygame
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "deluge"
+    version: ">=0"
+  - <<: *libs-twisted
+  build_requires:
+  - <<: *layers-X
+
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.9.8+1"
+  version: "1.9.8+2"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -15941,7 +15984,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.36"
+  version: "2.10.36+1"
   uri:
   - https://www.gimp.org/
   license: "GPL-3 LGPL-3"
@@ -15973,7 +16016,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.3.7"
+  version: "2.3.7+1"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -16021,7 +16064,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r3+1"
+  version: "2.0.1-r3+2"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -16046,7 +16089,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2023.13"
+  version: "1.2023.13+1"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -16285,37 +16328,6 @@ packages:
   - <<: *libs-suil
   build_requires:
   - <<: *layers-qt
-
-- category: "apps"
-  name: "remmina"
-  version: "1.4.34"
-  uri:
-  - https://remmina.org/
-  license: "GPL-2+-with-openssl-exception"
-  description: "A GTK+ RDP, SPICE, VNC and SSH client"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/remmina
-  provides:
-  - category: "net-misc"
-    name: "remmina"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/remmina"
-    use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
-    accept_keywords: "~amd64"
-  # prereqs:
-  # - kde-frameworks/kwallet
-  requires:
-  - <<: *layers-gnome-common
-  # - <<: *layers-kde-common
-  - <<: *libs-ayatana
-  - <<: *apps-qemu
-  build_requires:
-  - <<: *buildbase-gnome-common
-  # - <<: *buildbase-kde-common
-  requires_final_images: true
 
 - &apps-xsane
   category: "apps"
