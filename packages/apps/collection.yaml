@@ -14831,8 +14831,10 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  prerequires:
-  - <<: *kernel-mocaccino-lts-sources
+  prereqs:
+  - virtual/dist-kernel
+  - virtual/linux-sources
+  - kernel-modules/vhba-lts
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
