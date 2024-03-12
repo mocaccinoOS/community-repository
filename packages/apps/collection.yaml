@@ -219,49 +219,66 @@ stubs:
 ### kernel refs ###
 ################################################################################################################################################################
 
-- &kernel-gentoo
-  category: "kernel-sources"
+# - &kernel-gentoo
+#   category: "kernel-sources"
+#   name: "mocaccino-lts-sources"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-kernel/gentoo-kernel
+#       sys-kernel/gentoo-sources
+#       virtual/dist-kernel
+#       virtual/linux-sources
+#   env: "USE=\"dracut\""
+# 
+# - &kernel-mocaccino-lts-full
+#   category: "kernel"
+#   name: "mocaccino-lts-full"
+#   version: ">=0"
+#   prepare:
+#   - mkdir -p /usr/src/linux
+#   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
+#   - cd /usr/src/linux
+#   - make olddefconfig
+#   
+# - &kernel-modules-nvidia-drivers-lts
+#   category: "kernel-modules"
+#   name: "nvidia-drivers-lts"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       x11-drivers/nvidia-drivers
+#   atoms:
+#   - atom: "x11-drivers/nvidia-drivers"
+#     license: "NVIDIA-r2"
+#     use: "static-libs"
+#   prerequires:
+#   - <<: *kernel-gentoo
+#   requires:
+#   - <<: *kernel-mocaccino-lts-full
+#   - name: "nvpd"
+#     category: "entity"
+#     version: ">=0"
+
+
+- &kernel-mocaccino-lts-sources
+  category: "kernel"
   name: "mocaccino-lts-sources"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-kernel/gentoo-sources
-      sys-kernel/gentoo-kernel
-      virtual/dist-kernel
-  env: "USE=\"dracut\""
 
 - &kernel-mocaccino-lts-full
   category: "kernel"
   name: "mocaccino-lts-full"
   version: ">=0"
-  prepare:
-  - mkdir -p /usr/src/linux
-  - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
-  - cd /usr/src/linux
-  - make olddefconfig
-  
+
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-drivers/nvidia-drivers
-  atoms:
-  - atom: "x11-drivers/nvidia-drivers"
-    license: "NVIDIA-r2"
-    use: "static-libs"
-  prerequires:
-  - <<: *kernel-gentoo
-  requires:
-  - <<: *kernel-mocaccino-lts-full
-  - name: "nvpd"
-    category: "entity"
-    version: ">=0"
 
-- &kernel-modules-vhba
+- &kernel-modules-vhba-lts
   category: "kernel-modules"
   name: "vhba-lts"
   version: ">=0"
@@ -10153,11 +10170,11 @@ packages:
   # - virtual/linux-sources
   requires:
   - <<: *layers-X
-  - <<: *kernel-modules-vhba
+  - <<: *kernel-modules-vhba-lts
   - <<: *libs-libao
   - <<: *libs-libmirage
   build_requires:
-  - <<: *kernel-modules-vhba
+  - <<: *kernel-modules-vhba-lts
 
 - &apps-cdrdao
   category: "apps"
@@ -14640,7 +14657,7 @@ packages:
 - &apps-gcdemu
   category: "apps"
   name: "gcdemu"
-  version: "3.2.6+2"
+  version: "3.2.6+3"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -14653,13 +14670,13 @@ packages:
   - category: "app-cdr"
     name: "gcdemu"
     version: ">=0"
-  # prerequires:
-  # - <<: *kernel-gentoo
+  prerequires:
+  - <<: *kernel-mocaccino-lts-full
   requires:
   - <<: *layers-X
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba
+  - <<: *layers-X
 
 - category: "apps"
   name: "goneovim"
@@ -14801,7 +14818,7 @@ packages:
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.8.0+2"
+  version: "0.8.0+3"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -14814,13 +14831,12 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  # prerequires:
-  # - <<: *kernel-gentoo
+  prerequires:
+  - <<: *kernel-mocaccino-lts-full
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba
   - <<: *layers-kde-common
 
 - category: "apps"
