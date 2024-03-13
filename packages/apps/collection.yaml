@@ -1677,8 +1677,8 @@ packages:
   atoms:
   - atom: "x11-libs/gtkglext"
     accept_keywords: "~amd64"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -2853,7 +2853,7 @@ packages:
 - &libs-LuaBitOp
   category: "libs"
   name: "LuaBitOp"
-  version: "1.0.2-r1+1"
+  version: "1.0.2-r1+2"
   uri:
   - http://bitop.luajit.org
   license: "MIT"
@@ -2867,9 +2867,9 @@ packages:
     name: "LuaBitOp"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-lzip
   category: "libs"
@@ -3723,6 +3723,27 @@ packages:
   provides:
   - category: "dev-libs"
     name: "serd"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-sgml-common
+  category: "libs"
+  name: "sgml-common"
+  version: "0.6.3-r7"
+  uri:
+  - https://www.iso.org/standard/16387.html
+  license: "FDL-1.1+ MIT"
+  description: "Base ISO character entities and utilities for SGML"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/sgml-common
+  provides:
+  - category: "app-text"
+    name: "sgml-common"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -5830,7 +5851,7 @@ packages:
 
 - category: "apps"
   name: "gftp"
-  version: "2.9.1b+2"
+  version: "2.9.1b+3"
   uri:
   - https://github.com/masneyb/gftp
   license: "GPL-2"
@@ -5845,6 +5866,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -6197,8 +6219,8 @@ packages:
   - category: "net-irc"
     name: "hexchat"
     version: ">=0"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
@@ -6337,7 +6359,7 @@ packages:
 
 - category: "apps"
   name: "isomaster"
-  version: "1.3.16+1"
+  version: "1.3.16+2"
   uri:
   - http://littlesvr.ca/isomaster
   - https://github.com/ndevilla/iniparser
@@ -6359,6 +6381,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -6912,7 +6935,7 @@ packages:
 - &apps-lua-5_3
   category: "libs"
   name: "lua-5.3"
-  version: "5.3.6-r102+1"
+  version: "5.3.6-r102+2"
   uri:
   - https://www.lua.org/
   license: "MIT"
@@ -6929,9 +6952,9 @@ packages:
   - atom: "dev-lang/lua:5.3"
     use: "readline"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-luajit
   category: "apps"
@@ -7251,6 +7274,36 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
+- &apps-nmap
+  category: "apps"
+  name: "nmap"
+  version: "7.94+2"
+  uri:
+  - https://nmap.org/
+  license: "NPSL GPL-2"
+  description: "Network exploration tool and security / port scanner"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/liblinear
+      net-analyzer/nmap
+  provides:
+  - category: "dev-libs"
+    name: "liblinear"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "nmap"
+    version: ">=0"
+  atoms:
+  - atom: "net-analyzer/nmap"
+    use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
+  prereqs:
+  - sec-keys/openpgp-keys-nmap
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-nmon
   category: "apps"
   name: "nmon"
@@ -7448,27 +7501,6 @@ packages:
   - <<: *apps-designer
   build_requires:
   - <<: *layers-plasma
-
-- &apps-openjade
-  category: "apps"
-  name: "openjade"
-  version: "1.3.2-r9+1"
-  uri:
-  - http://openjade.sourceforge.net
-  license: "MIT"
-  description: "Jade is an implementation of DSSSL for formatting SGML and XML documents"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/openjade
-  provides:
-  - category: "app-text"
-    name: "openjade"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "opera"
@@ -8417,35 +8449,6 @@ packages:
   - <<: *layers-gnome
   build_requires:
   - <<: *layers-gnome
-
-- category: "apps"
-  name: "tor"
-  version: "0.4.8.10+1"
-  uri:
-  - https://www.torproject.org
-  license: "BSD GPL-2"
-  description: "Anonymizing overlay network for TCP"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-vpn/tor
-  provides:
-  - name: "tor"
-    category: "acct-group"
-    version: '>=0'
-  - name: "tor"
-    category: "acct-user"
-    version: '>=0'
-  - name: "tor"
-    category: "net-vpn"
-    version: '>=0'
-  requires:
-  - <<: *layers-system-x
-  - category: "entity"
-    name: "tor"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "tree"
@@ -9475,8 +9478,8 @@ packages:
   atoms:
   - atom: "gnome-base/libgnomecanvas"
     use: "glade"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -9633,7 +9636,7 @@ packages:
 - &libs-lpeg
   category: "libs"
   name: "lpeg"
-  version: "1.0.2-r101+3"
+  version: "1.0.2-r101+5"
   uri:
   - http://www.inf.puc-rio.br/~roberto/lpeg/
   license: "MIT"
@@ -9647,10 +9650,10 @@ packages:
     name: "lpeg"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *apps-luajit
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-lttng-ust
   category: "libs"
@@ -9718,8 +9721,8 @@ packages:
   - category: "dev-perl"
     name: "Gtk2"
     version: ">=0"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -10647,7 +10650,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.1-r1+3"
+  version: "2.1-r1+4"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -10671,7 +10674,7 @@ packages:
     use: "exif ffmpegthumbnailer jpeg lcms lua lua_single_target_lua5-3 nls pdf tiff xmp # lirc"
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-lua-5_3
+  # - <<: *apps-lua-5_3
   # - <<: *apps-vim
   build_requires:
   - <<: *layers-gnome-common
@@ -11293,37 +11296,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-nmap
-  category: "apps"
-  name: "nmap"
-  version: "7.94+2"
-  uri:
-  - https://nmap.org/
-  license: "NPSL GPL-2"
-  description: "Network exploration tool and security / port scanner"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/liblinear
-      net-analyzer/nmap
-  provides:
-  - category: "dev-libs"
-    name: "liblinear"
-    version: ">=0"
-  - category: "net-analyzer"
-    name: "nmap"
-    version: ">=0"
-  atoms:
-  - atom: "net-analyzer/nmap"
-    use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
-  prereqs:
-  - sec-keys/openpgp-keys-nmap
-  requires:
-  - <<: *layers-sys-fs
-  # - <<: *apps-lua-5_3
-  build_requires:
-  - <<: *layers-sys-fs
-
 - category: "apps"
   name: "obs-studio"
   version: "30.0.2+1"
@@ -11353,6 +11325,28 @@ packages:
   - <<: *libs-mbedtls
   build_requires:
   - <<: *layers-qt
+
+- &apps-openjade
+  category: "apps"
+  name: "openjade"
+  version: "1.3.2-r9+2"
+  uri:
+  - http://openjade.sourceforge.net
+  license: "MIT"
+  description: "Jade is an implementation of DSSSL for formatting SGML and XML documents"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/openjade
+  provides:
+  - category: "app-text"
+    name: "openjade"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-sgml-common
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "openrgb"
@@ -11915,6 +11909,36 @@ packages:
   - <<: *libs-fltk
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "tor"
+  version: "0.4.8.10+2"
+  uri:
+  - https://www.torproject.org
+  license: "BSD GPL-2"
+  description: "Anonymizing overlay network for TCP"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/tor
+  provides:
+  - name: "tor"
+    category: "acct-group"
+    version: '>=0'
+  - name: "tor"
+    category: "acct-user"
+    version: '>=0'
+  - name: "tor"
+    category: "net-vpn"
+    version: '>=0'
+  requires:
+  - <<: *layers-system-x
+  - category: "entity"
+    name: "tor"
+    version: ">=0"
+  - <<: *libs-sgml-common
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "upplay"
@@ -14240,7 +14264,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r1+1"
+  version: "3.0.6-r1+2"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
@@ -14256,6 +14280,8 @@ packages:
   atoms:
   - atom: "media-sound/zynaddsubfx"
     use: "dssi alsa fltk jack lash portaudio"
+  prereqs:
+  - dev-lang/ruby
   requires:
   - <<: *layers-X
   - <<: *libs-mxml
@@ -15077,8 +15103,8 @@ packages:
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl tk v4l xscreensaver zephyr zeroconf # aqua"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
@@ -15394,8 +15420,8 @@ packages:
   atoms:
   - atom: "media-libs/suil"
     use: "gtk gtk2 qt5"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-qt
   - <<: *libs-gtk2
@@ -15700,8 +15726,8 @@ packages:
   - category: "dev-cpp"
     name: "gtkmm"
     version: ">=0"
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   optrequires:
   - <<: *apps-graphviz
   requires:
@@ -15934,7 +15960,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-hddtemp
-  # - <<: *apps-lua-5_3
   # - <<: *apps-xmms2
   - <<: *libs-libircclient
   build_requires:
@@ -16240,8 +16265,8 @@ packages:
     # accept_keywords: "~amd64"
   optrequires:
   - <<: *apps-doxygen
-  preemerge:
-  - x11-libs/gtk+:2
+  # preemerge:
+  # - x11-libs/gtk+:2
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
