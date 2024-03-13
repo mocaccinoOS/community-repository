@@ -569,7 +569,7 @@ packages:
 - &fonts-font-cursor-misc
   <<: *fonts
   name: "font-cursor-misc"
-  version: "1.0.4+1"
+  version: "1.0.4+2"
   uri:
   - https://www.x.org/wiki
   license: "MIT"
@@ -582,6 +582,8 @@ packages:
   - category: "media-fonts"
     name: "font-cursor-misc"
     version: ">=0"
+  prereqs:
+  - x11-apps/bdftopcf
 
 - <<: *fonts
   name: "inconsolata"
@@ -8703,7 +8705,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.1+3"
+  version: "0.36.1+4"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -8716,8 +8718,8 @@ packages:
   - category: "net-firewall"
     name: "ufw"
     version: ">=0"
-  # prereqs:
-  # - dev-lang/rust-bin
+  excludes:
+  - ^/usr/share/locale/ur/LC_MESSAGES/Linux-PAM.mo
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10449,7 +10451,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417-r4+1"
+  version: "6.0.417-r4+2"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10463,8 +10465,10 @@ packages:
     name: "dotnet-sdk-bin"
     version: ">=0"
   prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild manifest
+  prreqs:
+  - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
@@ -10475,7 +10479,7 @@ packages:
 - &apps-dotnet-7
   category: "apps"
   name: "dotnet-sdk-7"
-  version: "7.0.404-r4+1"
+  version: "7.0.404-r4+2"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10489,8 +10493,10 @@ packages:
     name: "dotnet-sdk-bin"
     version: ">=0"
   prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild manifest
+  prreqs:
+  - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
@@ -10502,7 +10508,7 @@ packages:
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.101-r3"
+  version: "8.0.101-r3+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -10516,8 +10522,10 @@ packages:
     name: "dotnet-sdk-bin"
     version: ">=0"
   prepare: 
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.100.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild manifest
+  prreqs:
+  - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
