@@ -1,12 +1,10 @@
+# install:
+# - glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
+# - update-mime-database /usr/share/mime/
+# - ldconfig
+# - env-update && source /etc/profile
+
 install:
-{{ range .Values.requires | uniq }}
-  {{ if or (eq .name "X") (eq .name "gnome-common") (eq .name "gnome") }}
-- glib-compile-schemas /usr/share/glib-2.0/schemas > /dev/null 2>&1
-  {{ end }}
-{{ end }}
-- update-mime-database /usr/share/mime/
-- ldconfig
-- env-update && source /etc/profile
 
 {{ if and (eq .Values.category "apps") (or (eq .Values.name "emacs") (eq .Values.name "xemacs")) }}
 - eselect ctags update ifunset
