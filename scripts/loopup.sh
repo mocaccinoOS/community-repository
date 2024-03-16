@@ -5,6 +5,8 @@
 #     exit 1
 # fi
 
+# set -x
+
 exec 5>&1
 
 error='Error: failed computing upgrade: Failed solving solution for upgrade: Could not compute upgrade - couldn'\''t uninstall candidates : could not satisfy the constraints:'
@@ -14,7 +16,7 @@ error='Error: failed computing upgrade: Failed solving solution for upgrade: Cou
 #           !(qdevicemonitor-apps-1.0.1-r2+2) or android-tools-apps-34.0.0+4 and
 #           !(android-tools-apps-34.0.0+4) or !(android-tools-apps-34.0.0+4) or !(android-tools-apps-34.0.1)
 
-package_match='[^a-zA-Z0-9-]*([a-zA-Z0-9-]+)\-(libs|apps|layers|fonts)\-.*'
+package_match='[^a-zA-Z0-9_-]*([a-zA-Z0-9_-]+)\-(libs|apps|layers|fonts)\-.*'
 
 up=true
 
