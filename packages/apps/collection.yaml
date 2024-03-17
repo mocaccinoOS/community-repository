@@ -507,6 +507,32 @@ stubs:
 packages:
 
 ################################################################################################################################################################
+### utils ###
+################################################################################################################################################################
+
+- category: "utils"
+  name: "loopup"
+  version: "0.1"
+  uri:
+  - https://github.com/mocaccinoOS/community-repository
+  license: "MIT"
+  description: "Upgrade in a loop while dependency solver errors appear"
+  labels:
+    emerge.jobs: "1"
+  setup:
+  - |
+    wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/loopup.sh -O /usr/bin/loopup.sh
+    chmod +x /usr/bin/loopup.sh
+  requires:
+  - category: "system"
+    name: "luet"
+    version: ">=0"
+  build_requires:
+  - category: "system"
+    name: "luet"
+    version: ">=0"
+
+################################################################################################################################################################
 ### fonts ###
 ################################################################################################################################################################
 
