@@ -53,6 +53,6 @@ while [ "$up" = true ] ; do
     echo "\033[32;5mDone!\033[0m"
   else
     echo "Reinstall: $packages"
-    $(luet reinstall -y ${packages} | tee >(cat - >&5))
+    $(luet reinstall -y ${packages} | tee >(cat - >&5) | tail -1)
   fi
 done

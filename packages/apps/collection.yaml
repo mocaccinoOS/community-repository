@@ -202,24 +202,10 @@ stubs:
   version: ">=0"
 
 ################################################################################################################################################################
-### fonts stub ###
-################################################################################################################################################################
-
-- &fonts
-  category: "fonts"
-  description: "Just a stub for defining fonts"
-  labels:
-    emerge.jobs: "1"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
 
-# - &kernel-gentoo
+# - &kernel-sources-mocaccino-lts-sources
 #   category: "kernel-sources"
 #   name: "mocaccino-lts-sources"
 #   version: ">=0"
@@ -255,13 +241,12 @@ stubs:
 #     license: "NVIDIA-r2"
 #     use: "static-libs"
 #   prerequires:
-#   - <<: *kernel-gentoo
+#   - <<: *kernel-sources-mocaccino-lts-sources
 #   requires:
 #   - <<: *kernel-mocaccino-lts-full
 #   - name: "nvpd"
 #     category: "entity"
 #     version: ">=0"
-
 
 - &kernel-mocaccino-lts-sources
   category: "kernel"
@@ -503,6 +488,20 @@ stubs:
   build_requires:
   - <<: *layers-system-x
 
+################################################################################################################################################################
+### fonts stub ###
+################################################################################################################################################################
+
+- &fonts
+  category: "fonts"
+  description: "Just a stub for defining fonts"
+  labels:
+    emerge.jobs: "1"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 
 packages:
 
@@ -512,7 +511,7 @@ packages:
 
 - category: "utils"
   name: "loopup"
-  version: "0.1"
+  version: "0.2"
   uri:
   - https://github.com/mocaccinoOS/community-repository
   license: "MIT"

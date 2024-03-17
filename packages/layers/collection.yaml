@@ -1,9 +1,9 @@
 
 stubs:
 
-################################################################################
-## layers ###
-################################################################################
+################################################################################################################################################################
+## layers refs ###
+################################################################################################################################################################
 
 - &layers-system-x
   category: "layers"
@@ -40,6 +40,11 @@ stubs:
 - &buildbase-qt
   category: "buildbase"
   name: "qt"
+  version: ">=0"
+
+- &layers-qt6
+  category: "layers"
+  name: "qt6"
   version: ">=0"
 
 - &layers-kde-common
@@ -80,6 +85,11 @@ stubs:
   name: "gnome"
   version: ">=0"
 
+- &layers-trinity
+  category: "layers"
+  name: "trinity"
+  version: ">=0"
+
 - &layers-java
   category: "layers"
   name: "java"
@@ -91,31 +101,27 @@ stubs:
   virtual/jre
   virtual/jdk
 
-- &layers-perl-libs
+- &layers-latex
   category: "layers"
-  name: "perl-libs"
+  name: "latex"
   version: ">=0"
-# - &layerbase-perl-libs
-#   category: "layerbase"
-#   name: "perl-libs"
-#   version: ">=0"
-# - &buildbase-perl-libs
-#   category: "buildbase"
-#   name: "perl-libs"
-#   version: ">=0"
-
-- &layers-ruby
-  category: "layers"
-  name: "ruby"
-  version: ">=0"
-# - &layerbase-ruby
-#   category: "layerbase"
-#   name: "ruby"
-#   version: ">=0"
-- &buildbase-ruby
+- &buildbase-latex
   category: "buildbase"
-  name: "ruby"
+  name: "latex"
   version: ">=0"
+
+- &layers-sci-libs
+  category: "layers"
+  name: "sci-libs"
+  version: ">=0"
+- &layerbase-sci-libs
+  category: "layerbase"
+  name: "sci-libs"
+  version: ">=0"
+# - &buildbase-sci-libs
+#   category: "buildbase"
+#   name: "sci-libs"
+#   version: ">=0"
 
 # - &layers-clang-15
 #   category: "layers"
@@ -154,6 +160,45 @@ stubs:
 - &buildbase-haskell
   category: "buildbase"
   name: "haskell"
+  version: ">=0"
+
+- &layers-office-common
+  category: "layers"
+  name: "office-common"
+  version: ">=0"
+- &layerbase-office-common
+  category: "layerbase"
+  name: "office-common"
+  version: ">=0"
+- &buildbase-office-common
+  category: "buildbase"
+  name: "office-common"
+  version: ">=0"
+
+- &layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: ">=0"
+# - &layerbase-perl-libs
+#   category: "layerbase"
+#   name: "perl-libs"
+#   version: ">=0"
+# - &buildbase-perl-libs
+#   category: "buildbase"
+#   name: "perl-libs"
+#   version: ">=0"
+  
+- &layers-term-libs
+  category: "layers"
+  name: "term-libs"
+  version: ">=0"
+# - &layerbase-term-libs
+#   category: "layerbase"
+#   name: "term-libs"
+#   version: ">=0"
+- &buildbase-term-libs
+  category: "buildbase"
+  name: "term-libs"
   version: ">=0"
 
 ################################################################################
