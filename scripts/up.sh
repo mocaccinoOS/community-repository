@@ -538,9 +538,14 @@ PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/coll
 
 # echo $PACKAGES > packages.list
 
+COMMAND="$(printf %q "$BASH_SOURCE")$((($#)) && printf ' %q' "$@")"
+
 mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
 echo > "${PACKAGES_INFO_FILE}"
+echo -e "COLLECTION=${COLLECTION} ${COMMAND}\n" > "${PACKAGES_INFO_FILE}"
+
 echo > "${PACKAGES_UP_FILE}"
+echo -e "COLLECTION=${COLLECTION} ${COMMAND}\n" > "${PACKAGES_UP_FILE}"
 
 for PKG in ${PACKAGES} ; do
 
