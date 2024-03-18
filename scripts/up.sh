@@ -484,168 +484,182 @@ function getLatestVersion() {
     declare -p VERINFO
 }
 
+function ensurePortageTree() {
+
+    local REFRESH_TREE=$1
+    local PORTAGE_TREE_PATH=$2
+    
+    if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
+        rm -r "${PORTAGE_TREE_PATH}"
+    fi
+    
+    if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
+        local PORTAGE_HASH=$(curl --silent --location  https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+    
+        # --remote-name
+        curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
+    
+        mkdir -p "${PORTAGE_TREE_PATH}"
+        tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1
+        rm ./tree.tar.gz
+    fi
+}
 
 ROOT_PATH="${ROOT_PATH:-../..}"
-COLLECTION="${COLLECTION:-apps}"
-
-PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
-PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.info"
-PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.up"
-
-IS_WEB_URL_REGEX="(https?|ftp)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]"
-
-DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug"
-
-# Remove debug file
-if [[ -f "${DEBUG_FILE}" ]] ; then
-    rm "${DEBUG_FILE}"
-fi
-
-# Ensure Gentoo overlay tree
 
 REFRESH_TREE="${REFRESH_TREE:-true}"
 PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-${ROOT_PATH}/portage/tree}"
 
-if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
-    rm -r "${PORTAGE_TREE_PATH}"
-fi
-
-if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
-    PORTAGE_HASH=$(curl --silent --location  https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
-
-    # --remote-name
-    curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
-
-    mkdir -p "${PORTAGE_TREE_PATH}"
-    tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1
-    rm ./tree.tar.gz
-fi
-
-
-# Parse mOS community repo
-
-# PACKAGES=$(cd ${ROOT_PATH}; luet tree pkglist -f -o json)
-# | select(.name == "openrgb" or .name == "cfortran" or .name == "wine-staging" or .name == "terminatorx" or .name == "nnn" or .name == "hedgewars")
-PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/collection.yaml \
-| jq -r '.packages[] 
-| select(.labels != null and .labels."emerge.packages" != null) 
-| .category + "/" + .name 
-+ "," + .version 
-+ "," + (.labels."emerge.packages" | sub(" "; ";"; "g")) 
-+ "," + (.version | split("+") | .[0]) 
-+ "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end 
-+ "," + if (.overlays != null) then [(.overlays[] | ( .enable // .add ))] | join(";") else "" end')
-
-# echo $PACKAGES > packages.list
-
-COMMAND="$(printf %q "$BASH_SOURCE")$((($#)) && printf ' %q' "$@")"
-
+PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
 mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
+
+PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.info"
+PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.up"
+
 echo > "${PACKAGES_INFO_FILE}"
-echo -e "COLLECTION=${COLLECTION} ${COMMAND}\n" > "${PACKAGES_INFO_FILE}"
-
 echo > "${PACKAGES_UP_FILE}"
-echo -e "COLLECTION=${COLLECTION} ${COMMAND}\n" > "${PACKAGES_UP_FILE}"
 
-for PKG in ${PACKAGES} ; do
+# Ensure Gentoo overlay tree
+ensurePortageTree "${REFRESH_TREE}" "${PORTAGE_TREE_PATH}"
 
-    # PACKAGE=(${PKG//,/ }) # will collapse empty values
-    IFS=',' read -r -a PACKAGE <<< "$PKG"
+COLLECTIONS=("layers" "apps")
 
-    PACKAGE_CATEGORY_NAME="${PACKAGE[0]}"
-    PACKAGE_VERSION="${PACKAGE[1]}"
-    ATOMS="${PACKAGE[2]//;/ }"
-    ATOM_VERSION="${PACKAGE[3]}"
-    ATOMS_FLAVORS="${PACKAGE[4]//;/ }"
-    OVERLAYS="${PACKAGE[5]//;/ }"
+for COLLECTION in ${COLLECTIONS[@]}; do
+
+    #COLLECTION="${COLLECTION:-apps}"
     
-    EBUILD=
-    PYTHON_COMPAT=
+    #PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.info"
+    #PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.up"
     
-    LINES=()
-
-    # REVBUMP_CHAR="${REVBUMP_CHAR:-+}"
-
-    CLOSEST_LEV=
-    CLOSEST_ATOM=
-    CLOSEST_ATOM_VER=
-
-    PACKAGE_NAME=$( echo -e "${PACKAGE_CATEGORY_NAME}" | sed -e 's/\(.*\)\/\(.*\)/\2/' )
-
-    for ATOM in ${ATOMS} ; do
-
-        echo -e "${ATOM}"
-
-        tmp=$(getCategoryPackageVersion "${ATOM}")
-        # echo "$tmp" > /dev/tty
-        eval "${tmp/CPV=/CPV_ATOM=}"
-        # echo "${CPV_ATOM[@]}" > /dev/tty
-
-        ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
-        ATOM_NAME="${CPV_ATOM[NAME]}"
-        ATOM_SLOT="${CPV_ATOM[SLOT]}"
-
-        tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
-        # echo "$tmp" > /dev/tty
-        eval "${tmp/VERINFO=/EBUILD_INFO=}"
-        # echo "${EBUILD_INFO[@]}" > /dev/tty
+    echo -e "====================\nCOLLECTION: ${COLLECTION}\n====================\n" >> "${PACKAGES_INFO_FILE}"    
+    echo -e "====================\nCOLLECTION: ${COLLECTION}\n====================\n" >> "${PACKAGES_UP_FILE}"
+    
+    IS_WEB_URL_REGEX="(https?|ftp)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]"
+    
+    DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug"
+    
+    # Remove debug file
+    if [[ -f "${DEBUG_FILE}" ]] ; then
+        rm "${DEBUG_FILE}"
+    fi
+    
+    # Parse mOS community repo
+    
+    # PACKAGES=$(cd ${ROOT_PATH}; luet tree pkglist -f -o json)
+    # | select(.name == "openrgb" or .name == "cfortran" or .name == "wine-staging" or .name == "terminatorx" or .name == "nnn" or .name == "hedgewars")
+    PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/collection.yaml \
+    | jq -r '.packages[] 
+    | select(.labels != null and .labels."emerge.packages" != null) 
+    | .category + "/" + .name 
+    + "," + .version 
+    + "," + (.labels."emerge.packages" | sub(" "; ";"; "g")) 
+    + "," + (.version | split("+") | .[0]) 
+    + "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end 
+    + "," + if (.overlays != null) then [(.overlays[] | ( .enable // .add ))] | join(";") else "" end')
+    
+    # echo $PACKAGES > packages.list
+    
+    for PKG in ${PACKAGES} ; do
+    
+        # PACKAGE=(${PKG//,/ }) # will collapse empty values
+        IFS=',' read -r -a PACKAGE <<< "$PKG"
+    
+        PACKAGE_CATEGORY_NAME="${PACKAGE[0]}"
+        PACKAGE_VERSION="${PACKAGE[1]}"
+        ATOMS="${PACKAGE[2]//;/ }"
+        ATOM_VERSION="${PACKAGE[3]}"
+        ATOMS_FLAVORS="${PACKAGE[4]//;/ }"
+        OVERLAYS="${PACKAGE[5]//;/ }"
         
-        VER="${EBUILD_INFO[VERSION]}"
-        EBUILD="${EBUILD_INFO[EBUILD_FILE_NAME]}"
-
-        if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
-            PYTHON_COMPAT=$(getPythonCompatFromFile "${EBUILD}")
-        else
-            PYTHON_COMPAT=$(getPythonCompatFromFile "${PORTAGE_TREE_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
-        fi
-        # echo "${EBUILD} python compat: ${PYTHON_COMPAT}" > /dev/tty
-
-        MATCHED_ATOM="\U1FBC4"
-        MATCHED_ATOM_VER="\U1FBC4"
-        if [[ ! -z "${VER}" ]] ; then
-            MATCHED_ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
-            MATCHED_ATOM_VER="${VER}"
-        fi
-
-        LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
+        EBUILD=
+        PYTHON_COMPAT=
         
-        LEV=$(levenshtein "${ATOM_NAME}" "${PACKAGE_NAME}");
-        
-        if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEV ]] ; then
-            CLOSEST_LEV=$LEV
-            CLOSEST_ATOM="${MATCHED_ATOM}"
-            CLOSEST_ATOM_VER=$MATCHED_ATOM_VER
-        fi
-    done
-
-    UPGRADE=
-    FILES="${PACKAGES_INFO_FILE}"
-    if [[ -z ${CLOSEST_ATOM_VER} ]] ; then
-        # No match, mark with 🯄
-        UPGRADE=" \U1F86D \U1FBC4"
-        FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
-    else
-        if [[ ${ATOM_VERSION} != ${CLOSEST_ATOM_VER} ]] ; then
-            UPGRADE=" \U1F86D ${CLOSEST_ATOM_VER}"
+        LINES=()
+    
+        # REVBUMP_CHAR="${REVBUMP_CHAR:-+}"
+    
+        CLOSEST_LEV=
+        CLOSEST_ATOM=
+        CLOSEST_ATOM_VER=
+    
+        PACKAGE_NAME=$( echo -e "${PACKAGE_CATEGORY_NAME}" | sed -e 's/\(.*\)\/\(.*\)/\2/' )
+    
+        for ATOM in ${ATOMS} ; do
+    
+            echo -e "${ATOM}"
+    
+            tmp=$(getCategoryPackageVersion "${ATOM}")
+            # echo "$tmp" > /dev/tty
+            eval "${tmp/CPV=/CPV_ATOM=}"
+            # echo "${CPV_ATOM[@]}" > /dev/tty
+    
+            ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
+            ATOM_NAME="${CPV_ATOM[NAME]}"
+            ATOM_SLOT="${CPV_ATOM[SLOT]}"
+    
+            tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
+            # echo "$tmp" > /dev/tty
+            eval "${tmp/VERINFO=/EBUILD_INFO=}"
+            # echo "${EBUILD_INFO[@]}" > /dev/tty
+            
+            VER="${EBUILD_INFO[VERSION]}"
+            EBUILD="${EBUILD_INFO[EBUILD_FILE_NAME]}"
+    
+            if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
+                PYTHON_COMPAT=$(getPythonCompatFromFile "${EBUILD}")
+            else
+                PYTHON_COMPAT=$(getPythonCompatFromFile "${PORTAGE_TREE_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
+            fi
+            # echo "${EBUILD} python compat: ${PYTHON_COMPAT}" > /dev/tty
+    
+            MATCHED_ATOM="\U1FBC4"
+            MATCHED_ATOM_VER="\U1FBC4"
+            if [[ ! -z "${VER}" ]] ; then
+                MATCHED_ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
+                MATCHED_ATOM_VER="${VER}"
+            fi
+    
+            LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
+            
+            LEV=$(levenshtein "${ATOM_NAME}" "${PACKAGE_NAME}");
+            
+            if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEV ]] ; then
+                CLOSEST_LEV=$LEV
+                CLOSEST_ATOM="${MATCHED_ATOM}"
+                CLOSEST_ATOM_VER=$MATCHED_ATOM_VER
+            fi
+        done
+    
+        UPGRADE=
+        FILES="${PACKAGES_INFO_FILE}"
+        if [[ -z ${CLOSEST_ATOM_VER} ]] ; then
+            # No match, mark with 🯄
+            UPGRADE=" \U1F86D \U1FBC4"
             FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
+        else
+            if [[ ${ATOM_VERSION} != ${CLOSEST_ATOM_VER} ]] ; then
+                UPGRADE=" \U1F86D ${CLOSEST_ATOM_VER}"
+                FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
+            fi
         fi
-    fi
-    
-    ATOMS_FLAVORS_FORMATTED="${ATOMS_FLAVORS//|/(}"
-    if [[ ! -z "${ATOMS_FLAVORS_FORMATTED}" ]] ; then
-        ATOMS_FLAVORS_FORMATTED="${ATOMS_FLAVORS_FORMATTED// /) })"
-    fi
-    
-    LINES=("package: ${PACKAGE_CATEGORY_NAME}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
-    if [[ ! -z "${PYTHON_COMPAT}" ]] ; then
-        LINES+=("python compat: ${PYTHON_COMPAT}") 
-    fi
-    
-    for LINE in "${LINES[@]}" ; do
-        echo -e "${LINE}" | tee -a $FILES > /dev/null
+        
+        ATOMS_FLAVORS_FORMATTED="${ATOMS_FLAVORS//|/(}"
+        if [[ ! -z "${ATOMS_FLAVORS_FORMATTED}" ]] ; then
+            ATOMS_FLAVORS_FORMATTED="${ATOMS_FLAVORS_FORMATTED// /) })"
+        fi
+        
+        LINES=("package: ${PACKAGE_CATEGORY_NAME}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
+        if [[ ! -z "${PYTHON_COMPAT}" ]] ; then
+            LINES+=("python compat: ${PYTHON_COMPAT}") 
+        fi
+        
+        for LINE in "${LINES[@]}" ; do
+            echo -e "${LINE}" | tee -a $FILES > /dev/null
+        done
+        
+        echo -e "" | tee -a $FILES > /dev/null
     done
-    
-    echo -e "" | tee -a $FILES > /dev/null
+
 done
 
 echo -e "\n\e\033[5;32;1mDone!\e[0m\n"
