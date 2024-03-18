@@ -5613,29 +5613,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "flacon"
-  version: "11.3.0"
-  uri:
-  - https://flacon.github.io/
-  license: "LGPL-2.1+"
-  description: "Extracts audio tracks from an audio CD image to separate tracks"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/flacon
-  provides:
-  - category: "media-sound"
-    name: "flacon"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/flacon"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "foliate"
   version: "2.6.4-r3+1"
   uri:
@@ -9760,7 +9737,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "8.11.2+1"
+  version: "8.13.0"
   uri:
   - https://github.com/pikepdf/pikepdf/
   - https://pypi.org/project/pikepdf/
@@ -10014,7 +9991,7 @@ packages:
 - &apps-ant-core
   category: "apps"
   name: "ant-core"
-  version: "1.10.9-r5+2"
+  version: "1.10.14"
   uri:
   - https://ant.apache.org/
   license: "Apache-2.0"
@@ -10263,7 +10240,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "1.1.0+1"
+  version: "1.2.2"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -10391,7 +10368,7 @@ packages:
 
 - category: "apps"
   name: "deadbeef"
-  version: "1.9.6+2"
+  version: "1.9.6-r1"
   uri:
   - https://deadbeef.sourceforge.io
   license: "BSD GPL-2 LGPL-2.1"
@@ -10437,7 +10414,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "0.2+10"
+  version: "0.2+11"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -10589,7 +10566,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "29.1-r6+1"
+  version: "29.2-r1"
   uri:
   - https://www.gnu.org/software/emacs
   license: "GPL-3+ FDL-1.3+ BSD HPND MIT W3C unicode PSF-2"
@@ -10766,7 +10743,7 @@ packages:
 
 - category: "apps"
   name: "goverlay"
-  version: "0.9.1+2"
+  version: "1.0"
   uri:
   - https://github.com/benjamimgois/goverlay
   license: "GPL-3"
@@ -10851,7 +10828,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "23.08.4+1"
+  version: "23.08.5"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -10874,7 +10851,7 @@ packages:
 # TODO: gpg
 - category: "apps"
   name: "kget"
-  version: "23.08.4+1"
+  version: "23.08.5"
   uri:
   - https://apps.kde.org/kget
   license: "GPL-2"
@@ -10976,7 +10953,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "23.08.4-r+1"
+  version: "23.08.5"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -10997,7 +10974,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "23.08.4+1"
+  version: "23.08.5"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -11449,7 +11426,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "5.27.10-r1+1"
+  version: "5.27.11"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -11706,7 +11683,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.34+1"
+  version: "1.4.35"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -12243,7 +12220,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "9.2+1"
+  version: "9.4.1"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -12347,7 +12324,7 @@ packages:
 - &apps-zathura
   category: "apps"
   name: "zathura"
-  version: "0.5.2-r4+1"
+  version: "0.5.4"
   uri:
   - https://pwmt.org/projects/zathura/
   license: "GPL-2"
@@ -12374,7 +12351,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "5.17.5.2543+1"
+  version: "5.17.11.3835"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -14712,6 +14689,33 @@ packages:
   - <<: *libs-sdl
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "flacon"
+  version: "10.0.0-r1+2"
+  uri:
+  - https://flacon.github.io/
+  license: "LGPL-2.1+"
+  description: "Extracts audio tracks from an audio CD image to separate tracks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/flacon
+  provides:
+  - category: "media-sound"
+    name: "flacon"
+    version: ">=0"
+  # atoms:
+  # - atom: "media-sound/flacon"
+  #   accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  # - <<: *libs-libzen
+  # - <<: *libs-tinyxml2
+  # - <<: *libs-libmediainfo
+  # - <<: *apps-mediainfo
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-gcdemu
   category: "apps"
