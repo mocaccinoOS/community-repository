@@ -12967,35 +12967,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &apps-eclipse-ecj
-  category: "apps"
-  name: "eclipse-ecj"
-  version: "4.26-r2"
-  uri:
-  - https://www.eclipse.org
-  license: "EPL-1.0"
-  description: "Eclipse Compiler for Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/eclipse-ecj
-      dev-java/ant-eclipse-ecj
-  provides:
-  - category: "dev-java"
-    name: "eclipse-ecj"
-    version: ">=0"
-  - category: "dev-java"
-    name: "ant-eclipse-ecj"
-    version: ">=0"
-  atoms:
-  - atom: "dev-java/eclipse-ecj"
-    use: "ant"
-  requires:
-  - <<: *layers-java
-  - <<: *apps-ant-core
-  build_requires:
-  - <<: *layers-java
-
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
@@ -15815,7 +15786,7 @@ packages:
 - &libs-lilv
   category: "libs"
   name: "lilv"
-  version: "0.24.22-r1+1"
+  version: "0.24.24"
   uri:
   - http://drobilla.net/software/lilv/
   license: "ISC"
