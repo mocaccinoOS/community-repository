@@ -14856,14 +14856,15 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  prerequires:
-  - <<: *kernel-mocaccino-lts-sources
-  # - <<: *kernel-modules-vhba-lts
+  # prerequires:
+  # - <<: *kernel-mocaccino-lts-sources
+  # # - <<: *kernel-modules-vhba-lts
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
   - <<: *buildbase-kde-common
+  - <<: *kernel-modules-vhba-lts
 
 - category: "apps"
   name: "kstars"
@@ -16596,7 +16597,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "23.08.4+1"
+  version: "23.08.5"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
