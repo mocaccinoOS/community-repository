@@ -14857,7 +14857,8 @@ packages:
     name: "kcdemu"
     version: ">=0"
   prerequires:
-  - MM: *kernel-modules-vhba-lts
+  - <<: *kernel-mocaccino-lts-sources
+  # - <<: *kernel-modules-vhba-lts
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
@@ -16402,7 +16403,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "3.6.5+14"
+  version: "3.6.5+15"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -16423,7 +16424,7 @@ packages:
     Advanced shading language for production GI renderers
     Library for particle IO and manipulation
   labels:
-    emerge.jobs: "5"
+    emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/blender:3.6
   provides:
@@ -16543,7 +16544,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "23.08.4+3"
+  version: "23.08.5"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
