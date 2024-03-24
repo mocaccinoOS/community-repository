@@ -970,27 +970,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-async-timeout
-  category: "libs"
-  name: "async-timeout"
-  version: "4.0.3+1"
-  uri:
-  - https://github.com/aio-libs/async-timeout/
-  license: "GPL-2"
-  description: "Timeout context manager for asyncio programs"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/async-timeout
-  provides:
-  - category: "dev-python"
-    name: "async-timeout"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-aubio
   category: "libs"
   name: "aubio"
@@ -7849,6 +7828,39 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pychromecast
+  category: "libs"
+  name: "pychromecast"
+  version: "13.0.7+2"
+  uri:
+  - https://github.com/home-assistant-libs/pychromecast
+  - https://github.com/ur1katz/casttube
+  license: "MIT"
+  description: |
+    Python module to talk to Google Chromecast
+    casttube provides a way to interact with the Youtube Chromecast api
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/casttube
+      dev-python/pychromecast
+  provides:
+  - category: "dev-python"
+    name: "pychromecast"
+    version: ">=0"
+  - category: "dev-python"
+    name: "casttube"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/casttube"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pychromecast"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "qbittorrent"
   version: "4.6.3+1"
@@ -9899,34 +9911,6 @@ packages:
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-X
-  
-- &libs-zeroconf
-  category: "libs"
-  name: "zeroconf"
-  version: "0.131.0+1"
-  uri:
-  - https://github.com/jstasiak/python-zeroconf/
-  - https://pypi.org/project/zeroconf/
-  license: "LGPL-2.1"
-  description: "Pure Python Multicast DNS Service Discovery Library (Bonjour/Avahi compatible)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/ifaddr
-      dev-python/zeroconf
-  provides:
-  - category: "dev-python"
-    name: "ifaddr"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zeroconf"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-async-timeout
-  build_requires:
-  - <<: *layers-system-x
-
 
 ################################################################################################################################################################
 ### dep 1 apps ###
@@ -12650,40 +12634,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-pychromecast
-  category: "libs"
-  name: "pychromecast"
-  version: "13.0.7+2"
-  uri:
-  - https://github.com/home-assistant-libs/pychromecast
-  - https://github.com/ur1katz/casttube
-  license: "MIT"
-  description: |
-    Python module to talk to Google Chromecast
-    casttube provides a way to interact with the Youtube Chromecast api
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/casttube
-      dev-python/pychromecast
-  provides:
-  - category: "dev-python"
-    name: "pychromecast"
-    version: ">=0"
-  - category: "dev-python"
-    name: "casttube"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/casttube"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/pychromecast"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-zeroconf
-  build_requires:
-  - <<: *layers-X
-
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
@@ -14864,8 +14814,8 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  prerequires:
-  - <<: *kernel-mocaccino-lts-sources
+  # prerequires:
+  # - <<: *kernel-mocaccino-lts-sources
   # - <<: *kernel-modules-vhba-lts
   requires:
   - <<: *layers-kde-common
@@ -16544,7 +16494,6 @@ packages:
   - <<: *libs-pychromecast
   - <<: *libs-send2trash
   - <<: *libs-wxpython
-  - <<: *libs-zeroconf
   - <<: *apps-argyllcms
   build_requires:
   - <<: *buildbase-gnome-common
