@@ -7562,31 +7562,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "p7zip-ui"
-  version: "16.02-r8+4"
-  uri:
-  - http://p7zip.sourceforge.net/
-  license: "LGPL-2.1 unRAR"
-  description: |
-    The UI of the Port of 7-Zip archiver for Unix
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-arch/p7zip
-  provides:
-  - category: "app-arch"
-    name: "p7zip"
-    version: ">=0"
-  atoms:
-  - atom: "app-arch/p7zip"
-    use: "kde natspec rar wxwidgets"
-    license: "unRAR"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 # - &apps-pandoc
 #   category: "apps"
 #   name: "pandoc"
@@ -11406,6 +11381,32 @@ packages:
   - <<: *libs-mbedtls
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "p7zip-ui"
+  version: "16.02-r8+5"
+  uri:
+  - http://p7zip.sourceforge.net/
+  license: "LGPL-2.1 unRAR"
+  description: |
+    The UI of the Port of 7-Zip archiver for Unix
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-arch/p7zip
+  provides:
+  - category: "app-arch"
+    name: "p7zip"
+    version: ">=0"
+  atoms:
+  - atom: "app-arch/p7zip"
+    use: "kde natspec rar wxwidgets"
+    license: "unRAR"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-wxGTK-3_0-gtk3
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "pcem"
