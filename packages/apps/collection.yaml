@@ -14851,7 +14851,7 @@ packages:
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.8.0+4"
+  version: "0.8.0+5"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -14864,15 +14864,15 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  # prerequires:
-  # # - <<: *kernel-mocaccino-lts-sources
+  prerequires:
+  - <<: *kernel-mocaccino-lts-sources
   # - <<: *kernel-modules-vhba-lts
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
-  - <<: *buildbase-mocaccino-lts-sources
   - <<: *buildbase-kde-common
+  # - <<: *buildbase-mocaccino-lts-sources
   requires_final_images: true
 
 - category: "apps"
