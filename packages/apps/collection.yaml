@@ -14798,32 +14798,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-kcdemu
-  category: "apps"
-  name: "kcdemu"
-  version: "0.8.0+5"
-  uri:
-  - https://www.linux-apps.com/p/998461/
-  license: "GPL-2"
-  description: "Frontend to cdemu daemon based on KDE Frameworks"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/kcdemu
-  provides:
-  - category: "app-cdr"
-    name: "kcdemu"
-    version: ">=0"
-  # prerequires:
-  # - <<: *kernel-mocaccino-lts-sources
-  # - <<: *kernel-modules-vhba-lts
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-cdemu
-  build_requires:
-  - <<: *buildbase-mocaccino-lts-sources
-  - <<: *buildbase-kde-common
-  requires_final_images: true
+# - &apps-kcdemu
+#   category: "apps"
+#   name: "kcdemu"
+#   version: "0.8.0+5"
+#   uri:
+#   - https://www.linux-apps.com/p/998461/
+#   license: "GPL-2"
+#   description: "Frontend to cdemu daemon based on KDE Frameworks"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-cdr/kcdemu
+#   provides:
+#   - category: "app-cdr"
+#     name: "kcdemu"
+#     version: ">=0"
+#   # prerequires:
+#   # - <<: *kernel-mocaccino-lts-sources
+#   # - <<: *kernel-modules-vhba-lts
+#   requires:
+#   - <<: *layers-kde-common
+#   - <<: *apps-cdemu
+#   build_requires:
+#   - <<: *buildbase-mocaccino-lts-sources
+#   - <<: *buildbase-kde-common
+#   requires_final_images: true
 
 - category: "apps"
   name: "kstars"
