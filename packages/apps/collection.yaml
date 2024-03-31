@@ -14113,7 +14113,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.3-r1+4"
+  version: "0.9.3-r1+3"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -14128,13 +14128,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/xmms2"
-    use: "mlib-update server airplay fluidsynth gme ices mac ofa sid tremor vocoder xml server cxx perl python aac alsa cdda curl ffmpeg flac jack mad mms modplug mp3 musepack opus oss pulseaudio samba sndfile speex valgrind vorbis wavpack #ao"
+    use: "mlib-update server airplay fluidsynth gme ices mac ofa sid tremor vocoder xml server cxx perl python aac alsa ao cdda curl ffmpeg flac jack mad mms modplug mp3 musepack opus oss pulseaudio samba sndfile speex valgrind vorbis wavpack"
   inner_build_reqs:
   - dev-debug/valgrind
   requires:
   - <<: *layers-X
   - <<: *libs-game-music-emu
-  # - <<: *libs-libao
+  - <<: *libs-libao
   - <<: *libs-libdiscid
   - <<: *libs-libshout
   - <<: *libs-libsidplay
