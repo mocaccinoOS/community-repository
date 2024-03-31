@@ -216,7 +216,7 @@ stubs:
   atoms:
   - atom: "media-fonts/culmus"
     use: "ancient fancy fontforge taamey X"
-  prereqs:
+  inner_build_reqs:
   - media-gfx/fontforge
 
 ################################################################################
@@ -299,7 +299,7 @@ packages:
   - category: "app-crypt"
     name: "mhash"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/yasm
   requires:
   - <<: *layers-system-x
@@ -464,7 +464,7 @@ packages:
   atoms:
   - atom: "games-board/gnuchess-book"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - sys-apps/help2man
   requires:
   - <<: *layers-system-x
@@ -1132,7 +1132,7 @@ packages:
     use: "cli gui"
   - atom: "games-puzzle/atomix"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - dev-libs/check
   - app-text/rarian
   requires:
@@ -1294,7 +1294,7 @@ packages:
   atoms:
   - atom: "kde-apps/kdegames-meta"
     use: "opengl # python"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -1381,7 +1381,7 @@ packages:
     # accept_keywords: "~amd64"
   - atom: "app-admin/haskell-updater"
     # accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - app-text/docbook-xml-dtd
   - dev-python/sphinx
   - app-text/dos2unix
@@ -2825,7 +2825,7 @@ packages:
 #     accept_keywords: "~amd64"
 #   env: "MAKEOPTS=\"-j5 -l0.9\""
 #   # env: "USE=\"hscolour profile\""
-#   prereqs:
+#   inner_build_reqs:
 #   - app-text/dos2unix
 #   - app-text/docbook-xml-dtd
 #   - app-text/docbook-xsl-stylesheets

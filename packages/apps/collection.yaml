@@ -240,7 +240,7 @@ stubs:
 #   - atom: "x11-drivers/nvidia-drivers"
 #     license: "NVIDIA-r2"
 #     use: "static-libs"
-#   prerequires:
+#   inner_build_requires:
 #   - <<: *kernel-sources-mocaccino-lts-sources
 #   requires:
 #   - <<: *kernel-mocaccino-lts-full
@@ -580,7 +580,7 @@ packages:
   atoms:
   - atom: "media-fonts/culmus"
     use: "ancient fancy fontforge taamey X"
-  prereqs:
+  inner_build_reqs:
   - media-gfx/fontforge
 
 - &fonts-fontawesome
@@ -616,7 +616,7 @@ packages:
   - category: "media-fonts"
     name: "font-cursor-misc"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - x11-apps/bdftopcf
 
 - <<: *fonts
@@ -804,7 +804,7 @@ packages:
   atoms:
   - atom: "media-fonts/wqy-microhei"
     use: "X"
-  prerequires:
+  inner_build_requires:
   - <<: *apps-xdelta-3
 
 ################################################################################################################################################################
@@ -989,7 +989,7 @@ packages:
   atoms:
   - atom: "media-libs/aubio"
     use: "ffmpeg fftw jack libsamplerate sndfile python # double-precision"
-  prereqs:
+  inner_build_reqs:
   - app-text/txt2man
   requires:
   - <<: *layers-X
@@ -1076,7 +1076,7 @@ packages:
   - category: "sec-keys"
     name: "openpgp-keys-botan"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - app-arch/xz-utils
   - dev-python/sphinx
   requires:
@@ -1095,7 +1095,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/breeze-plymouth
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   - sys-boot/plymouth
   provides:
@@ -1234,7 +1234,7 @@ packages:
   - category: "dev-python"
     name: "colorama"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-python/mock
   requires:
   - <<: *layers-system-x
@@ -1541,7 +1541,7 @@ packages:
   atoms:
   - atom: "dev-libs/girara"
     use: "libnotify"
-  prereqs:
+  inner_build_reqs:
   - dev-libs/check
   requires:
   - <<: *layers-X
@@ -2485,7 +2485,7 @@ packages:
   atoms:
   - atom: "dev-libs/libmirage"
     use: "introspection"
-  prereqs:
+  inner_build_reqs:
   - dev-util/intltool
   requires:
   - <<: *layers-X
@@ -2848,7 +2848,7 @@ packages:
   - category: "media-libs"
     name: "libzen"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/yasm
   requires:
   - <<: *layers-system-x
@@ -3089,7 +3089,7 @@ packages:
   atoms:
   - atom: "x11-libs/motif"
     use: "jpeg png unicode xft # motif22-compatibility"
-  prereqs:
+  inner_build_reqs:
   - dev-util/byacc
   requires:
   - <<: *layers-X
@@ -3112,7 +3112,7 @@ packages:
   - category: "dev-libs"
     name: "msgpack"
     version: ">=0"
-  # prereqs:
+  # inner_build_reqs:
   # - =app-arch/xz-utils-5.2.10
   # - sys-libs/zlib
   requires:
@@ -3202,7 +3202,7 @@ packages:
 #   - category: "media-libs"
 #     name: "nas"
 #     version: ">=0"
-#   prereqs:
+#   inner_build_reqs:
 #   - app-text/rman x11-misc/gccmakedep x11-misc/imake
 #   requires:
 #   - <<: *layers-X
@@ -3447,7 +3447,7 @@ packages:
   - category: "media-libs"
     name: "ptex"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - app-text/doxygen
   requires:
   - <<: *layers-qt
@@ -3471,7 +3471,7 @@ packages:
   - category: "dev-python"
     name: "pynacl"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-python/hypothesis
   requires:
   - <<: *layers-sys-fs
@@ -4054,7 +4054,7 @@ packages:
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
-  prereqs:
+  inner_build_reqs:
   - dev-lang/yasm
   requires:
   - <<: *layers-system-x
@@ -4275,7 +4275,7 @@ packages:
   - category: "dev-perl"
     name: "XML-LibXML"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-perl/Alien-Libxml2
   requires:
   - <<: *layers-system-x
@@ -4461,7 +4461,7 @@ packages:
   atoms:
   - atom: "dev-util/android-tools"
     use: "python udev"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/go
   - virtual/libusb:0
   requires:
@@ -4484,7 +4484,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-power/apcupsd
-  prereqs:
+  inner_build_reqs:
   - virtual/libusb:0
   provides:
   - category: "sys-power"
@@ -4538,7 +4538,7 @@ packages:
   - category: "media-gfx"
     name: "argyllcms"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-util/ftjam
   requires:
   - <<: *layers-X
@@ -4627,7 +4627,7 @@ packages:
   atoms:
   - atom: "net-dns/bind-tools"
     use: "caps doc gssapi idn libedit readline xml"
-  prereqs:
+  inner_build_reqs:
   - dev-python/sphinx
   requires:
   - <<: *layers-sys-fs
@@ -4669,7 +4669,7 @@ packages:
   - category: "sys-apps"
     name: "bleachbit"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-python/mock
   requires:
   - <<: *layers-X
@@ -4716,7 +4716,7 @@ packages:
   - category: "sys-process"
     name: "bottom"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/rust-bin
   - virtual/rust
   requires:
@@ -5567,7 +5567,7 @@ packages:
   atoms:
   - atom: "media-gfx/fig2dev"
     env: "MAKEOPTS=\"-j1\""
-  prereqs:
+  inner_build_reqs:
   - app-text/rman x11-misc/imake
   requires:
   - <<: *layers-X
@@ -5672,7 +5672,7 @@ packages:
     emerge.packages: >-
       media-libs/libuninameslist
       media-gfx/fontforge
-  prereqs:
+  inner_build_reqs:
   - *libs-sphinx-packages
   provides:
   - category: "media-libs"
@@ -5741,9 +5741,9 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/fcft"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - app-text/scdoc
-  prerequires:
+  inner_build_requires:
   - <<: *libs-tllist
   requires:
   - <<: *layers-X
@@ -5820,7 +5820,7 @@ packages:
   - atom: "app-office/freeoffice"
     license: "SoftMaker"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - app-admin/chrpath
   - app-arch/xz-utils
   excludes:
@@ -6024,7 +6024,7 @@ packages:
   - category: "app-office"
     name: "gnumeric"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - app-text/yelp-tools
   requires:
   - <<: *layers-gnome-common
@@ -6132,7 +6132,7 @@ packages:
   - category: "sys-apps"
     name: "gsmartcontrol"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-util/gtk-builder-convert
   requires:
   - <<: *layers-X
@@ -6286,7 +6286,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/hwinfo
-  prereqs:
+  inner_build_reqs:
   - app-arch/rpm2targz
   provides:
   - category: "sys-apps"
@@ -6353,7 +6353,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/icoutils
-  prereqs:
+  inner_build_reqs:
   - app-arch/rpm2targz
   provides:
   - category: "media-gfx"
@@ -6560,7 +6560,7 @@ packages:
   - atom: "media-gfx/kcoloredit"
     use: "handbook"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -6786,7 +6786,7 @@ packages:
   atoms:
   - atom: "kde-apps/kruler"
     use: "X handbook"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -7049,7 +7049,7 @@ packages:
   atoms:
   - atom: "media-gfx/mandelbulber"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - dev-qt/designer
   requires:
   - <<: *layers-qt
@@ -7149,7 +7149,7 @@ packages:
   atoms:
   - atom: "media-sound/milkytracker"
     use: "alsa jack"
-  prereqs:
+  inner_build_reqs:
   - media-libs/rtmidi
   requires:
   - <<: *layers-X
@@ -7206,7 +7206,7 @@ packages:
   atoms:
   - atom: "dev-lang/mono"
     use: "minimal"
-  prereqs:
+  inner_build_reqs:
   - sys-apps/elfix
   requires:
   - <<: *layers-X
@@ -7295,7 +7295,7 @@ packages:
 #   atoms:
 #   - atom: "net-news/news-flash"
 #     accept_keywords: "~amd64"
-#   prereqs:
+#   inner_build_reqs:
 #   - dev-lang/rust
 #   requires:
 #   - <<: *layers-gnome-common
@@ -7325,7 +7325,7 @@ packages:
   atoms:
   - atom: "net-analyzer/nmap"
     use: "libssh2 ncat nping nse system-lua ipv6 ssl # symlink"
-  prereqs:
+  inner_build_reqs:
   - sec-keys/openpgp-keys-nmap
   requires:
   - <<: *layers-sys-fs
@@ -7500,7 +7500,7 @@ packages:
   atoms:
   - atom: "net-misc/nx"
     env: "MAKEOPTS=\"-j1\""
-  prereqs:
+  inner_build_reqs:
   - x11-misc/gccmakedep x11-misc/xorg-cf-files x11-misc/imake
   requires:
   - <<: *layers-X
@@ -7622,7 +7622,7 @@ packages:
   - atom: "media-video/peek"
     use: "keybinder"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - app-text/txt2man
   requires:
   - <<: *layers-gnome-common
@@ -7834,7 +7834,7 @@ packages:
   atoms:
   - atom: "net-misc/putty"
     use: "doc gtk gssapi"
-  prereqs:
+  inner_build_reqs:
   - app-doc/halibut
   requires:
   - <<: *layers-X
@@ -7992,7 +7992,7 @@ packages:
   atoms:
   - atom: "app-editors/qhexedit2"
     use: "gui"
-  prereqs:
+  inner_build_reqs:
   - dev-python/PyQt-builder
   requires:
   - <<: *layers-qt
@@ -8288,7 +8288,7 @@ packages:
   - category: "media-sound"
     name: "sndio"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - acct-user/sndiod
   requires:
   - <<: *layers-X
@@ -8589,7 +8589,7 @@ packages:
   atoms:
   - atom: "kde-apps/sweeper"
     use: "handbook"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -8701,7 +8701,7 @@ packages:
   atoms:
   - atom: "net-p2p/transmission"
     use: "-qt5"
-  prereqs:
+  inner_build_reqs:
   - acct-group/transmission
   - acct-user/transmission
   requires:
@@ -8798,7 +8798,7 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-video/vcdimager
-  prereqs:
+  inner_build_reqs:
   - x11-misc/makedepend
   provides:
   - category: "media-video"
@@ -9084,7 +9084,7 @@ packages:
   - category: "media-gfx"
     name: "xli"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - app-text/rman x11-misc/imake
   requires:
   - <<: *layers-X
@@ -9752,7 +9752,7 @@ packages:
   #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
   #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
   #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
-  prereqs:
+  inner_build_reqs:
   - dev-python/setuptools_scm_git_archive
   requires:
   - <<: *layers-X
@@ -9849,7 +9849,7 @@ packages:
   atoms:
   - atom: "net-voip/telepathy-rakia"
     use: "ssl"
-  prereqs:
+  inner_build_reqs:
   - net-libs/farstream
   - net-libs/telepathy-glib
   requires:
@@ -9900,7 +9900,7 @@ packages:
   atoms:
   - atom: "media-libs/xine-lib"
     use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
-  prereqs:
+  inner_build_reqs:
   - virtual/imagemagick-tools
   requires:
   - <<: *layers-gnome-common
@@ -9941,9 +9941,9 @@ packages:
 #   # - echo $SHELL || true
 #   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
 #   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-#   prereqs:
+#   inner_build_reqs:
 #   - app-crypt/minisign
-#   prerequires:
+#   inner_build_requires:
 #   - <<: *apps-premake-5
 #   requires:
 #   - <<: *layers-gnome-common
@@ -9970,7 +9970,7 @@ packages:
   - category: "dev-java"
     name: "ant-core"
     version: ">=0"
-  prerequires:
+  inner_build_requires:
   - <<: *apps-javatoolkit  
   requires:
   - <<: *layers-java
@@ -10051,7 +10051,7 @@ packages:
   - atom: "media-gfx/brother-scan4-bin"
     license: "GPL-2 brother-eula no-source-code"
     use: "avahi"
-  prereqs:
+  inner_build_reqs:
   - virtual/libusb:0
   requires:
   - <<: *layers-X
@@ -10138,7 +10138,7 @@ packages:
   atoms:
   - atom: "app-cdr/cdemu"
     use: "cdemu-daemon"
-  # prereqs:
+  # inner_build_reqs:
   # - virtual/dist-kernel
   # - virtual/linux-sources
   requires:
@@ -10168,7 +10168,7 @@ packages:
   atoms:
   - atom: "app-cdr/cdrdao"
     use: "encode mad vorbis"
-  prereqs:
+  inner_build_reqs:
   - x11-misc/makedepend
   requires:
   - <<: *layers-X
@@ -10222,7 +10222,7 @@ packages:
   atoms:
   - atom: "app-antivirus/clamav"
     use: "clamonacc clamapp systemd"
-  prereqs:
+  inner_build_reqs:
   - acct-group/clamav
   - acct-user/clamav
   requires:
@@ -10254,7 +10254,7 @@ packages:
   atoms:
   - atom: "media-sound/clementine"
     use: "-lastfm ios moodbar mtp projectm"
-  prereqs:
+  inner_build_reqs:
   - dev-cpp/gtest
   requires:
   - <<: *layers-qt
@@ -10323,7 +10323,7 @@ packages:
       GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
       CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
       CXXFLAGS="${CFLAGS}"
-  prereqs:
+  inner_build_reqs:
   - dev-python/jsonschema
   requires:
   - <<: *layers-gnome-common
@@ -10408,7 +10408,7 @@ packages:
     version: '>=0'
   excludes:
   - ^/usr/bin/docker$
-  prerequires:
+  inner_build_requires:
   - <<: *apps-go
   requires:
   - <<: *layers-system-x
@@ -10435,7 +10435,7 @@ packages:
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild manifest
-  prereqs:
+  inner_build_reqs:
   - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
@@ -10463,7 +10463,7 @@ packages:
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild manifest
-  prereqs:
+  inner_build_reqs:
   - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
@@ -10492,7 +10492,7 @@ packages:
   prepare: 
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild manifest
-  prereqs:
+  inner_build_reqs:
   - dev-util/patchelf
   requires:
   - <<: *layers-sys-fs
@@ -10521,7 +10521,7 @@ packages:
   atoms:
   - atom: "media-sound/easytag"
     use: "flac mp3 mp4 opus speex vorbis wavpack"
-  prereqs:
+  inner_build_reqs:
   - app-text/yelp-tools
   requires:
   - <<: *layers-gnome-common
@@ -10735,7 +10735,7 @@ packages:
     accept_keywords: "**"
   - atom: "dev-libs/qt5pas"
     accept_keywords: "~amd64"
-  # prereqs:
+  # inner_build_reqs:
   # - dev-lang/fpc
   # - dev-lang/lazarus
   requires:
@@ -10858,7 +10858,7 @@ packages:
   - category: "app-admin"
     name: "keepassxc"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - dev-ruby/asciidoctor
   requires:
   - <<: *layers-qt
@@ -10986,7 +10986,7 @@ packages:
 #     accept_keywords: "~amd64"
 #   - atom: "dev-libs/kweathercore"
 #     accept_keywords: "~amd64"
-#   prerequires:
+#   inner_build_requires:
 #   - <<: *libs-qtpositioning-geoclue
 #   requires:
 #   - <<: *layers-kde-common
@@ -11181,7 +11181,7 @@ packages:
   atoms:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
-  prereqs:
+  inner_build_reqs:
   - dev-ruby/rake
   requires:
   - <<: *layers-qt
@@ -11264,7 +11264,7 @@ packages:
   atoms:
   - atom: "net-analyzer/net-snmp"
     use: "X bzip2 doc elf kmem ipv6 lm-sensors mfd-rewrites minimal mysql netlink pcap pci perl python smux ssl tcpd ucd-compat zlib # rpm"
-  prereqs:
+  inner_build_reqs:
   - app-text/doxygen
   requires:
   - <<: *layers-X
@@ -11427,7 +11427,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/plymouth-kcm
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   - sys-boot/plymouth
   provides:
@@ -11462,7 +11462,7 @@ packages:
   atoms:
   - atom: "dev-db/postgresql"
     use: "icu kerberos ldap nls pam perl python readline server systemd ssl tcl threads uuid xml zlib # llvm"
-  prereqs:
+  inner_build_reqs:
   - acct-group/postgres
   - acct-user/postgres
   requires:
@@ -11522,7 +11522,7 @@ packages:
   atoms:
   - atom: "media-gfx/qcad"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - dev-qt/designer
   requires:
   - <<: *layers-qt
@@ -11692,9 +11692,9 @@ packages:
   - atom: "net-misc/remmina"
     use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
     accept_keywords: "~amd64"
-  # prereqs:
+  # inner_build_reqs:
   # - kde-frameworks/kwallet
-  # prerequires:
+  # inner_build_requires:
   # - <<: *apps-spice-gtk
   requires:
   - <<: *layers-gnome-common
@@ -12089,7 +12089,7 @@ packages:
   - atom: "media-plugins/vdr-xineliboutput"
     use: "bluray cec dbus fbcon jpeg nls opengl vdpau vdr X xine xinerama # caps"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - acct-group/vdr
   - acct-user/vdr
   excludes:
@@ -12277,7 +12277,7 @@ packages:
     use: "gtk # kde rar"
   - atom: "app-emulation/protontricks"
     use: "gui"
-  prereqs:
+  inner_build_reqs:
   - acct-group/rtkit
   - acct-user/rtkit
   - dev-util/mingw64-toolchain
@@ -12332,7 +12332,7 @@ packages:
   atoms:
   - atom: "app-text/zathura"
     use: "synctex doc magic seccomp sqlite"
-  prereqs:
+  inner_build_reqs:
   - dev-libs/check
   - dev-python/sphinx
   requires:
@@ -12364,7 +12364,7 @@ packages:
     license: "net-im/zoom all-rights-reserved"
     use: "-bundled-qt"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - dev-util/bbe
   requires:
   - <<: *layers-qt
@@ -12709,7 +12709,7 @@ packages:
   atoms:
   - atom: "dev-dotnet/avalonia-ilspy"
     accept_keywords: "~amd64"
-  prerequires:
+  inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
@@ -12767,7 +12767,7 @@ packages:
   - atom: "media-video/avidemux"
     use: "gui nls opengl sdl vaapi vdpau xv"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/yasm
   requires:
   - <<: *layers-qt
@@ -12918,7 +12918,7 @@ packages:
   - category: "app-cdr"
     name: "dvd+rw-tools"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - x11-misc/makedepend
   requires:
   - <<: *layers-sys-fs
@@ -12990,7 +12990,7 @@ packages:
   - category: "net-analyzer"
     name: "gnome-nettool"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - app-text/yelp-tools
   requires:
   - <<: *layers-gnome-common
@@ -13194,7 +13194,7 @@ packages:
     accept_keywords: "~amd64"
   # - atom: "dev-cpp/waylandpp"
   #   accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - *layers-java-packages
   requires:
   - <<: *layers-X
@@ -13232,7 +13232,7 @@ packages:
     use: "extras gui # gtk2"
   - atom: "dev-libs/libqt5pas"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - net-misc/rsync
   requires:
   - <<: *layers-X
@@ -13311,7 +13311,7 @@ packages:
   # postgres
   - atom: "app-office/libreoffice"
     use: "accessibility base bluetooth -branding clang coinmp cups dbus eds googledrive gstreamer gtk java ldap mariadb nlpsolver pdfimport vulkan"
-  prereqs:
+  inner_build_reqs:
   - *layers-java-packages
   # - dev-java/javatoolkit
   # - dev-java/bsh
@@ -13484,7 +13484,7 @@ packages:
   atoms:
   - atom: "app-editors/neovim"
     use: "lto nvimpager tui"
-  prereqs:
+  inner_build_reqs:
   - dev-lua/busted
   requires:
   - <<: *layers-X
@@ -13547,7 +13547,7 @@ packages:
   - atom: "sys-power/nut"
     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
   - virtual/libusb:0
@@ -13592,7 +13592,7 @@ packages:
     accept_keywords: "~amd64"
   # - atom: "net-misc/onedrivegui"
   #   accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - =dev-lang/dmd-2.106.1:2.106
   requires:
   - <<: *layers-gnome-common
@@ -13618,7 +13618,7 @@ packages:
   atoms:
   - atom: "games-strategy/openra"
     accept_keywords: "~amd64"
-  prerequires:
+  inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
@@ -13854,7 +13854,7 @@ packages:
     use: "alsa nls"
   - atom: "media-sound/terminatorx"
     use: "alsa jack mad pulseaudio vorbis sox"
-  prereqs:
+  inner_build_reqs:
   - app-text/gnome-doc-utils
   requires:
   - <<: *layers-X
@@ -13904,7 +13904,7 @@ packages:
     use: "alsa ao flac gtk jack ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs # nas"
   - atom: "media-sound/timidity-eawpatches"
     license: "free-noncomm"
-  prereqs:
+  inner_build_reqs:
   - acct-group/audio
   - acct-group/nobody
   - acct-user/timidity
@@ -13942,7 +13942,7 @@ packages:
   - category: "net-im"
     name: "tokodon"
     version: ">=0"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -14077,7 +14077,7 @@ packages:
   atoms:
   - atom: "app-editors/xemacs"
     use: "pop dnd xim alsa gif gpm ldap athena motif neXt Xaw3d xface X jpeg tiff png xft gdbm berkdb # postgres freewnn mule # nas"
-  prereqs:
+  inner_build_reqs:
   - sys-devel/autoconf:2.1
   excludes:
   - ^/usr/bin/ctags$
@@ -14129,7 +14129,7 @@ packages:
   atoms:
   - atom: "media-sound/xmms2"
     use: "mlib-update server airplay fluidsynth gme ices mac ofa sid tremor vocoder xml server cxx perl python aac alsa ao cdda curl ffmpeg flac jack mad mms modplug mp3 musepack opus oss pulseaudio samba sndfile speex valgrind vorbis wavpack"
-  prereqs:
+  inner_build_reqs:
   - dev-debug/valgrind
   requires:
   - <<: *layers-X
@@ -14212,7 +14212,7 @@ packages:
   atoms:
   - atom: "media-sound/zynaddsubfx"
     use: "dssi alsa fltk jack lash portaudio"
-  prereqs:
+  inner_build_reqs:
   - dev-lang/ruby
   requires:
   - <<: *layers-X
@@ -14546,7 +14546,7 @@ packages:
   atoms:
   - atom: "app-office/calligra"
     use: "activities charts crypt fontconfig gemini gsl import-filter lcms okular pdf phonon spacenav truetype X karbon sheets stage words"
-  prereqs:
+  inner_build_reqs:
   - kde-apps/okular
   requires:
   - <<: *layers-kde-common
@@ -14670,7 +14670,7 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  prerequires:
+  inner_build_requires:
   - <<: *apps-go
   ready:
   - git clone https://github.com/akiyosi/goneovim
@@ -14814,19 +14814,21 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  # prerequires:
-  # - <<: *kernel-mocaccino-lts-sources
+  # outer_build_requires:
+  # - <<: *kernel-sources-mocaccino-lts-sources
   # - <<: *kernel-modules-vhba-lts
+  # outer_build_reqs:
+  # - virtual/linux-sources
+  # - virtual/dist-kernel
   requires:
   - <<: *layers-kde-common
-  - <<: *kernel-mocaccino-lts-sources
   - <<: *apps-cdemu
   build_requires:
-  - <<: *layers-kde-common
-  # - <<: *buildbase-mocaccino-lts-sources
-  # - <<: *buildbase-kde-common
+  # - <<: *layers-kde-common
+  - <<: *buildbase-mocaccino-lts-sources
+  - <<: *buildbase-kde-common
   # - <<: *kernel-mocaccino-lts-sources
-  # requires_final_images: true
+  requires_final_images: true
 
 - category: "apps"
   name: "kstars"
@@ -14917,7 +14919,7 @@ packages:
   - atom: "sci-libs/matio"
     use: "hdf5 sparse # doc examples"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
@@ -15013,7 +15015,7 @@ packages:
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
-  prereqs:
+  inner_build_reqs:
   - *layers-java-packages
   requires:
   - <<: *layers-gnome-common
@@ -15250,7 +15252,7 @@ packages:
   atoms:
   - atom: "dev-python/paramiko"
     use: "server"
-  prereqs:
+  inner_build_reqs:
   - dev-python/mock
   requires:
   - <<: *layers-sys-fs
@@ -15299,7 +15301,7 @@ packages:
   atoms:
   - atom: "x11-plugins/pidgin-sipe"
     use: "dbus kerberos ocs2005-message-hack openssl telepathy voice"
-  prereqs:
+  inner_build_reqs:
   - net-libs/telepathy-glib
   requires:
   # depends on net-libs/telepathy-glib
@@ -15437,7 +15439,7 @@ packages:
   atoms:
   - atom: "media-sound/cmus"
     use: "aac alsa ao cddb cdio discid ffmpeg flac jack libsampleratemad mikmod modplug mp4 musepack opus oss pulseaudio systemd tremor unicode vorbis wavpack # elogind examples pidgin"
-  # prereqs:
+  # inner_build_reqs:
   # - net-im/pidgin
   #optrequires:
   #- <<: *apps-pidgin
@@ -15537,7 +15539,7 @@ packages:
   atoms:
   - atom: "media-gfx/graphviz"
     use: "cairo devil gtk gts guile java lasi lefty nls pdf perl postscript python qt5 svg tcl webp X # ruby"
-  prereqs:
+  inner_build_reqs:
   - *layers-java-packages
   requires:
   - <<: *layers-qt
@@ -15573,7 +15575,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/text"
     accept_keywords: "~amd64"
-  prereqs:
+  inner_build_reqs:
   # - dev-lang/ghc
   - dev-haskell/parsec
   - dev-lang/fpc
@@ -15909,7 +15911,7 @@ packages:
   atoms:
   - atom: "app-admin/conky"
     use: "apcupsd bundled-toluapp cmus curl hddtemp ical iconv imlib intel-backlight iostats ipv6 irc lua-cairo lua-imlib lua-rsvg math mpd mysql nano-syntax ncurses portmon pulseaudio rss systemd thinkpad truetype weather-metar webserver wifi X xinerama vim-syntax # moc nvidia xmms2"
-  prereqs:
+  inner_build_reqs:
   - app-text/docbook2X
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
@@ -16147,7 +16149,7 @@ packages:
     use: "opengl python"
   - atom: "media-libs/openimageio"
     use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt5 raw truetype"
-  # prereqs:
+  # inner_build_reqs:
   # - dev-cpp/pystring
   preemerge:
   - media-libs/opencolorio;USE="-opengl"
@@ -16443,7 +16445,7 @@ packages:
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
-  prereqs:
+  inner_build_reqs:
 #   - app-text/doxygen
 #   - dev-python/sphinx
 #   - dev-texlive/texlive-bibtexextra

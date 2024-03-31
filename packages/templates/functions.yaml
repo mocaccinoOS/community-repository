@@ -11,7 +11,34 @@
 
     {{- $dep := . }}
 
-    {{- range ( "requires prerequires optrequires" | splitList " " ) }}
+    {{- range ( "outer_build_requires" | splitList " " ) }}
+      {{- if ( index $dep . ) }}
+        {{- range ( index $dep . ) }}
+
+          {{- $package := printf "\"%s-%s\"" .category .name }}
+          {{- if not ( has $package $packages ) }}
+            {{- $packages = $package | append $packages }}
+          {{- end }}
+
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    
+    {{- range ( "outer_build_reqs" | splitList " " ) }}
+      {{- if ( index $dep . ) }}
+        {{- range ( index $dep . ) }}
+
+          {{- $required := printf "\"%s\"" . }}
+          
+          {{- if not ( has $required $packages ) }}
+            {{- $packages = $required | append $packages }}
+          {{- end }}
+
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    
+    {{- range ( "requires optrequires inner_build_requires" | splitList " " ) }}
       {{- if ( index $dep . ) }}
         {{- range ( index $dep . ) }}
 
@@ -25,7 +52,7 @@
       {{- end }}
     {{- end }}
 
-    {{- range ( "prereqs preemerge" | splitList " " ) }}
+    {{- range ( "inner_build_reqs preemerge" | splitList " " ) }}
       {{- if ( index $dep . ) }}
         {{- range ( index $dep . ) }}
 
@@ -66,7 +93,35 @@
     {{- $package := . }}
     {{- $requiredBy := printf "%s-%s" .category .name }}
     
-    {{- range ( "requires prerequires optrequires" | splitList " " ) }}
+    {{- range ( "outer_build_requires" | splitList " " ) }}
+      {{- if ( index $package . ) }}
+        {{- range ( index $package . ) }}
+
+          {{- $required := printf "%s-%s" .category .name }}
+
+          {{- if not ( hasKey $packages $required ) }}
+            {{- $_ := set $packages $required $requiredBy }}
+          {{- end }}
+
+        {{- end }}
+      {{- end }}
+    {{- end }}
+
+    {{- range ( "outer_build_reqs" | splitList " " ) }}
+      {{- if ( index $package . ) }}
+        {{- range ( index $package . ) }}
+        
+          {{- $required := printf "\"%s\"" . }}
+
+          {{- if not ( hasKey $packages $required ) }}
+            {{- $_ := set $packages $required $requiredBy }}
+          {{- end }}
+
+        {{- end }}
+      {{- end }}
+    {{- end }}
+
+    {{- range ( "requires optrequires inner_build_requires" | splitList " " ) }}
       {{- if ( index $package . ) }}
         {{- range ( index $package . ) }}
 
@@ -84,7 +139,7 @@
       {{- end }}
     {{- end }}
 
-    {{- range ( "prereqs preemerge" | splitList " " ) }}
+    {{- range ( "inner_build_reqs preemerge" | splitList " " ) }}
       {{- if ( index $package . ) }}
         {{- range ( index $package . ) }}
         
@@ -240,6 +295,24 @@
 
 {{- $package := . }}
 
+{{- range ( "outer_build_requires" | splitList " " ) }}
+{{- if ( index $package . ) }}
+{{- range ( index $package . ) }}
+
+{{- include "community.prereqs_emerge" ( list . $packages $current_package ) }}
+
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if .outer_build_reqs }}
+{{- range .outer_build_reqs }}
+{{- if . }}
+{{ include "community.emerge" . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
 {{- if .requires }}
 {{- range .requires }}
 
@@ -248,7 +321,7 @@
 {{- end }}
 {{- end }}
 
-{{- range ( "prerequires optrequires" | splitList " " ) }}
+{{- range ( "optrequires inner_build_requires" | splitList " " ) }}
 {{- if ( index $package . ) }}
 {{- range ( index $package . ) }}
 
@@ -281,8 +354,8 @@
 {{- end }}
 {{- end }}
 
-{{- if .prereqs }}
-{{- range .prereqs }}
+{{- if .inner_build_reqs }}
+{{- range .inner_build_reqs }}
 {{- if . }}
 {{ include "community.emerge" . }}
 {{- end }}
