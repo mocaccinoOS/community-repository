@@ -2935,6 +2935,27 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-lv2
+  category: "libs"
+  name: "lv2"
+  version: "1.18.10+4"
+  uri:
+  - https://lv2plug.in/
+  license: "MIT"
+  description: "A simple but extensible successor of LADSPA"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/lv2
+  provides:
+  - category: "dev-libs"
+    name: "lv2"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-lzip
   category: "libs"
   name: "lzip"
@@ -9690,28 +9711,6 @@ packages:
   # - <<: *apps-numactl
   build_requires:
   - <<: *layers-sys-fs
-
-- &libs-lv2
-  category: "libs"
-  name: "lv2"
-  version: "1.18.10+4"
-  uri:
-  - https://lv2plug.in/
-  license: "MIT"
-  description: "A simple but extensible successor of LADSPA"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lv2
-  provides:
-  - category: "dev-libs"
-    name: "lv2"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
 
 - &libs-perlGtk2
   category: "libs"
