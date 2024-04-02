@@ -15094,9 +15094,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-im/pidgin"
-    use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl tk v4l xscreensaver zephyr zeroconf # aqua"
-  # preemerge:
-  # - x11-libs/gtk+:2
+    use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl v4l xscreensaver zephyr zeroconf # aqua tk"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
@@ -15105,7 +15103,7 @@ packages:
   - <<: *apps-gtkspell
   - <<: *libs-libgadu
   - <<: *libs-meanwhile
-  - <<: *apps-tk
+  # - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
 
