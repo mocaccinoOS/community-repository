@@ -10154,9 +10154,13 @@ packages:
   build_requires:
   - <<: *kernel-modules-vhba-lts
   
+# - <<: *apps-cdemu
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
+  
 - <<: *apps-cdemu
-  category: "buildbase"
-  unpack: true
+  category: "layerbase"
   hidden: true
 
 - &apps-cdrdao
@@ -14808,30 +14812,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# - &apps-kcdemu
-#   category: "apps"
-#   name: "kcdemu"
-#   version: "0.8.0+7"
-#   uri:
-#   - https://www.linux-apps.com/p/998461/
-#   license: "GPL-2"
-#   description: "Frontend to cdemu daemon based on KDE Frameworks"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-cdr/kcdemu
-#   provides:
-#   - category: "app-cdr"
-#     name: "kcdemu"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *apps-cdemu
-#   build_requires:
-#   # - <<: *kernel-modules-vhba-lts
-#   - <<: *buildbase-cdemu
-#   - <<: *buildbase-kde-common
-#   requires_final_images: true
+- &apps-kcdemu
+  category: "apps"
+  name: "kcdemu"
+  version: "0.8.0+7"
+  uri:
+  - https://www.linux-apps.com/p/998461/
+  license: "GPL-2"
+  description: "Frontend to cdemu daemon based on KDE Frameworks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/kcdemu
+  provides:
+  - category: "app-cdr"
+    name: "kcdemu"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu
+  build_requires:
+  # - <<: *kernel-modules-vhba-lts
+  - <<: *buildbase-cdemu
+  - <<: *buildbase-kde-common
+  requires_final_images: true
 
 - category: "apps"
   name: "kstars"
