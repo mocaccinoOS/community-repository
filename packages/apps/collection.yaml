@@ -11453,6 +11453,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-picom
+  category: "apps"
+  name: "picom"
+  version: "10.2"
+  uri:
+  - https://github.com/yshui/picom
+  license: "MPL-2.0 MIT"
+  description: "A lightweight compositor for X11 (previously a compton fork)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/picom
+  provides:
+  - category: "x11-misc"
+    name: "picom"
+    version: ">=0"
+  atoms:
+  - atom: "x11-misc/picom"
+    use: "config-file drm opengl pcre"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libconfig
+  - <<: *libs-uthash
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "plymouth-kcm"
   version: "5.27.11"
