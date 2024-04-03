@@ -11812,6 +11812,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-shutter
+  category: "apps"
+  name: "shutter"
+  version: "0.99.4-r1"
+  uri:
+  - https://shutter-project.org/
+  license: "GPL-3+"
+  description: "Feature-rich screenshot program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/shutter
+  provides:
+  - category: "x11-misc"
+    name: "shutter"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-perl-libs
+  - <<: *libs-ayatana
+  - <<: *libs-goocanvas-2  
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
