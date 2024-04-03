@@ -974,9 +974,8 @@ packages:
 - &def-layers-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.10"
+  version: "0.11"
   uri:
-  - https://metacpan.org/release/Text-Tabs+Wrap
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
@@ -986,9 +985,11 @@ packages:
   - https://metacpan.org/release/ExtUtils-InstallPaths
   - https://metacpan.org/release/File-Copy-Recursive
   - https://metacpan.org/release/Gtk3-ImageView
+  - https://metacpan.org/release/JSON-MaybeXS
   - https://metacpan.org/release/libxml-perl
   - https://metacpan.org/release/Math-Calc-Units
   - https://metacpan.org/release/Module-Build-Tiny
+  - https://metacpan.org/release/Module-Install
   - https://metacpan.org/release/Net-DBus
   - https://metacpan.org/release/Number-Bytes-Human
   - https://metacpan.org/release/Pango
@@ -1003,22 +1004,24 @@ packages:
   - https://metacpan.org/release/Text-Autoformat
   - https://metacpan.org/release/Text-Reform
   - https://metacpan.org/release/Text-Iconv
+  - https://metacpan.org/release/Text-Tabs+Wrap
   - https://metacpan.org/release/Tie-IxHash
   - https://metacpan.org/release/Unicode-UTF8
   - https://metacpan.org/release/X11-Protocol
   - https://metacpan.org/release/XML-Twig
   license: "metapackage"
   description: |
-    Expand/unexpand tabs per unix expand and line wrapping
     Perl5 module for reading configuration files and parsing command line arguments
     Automated accessor generation
     Read/Write .ini style files with as little code as possible
     Warns and dies noisily with stack backtraces
     Wrapper for perl's configuration
     Various portability utilities for module builders
+    Standalone, extensible Perl module installer
     Build.PL install path logic made easy
     uses File::Copy to recursively copy dirs
     Image viewer widget for Gtk3
+    Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
     Collection of Perl modules for working with XML
     Human-readable unit-aware calculator
     Tiny replacement for Module::Build
@@ -1035,6 +1038,7 @@ packages:
     Manual text wrapping and reformatting
     Automatic text wrapping and reformatting
     A Perl interface to the iconv() codeset conversion function
+    Expand/unexpand tabs per unix expand and line wrapping
     Ordered associative arrays for Perl
     Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
@@ -1048,8 +1052,10 @@ packages:
       dev-perl/Config-Tiny
       dev-perl/File-Copy-Recursive
       dev-perl/Gtk3-ImageView
+      dev-perl/JSON-MaybeXS
       dev-perl/libxml-perl
       dev-perl/Math-Calc-Units
+      dev-perl/Module-Install
       dev-perl/Net-DBus
       dev-perl/Number-Bytes-Human
       dev-perl/Pango
@@ -1064,9 +1070,6 @@ packages:
       dev-perl/Unicode-UTF8
       dev-perl/X11-Protocol
   provides:
-  - category: "perl-core"
-    name: "Text-Tabs+Wrap"
-    version: ">=0"
   - category: "dev-perl"
     name: "AppConfig"
     version: ">=0"
@@ -1095,6 +1098,9 @@ packages:
     name: "Gtk3-ImageView"
     version: ">=0"
   - category: "dev-perl"
+    name: "JSON-MaybeXS"
+    version: ">=0"
+  - category: "dev-perl"
     name: "libxml-perl"
     version: ">=0"
   - category: "dev-perl"
@@ -1102,6 +1108,9 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Module-Build-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Module-Install"
     version: ">=0"
   - category: "dev-perl"
     name: "Net-DBus"
@@ -1137,13 +1146,16 @@ packages:
     name: "Template-Toolkit"
     version: ">=0"
   - category: "dev-perl"
-    name: "Text-Reform"
-    version: ">=0"
-  - category: "dev-perl"
     name: "Text-Autoformat"
     version: ">=0"
   - category: "dev-perl"
     name: "Text-Iconv"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Reform"
+    version: ">=0"
+  - category: "perl-core"
+    name: "Text-Tabs+Wrap"
     version: ">=0"
   - category: "dev-perl"
     name: "Tie-IxHash"
