@@ -3388,27 +3388,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-Pango
-  category: "libs"
-  name: "Pango"
-  version: "1.227.0-r2+2"
-  uri:
-  - https://metacpan.org/release/Pango
-  license: "LGPL-2.1+"
-  description: "Layout and render international text"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-perl/Pango
-  provides:
-  - category: "dev-perl"
-    name: "Pango"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-pbr
   category: "libs"
   name: "pbr"
@@ -9769,31 +9748,6 @@ packages:
   # - <<: *apps-numactl
   build_requires:
   - <<: *layers-sys-fs
-
-- &libs-perlGtk2
-  category: "libs"
-  name: "Gtk2"
-  version: "1.249.930+3"
-  uri:
-  - https://metacpan.org/release/Gtk2
-  license: "LGPL-2.1+"
-  description: "Perl bindings for GTK2"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-perl/Gtk2
-  provides:
-  - category: "dev-perl"
-    name: "Gtk2"
-    version: ">=0"
-  # preemerge:
-  # - x11-libs/gtk+:2
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  - <<: *libs-Pango
-  build_requires:
-  - <<: *layers-X
 
 - &libs-pikepdf
   category: "libs"
