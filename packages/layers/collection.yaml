@@ -974,37 +974,108 @@ packages:
 - &def-layers-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.8"
+  version: "0.9"
   uri:
+  - https://metacpan.org/release/AppConfig
+  - https://metacpan.org/release/Carp-Always
+  - https://metacpan.org/release/File-Copy-Recursive
+  - https://metacpan.org/release/Gtk3-ImageView
+  - https://metacpan.org/release/libxml-perl
+  - https://metacpan.org/release/Net-DBus
+  - https://metacpan.org/release/Number-Bytes-Human
+  - https://metacpan.org/release/Pango
   - https://metacpan.org/release/Path-Tiny
-  - https://metacpan.org/release/Unicode-UTF8
+  - https://metacpan.org/release/Proc-ProcessTable
+  - https://metacpan.org/release/Proc-Simple
+  - https://metacpan.org/release/Sort-Naturally
+  - https://metacpan.org/release/Template-Toolkit
+  - https://metacpan.org/release/Test-MockModule
   - https://metacpan.org/release/Text-Reform
   - https://metacpan.org/release/Text-Autoformat
-  - https://metacpan.org/release/Template-Toolkit
-  - https://metacpan.org/release/AppConfig
-  license: "metapackage (Apache 2.0 Artistic GPL-1)"
+  - https://metacpan.org/release/Unicode-UTF8
+  - https://metacpan.org/release/X11-Protocol
+  license: "metapackage"
   description: |
-    Manual text wrapping and reformatting
-    Encoding and decoding of UTF-8 encoding form
+    Perl5 module for reading configuration files and parsing command line arguments
+    Warns and dies noisily with stack backtraces
+    uses File::Copy to recursively copy dirs
+    Image viewer widget for Gtk3
+    Collection of Perl modules for working with XML
+    Perl extension for the DBus message system
+    Convert byte count to human readable format
+    Layout and render international text
+    Unix process table information
+    Launch and control background processes
+    sort lexically, but sort numeral parts numerically
+    The Template Toolkit
+    Override subroutines in a module for unit testing
     Manual text wrapping and reformatting
     Automatic text wrapping and reformatting
-    The Template Toolkit
-    Perl5 module for reading configuration files and parsing command line arguments
+    Encoding and decoding of UTF-8 encoding form
+    Client-side interface to the X11 Protocol
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      dev-perl/AppConfig
+      dev-perl/Carp-Always
+      dev-perl/File-Copy-Recursive
+      dev-perl/Gtk3-ImageView
+      dev-perl/libxml-perl
+      dev-perl/Net-DBus
+      dev-perl/Number-Bytes-Human
+      dev-perl/Pango
       dev-perl/Path-Tiny
-      dev-perl/Unicode-UTF8
+      dev-perl/Proc-ProcessTable
+      dev-perl/Proc-Simple
+      dev-perl/Sort-Naturally
+      dev-perl/Template-Toolkit
+      dev-perl/Test-MockModule
       dev-perl/Text-Reform
       dev-perl/Text-Autoformat
-      dev-perl/Template-Toolkit
-      dev-perl/AppConfig
+      dev-perl/Unicode-UTF8
+      dev-perl/X11-Protocol
   provides:
+  - category: "dev-perl"
+    name: "AppConfig"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Carp-Always"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-Copy-Recursive"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Gtk3-ImageView"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "libxml-perl"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Net-DBus"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Number-Bytes-Human"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Pango"
+    version: ">=0"
   - category: "dev-perl"
     name: "Path-Tiny"
     version: ">=0"
   - category: "dev-perl"
-    name: "Unicode-UTF8"
+    name: "Proc-ProcessTable"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Proc-Simple"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Sort-Naturally"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Template-Toolkit"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Test-MockModule"
     version: ">=0"
   - category: "dev-perl"
     name: "Text-Reform"
@@ -1013,10 +1084,10 @@ packages:
     name: "Text-Autoformat"
     version: ">=0"
   - category: "dev-perl"
-    name: "Template-Toolkit"
+    name: "Unicode-UTF8"
     version: ">=0"
   - category: "dev-perl"
-    name: "AppConfig"
+    name: "X11-Protocol"
     version: ">=0"
   requires:
   - <<: *layers-X
