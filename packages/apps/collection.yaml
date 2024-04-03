@@ -4636,6 +4636,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-badwolf
+  category: "apps"
+  name: "badwolf"
+  version: "1.3.0"
+  uri:
+  - https://hacktivis.me/projects/badwolf
+  license: "BSD"
+  description: "Minimalist and privacy-oriented WebKitGTK+ browser"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/badwolf
+  provides:
+  - category: "www-client"
+    name: "badwolf"
+    version: ">=0"
+  atoms:
+  - atom: "www-client/badwolf"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *buildbase-gnome-common
+
 - category: "apps"
   name: "bchunk"
   version: "1.2.2-r1+1"
