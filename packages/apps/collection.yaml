@@ -1472,6 +1472,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-freeradius-client
+  category: "apps"
+  name: "freeradius-client"
+  version: "1.1.7-r3"
+  uri:
+  - https://wiki.freeradius.org/project/Radiusclient
+  license: "BSD"
+  description: "FreeRADIUS Client framework"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dialup/freeradius-client
+  provides:
+  - category: "net-dialup"
+    name: "freeradius-client"
+    version: ">=0"
+  atoms:
+  - atom: "net-dialup/freeradius-client"
+    use: "scp shadow"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
