@@ -11815,7 +11815,7 @@ packages:
 - &apps-shutter
   category: "apps"
   name: "shutter"
-  version: "0.99.4-r1+2"
+  version: "0.99.4-r1+3"
   uri:
   - https://shutter-project.org/
   license: "GPL-3+"
@@ -11830,11 +11830,12 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
-  - <<: *layerbase-perl-libs
   - <<: *libs-ayatana
   - <<: *libs-goocanvas-2  
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *layerbase-perl-libs
+  requires_final_images: true
 
 - &apps-smplayer
   category: "apps"
