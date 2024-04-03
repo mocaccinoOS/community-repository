@@ -3301,6 +3301,43 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
+- &libs-Net-SNMP
+  category: "libs"
+  name: "Net-SNMP"
+  version: "6.0.1-r3"
+  uri:
+  - https://metacpan.org/release/Crypt-DES
+  - https://metacpan.org/release/Crypt-Rijndael
+  - https://metacpan.org/release/Digest-SHA1
+  - https://metacpan.org/release/Net-SNMP
+  license: "Artistic GPL-1+"
+  description: |
+    A SNMP Perl Module
+    Perl DES encryption module
+    Crypt::CBC compliant Rijndael encryption module
+    NIST SHA message digest algorithm
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Net-SNMP
+  provides:
+  - category: "dev-perl"
+    name: "Net-SNMP"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-DES"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-Rijndael"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-SHA1"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-neXtaw
   category: "libs"
   name: "neXtaw"
