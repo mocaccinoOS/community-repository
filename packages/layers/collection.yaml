@@ -974,45 +974,63 @@ packages:
 - &def-layers-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.9"
+  version: "0.9+1"
   uri:
+  - https://metacpan.org/release/Text-Tabs+Wrap
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Carp-Always
+  - https://metacpan.org/release/ExtUtils-Config
+  - https://metacpan.org/release/ExtUtils-Helpers
+  - https://metacpan.org/release/ExtUtils-InstallPaths
   - https://metacpan.org/release/File-Copy-Recursive
   - https://metacpan.org/release/Gtk3-ImageView
   - https://metacpan.org/release/libxml-perl
+  - https://metacpan.org/release/Module-Build-Tiny
   - https://metacpan.org/release/Net-DBus
   - https://metacpan.org/release/Number-Bytes-Human
   - https://metacpan.org/release/Pango
   - https://metacpan.org/release/Path-Tiny
   - https://metacpan.org/release/Proc-ProcessTable
   - https://metacpan.org/release/Proc-Simple
+  - https://metacpan.org/release/Readonly
   - https://metacpan.org/release/Sort-Naturally
+  - https://metacpan.org/release/SUPER
   - https://metacpan.org/release/Template-Toolkit
-  - https://metacpan.org/release/Test-MockModule
-  - https://metacpan.org/release/Text-Reform
   - https://metacpan.org/release/Text-Autoformat
+  - https://metacpan.org/release/Text-Reform
+  - https://metacpan.org/release/Text-Iconv
+  - https://metacpan.org/release/Tie-IxHash
   - https://metacpan.org/release/Unicode-UTF8
   - https://metacpan.org/release/X11-Protocol
+  - https://metacpan.org/release/XML-Twig
   license: "metapackage"
   description: |
+    Expand/unexpand tabs per unix expand and line wrapping
     Perl5 module for reading configuration files and parsing command line arguments
     Warns and dies noisily with stack backtraces
+    Wrapper for perl's configuration
+    Various portability utilities for module builders
+    Build.PL install path logic made easy
     uses File::Copy to recursively copy dirs
     Image viewer widget for Gtk3
     Collection of Perl modules for working with XML
+    Tiny replacement for Module::Build
     Perl extension for the DBus message system
     Convert byte count to human readable format
     Layout and render international text
     Unix process table information
     Launch and control background processes
+    Facility for creating read-only scalars, arrays, hashes
     sort lexically, but sort numeral parts numerically
+    control superclass method dispatch
     The Template Toolkit
-    Override subroutines in a module for unit testing
     Manual text wrapping and reformatting
     Automatic text wrapping and reformatting
+    A Perl interface to the iconv() codeset conversion function
+    Ordered associative arrays for Perl
     Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
+    Process huge XML documents in tree mode
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1029,17 +1047,28 @@ packages:
       dev-perl/Proc-Simple
       dev-perl/Sort-Naturally
       dev-perl/Template-Toolkit
-      dev-perl/Test-MockModule
-      dev-perl/Text-Reform
       dev-perl/Text-Autoformat
+      dev-perl/Text-Reform
       dev-perl/Unicode-UTF8
       dev-perl/X11-Protocol
   provides:
+  - category: "perl-core"
+    name: "Text-Tabs+Wrap"
+    version: ">=0"
   - category: "dev-perl"
     name: "AppConfig"
     version: ">=0"
   - category: "dev-perl"
     name: "Carp-Always"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-Config"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-Helpers"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-InstallPaths"
     version: ">=0"
   - category: "dev-perl"
     name: "File-Copy-Recursive"
@@ -1049,6 +1078,9 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "libxml-perl"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Module-Build-Tiny"
     version: ">=0"
   - category: "dev-perl"
     name: "Net-DBus"
@@ -1069,13 +1101,16 @@ packages:
     name: "Proc-Simple"
     version: ">=0"
   - category: "dev-perl"
+    name: "Readonly"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Sort-Naturally"
     version: ">=0"
   - category: "dev-perl"
-    name: "Template-Toolkit"
+    name: "SUPER"
     version: ">=0"
   - category: "dev-perl"
-    name: "Test-MockModule"
+    name: "Template-Toolkit"
     version: ">=0"
   - category: "dev-perl"
     name: "Text-Reform"
@@ -1084,10 +1119,25 @@ packages:
     name: "Text-Autoformat"
     version: ">=0"
   - category: "dev-perl"
+    name: "Text-Iconv"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Tie-IxHash"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Unicode-UTF8"
     version: ">=0"
   - category: "dev-perl"
     name: "X11-Protocol"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "XML-Twig"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Digest"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Text-Tabs+Wrap"
     version: ">=0"
   requires:
   - <<: *layers-X
