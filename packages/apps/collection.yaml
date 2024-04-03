@@ -4190,7 +4190,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-libs/uriparser"
-    use: "unicode"
+    use: "-doc unicode"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5949,9 +5949,10 @@ packages:
   - category: "net-analyzer"
     name: "fping"
     version: ">=0"
-  # atoms:
-  # - atom: "net-analyzer/fping"
-  #   use: "filecaps suid"
+  atoms:
+  - atom: "net-analyzer/fping"
+    license: "fping"
+    # use: "filecaps suid"
   requires:
   - <<: *layers-sys-fs
   build_requires:
