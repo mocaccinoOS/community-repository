@@ -4169,6 +4169,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-uriparser
+  category: "libs"
+  name: "uriparser"
+  version: "0.9.7"
+  uri:
+  - https://uriparser.github.io/
+  license: "BSD"
+  description: "Strictly RFC 3986 compliant URI parsing library in C"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/uriparser
+  provides:
+  - category: "dev-libs"
+    name: "uriparser"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/uriparser"
+    use: "unicode"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-uthash
   category: "libs"
   name: "uthash"
