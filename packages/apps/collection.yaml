@@ -1677,6 +1677,43 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-goocanvas-2
+  category: "libs"
+  name: "goocanvas"
+  version: "2.0.4-r2"
+  uri:
+  - https://wiki.gnome.org/GooCanvas
+  - https://metacpan.org/release/GooCanvas2
+  - https://metacpan.org/release/GooCanvas2-CairoTypes
+  license: "Artistic GPL-1+ LGPL-2"
+  description: |
+    Canvas widget for GTK+ using the cairo 2D library for drawing
+    Perl binding for GooCanvas2 widget using Glib::Object::Introspection
+    Bridge between GooCanvas2 and Cairo types
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =x11-libs/goocanvas-2.0.4-r2
+      dev-perl/GooCanvas2
+      dev-perl/GooCanvas2-CairoTypes
+  provides:
+  - category: "x11-libs"
+    name: "goocanvas"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "GooCanvas2"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "GooCanvas2-CairoTypes"
+    version: ">=0"
+  atoms:
+  - atom: "x11-libs/goocanvas"
+    use: "introspection"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-gpm
   category: "libs"
   name: "gpm"
