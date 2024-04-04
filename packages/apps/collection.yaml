@@ -11392,7 +11392,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.3-r3+5"
+  version: "5.9.3-r3+6"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -11419,14 +11419,15 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-analyzer/net-snmp"
-    use: "X bzip2 doc elf kmem ipv6 lm-sensors mfd-rewrites mysql netlink pcap pci perl python smux ssl tcpd ucd-compat zlib # minimal rpm"
-  inner_build_reqs:
-  - app-text/doxygen
+    use: "X bzip2 elf kmem ipv6 lm-sensors mfd-rewrites mysql netlink pcap pci perl python smux ssl tcpd ucd-compat zlib # doc minimal rpm"
+  # inner_build_reqs:
+  # - app-text/doxygen
   requires:
   - <<: *layers-X
   - <<: *libs-perl-Tk
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-X
 
 - category: "apps"
   name: "nwipe"
