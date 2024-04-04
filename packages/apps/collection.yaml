@@ -13673,6 +13673,71 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-nagios
+  category: "apps"
+  name: "nagios"
+  version: "4.4.14"
+  uri:
+  - https://www.nagios.org/
+  - https://www.monitoring-plugins.org/
+  - https://github.com/matteocorti/check_lm_sensors
+  - https://metacpan.org/release/Monitoring-Plugin
+  license: "metapackage"
+  description: |
+    The Nagios metapackage
+    Nagios core - monitoring daemon, web GUI, and documentation
+    Official plugins for Nagios
+    50+ standard plugins for Icinga, Naemon, Nagios, Shinken, Sensu
+    Nagios plugin to monitor the values of onboard sensors and disk temperatures
+    Modules to streamline Nagios, Icinga, Shinken, etc. plugins
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/nagios
+      net-analyzer/nagios-plugin-check_lm_sensors
+  provides:
+  - category: "net-analyzer"
+    name: "nagios"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "monitoring-plugins"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "nagios-core"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "nagios-plugins"
+    version: ">=0"
+  - category: "net-analyzer"
+    name: "nagios-plugin-check_lm_sensors"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Monitoring-Plugin"
+    version: ">=0"
+  atoms:
+  - atom: "net-analyzer/monitoring-plugins"
+    use: "curl gnutls ipv6 ldap mysql radius samba ssl dns fping snmp ssh # game postgres"
+  # media-libs/gd needs png flag
+  # - atom: "net-analyzer/nagios-core"
+  #   use: "apache2 classicui web # lighttpd vim-syntax"
+  - atom: "net-analyzer/nagios-plugins"
+    use: "ldap mysql radius samba ssl ipv6 nagios-dns nagios-ping snmp ssh # postgres selinux nagios-game"
+  - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-perl-libs
+  - <<: *apps-bind-tools
+  - <<: *apps-fping
+  - <<: *apps-net-snmp
+  - <<: *libs-freeradius-client
+  - <<: *libs-Net-SNMP
+  - <<: *libs-uriparser
+  - category: "entity"
+    name: "nagios"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-perl-libs
+
 - &apps-neovim
   category: "apps"
   name: "neovim"
