@@ -977,6 +977,7 @@ packages:
   version: "0.11"
   uri:
   - https://metacpan.org/release/AppConfig
+  - https://metacpan.org/release/Archive-Zip
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
   - https://metacpan.org/release/Config-Tiny
@@ -984,15 +985,18 @@ packages:
   - https://metacpan.org/release/ExtUtils-Helpers
   - https://metacpan.org/release/ExtUtils-InstallPaths
   - https://metacpan.org/release/File-Copy-Recursive
+  - https://metacpan.org/release/File-Remove
   - https://metacpan.org/release/Gtk3-ImageView
   - https://metacpan.org/release/JSON-MaybeXS
   - https://metacpan.org/release/libxml-perl
   - https://metacpan.org/release/Math-Calc-Units
   - https://metacpan.org/release/Module-Build-Tiny
   - https://metacpan.org/release/Module-Install
+  - https://metacpan.org/release/Module-ScanDeps
   - https://metacpan.org/release/Net-DBus
   - https://metacpan.org/release/Number-Bytes-Human
   - https://metacpan.org/release/Pango
+  - https://metacpan.org/release/PAR-Dist
   - https://metacpan.org/release/Params-Validate
   - https://metacpan.org/release/Path-Tiny
   - https://metacpan.org/release/Proc-ProcessTable
@@ -1009,9 +1013,11 @@ packages:
   - https://metacpan.org/release/Unicode-UTF8
   - https://metacpan.org/release/X11-Protocol
   - https://metacpan.org/release/XML-Twig
+  - https://metacpan.org/release/YAML-Syck
   license: "metapackage"
   description: |
     Perl5 module for reading configuration files and parsing command line arguments
+    A wrapper that lets you read Zip archive members as if they were files
     Automated accessor generation
     Read/Write .ini style files with as little code as possible
     Warns and dies noisily with stack backtraces
@@ -1019,15 +1025,18 @@ packages:
     Various portability utilities for module builders
     Standalone, extensible Perl module installer
     Build.PL install path logic made easy
+    Remove files and directories
     uses File::Copy to recursively copy dirs
     Image viewer widget for Gtk3
     Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
     Collection of Perl modules for working with XML
     Human-readable unit-aware calculator
     Tiny replacement for Module::Build
+    Recursively scan Perl code for dependencies
     Perl extension for the DBus message system
     Convert byte count to human readable format
     Layout and render international text
+    Create and manipulate PAR distributions
     Flexible system for validation of method/function call parameters
     Unix process table information
     Launch and control background processes
@@ -1043,6 +1052,7 @@ packages:
     Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
     Process huge XML documents in tree mode
+    Fast, lightweight YAML loader and dumper
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -1073,6 +1083,7 @@ packages:
   - category: "dev-perl"
     name: "AppConfig"
     version: ">=0"
+    dev-perl/Archive-Zip
   - category: "dev-perl"
     name: "Carp-Always"
     version: ">=0"
@@ -1094,6 +1105,7 @@ packages:
   - category: "dev-perl"
     name: "File-Copy-Recursive"
     version: ">=0"
+    dev-perl/File-Remove
   - category: "dev-perl"
     name: "Gtk3-ImageView"
     version: ">=0"
@@ -1112,6 +1124,7 @@ packages:
   - category: "dev-perl"
     name: "Module-Install"
     version: ">=0"
+    dev-perl/Module-ScanDeps
   - category: "dev-perl"
     name: "Net-DBus"
     version: ">=0"
@@ -1121,6 +1134,7 @@ packages:
   - category: "dev-perl"
     name: "Pango"
     version: ">=0"
+    dev-perl/PAR-Dist
   - category: "dev-perl"
     name: "Params-Validate"
     version: ">=0"
@@ -1169,9 +1183,13 @@ packages:
   - category: "dev-perl"
     name: "XML-Twig"
     version: ">=0"
+    dev-perl/YAML-Syck
+    virtual/perl-autodie
+    virtual/perl-Devel-PPPort
   - category: "virtual"
     name: "perl-Digest"
     version: ">=0"
+    virtual/perl-Module-CoreList
   - category: "virtual"
     name: "perl-Text-Tabs+Wrap"
     version: ">=0"
