@@ -23,7 +23,7 @@
         {{- end }}
       {{- end }}
     {{- end }}
-    
+
     {{- range ( "outer_build_reqs" | splitList " " ) }}
       {{- if ( index $dep . ) }}
         {{- range ( index $dep . ) }}
@@ -37,7 +37,7 @@
         {{- end }}
       {{- end }}
     {{- end }}
-    
+
     {{- range ( "requires optrequires inner_build_requires" | splitList " " ) }}
       {{- if ( index $dep . ) }}
         {{- range ( index $dep . ) }}
