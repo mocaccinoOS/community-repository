@@ -7462,6 +7462,29 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "nethogs"
+  version: "0.8.7"
+  uri:
+  - https://github.com/raboof/nethogs
+  license: "GPL-2"
+  description: "A small 'net top' tool, grouping bandwidth by process"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-analyzer/nethogs
+  provides:
+  - category: "net-analyzer"
+    name: "nethogs"
+    version: ">=0"
+  atoms:
+  - atom: "net-analyzer/nethogs"
+    use: "filecaps"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-netkit-fingerd
   category: "apps"
   name: "netkit-fingerd"
