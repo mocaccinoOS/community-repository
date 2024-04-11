@@ -1983,6 +1983,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libjxl
+  category: "libs"
+  name: "libjxl"
+  version: "0.10.2"
+  uri:
+  - https://github.com/libjxl/libjxl/
+  license: "BSD"
+  description: "JPEG XL image format reference implementation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libjxl
+  provides:
+  - category: "media-libs"
+    name: "libjxl"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "highway"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libjxl"
+    use: "gdk-pixbuf openexr"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-jsr305
   category: "libs"
   name: "jsr305"
@@ -7168,30 +7195,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-lua-5_3
-  category: "libs"
-  name: "lua-5.3"
-  version: "5.3.6-r102+2"
-  uri:
-  - https://www.lua.org/
-  license: "MIT"
-  description: "A powerful light-weight programming language designed for extending applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/lua:5.3
-  provides:
-  - category: "dev-lang"
-    name: "lua"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/lua:5.3"
-    use: "readline"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &apps-luajit
   category: "apps"
   name: "luajit"
@@ -10814,11 +10817,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/geeqie"
-    use: "exif ffmpegthumbnailer jpeg lcms lua lua_single_target_lua5-3 nls pdf tiff xmp # lirc"
+    use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
+  # inner_build_requires
+  # - <<: *apps-vim
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-lua-5_3
-  # - <<: *apps-vim
+  - <<: *libs-libheif
+  - <<: *libs-libjxl
   build_requires:
   - <<: *layers-gnome-common
 
@@ -14766,11 +14771,15 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
+      media-libs/sdl2-gfx
       media-libs/sdl2-image
       media-libs/sdl2-mixer
       media-libs/sdl2-net
       media-libs/sdl2-ttf
   provides:
+  - category: "media-libs"
+    name: "sdl2-gfx"
+    version: ">=0"
   - category: "media-libs"
     name: "sdl2-image"
     version: ">=0"
@@ -14785,13 +14794,14 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/sdl2-image"
-    use: "webp"
+    use: "gif jpeg png tiff webp # jpegxl avif"
   - atom: "media-libs/sdl2-mixer"
     use: "midi mod tremor wav flac mad mikmod modplug mp3 opus timidity vorbis # playtools fluidsynth # midi? ( || ( timidity fluidsynth ) )"
   - atom: "media-libs/sdl2-ttf"
     use: "harfbuzz X"
   requires:
   - <<: *layers-X
+  # - <<: *libs-AOMediaCodecs
   - <<: *libs-libmikmod
   # - <<: *apps-fluidsynth
   - <<: *apps-timidity
