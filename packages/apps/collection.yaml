@@ -1296,6 +1296,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-cpp-httplib
+  category: "libs"
+  name: "cpp-httplib"
+  version: "0.15.3"
+  uri:
+  - https://github.com/yhirose/cpp-httplib/
+  license: "MIT"
+  description: "C++ HTTP/HTTPS server and client library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/cpp-httplib
+  provides:
+  - category: "dev-cpp"
+    name: "cpp-httplib"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-cssselect
   category: "libs"
   name: "cssselect"
@@ -10814,6 +10835,9 @@ packages:
   - category: "dev-perl"
     name: "File-Slurp"
     version: ">=0"
+  - category: "gui-libs"
+    name: "gdk-pixbuf-loader-webp"
+    version: ">=0"
   - category: "dev-util"
     name: "xxdi"
     version: ">=0"
@@ -11565,12 +11589,9 @@ packages:
   - category: "dev-libs"
     name: "mdns"
     version: ">=0"
-  # llvm 17 depends on it
-  - category: "dev-cpp"
-    name: "cpp-httplib"
-    version: ">=0"
   requires:
   - <<: *layers-qt
+  - <<: *libs-cpp-httplib
   - <<: *libs-nlohmann_json
   - <<: *libs-hidapi
   - <<: *libs-mbedtls
@@ -12784,10 +12805,12 @@ packages:
     use: "ogg rtlsdr websocket"
   requires:
   - <<: *layers-X
-  - <<: *libs-websocketpp
-  - <<: *libs-rtl-sdr
   - <<: *libs-cfitsio
+  - <<: *libs-cpp-httplib
   - <<: *libs-libnova
+  - <<: *libs-nlohmann
+  - <<: *libs-rtl-sdr
+  - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-X
 
