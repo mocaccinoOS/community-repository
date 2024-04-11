@@ -15836,7 +15836,7 @@ packages:
 
 - category: "apps"
   name: "freeciv"
-  version: "3.1.0+2"
+  version: "3.1.0+3"
   uri:
   - https://www.freeciv.org
   license: "GPL-2+"
@@ -15851,7 +15851,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "games-strategy/freeciv"
-    use: "-qt5 sdl"
+    # use: "-qt5 sdl"
+    use: "gtk4 -qt5 -sound"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
