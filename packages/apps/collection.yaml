@@ -11305,6 +11305,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-meteo
+  category: "apps"
+  name: "meteo"
+  version: "0.9.9.2"
+  uri:
+  - https://gitlab.com/bitseater/meteo
+  license: "GPL-3+"
+  description: "Forecast application using OpenWeatherMap API"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/meteo
+  provides:
+  - category: "x11-misc"
+    name: "meteo"
+    version: ">=0"
+  atoms:
+  - atom: "x11-misc/gmic"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-ayatana
+  build_requires:
+  - <<: *layers-gnome-common
+
 # - &apps-minecraft-server
 #   category: "apps"
 #   name: "minecraft-server"
@@ -16600,7 +16625,7 @@ packages:
   - http://gmic.eu/
   - https://github.com/GreycLab/gmic
   - https://framagit.org/dtschump/gmic
-  license: "BSD"
+  license: "CeCILL-2 GPL-3"
   description: "GREYC's Magic Image Converter"
   labels:
     emerge.jobs: "1"
