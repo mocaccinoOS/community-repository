@@ -4800,7 +4800,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gnome-common
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "bchunk"
@@ -16592,6 +16592,39 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-gmic
+  category: "apps"
+  name: "gmic"
+  version: "3.3.5-r101"
+  uri:
+  - http://gmic.eu/
+  - https://github.com/GreycLab/gmic
+  - https://framagit.org/dtschump/gmic
+  license: "BSD"
+  description: "GREYC's Magic Image Converter"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/gmic
+  overlays:
+  - enable: "stefantalpalaru"
+  provides:
+  - category: "media-gfx"
+    name: "gmic"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/gmic"
+    accept_keywords: "~amd64"
+    use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *apps-gimp
+  - <<: *libs-opencv
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+
 - category: "apps"
   name: "krita"
   version: "5.1.5+9"
@@ -16835,9 +16868,6 @@ packages:
   atoms:
   - atom: "media-gfx/displaycal-py3"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e '/wxpython/ s/4.1.1/4.0.7-r2/' /var/lib/layman/stefantalpalaru/media-gfx/displaycal-py3/displaycal-py3-3.9.10.ebuild
-  # - ebuild /var/lib/layman/stefantalpalaru/media-gfx/displaycal-py3/displaycal-py3-3.9.10.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
