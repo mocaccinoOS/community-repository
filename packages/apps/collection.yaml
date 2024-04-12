@@ -11324,6 +11324,9 @@ packages:
   atoms:
   - atom: "x11-misc/meteo"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/^net\-libs\/webkit\-gtk\:4$/net\-libs\/webkit\-gtk\:4\.1/' /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
+  - ebuild /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-ayatana
@@ -16637,10 +16640,15 @@ packages:
   - category: "media-gfx"
     name: "gmic"
     version: ">=0"
+  - category: "media-libs"
+    name: "cimg"
+    version: ">=0"
   atoms:
   - atom: "media-gfx/gmic"
     accept_keywords: "~amd64"
     use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+  - atom: "media-libs/cimg"
+    accept_keywords: "~amd64"    
   optrequires:
   - <<: *apps-gimp
   requires:
