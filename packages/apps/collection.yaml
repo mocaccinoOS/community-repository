@@ -11326,6 +11326,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/net-libs\/webkit-gtk:4/net-libs\/webkit-gtk:4.1/' /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
+  - echo -e "\n\nsrc_prepare() {\n\tfind PORTAGE_TMPDIR \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' || die\n}" >> /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
   - ebuild /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild manifest
   requires:
   - <<: *layers-gnome-common
@@ -15131,9 +15132,6 @@ packages:
     env: "MAKEOPTS=\"-j5 -l0.9\""
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
-  # prepare:
-  # - sed -i -e 's/3.0-gtk3/3.2-gtk3/' /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild
-  # - ebuild /var/db/repos/gentoo/media-gfx/hugin/hugin-2022.0.0.ebuild manifest
   requires:
   # - <<: *layers-X
   - <<: *layers-gnome-common
