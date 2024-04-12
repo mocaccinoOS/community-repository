@@ -11322,7 +11322,7 @@ packages:
     name: "meteo"
     version: ">=0"
   atoms:
-  - atom: "x11-misc/gmic"
+  - atom: "x11-misc/meteo"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
@@ -16641,14 +16641,16 @@ packages:
   - atom: "media-gfx/gmic"
     accept_keywords: "~amd64"
     use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+  optrequires:
+  - <<: *apps-gimp
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
-  - <<: *apps-gimp
   - <<: *libs-opencv
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "krita"
