@@ -11326,7 +11326,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/net-libs\/webkit-gtk:4/net-libs\/webkit-gtk:4.1/' /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
-  - echo -e "\n\nsrc_prepare() {\n\tfind PORTAGE_TMPDIR \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' || die\n}" >> /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
+  - echo -e "\nsrc_prepare() {\n\tfind $PORTAGE_TMPDIR \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' || die\n}" >> /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
   - ebuild /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild manifest
   requires:
   - <<: *layers-gnome-common
