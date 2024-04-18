@@ -1009,37 +1009,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-ayatana
-  category: "libs"
-  name: "ayatana"
-  version: "0.9.3+1"
-  uri:
-  - https://github.com/AyatanaIndicators/libayatana-appindicator
-  - https://github.com/AyatanaIndicators/libayatana-indicator
-  - https://github.com/AyatanaIndicators/ayatana-ido
-  license: "GPL-3 LGPL-2.1 LGPL-2 LGPL-3"
-  description: "Ayatana Application Indicators (Shared Library)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/ayatana-ido
-      dev-libs/libayatana-indicator
-      dev-libs/libayatana-appindicator
-  provides:
-  - category: "dev-libs"
-    name: "ayatana-ido"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libayatana-indicator"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libayatana-appindicator"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-babl
   category: "libs"
   name: "babl"
@@ -8325,7 +8294,6 @@ packages:
     use: "appindicator geoclue gtk nls"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-ayatana
   build_requires:
   - <<: *layers-gnome-common
 
@@ -9350,6 +9318,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-xpad
+  category: "apps"
+  name: "xpad"
+  version: "5.8.0-r1+2"
+  uri:
+  - https://launchpad.net/xpad
+  license: "GPL-3"
+  description: "A sticky note application for GTK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/xpad
+  provides:
+  - category: "x11-misc"
+    name: "xpad"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome
+  build_requires:
+  - <<: *layers-gnome
 
 - &apps-xsensors
   category: "apps"
@@ -11330,7 +11319,6 @@ packages:
 #   - ebuild /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild manifest
 #   requires:
 #   - <<: *layers-gnome-common
-#   - <<: *libs-ayatana
 #   build_requires:
 #   - <<: *layers-gnome-common
 
@@ -11987,7 +11975,6 @@ packages:
   - <<: *layers-gnome-common
   # - <<: *layers-kde-common
   - <<: *layers-qemu
-  - <<: *libs-ayatana
   build_requires:
   - <<: *buildbase-gnome-common
   # - <<: *buildbase-kde-common
@@ -12064,7 +12051,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-perl-libs
-  - <<: *libs-ayatana
   - <<: *libs-goocanvas-2  
   build_requires:
   - <<: *buildbase-gnome-common
@@ -12603,28 +12589,6 @@ packages:
   - <<: *libs-XML-LibXML
   build_requires:
   - <<: *layers-gnome-common
-
-- &apps-xpad
-  category: "apps"
-  name: "xpad"
-  version: "5.8.0-r1+2"
-  uri:
-  - https://launchpad.net/xpad
-  license: "GPL-3"
-  description: "A sticky note application for GTK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/xpad
-  provides:
-  - category: "x11-misc"
-    name: "xpad"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-ayatana
-  build_requires:
-  - <<: *layers-gnome
 
 - &apps-zathura
   category: "apps"
