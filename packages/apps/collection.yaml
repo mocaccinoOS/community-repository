@@ -12807,31 +12807,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libgit2-glib
-  category: "apps"
-  name: "libgit2-glib"
-  version: "1.2.0+1"
-  uri:
-  - https://wiki.gnome.org/Projects/Libgit2-glib
-  license: "LGPL-2+"
-  description: "Git library for GLib"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libgit2-glib
-  provides:
-  - category: "dev-libs"
-    name: "libgit2-glib"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/libgit2-glib"
-    use: "ssh vala"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libgit2
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libvisio
   category: "libs"
   name: "libvisio"
