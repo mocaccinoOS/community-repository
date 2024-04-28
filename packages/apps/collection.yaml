@@ -12806,7 +12806,7 @@ packages:
   - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-X
-# 
+
 # - &libs-libgit2-glib
 #   category: "apps"
 #   name: "libgit2-glib"
@@ -13670,7 +13670,7 @@ packages:
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
-  version: "23.10+1"
+  version: "23.10+2"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2"
@@ -13702,6 +13702,7 @@ packages:
     use: "curl mms wxwidgets"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-wxGTK
   - <<: *apps-mediainfo
   build_requires:
   - <<: *layers-gnome-common
