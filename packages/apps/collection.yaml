@@ -10133,6 +10133,35 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "amarok"
+  version: "3.0.0"
+  uri:
+  - http://www.xsane.org/
+  license: "GPL-2"
+  description: "Graphical scanning frontend"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/amarok
+  overlays:
+  - enable: "robert7k"
+  provides:
+  - category: "media-sound"
+    name: "amarok"
+    version: ">=0"
+  - category: "media-libs"
+    name: "taglib-extras"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/amarok"
+    use: "mariadb mtp wikipedia debug handbook # ipod lastfm podcast"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-designer
+  build_requires:
+  - <<: *layers-kde-common
+
 - &apps-ant-core
   category: "apps"
   name: "ant-core"
