@@ -1121,7 +1121,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "124.0.6367.78"
+  version: "124.0.6367.118"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2442,31 +2442,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libheif
-  category: "libs"
-  name: "libheif"
-  version: "1.15.2+2"
-  uri:
-  - https://github.com/strukturag/libheif
-  license: "GPL-3"
-  description: "ISO/IEC 23008-12:2017 HEIF file format decoder and encoder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libheif
-  provides:
-  - category: "media-libs"
-    name: "libheif"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libheif"
-    use: "aom gdk-pixbuf rav1e threads x265"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-AOMediaCodecs
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libircclient
   category: "libs"
   name: "libircclient"
@@ -2809,7 +2784,7 @@ packages:
 - &libs-libsidplayfp
   category: "libs"
   name: "libsidplayfp"
-  version: "2.6.0+1"
+  version: "2.7.0"
   uri:
   - https://sourceforge.net/projects/sidplay-residfp/
   license: "GPL-2"
@@ -2830,7 +2805,7 @@ packages:
 - &libs-libsoundtouch
   category: "libs"
   name: "libsoundtouch"
-  version: "2.3.2+1"
+  version: "2.3.3"
   uri:
   - https://www.surina.net/soundtouch/
   - https://gitlab.com/soundtouch/soundtouch
@@ -5366,7 +5341,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.7.1"
+  version: "1.7.2.0"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -5463,7 +5438,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.0+2"
+  version: "8.0.3-r1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5472,11 +5447,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:8.0.0
+      dev-dotnet/dotnet-runtime-nugets:8.0.3
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "8.0.0"
+    version: "8.0.3-r1"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -5981,7 +5956,7 @@ packages:
 - &apps-fping
   category: "apps"
   name: "fping"
-  version: "5.1"
+  version: "5.1-r1"
   uri:
   - https://fping.org/
   license: "BSD"
@@ -6286,7 +6261,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "124.0.6367.78"
+  version: "124.0.6367.118"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7533,7 +7508,7 @@ packages:
 - &apps-nmap
   category: "apps"
   name: "nmap"
-  version: "7.94+2"
+  version: "7.94-r1"
   uri:
   - https://nmap.org/
   license: "NPSL GPL-2"
@@ -7737,7 +7712,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "109.0.5097.59"
+  version: "109.0.5097.68"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -8873,7 +8848,7 @@ packages:
 
 - category: "apps"
   name: "tmux"
-  version: "3.3a-r1+1"
+  version: "3.4"
   uri:
   - https://tmux.github.io/
   license: "ISC"
@@ -10520,7 +10495,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.6.0+3"
+  version: "4.6.0+4"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -10546,7 +10521,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-AOMediaCodecs
-  - <<: *libs-libheif
   - <<: *libs-libjxl
   build_requires:
   - <<: *layers-gnome-common
@@ -10871,7 +10845,6 @@ packages:
   # - <<: *apps-vim
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-libheif
   - <<: *libs-libjxl
   build_requires:
   - <<: *layers-gnome-common
@@ -12757,7 +12730,6 @@ packages:
   requires:
   - <<: *layers-sci-libs
   - <<: *libs-xerces-c
-  - <<: *libs-libheif
   - <<: *libs-cfitsio
   build_requires:
   - <<: *layers-sci-libs
@@ -16380,7 +16352,6 @@ packages:
   - <<: *libs-gtk2
   - <<: *apps-mypaint-brushes
   - <<: *libs-gegl
-  - <<: *libs-libheif
   - <<: *libs-libjxl
   - <<: *libs-libmypaint
   build_requires:
@@ -16525,7 +16496,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
-  - <<: *libs-libheif
   - <<: *libs-opencv
   - <<: *libs-openvdb
   - <<: *libs-ptex
@@ -16678,7 +16648,6 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *libs-quazip
-  - <<: *libs-libheif
   - <<: *libs-libjxl
   - <<: *libs-libmypaint
   - <<: *libs-ocio-oiio
