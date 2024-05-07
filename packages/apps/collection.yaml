@@ -11534,7 +11534,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "30.1.1"
+  version: "30.1.1+1"
   uri:
   - https://obsproject.com
   - https://jmvalin.ca/demo/rnnoise/
@@ -11550,15 +11550,42 @@ packages:
   - category: "media-video"
     name: "obs-studio"
     version: ">=0"
+  - category: "dev-libs"
+    name: "qr-code-generator"
+    version: ">=0"
   - category: "media-libs"
     name: "rnnoise"
     version: ">=0"
+  - category: "media-libs"
+    name: "libvpl"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "cJSON"
+    version: ">=0"
+  - category: "net-libs"
+    name: "librist"
+    version: ">=0"
+  - category: "net-libs"
+    name: "srt"
+    version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
+    use: "alsa browser decklink fdk jack lua mpegts nvenc pipewire pulseaudio python speex ssl truetype v4l wayland websocket # qsv vlc"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/qr-code-generator"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/libvpl"
+    use: "dri drm examples experimental test tools vaapi wayland X"
+    accept_keywords: "~amd64"
+  - atom: "net-libs/librist"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt6
+  - <<: *apps-luajit
+  - <<: *libs-asio
   - <<: *libs-mbedtls
+  - <<: *libs-nlohmann_json
+  - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-qt6
 
