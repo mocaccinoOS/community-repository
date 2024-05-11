@@ -311,7 +311,7 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       gnome-base/libglade
-      
+
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -426,7 +426,7 @@ stubs:
   atoms:
   - atom: "sys-apps/hwloc"
     use: "cairo cpuid cuda pci svg udev xml X"
-  
+
 - &apps-openmpi
   category: "apps"
   name: "openmpi"
@@ -2582,7 +2582,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - &libs-libmp4v2
   category: "libs"
   name: "libmp4v2"
@@ -2735,7 +2735,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - &libs-libshout
   category: "libs"
   name: "libshout"
@@ -4048,7 +4048,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
@@ -5361,7 +5361,7 @@ packages:
   - <<: *apps-docker
   build_requires:
   - <<: *layers-system-x
-  
+
 - category: "apps"
   name: "dolphin-plugins-git"
   version: "23.08.5"
@@ -5434,7 +5434,7 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-  
+
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
@@ -6282,7 +6282,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - category: "apps"
   name: "grub-btrfs"
   version: "4.13+1"
@@ -6966,7 +6966,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-office/khronos"
-    accept_keywords: "~amd64"   
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7831,6 +7831,34 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "piper"
+  version: "0.7-r1"
+  uri:
+  - https://github.com/libratbag/piper
+  license: "GPL-2"
+  description: "GTK application to configure gaming devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/piper dev-libs/libratbag
+  provides:
+  - category: "app-misc"
+    name: "piper"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libratbag"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/piper"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/libratbag"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "plasma-sdk"
