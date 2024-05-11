@@ -15978,32 +15978,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- category: "apps"
-  name: "shotcut"
-  version: "24.02.19"
-  uri:
-  - https://www.shotcut.org
-  license: "GPL-3+"
-  description: "A free, open source, cross-platform video editor"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/shotcut
-  provides:
-  - category: "media-video"
-    name: "shotcut"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/shotcut"
-    accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *libs-mlt
-  requires:
-  - <<: *layers-qt6
-  - <<: *libs-mlt
-  build_requires:
-  - <<: *layers-qt6
-
 - &apps-neverball
   category: "apps"
   name: "neverball"
