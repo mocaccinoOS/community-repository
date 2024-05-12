@@ -15155,7 +15155,6 @@ packages:
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
   requires:
-  # - <<: *layers-X
   - <<: *layers-gnome-common
   - <<: *layers-sci-libs
   - <<: *layers-java
@@ -15163,7 +15162,6 @@ packages:
   - <<: *libs-wxGTK
   - <<: *apps-dcraw
   build_requires:
-  # - <<: *layers-X
   - <<: *buildbase-gnome-common
   - <<: *layerbase-sci-libs
   requires_final_images: true
@@ -15362,6 +15360,39 @@ packages:
 #   - <<: *apps-sndio
 #   build_requires:
 #   - <<: *layers-X
+
+- category: "apps"
+  name: "museseq"
+  version: "4.2.1"
+  uri:
+  - https://github.com/muse-sequencer/muse
+  license: "GPL-2"
+  description: "The Linux (midi) MUSic Editor (a sequencer)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/museseq
+  provides:
+  - category: "dev-python"
+    name: "Pyro4"
+    version: ">=0"  
+  - category: "media-sound"
+    name: "museseq"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/museseq"
+    use: "dssi fluidsynth lash liblo lrdf osc python rubberband # lv2 rtaudio vst"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-lash
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-lrdf
+  - <<: *libs-rubberband
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "nomacs"
@@ -16765,7 +16796,7 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
-  name: "seq24"
+  name: "seq24+1"
   version: "0.9.3-r1"
   uri:
   - https://launchpad.net/seq24
@@ -16781,9 +16812,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/seq24"
-    use: "jack # lash"
+    use: "jack lash"
   requires:
   - <<: *layers-X
+  - <<: *apps-lash
   - <<: *libs-gtkmm-2
   build_requires:
   - <<: *layers-X
