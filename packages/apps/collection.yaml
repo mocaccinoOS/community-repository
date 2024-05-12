@@ -16764,6 +16764,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "seq24"
+  version: "0.9.3-r1"
+  uri:
+  - https://launchpad.net/seq24
+  license: "GPL-2"
+  description: "Loop based MIDI sequencer with focus on live performances"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/seq24
+  provides:
+  - category: "media-sound"
+    name: "seq24"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/seq24"
+    use: "jack # lash"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtkmm-2
+  build_requires:
+  - <<: *layers-X
+
 - &apps-xsane
   category: "apps"
   name: "xsane"
