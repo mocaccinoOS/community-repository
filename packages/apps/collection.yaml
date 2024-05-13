@@ -16466,10 +16466,10 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/museseq
+      =media-sound/museseq-4.2.1
   overlays:
   - enable: "proaudio-gentoo"
-  - enable: "tgbugs-overlay"
+  # - enable: "tgbugs-overlay"
   provides:
   - category: "media-sound"
     name: "museseq"
@@ -16483,6 +16483,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
+  - <<: *apps-designer
   - <<: *apps-fluidsynth
   - <<: *apps-lash
   - <<: *libs-dssi
@@ -16495,7 +16496,7 @@ packages:
   - <<: *libs-rubberband
   - <<: *libs-sord
   build_requires:
-  - <<: *buildbase-kde-common
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "mypaint"
