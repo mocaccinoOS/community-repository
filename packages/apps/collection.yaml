@@ -10366,6 +10366,35 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-cava
+  category: "apps"
+  name: "cava"
+  version: "0.10.1"
+  uri:
+  - http://cdrdao.sourceforge.net
+  license: "MIT Unlicense"
+  description: "Console-based Audio Visualizer for Alsa"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/cava
+  provides:
+  - category: "media-sound"
+    name: "cava"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/cava"
+    use: "alsa jack ncurses pipewire portaudio pulseaudio sdl sndio"
+    license: "MIT Unlicense"
+  inner_build_reqs:
+  - x11-misc/makedepend
+  requires:
+  - <<: *layers-X
+  - <<: *libs-iniparser
+  - <<: *apps-sndio
+  build_requires:
+  - <<: *layers-X
+
 - &def-cdemu
   category: "apps"
   name: "cdemu"
