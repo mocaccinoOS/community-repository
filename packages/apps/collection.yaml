@@ -5139,6 +5139,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "cmatrix"
+  version: "2.0-r4"
+  uri:
+  - https://www.asty.org/cmatrix/
+  license: "GPL-2"
+  description: "An ncurses based app to show a scrolling screen from the Matrix"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/cmatrix
+  provides:
+  - category: "app-misc"
+    name: "cmatrix"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/cmatrix"
+    use: "unicode X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "colord-kde"
   version: "23.08.5"
   uri:
@@ -10386,8 +10409,6 @@ packages:
   - atom: "media-sound/cava"
     use: "alsa jack ncurses pipewire portaudio pulseaudio sdl sndio"
     license: "MIT Unlicense"
-  inner_build_reqs:
-  - x11-misc/makedepend
   requires:
   - <<: *layers-X
   - <<: *libs-iniparser
