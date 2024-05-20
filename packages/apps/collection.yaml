@@ -1934,6 +1934,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-iniparser
+  category: "libs"
+  name: "iniparser"
+  version: "4.1-r1"
+  uri:
+  - https://github.com/ndevilla/iniparser
+  license: "GPL-2"
+  description: "A free stand-alone ini file parsing library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/iniparser
+  provides:
+  - category: "dev-libs"
+    name: "iniparser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-javax-inject
   category: "libs"
   name: "javax-inject"
@@ -1976,6 +1997,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-jsr305
+  category: "libs"
+  name: "jsr305"
+  version: "3.0.2-r1+1"
+  uri:
+  - https://jcp.org/en/jsr/detail?id
+  license: "BSD"
+  description: "Annotations for Software Defect Detection in Java"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/jsr305
+  provides:
+  - category: "dev-java"
+    name: "jsr305"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-libjxl
   category: "libs"
   name: "libjxl"
@@ -2003,27 +2045,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-jsr305
-  category: "libs"
-  name: "jsr305"
-  version: "3.0.2-r1+1"
-  uri:
-  - https://jcp.org/en/jsr/detail?id
-  license: "BSD"
-  description: "Annotations for Software Defect Detection in Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/jsr305
-  provides:
-  - category: "dev-java"
-    name: "jsr305"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
 
 - &libs-ladspa-sdk
   category: "libs"
@@ -6635,34 +6656,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "isomaster"
-  version: "1.3.16+2"
-  uri:
-  - http://littlesvr.ca/isomaster
-  - https://github.com/ndevilla/iniparser
-  license: "GPL-2 MIT"
-  description: |
-    Graphical CD image editor for reading, modifying and writing ISO images
-    A free stand-alone ini file parsing library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/iniparser
-      app-cdr/isomaster
-  provides:
-  - category: "dev-libs"
-    name: "iniparser"
-    version: ">=0"
-  - category: "app-cdr"
-    name: "isomaster"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "iptraf-ng"
   version: "1.2.1+1"
   uri:
@@ -11055,6 +11048,29 @@ packages:
   - <<: *libs-AOMediaCodecs
   # - <<: *libs-nv-codec-headers
   - <<: *libs-zimg
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "isomaster"
+  version: "1.3.16+3"
+  uri:
+  - http://littlesvr.ca/isomaster
+  license: "MIT"
+  description: |
+    Graphical CD image editor for reading, modifying and writing ISO images
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/isomaster
+  provides:
+  - category: "app-cdr"
+    name: "isomaster"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  - <<: *libs-iniparser
   build_requires:
   - <<: *layers-X
 
