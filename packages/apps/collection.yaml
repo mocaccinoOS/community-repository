@@ -2992,6 +2992,30 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-lrzsz
+  category: "libs"
+  name: "lrzsz"
+  version: "0.12.20-r7"
+  uri:
+  - https://www.ohse.de/uwe/software/lrzsz.html
+  license: "GPL-2"
+  description: "Communication package providing the X, Y, and ZMODEM file transfer protocols"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dialup/lrzsz
+  provides:
+  - category: "net-dialup"
+    name: "lrzsz"
+    version: ">=0"
+  atoms:
+  - atom: "net-dialup/lrzsz"
+    use: "nls"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-LuaBitOp
   category: "libs"
   name: "LuaBitOp"
@@ -5220,6 +5244,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "cutecom"
+  version: "0.60.0_rc1"
+  uri:
+  - https://gitlab.com/cutecom/cutecom
+  license: "GPL-3+"
+  description: "A serial terminal, like minicom, written in Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dialup/cutecom
+  provides:
+  - category: "net-dialup"
+    name: "cutecom"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-qt
+  - <<: *libs-lrzsz
+  build_requires:
+  - <<: *layers-system-qt
 
 - &apps-dcraw
   category: "apps"
@@ -11386,6 +11431,30 @@ packages:
 #   build_requires:
 #   - <<: *layers-java
 
+- category: "apps"
+  name: "minicom"
+  version: "2.9"
+  uri:
+  - https://salsa.debian.org/minicom-team/minicom
+  license: "GPL-2"
+  description: "Serial Communication Program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dialup/minicom
+  provides:
+  - category: "net-dialup"
+    name: "minicom"
+    version: ">=0"
+  atoms:
+  - atom: "net-dialup/minicom"
+    use: "nls"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-lrzsz
+  build_requires:
+  - <<: *layers-system-x
+  
 - &apps-mirage2iso
   category: "apps"
   name: "mirage2iso"
