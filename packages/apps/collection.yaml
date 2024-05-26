@@ -12553,7 +12553,7 @@ packages:
   atoms:
   - atom: "www-client/vivaldi"
     license: "Vivaldi"
-    use: "ffmpeg-chromium -qt5 widevine"
+    use: "ffmpeg-chromium proprietary-codecs -qt5 widevine"
   requires:
   - <<: *layers-X
   - <<: *libs-chrome-binary-plugins
@@ -13550,7 +13550,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "24.02.2"
+  version: "21.0-r1"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -13582,9 +13582,6 @@ packages:
   - category: "net-libs"
     name: "shairplay"
     version: ">=0"
-  # - category: "dev-cpp"
-  #   name: "waylandpp"
-  #   version: ">=0"
   - category: "media-tv"
     name: "kodi"
     version: ">=0"
@@ -13599,14 +13596,11 @@ packages:
     use: "playfair"
   - atom: "media-plugins/kodi-pvr-iptvsimple"
     accept_keywords: "~amd64"
-  # - atom: "dev-cpp/waylandpp"
-  #   accept_keywords: "~amd64"
   inner_build_reqs:
   - *layers-java-packages
   requires:
   - <<: *layers-X
   - <<: *libs-abseil-cpp
-  # - <<: *apps-ffmpeg-4
   - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
@@ -14804,37 +14798,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# needs ffmpeg-4 - wait to move to newer ffmpeg because it detects multiple ffmpeg versions installed that breaks the build
-# - &libs-openscenegraph
-#   category: "libs"
-#   name: "openscenegraph"
-#   version: "3.6.5-r114+3"
-#   uri:
-#   - http://www.openscenegraph.org/
-#   license: "wxWinLL-3 LGPL-2.1"
-#   description: "Open source high performance 3D graphics toolkit"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-games/openscenegraph
-#   provides:
-#   - category: "dev-games"
-#     name: "openscenegraph"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-games/openscenegraph"
-#     use: "curl ffmpeg fltk gdal gif glut gstreamer jpeg lua openexr pdf png sdl svg tiff truetype vnc wxwidgets zlib collada dicom egl fox las openinventor osgapps sdl2 xrandr"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-sci-libs
-#   - <<: *libs-coin
-#   - <<: *libs-collada-dom
-#   - <<: *libs-gdal
-#   build_requires:
-#   - <<: *buildbase-qt
-#   - <<: *layerbase-sci-libs
-#   requires_final_images: true
-
 - &libs-sdl
   category: "libs"
   name: "sdl"
@@ -15532,6 +15495,12 @@ packages:
   - category: "x11-plugins"
     name: "pidgin-opensteamworks"
     version: ">=0"
+  - category: "app-text"
+    name: "gtkspell"
+    version: ">=0"
+  - category: "app-text"
+    name: "enchant"
+    version: ">=0"
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl v4l xscreensaver zephyr zeroconf # aqua tk"
@@ -15544,7 +15513,7 @@ packages:
   - <<: *libs-gtk2
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
-  - <<: *apps-gtkspell
+  # - <<: *apps-gtkspell
   - <<: *libs-libgadu
   - <<: *libs-meanwhile
   - <<: *libs-farstream
