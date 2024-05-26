@@ -5003,7 +5003,7 @@ packages:
 
 - category: "apps"
   name: "cartridges"
-  version: "2.8.4"
+  version: "2.7.4"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -5016,9 +5016,6 @@ packages:
   - category: "games-util"
     name: "cartridges"
     version: ">=0"
-  atoms:
-  - atom: "games-util/cartridges"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -7748,30 +7745,6 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
-  name: "opera"
-  version: "110.0.5130.23"
-  uri:
-  - https://www.opera.com/
-  license: "OPERA-2018"
-  description: "A fast and secure web browser"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/opera
-  provides:
-  - category: "www-client"
-    name: "opera"
-    version: ">=0"
-  atoms:
-  - atom: "www-client/opera"
-    license: "OPERA-2018"
-    use: "-qt5"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "otter"
   version: "1.0.03-r1"
   uri:
@@ -9077,31 +9050,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "vivaldi"
-  version: "6.7.3329.27"
-  uri:
-  - https://vivaldi.com/
-  license: "Vivaldi"
-  description: "A browser for our friends"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/vivaldi
-  provides:
-  - category: "www-client"
-    name: "vivaldi"
-    version: ">=0"
-  atoms:
-  - atom: "www-client/vivaldi"
-    license: "Vivaldi"
-    use: "-qt5 widevine"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-chrome-binary-plugins
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "vscodium"
   version: "1.89.0.24127"
   uri:
@@ -9167,7 +9115,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.7.0"
+  version: "0.6.2+1"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -9952,7 +9900,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "8.14.0-r1"
+  version: "8.15.1-r1"
   uri:
   - https://github.com/pikepdf/pikepdf/
   - https://pypi.org/project/pikepdf/
@@ -11525,7 +11473,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.37.0+1"
+  version: "0.38.0"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -11761,6 +11709,31 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "opera"
+  version: "110.0.5130.23+1"
+  uri:
+  - https://www.opera.com/
+  license: "OPERA-2018"
+  description: "A fast and secure web browser"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/opera
+  provides:
+  - category: "www-client"
+    name: "opera"
+    version: ">=0"
+  atoms:
+  - atom: "www-client/opera"
+    license: "OPERA-2018"
+    use: "-qt5"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-chrome-binary-plugins
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "p7zip-ui"
   version: "16.02-r8+5"
   uri:
@@ -11863,7 +11836,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "16.2+1"
+  version: "16.3-r2"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -12574,6 +12547,31 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "vivaldi"
+  version: "6.7.3329.27"
+  uri:
+  - https://vivaldi.com/
+  license: "Vivaldi"
+  description: "A browser for our friends"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/vivaldi
+  provides:
+  - category: "www-client"
+    name: "vivaldi"
+    version: ">=0"
+  atoms:
+  - atom: "www-client/vivaldi"
+    license: "Vivaldi"
+    use: "-qt5 widevine"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-chrome-binary-plugins
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "vkeybd"
   version: "0.1.18d+1"
   uri:
@@ -12630,7 +12628,7 @@ packages:
 - &apps-wxhexeditor
   category: "apps"
   name: "wxhexeditor"
-  version: "0.24-r1+4"
+  version: "0.24-r2"
   uri:
   - https://github.com/EUA/wxHexEditor
   license: "GPL-2"
@@ -12656,7 +12654,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "9.7"
+  version: "9.9"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -13000,7 +12998,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.8.1-r1+1"
+  version: "4.8.1-r2"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -13088,7 +13086,7 @@ packages:
 
 - category: "apps"
   name: "amsynth"
-  version: "1.13.2+1"
+  version: "1.13.3"
   uri:
   - https://github.com/amsynth/amsynth
   license: "GPL-2"
@@ -13562,7 +13560,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.0"
+  version: "24.02.2"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -14440,7 +14438,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.21.0-r2+1"
+  version: "3.22.0-r2"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -15750,7 +15748,7 @@ packages:
 - &libs-pygame
   category: "libs"
   name: "pygame"
-  version: "2.5.2+2"
+  version: "2.5.2-r2"
   uri:
   - https://www.pygame.org/
   license: "LGPL-2.1"
@@ -16136,7 +16134,7 @@ packages:
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
-  version: "1.6.1-r2+3"
+  version: "1.6.1-r3"
   uri:
   - https://github.com/mypaint/libmypaint
   license: "ISC"
@@ -16192,7 +16190,7 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "3.3.3+1"
+  version: "3.4.2-r1"
   uri:
   - https://web.audacityteam.org/
   license: "GPL-2"
