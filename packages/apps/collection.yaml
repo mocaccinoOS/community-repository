@@ -2715,27 +2715,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-libsbsms
-  category: "libs"
-  name: "libsbsms"
-  version: "2.3.0+3"
-  uri:
-  - https://github.com/claytonotey/libsbsms
-  license: "GPL-2+"
-  description: "A library for high quality time and pitch scale modification"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libsbsms
-  provides:
-  - category: "dev-libs"
-    name: "libsbsms"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
@@ -3693,27 +3672,6 @@ packages:
   provides:
   - category: "dev-cpp"
     name: "pystring"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-python-deprecation
-  category: "libs"
-  name: "python-deprecation"
-  version: "2.1.0-r1+1"
-  uri:
-  - https://deprecation.readthedocs.io/
-  license: "Apache-2.0"
-  description: "A library to handle automated deprecations"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/deprecation
-  provides:
-  - category: "dev-python"
-    name: "deprecation"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -5768,6 +5726,31 @@ packages:
 #   - <<: *layers-X
 #   build_requires:
 #   - <<: *layers-X
+
+- &apps-ffmpeg-chromium
+  category: "libs"
+  name: "ffmpeg-chromium"
+  version: "124"
+  uri:
+  - https://ffmpeg.org/
+  license: "GPL-2 LGPL-2.1"
+  description: "FFmpeg built specifically for codec support in Chromium-based browsers"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/ffmpeg-chromium
+  provides:
+  - category: "media-video"
+    name: "ffmpeg-chromium"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/ffmpeg-chromium"
+    use: "cpudetection gpl mmal threads vaapi vdpau vulkan # nvenc"
+  requires:
+  - <<: *layers-X
+  # - <<: *libs-nv-codec-headers
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "ffmpegthumbs"
@@ -9896,7 +9879,7 @@ packages:
   # - <<: *apps-numactl
   build_requires:
   - <<: *layers-sys-fs
-
+  
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
@@ -9914,6 +9897,12 @@ packages:
   - category: "dev-python"
     name: "pikepdf"
     version: ">=0"
+  - category: "dev-python"
+    name: "deprecated"
+    version: ">=0"
+  - category: "dev-python"
+    name: "wrapt"
+    version: ">=0"
   #prepare:
   # Workaround upstream dropping patchsets
   #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
@@ -9923,7 +9912,6 @@ packages:
   - dev-python/setuptools_scm_git_archive
   requires:
   - <<: *layers-X
-  - <<: *libs-python-deprecation
   build_requires:
   - <<: *layers-X
 
@@ -11710,7 +11698,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "110.0.5130.23+1"
+  version: "110.0.5130.23+2"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -11726,10 +11714,11 @@ packages:
   atoms:
   - atom: "www-client/opera"
     license: "OPERA-2018"
-    use: "-qt5"
+    use: "ffmpeg-chromium -qt5"
   requires:
   - <<: *layers-X
   - <<: *libs-chrome-binary-plugins
+  - <<: *apps-ffmpeg-chromium
   build_requires:
   - <<: *layers-X
 
@@ -12548,7 +12537,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "6.7.3329.27"
+  version: "6.7.3329.27+1"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -12564,10 +12553,11 @@ packages:
   atoms:
   - atom: "www-client/vivaldi"
     license: "Vivaldi"
-    use: "-qt5 widevine"
+    use: "ffmpeg-chromium -qt5 widevine"
   requires:
   - <<: *layers-X
   - <<: *libs-chrome-binary-plugins
+  - <<: *apps-ffmpeg-chromium
   build_requires:
   - <<: *layers-X
 
@@ -13577,7 +13567,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-tv/kodi::sunny-overlay
+      media-tv/kodi
       media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "dev-libs"
@@ -15517,7 +15507,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.12+4"
+  version: "2.14.12+5"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -16187,10 +16177,10 @@ packages:
 ################################################################################################################################################################
 ### dep 5 apps ###
 ################################################################################################################################################################
-
+  
 - category: "apps"
   name: "audacity"
-  version: "3.4.2-r1"
+  version: "3.4.2-r1+1"
   uri:
   - https://web.audacityteam.org/
   license: "GPL-2"
@@ -16203,6 +16193,9 @@ packages:
   - category: "media-sound"
     name: "audacity"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libsbsms"
+    version: ">=0"
   atoms:
   - atom: "media-sound/audacity"
     use: "alsa ffmpeg flac id3tag jack ladspa lv2 mad ogg oss portmidi portmixer portsmf sbsms twolame vamp vorbis vst"
@@ -16211,11 +16204,11 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-serd
   - <<: *libs-sord
-  - <<: *libs-libsbsms
   - <<: *libs-libsoundtouch
   - <<: *libs-lv2
   - <<: *libs-lilv
   - <<: *libs-portsmf
+  - <<: *libs-rapidjson
   - <<: *libs-sratom
   - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
@@ -16357,7 +16350,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.3.7+1"
+  version: "2.4.0_rc4"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -16477,7 +16470,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2024.3"
+  version: "1.2024.4"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -16585,7 +16578,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.4"
+  version: "8.6"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
