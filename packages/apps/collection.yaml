@@ -5703,30 +5703,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &apps-ffmpeg-4
-#   category: "apps"
-#   name: "ffmpeg"
-#   version: "4.4.4-r3+1"
-#   uri:
-#   - https://ffmpeg.org/
-#   license: "metapackage"
-#   description: "Complete solution to record/convert/stream audio and video. Includes libavcodec"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-video/ffmpeg:0/56.58.58
-#   provides:
-#   - category: "media-video"
-#     name: "ffmpeg"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-video/ffmpeg"
-#     use: "amr bluray cpudetection encode fdk gnutls gpl gsm iconv ieee1394 jack jpeg2k libaom libass mp3 network openal openh264 openssl opus postproc sdl speex test theora truetype v4l vaapi vdpau vidstab vorbis vpx vulkan webp x264 x265 xvid zlib"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
@@ -6851,6 +6827,31 @@ packages:
   - <<: *layers-kde-pim
 
 - category: "apps"
+  name: "khronos"
+  version: "4.0.1+1"
+  uri:
+  - https://apps.gnome.org/app/io.github.lainsce.Khronos
+  license: "GPL-3"
+  description: "A GTK4 time tracker for tasks"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/khronos
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-office"
+    name: "khronos"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/khronos"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "kompare"
   version: "24.02.2"
   uri:
@@ -6965,29 +6966,26 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
-  name: "khronos"
-  version: "4.0.1+1"
+  name: "krecorder"
+  version: "23.08.5"
   uri:
-  - https://apps.gnome.org/app/io.github.lainsce.Khronos
-  license: "GPL-3"
-  description: "A GTK4 time tracker for tasks"
+  - https://apps.kde.org/krecorder/
+  license: "CC0-1.0 CC-BY-4.0 GPL-3+"
+  description: "Convergent audio recording application for Plasma"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      app-office/khronos
-  overlays:
-  - enable: "guru"
+      media-sound/krecorder
   provides:
-  - category: "app-office"
-    name: "khronos"
+  - category: "media-sound"
+    name: "krecorder"
     version: ">=0"
-  atoms:
-  - atom: "app-office/khronos"
-    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "kruler"
@@ -14197,6 +14195,41 @@ packages:
   - <<: *libs-lv2
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "quodlibet"
+  version: "4.6.0-r1"
+  uri:
+  - https://quodlibet.readthedocs.io/
+  license: "GPL-2"
+  description: "audio library tagger, manager, and player for GTK+"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/quodlibet
+  provides:
+  - category: "media-sound"
+    name: "quodlibet"
+    version: ">=0"
+  - category: "app-misc"
+    name: "media-player-info"
+    version: ">=0"
+  - category: "dev-python"
+    name: "feedparser"
+    version: ">=0"
+  - category: "media-libs"
+    name: "mutagen"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/quodlibet"
+    use: "dbus gstreamer udev"
+  inner_build_reqs:
+  - dev-util/intltool
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-xine-lib
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "rosegarden"
