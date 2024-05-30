@@ -8245,6 +8245,32 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-qview
+  category: "apps"
+  name: "qview"
+  version: "6.1"
+  uri:
+  - https://github.com/jurplel/qView
+  license: "GPL-3"
+  description: "Practical and minimal image viewer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/qview
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "media-gfx"
+    name: "qview"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/qview"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "rawtherapee"
   version: "5.10-r1+1"
