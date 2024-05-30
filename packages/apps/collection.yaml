@@ -8663,33 +8663,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-the-dark-mod
-  category: "apps"
-  name: "the-dark-mod"
-  version: "2.12-r1"
-  uri:
-  - https://www.thedarkmod.com
-  license: "GPL-3 CC-BY-NC-ND-3.0"
-  description: "Inspired by Thief on Doom 3 libre engine (id Tech 4)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-fps/the-dark-mod-bin
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "games-fps"
-    name: "the-dark-mod-bin"
-    version: ">=0"
-  atoms:
-  - atom: "games-fps/the-dark-mod-bin"
-    accept_keywords: "~amd64"
-    license: "CC-BY-NC-ND-3.0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-timeshift
   category: "apps"
   name: "timeshift"
