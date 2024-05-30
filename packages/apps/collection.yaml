@@ -8663,9 +8663,9 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-the-dark-mod-bin
+- &apps-the-dark-mod
   category: "apps"
-  name: "the-dark-mod-bin"
+  name: "the-dark-mod"
   version: "2.12-r1"
   uri:
   - https://www.thedarkmod.com
@@ -8675,6 +8675,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       games-fps/the-dark-mod-bin
+  overlays:
+  - enable: "guru"
   provides:
   - category: "games-fps"
     name: "the-dark-mod-bin"
