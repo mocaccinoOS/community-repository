@@ -10481,6 +10481,33 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
+- &apps-conan
+  category: "apps"
+  name: "conan"
+  version: "2.3.1"
+  uri:
+  - https://conan.io/
+  license: "BSD"
+  description: "Distributed C/C++ package manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/conan
+  provides:
+  - category: "dev-util"
+    name: "conan"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/conan"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-python/setuptools_scm_git_archive
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-colorama
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
@@ -14242,6 +14269,9 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "feedparser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sgmllib3k"
     version: ">=0"
   - category: "media-libs"
     name: "mutagen"
