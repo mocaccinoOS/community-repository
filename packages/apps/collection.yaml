@@ -8342,6 +8342,30 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- category: "apps"
+  name: "rssguard"
+  version: "4.6.6"
+  uri:
+  - https://github.com/martinrotter/rssguard
+  license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
+  description: "Simple (yet powerful) news feed reader"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-news/rssguard
+  provides:
+  - category: "net-news"
+    name: "rssguard"
+    version: ">=0"
+  atoms:
+  - atom: "net-news/rssguard"
+    use: "sqlite -libmpv -mysql -qt6 -qtmultimedia -webengine"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-rofi
   category: "apps"
   name: "rofi"
