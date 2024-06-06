@@ -1440,31 +1440,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-freeipmi
-  category: "libs"
-  name: "freeipmi"
-  version: "1.6.11+1"
-  uri:
-  - https://www.gnu.org/software/freeipmi/
-  license: "GPL-3"
-  description: "Provides Remote-Console and System Management Software as per IPMI v1.5/2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-libs/freeipmi
-  provides:
-  - category: "sys-libs"
-    name: "freeipmi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-libs/freeipmi"
-    use: "without-root # nagios"
-  requires:
-  - <<: *layers-X
-  # - <<: *apps-nagios
-  build_requires:
-  - <<: *layers-X
-
 - &libs-freeradius-client
   category: "apps"
   name: "freeradius-client"
@@ -14075,47 +14050,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-nut
-  category: "apps"
-  name: "nut"
-  version: "2.8.0-r3+1"
-  uri:
-  - https://www.networkupstools.org
-  license: "GPL-2"
-  description: "Network-UPS Tools"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-power/nut
-  provides:
-  - category: "sys-power"
-    name: "nut"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libmodbus"
-    version: ">=0"
-  atoms:
-  - atom: "sys-power/nut"
-    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - acct-group/nut
-  - acct-user/nut
-  - virtual/libusb:0
-  requires:
-  - <<: *layers-X
-  - category: "entity"
-    name: "uucp"
-    version: ">=0"
-  - category: "entity"
-    name: "nut"
-    version: ">=0"
-  - <<: *apps-net-snmp
-  - <<: *libs-freeipmi
-  - <<: *apps-i2c-tools
-  build_requires:
-  - <<: *layers-qt
-
 - category: "apps"
   name: "onedrive"
   version: "2.4.25+1"
@@ -14890,6 +14824,31 @@ packages:
   - <<: *libs-dssi
   - <<: *libs-liblo
   - <<: *apps-fluidsynth
+  build_requires:
+  - <<: *layers-X
+
+- &libs-freeipmi
+  category: "libs"
+  name: "freeipmi"
+  version: "1.6.11+2"
+  uri:
+  - https://www.gnu.org/software/freeipmi/
+  license: "GPL-3"
+  description: "Provides Remote-Console and System Management Software as per IPMI v1.5/2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/freeipmi
+  provides:
+  - category: "sys-libs"
+    name: "freeipmi"
+    version: ">=0"
+  atoms:
+  - atom: "sys-libs/freeipmi"
+    use: "without-root nagios"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-nagios
   build_requires:
   - <<: *layers-X
 
@@ -16128,6 +16087,47 @@ packages:
   - <<: *libs-physfs
   build_requires:
   - <<: *layers-X
+
+- &apps-nut
+  category: "apps"
+  name: "nut"
+  version: "2.8.0-r3+1"
+  uri:
+  - https://www.networkupstools.org
+  license: "GPL-2"
+  description: "Network-UPS Tools"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-power/nut
+  provides:
+  - category: "sys-power"
+    name: "nut"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libmodbus"
+    version: ">=0"
+  atoms:
+  - atom: "sys-power/nut"
+    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - acct-group/nut
+  - acct-user/nut
+  - virtual/libusb:0
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "uucp"
+    version: ">=0"
+  - category: "entity"
+    name: "nut"
+    version: ">=0"
+  - <<: *apps-net-snmp
+  - <<: *libs-freeipmi
+  - <<: *apps-i2c-tools
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-warmux
   category: "apps"
