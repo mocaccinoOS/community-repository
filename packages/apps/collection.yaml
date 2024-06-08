@@ -3276,7 +3276,7 @@ packages:
 - &libs-mxml
   category: "libs"
   name: "mxml"
-  version: "4.0.3"
+  version: ".3.1-r1+2"
   uri:
   - https://github.com/michaelrsweet/mxml
   license: "Mini-XML"
@@ -3284,7 +3284,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-libs/mxml
+      dev-libs/mxml:0
   provides:
   - category: "dev-libs"
     name: "mxml"
@@ -3627,27 +3627,6 @@ packages:
   atoms:
   - atom: "dev-python/msgpack"
     use: "native-extensions"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-pystring
-  category: "libs"
-  name: "pystring"
-  version: "1.1.3-r1+3"
-  uri:
-  - https://github.com/imageworks/pystring
-  license: "BSD"
-  description: "C++ functions matching the interface and behavior of python string methods"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/pystring
-  provides:
-  - category: "dev-cpp"
-    name: "pystring"
-    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -15201,7 +15180,6 @@ packages:
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
-  - http://zthread.sourceforge.net/
   - http://panotools.sourceforge.net/
   - https://ukoethe.github.io/vigra/
   - http://enblend.sourceforge.net
@@ -15212,7 +15190,6 @@ packages:
     GUI for the creation & processing of panoramic images
     Simple templatized C++ library for parsing command line arguments
     Helmut Dersch's panorama toolbox library
-    platform-independent multi-threading and synchronization library for C++
     SIFT algorithm for automatic panorama creation in C
     C++ computer vision library emphasizing customizable algorithms and structures
     Image Blending with Multiresolution Splines
@@ -15223,9 +15200,6 @@ packages:
   provides:
   - category: "dev-cpp"
     name: "tclap"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "zthread"
     version: ">=0"
   - category: "media-libs"
     name: "libpano13"
@@ -16569,12 +16543,13 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "6+23"
+  version: "7"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
   - https://opencolorio.org
   - https://github.com/AcademySoftwareFoundation/OpenColorIO
+  - https://github.com/imageworks/pystring
   license: "BSD"
   description: "A library for reading and writing images"
   labels:
@@ -16590,6 +16565,9 @@ packages:
     name: "openimageio"
     version: ">=0"
   - category: "dev-cpp"
+    name: "pystring"
+    version: ">=0"
+  - category: "dev-cpp"
     name: "robin-map"
     version: ">=0"
   atoms:
@@ -16597,8 +16575,6 @@ packages:
     use: "opengl python"
   - atom: "media-libs/openimageio"
     use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt5 raw truetype"
-  # inner_build_reqs:
-  # - dev-cpp/pystring
   preemerge:
   - media-libs/opencolorio;USE="-opengl"
   requires:
@@ -16607,7 +16583,6 @@ packages:
   - <<: *libs-opencv
   - <<: *libs-openvdb
   - <<: *libs-ptex
-  - <<: *libs-pystring
   - <<: *libs-tbb
   build_requires:
   - <<: *layers-qt
