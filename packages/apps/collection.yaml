@@ -7524,6 +7524,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-nodejs
+  category: "apps"
+  name: "nodejs"
+  version: "20.12.1"
+  uri:
+  - https://nodejs.org/
+  license: "Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
+  description: "A JavaScript runtime built on Chrome's V8 JavaScript engine"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/nodejs
+  provides:
+  - category: "net-libs"
+    name: "nodejs"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/nodejs"
+    use: "corepack icu inspector lto npm snapshot ssl system-icu system-ssl systemtap # pax-kernel"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "nordvpn"
   version: "3.17.2"
@@ -8986,32 +9010,6 @@ packages:
   - category: "media-video"
     name: "vcdimager"
     version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-  
-- &apps-vesktop
-  category: "apps"
-  name: "vesktop"
-  version: "1.5.2"
-  uri:
-  - https://github.com/Vencord/Vesktop
-  license: "GPL-3"
-  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/vesktop
-  overlays:
-  - enable: "kzd"
-  provides:
-  - category: "net-im"
-    name: "vesktop"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/vesktop"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -12548,6 +12546,34 @@ packages:
   - category: "entity"
     name: "vdr"
     version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
+- &apps-vesktop
+  category: "apps"
+  name: "vesktop"
+  version: "1.5.2+1"
+  uri:
+  - https://github.com/Vencord/Vesktop
+  license: "GPL-3"
+  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/vesktop
+  overlays:
+  - enable: "kzd"
+  provides:
+  - category: "net-im"
+    name: "vesktop"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/vesktop"
+    accept_keywords: "~amd64"
+  inner_build_requires
+  - <<: *apps-nodejs
+  requires:
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
