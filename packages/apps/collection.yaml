@@ -303,6 +303,21 @@ stubs:
     emerge.packages: >-
       x11-libs/gtk+:2
 
+- &libs-imath
+  category: "dev-libs"
+  name: "imath"
+    labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/imath
+  atoms:
+  - atom: "dev-libs/imath"
+    use: "python"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+    
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -16937,8 +16952,6 @@ packages:
   #   name: "partio"
   #   version: ">=0"
   atoms:
-  - atom: "dev-libs/imath"
-    use: "python"
   - atom: "media-gfx/blender"
     use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
     accept_keywords: "~amd64"
@@ -16962,7 +16975,6 @@ packages:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
   inner_build_reqs:
-  - dev-libs/imath
 #   - app-text/doxygen
 #   - dev-python/sphinx
 #   - dev-texlive/texlive-bibtexextra
@@ -16972,6 +16984,8 @@ packages:
 #   - dev-texlive/texlive-latexextra
   - app-admin/chrpath
   - dev-debug/valgrind
+  inner_build_requires:
+  - <<: *libs-imath
   requires:
   - <<: *layers-qt
   - <<: *libs-zstandard
