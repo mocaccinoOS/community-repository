@@ -303,22 +303,6 @@ stubs:
     emerge.packages: >-
       x11-libs/gtk+:2
 
-- &libs-imath
-  category: "dev-libs"
-  name: "imath"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/imath
-  atoms:
-  - atom: "dev-libs/imath"
-    use: "python"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-    
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -16920,7 +16904,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      media-gfx/blender:3.6
+      media-gfx/blender
   provides:
   - category: "media-gfx"
     name: "blender"
@@ -16985,8 +16969,6 @@ packages:
   # - dev-texlive/texlive-latexextra
   - app-admin/chrpath
   - dev-debug/valgrind
-  inner_build_requires:
-  - <<: *libs-imath
   requires:
   - <<: *layers-qt
   - <<: *libs-zstandard
