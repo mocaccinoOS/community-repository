@@ -5700,6 +5700,8 @@ packages:
     env: "MAKEOPTS=\"-j1\""
   inner_build_reqs:
   - app-text/rman x11-misc/imake
+    inner_build_reqs:
+  - virtual/imagemagick-tools;USE=jpeg postscript
   requires:
   - <<: *layers-X
   build_requires:
@@ -9861,7 +9863,7 @@ packages:
 - &libs-lttng-ust-2_12
   category: "libs"
   name: "lttng-ust-2_12"
-  version: "2.13.6"
+  version: "2.12.1"
   uri:
   - https://lttng.org
   license: "GPL-2"
