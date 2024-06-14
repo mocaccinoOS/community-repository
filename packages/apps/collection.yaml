@@ -303,23 +303,6 @@ stubs:
     emerge.packages: >-
       x11-libs/gtk+:2
 
-- &libs-imath
-  category: "dev-libs"
-  name: "imath"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/imath
-  atoms:
-  - atom: "dev-libs/imath"
-    accept_keywords: "~amd64"
-    # use: "python"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-libglade
   category: "libs"
   name: "libglade"
@@ -1138,7 +1121,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "125.0.6422.112"
+  version: "125.0.6422.141"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -5239,7 +5222,7 @@ packages:
 - &apps-dia
   category: "apps"
   name: "dia"
-  version: "0.97.3-r1+7"
+  version: "0.97.3-r2"
   uri:
   - https://wiki.gnome.org/Apps/Dia
   license: "GPL-2"
@@ -5405,7 +5388,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.3-r1"
+  version: "8.0.5-r1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5414,11 +5397,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:8.0.3
+      dev-dotnet/dotnet-runtime-nugets:8.0.5
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "8.0.3-r1"
+    version: "8.0.5-r1"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -5653,7 +5636,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "124"
+  version: "124-125"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5661,7 +5644,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-video/ffmpeg-chromium-124
+      media-video/ffmpeg-chromium:124
+      media-video/ffmpeg-chromium:125
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -5698,7 +5682,7 @@ packages:
 - &apps-fig2dev
   category: "apps"
   name: "fig2dev"
-  version: "3.2.9-r2+2"
+  version: "3.2.9-r5"
   uri:
   - https://www.xfig.org/
   license: "BSD"
@@ -5706,7 +5690,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-gfx/fig2dev-3.2.9-r2
+      media-gfx/fig2dev
   provides:
   - category: "media-gfx"
     name: "fig2dev"
@@ -6072,7 +6056,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.0.1"
+  version: "10.0.2"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6229,7 +6213,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "125.0.6422.112"
+  version: "125.0.6422.141"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6580,7 +6564,7 @@ packages:
 - &apps-javatoolkit
   category: "apps"
   name: "javatoolkit"
-  version: "0.6.7+3"
+  version: "0.6.7-r1"
   uri:
   - https://wiki.gentoo.org/wiki/Project:Java
   license: "GPL-2"
@@ -7031,7 +7015,7 @@ packages:
 - &apps-lash
   category: "apps"
   name: "lash"
-  version: "0.5.4-r5+6"
+  version: "0.5.4-r6"
   uri:
   - http://www.nongnu.org/lash/
   license: "GPL-2"
@@ -7201,7 +7185,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.6.9-r1+7"
+  version: "0.7.2"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -7942,7 +7926,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.6"
+  version: "9.7"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -9053,7 +9037,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.89.0.24127"
+  version: "1.90.0.24158"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9877,7 +9861,7 @@ packages:
 - &libs-lttng-ust-2_12
   category: "libs"
   name: "lttng-ust-2_12"
-  version: "2.12.1"
+  version: "2.13.6"
   uri:
   - https://lttng.org
   license: "GPL-2"
@@ -10844,7 +10828,7 @@ packages:
 
 - category: "apps"
   name: "filezilla"
-  version: "3.66.4+1"
+  version: "3.67.0"
   uri:
   - https://filezilla-project.org/
   license: "GPL-2"
@@ -11109,7 +11093,7 @@ packages:
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
-  version: "2.7.7-r2"
+  version: "2.7.8"
   uri:
   - https://keepassxc.org/
   license: "LGPL-2.1 GPL-2 GPL-3"
@@ -16896,114 +16880,112 @@ packages:
 ### dep 7 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "blender"
-  version: "4.1.1"
-  uri:
-  - https://www.blender.org
-  - https://www.alembic.io/
-  - https://github.com/embree/embree
-  - http://www.openimagedenoise.org/
-  - http://www.opencollada.org/
-  - https://graphics.pixar.com/opensubdiv/docs/intro.html
-  - http://opensource.imageworks.com/?p
-  - http://partio.us/
-  license: "GPL-3 BL BSD Apache-2.0 MIT"
-  description: |
-    3D Creation/Animation/Publishing System
-    Open framework for storing and sharing scene data
-    Collection of high-performance ray tracing kernels
-    Intel(R) Open Image Denoise library
-    Stream based read/write library for COLLADA files
-    An Open-Source subdivision surface library
-    Advanced shading language for production GI renderers
-    Library for particle IO and manipulation
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      =media-gfx/alembic-1.8.6-r1
-      media-gfx/blender
-  provides:
-  - category: "media-gfx"
-    name: "blender"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "alembic"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "ispc"
-    version: ">=0"
-  - category: "media-libs"
-    name: "embree"
-    version: ">=0"
-  - category: "media-libs"
-    name: "oidn"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opencollada"
-    version: ">=0"
-  - category: "media-libs"
-    name: "openpgl"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opensubdiv"
-    version: ">=0"
-  # - category: "media-libs"
-  #   name: "osl"
-  #   version: ">=0"
-  # - category: "media-libs"
-  #   name: "partio"
-  #   version: ">=0"
-  atoms:
-  - atom: "media-gfx/blender"
-    use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
-    accept_keywords: "~amd64"
-  - atom: "media-gfx/alembic"
-    use: "hdf5"
-    accept_keywords: "~amd64"
-  - atom: "dev-lang/ispc"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/embree"
-    use: "compact-polys ispc raymask ssp tbb # tutorial"
-  - atom: "media-libs/openpgl"
-    use: "cpu_flags_x86_avx2"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/opensubdiv"
-    use: "opencl openmp ptex tbb # cuda"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/osl"
-    use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-  env: "MAKEOPTS=\"-l0.9\""
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
-  inner_build_reqs:
-  # - app-text/doxygen
-  # - dev-python/sphinx
-  # - dev-texlive/texlive-bibtexextra
-  # - dev-texlive/texlive-fontsextra
-  # - dev-texlive/texlive-fontutils
-  # - dev-texlive/texlive-latex
-  # - dev-texlive/texlive-latexextra
-  - app-admin/chrpath
-  - dev-debug/valgrind
-  inner_build_requires:
-  - <<: *libs-imath
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-zstandard
-  - <<: *apps-spacenavd
-  - <<: *libs-c-blosc
-  - <<: *libs-libspnav
-  - <<: *libs-openvdb
-  - <<: *libs-glfw
-  - <<: *libs-lib3ds
-  - <<: *libs-libharu
-  - <<: *libs-ocio-oiio
-  - <<: *libs-ptex
-  - <<: *libs-tbb
-  build_requires:
-  - <<: *layers-qt
+# - category: "apps"
+#   name: "blender"
+#   version: "4.1.1"
+#   uri:
+#   - https://www.blender.org
+#   - https://www.alembic.io/
+#   - https://github.com/embree/embree
+#   - http://www.openimagedenoise.org/
+#   - http://www.opencollada.org/
+#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
+#   - http://opensource.imageworks.com/?p
+#   - http://partio.us/
+#   license: "GPL-3 BL BSD Apache-2.0 MIT"
+#   description: |
+#     3D Creation/Animation/Publishing System
+#     Open framework for storing and sharing scene data
+#     Collection of high-performance ray tracing kernels
+#     Intel(R) Open Image Denoise library
+#     Stream based read/write library for COLLADA files
+#     An Open-Source subdivision surface library
+#     Advanced shading language for production GI renderers
+#     Library for particle IO and manipulation
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       =media-gfx/alembic-1.8.6-r1
+#       media-gfx/blender
+#   provides:
+#   - category: "media-gfx"
+#     name: "blender"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "alembic"
+#     version: ">=0"
+#   - category: "dev-lang"
+#     name: "ispc"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "embree"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "oidn"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opencollada"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "openpgl"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opensubdiv"
+#     version: ">=0"
+#   # - category: "media-libs"
+#   #   name: "osl"
+#   #   version: ">=0"
+#   # - category: "media-libs"
+#   #   name: "partio"
+#   #   version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/blender"
+#     use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
+#     accept_keywords: "~amd64"
+#   - atom: "media-gfx/alembic"
+#     use: "hdf5"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-lang/ispc"
+#     accept_keywords: "~amd64"
+#   - atom: "media-libs/embree"
+#     use: "compact-polys ispc raymask ssp tbb # tutorial"
+#   - atom: "media-libs/openpgl"
+#     use: "cpu_flags_x86_avx2"
+#     accept_keywords: "~amd64"
+#   - atom: "media-libs/opensubdiv"
+#     use: "opencl openmp ptex tbb # cuda"
+#     accept_keywords: "~amd64"
+#   - atom: "media-libs/osl"
+#     use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+#   env: "MAKEOPTS=\"-l0.9\""
+#   prepare:
+#   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
+#   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
+#   inner_build_reqs:
+#   # - app-text/doxygen
+#   # - dev-python/sphinx
+#   # - dev-texlive/texlive-bibtexextra
+#   # - dev-texlive/texlive-fontsextra
+#   # - dev-texlive/texlive-fontutils
+#   # - dev-texlive/texlive-latex
+#   # - dev-texlive/texlive-latexextra
+#   - app-admin/chrpath
+#   - dev-debug/valgrind
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-zstandard
+#   - <<: *apps-spacenavd
+#   - <<: *libs-c-blosc
+#   - <<: *libs-libspnav
+#   - <<: *libs-openvdb
+#   - <<: *libs-glfw
+#   - <<: *libs-lib3ds
+#   - <<: *libs-libharu
+#   - <<: *libs-ocio-oiio
+#   - <<: *libs-ptex
+#   - <<: *libs-tbb
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "displaycal-py3"
