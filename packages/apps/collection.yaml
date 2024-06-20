@@ -15171,7 +15171,7 @@ packages:
 - &apps-gcdemu
   category: "apps"
   name: "gcdemu"
-  version: "3.2.6-r1+2"
+  version: "3.2.6-r1+3"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -15185,10 +15185,11 @@ packages:
     name: "gcdemu"
     version: ">=0"
   requires:
-  - <<: *layers-X
+  # - <<: *layers-X
   - <<: *apps-cdemu
   build_requires:
   - <<: *kernel-modules-vhba-lts
+  - <<: *buildbase-X
   - <<: *layerbase-cdemu
   requires_final_images: true
 
@@ -16724,7 +16725,7 @@ packages:
 - &apps-gmic
   category: "apps"
   name: "gmic"
-  version: "3.4.0-r100"
+  version: "3.3.6-r100"
   uri:
   - http://gmic.eu/
   - https://github.com/GreycLab/gmic
@@ -16879,112 +16880,112 @@ packages:
 ### dep 7 apps ###
 ################################################################################################################################################################
 
-# - category: "apps"
-#   name: "blender"
-#   version: "4.1.1"
-#   uri:
-#   - https://www.blender.org
-#   - https://www.alembic.io/
-#   - https://github.com/embree/embree
-#   - http://www.openimagedenoise.org/
-#   - http://www.opencollada.org/
-#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
-#   - http://opensource.imageworks.com/?p
-#   - http://partio.us/
-#   license: "GPL-3 BL BSD Apache-2.0 MIT"
-#   description: |
-#     3D Creation/Animation/Publishing System
-#     Open framework for storing and sharing scene data
-#     Collection of high-performance ray tracing kernels
-#     Intel(R) Open Image Denoise library
-#     Stream based read/write library for COLLADA files
-#     An Open-Source subdivision surface library
-#     Advanced shading language for production GI renderers
-#     Library for particle IO and manipulation
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       =media-gfx/alembic-1.8.6-r1
-#       media-gfx/blender
-#   provides:
-#   - category: "media-gfx"
-#     name: "blender"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "alembic"
-#     version: ">=0"
-#   - category: "dev-lang"
-#     name: "ispc"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "embree"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "oidn"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opencollada"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "openpgl"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opensubdiv"
-#     version: ">=0"
-#   # - category: "media-libs"
-#   #   name: "osl"
-#   #   version: ">=0"
-#   # - category: "media-libs"
-#   #   name: "partio"
-#   #   version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/blender"
-#     use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
-#     accept_keywords: "~amd64"
-#   - atom: "media-gfx/alembic"
-#     use: "hdf5"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-lang/ispc"
-#     accept_keywords: "~amd64"
-#   - atom: "media-libs/embree"
-#     use: "compact-polys ispc raymask ssp tbb # tutorial"
-#   - atom: "media-libs/openpgl"
-#     use: "cpu_flags_x86_avx2"
-#     accept_keywords: "~amd64"
-#   - atom: "media-libs/opensubdiv"
-#     use: "opencl openmp ptex tbb # cuda"
-#     accept_keywords: "~amd64"
-#   - atom: "media-libs/osl"
-#     use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-#   env: "MAKEOPTS=\"-l0.9\""
-#   prepare:
-#   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
-#   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
-#   inner_build_reqs:
-#   # - app-text/doxygen
-#   # - dev-python/sphinx
-#   # - dev-texlive/texlive-bibtexextra
-#   # - dev-texlive/texlive-fontsextra
-#   # - dev-texlive/texlive-fontutils
-#   # - dev-texlive/texlive-latex
-#   # - dev-texlive/texlive-latexextra
-#   - app-admin/chrpath
-#   - dev-debug/valgrind
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-zstandard
-#   - <<: *apps-spacenavd
-#   - <<: *libs-c-blosc
-#   - <<: *libs-libspnav
-#   - <<: *libs-openvdb
-#   - <<: *libs-glfw
-#   - <<: *libs-lib3ds
-#   - <<: *libs-libharu
-#   - <<: *libs-ocio-oiio
-#   - <<: *libs-ptex
-#   - <<: *libs-tbb
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "blender"
+  version: "4.1.1"
+  uri:
+  - https://www.blender.org
+  - https://www.alembic.io/
+  - https://github.com/embree/embree
+  - http://www.openimagedenoise.org/
+  - http://www.opencollada.org/
+  - https://graphics.pixar.com/opensubdiv/docs/intro.html
+  - http://opensource.imageworks.com/?p
+  - http://partio.us/
+  license: "GPL-3 BL BSD Apache-2.0 MIT"
+  description: |
+    3D Creation/Animation/Publishing System
+    Open framework for storing and sharing scene data
+    Collection of high-performance ray tracing kernels
+    Intel(R) Open Image Denoise library
+    Stream based read/write library for COLLADA files
+    An Open-Source subdivision surface library
+    Advanced shading language for production GI renderers
+    Library for particle IO and manipulation
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      =media-gfx/alembic-1.8.6-r1
+      media-gfx/blender
+  provides:
+  - category: "media-gfx"
+    name: "blender"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "alembic"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "ispc"
+    version: ">=0"
+  - category: "media-libs"
+    name: "embree"
+    version: ">=0"
+  - category: "media-libs"
+    name: "oidn"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opencollada"
+    version: ">=0"
+  - category: "media-libs"
+    name: "openpgl"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opensubdiv"
+    version: ">=0"
+  # - category: "media-libs"
+  #   name: "osl"
+  #   version: ">=0"
+  # - category: "media-libs"
+  #   name: "partio"
+  #   version: ">=0"
+  atoms:
+  - atom: "media-gfx/blender"
+    use: "bullet dds -doc fluid openexr tbb alembic collada color-management cycles embree ffmpeg fftw gmp jack jemalloc jpeg2k man ndof nls openal opencl oidn openimageio openmp opensubdiv openvdb pdf potrace pugixml pulseaudio sdl sndfile standalone tiff valgrind # cuda doc osl system-python system-numpy headless"
+    accept_keywords: "~amd64"
+  - atom: "media-gfx/alembic"
+    use: "hdf5"
+    accept_keywords: "~amd64"
+  - atom: "dev-lang/ispc"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/embree"
+    use: "compact-polys ispc raymask ssp tbb # tutorial"
+  - atom: "media-libs/openpgl"
+    use: "cpu_flags_x86_avx2"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/opensubdiv"
+    use: "opencl openmp ptex tbb # cuda"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/osl"
+    use: "partio qt5 python # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  env: "MAKEOPTS=\"-l0.9\""
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
+  inner_build_reqs:
+  # - app-text/doxygen
+  # - dev-python/sphinx
+  # - dev-texlive/texlive-bibtexextra
+  # - dev-texlive/texlive-fontsextra
+  # - dev-texlive/texlive-fontutils
+  # - dev-texlive/texlive-latex
+  # - dev-texlive/texlive-latexextra
+  - app-admin/chrpath
+  - dev-debug/valgrind
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-zstandard
+  - <<: *apps-spacenavd
+  - <<: *libs-c-blosc
+  - <<: *libs-libspnav
+  - <<: *libs-openvdb
+  - <<: *libs-glfw
+  - <<: *libs-lib3ds
+  - <<: *libs-libharu
+  - <<: *libs-ocio-oiio
+  - <<: *libs-ptex
+  - <<: *libs-tbb
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "displaycal-py3"
@@ -17070,7 +17071,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "24.02.2"
+  version: "24.05.1"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
