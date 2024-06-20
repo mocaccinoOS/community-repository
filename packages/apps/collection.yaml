@@ -827,7 +827,7 @@ packages:
 - &libs-abseil-cpp
   category: "libs"
   name: "abseil-cpp"
-  version: "20230125.2+1"
+  version: "20230125.3-r3"
   uri:
   - https://abseil.io
   license: "Apache-2.0 BSD"
@@ -1121,7 +1121,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "125.0.6422.141"
+  version: "126.0.6478.55"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1996,16 +1996,20 @@ packages:
 - &libs-libjxl
   category: "libs"
   name: "libjxl"
-  version: "0.10.2+1"
+  version: "0.10.2+2"
   uri:
   - https://github.com/libjxl/libjxl/
   license: "BSD"
   description: "JPEG XL image format reference implementation"
+  # labels:
+  #   emerge.jobs: "1"
+  #   emerge.packages: >-
+  #     =dev-cpp/highway-1.0.1-r1
+  #     =media-libs/libjxl-0.8.2-r1
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =dev-cpp/highway-1.0.1-r1
-      =media-libs/libjxl-0.8.2-r1
+      media-libs/libjxl
   provides:
   - category: "media-libs"
     name: "libjxl"
@@ -2113,15 +2117,19 @@ packages:
 - &libs-libbpf
   category: "libs"
   name: "libbpf"
-  version: "1.3.0+1"
+  version: "1.3.0+2"
   uri:
   - https://github.com/libbpf/libbpf
   license: "GPL-2 LGPL-2.1 BSD-2"
   description: "Stand-alone build of libbpf from the Linux kernel"
+  # labels:
+  #   emerge.jobs: "1"
+  #   emerge.packages: >-
+  #     =dev-libs/libbpf-0.8.1
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =dev-libs/libbpf-0.8.1
+      dev-libs/libbpf
   provides:
   - category: "dev-libs"
     name: "libbpf"
@@ -3165,7 +3173,7 @@ packages:
 - &libs-MIME-tools
   category: "libs"
   name: "MIME-tools"
-  version: "5.510.0-r1+1"
+  version: "5.515.0"
   uri:
   - https://metacpan.org/release/MIME-tools
   license: "Artistic GPL-1+"
@@ -3545,7 +3553,7 @@ packages:
 - &libs-protobuf-c
   category: "libs"
   name: "protobuf-c"
-  version: "1.4.1-r1+1"
+  version: "1.4.1-r1+2"
   uri:
   - https://github.com/protobuf-c/protobuf-c
   license: "BSD-2"
@@ -4352,7 +4360,7 @@ packages:
 - &libs-XML-LibXML
   category: "libs"
   name: "XML-LibXML"
-  version: "2.20.900+1"
+  version: "2.21.0"
   uri:
   - https://metacpan.org/release/XML-LibXML
   license: "Artistic GPL-1+"
@@ -4532,7 +4540,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "34.0.5"
+  version: "34.0.5+1"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -4865,7 +4873,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.66.118"
+  version: "1.67.115"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5411,24 +5419,19 @@ packages:
 
 - category: "apps"
   name: "drawio-desktop-bin"
-  version: "21.6.8+1"
+  version: "24.0.4"
   uri:
-  - https://github.com/jgraph/drawio-desktop
-  license: "Apache-2.0"
-  description: "Diagram drawing application built on web technology"
+  - https://www.drawio.com/
+  license: "0BSD Apache-2.0 BSD BSD-2 CC0-1.0 GPL-2 ISC PYTHON WTFPL-2 MIT ZLIB"
+  description: "draw.io diagramming and whiteboarding desktop app"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-office/drawio-desktop-bin
-  overlays:
-  - enable: "nest"
   provides:
   - category: "app-office"
     name: "drawio-desktop-bin"
     version: ">=0"
-  atoms:
-  - atom: "app-office/drawio-desktop-bin"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -5796,7 +5799,7 @@ packages:
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
-  version: "20230101+3"
+  version: "20230101-r2"
   uri:
   - http://fontforge.sourceforge.net/
   license: "BSD"
@@ -6193,7 +6196,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.22.3"
+  version: "1.22.4"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6216,7 +6219,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "125.0.6422.141"
+  version: "126.0.6478.55"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6700,7 +6703,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.10.7+1"
+  version: "1.11.1"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -6787,7 +6790,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "24.02.2"
+  version: "24.05.1"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6807,7 +6810,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "23.08.5"
+  version: "23.08.5-r1"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6994,7 +6997,7 @@ packages:
 - &apps-kvantum
   category: "apps"
   name: "kvantum"
-  version: "1.0.10+1"
+  version: "1.1.2"
   uri:
   - https://github.com/tsujan/Kvantum
   license: "GPL-3"
@@ -7216,7 +7219,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "24.02.2"
+  version: "24.05.1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -8895,7 +8898,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "4.0.5"
+  version: "4.0.5-r1"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -9060,7 +9063,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.90.0.24158"
+  version: "1.90.1.24165"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9124,7 +9127,8 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.6.2+1"
+  # version: "0.6.2+1"
+  version: "0.7.0"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -12460,7 +12464,7 @@ packages:
 - &apps-v4l-utils
   category: "apps"
   name: "v4l-utils"
-  version: "1.22.1-r1+3"
+  version: "1.24.1"
   uri:
   - https://git.linuxtv.org/v4l-utils.git
   license: "GPL-2+ LGPL-2.1+"
@@ -12476,6 +12480,7 @@ packages:
   atoms:
   - atom: "media-tv/v4l-utils"
     use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbpf
