@@ -2092,19 +2092,15 @@ packages:
 - &libs-libbpf
   category: "libs"
   name: "libbpf"
-  version: "1.3.0+2"
+  version: "1.3.0+1"
   uri:
   - https://github.com/libbpf/libbpf
   license: "GPL-2 LGPL-2.1 BSD-2"
   description: "Stand-alone build of libbpf from the Linux kernel"
-  # labels:
-  #   emerge.jobs: "1"
-  #   emerge.packages: >-
-  #     =dev-libs/libbpf-0.8.1
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-libs/libbpf
+      =dev-libs/libbpf-0.8.1
   provides:
   - category: "dev-libs"
     name: "libbpf"
@@ -12321,7 +12317,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "4.0.5-r1"
+  version: "4.0.5-r1+1"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -12439,7 +12435,7 @@ packages:
 - &apps-v4l-utils
   category: "apps"
   name: "v4l-utils"
-  version: "1.24.1+1"
+  version: "1.22.1-r1+3"
   uri:
   - https://git.linuxtv.org/v4l-utils.git
   license: "GPL-2+ LGPL-2.1+"
@@ -12447,15 +12443,15 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-tv/v4l-utils-1.24.1
+      media-tv/v4l-utils
   provides:
   - category: "media-tv"
     name: "v4l-utils"
     version: ">=0"
   atoms:
   - atom: "media-tv/v4l-utils"
-    use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
     accept_keywords: "~amd64"
+    use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbpf
@@ -13639,7 +13635,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/kodi
-      media-plugins/kodi-pvr-iptvsimple
+      # media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "dev-libs"
     name: "crossguid"
@@ -13665,8 +13661,8 @@ packages:
     accept_keywords: "~amd64"
   - atom: "net-libs/shairplay"
     use: "playfair"
-  - atom: "media-plugins/kodi-pvr-iptvsimple"
-    accept_keywords: "~amd64"
+  # - atom: "media-plugins/kodi-pvr-iptvsimple"
+  #   accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/=media-tv\/kodi-19\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild
   - ebuild /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild manifest
