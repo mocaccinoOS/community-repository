@@ -824,27 +824,6 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
-- &libs-abseil-cpp
-  category: "libs"
-  name: "abseil-cpp"
-  version: "20230125.3-r3"
-  uri:
-  - https://abseil.io
-  license: "Apache-2.0 BSD"
-  description: "Abseil Common Libraries (C++), LTS Branch"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/abseil-cpp
-  provides:
-  - category: "dev-cpp"
-    name: "abseil-cpp"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-analitza
   category: "libs"
   name: "analitza"
@@ -1996,20 +1975,16 @@ packages:
 - &libs-libjxl
   category: "libs"
   name: "libjxl"
-  version: "0.10.2+2"
+  version: "0.10.2+1"
   uri:
   - https://github.com/libjxl/libjxl/
   license: "BSD"
   description: "JPEG XL image format reference implementation"
-  # labels:
-  #   emerge.jobs: "1"
-  #   emerge.packages: >-
-  #     =dev-cpp/highway-1.0.1-r1
-  #     =media-libs/libjxl-0.8.2-r1
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libjxl
+      =dev-cpp/highway-1.0.1-r1
+      =media-libs/libjxl-0.8.2-r1
   provides:
   - category: "media-libs"
     name: "libjxl"
@@ -8897,35 +8872,6 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "transmission"
-  version: "4.0.5-r1"
-  uri:
-  - https://transmissionbt.com
-  license: "GPL-2 MIT"
-  description: "A fast, easy, and free BitTorrent client"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-p2p/transmission
-  provides:
-  - category: "net-p2p"
-    name: "transmission"
-    version: ">=0"
-  atoms:
-  - atom: "net-p2p/transmission"
-    use: "-qt5"
-  inner_build_reqs:
-  - acct-group/transmission
-  - acct-user/transmission
-  requires:
-  - <<: *layers-gnome-common
-  - category: "entity"
-    name: "transmission"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "ttaenc"
   version: "3.4.1-r1"
   uri:
@@ -9127,8 +9073,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  # version: "0.6.2+1"
-  version: "0.7.0"
+  version: "0.6.2+1"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -11299,44 +11244,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-linuxtv-utils
-#   category: "apps"
-#   name: "linuxtv-utils"
-#   version: "0.2"
-#   uri:
-#   - https://www.linuxtv.org/
-#   - https://git.linuxtv.org/v4l-utils.git
-#   license: "GPL-2 GPL-2+ LGPL-2.1+"
-#   description: |
-#     Small utils for DVB to scan, zap, view signal strength
-#     Separate utilities ebuild from upstream v4l-utils package
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-tv/v4l-utils
-#       media-tv/dtv-scan-tables
-#       media-tv/linuxtv-dvb-apps
-#   provides:
-#   - category: "media-tv"
-#     name: "linuxtv-dvb-apps"
-#     version: ">=0"
-#   - category: "media-tv"
-#     name: "dtv-scan-tables"
-#     version: ">=0"
-#   - category: "media-tv"
-#     name: "v4l-utils"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-tv/linuxtv-dvb-apps"
-#     use: "usb # alevt"
-#   - atom: "media-tv/v4l-utils"
-#     use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-libbpf
-#   build_requires:
-#   - <<: *layers-qt
-
 - &apps-linux-wbfs-manager
   category: "apps"
   name: "linux-wbfs-manager"
@@ -12413,6 +12320,36 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "transmission"
+  version: "4.0.5-r1"
+  uri:
+  - https://transmissionbt.com
+  license: "GPL-2 MIT"
+  description: "A fast, easy, and free BitTorrent client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/transmission
+  provides:
+  - category: "net-p2p"
+    name: "transmission"
+    version: ">=0"
+  atoms:
+  - atom: "net-p2p/transmission"
+    use: "appindicator cli gtk mbedtls nls qt5 systemd # qt6"
+  inner_build_reqs:
+  - acct-group/transmission
+  - acct-user/transmission
+  requires:
+  - <<: *layers-gnome-common
+  - category: "entity"
+    name: "transmission"
+    version: ">=0"
+  - <<: *libs-mbedtls
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "upplay"
   version: "1.7.3"
   uri:
@@ -12461,10 +12398,48 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# - &apps-linuxtv-utils
+#   category: "apps"
+#   name: "linuxtv-utils"
+#   version: "0.2"
+#   uri:
+#   - https://www.linuxtv.org/
+#   - https://git.linuxtv.org/v4l-utils.git
+#   license: "GPL-2 GPL-2+ LGPL-2.1+"
+#   description: |
+#     Small utils for DVB to scan, zap, view signal strength
+#     Separate utilities ebuild from upstream v4l-utils package
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-tv/v4l-utils
+#       media-tv/dtv-scan-tables
+#       media-tv/linuxtv-dvb-apps
+#   provides:
+#   - category: "media-tv"
+#     name: "linuxtv-dvb-apps"
+#     version: ">=0"
+#   - category: "media-tv"
+#     name: "dtv-scan-tables"
+#     version: ">=0"
+#   - category: "media-tv"
+#     name: "v4l-utils"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-tv/linuxtv-dvb-apps"
+#     use: "usb # alevt"
+#   - atom: "media-tv/v4l-utils"
+#     use: "bpf opengl qt5 udev # dvb: media-libs/libv4l dvb"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-libbpf
+#   build_requires:
+#   - <<: *layers-qt
+
 - &apps-v4l-utils
   category: "apps"
   name: "v4l-utils"
-  version: "1.24.1"
+  version: "1.24.1+1"
   uri:
   - https://git.linuxtv.org/v4l-utils.git
   license: "GPL-2+ LGPL-2.1+"
@@ -12472,7 +12447,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-tv/v4l-utils
+      =media-tv/v4l-utils-1.24.1
   provides:
   - category: "media-tv"
     name: "v4l-utils"
@@ -13646,7 +13621,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.0-r2"
+  version: "21.0-r2+1"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -13664,7 +13639,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/kodi
-    # media-plugins/kodi-pvr-iptvsimple
+      media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "dev-libs"
     name: "crossguid"
@@ -13699,7 +13674,6 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-X
-  - <<: *libs-abseil-cpp
   - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
@@ -13832,7 +13806,6 @@ packages:
     version: ">=0"
   # - <<: *libs-bsh
   # - <<: *libs-rhino
-  - <<: *libs-abseil-cpp
   # - <<: *apps-postgresql
   - <<: *libs-xmlsec
   - <<: *apps-fontforge
