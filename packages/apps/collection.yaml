@@ -15519,7 +15519,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sci-mathematics/octave:0/8.3.0
+      sci-mathematics/octave
   provides:
   - category: "sci-mathematics"
     name: "octave"
@@ -16479,6 +16479,8 @@ packages:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/app-office/lyx/lyx-2.3.6.1-r2.ebuild
   - ebuild /var/db/repos/gentoo/app-office/lyx/lyx-2.3.6.1-r2.ebuild manifest
+  # inner_build_reqs
+  # - app-alternatives/bc
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
