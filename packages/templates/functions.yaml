@@ -233,7 +233,7 @@
 {{- range ( "mask unmask" | splitList " " ) }}
 {{- if ( index $atom . ) }}
   mkdir -p {{ $filepath }}.{{ . }}; \
-  echo -e "{{ $atom.atom }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
+  echo -e "{{ index $atom . }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
 {{- end }}
 {{- $value := $atom.env }}
