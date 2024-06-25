@@ -725,11 +725,11 @@ packages:
 - &def-layers-latex-test
   category: "layers"
   name: "latex-test"
-  version: 0.10
+  version: "0.10"
   uri:
-    - http://www.tug.org/texlive/
-    - http://hutchinson.belmont.ma.us/tth/
-    - http://ivritex.sourceforge.net/
+  - http://www.tug.org/texlive/
+  - http://hutchinson.belmont.ma.us/tth/
+  - http://ivritex.sourceforge.net/
   description: |
     A complete TeX distribution
     Translate TEX into HTML
@@ -807,6 +807,8 @@ packages:
   - category: "virtual"
     name: "latex-base"
     version: ">=0"
+  # prepare:
+  # - export TEXI2DVI_USE_RECORDER=yesmaybe
   requires:
   - <<: *layers-X
   build_requires:
