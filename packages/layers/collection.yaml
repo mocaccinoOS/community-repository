@@ -552,6 +552,282 @@ packages:
 ## layers ###
 ################################################################################
 
+
+# dev-perl/AppConfig              Template-Toolkit
+# dev-perl/Carp-Always            shutter
+# dev-perl/Class-Accessor         Monitoring-Plugin
+# dev-perl/Config-Tiny            Monitoring-Plugin
+# dev-perl/File-Copy-Recursive    shutter
+# dev-perl/Gtk3-ImageView         shutter
+# dev-perl/JSON-MaybeXS           nagios-plugin-check_lm_sensors
+# dev-perl/libxml-perl            shutter
+# dev-perl/Math-Calc-Units        Monitoring-Plugin
+# dev-perl/Module-Install         nagios-plugin-check_lm_sensors
+# dev-perl/Net-DBus               shutter
+# dev-perl/Number-Bytes-Human     shutter
+# dev-perl/Pango                  shutter
+# dev-perl/Params-Validate        Monitoring-Plugin
+# dev-perl/Path-Tiny              kdegames::freecell-solver
+# dev-perl/Proc-ProcessTable      shutter
+# dev-perl/Proc-Simple            shutter
+# dev-perl/Sort-Naturally         shutter
+# dev-perl/Template-Toolkit       kdegames::freecell-solver
+# dev-perl/Text-Autoformat        Template-Toolkit
+# dev-perl/Text-Reform            Text-Autoformat
+# dev-perl/Unicode-UTF8           Path-Tiny <- kdegames::freecell-solver
+# dev-perl/X11-Protocol           shutter
+- &def-layers-perl-libs
+  category: "layers"
+  name: "perl-libs"
+  version: "0.11"
+  uri:
+  - https://metacpan.org/release/AppConfig
+  - https://metacpan.org/release/Archive-Zip
+  - https://metacpan.org/release/Carp-Always
+  - https://metacpan.org/release/Class-Accessor
+  - https://metacpan.org/release/Config-Tiny
+  - https://metacpan.org/release/ExtUtils-Config
+  - https://metacpan.org/release/ExtUtils-Helpers
+  - https://metacpan.org/release/ExtUtils-InstallPaths
+  - https://metacpan.org/release/File-Copy-Recursive
+  - https://metacpan.org/release/File-Remove
+  - https://metacpan.org/release/Gtk3-ImageView
+  - https://metacpan.org/release/JSON-MaybeXS
+  - https://metacpan.org/release/libxml-perl
+  - https://metacpan.org/release/Math-Calc-Units
+  - https://metacpan.org/release/Module-Build-Tiny
+  - https://metacpan.org/release/Module-Install
+  - https://metacpan.org/release/Module-ScanDeps
+  - https://metacpan.org/release/Net-DBus
+  - https://metacpan.org/release/Number-Bytes-Human
+  - https://metacpan.org/release/Pango
+  - https://metacpan.org/release/PAR-Dist
+  - https://metacpan.org/release/Params-Validate
+  - https://metacpan.org/release/Path-Tiny
+  - https://metacpan.org/release/Proc-ProcessTable
+  - https://metacpan.org/release/Proc-Simple
+  - https://metacpan.org/release/Readonly
+  - https://metacpan.org/release/Sort-Naturally
+  - https://metacpan.org/release/SUPER
+  - https://metacpan.org/release/Template-Toolkit
+  - https://metacpan.org/release/Text-Autoformat
+  - https://metacpan.org/release/Text-Reform
+  - https://metacpan.org/release/Text-Iconv
+  - https://metacpan.org/release/Text-Tabs+Wrap
+  - https://metacpan.org/release/Tie-IxHash
+  - https://metacpan.org/release/Unicode-UTF8
+  - https://metacpan.org/release/X11-Protocol
+  - https://metacpan.org/release/XML-Twig
+  - https://metacpan.org/release/YAML-Syck
+  license: "metapackage"
+  description: |
+    Perl5 module for reading configuration files and parsing command line arguments
+    A wrapper that lets you read Zip archive members as if they were files
+    Automated accessor generation
+    Read/Write .ini style files with as little code as possible
+    Warns and dies noisily with stack backtraces
+    Wrapper for perl's configuration
+    Various portability utilities for module builders
+    Standalone, extensible Perl module installer
+    Build.PL install path logic made easy
+    Remove files and directories
+    uses File::Copy to recursively copy dirs
+    Image viewer widget for Gtk3
+    Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
+    Collection of Perl modules for working with XML
+    Human-readable unit-aware calculator
+    Tiny replacement for Module::Build
+    Recursively scan Perl code for dependencies
+    Perl extension for the DBus message system
+    Convert byte count to human readable format
+    Layout and render international text
+    Create and manipulate PAR distributions
+    Flexible system for validation of method/function call parameters
+    Unix process table information
+    Launch and control background processes
+    Facility for creating read-only scalars, arrays, hashes
+    sort lexically, but sort numeral parts numerically
+    control superclass method dispatch
+    The Template Toolkit
+    Manual text wrapping and reformatting
+    Automatic text wrapping and reformatting
+    A Perl interface to the iconv() codeset conversion function
+    Expand/unexpand tabs per unix expand and line wrapping
+    Ordered associative arrays for Perl
+    Encoding and decoding of UTF-8 encoding form
+    Client-side interface to the X11 Protocol
+    Process huge XML documents in tree mode
+    Fast, lightweight YAML loader and dumper
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/AppConfig
+      dev-perl/Carp-Always
+      dev-perl/Class-Accessor
+      dev-perl/Config-Tiny
+      dev-perl/File-Copy-Recursive
+      dev-perl/Gtk3-ImageView
+      dev-perl/JSON-MaybeXS
+      dev-perl/libxml-perl
+      dev-perl/Math-Calc-Units
+      dev-perl/Module-Install
+      dev-perl/Net-DBus
+      dev-perl/Number-Bytes-Human
+      dev-perl/Pango
+      dev-perl/Params-Validate
+      dev-perl/Path-Tiny
+      dev-perl/Proc-ProcessTable
+      dev-perl/Proc-Simple
+      dev-perl/Sort-Naturally
+      dev-perl/Template-Toolkit
+      dev-perl/Text-Autoformat
+      dev-perl/Text-Reform
+      dev-perl/Unicode-UTF8
+      dev-perl/X11-Protocol
+  provides:
+  - category: "dev-perl"
+    name: "AppConfig"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Archive-Zip"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Carp-Always"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Class-Accessor"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Config-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-Config"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-Helpers"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-InstallPaths"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-Copy-Recursive"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-Remove"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Gtk3-ImageView"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "JSON-MaybeXS"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "libxml-perl"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Math-Calc-Units"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Module-Build-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Module-Install"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Module-ScanDeps"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Net-DBus"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Number-Bytes-Human"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Pango"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "PAR-Dist"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Params-Validate"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Path-Tiny"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Proc-ProcessTable"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Proc-Simple"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Readonly"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Sort-Naturally"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "SUPER"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Template-Toolkit"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Autoformat"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Iconv"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Text-Reform"
+    version: ">=0"
+  - category: "perl-core"
+    name: "Text-Tabs+Wrap"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Tie-IxHash"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Unicode-UTF8"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "X11-Protocol"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "XML-Twig"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "YAML-Syck"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-autodie"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Devel-PPPort"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Digest"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Module-CoreList"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Text-Tabs+Wrap"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- <<: *def-layers-perl-libs 
+  category: "layerbase"
+  hidden: true
+
+# - <<: *def-layers-perl-libs
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
+
 - &def-layers-office-common
   category: "layers"
   name: "office-common"
@@ -1082,282 +1358,6 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
-
-
-# dev-perl/AppConfig              Template-Toolkit
-# dev-perl/Carp-Always            shutter
-# dev-perl/Class-Accessor         Monitoring-Plugin
-# dev-perl/Config-Tiny            Monitoring-Plugin
-# dev-perl/File-Copy-Recursive    shutter
-# dev-perl/Gtk3-ImageView         shutter
-# dev-perl/JSON-MaybeXS           nagios-plugin-check_lm_sensors
-# dev-perl/libxml-perl            shutter
-# dev-perl/Math-Calc-Units        Monitoring-Plugin
-# dev-perl/Module-Install         nagios-plugin-check_lm_sensors
-# dev-perl/Net-DBus               shutter
-# dev-perl/Number-Bytes-Human     shutter
-# dev-perl/Pango                  shutter
-# dev-perl/Params-Validate        Monitoring-Plugin
-# dev-perl/Path-Tiny              kdegames::freecell-solver
-# dev-perl/Proc-ProcessTable      shutter
-# dev-perl/Proc-Simple            shutter
-# dev-perl/Sort-Naturally         shutter
-# dev-perl/Template-Toolkit       kdegames::freecell-solver
-# dev-perl/Text-Autoformat        Template-Toolkit
-# dev-perl/Text-Reform            Text-Autoformat
-# dev-perl/Unicode-UTF8           Path-Tiny <- kdegames::freecell-solver
-# dev-perl/X11-Protocol           shutter
-- &def-layers-perl-libs
-  category: "layers"
-  name: "perl-libs"
-  version: "0.11"
-  uri:
-  - https://metacpan.org/release/AppConfig
-  - https://metacpan.org/release/Archive-Zip
-  - https://metacpan.org/release/Carp-Always
-  - https://metacpan.org/release/Class-Accessor
-  - https://metacpan.org/release/Config-Tiny
-  - https://metacpan.org/release/ExtUtils-Config
-  - https://metacpan.org/release/ExtUtils-Helpers
-  - https://metacpan.org/release/ExtUtils-InstallPaths
-  - https://metacpan.org/release/File-Copy-Recursive
-  - https://metacpan.org/release/File-Remove
-  - https://metacpan.org/release/Gtk3-ImageView
-  - https://metacpan.org/release/JSON-MaybeXS
-  - https://metacpan.org/release/libxml-perl
-  - https://metacpan.org/release/Math-Calc-Units
-  - https://metacpan.org/release/Module-Build-Tiny
-  - https://metacpan.org/release/Module-Install
-  - https://metacpan.org/release/Module-ScanDeps
-  - https://metacpan.org/release/Net-DBus
-  - https://metacpan.org/release/Number-Bytes-Human
-  - https://metacpan.org/release/Pango
-  - https://metacpan.org/release/PAR-Dist
-  - https://metacpan.org/release/Params-Validate
-  - https://metacpan.org/release/Path-Tiny
-  - https://metacpan.org/release/Proc-ProcessTable
-  - https://metacpan.org/release/Proc-Simple
-  - https://metacpan.org/release/Readonly
-  - https://metacpan.org/release/Sort-Naturally
-  - https://metacpan.org/release/SUPER
-  - https://metacpan.org/release/Template-Toolkit
-  - https://metacpan.org/release/Text-Autoformat
-  - https://metacpan.org/release/Text-Reform
-  - https://metacpan.org/release/Text-Iconv
-  - https://metacpan.org/release/Text-Tabs+Wrap
-  - https://metacpan.org/release/Tie-IxHash
-  - https://metacpan.org/release/Unicode-UTF8
-  - https://metacpan.org/release/X11-Protocol
-  - https://metacpan.org/release/XML-Twig
-  - https://metacpan.org/release/YAML-Syck
-  license: "metapackage"
-  description: |
-    Perl5 module for reading configuration files and parsing command line arguments
-    A wrapper that lets you read Zip archive members as if they were files
-    Automated accessor generation
-    Read/Write .ini style files with as little code as possible
-    Warns and dies noisily with stack backtraces
-    Wrapper for perl's configuration
-    Various portability utilities for module builders
-    Standalone, extensible Perl module installer
-    Build.PL install path logic made easy
-    Remove files and directories
-    uses File::Copy to recursively copy dirs
-    Image viewer widget for Gtk3
-    Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
-    Collection of Perl modules for working with XML
-    Human-readable unit-aware calculator
-    Tiny replacement for Module::Build
-    Recursively scan Perl code for dependencies
-    Perl extension for the DBus message system
-    Convert byte count to human readable format
-    Layout and render international text
-    Create and manipulate PAR distributions
-    Flexible system for validation of method/function call parameters
-    Unix process table information
-    Launch and control background processes
-    Facility for creating read-only scalars, arrays, hashes
-    sort lexically, but sort numeral parts numerically
-    control superclass method dispatch
-    The Template Toolkit
-    Manual text wrapping and reformatting
-    Automatic text wrapping and reformatting
-    A Perl interface to the iconv() codeset conversion function
-    Expand/unexpand tabs per unix expand and line wrapping
-    Ordered associative arrays for Perl
-    Encoding and decoding of UTF-8 encoding form
-    Client-side interface to the X11 Protocol
-    Process huge XML documents in tree mode
-    Fast, lightweight YAML loader and dumper
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/AppConfig
-      dev-perl/Carp-Always
-      dev-perl/Class-Accessor
-      dev-perl/Config-Tiny
-      dev-perl/File-Copy-Recursive
-      dev-perl/Gtk3-ImageView
-      dev-perl/JSON-MaybeXS
-      dev-perl/libxml-perl
-      dev-perl/Math-Calc-Units
-      dev-perl/Module-Install
-      dev-perl/Net-DBus
-      dev-perl/Number-Bytes-Human
-      dev-perl/Pango
-      dev-perl/Params-Validate
-      dev-perl/Path-Tiny
-      dev-perl/Proc-ProcessTable
-      dev-perl/Proc-Simple
-      dev-perl/Sort-Naturally
-      dev-perl/Template-Toolkit
-      dev-perl/Text-Autoformat
-      dev-perl/Text-Reform
-      dev-perl/Unicode-UTF8
-      dev-perl/X11-Protocol
-  provides:
-  - category: "dev-perl"
-    name: "AppConfig"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Archive-Zip"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Carp-Always"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Class-Accessor"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Config-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-Config"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-Helpers"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-InstallPaths"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "File-Copy-Recursive"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "File-Remove"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Gtk3-ImageView"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "JSON-MaybeXS"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "libxml-perl"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Math-Calc-Units"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Module-Build-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Module-Install"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Module-ScanDeps"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Net-DBus"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Number-Bytes-Human"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Pango"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "PAR-Dist"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Params-Validate"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Path-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Proc-ProcessTable"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Proc-Simple"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Readonly"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Sort-Naturally"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "SUPER"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Template-Toolkit"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-Autoformat"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-Iconv"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-Reform"
-    version: ">=0"
-  - category: "perl-core"
-    name: "Text-Tabs+Wrap"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Tie-IxHash"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Unicode-UTF8"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "X11-Protocol"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "XML-Twig"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "YAML-Syck"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-autodie"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Devel-PPPort"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Digest"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Module-CoreList"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Text-Tabs+Wrap"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- <<: *def-layers-perl-libs 
-  category: "layerbase"
-  hidden: true
-
-# - <<: *def-layers-perl-libs
-#   category: "buildbase"
-#   unpack: true
-#   hidden: true
 
 
 - category: "layers"
