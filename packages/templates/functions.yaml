@@ -175,6 +175,10 @@
   if [ -e "package.license/{{ $package }}.license" ]; then \
   cp -rf package.license/{{ $package }}.license /etc/portage/package.license/{{ $package }}.license; \
   fi; \
+  mkdir -p /etc/portage/package.mask; \
+  if [ -e "package.mask/{{ $package }}.mask" ]; then \
+  cp -rf package.mask/{{ $package }}.mask /etc/portage/package.mask/{{ $package }}.mask; \
+  fi; \
   mkdir -p /etc/portage/package.unmask; \
   if [ -e "package.unmask/{{ $package }}.unmask" ]; then \
   cp -rf package.unmask/{{ $package }}.unmask /etc/portage/package.unmask/{{ $package }}.unmask; \
@@ -226,7 +230,7 @@
   echo -e "{{ $atom.atom }} {{ $value | replace "\n" "\\n" }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
 {{- end }}
 {{- end }}
-{{- range ( "unmask" | splitList " " ) }}
+{{- range ( "mask unmask" | splitList " " ) }}
 {{- if ( index $atom . ) }}
   mkdir -p {{ $filepath }}.{{ . }}; \
   echo -e "{{ $atom.atom }}" >> {{ $filepath }}.{{ . }}/{{ $filename }}.{{ . }}; \
