@@ -101,17 +101,17 @@ stubs:
   virtual/jre
   virtual/jdk
   
-- &layers-latex-common
+- &layers-latex
   category: "layers"
-  name: "latex-common"
+  name: "latex"
   version: ">=0"
-- &layerbase-latex-common
+- &layerbase-latex
   category: "layerbase"
-  name: "latex-common"
+  name: "latex"
   version: ">=0"
-# - &buildbase-latex-common
+# - &buildbase-latex
 #   category: "buildbase"
-#   name: "latex-common"
+#   name: "latex"
 #   version: ">=0"
 
 - &layers-sci-libs
@@ -1566,9 +1566,9 @@ packages:
   - atom: "x11-libs/gl2ps"
     use: "png zlib"
   requires:
-  - <<: *layers-latex-common
+  - <<: *layers-latex
   build_requires:
-  - <<: *layers-latex-common
+  - <<: *layers-latex
 
 - &libs-glfw
   category: "libs"
@@ -13470,7 +13470,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
-  - <<: *layers-latex-common
+  - <<: *layers-latex
   - <<: *libs-wxGTK
   - <<: *libs-libcaca
   - <<: *libs-libgii-libggi
@@ -13478,7 +13478,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
-  - <<: *layerbase-latex-common
+  - <<: *layerbase-latex
   requires_final_images: true
 
 - category: "apps"
@@ -15506,7 +15506,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *layers-latex-common
+  - <<: *layers-latex
   - <<: *layers-sci-libs
   - <<: *apps-pstoedit
   - <<: *apps-epstool
@@ -15521,7 +15521,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
-  - <<: *layerbase-latex-common
+  - <<: *layerbase-latex
   - <<: *layerbase-sci-libs
   requires_final_images: true
 
@@ -16434,6 +16434,12 @@ packages:
   - category: "app-office"
     name: "lyx"
     version: ">=0"
+  - category: "media-fonts"
+    name: "culmus"
+    version: ">=0"
+  - category: "dev-tex"
+    name: "culmus-latex"
+    version: ">=0"
 # app-text/unrtf
 #   - category: "app-text"
 #     name: "unrtf"
@@ -16445,6 +16451,8 @@ packages:
   atoms:
   - atom: "app-office/lyx"
     use: "aspell dia enchant gnumeric html hunspell monolithic-build cups latex nls svg X l10n_he # rtf rcs dot"
+  - atom: "media-fonts/culmus"
+    use: "fancy"
   prepare:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/app-office/lyx/lyx-2.3.6.1-r2.ebuild
@@ -16455,7 +16463,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-office-common
-  - <<: *layers-latex-common
+  - <<: *layers-latex
   - <<: *apps-dia
   - <<: *apps-gnumeric
   - <<: *apps-graphviz
@@ -16463,7 +16471,7 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   - <<: *buildbase-office-common
-  - <<: *layerbase-latex-common
+  - <<: *layerbase-latex
   requires_final_images: true
 
 - category: "apps"
