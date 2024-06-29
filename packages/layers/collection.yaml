@@ -101,14 +101,18 @@ stubs:
   virtual/jre
   virtual/jdk
 
-- &layers-latex
+- &layers-latex-common
   category: "layers"
-  name: "latex"
+  name: "latex-common"
   version: ">=0"
-- &buildbase-latex
-  category: "buildbase"
-  name: "latex"
+- &layerbase-latex-common
+  category: "layerbase"
+  name: "latex-common"
   version: ">=0"
+# - &buildbase-latex-common
+#   category: "buildbase"
+#   name: "latex-common"
+#   version: ">=0"
 
 - &layers-sci-libs
   category: "layers"
@@ -268,6 +272,29 @@ packages:
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
+
+- &libs-XML-LibXML
+  category: "libs"
+  name: "XML-LibXML"
+  version: "2.21.0"
+  uri:
+  - https://metacpan.org/release/XML-LibXML
+  license: "Artistic GPL-1+"
+  description: "Perl binding for libxml2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/XML-LibXML
+  provides:
+  - category: "dev-perl"
+    name: "XML-LibXML"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-perl/Alien-Libxml2
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-mhash
   category: "libs"
@@ -984,10 +1011,10 @@ packages:
   unpack: true
   hidden: true
 
-- &def-layers-latex-test
+- &def-layers-latex-common
   category: "layers"
-  name: "latex-test"
-  version: "0.10"
+  name: "latex-common"
+  version: "0.11"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
@@ -1079,14 +1106,15 @@ packages:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   requires:
   - <<: *layers-X
+  - <<: *libs-XML-LibXML
   build_requires:
   - <<: *layers-X
 
-- <<: *def-layers-latex-test
+- <<: *def-layers-latex-common
   category: "layerbase"
   hidden: true
 
-# - <<: *def-layers-latex-test
+# - <<: *def-layers-latex-common
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
