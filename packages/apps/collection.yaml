@@ -574,28 +574,6 @@ packages:
     name: "cascadia-code"
     version: ">=0"
 
-- &fonts-culmus
-  <<: *fonts
-  name: "culmus"
-  version: "0.120-r6+3"
-  uri:
-  - http://culmus.sourceforge.net/
-  license: "GPL-2 LICENSE-BITSTREAM MIT"
-  description: "Hebrew Type1 fonts"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-fonts/culmus
-  provides:
-  - category: "media-fonts"
-    name: "culmus"
-    version: ">=0"
-  atoms:
-  - atom: "media-fonts/culmus"
-    use: "ancient fancy fontforge taamey X"
-  inner_build_reqs:
-  - media-gfx/fontforge
-
 - &fonts-fontawesome
   <<: *fonts
   name: "fontawesome"
