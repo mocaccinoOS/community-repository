@@ -100,15 +100,19 @@ stubs:
   dev-java/openjdk-bin
   virtual/jre
   virtual/jdk
-
-- &layers-latex
+  
+- &layers-latex-common
   category: "layers"
-  name: "latex"
+  name: "latex-common"
   version: ">=0"
-- &buildbase-latex
-  category: "buildbase"
-  name: "latex"
+- &layerbase-latex-common
+  category: "layerbase"
+  name: "latex-common"
   version: ">=0"
+# - &buildbase-latex-common
+#   category: "buildbase"
+#   name: "latex-common"
+#   version: ">=0"
 
 - &layers-sci-libs
   category: "layers"
@@ -311,6 +315,17 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       gnome-base/libglade
+
+- &libs-XML-LibXML
+  category: "libs"
+  name: "XML-LibXML"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/XML-LibXML
+  inner_build_reqs:
+  - dev-perl/Alien-Libxml2
 
 - &libs-mhash
   category: "libs"
@@ -1534,7 +1549,7 @@ packages:
 - &libs-gl2ps
   category: "libs"
   name: "gl2ps"
-  version: "1.4.2+2"
+  version: "1.4.2+3"
   uri:
   - http://www.geuz.org/gl2ps/
   license: "LGPL-2"
@@ -1551,9 +1566,9 @@ packages:
   - atom: "x11-libs/gl2ps"
     use: "png zlib"
   requires:
-  - <<: *layers-latex
+  - <<: *layers-latex-common
   build_requires:
-  - <<: *layers-latex
+  - <<: *layers-latex-common
 
 - &libs-glfw
   category: "libs"
@@ -4301,29 +4316,6 @@ packages:
   atoms:
   - atom: "dev-libs/xerces-c"
     use: "curl iconv icu threads # cpu_flags_x86_sse2"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-XML-LibXML
-  category: "libs"
-  name: "XML-LibXML"
-  version: "2.21.0"
-  uri:
-  - https://metacpan.org/release/XML-LibXML
-  license: "Artistic GPL-1+"
-  description: "Perl binding for libxml2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/XML-LibXML
-  provides:
-  - category: "dev-perl"
-    name: "XML-LibXML"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-perl/Alien-Libxml2
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -13459,7 +13451,7 @@ packages:
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
-  version: "5.4.10+2"
+  version: "5.4.10+3"
   uri:
   - http://www.gnuplot.info/
   license: "gnuplot"
@@ -13478,7 +13470,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
-  - <<: *layers-latex
+  - <<: *layers-latex-common
   - <<: *libs-wxGTK
   - <<: *libs-libcaca
   - <<: *libs-libgii-libggi
@@ -13486,7 +13478,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
-  - <<: *buildbase-latex
+  - <<: *layerbase-latex-common
   requires_final_images: true
 
 - category: "apps"
@@ -15489,7 +15481,7 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "8.3.0-r2+3"
+  version: "8.3.0-r2+4"
   uri:
   - https://www.gnu.org/software/octave/
   license: "GPL-3"
@@ -15514,7 +15506,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *layers-latex
+  - <<: *layers-latex-common
   - <<: *layers-sci-libs
   - <<: *apps-pstoedit
   - <<: *apps-epstool
@@ -15529,7 +15521,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
-  - <<: *buildbase-latex
+  - <<: *layerbase-latex-common
   - <<: *layerbase-sci-libs
   requires_final_images: true
 
@@ -16426,7 +16418,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.4.0_rc4+2"
+  version: "2.4.0_rc4+3"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -16463,7 +16455,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-office-common
-  - <<: *layers-latex
+  - <<: *layers-latex-common
   - <<: *apps-dia
   - <<: *apps-gnumeric
   - <<: *apps-graphviz
@@ -16471,7 +16463,7 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   - <<: *buildbase-office-common
-  - <<: *buildbase-latex
+  - <<: *layerbase-latex-common
   requires_final_images: true
 
 - category: "apps"
