@@ -579,7 +579,7 @@ packages:
 # dev-perl/Net-DBus               shutter
 # dev-perl/Number-Bytes-Human     shutter
 # dev-perl/Pango                  shutter
-# dev-perl/Params-Validate        Monitoring-Plugin
+# dev-perl/Params-Validate        Monitoring-Plugin, layers/latex
 # dev-perl/Path-Tiny              kdegames::freecell-solver
 # dev-perl/Proc-ProcessTable      shutter
 # dev-perl/Proc-Simple            shutter
@@ -832,7 +832,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *def-layers-perl-libs 
+- <<: *def-layers-perl-libs
   category: "layerbase"
   hidden: true
 
@@ -1014,7 +1014,7 @@ packages:
 - &def-layers-latex
   category: "layers"
   name: "latex"
-  version: "0.11"
+  version: "0.12"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
@@ -1181,9 +1181,6 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Number-Compare"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Params-Validate"
     version: ">=0"
   - category: "dev-perl"
     name: "Parse-RecDescent"
@@ -1467,10 +1464,10 @@ packages:
   # prepare:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   requires:
-  - <<: *layers-X
+  - <<: *layers-perl-libs
   - <<: *libs-XML-LibXML
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-perl-libs
 
 - <<: *def-layers-latex
   category: "layerbase"
