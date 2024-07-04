@@ -10469,7 +10469,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.6.0+5"
+  version: "4.6.0+6"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -11909,9 +11909,22 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# !!! All ebuilds that could satisfy "dev-qt/qtbase:6[icu,sqlite]" have been masked.
+# !!! One of the following masked packages is required to complete your request:
+# - dev-qt/qtbase-6.9999::gentoo (masked by: package.mask, missing keyword)
+# /etc/portage/package.mask/01-qt.mask:
+# # Do not pull in Qt6
+# 
+# - dev-qt/qtbase-6.8.9999::gentoo (masked by: package.mask, missing keyword)
+# - dev-qt/qtbase-6.7.9999::gentoo (masked by: package.mask, missing keyword)
+# - dev-qt/qtbase-6.7.2::gentoo (masked by: package.mask, ~amd64 keyword)
+# - dev-qt/qtbase-6.7.1::gentoo (masked by: package.mask)
+# 
+# (dependency required by "www-client/qutebrowser-3.2.0::gentoo[-python_single_target_python3_12,-test,-python_single_target_python3_10,python_single_target_python3_11]" [ebuild])
+# (dependency required by "www-client/qutebrowser" [argument])
 - category: "apps"
   name: "qutebrowser"
-  version: "3.2.0"
+  version: "3.1.0-r1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -16388,7 +16401,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.36+4"
+  version: "2.10.36+5"
   uri:
   - https://www.gimp.org/
   license: "GPL-3 LGPL-3"
@@ -16746,7 +16759,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.1.5+10"
+  version: "5.1.5+11"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
