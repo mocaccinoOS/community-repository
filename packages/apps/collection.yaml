@@ -12406,6 +12406,9 @@ packages:
   - category: "media-tv"
     name: "v4l-utils"
     version: ">=0"
+  - category: "dev-libs"
+    name: libbpf"
+    version: ">=0"
   atoms:
   - atom: "media-tv/linuxtv-dvb-apps"
     use: "usb # alevt"
@@ -12416,32 +12419,6 @@ packages:
   # - <<: *libs-libbpf
   build_requires:
   - <<: *layers-qt
-
-# - &apps-v4l-utils
-#   category: "apps"
-#   name: "v4l-utils"
-#   version: "1.22.1-r1+3"
-#   uri:
-#   - https://git.linuxtv.org/v4l-utils.git
-#   license: "GPL-2+ LGPL-2.1+"
-#   description: "Separate utilities ebuild from upstream v4l-utils package"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-tv/v4l-utils
-#   provides:
-#   - category: "media-tv"
-#     name: "v4l-utils"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-tv/v4l-utils"
-#     accept_keywords: "~amd64"
-#     use: "bpf opengl qt5 udev # dvb: media-libs/libv dvb"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-libbpf
-#   build_requires:
-#   - <<: *layers-qt
 
 - category: "apps"
   name: "vdr"
