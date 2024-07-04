@@ -2083,27 +2083,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-libbpf
-#   category: "libs"
-#   name: "libbpf"
-#   version: "1.3.0+2"
-#   uri:
-#   - https://github.com/libbpf/libbpf
-#   license: "GPL-2 LGPL-2.1 BSD-2"
-#   description: "Stand-alone build of libbpf from the Linux kernel"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/libbpf
-#   provides:
-#   - category: "dev-libs"
-#     name: "libbpf"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
-
 - &libs-libbs2b
   category: "libs"
   name: "libbs2b"
@@ -7031,6 +7010,46 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
+
+- &apps-linuxtv-utils
+  category: "apps"
+  name: "linuxtv-utils"
+  version: "0.3"
+  uri:
+  - https://www.linuxtv.org/
+  - https://git.linuxtv.org/v4l-utils.git
+  license: "GPL-2 GPL-2+ LGPL-2.1+"
+  description: |
+    Small utils for DVB to scan, zap, view signal strength
+    Separate utilities ebuild from upstream v4l-utils package
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-tv/v4l-utils
+      media-tv/dtv-scan-tables
+      media-tv/linuxtv-dvb-apps
+  provides:
+  - category: "media-tv"
+    name: "linuxtv-dvb-apps"
+    version: ">=0"
+  - category: "media-tv"
+    name: "dtv-scan-tables"
+    version: ">=0"
+  - category: "media-tv"
+    name: "v4l-utils"
+    version: ">=0"
+  - category: "dev-libs"
+    name: libbpf"
+    version: ">=0"
+  atoms:
+  - atom: "media-tv/linuxtv-dvb-apps"
+    use: "usb # alevt"
+  - atom: "media-tv/v4l-utils"
+    use: "bpf dvb opengl qt5 udev"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-lshw
   category: "apps"
@@ -12376,47 +12395,6 @@ packages:
   requires:
   - <<: *layers-qt
   # - <<: *libs-libupnpp
-  build_requires:
-  - <<: *layers-qt
-
-- &apps-linuxtv-utils
-  category: "apps"
-  name: "linuxtv-utils"
-  version: "0.3"
-  uri:
-  - https://www.linuxtv.org/
-  - https://git.linuxtv.org/v4l-utils.git
-  license: "GPL-2 GPL-2+ LGPL-2.1+"
-  description: |
-    Small utils for DVB to scan, zap, view signal strength
-    Separate utilities ebuild from upstream v4l-utils package
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-tv/v4l-utils
-      media-tv/dtv-scan-tables
-      media-tv/linuxtv-dvb-apps
-  provides:
-  - category: "media-tv"
-    name: "linuxtv-dvb-apps"
-    version: ">=0"
-  - category: "media-tv"
-    name: "dtv-scan-tables"
-    version: ">=0"
-  - category: "media-tv"
-    name: "v4l-utils"
-    version: ">=0"
-  - category: "dev-libs"
-    name: libbpf"
-    version: ">=0"
-  atoms:
-  - atom: "media-tv/linuxtv-dvb-apps"
-    use: "usb # alevt"
-  - atom: "media-tv/v4l-utils"
-    use: "bpf dvb opengl qt5 udev"
-  requires:
-  - <<: *layers-qt
-  # - <<: *libs-libbpf
   build_requires:
   - <<: *layers-qt
 
