@@ -12210,33 +12210,34 @@ packages:
   - <<: *layerbase-perl-libs
   requires_final_images: true
 
-- category: "apps"
-  name: "sigil"
-  version: "2.1.0-r1"
-  uri:
-  - https://sigil-ebook.com/
-  license: "GPL-3+ Apache-2.0"
-  description: "Multi-platform WYSIWYG ebook editor for ePub format"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/sigil
-  provides:
-  - category: "app-text"
-    name: "sigil"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "dulwich"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/sigil"
-    use: "plugins qt6"
-  requires:
-  - <<: *layers-qt6
-  - <<: *libs-css-parser
-  - <<: *libs-cssselect
-  build_requires:
-  - <<: *layers-qt6
+# Needs python[tk]
+# - category: "apps"
+#   name: "sigil"
+#   version: "2.1.0-r1"
+#   uri:
+#   - https://sigil-ebook.com/
+#   license: "GPL-3+ Apache-2.0"
+#   description: "Multi-platform WYSIWYG ebook editor for ePub format"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/sigil
+#   provides:
+#   - category: "app-text"
+#     name: "sigil"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "dulwich"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-text/sigil"
+#     use: "plugins qt6"
+#   requires:
+#   - <<: *layers-qt6
+#   - <<: *libs-css-parser
+#   - <<: *libs-cssselect
+#   build_requires:
+#   - <<: *layers-qt6
 
 - &apps-smplayer
   category: "apps"
