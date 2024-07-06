@@ -1345,6 +1345,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-feedparser
+  category: "libs"
+  name: "feedparser"
+  version: "6.0.11"
+  uri:
+  - https://github.com/kurtmckee/feedparser/
+  - https://pypi.org/project/sgmllib3k/
+  license: "BSD-2 PSF-2"
+  description: |
+    Parse RSS and Atom feeds in Python
+    Py3k port of sgmllib
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/feedparser
+  provides:
+  - category: "dev-python"
+    name: "feedparser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sgmllib3k"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-File-ReadBackwards
   category: "libs"
   name: "File-ReadBackwards"
@@ -13353,7 +13380,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.12.0"
+  version: "7.12.0+1"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -13374,9 +13401,6 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "dnspython"
-    version: ">=0"
-  - category: "dev-python"
-    name: "feedparser"
     version: ">=0"
   - category: "dev-python"
     name: "fonttools"
@@ -13420,6 +13444,7 @@ packages:
   - <<: *apps-usbmuxd
   - <<: *apps-podofo
   - <<: *libs-css-parser
+  - <<: *libs-feedparser
   - <<: *libs-msgpack
   - <<: *libs-netifaces
   build_requires:
@@ -14344,7 +14369,7 @@ packages:
 
 - category: "apps"
   name: "quodlibet"
-  version: "4.6.0-r1"
+  version: "4.6.0-r1+1"
   uri:
   - https://quodlibet.readthedocs.io/
   license: "GPL-2"
@@ -14360,12 +14385,6 @@ packages:
   - category: "app-misc"
     name: "media-player-info"
     version: ">=0"
-  - category: "dev-python"
-    name: "feedparser"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sgmllib3k"
-    version: ">=0"
   - category: "media-libs"
     name: "mutagen"
     version: ">=0"
@@ -14376,6 +14395,7 @@ packages:
   - dev-util/intltool
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-feedparser
   - <<: *libs-xine-lib
   build_requires:
   - <<: *layers-gnome-common
