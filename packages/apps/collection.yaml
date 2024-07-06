@@ -12210,6 +12210,34 @@ packages:
   - <<: *layerbase-perl-libs
   requires_final_images: true
 
+- category: "apps"
+  name: "sigil"
+  version: "2.1.0-r1"
+  uri:
+  - https://sigil-ebook.com/
+  license: "GPL-3+ Apache-2.0"
+  description: "Multi-platform WYSIWYG ebook editor for ePub format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/sigil
+  provides:
+  - category: "app-text"
+    name: "sigil"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "dulwich"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/sigil"
+    use: "plugins qt6"
+  requires:
+  - <<: *layers-qt6
+  - <<: *libs-css-parser
+  - <<: *libs-cssselect
+  build_requires:
+  - <<: *layers-qt6
+
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
@@ -13321,6 +13349,80 @@ packages:
   - <<: *apps-brother-scan4-bin
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "calibre"
+  version: "7.12.0"
+  uri:
+  - https://calibre-ebook.com/
+  license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
+  description: "Ebook management application"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/calibre
+  provides:
+  - category: "app-text"
+    name: "calibre"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "mathjax"
+    version: ">=0"
+  - category: "dev-python"
+    name: "apsw"
+    version: ">=0"
+  - category: "dev-python"
+    name: "dnspython"
+    version: ">=0"
+  - category: "dev-python"
+    name: "feedparser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fonttools"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html2text"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html5-parser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jeepney"
+    version: ">=0"
+  - category: "dev-python"
+    name: "lxml-html-clean"
+    version: ">=0"
+  - category: "dev-python"
+    name: "markdown"
+    version: ">=0"
+  - category: "dev-python"
+    name: "mechanize"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pychm"
+    version: ">=0"
+  - category: "dev-python"
+    name: "unrardll"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "optipng"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/calibre"
+    use: "font-subsetting ios speech system-mathjax test udisks unrar verify-sig"
+  inner_build_reqs:
+  - dev-lang/rapydscript-ng
+  - dev-python/PyQt-builder
+  - sec-keys/openpgp-keys-kovidgoyal
+  requires:
+  - <<: *layers-qt6
+  - <<: *apps-usbmuxd
+  - <<: *apps-podofo
+  - <<: *libs-css-parser
+  - <<: *libs-msgpack
+  - <<: *libs-netifaces
+  build_requires:
+  - <<: *layers-qt6
 
 - &apps-cantor
   category: "apps"
