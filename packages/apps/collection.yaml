@@ -11862,6 +11862,41 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "pulseaudio-dlna"
+  version: "0.6.5_p1-r1"
+  uri:
+  - https://github.com/Cygn/pulseaudio-dlna
+  license: "GPL-3"
+  description: "A lightweight DLNA/UPNP/Chromecast streaming server for PulseAudio"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/pulseaudio-dlna
+  provides:
+  - category: "net-misc"
+    name: "pulseaudio-dlna"
+    version: ">=0"
+  - category: "dev-python"
+    name: "docopt"
+    version: ">=0"
+  - category: "dev-python"
+    name: "notify2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyroute2"
+    version: ">=0"
+  # media-sound/pulseaudio-daemon?
+  atoms:
+  - atom: "net-misc/pulseaudio-dlna"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-netifaces
+  - <<: *libs-pychromecast
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "qcad"
   version: "3.27.8.4+1"
   uri:
