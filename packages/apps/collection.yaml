@@ -1261,6 +1261,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-css-parser
+  category: "libs"
+  name: "css-parser"
+  version: "1.0.10"
+  uri:
+  - https://github.com/ebook-utils/css-parser/
+  license: "LGPL-2.1+"
+  description: "A CSS Cascading Style Sheets library (fork of cssutils)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/css-parser
+  provides:
+  - category: "dev-python"
+    name: "css-parser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-cssselect
   category: "libs"
   name: "cssselect"
@@ -3191,7 +3212,7 @@ packages:
   version: "0.11.0-r2"
   uri:
   - https://pypi.org/project/netifaces/
-  license: "LGPL-2.1 GPL-2"
+  license: "MIT"
   description: "Portable network interface information"
   labels:
     emerge.jobs: "1"
