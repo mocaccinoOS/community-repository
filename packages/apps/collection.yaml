@@ -12047,7 +12047,7 @@ packages:
 # (dependency required by "www-client/qutebrowser" [argument])
 - category: "apps"
   name: "qutebrowser"
-  version: "3.1.0-r1"
+  version: "3.2.1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -12071,15 +12071,15 @@ packages:
     version: ">=0"
   atoms:
   - atom: "www-client/qutebrowser"
-    use: "adblock pdf -qt6 # widevine"
+    use: "adblock pdf widevine"
   optrequires:
   - <<: *libs-chrome-binary-plugins
   requires:
-  - <<: *layers-qt
+  - <<: *layers-qt6
   - <<: *libs-colorama
-  # - <<: *libs-chrome-binary-plugins
+  - <<: *libs-chrome-binary-plugins
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-qt6
 
 - &apps-R
   category: "apps"
