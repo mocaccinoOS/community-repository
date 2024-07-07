@@ -1011,7 +1011,7 @@ packages:
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
-  version: "4.12.3"
+  version: "4.12.3+1"
   uri:
   - https://www.crummy.com/software/BeautifulSoup/bs4/
   - https://github.com/facelessuser/soupsieve/
@@ -1030,16 +1030,10 @@ packages:
   - category: "dev-python"
     name: "soupsieve"
     version: ">=0"
-  - category: "dev-python"
-    name: "cchardet"
-    version: ">=0"
-  - category: "dev-python"
-    name: "hatchling"
-    version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-botan
   category: "libs"
