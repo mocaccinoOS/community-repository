@@ -12061,7 +12061,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.2.1"
+  version: "3.2.1+1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -12090,6 +12090,7 @@ packages:
   - <<: *libs-chrome-binary-plugins
   requires:
   - <<: *layers-qt6
+  - <<: *libs-beautifulsoup4
   - <<: *libs-colorama
   - <<: *libs-chrome-binary-plugins
   build_requires:
@@ -13142,7 +13143,7 @@ packages:
 - &libs-opencv
   category: "libs"
   name: "opencv"
-  version: "4.8.1-r2+2"
+  version: "4.8.1-r2+3"
   uri:
   - https://opencv.org
   license: "Apache-2.0"
@@ -13161,6 +13162,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-sci-libs
+  - <<: *libs-beautifulsoup4
   # - <<: *libs-gdal
   - <<: *libs-flatbuffers
   - <<: *libs-tbb
@@ -13394,7 +13396,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.12.0+3"
+  version: "7.12.0+4"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -13458,6 +13460,7 @@ packages:
   - <<: *apps-usbmuxd
   - <<: *apps-podofo
   - <<: *libs-appdirs
+  - <<: *libs-beautifulsoup4
   - <<: *libs-css-parser
   - <<: *libs-feedparser
   - <<: *libs-python-msgpack
@@ -13974,7 +13977,7 @@ packages:
 
 - category: "apps"
   name: "lollypop"
-  version: "1.4.39"
+  version: "1.4.39+1"
   uri:
   - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -13989,6 +13992,7 @@ packages:
     version: ">=0"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-beautifulsoup4
   build_requires:
   - <<: *layers-gnome-common
 
