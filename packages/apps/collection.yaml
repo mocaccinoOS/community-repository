@@ -299,12 +299,6 @@ stubs:
 ### fonts refs ###
 ################################################################################
 
-- &fonts-fluid-soundfont
-  category: "fonts"
-  name: "fluid-soundfont"
-  version: ">=0"
-
-
 ################################################################################################################################################################
 ### libs refs ###
 ################################################################################################################################################################
@@ -823,6 +817,32 @@ packages:
     use: "X"
   inner_build_requires:
   - <<: *apps-xdelta-3
+
+################################################################################################################################################################
+### sound fonts ###
+################################################################################################################################################################
+
+- &fonts-fluid-soundfont
+  category: "fonts"
+  name: "fluid-soundfont"
+  version: "3.1+24"
+  uri:
+  - http://musescore.org/en/handbook/soundfont
+  license: "MIT"
+  description: "The Fluid R3 soundfont"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fluid-soundfont
+    description: "The Fluid R3 soundfont"
+  provides:
+  - category: "media-sound"
+    name: "fluid-soundfont"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 0 libs ###
@@ -11365,7 +11385,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.16-r1+25"
+  version: "0.5.16-r1+26"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
