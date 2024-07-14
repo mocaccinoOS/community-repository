@@ -6466,6 +6466,29 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "hplip"
+  version: "3.23.12-r3"
+  uri:
+  - https://developers.hp.com/hp-linux-imaging-and-printing
+  license: "GPL-2"
+  description: "HP Linux Imaging and Printing - Print, scan, fax drivers and service tools"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-print/hplip
+  provides:
+  - category: "net-print"
+    name: "hplip"
+    version: ">=0"
+  atoms:
+  - atom: "net-print/hplip"
+    use: "hpijs -snmp"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "httrack"
   version: "3.49.5+1"
   uri:
