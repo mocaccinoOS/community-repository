@@ -6466,29 +6466,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "hplip"
-  version: "3.23.12-r3+1"
-  uri:
-  - https://developers.hp.com/hp-linux-imaging-and-printing
-  license: "GPL-2"
-  description: "HP Linux Imaging and Printing - Print, scan, fax drivers and service tools"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-print/hplip
-  provides:
-  - category: "net-print"
-    name: "hplip"
-    version: ">=0"
-  atoms:
-  - atom: "net-print/hplip"
-    use: "hpijs -snmp"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "httrack"
   version: "3.49.5+1"
   uri:
@@ -13810,6 +13787,36 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-lv2
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "hplip"
+  version: "3.23.12-r3+3"
+  uri:
+  - https://developers.hp.com/hp-linux-imaging-and-printing
+  - https://developers.hp.com/hp-linux-imaging-and-printing/plugins
+  license: "GPL-2 hplip-plugin"
+  description: |
+    HP Linux Imaging and Printing - Print, scan, fax drivers and service tools
+    Proprietary plugins and firmware for HPLIP
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-print/hplip
+      net-print/hplip-plugin
+  provides:
+  - category: "net-print"
+    name: "hplip"
+    version: ">=0"
+  atoms:
+  - atom: "net-print/hplip"
+    use: "fax hpcups hpijs snmp # kde libnotify libusb0 minimal parport policykit qt5 static-ppds X # scanner: needs kde-misc/skanlite from layers/kde-apps-minimal"
+  - atom: "net-print/hplip-plugin"
+    use: "orblite"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-net-snmp
   build_requires:
   - <<: *layers-X
 
