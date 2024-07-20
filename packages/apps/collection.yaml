@@ -100,7 +100,7 @@ stubs:
   dev-java/openjdk-bin
   virtual/jre
   virtual/jdk
-  
+
 - &layers-latex
   category: "layers"
   name: "latex"
@@ -191,7 +191,7 @@ stubs:
 #   category: "buildbase"
 #   name: "perl-libs"
 #   version: ">=0"
-  
+
 - &layers-term-libs
   category: "layers"
   name: "term-libs"
@@ -204,7 +204,7 @@ stubs:
   category: "buildbase"
   name: "term-libs"
   version: ">=0"
-  
+
 - &apps-cdemu
   category: "apps"
   name: "cdemu"
@@ -234,7 +234,7 @@ stubs:
 #       virtual/dist-kernel
 #       virtual/linux-sources
 #   env: "USE=\"dracut\""
-# 
+#
 # - &kernel-mocaccino-lts-full
 #   category: "kernel"
 #   name: "mocaccino-lts-full"
@@ -244,7 +244,7 @@ stubs:
 #   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
 #   - cd /usr/src/linux
 #   - make olddefconfig
-#   
+#
 # - &kernel-modules-nvidia-drivers-lts
 #   category: "kernel-modules"
 #   name: "nvidia-drivers-lts"
@@ -294,7 +294,7 @@ stubs:
   name: "vhba-lts"
   version: ">=0"
 
-  
+
 ################################################################################
 ### fonts refs ###
 ################################################################################
@@ -3837,7 +3837,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-libs/qxlsx"
-    use: "qt5" 
+    use: "qt5"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -9968,7 +9968,7 @@ packages:
   # - <<: *apps-numactl
   build_requires:
   - <<: *layers-sys-fs
-  
+
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
@@ -10216,7 +10216,7 @@ packages:
     name: "ant-core"
     version: ">=0"
   inner_build_requires:
-  - <<: *apps-javatoolkit  
+  - <<: *apps-javatoolkit
   requires:
   - <<: *layers-java
   build_requires:
@@ -10420,12 +10420,12 @@ packages:
   - <<: *libs-libmirage
   build_requires:
   - <<: *kernel-modules-vhba-lts
-  
+
 # - <<: *def-cdemu
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
-  
+
 - <<: *def-cdemu
   category: "layerbase"
   hidden: true
@@ -10745,7 +10745,7 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  prepare: 
+  prepare:
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild manifest
   inner_build_reqs:
@@ -10773,7 +10773,7 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  prepare: 
+  prepare:
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild manifest
   inner_build_reqs:
@@ -10802,7 +10802,7 @@ packages:
   - category: "dev-dotnet"
     name: "dotnet-sdk-bin"
     version: ">=0"
-  prepare: 
+  prepare:
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild
   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild manifest
   inner_build_reqs:
@@ -10890,7 +10890,7 @@ packages:
 - &apps-extreme-tuxracer
   category: "apps"
   name: "extreme-tuxracer"
-  version: "0.8.2+2"
+  version: "0.8.4"
   uri:
   - https://sourceforge.net/p/extremetuxracer/wiki/Home/
   license: "GPL-2+"
@@ -11541,7 +11541,7 @@ packages:
   - <<: *libs-lrzsz
   build_requires:
   - <<: *layers-system-x
-  
+
 - &apps-mirage2iso
   category: "apps"
   name: "mirage2iso"
@@ -12332,7 +12332,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-perl-libs
-  - <<: *libs-goocanvas-2  
+  - <<: *libs-goocanvas-2
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-perl-libs
@@ -14090,8 +14090,8 @@ packages:
     name: "coinor-mp"
     version: ">=0"
   atoms:
-  # needs firebird: firebird 
-  # needs java: scripting-beanshell scripting-javascript 
+  # needs firebird: firebird
+  # needs java: scripting-beanshell scripting-javascript
   # needs layers-plasma: kde-plasma/kde-cli-tools
   # no release in a long time: wiki-publisher
   # not packageable: odk
@@ -14947,7 +14947,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-eselect-emacs
-  # - <<: *apps-postgresql  
+  # - <<: *apps-postgresql
   - <<: *libs-compface
   - <<: *libs-nas
   - <<: *libs-gpm
@@ -16589,7 +16589,7 @@ packages:
 ################################################################################################################################################################
 ### dep 5 apps ###
 ################################################################################################################################################################
-  
+
 - category: "apps"
   name: "audacity"
   version: "3.4.2-r1+1"
@@ -17074,7 +17074,7 @@ packages:
     accept_keywords: "~amd64"
     use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
   - atom: "media-libs/cimg"
-    accept_keywords: "~amd64"    
+    accept_keywords: "~amd64"
   optrequires:
   - <<: *apps-gimp
   requires:
