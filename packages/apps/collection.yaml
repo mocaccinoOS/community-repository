@@ -683,7 +683,7 @@ packages:
 
 - <<: *fonts
   name: "noto-extra"
-  version: "20240430"
+  version: "20240531"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -989,7 +989,7 @@ packages:
 - &libs-aubio
   category: "libs"
   name: "aubio"
-  version: "0.4.9-r2+4"
+  version: "0.4.9-r4"
   uri:
   - https://aubio.org/
   license: "GPL-3"
@@ -4158,11 +4158,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# soon used by emacs too
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "0.22.5"
+  version: "0.22.6"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -4523,7 +4522,7 @@ packages:
 
 - category: "apps"
   name: "alacritty"
-  version: "0.12.3+1"
+  version: "0.13.2"
   uri:
   - https://alacritty.org
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 FTL ISC MIT MPL-2.0"
@@ -4898,7 +4897,7 @@ packages:
 
 - category: "apps"
   name: "brasero"
-  version: "3.12.3+2"
+  version: "3.12.3-r1"
   uri:
   - https://wiki.gnome.org/Apps/Brasero
   license: "GPL-2+ CC-BY-SA-3.0"
@@ -4973,7 +4972,7 @@ packages:
 
 - category: "apps"
   name: "cartridges"
-  version: "2.7.4"
+  version: "2.7.4-r1"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -5689,7 +5688,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "125-126"
+  version: "126"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5697,7 +5696,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:125
       media-video/ffmpeg-chromium:126
   provides:
   - category: "media-video"
@@ -6110,7 +6108,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.0.2"
+  version: "10.1.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -7228,7 +7226,7 @@ packages:
 - &apps-ly
   category: "apps"
   name: "ly"
-  version: "0.6.0-r1+1"
+  version: "1.0.0"
   uri:
   - https://github.com/nullgemm/ly
   license: "WTFPL-2"
@@ -7622,7 +7620,7 @@ packages:
 - &apps-nodejs
   category: "apps"
   name: "nodejs"
-  version: "20.12.1"
+  version: "22.3.0"
   uri:
   - https://nodejs.org/
   license: "Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
@@ -8020,7 +8018,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.7"
+  version: "9.10"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -8092,7 +8090,7 @@ packages:
 - &apps-pycodestyle
   category: "apps"
   name: "pycodestyle"
-  version: "2.11.1+1"
+  version: "2.12.0"
   uri:
   - https://pycodestyle.pycqa.org/en/latest/
   - https://github.com/PyCQA/pycodestyle/
@@ -10866,7 +10864,7 @@ packages:
   - atom: "app-emacs/emacs-common"
     use: "gui # games"
   - atom: "app-editors/emacs"
-    use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
+    use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd tree-sitter X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
   excludes:
   - ^/usr/bin/ctags$
   - ^/usr/bin/etags$
@@ -10884,6 +10882,7 @@ packages:
   - <<: *libs-gpm
   - <<: *libs-liblockfile
   - <<: *libs-m17n-lib
+  - <<: *libs-tree-sitter
   build_requires:
   - <<: *layers-gnome-common
 
@@ -11385,7 +11384,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.16-r1+26"
+  version: "0.5.17"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -11837,7 +11836,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "111.0.5168.43"
+  version: "111.0.5168.55"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -12317,7 +12316,7 @@ packages:
 - &apps-shutter
   category: "apps"
   name: "shutter"
-  version: "0.99.4-r1+3"
+  version: "0.99.5"
   uri:
   - https://shutter-project.org/
   license: "GPL-3+"
@@ -13567,7 +13566,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.05.1"
+  version: "24.05.2"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -13905,7 +13904,7 @@ packages:
 
 - category: "apps"
   name: "kaffeine-tde"
-  version: "14.1.1+1"
+  version: "14.1.2"
   uri:
   - https://trinitydesktop.org
   license: "GPL-2"
@@ -14577,7 +14576,7 @@ packages:
 
 - category: "apps"
   name: "rosegarden"
-  version: "23.12+1"
+  version: "24.06"
   uri:
   - https://github.com/benjamimgois/rosegarden
   license: "GPL-2"
@@ -15983,7 +15982,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "24.1"
+  version: "24.2"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -16286,7 +16285,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "9.0.0+1"
+  version: "11.0.0"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
@@ -16764,7 +16763,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.4.0_rc4+4"
+  version: "2.4.0"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
