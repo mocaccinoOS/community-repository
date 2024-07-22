@@ -222,6 +222,11 @@ stubs:
 #   name: "cdemu"
 #   version: ">=0"
 
+- &apps-chromium
+  category: "apps"
+  name: "chromium"
+  version: ">=0"
+
 ################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
@@ -7626,35 +7631,35 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-nodejs
-  category: "apps"
-  name: "nodejs"
-  version: "22.3.0"
-  uri:
-  - https://nodejs.org/
-  license: "Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
-  description: "A JavaScript runtime built on Chrome's V8 JavaScript engine"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/nodejs
-  provides:
-  - category: "dev-libs"
-    name: "simdjson"
-    version: ">=0"
-  - category: "net-libs"
-    name: "ngtcp2"
-    version: ">=0"
-  - category: "net-libs"
-    name: "nodejs"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/nodejs"
-    use: "corepack icu inspector lto npm snapshot ssl system-icu system-ssl systemtap # pax-kernel"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &apps-nodejs
+#   category: "apps"
+#   name: "nodejs"
+#   version: "22.3.0"
+#   uri:
+#   - https://nodejs.org/
+#   license: "Apache-1.1 Apache-2.0 BSD BSD-2 MIT"
+#   description: "A JavaScript runtime built on Chrome's V8 JavaScript engine"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/nodejs
+#   provides:
+#   - category: "dev-libs"
+#     name: "simdjson"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "ngtcp2"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "nodejs"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-libs/nodejs"
+#     use: "corepack icu inspector lto npm snapshot ssl system-icu system-ssl systemtap # pax-kernel"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "nordvpn"
@@ -12741,7 +12746,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.5.2+1"
+  version: "1.5.2+2"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -12759,13 +12764,14 @@ packages:
   atoms:
   - atom: "net-im/vesktop"
     accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *apps-nodejs
+  # inner_build_requires:
+  # - <<: *apps-nodejs
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
-
+  # - <<: *layers-X
+  - <<: *apps-chromium
+  
 - &apps-visual-regexp
   category: "apps"
   name: "visual-regexp"
