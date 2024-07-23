@@ -11820,6 +11820,33 @@ packages:
   build_requires:
   - <<: *layers-qt6
 
+- category: "apps"
+  name: "oh-my-posh"
+  version: "8.36.4"
+  uri:
+  - https://ohmyposh.dev
+  license: "GPL-3"
+  description: "A prompt theme engine for any shell."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/oh-my-posh 
+  overlays:
+  - enable: "stintel"
+  provides:
+  - category: "app-shells"
+    name: "oh-my-posh"
+    version: ">=0"
+  atoms:
+  - atom: "app-shells/oh-my-posh"
+    accept_keywords: "~amd64"
+    use: "themes"
+  requires:
+  - <<: *layers-X
+  - <<: *fonts-fontawesome
+  build_requires:
+  - <<: *layers-X
+
 - &apps-openjade
   category: "apps"
   name: "openjade"
