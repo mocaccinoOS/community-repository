@@ -3674,6 +3674,39 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-pychromecast
+  category: "libs"
+  name: "pychromecast"
+  version: "14.0.1"
+  uri:
+  - https://github.com/home-assistant-libs/pychromecast
+  - https://github.com/ur1katz/casttube
+  license: "MIT"
+  description: |
+    Python module to talk to Google Chromecast
+    casttube provides a way to interact with the Youtube Chromecast api
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/casttube
+      dev-python/pychromecast
+  provides:
+  - category: "dev-python"
+    name: "pychromecast"
+    version: ">=0"
+  - category: "dev-python"
+    name: "casttube"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/casttube"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pychromecast"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
@@ -8157,39 +8190,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pychromecast
-  category: "libs"
-  name: "pychromecast"
-  version: "14.0.1"
-  uri:
-  - https://github.com/home-assistant-libs/pychromecast
-  - https://github.com/ur1katz/casttube
-  license: "MIT"
-  description: |
-    Python module to talk to Google Chromecast
-    casttube provides a way to interact with the Youtube Chromecast api
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/casttube
-      dev-python/pychromecast
-  provides:
-  - category: "dev-python"
-    name: "pychromecast"
-    version: ">=0"
-  - category: "dev-python"
-    name: "casttube"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/casttube"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/pychromecast"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "qbittorrent"
   version: "4.6.5"
@@ -11830,7 +11830,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-shells/oh-my-posh 
+      app-shells/oh-my-posh
   overlays:
   - enable: "stintel"
   provides:
@@ -11841,6 +11841,8 @@ packages:
   - atom: "app-shells/oh-my-posh"
     accept_keywords: "~amd64"
     use: "themes"
+  # inner_build_reqs:
+  # - dev-go/go-bindata
   requires:
   - <<: *layers-X
   - <<: *fonts-fontawesome
