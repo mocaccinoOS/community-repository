@@ -7445,6 +7445,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-mosh
+  category: "apps"
+  name: "mosh"
+  version: "1.4.0"
+  uri:
+  - https://mosh.org
+  license: "GPL-3"
+  description: "Mobile shell that supports roaming and intelligent local echo"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/mosh 
+  provides:
+  - category: "net-misc"
+    name: "mosh"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "IO-Tty"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/mosh"
+    use: "client ufw utempter syslog # examples mosh-hardening nettle server hardened"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
