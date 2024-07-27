@@ -7374,6 +7374,32 @@ packages:
   - <<: *layers-plasma
 
 - category: "apps"
+  name: "master-pdf-editor"
+  version: "5.9.84"
+  uri:
+  - https://code-industry.net/free-pdf-editor/
+  license: "master-pdf-editor"
+  description: "A complete solution for viewing and editing PDF files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/master-pdf-editor
+  provides:
+  - category: "app-text"
+    name: "master-pdf-editor"
+    version: ">=0"
+  - category: "dev-libs"
+    version: "pkcs11-helper"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/master-pdf-editor"
+    license: "master-pdf-editor"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "meld"
   version: "3.22.0-r2+2"
   uri:
