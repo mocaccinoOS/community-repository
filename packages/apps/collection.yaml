@@ -7900,6 +7900,28 @@ packages:
 #   build_requires:
 #   - <<: *layers-haskell
 
+- category: "apps"
+  name: "pdftk"
+  version: "3.3.3_p20231025"
+  uri:
+  - https://gitlab.com/pdftk-java/pdftk
+  license: "GPL-2"
+  description: "A port of pdftk into java"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/pdftk
+  provides:
+  - category: "app-text"
+    name: "pdftk"
+    version: ">=0"
+  inner_build_requires:
+  - <<: *apps-javatoolkit
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &apps-peek
   category: "apps"
   name: "peek"
