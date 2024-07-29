@@ -5597,6 +5597,52 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "Email-Outlook-Message"
+  version: "0.921"
+  uri:
+  - https://metacpan.org/release/Email-Outlook-Message
+  license: "Artistic GPL-1+"
+  description: "Read Outlook .msg files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/Email-Outlook-Message
+  overlays:
+  - enable: "xoores"
+  provides:
+  - category: "dev-perl"
+    name: "Email-Outlook-Message"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Email-LocalDelivery"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Email-MIME"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Email-Sender"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "IO-All"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "IO-String"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Getopt-Long"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Pod-Parser"
+    version: ">=0"
+  atoms:
+  - atom: "dev-perl/Email-Outlook-Message"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "erlang"
   version: "26.2.1+1"
   uri:
