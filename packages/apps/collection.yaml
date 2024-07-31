@@ -5740,6 +5740,26 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "epson-inkjet-printer-escpr"
+  version: "1.8.5"
+  uri:
+  - https://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
+  license: "GPL-2"
+  description: "Epson Inkjet Printer Driver (ESC/P-R)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-print/epson-inkjet-printer-escpr
+  provides:
+  - category: "net-print"
+    name: "epson-inkjet-printer-escpr"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-epstool
   category: "apps"
   name: "epstool"
