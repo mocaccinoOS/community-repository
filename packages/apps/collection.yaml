@@ -7287,7 +7287,7 @@ packages:
 - &apps-linuxtv-utils
   category: "apps"
   name: "linuxtv-utils"
-  version: "0.3"
+  version: "0.4"
   uri:
   - https://www.linuxtv.org/
   - https://git.linuxtv.org/v4l-utils.git
@@ -7298,7 +7298,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-tv/v4l-utils
       media-tv/dtv-scan-tables
       media-tv/linuxtv-dvb-apps
   provides:
@@ -7308,17 +7307,9 @@ packages:
   - category: "media-tv"
     name: "dtv-scan-tables"
     version: ">=0"
-  - category: "media-tv"
-    name: "v4l-utils"
-    version: ">=0"
-  - category: "dev-libs"
-    name: libbpf"
-    version: ">=0"
   atoms:
   - atom: "media-tv/linuxtv-dvb-apps"
     use: "usb # alevt"
-  - atom: "media-tv/v4l-utils"
-    use: "bpf dvb opengl qt5 udev"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -16993,7 +16984,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.9.8+2"
+  version: "1.9.8+3"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -17497,7 +17488,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.1.1-r2"
+  version: "4.1.1-r2+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -17636,7 +17627,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.05.1"
+  version: "24.05.1+1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
