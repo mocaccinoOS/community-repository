@@ -13959,6 +13959,26 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- category: "apps"
+  name: "flameshot"
+  version: "12.1.0-r2"
+  uri:
+  - https://flameshot.org
+  license: "Apache-2.0 Free-Art-1.3 GPL-3+"
+  description: "Powerful yet simple to use screenshot software"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/flameshot
+  provides:
+  - category: "media-gfx"
+    name: "flameshot"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
