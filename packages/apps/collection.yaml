@@ -14803,7 +14803,7 @@ packages:
 
 - category: "apps"
   name: "qmmp"
-  version: "1.6.4"
+  version: "1.6.4+1"
   uri:
   - https://qmmp.ylsoftware.com
   license: "GPL-3"
@@ -14811,8 +14811,11 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/qmmp
+      media-sound/qmmp media-plugins/qmmp-plugin-pack
   provides:
+  - category: "media-plugins"
+    name: "qmmp-plugin-pack"
+    version: ">=0"
   - category: "media-sound"
     name: "qmmp"
     version: ">=0"
