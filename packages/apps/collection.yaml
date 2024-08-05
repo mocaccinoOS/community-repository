@@ -14801,6 +14801,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "qmmp"
+  version: "1.6.4"
+  uri:
+  - https://qmmp.ylsoftware.com
+  license: "GPL-3"
+  description: "Qt5-based audio player with winamp/xmms skins support"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qmmp
+  provides:
+  - category: "media-sound"
+    name: "qmmp"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/qmmp"
+    use: "aac alsa cover crossfade dbus ffmpeg flac mad pipewire pulseaudio sndfile tray udisks vorbis #-analyzer -archive -bs2b -cdda -cue -curl -enca -game -gnome -jack -ladspa -lyrics -midi -mms -mplayer -musepack -notifier -opus -oss -projectm -qsui -qtmedia -scrobbler -shout -sid -soxr -stereo -wavpack -xmp"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-qsampler
   category: "apps"
   name: "qsampler"
