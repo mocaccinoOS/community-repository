@@ -5988,6 +5988,46 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "flam3"
+  version: "3.1.1"
+  uri:
+  - https://flam3.com/
+  license: "GPL-3"
+  description: "Tools and a library for creating flame fractal images"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/flam3
+  provides:
+  - category: "media-gfx"
+    name: "flam3"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "flameshot"
+  version: "12.1.0-r2+1"
+  uri:
+  - https://flameshot.org
+  license: "Apache-2.0 Free-Art-1.3 GPL-3+"
+  description: "Powerful yet simple to use screenshot software"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/flameshot
+  provides:
+  - category: "media-gfx"
+    name: "flameshot"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "foliate"
   version: "3.1.0"
   uri:
@@ -12330,6 +12370,33 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "qmmp"
+  version: "1.6.4+2"
+  uri:
+  - https://qmmp.ylsoftware.com
+  license: "GPL-3"
+  description: "Qt5-based audio player with winamp/xmms skins support"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/qmmp media-plugins/qmmp-plugin-pack
+  provides:
+  - category: "media-plugins"
+    name: "qmmp-plugin-pack"
+    version: ">=0"
+  - category: "media-sound"
+    name: "qmmp"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/qmmp"
+    use: "aac alsa analyzer cdda cover crossfade cue dbus enca ffmpeg flac mad musepack notifier opus pipewire projectm pulseaudio sndfile tray udisks vorbis wavpack # -archive -bs2b -curl -game -gnome -jack -ladspa -lyrics -midi -mms -mplayer -oss -qsui -qtmedia -scrobbler -shout -sid -soxr -stereo -xmp"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libprojectm
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "qtox"
   version: "1.17.6-r2+1"
   uri:
@@ -13959,26 +14026,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- category: "apps"
-  name: "flameshot"
-  version: "12.1.0-r2+1"
-  uri:
-  - https://flameshot.org
-  license: "Apache-2.0 Free-Art-1.3 GPL-3+"
-  description: "Powerful yet simple to use screenshot software"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/flameshot
-  provides:
-  - category: "media-gfx"
-    name: "flameshot"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
@@ -14818,32 +14865,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-icoutils
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
-  name: "qmmp"
-  version: "1.6.4+1"
-  uri:
-  - https://qmmp.ylsoftware.com
-  license: "GPL-3"
-  description: "Qt5-based audio player with winamp/xmms skins support"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/qmmp media-plugins/qmmp-plugin-pack
-  provides:
-  - category: "media-plugins"
-    name: "qmmp-plugin-pack"
-    version: ">=0"
-  - category: "media-sound"
-    name: "qmmp"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/qmmp"
-    use: "aac alsa cover crossfade dbus ffmpeg flac mad pipewire pulseaudio sndfile tray udisks vorbis #-analyzer -archive -bs2b -cdda -cue -curl -enca -game -gnome -jack -ladspa -lyrics -midi -mms -mplayer -musepack -notifier -opus -oss -projectm -qsui -qtmedia -scrobbler -shout -sid -soxr -stereo -wavpack -xmp"
-  requires:
-  - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
 
