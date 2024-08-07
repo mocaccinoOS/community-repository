@@ -12397,6 +12397,11 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-libprojectm
+  - <<: *libs-cmt-plugins
+  # - <<: *libs-game-music-emu
+  # - <<: *libs-libbs2b
+  # - <<: *libs-libshout
+  # - <<: *libs-libsidplayfp
   build_requires:
   - <<: *layers-qt
 
@@ -14942,6 +14947,28 @@ packages:
   - <<: *libs-xine-lib
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-rclone
+  category: "apps"
+  name: "rclone"
+  version: "1.67.0"
+  uri:
+  - https://rclone.org/
+  license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
+  description: "A program to sync files to and from various cloud storage providers"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/rclone
+  provides:
+  - category: "net-misc"
+    name: "rclone"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "rosegarden"
