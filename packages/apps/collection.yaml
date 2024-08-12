@@ -8027,6 +8027,39 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-oversteer
+  category: "apps"
+  name: "oversteer"
+  version: "0.8.2"
+  uri:
+  - https://github.com/berarma/oversteer
+  license: "GPL-3"
+  description: "Steering Wheel Manager for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-util/oversteer
+  overlays:
+  - enable: "ace"
+  provides:
+  - category: "games-util"
+    name: "oversteer"
+    version: ">=0"
+  - category: "dev-python"
+    name: "matplotlib"
+    version: ">=0"
+   - category: "dev-python"
+    name: "scipy"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/badwolf"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-distutils-extra
+  build_requires:
+  - <<: *layers-X
+
 # - &apps-pandoc
 #   category: "apps"
 #   name: "pandoc"
