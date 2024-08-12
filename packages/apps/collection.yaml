@@ -9309,6 +9309,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "usb_modeswitch"
+  version: "2.6.1"
+  uri:
+  - https://www.draisberghof.de/usb_modeswitch/
+  license: "GPL-2"
+  description: "Tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/usb_modeswitch
+  provides:
+  - category: "sys-apps"
+    name: "usb_modeswitch"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-usbmuxd
   category: "apps"
   name: "usbmuxd"
