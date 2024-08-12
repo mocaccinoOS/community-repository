@@ -8056,10 +8056,13 @@ packages:
     accept_keywords: "~amd64"
     license: "GPL-3.0"
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
+  - <<: *layers-sci-libs
   - <<: *libs-python-distutils-extra
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-qt
+  - <<: *layerbase-sci-libs
+  requires_final_images: true
 
 # - &apps-pandoc
 #   category: "apps"
