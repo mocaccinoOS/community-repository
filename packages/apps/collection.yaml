@@ -14509,6 +14509,40 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-megasync
+  category: "apps"
+  name: "megasync"
+  version: "5.4.0.0"
+  uri:
+  - https://mega.io
+  - https://github.com/meganz/MEGAsync
+  license: "MEGA"
+  description: "The official Qt-based program for syncing your MEGA account in your PC"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/megasync
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-misc"
+    name: "megasync"
+    version: ">=0"
+    media-libs/freeimage
+  atoms:
+  - atom: "net-misc/megasync"
+    use: "mediainfo thumbnail # dolphin nautilus nemo thunar"
+    accept_keywords: "~amd64"
+    license: "MEGA"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libmediainfo
+  build_requires:
+  - <<: *layers-qt
+  # - <<: *buildbase-gnome
+  # - <<: *buildbase-kde-apps-minimal
+  # requires_final_images: true
+
 - category: "apps"
   name: "mixxx"
   version: "2.3.6+3"
