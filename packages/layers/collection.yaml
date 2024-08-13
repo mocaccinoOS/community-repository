@@ -1476,25 +1476,29 @@ packages:
   - &def-layers-sci-libs
     category: "layers"
     name: "sci-libs"
-    version: "0.8+25"
+    version: "0.9"
     uri:
-      - https://people.engr.tamu.edu/davis/suitesparse.html
-      - https://arma.sourceforge.net
-      - http://www.caam.rice.edu/software/ARPACK/
-      - https://trac.osgeo.org/geotiff/
-      - http://faculty.cse.tamu.edu/davis/suitesparse.html
-      - http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
-      - https://portal.nersc.gov/project/sparse/superlu/
-      # - https://www.unidata.ucar.edu/software/netcdf/
-      - http://ogdi.sourceforge.net/
-      - https://proj.org/
-      - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
-      - https://computing.llnl.gov/projects/sundials
-      - https://sourceforge.net/projects/lpsolve/
-      - https://github.com/libLAS/libLAS/
-      - https://laszip.org/
+    - https://matplotlib.org/
+    - https://scipy.org/
+    - https://people.engr.tamu.edu/davis/suitesparse.html
+    - https://arma.sourceforge.net
+    - http://www.caam.rice.edu/software/ARPACK/
+    - https://trac.osgeo.org/geotiff/
+    - http://faculty.cse.tamu.edu/davis/suitesparse.html
+    - http://glaros.dtc.umn.edu/gkhome/metis/metis/overview
+    - https://portal.nersc.gov/project/sparse/superlu/
+    - https://www.unidata.ucar.edu/software/netcdf/
+    - http://ogdi.sourceforge.net/
+    - https://proj.org/
+    - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
+    - https://computing.llnl.gov/projects/sundials
+    - https://sourceforge.net/projects/lpsolve/
+    - https://github.com/libLAS/libLAS/
+    - https://laszip.org/
     license: "metapackage"
     description: |
+      Pure python plotting library with matlab like syntax
+      Scientific algorithms library for Python
       Metapackage for a suite of sparse matrix tools
       Library to order a sparse matrix prior to Cholesky factorization
       Streamlined C++ linear algebra library
@@ -1523,8 +1527,9 @@ packages:
       Library for free and lossless compression of the LAS LiDAR format
     labels:
       emerge.jobs: "1"
-      # sci-libs/geos - can't compile with gcc-13
       emerge.packages: >-
+        dev-python/matplotlib
+        dev-python/scipy
         sci-libs/amd
         sci-libs/armadillo
         sci-libs/arpack
@@ -1534,6 +1539,7 @@ packages:
         sci-libs/cholmod
         sci-libs/colamd
         sci-libs/cxsparse
+        sci-libs/geos
         sci-libs/hypre
         sci-libs/klu
         sci-libs/ldl
@@ -1553,6 +1559,12 @@ packages:
         sci-geosciences/liblas
         sci-mathematics/lpsolve
     provides:
+      - category: "dev-python"
+        name: "matplotlib"
+        version: ">=0"
+      - category: "dev-python"
+        name: "scipy"
+        version: ">=0"
       - category: "sci-libs"
         name: "amd"
         version: ">=0"
@@ -1586,9 +1598,9 @@ packages:
       - category: "sci-libs"
         name: "hypre"
         version: ">=0"
-      # - category: "sci-libs"
-      #   name: "geos"
-      #   version: ">=0"
+      - category: "sci-libs"
+        name: "geos"
+        version: ">=0"
       - category: "sci-libs"
         name: "klu"
         version: ">=0"
