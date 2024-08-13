@@ -231,49 +231,6 @@ stubs:
 ### kernel refs ###
 ################################################################################################################################################################
 
-# - &kernel-sources-mocaccino-lts-sources
-#   category: "kernel-sources"
-#   name: "mocaccino-lts-sources"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sys-kernel/gentoo-kernel
-#       sys-kernel/gentoo-sources
-#       virtual/dist-kernel
-#       virtual/linux-sources
-#   env: "USE=\"dracut\""
-#
-# - &kernel-mocaccino-lts-full
-#   category: "kernel"
-#   name: "mocaccino-lts-full"
-#   version: ">=0"
-#   prepare:
-#   - mkdir -p /usr/src/linux
-#   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/kernels/kernels/mocaccino-lts/kernel/mocaccino-x86_64.config -O /usr/src/linux/.config
-#   - cd /usr/src/linux
-#   - make olddefconfig
-#
-# - &kernel-modules-nvidia-drivers-lts
-#   category: "kernel-modules"
-#   name: "nvidia-drivers-lts"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-drivers/nvidia-drivers
-#   atoms:
-#   - atom: "x11-drivers/nvidia-drivers"
-#     license: "NVIDIA-r2"
-#     use: "static-libs"
-#   inner_build_requires:
-#   - <<: *kernel-sources-mocaccino-lts-sources
-#   requires:
-#   - <<: *kernel-mocaccino-lts-full
-#   - name: "nvpd"
-#     category: "entity"
-#     version: ">=0"
-
 - &kernel-mocaccino-lts-sources
   category: "kernel"
   name: "mocaccino-lts-sources"
@@ -311,6 +268,18 @@ stubs:
 ################################################################################################################################################################
 ### libs refs ###
 ################################################################################################################################################################
+
+- &libs-cfitsio
+  category: "libs"
+  name: "cfitsio"
+  version: ">=0"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-libs/cfitsio
+  atoms:
+  - atom: "sci-libs/cfitsio"
+    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
 
 - &libs-gtk2
   category: "libs"
@@ -4445,30 +4414,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
-- &libs-xerces-c
-  category: "libs"
-  name: "xerces-c"
-  version: "3.2.5"
-  uri:
-  - https://xerces.apache.org/xerces-c/
-  license: "Apache-2.0"
-  description: "A validating XML parser written in a portable subset of C++"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/xerces-c
-  provides:
-  - category: "dev-libs"
-    name: "xerces-c"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/xerces-c"
-    use: "curl iconv icu threads # cpu_flags_x86_sse2"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
@@ -5079,28 +5024,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-cfortran
-  category: "apps"
-  name: "cfortran"
-  version: "20110621+5"
-  uri:
-  - https://www-zeus.desy.de/~burow/cfortran/
-  - https://github.com/bastien-roucaries/cfortran
-  license: "LGPL-2"
-  description: "Header file allowing to call Fortran routines from C and C++"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      <dev-lang/cfortran-20110621
-  provides:
-  - category: "dev-lang"
-    name: "cfortran"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "cmatrix"
@@ -8030,7 +7953,7 @@ packages:
 - &apps-oversteer
   category: "apps"
   name: "oversteer"
-  version: "0.8.2"
+  version: "0.8.2+1"
   uri:
   - https://github.com/berarma/oversteer
   license: "GPL-3.0"
@@ -8050,13 +7973,10 @@ packages:
     accept_keywords: "~amd64"
     license: "GPL-3.0"
   requires:
-  - <<: *layers-qt
   - <<: *layers-sci-libs
   - <<: *libs-python-distutils-extra
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *layerbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-sci-libs
 
 # - &apps-pandoc
 #   category: "apps"
@@ -9768,31 +9688,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &libs-cfitsio
-  category: "libs"
-  name: "cfitsio"
-  version: "4.4.1"
-  uri:
-  - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
-  license: "ISC"
-  description: "C and Fortran library for manipulating FITS files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/cfitsio
-  provides:
-  - category: "sci-libs"
-    name: "cfitsio"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cfitsio bzip2"
-    use: "curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
-  requires:
-  - <<: *layers-system-x
-  - <<: *apps-cfortran
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-cmt-plugins
   category: "libs"
@@ -13419,32 +13314,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-gdal
-  category: "libs"
-  name: "gdal"
-  version: "3.8.5+2"
-  uri:
-  - https://gdal.org/
-  license: "BSD Info-ZIP MIT"
-  description: "Translator library for raster geospatial data formats (includes OGR support)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gdal
-  provides:
-  - category: "sci-libs"
-    name: "gdal"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/gdal"
-    use: "armadillo curl cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 fits gif gml hdf5 heif jpeg jpeg2k lzma mysql netcdf odbc ogdi opencl pdf png python sqlite webp zstd # geos java oracle postgres spatialite test xls"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-xerces-c
-  - <<: *libs-cfitsio
-  build_requires:
-  - <<: *layers-sci-libs
-
 - &libs-glpk
   category: "libs"
   name: "glpk"
@@ -13588,12 +13457,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/opencv"
-    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gdal gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gdal gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
   requires:
   - <<: *layers-qt
   - <<: *layers-sci-libs
   - <<: *libs-beautifulsoup4
-  # - <<: *libs-gdal
   - <<: *libs-flatbuffers
   - <<: *libs-tbb
   - <<: *libs-xine-lib
@@ -16296,10 +16164,9 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-qt
+  - <<: *layers-sci-libs
   - <<: *layers-java
   - <<: *layers-latex
-  - <<: *layers-sci-libs
   - <<: *apps-pstoedit
   - <<: *apps-epstool
   - <<: *apps-fig2dev
@@ -16485,13 +16352,10 @@ packages:
   - atom: "media-libs/gegl"
     use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
   requires:
-  - <<: *layers-X
   - <<: *layers-sci-libs
   - <<: *libs-babl
   build_requires:
-  - <<: *buildbase-X
-  - <<: *layerbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-sci-libs
 
 - &libs-mlt
   category: "libs"
