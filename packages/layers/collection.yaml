@@ -118,6 +118,24 @@ stubs:
 #   name: "latex"
 #   version: ">=0"
 
+- &layers-cfitsio
+  category: "layers"
+  name: "cfitsio"
+  version: ">=0"
+- &buildbase-cfitsio
+  category: "buildbase"
+  name: "cfitsio"
+  version: ">=0"
+
+- &layers-openmpi
+  category: "layers"
+  name: "openmpi"
+  version: ">=0"
+- &buildbase-openmpi
+  category: "buildbase"
+  name: "openmpi"
+  version: ">=0"
+
 - &layers-sci-libs
   category: "layers"
   name: "sci-libs"
@@ -217,27 +235,9 @@ stubs:
 ### libs ###
 ################################################################################
 
-- &libs-cfitsio
-  category: "libs"
-  name: "cfitsio"
-  version: ">=0"
-- &buildbase-cfitsio
-  category: "buildbase"
-  name: "cfitsio"
-  version: ">=0"
-
 ################################################################################
 ### apps ###
 ################################################################################
-
-- &apps-openmpi
-  category: "apps"
-  name: "openmpi"
-  version: ">=0"
-- &buildbase-openmpi
-  category: "buildbase"
-  name: "openmpi"
-  version: ">=0"
 
 packages:
 
@@ -245,8 +245,8 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
-- &def-libs-cfitsio
-  category: "libs"
+- &def-layers-cfitsio
+  category: "layers"
   name: "cfitsio"
   version: "4.4.1+1"
   uri:
@@ -271,10 +271,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *def-libs-cfitsio
+- <<: *def-layers-cfitsio
   category: "buildbase"
-  unpack: true
   hidden: true
+  unpack: true
 
 - &libs-gtk2
   category: "libs"
@@ -588,8 +588,8 @@ packages:
 ### dep 2 apps ###
 ################################################################################################################################################################
 
-- &def-apps-openmpi
-  category: "apps"
+- &def-layers-openmpi
+  category: "layers"
   name: "openmpi"
   version: "4.1.6+3"
   uri:
@@ -613,10 +613,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *def-apps-openmpi
+- <<: *def-layers-openmpi
   category: "buildbase"
-  unpack: true
   hidden: true
+  unpack: true
 
 ################################################################################
 ## layers ###
@@ -1066,8 +1066,8 @@ packages:
 
 - <<: *def-layers-office-common
   category: "buildbase"
-  unpack: true
   hidden: true
+  unpack: true
 
 - &def-layers-latex
   category: "layers"
@@ -1819,8 +1819,8 @@ packages:
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
-  - <<: *libs-cfitsio
-  - <<: *apps-openmpi
+  - <<: *layers-cfitsio
+  - <<: *layers-openmpi
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-cfitsio
@@ -1876,8 +1876,8 @@ packages:
 
 - <<: *def-layers-term-libs
   category: "buildbase"
-  unpack: true
   hidden: true
+  unpack: true
 
 - category: "layers"
   name: "gnome-games"
@@ -2241,8 +2241,8 @@ packages:
 
 - <<: *def-layers-ghc
   category: "buildbase"
-  unpack: true
   hidden: true
+  unpack: true
 
 # # dev-haskell/cabal-install is mandatory to be able to build upon this layerbase
 # - &def-layers-haskell
