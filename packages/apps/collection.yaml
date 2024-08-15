@@ -273,13 +273,10 @@ stubs:
   category: "libs"
   name: "cfitsio"
   version: ">=0"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/cfitsio
-  atoms:
-  - atom: "sci-libs/cfitsio"
-    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
+- &buildbase-cfitsio
+  category: "buildbase"
+  name: "cfitsio"
+  version: ">=0"
 
 - &libs-gtk2
   category: "libs"
@@ -429,13 +426,10 @@ stubs:
   category: "apps"
   name: "openmpi"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-cluster/openmpi
-  atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio"
+- &buildbase-openmpi
+  category: "buildbase"
+  name: "openmpi"
+  version: ">=0"
 
 - &apps-premake-5
   category: "dev-util"
@@ -13391,8 +13385,10 @@ packages:
   - <<: *libs-rtl-sdr
   - <<: *libs-websocketpp
   build_requires:
-  - <<: *layers-X
-
+  - <<: *buildbase-X
+  - <<: *buildbase-cfitsio
+  requires_final_images: true
+  
 # - &libs-libgit2-glib
 #   category: "apps"
 #   name: "libgit2-glib"
@@ -13522,7 +13518,9 @@ packages:
   - <<: *layers-system-x
   - <<: *libs-cfitsio
   build_requires:
-  - <<: *layers-system-x
+  - <<: *buildbase-system-x
+  - <<: *buildbase-cfitsio
+  requires_final_images: true
 
 ################################################################################################################################################################
 ### dep 2 apps ###
@@ -14467,8 +14465,10 @@ packages:
   - <<: *layers-kde-common
   - <<: *libs-cfitsio
   build_requires:
-  - <<: *layers-kde-common
-
+  - <<: *buildbase-kde-common
+  - <<: *buildbase-cfitsio
+  requires_final_images: true
+  
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
@@ -15169,10 +15169,9 @@ packages:
   - atom: "dev-debug/valgrind"
     use: "mpi"
   requires:
-  - <<: *layers-X
   - <<: *apps-openmpi
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-openmpi
 
 - category: "apps"
   name: "x2goclient"
@@ -16040,16 +16039,18 @@ packages:
   - category: "sci-libs"
     name: "stellarsolver"
     version: ">=0"
+  # sci-astronomy/erfa    
   atoms:
   - atom: "sci-astronomy/kstars"
     use: "fits indi"
   requires:
   - <<: *layers-plasma
-  - <<: *libs-cfitsio
   - <<: *libs-indilib
   - <<: *libs-wcslib
   build_requires:
-  - <<: *layers-plasma
+  - <<: *buildbase-kde-common
+  - <<: *buildbase-cfitsio
+  requires_final_images: true
 
 - &apps-ktimetracker
   category: "apps"
@@ -16107,7 +16108,6 @@ packages:
   - <<: *layers-sci-libs
   - <<: *libs-qxlsx
   - <<: *apps-cantor
-  - <<: *libs-cfitsio
   - <<: *libs-libcerf
   build_requires:
   - <<: *buildbase-kde-common

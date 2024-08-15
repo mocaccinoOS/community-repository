@@ -217,9 +217,27 @@ stubs:
 ### libs ###
 ################################################################################
 
+- &libs-cfitsio
+  category: "libs"
+  name: "cfitsio"
+  version: ">=0"
+- &buildbase-cfitsio
+  category: "buildbase"
+  name: "cfitsio"
+  version: ">=0"
+
 ################################################################################
 ### apps ###
 ################################################################################
+
+- &apps-openmpi
+  category: "apps"
+  name: "openmpi"
+  version: ">=0"
+- &buildbase-openmpi
+  category: "buildbase"
+  name: "openmpi"
+  version: ">=0"
 
 packages:
 
@@ -227,7 +245,7 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
-- &libs-cfitsio
+- &def-libs-cfitsio
   category: "libs"
   name: "cfitsio"
   version: "4.4.1"
@@ -252,6 +270,11 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- <<: *def-libs-cfitsio
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 - &libs-gtk2
   category: "libs"
@@ -565,7 +588,7 @@ packages:
 ### dep 2 apps ###
 ################################################################################################################################################################
 
-- &apps-openmpi
+- &def-apps-openmpi
   category: "apps"
   name: "openmpi"
   version: "4.1.6+2"
@@ -589,6 +612,11 @@ packages:
   - <<: *apps-hwloc
   build_requires:
   - <<: *layers-X
+
+- <<: *def-apps-openmpi
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 ################################################################################
 ## layers ###
@@ -1511,7 +1539,7 @@ packages:
   - https://matplotlib.org/
   - https://scipy.org/
   - https://arma.sourceforge.net
-  - http://www.caam.rice.edu/software/ARPACK/    
+  - http://www.caam.rice.edu/software/ARPACK/
   - https://people.engr.tamu.edu/davis/suitesparse.html
   - https://gdal.org/
   - https://libgeos.org/
@@ -1794,7 +1822,10 @@ packages:
   - <<: *libs-cfitsio
   - <<: *apps-openmpi
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-cfitsio
+  - <<: *buildbase-openmpi
+  requires_final_images: true
 
 - <<: *def-layers-sci-libs
   category: "layerbase"
