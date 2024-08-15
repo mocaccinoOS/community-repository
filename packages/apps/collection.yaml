@@ -16300,6 +16300,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-RcloneBrowser
+  category: "apps"
+  name: "RcloneBrowser"
+  version: "1.8.0"
+  uri:
+  - https://github.com/kapitainsky/RcloneBrowser
+  license: "MIT"
+  description: "Simple cross platform GUI for Rclone"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/RcloneBrowser
+  overlays:
+  - enable: "menelkir"
+  atoms:
+  - atom: "net-misc/RcloneBrowser"
+    accept_keywords: "~amd64"
+  provides:
+  - category: "net-misc"
+    name: "RcloneBrowser"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-rclone
+  build_requires:
+  - <<: *layers-qt
+
 # - &apps-speed-dreams
 #   category: "apps"
 #   name: "speed-dreams"
