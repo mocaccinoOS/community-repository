@@ -588,35 +588,35 @@ packages:
 ### dep 2 apps ###
 ################################################################################################################################################################
 
-- &def-apps-openmpi
-  category: "apps"
-  name: "openmpi"
-  version: "4.1.6+2"
-  uri:
-  - https://www.open-mpi.org
-  license: "BSD"
-  description: "A high-performance message passing library (MPI)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-cluster/openmpi
-  provides:
-  - category: "sys-cluster"
-    name: "openmpi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio fortran"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-hwloc
-  build_requires:
-  - <<: *layers-X
-
-- <<: *def-apps-openmpi
-  category: "buildbase"
-  unpack: true
-  hidden: true
+# - &def-apps-openmpi
+#   category: "apps"
+#   name: "openmpi"
+#   version: "4.1.6+2"
+#   uri:
+#   - https://www.open-mpi.org
+#   license: "BSD"
+#   description: "A high-performance message passing library (MPI)"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-cluster/openmpi
+#   provides:
+#   - category: "sys-cluster"
+#     name: "openmpi"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sys-cluster/openmpi"
+#     use: "romio fortran"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *apps-hwloc
+#   build_requires:
+#   - <<: *layers-X
+# 
+# - <<: *def-apps-openmpi
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 ################################################################################
 ## layers ###
@@ -1533,7 +1533,7 @@ packages:
 - &def-layers-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.10"
+  version: "0.9"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
