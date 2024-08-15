@@ -13498,7 +13498,7 @@ packages:
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
-  version: "7.12+4"
+  version: "7.12+5"
   uri:
   - https://www.atnf.csiro.au/people/mcalabre/WCS/
   license: "LGPL-3"
@@ -13517,7 +13517,7 @@ packages:
   requires:
   - <<: *libs-cfitsio
   build_requires:
-  - <<: *libs-cfitsio
+  - <<: *buildbase-cfitsio
 
 ################################################################################################################################################################
 ### dep 2 apps ###
@@ -15149,7 +15149,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.22.0-r2+1"
+  version: "3.22.0-r2+2"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -15168,7 +15168,7 @@ packages:
   requires:
   - <<: *apps-openmpi
   build_requires:
-  - <<: *apps-openmpi
+  - <<: *buildbase-openmpi
 
 - category: "apps"
   name: "x2goclient"
