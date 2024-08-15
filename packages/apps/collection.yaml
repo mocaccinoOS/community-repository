@@ -13515,12 +13515,9 @@ packages:
   - atom: "sci-astronomy/wcslib"
     use: "fits"
   requires:
-  - <<: *layers-system-x
-  - <<: *libs-cfitsio
+  - <<: *apps-cfitsio
   build_requires:
-  - <<: *buildbase-system-x
   - <<: *buildbase-cfitsio
-  requires_final_images: true
 
 ################################################################################################################################################################
 ### dep 2 apps ###
@@ -16039,7 +16036,7 @@ packages:
   - category: "sci-libs"
     name: "stellarsolver"
     version: ">=0"
-  # sci-astronomy/erfa    
+  # sci-astronomy/erfa
   atoms:
   - atom: "sci-astronomy/kstars"
     use: "fits indi"
