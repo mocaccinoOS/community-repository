@@ -118,6 +118,24 @@ stubs:
 #   name: "latex"
 #   version: ">=0"
 
+- &layers-cfitsio
+  category: "layers"
+  name: "layers"
+  version: ">=0"
+- &buildbase-cfitsio
+  category: "buildbase"
+  name: "cfitsio"
+  version: ">=0"
+
+- &layers-openmpi
+  category: "layers"
+  name: "openmpi"
+  version: ">=0"
+- &buildbase-openmpi
+  category: "buildbase"
+  name: "openmpi"
+  version: ">=0"
+
 - &layers-sci-libs
   category: "layers"
   name: "sci-libs"
@@ -221,12 +239,7 @@ stubs:
 #   category: "buildbase"
 #   name: "cdemu"
 #   version: ">=0"
-
-- &apps-chromium
-  category: "apps"
-  name: "chromium"
-  version: ">=0"
-
+  
 ################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
@@ -268,15 +281,6 @@ stubs:
 ################################################################################################################################################################
 ### libs refs ###
 ################################################################################################################################################################
-
-- &libs-cfitsio
-  category: "libs"
-  name: "cfitsio"
-  version: ">=0"
-- &buildbase-cfitsio
-  category: "buildbase"
-  name: "cfitsio"
-  version: ">=0"
 
 - &libs-gtk2
   category: "libs"
@@ -378,6 +382,11 @@ stubs:
 ### apps refs ###
 ################################################################################################################################################################
 
+- &apps-chromium
+  category: "apps"
+  name: "chromium"
+  version: ">=0"
+
 - &apps-docker
   category: "container"
   name: "docker"
@@ -421,15 +430,6 @@ stubs:
   atoms:
   - atom: "sys-apps/hwloc"
     use: "cairo cpuid cuda pci svg udev xml X"
-
-- &apps-openmpi
-  category: "apps"
-  name: "openmpi"
-  version: ">=0"
-- &buildbase-openmpi
-  category: "buildbase"
-  name: "openmpi"
-  version: ">=0"
 
 - &apps-premake-5
   category: "dev-util"
@@ -13360,7 +13360,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.0.8+1"
+  version: "2.0.8+2"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -13378,7 +13378,7 @@ packages:
     use: "ogg rtlsdr websocket"
   requires:
   - <<: *layers-X
-  - <<: *libs-cfitsio
+  - <<: *layers-cfitsio
   - <<: *libs-cpp-httplib
   - <<: *libs-libnova
   - <<: *libs-nlohmann_json
@@ -13498,7 +13498,7 @@ packages:
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
-  version: "7.12+5"
+  version: "7.12+6"
   uri:
   - https://www.atnf.csiro.au/people/mcalabre/WCS/
   license: "LGPL-3"
@@ -13515,7 +13515,7 @@ packages:
   - atom: "sci-astronomy/wcslib"
     use: "fits"
   requires:
-  - <<: *libs-cfitsio
+  - <<: *layers-cfitsio
   build_requires:
   - <<: *buildbase-cfitsio
 
@@ -14442,7 +14442,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+8"
+  version: "2.6.1.1-r1+9"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -14460,7 +14460,7 @@ packages:
     use: "fits openmp sse2"
   requires:
   - <<: *layers-kde-common
-  - <<: *libs-cfitsio
+  - <<: *layers-cfitsio
   build_requires:
   - <<: *buildbase-kde-common
   - <<: *buildbase-cfitsio
@@ -15149,7 +15149,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.22.0-r2+2"
+  version: "3.22.0-r2+3"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -15166,7 +15166,7 @@ packages:
   - atom: "dev-debug/valgrind"
     use: "mpi"
   requires:
-  - <<: *apps-openmpi
+  - <<: *layers-openmpi
   build_requires:
   - <<: *buildbase-openmpi
 
@@ -16041,7 +16041,8 @@ packages:
   - atom: "sci-astronomy/kstars"
     use: "fits indi"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
+  - <<: *layers-cfitsio
   - <<: *libs-indilib
   - <<: *libs-wcslib
   build_requires:
