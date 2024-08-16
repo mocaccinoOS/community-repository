@@ -135,13 +135,34 @@ stubs:
   category: "layers"
   name: "cfitsio"
   version: ">=0"
+- &layerbase-cfitsio
+  category: "layerbase"
+  name: "cfitsio"
+  version: ">=0"
 - &buildbase-cfitsio
   category: "buildbase"
   name: "cfitsio"
   version: ">=0"
 
+- &layers-fonttools
+  category: "layers"
+  name: "fonttools"
+  version: ">=0"
+- &layerbase-fonttools
+  category: "layerbase"
+  name: "fonttools"
+  version: ">=0"
+- &buildbase-fonttools
+  category: "buildbase"
+  name: "fonttools"
+  version: ">=0"
+
 - &layers-openmpi
   category: "layers"
+  name: "openmpi"
+  version: ">=0"
+- &layerbase-openmpi
+  category: "layerbase"
   name: "openmpi"
   version: ">=0"
 - &buildbase-openmpi
@@ -1517,6 +1538,10 @@ packages:
   - <<: *layers-system-x
 
 - <<: *def-cfitsio
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-cfitsio
   category: "buildbase"
   hidden: true
   unpack: true
@@ -1536,12 +1561,22 @@ packages:
       dev-python/fonttools
   provides:
   - category: "dev-python"
+    name: "appdirs"
+    version: ">=0"
+  - category: "dev-python"
     name: "fonttools"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fs"
     version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- <<: *def-fonttools
+  category: "layerbase"
+  hidden: true
 
 - <<: *def-fonttools
   category: "buildbase"
@@ -1575,6 +1610,10 @@ packages:
   - <<: *layers-X
 
 - <<: *def-openmpi
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-openmpi
   category: "buildbase"
   hidden: true
   unpack: true
@@ -1583,7 +1622,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.11"
+  version: "0.12"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -1680,9 +1719,6 @@ packages:
     name: "xerces-c"
     version: ">=0"
   - category: "dev-python"
-    name: "appdirs"
-    version: ">=0"
-  - category: "dev-python"
     name: "beniget"
     version: ">=0"
   - category: "dev-python"
@@ -1699,9 +1735,6 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "fonttools"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fs"
     version: ">=0"
   - category: "dev-python"
     name: "gast"
@@ -1870,10 +1903,12 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-cfitsio
+  - <<: *layers-fonttools
   - <<: *layers-openmpi
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-cfitsio
+  - <<: *buildbase-fonttools
   - <<: *buildbase-openmpi
   requires_final_images: true
 
