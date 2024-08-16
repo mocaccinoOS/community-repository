@@ -133,7 +133,7 @@ stubs:
 
 - &layers-cfitsio
   category: "layers"
-  name: "layers"
+  name: "cfitsio"
   version: ">=0"
 - &buildbase-cfitsio
   category: "buildbase"
@@ -1648,7 +1648,10 @@ packages:
   requires:
   - <<: *layers-latex
   build_requires:
-  - <<: *layers-latex
+  - <<: *buildbase-perl-libs
+  - <<: *layerbase-latex
+  - <<: *layerbase-XML-LibXML
+  requires_final_images: true
 
 - &libs-glfw
   category: "libs"
@@ -16219,6 +16222,7 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   - <<: *layerbase-latex
+  - <<: *layerbase-XML-LibXML
   - <<: *layerbase-sci-libs
   requires_final_images: true
 
@@ -17197,6 +17201,7 @@ packages:
   - <<: *buildbase-qt6
   - <<: *buildbase-office-common
   - <<: *layerbase-latex
+  - <<: *layerbase-XML-LibXML
   requires_final_images: true
 
 - category: "apps"
