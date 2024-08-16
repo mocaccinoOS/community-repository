@@ -205,14 +205,14 @@ stubs:
   category: "layers"
   name: "perl-libs"
   version: ">=0"
-# - &layerbase-perl-libs
-#   category: "layerbase"
-#   name: "perl-libs"
-#   version: ">=0"
-# - &buildbase-perl-libs
-#   category: "buildbase"
-#   name: "perl-libs"
-#   version: ">=0"
+- &layerbase-perl-libs
+  category: "layerbase"
+  name: "perl-libs"
+  version: ">=0"
+- &buildbase-perl-libs
+  category: "buildbase"
+  name: "perl-libs"
+  version: ">=0"
 
 - &layers-term-libs
   category: "layers"
@@ -244,37 +244,6 @@ packages:
 ################################################################################################################################################################
 ### dep 0 libs ###
 ################################################################################################################################################################
-
-- &def-layers-cfitsio
-  category: "layers"
-  name: "cfitsio"
-  version: "4.4.1+1"
-  uri:
-  - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
-  license: "ISC"
-  description: "C and Fortran library for manipulating FITS files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/cfitsio
-  provides:
-  - category: "sci-libs"
-    name: "cfitsio"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cfitsio"
-    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
-  inner_build_reqs:
-  - <dev-lang/cfortran-20110621
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- <<: *def-layers-cfitsio
-  category: "buildbase"
-  hidden: true
-  unpack: true
 
 - &libs-gtk2
   category: "libs"
@@ -580,44 +549,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
-################################################################################################################################################################
-### dep 2 libs ###
-################################################################################################################################################################
-
-################################################################################################################################################################
-### dep 2 apps ###
-################################################################################################################################################################
-
-- &def-layers-openmpi
-  category: "layers"
-  name: "openmpi"
-  version: "4.1.6+3"
-  uri:
-  - https://www.open-mpi.org
-  license: "BSD"
-  description: "A high-performance message passing library (MPI)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-cluster/openmpi
-  provides:
-  - category: "sys-cluster"
-    name: "openmpi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio fortran"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-hwloc
-  build_requires:
-  - <<: *layers-X
-
-- <<: *def-layers-openmpi
-  category: "buildbase"
-  hidden: true
-  unpack: true
-
 ################################################################################
 ## layers ###
 ################################################################################
@@ -894,10 +825,10 @@ packages:
   category: "layerbase"
   hidden: true
 
-# - <<: *def-layers-perl-libs
-#   category: "buildbase"
-#   unpack: true
-#   hidden: true
+- <<: *def-layers-perl-libs
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 - &def-layers-office-common
   category: "layers"
@@ -1529,6 +1460,68 @@ packages:
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
+
+
+- &def-layers-cfitsio
+  category: "layers"
+  name: "cfitsio"
+  version: "4.4.1+1"
+  uri:
+  - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+  license: "ISC"
+  description: "C and Fortran library for manipulating FITS files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-libs/cfitsio
+  provides:
+  - category: "sci-libs"
+    name: "cfitsio"
+    version: ">=0"
+  atoms:
+  - atom: "sci-libs/cfitsio"
+    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
+  inner_build_reqs:
+  - <dev-lang/cfortran-20110621
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- <<: *def-layers-cfitsio
+  category: "buildbase"
+  hidden: true
+  unpack: true
+
+- &def-layers-openmpi
+  category: "layers"
+  name: "openmpi"
+  version: "4.1.6+3"
+  uri:
+  - https://www.open-mpi.org
+  license: "BSD"
+  description: "A high-performance message passing library (MPI)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-cluster/openmpi
+  provides:
+  - category: "sys-cluster"
+    name: "openmpi"
+    version: ">=0"
+  atoms:
+  - atom: "sys-cluster/openmpi"
+    use: "romio fortran"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-hwloc
+  build_requires:
+  - <<: *layers-X
+
+- <<: *def-layers-openmpi
+  category: "buildbase"
+  hidden: true
+  unpack: true
 
 - &def-layers-sci-libs
   category: "layers"
