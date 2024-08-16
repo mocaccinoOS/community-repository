@@ -105,6 +105,19 @@ stubs:
   virtual/jre
   virtual/jdk
 
+- &layers-XML-LibXML
+  category: "layers"
+  name: "latex"
+  version: ">=0"
+- &layerbase-XML-LibXML
+  category: "layerbase"
+  name: "latex"
+  version: ">=0"
+# - &buildbase-XML-LibXML
+#   category: "buildbase"
+#   name: "latex"
+#   version: ">=0"
+
 - &layers-latex
   category: "layers"
   name: "latex"
@@ -293,29 +306,6 @@ packages:
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
-
-- &libs-XML-LibXML
-  category: "libs"
-  name: "XML-LibXML"
-  version: "2.21.0"
-  uri:
-  - https://metacpan.org/release/XML-LibXML
-  license: "Artistic GPL-1+"
-  description: "Perl binding for libxml2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/XML-LibXML
-  provides:
-  - category: "dev-perl"
-    name: "XML-LibXML"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-perl/Alien-Libxml2
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-mhash
   category: "libs"
@@ -577,7 +567,7 @@ packages:
 # dev-perl/Text-Reform            Text-Autoformat
 # dev-perl/Unicode-UTF8           Path-Tiny <- kdegames::freecell-solver
 # dev-perl/X11-Protocol           shutter
-- &def-layers-perl-libs
+- &def-perl-libs
   category: "layers"
   name: "perl-libs"
   version: "0.13"
@@ -821,16 +811,17 @@ packages:
   build_requires:
     - <<: *layers-X
 
-- <<: *def-layers-perl-libs
+- <<: *def-perl-libs
   category: "layerbase"
   hidden: true
 
-- <<: *def-layers-perl-libs
+- <<: *def-perl-libs
   category: "buildbase"
   unpack: true
   hidden: true
 
-- &def-layers-office-common
+
+- &def-office-common
   category: "layers"
   name: "office-common"
   version: "1.0+21"
@@ -991,16 +982,50 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *def-layers-office-common
+- <<: *def-office-common
   category: "layerbase"
   hidden: true
 
-- <<: *def-layers-office-common
+- <<: *def-office-common
   category: "buildbase"
   hidden: true
   unpack: true
 
-- &def-layers-latex
+
+- &def-XML-LibXML
+  category: "layers"
+  name: "XML-LibXML"
+  version: "2.21.0"
+  uri:
+  - https://metacpan.org/release/XML-LibXML
+  license: "Artistic GPL-1+"
+  description: "Perl binding for libxml2"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/XML-LibXML
+  provides:
+  - category: "dev-perl"
+    name: "XML-LibXML"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-perl/Alien-Libxml2
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
+- <<: *def-XML-LibXML
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-XML-LibXML
+  category: "buildbase"
+  hidden: true
+  unpack: true
+
+
+- &def-latex
   category: "layers"
   name: "latex"
   version: "0.13"
@@ -1448,21 +1473,22 @@ packages:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   requires:
   - <<: *layers-perl-libs
-  - <<: *libs-XML-LibXML
+  - <<: *layers-XML-LibXML
   build_requires:
-  - <<: *layers-perl-libs
+  - <<: *buildbase-perl-libs
+  - <<: *layerbase-XML-LibXML
 
-- <<: *def-layers-latex
+- <<: *def-latex
   category: "layerbase"
   hidden: true
 
-# - <<: *def-layers-latex
+# - <<: *def-latex
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
 
 
-- &def-layers-cfitsio
+- &def-cfitsio
   category: "layers"
   name: "cfitsio"
   version: "4.4.1+1"
@@ -1488,12 +1514,13 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- <<: *def-layers-cfitsio
+- <<: *def-cfitsio
   category: "buildbase"
   hidden: true
   unpack: true
 
-- &def-layers-openmpi
+
+- &def-openmpi
   category: "layers"
   name: "openmpi"
   version: "4.1.6+3"
@@ -1518,12 +1545,13 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- <<: *def-layers-openmpi
+- <<: *def-openmpi
   category: "buildbase"
   hidden: true
   unpack: true
 
-- &def-layers-sci-libs
+
+- &def-sci-libs
   category: "layers"
   name: "sci-libs"
   version: "0.11"
@@ -1820,16 +1848,17 @@ packages:
   - <<: *buildbase-openmpi
   requires_final_images: true
 
-- <<: *def-layers-sci-libs
+- <<: *def-sci-libs
   category: "layerbase"
   hidden: true
 
-# - <<: *def-layers-sci-libs
+# - <<: *def-sci-libs
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
 
-- &def-layers-term-libs
+
+- &def-term-libs
   category: "layers"
   name: "term-libs"
   version: "0.1+12"
@@ -1863,14 +1892,15 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - <<: *def-layers-term-libs
+# - <<: *def-term-libs
 #   category: "layerbase"
 #   hidden: true
 
-- <<: *def-layers-term-libs
+- <<: *def-term-libs
   category: "buildbase"
   hidden: true
   unpack: true
+
 
 - category: "layers"
   name: "gnome-games"
@@ -1979,6 +2009,7 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-gnome-common
+
 
 - category: "layers"
   name: "kdegames"
@@ -2145,7 +2176,8 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - &def-layers-clang-15
+
+# - &def-clang-15
 #   category: "layers"
 #   name: "clang-15"
 #   version: "15.0.7-r3+3"
@@ -2180,16 +2212,17 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 #
-# - <<: *def-layers-clang-15
+# - <<: *def-clang-15
 #   category: "layerbase"
 #   hidden: true
 #
-# - <<: *def-layers-clang-15
+# - <<: *def-clang-15
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
 
-- &def-layers-ghc
+
+- &def-ghc
   category: "layers"
   name: "ghc"
   version: "9.0.2-r4+11"
@@ -2228,17 +2261,18 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-# - <<: *def-layers-ghc
+# - <<: *def-ghc
 #   category: "layerbase"
 #   hidden: true
 
-- <<: *def-layers-ghc
+- <<: *def-ghc
   category: "buildbase"
   hidden: true
   unpack: true
 
+
 # # dev-haskell/cabal-install is mandatory to be able to build upon this layerbase
-# - &def-layers-haskell
+# - &def-haskell
 #   category: "layers"
 #   name: "haskell"
 #   version: "0.14+11"
@@ -3671,11 +3705,11 @@ packages:
 #   build_requires:
 #   - <<: *buildbase-ghc
 #
-# # - <<: *def-layers-haskell
+# # - <<: *def-haskell
 # #   category: "layerbase"
 # #   hidden: true
 #
-# - <<: *def-layers-haskell
+# - <<: *def-haskell
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true

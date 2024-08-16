@@ -104,6 +104,19 @@ stubs:
   dev-java/openjdk-bin
   virtual/jre
   virtual/jdk
+  
+- &layers-XML-LibXML
+  category: "layers"
+  name: "latex"
+  version: ">=0"
+- &layerbase-XML-LibXML
+  category: "layerbase"
+  name: "latex"
+  version: ">=0"
+# - &buildbase-XML-LibXML
+#   category: "buildbase"
+#   name: "latex"
+#   version: ">=0"
 
 - &layers-latex
   category: "layers"
@@ -299,17 +312,6 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       gnome-base/libglade
-
-- &libs-XML-LibXML
-  category: "libs"
-  name: "XML-LibXML"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/XML-LibXML
-  inner_build_reqs:
-  - dev-perl/Alien-Libxml2
 
 - &libs-mhash
   category: "libs"
@@ -13193,9 +13195,11 @@ packages:
     name: "rtkit"
     version: ">=0"
   - <<: *libs-vdf
-  - <<: *libs-XML-LibXML
+  - <<: *layers-XML-LibXML
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *layerbase-latex
+  requires_final_images: true
 
 - &apps-zathura
   category: "apps"
