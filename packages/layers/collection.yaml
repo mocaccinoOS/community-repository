@@ -566,6 +566,7 @@ packages:
 ################################################################################
 
 # dev-perl/AppConfig              Template-Toolkit
+# dev-perl/Capture-Tiny           layers/latex apps/x2goserver
 # dev-perl/Carp-Always            shutter
 # dev-perl/Class-Accessor         Monitoring-Plugin
 # dev-perl/Config-Tiny            Monitoring-Plugin
@@ -592,10 +593,11 @@ packages:
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.13"
+  version: "0.14"
   uri:
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Archive-Zip
+  - https://metacpan.org/release/Capture-Tiny
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
   - https://metacpan.org/release/Config-Tiny
@@ -636,6 +638,7 @@ packages:
   description: |
     Perl5 module for reading configuration files and parsing command line arguments
     A wrapper that lets you read Zip archive members as if they were files
+    Capture STDOUT and STDERR from Perl, XS or external programs
     Automated accessor generation
     Read/Write .ini style files with as little code as possible
     Warns and dies noisily with stack backtraces
@@ -675,6 +678,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-perl/AppConfig
+      dev-perl/Capture-Tiny
       dev-perl/Carp-Always
       dev-perl/Class-Accessor
       dev-perl/Config-Tiny
@@ -704,6 +708,9 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Archive-Zip"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Capture-Tiny"
     version: ">=0"
   - category: "dev-perl"
     name: "Carp-Always"
