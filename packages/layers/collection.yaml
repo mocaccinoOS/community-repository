@@ -565,46 +565,51 @@ packages:
 ## layers ###
 ################################################################################
 
-# dev-perl/AppConfig              Template-Toolkit
-# dev-perl/Capture-Tiny           layers/latex apps/x2goserver
-# dev-perl/Carp-Always            shutter
-# dev-perl/Class-Accessor         Monitoring-Plugin
-# dev-perl/Config-Tiny            Monitoring-Plugin
-# dev-perl/File-Copy-Recursive    shutter
-# dev-perl/Gtk3-ImageView         shutter
-# dev-perl/JSON-MaybeXS           nagios-plugin-check_lm_sensors
-# dev-perl/IO-String              dev-perl/Email-Outlook-Message, layers/latex
-# dev-perl/libxml-perl            shutter
-# dev-perl/Math-Calc-Units        Monitoring-Plugin
-# dev-perl/Module-Install         nagios-plugin-check_lm_sensors
-# dev-perl/Net-DBus               shutter
-# dev-perl/Number-Bytes-Human     shutter
-# dev-perl/Pango                  shutter
-# dev-perl/Params-Validate        Monitoring-Plugin, layers/latex
-# dev-perl/Path-Tiny              kdegames::freecell-solver
-# dev-perl/Proc-ProcessTable      shutter
-# dev-perl/Proc-Simple            shutter
-# dev-perl/Sort-Naturally         shutter
-# dev-perl/Template-Toolkit       kdegames::freecell-solver
-# dev-perl/Text-Autoformat        Template-Toolkit
-# dev-perl/Text-Reform            Text-Autoformat
-# dev-perl/Unicode-UTF8           Path-Tiny <- kdegames::freecell-solver
-# dev-perl/X11-Protocol           shutter
+# dev-perl/AppConfig                Template-Toolkit
+# dev-perl/Capture-Tiny             layers/latex apps/x2goserver
+# dev-perl/Carp-Always              shutter
+# dev-perl/Class-Accessor           Monitoring-Plugin
+# dev-perl/Config-Tiny              Monitoring-Plugin
+# dev-perl/Config-Simple            apps/x2goserver
+# dev-perl/File-Copy-Recursive      shutter
+# dev-perl/File-ReadBackwards       apps/x2goserver
+# dev-perl/Gtk3-ImageView           shutter
+# dev-perl/JSON-MaybeXS             nagios-plugin-check_lm_sensors
+# dev-perl/IO-String                dev-perl/Email-Outlook-Message, layers/latex
+# dev-perl/libxml-perl              shutter
+# dev-perl/Math-Calc-Units          Monitoring-Plugin
+# dev-perl/Module-Install           nagios-plugin-check_lm_sensors
+# dev-perl/Net-DBus                 shutter
+# dev-perl/Number-Bytes-Human       shutter
+# dev-perl/Pango                    shutter
+# dev-perl/Params-Validate          Monitoring-Plugin, layers/latex
+# dev-perl/Path-Tiny                kdegames::freecell-solver
+# dev-perl/Proc-ProcessTable        shutter
+# dev-perl/Proc-Simple              shutter
+# dev-perl/Sort-Naturally           shutter
+# dev-perl/Switch                   apps/x2goserver
+# dev-perl/Template-Toolkit         kdegames::freecell-solver
+# dev-perl/Text-Autoformat          Template-Toolkit
+# dev-perl/Text-Reform              Text-Autoformat
+# dev-perl/Unicode-UTF8             Path-Tiny <- kdegames::freecell-solver
+# dev-perl/X11-Protocol             shutter
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.14"
+  version: "0.15"
   uri:
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Archive-Zip
   - https://metacpan.org/release/Capture-Tiny
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
+  - https://metacpan.org/release/Config-Simple
   - https://metacpan.org/release/Config-Tiny
   - https://metacpan.org/release/ExtUtils-Config
   - https://metacpan.org/release/ExtUtils-Helpers
   - https://metacpan.org/release/ExtUtils-InstallPaths
   - https://metacpan.org/release/File-Copy-Recursive
+  - https://metacpan.org/release/File-ReadBackwards
   - https://metacpan.org/release/File-Remove
   - https://metacpan.org/release/Gtk3-ImageView
   - https://metacpan.org/release/IO-String
@@ -624,6 +629,7 @@ packages:
   - https://metacpan.org/release/Proc-Simple
   - https://metacpan.org/release/Readonly
   - https://metacpan.org/release/Sort-Naturally
+  - https://metacpan.org/release/Switch
   - https://metacpan.org/release/Template-Toolkit
   - https://metacpan.org/release/Text-Autoformat
   - https://metacpan.org/release/Text-Reform
@@ -640,12 +646,14 @@ packages:
     A wrapper that lets you read Zip archive members as if they were files
     Capture STDOUT and STDERR from Perl, XS or external programs
     Automated accessor generation
+    Simple configuration file class
     Read/Write .ini style files with as little code as possible
     Warns and dies noisily with stack backtraces
     Wrapper for perl's configuration
     Various portability utilities for module builders
     Standalone, extensible Perl module installer
     Build.PL install path logic made easy
+    Read a file backwards by lines
     Remove files and directories
     uses File::Copy to recursively copy dirs
     Image viewer widget for Gtk3
@@ -669,6 +677,7 @@ packages:
     Automatic text wrapping and reformatting
     A Perl interface to the iconv() codeset conversion function
     Expand/unexpand tabs per unix expand and line wrapping
+    A switch statement for Perl
     Ordered associative arrays for Perl
     Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
@@ -681,8 +690,10 @@ packages:
       dev-perl/Capture-Tiny
       dev-perl/Carp-Always
       dev-perl/Class-Accessor
+      dev-perl/Config-Simple
       dev-perl/Config-Tiny
       dev-perl/File-Copy-Recursive
+      dev-perl/File-ReadBackwards
       dev-perl/Gtk3-ImageView
       dev-perl/IO-String
       dev-perl/JSON-MaybeXS
@@ -697,6 +708,7 @@ packages:
       dev-perl/Proc-ProcessTable
       dev-perl/Proc-Simple
       dev-perl/Sort-Naturally
+      dev-perl/Switch
       dev-perl/Template-Toolkit
       dev-perl/Text-Autoformat
       dev-perl/Text-Reform
@@ -710,6 +722,12 @@ packages:
     name: "Archive-Zip"
     version: ">=0"
   - category: "dev-perl"
+    name: "CPAN-Meta-Requirements"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "CPAN-Requirements-Dynamic"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Capture-Tiny"
     version: ">=0"
   - category: "dev-perl"
@@ -719,10 +737,16 @@ packages:
     name: "Class-Accessor"
     version: ">=0"
   - category: "dev-perl"
+    name: "Config-Simple"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Config-Tiny"
     version: ">=0"
   - category: "dev-perl"
     name: "ExtUtils-Config"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "ExtUtils-HasCompiler"
     version: ">=0"
   - category: "dev-perl"
     name: "ExtUtils-Helpers"
@@ -732,6 +756,9 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "File-Copy-Recursive"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-ReadBackwards"
     version: ">=0"
   - category: "dev-perl"
     name: "File-Remove"
@@ -789,6 +816,9 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Sort-Naturally"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Switch"
     version: ">=0"
   - category: "dev-perl"
     name: "Template-Toolkit"
