@@ -1227,27 +1227,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-Config-Simple
-  category: "libs"
-  name: "Config-Simple"
-  version: "4.590.0-r2+4"
-  uri:
-  - https://metacpan.org/release/Config-Simple
-  license: "Artistic GPL-1+"
-  description: "Simple configuration file class"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Config-Simple
-  provides:
-  - category: "dev-perl"
-    name: "Config-Simple"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-cpp-httplib
   category: "libs"
   name: "cpp-httplib"
@@ -1382,27 +1361,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-File-ReadBackwards
-  category: "libs"
-  name: "File-ReadBackwards"
-  version: "1.60.0+4"
-  uri:
-  - https://metacpan.org/release/File-ReadBackwards
-  license: "Artistic GPL-1+"
-  description: "Read a file backwards by lines"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/File-ReadBackwards
-  provides:
-  - category: "dev-perl"
-    name: "File-ReadBackwards"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-flann
   category: "libs"
@@ -3981,27 +3939,6 @@ packages:
   atoms:
   - atom: "media-libs/smpeg2"
     use: "mmx"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-Switch
-  category: "libs"
-  name: "Switch"
-  version: "2.170.0-r1+4"
-  uri:
-  - https://metacpan.org/release/Switch
-  license: "Artistic GPL-1+"
-  description: "A switch statement for Perl"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Switch
-  provides:
-  - category: "dev-perl"
-    name: "Switch"
-    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -15160,7 +15097,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.3-r2+2"
+  version: "4.1.0.3-r2+3"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
@@ -15183,7 +15120,7 @@ packages:
   - atom: "net-misc/x2goserver"
     use: "fuse sqlite # postgres"
   requires:
-  - <<: *layers-X
+  - <<: *layers-perl-libs
   - <<: *apps-nx
   - category: "entity"
     name: "x2gouser"
@@ -15192,12 +15129,9 @@ packages:
     name: "x2goprint"
     version: ">=0"
   - <<: *fonts-font-cursor-misc
-  - <<: *libs-Config-Simple
-  - <<: *libs-File-ReadBackwards
-  - <<: *libs-Switch
   - <<: *libs-xwininfo
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-perl-libs
 
 - &apps-xemacs
   category: "apps"
