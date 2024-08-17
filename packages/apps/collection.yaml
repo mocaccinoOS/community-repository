@@ -897,48 +897,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-aopalliance
-#   category: "libs"
-#   name: "aopalliance"
-#   version: "1.0-r3+1"
-#   uri:
-#   - http://aopalliance.sourceforge.net/
-#   license: "public-domain"
-#   description: "Aspect-Oriented Programming (AOP) Alliance classes"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-java/aopalliance
-#   provides:
-#   - category: "dev-java"
-#     name: "aopalliance"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-java
-#   build_requires:
-#   - <<: *layers-java
-
-- &libs-appdirs
-  category: "libs"
-  name: "appdirs"
-  version: "1.4.4-r3+1"
-  uri:
-  - https://github.com/ActiveState/appdirs/
-  license: "MIT"
-  description: "Module for determining appropriate platform-specific dirs"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/appdirs
-  provides:
-  - category: "dev-python"
-    name: "appdirs"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-argtable
   category: "libs"
   name: "argtable"
@@ -13847,7 +13805,6 @@ packages:
   - <<: *layers-fonttools
   - <<: *apps-usbmuxd
   - <<: *apps-podofo
-  - <<: *libs-appdirs
   - <<: *libs-beautifulsoup4
   - <<: *libs-css-parser
   - <<: *libs-feedparser
@@ -15979,7 +15936,7 @@ packages:
     use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-appdirs
+  - <<: *layers-fonttools
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
   - <<: *libs-lockfile
@@ -15987,7 +15944,9 @@ packages:
   - <<: *apps-scour
   - <<: *libs-libvisio
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-fonttools
+  requires_final_images: true
 
 - &apps-kcdemu
   category: "apps"
