@@ -29,14 +29,14 @@ prelude:
 - echo "Packages:" {{ $packages_list }}
 {{- $packages := include "community.map_packages_with_deps" .Values | fromJson }}
 
-{{/*- debug */}}
-{{/*- depends on which comes first out of the below debug functions, only the first one will be executed */}}
+{{/* debug */}}
+{{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
 {{/*- if eq .Values.name "kaffeine-tde" }}
-{{- template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
-{{- template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
-{{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
+  {{- template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
+  {{- template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
+  {{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
 {{- end */}}
-{{/*- end debug */}}
+{{/* end debug */}}
 
 {{- $prereqs := include "community.prereqs" ( list .Values $packages "" ) }}
 - |
@@ -49,84 +49,22 @@ prelude:
   rm -rf /etc/portage/package.unmask || true; \
   rm -rf /etc/portage/package.use || true;
 {{- else }}
+  {{/* debug */}}
+  {{/*- depends on which comes first out of the below debug functions, only the first one will be executed */}}
+  {{/*- if eq .Values.name "blender" }}
+    {{- template "community.dumpList" ( include "community.package_setup" .Values ) }}
+    {{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
+    {{- end */}}
+  {{/* end debug */}}
 
-{{/*- debug */}}
-{{/*- depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/*- if eq .Values.name "blender" }}
-{{- template "community.dumpList" ( include "community.package_setup" .Values ) }}
-{{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
-{{- end */}}
-{{/*- end debug */}}
-
-{{- include "community.package_setup" .Values }}
-
+  {{- include "community.package_setup" .Values }}
 {{- end }}
 
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
-# {{- if eq .Values.category "layerbase" }}
-# includes:
-# - ^/etc/portage/package.accept_keywords/.*
-# - ^/etc/portage/package.license/.*
-# - ^/etc/portage/package.unmask/.*
-# - ^/etc/portage/package.use/.*
-# {{- end }}
+{{- include "community.includes_excludes" ( list .Values .Values.cateogry ) }}
 
-{{- if ne .Values.category "buildbase" }}
-excludes:
-- ^/etc/csh.env
-- ^/etc/environment.d/10-gentoo-env.conf
-- ^/etc/ld.so.conf
-- ^/etc/profile.env
-- ^/luetbuild
-- ^/usr/portage
-- ^/usr/portage/distfiles
-- ^/usr/share/applications/mimeinfo.cache
-- ^/var/cache/edb
-- ^/var/cache/distfiles
-- ^/var/cache/fontconfig
-{{- if ne .Values.category "layerbase" }}
-- ^/var/db/pkg
-{{- end }}
-- ^/var/db/repos
-- ^/var/lib/portage
-- ^/var/log
-# should this be kept for layerbases and buildbases ?
-{{- if .Values.overlays }}
-- ^/etc/portage/repos.conf/eselect-repo.conf
-{{- end }}
-# devel split
-# - ^/usr/include
-# - ^/luetbuild
-# - ^/tmp
-{{- end }}
-
-# {{ if eq .Values.category "layerbase" }}
-# subpackages:
-#   - category: "layers"
-#     name: "{{ .Values.name }}"
-#     version: "{{ .Values.version }}"
-#     excludes:
-#     - ^/var
-#     hidden: false
-# {{ end }}
-
-#     includes:
-#     - ^/var/db/pkg/.*
-#     excludes:
-#     - ^/var$
-#     - ^/var/db$
-
-{{- if .Values.excludes }}
-{{- if eq .Values.category "buildbase" }}
-excludes:
-{{- end }}
-{{- range .Values.excludes }}
-{{- if . }}
-- {{ . }}
-{{- end }}
-{{- end }}
-{{- end }}
+{{- include "community.subpackages" .Values }}
 
 {{- end }}

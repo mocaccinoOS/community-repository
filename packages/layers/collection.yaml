@@ -1584,10 +1584,47 @@ packages:
   unpack: true
 
 
+# - &def-fonttools
+#   category: "layers"
+#   name: "fonttools"
+#   version: "4.53.1"
+#   uri:
+#   - https://github.com/fonttools/fonttools/
+#   license: "BSD"
+#   description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/fonttools
+#   provides:
+#   - category: "dev-python"
+#     name: "appdirs"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "fonttools"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "fs"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
+# 
+# - <<: *def-fonttools
+#   category: "layerbase"
+#   hidden: true
+# 
+# - <<: *def-fonttools
+#   category: "buildbase"
+#   hidden: true
+#   unpack: true
+
+
 - &def-fonttools
-  category: "layers"
+  category: "buildbase"
   name: "fonttools"
-  version: "4.53.1"
+  version: "4.53.1+1"
   uri:
   - https://github.com/fonttools/fonttools/
   license: "BSD"
@@ -1610,16 +1647,12 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- <<: *def-fonttools
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-fonttools
-  category: "buildbase"
-  hidden: true
   unpack: true
-  
+  hidden: true
+  subpackages_templates:
+  - layerbase
+  - layers
+
 
 - &def-openmpi
   category: "layers"

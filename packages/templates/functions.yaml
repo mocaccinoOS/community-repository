@@ -194,7 +194,7 @@
 ################################################################################
 
 {{- define "community.package_setup" }}
-
+{{/* setup files will always have 'layer' category for layers, layerbases and buildbases */}}
 {{- include "community.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) }}
 
 {{- $filepath := "/etc/portage/package" }}
@@ -430,9 +430,9 @@
 {{- $packages := index . 1 }}
 {{- $previous_package := index . 2 }}
 
-{{- $layerbase_package_setup_only := false }}
+{{- $skip_package_setup := false }}
 {{- if gt ( len . ) 3 }}
-  {{- $layerbase_package_setup_only = index . 3 }}
+  {{- $skip_package_setup = index . 3 }}
 {{- end }}
 
 {{- with index . 0 }}
@@ -458,7 +458,12 @@
 {{- if .labels }}
 {{- if ( index .labels "emerge.packages" ) }}
 
-{{- if or ( not $layerbase_package_setup_only ) ( and ( $layerbase_package_setup_only ) ( eq .category "layerbase" ) ) }}
+{{/* do not perform the package setup here */}}
+{{/* this is meant to skip adding the setup files to the final package */}}
+{{/* the packages that are not layerbases must not keep the setup files, so this step is done before starting emerging */}}
+{{/* however, the setup files are brought here for the dependencies as those are emerged in the preparation steps, but not for the top atoms of the package built */}}
+{{/* note the buildbases contain the setup files anyway */}}
+{{- if or ( not $skip_package_setup ) ( and ( $skip_package_setup ) ( eq .category "layerbase" ) ) }}
 {{- include "community.package_setup" . }}
 {{- end }}
 
@@ -511,6 +516,108 @@
 {{- end }}
 
 ################################################################################
+## community.subpackages ###
+################################################################################
+
+{{- define "community.subpackages" }}
+
+  {{- $values := . }}
+
+  {{- if $values.subpackages_templates }}
+    {{/* keep the valid categories only */}}
+    {{- $hierarchy := dict "layers" "1" "layerbase" "2" "buildbase" "3" }}
+    {{- $categories := list }}
+    {{- $main_category := get $hierarchy $values.category }}
+    {{- if $main_category }}
+      {{- range $values.subpackages_templates }}
+        {{- $item := (get $hierarchy . ) }}
+        {{- if $item }}
+            {{- if $item < $main_category }}
+              {{- $categories = append $categories . }}
+            {{- end }}
+        {{- end}}
+      {{- end}}
+    {{- end}}
+    {{- if gt ( len $categories ) 0 }}
+subpackages:
+      {{- range $categories }}
+- category: "{{ . }}"
+  name: "{{ $values.name }}"
+  version: "{{ $values.version }}"
+        {{- if eq . "layerbase" }}
+  hidden: $values.hidden
+        {{- end }}
+        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $values.subpackages }}
+    {{/* not safe if category/name already exists */}}
+    {{- if eq ( len $categories ) 0 }}
+  subpackages:
+    {{- end }}
+    {{- range $values.subpackages }}
+      {{- if . }}
+- {{ . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+
+{{- end }}
+
+################################################################################
+## community.includes_excludes ###
+################################################################################
+
+{{- define "community.includes_excludes" }}
+
+{{- $values := index . 1 }}
+{{- $category := default ( index . 2 ) $values.category }}
+
+{{- if ne $category "buildbase" }}
+excludes:
+- ^/etc/csh.env
+- ^/etc/environment.d/10-gentoo-env.conf
+- ^/etc/ld.so.conf
+- ^/etc/profile.env
+- ^/luetbuild
+- ^/usr/portage
+- ^/usr/portage/distfiles
+- ^/usr/share/applications/mimeinfo.cache
+- ^/var/cache/edb
+- ^/var/cache/distfiles
+- ^/var/cache/fontconfig
+  {{- if ne $category "layerbase" }}
+- ^/var/db/pkg
+  {{- end }}
+- ^/var/db/repos
+- ^/var/lib/portage
+- ^/var/log
+# should this be kept for layerbases and buildbases ?
+  {{- if $values.overlays }}
+- ^/etc/portage/repos.conf/eselect-repo.conf
+  {{- end }}
+# devel split
+# - ^/usr/include
+# - ^/luetbuild
+# - ^/tmp
+{{- end }}
+
+{{- if $values.excludes }}
+  {{- if eq $category "buildbase" }}
+excludes:
+  {{- end }}
+  {{- range $values.excludes }}
+    {{- if . }}
+- {{ . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- end }}
+
+################################################################################
 ## community.get_single_or_multi_line_item ###
 ################################################################################
 
@@ -531,18 +638,18 @@
 
 {{- define "community.merge_shell_commands" }}
 
-{{- $command := "" }}
-{{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
-{{- $command = printf "%s\n%s; \\" $command ( trimAll "; \n" . ) }}
-{{- end }}
-{{- $command = printf "%s\necho;" $command | trimPrefix "\n" }}
+  {{- $command := "" }}
+  {{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
+    {{- $command = printf "%s\n%s; \\" $command ( trimAll "; \n" . ) }}
+  {{- end }}
+  {{- $command = printf "%s\necho;" $command | trimPrefix "\n" }}
 
-{{- $command }}
+  {{- $command }}
 
 {{- end }}
 
 ################################################################################
-## flatten ###
+## community.flatten ###
 ################################################################################
 
 {{- define "community.flatten_list" -}}
@@ -571,8 +678,8 @@
     {{- else -}}
 - name: {{ $sublabel | quote }}
   value: {{ $val | quote }}
+    {{- end -}}
   {{- end -}}
-{{- end -}}
 {{- end -}}
 
 ################################################################################
@@ -590,9 +697,9 @@
 {{- define "community.dumpList" }}
 
 {{- $debug := "" }}
-{{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
-{{- $debug = printf "%s\n%s" $debug . }}
-{{- end }}
+  {{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
+    {{- $debug = printf "%s\n%s" $debug . }}
+  {{- end }}
 {{- template "community.dump" $debug }}
 
 {{- end }}
