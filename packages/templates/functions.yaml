@@ -532,7 +532,7 @@
       {{- range $values.subpackages_templates }}
         {{- $item := (get $hierarchy . ) }}
         {{- if $item }}
-            {{- if $item < $main_category }}
+            {{- if lt $item $main_category }}
               {{- $categories = append $categories . }}
             {{- end }}
         {{- end}}
