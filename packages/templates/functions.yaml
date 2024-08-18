@@ -523,10 +523,11 @@
 
   {{- $values := . }}
 
+  {{- $categories := list }}
+
   {{- if $values.subpackages_templates }}
     {{/* keep the valid categories only */}}
     {{- $hierarchy := dict "layers" "1" "layerbase" "2" "buildbase" "3" }}
-    {{- $categories := list }}
     {{- $main_category := get $hierarchy $values.category }}
     {{- if $main_category }}
       {{- range $values.subpackages_templates }}
@@ -545,7 +546,7 @@ subpackages:
   name: "{{ $values.name }}"
   version: "{{ $values.version }}"
         {{- if eq . "layerbase" }}
-  hidden: $values.hidden
+  hidden: {{ $values.hidden }}
         {{- end }}
         {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
@@ -572,8 +573,8 @@ subpackages:
 
 {{- define "community.includes_excludes" }}
 
-{{- $values := index . 1 }}
-{{- $category := default ( index . 2 ) $values.category }}
+{{- $values := index . 0 }}
+{{- $category := default ( index . 1 ) $values.category }}
 
 {{- if ne $category "buildbase" }}
 excludes:
