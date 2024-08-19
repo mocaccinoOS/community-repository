@@ -574,8 +574,7 @@ subpackages:
 {{- define "community.includes_excludes" }}
 
 {{- $values := index . 0 }}
-{{/*- $category := default ( index . 1 ) $values.category */}}
-{{- $category := index . 1 }}
+{{- $category := default ( index . 1 ) $values.category }}
 
 {{- if ne $category "buildbase" }}
 excludes:
