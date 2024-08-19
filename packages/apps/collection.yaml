@@ -4332,28 +4332,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-xwininfo
-  category: "libs"
-  name: "xwininfo"
-  version: "1.1.6+1"
-  uri:
-  - https://www.x.org/wiki/
-  - https://gitlab.freedesktop.org/xorg/app/xwininfo
-  license: "MIT"
-  description: "window information utility for X"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-apps/xwininfo
-  provides:
-  - category: "x11-apps"
-    name: "xwininfo"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -15129,7 +15107,6 @@ packages:
     name: "x2goprint"
     version: ">=0"
   - <<: *fonts-font-cursor-misc
-  - <<: *libs-xwininfo
   build_requires:
   - <<: *layers-perl-libs
 
