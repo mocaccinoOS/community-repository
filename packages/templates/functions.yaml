@@ -548,7 +548,7 @@ subpackages:
         {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
         {{- end }}
-        {{- ( include "community.includes_excludes" ( list $values . ) ) }}
+        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
     {{- end }}
   {{- end }}
@@ -574,7 +574,7 @@ subpackages:
 {{- define "community.includes_excludes" }}
 
 {{- $values := index . 0 }}
-{{- $category := default ( index . 1 ) $values.category }}
+{{- $category := index . 1 }}
 
 {{- if ne $category "buildbase" }}
 excludes:
