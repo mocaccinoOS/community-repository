@@ -548,7 +548,7 @@ subpackages:
         {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
         {{- end }}
-        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
+        {{- ( include "community.includes_excludes" ( list $values . ) ) }}
       {{- end }}
     {{- end }}
   {{- end }}
@@ -556,7 +556,7 @@ subpackages:
   {{- if $values.subpackages }}
     {{/* not safe if category/name already exists */}}
     {{- if eq ( len $categories ) 0 }}
-  subpackages:
+subpackages:
     {{- end }}
     {{- range $values.subpackages }}
       {{- if . }}
