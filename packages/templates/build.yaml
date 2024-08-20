@@ -67,4 +67,11 @@ steps:
 
 {{- include "community.subpackages" .Values }}
 
+{{/* debug */}}
+{{- if eq .Values.name "fonttools" }}
+{{- template "community.dumpList" ( include "community.subpackages" .Values ) }}
+{{- include "community.dumpJson" ( get ( ( printf "debug:\n %s"  .Values ) | fromYaml ) "debug" ) }}
+{{- end }}
+{{/* end debug */}}
+
 {{- end }}
