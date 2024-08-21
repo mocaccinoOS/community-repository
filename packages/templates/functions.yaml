@@ -548,7 +548,7 @@ subpackages:
         {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
         {{- end }}
-        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
+{{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
     {{- end }}
   {{- end }}
@@ -599,8 +599,8 @@ excludes:
   {{- if $values.overlays }}
 - ^/etc/portage/repos.conf/eselect-repo.conf
   {{- end }}
+{{/* devel split */}}
 {{/*}}
-devel split
 - ^/usr/include
 - ^/luetbuild
 - ^/tmp
