@@ -69,6 +69,7 @@ steps:
 
 {{/* debug */}}
 {{/*- if eq .Values.name "fonttools" }}
+{{- include "community.dump" ( printf "debug:\n%s\nend debug" ( .Values | toYaml ) ) }}
 {{- include "community.dump" ( printf "debug:\n%s\nend debug" ( include "community.subpackages" .Values ) ) }}
 {{- end */}}
 {{/* end debug */}}
