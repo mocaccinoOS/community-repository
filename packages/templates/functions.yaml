@@ -534,7 +534,7 @@
         {{- $item := (get $hierarchy . ) }}
         {{- if $item }}
           {{- if lt $item $main_category }}
-            {{- $categories = append $categories . }}
+            {{- $categories = . | append $categories }}
           {{- end }}
         {{- end}}
       {{- end}}
@@ -548,7 +548,7 @@ subpackages:
         {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
         {{- end }}
-        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
+        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 4 }}
       {{- end }}
     {{- end }}
   {{- end }}
@@ -575,7 +575,7 @@ subpackages:
 
 {{- $values := index . 0 }}
 {{- $category := index . 1 }}
-
+      
 {{- if ne $category "buildbase" }}
 excludes:
 - ^/etc/csh.env
