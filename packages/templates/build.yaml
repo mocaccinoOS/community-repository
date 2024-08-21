@@ -65,8 +65,6 @@ steps:
 
 {{- include "community.includes_excludes" ( list .Values .Values.category ) }}
 
-{{- include "community.subpackages" .Values }}
-
 {{/* debug */}}
 {{/*- if eq .Values.name "fonttools" }}
 {{- include "community.dump" ( printf "debug:\n%s\nend debug" ( .Values | toYaml ) ) }}
