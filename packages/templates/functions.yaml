@@ -533,9 +533,9 @@
       {{- range $values.subpackages_templates }}
         {{- $item := (get $hierarchy . ) }}
         {{- if $item }}
-            {{- if lt $item $main_category }}
-              {{- $categories = append $categories . }}
-            {{- end }}
+          {{- if lt $item $main_category }}
+            {{- $categories = append $categories . }}
+          {{- end }}
         {{- end}}
       {{- end}}
     {{- end}}
@@ -548,7 +548,7 @@ subpackages:
         {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
         {{- end }}
-{{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
+        {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
     {{- end }}
   {{- end }}
