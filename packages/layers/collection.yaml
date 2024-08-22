@@ -1649,46 +1649,44 @@ packages:
   - <<: *layers-X
   unpack: true
   hidden: true
-subpackages:
-- category: "layerbase"
-  name: "fonttools"
-  version: "4.53.1+6"
-  hidden: true
-  excludes:
-  - ^/etc/csh.env
-  - ^/etc/environment.d/10-gentoo-env.conf
-  - ^/etc/ld.so.conf
-  - ^/etc/profile.env
-  - ^/luetbuild
-  - ^/usr/portage
-  - ^/usr/portage/distfiles
-  - ^/usr/share/applications/mimeinfo.cache
-  - ^/var/cache/edb
-  - ^/var/cache/distfiles
-  - ^/var/cache/fontconfig
-  - ^/var/db/repos
-  - ^/var/lib/portage
-  - ^/var/log
-- category: "layers"
-  name: "fonttools"
-  version: "4.53.1+6"  
-  hidden: false
-  excludes:
-  - ^/etc/csh.env
-  - ^/etc/environment.d/10-gentoo-env.conf
-  - ^/etc/ld.so.conf
-  - ^/etc/profile.env
-  - ^/luetbuild
-  - ^/usr/portage
-  - ^/usr/portage/distfiles
-  - ^/usr/share/applications/mimeinfo.cache
-  - ^/var/cache/edb
-  - ^/var/cache/distfiles
-  - ^/var/cache/fontconfig
-  - ^/var/db/pkg
-  - ^/var/db/repos
-  - ^/var/lib/portage
-  - ^/var/log
+  subpackages:
+  - category: "layerbase"
+    name: "fonttools"
+    version: "4.53.1+6"
+    excludes:
+    - ^/etc/csh.env
+    - ^/etc/environment.d/10-gentoo-env.conf
+    - ^/etc/ld.so.conf
+    - ^/etc/profile.env
+    - ^/luetbuild
+    - ^/usr/portage
+    - ^/usr/portage/distfiles
+    - ^/usr/share/applications/mimeinfo.cache
+    - ^/var/cache/edb
+    - ^/var/cache/distfiles
+    - ^/var/cache/fontconfig
+    - ^/var/db/repos
+    - ^/var/lib/portage
+    - ^/var/log
+  - category: "layers"
+    name: "fonttools"
+    version: "4.53.1+6"  
+    excludes:
+    - ^/etc/csh.env
+    - ^/etc/environment.d/10-gentoo-env.conf
+    - ^/etc/ld.so.conf
+    - ^/etc/profile.env
+    - ^/luetbuild
+    - ^/usr/portage
+    - ^/usr/portage/distfiles
+    - ^/usr/share/applications/mimeinfo.cache
+    - ^/var/cache/edb
+    - ^/var/cache/distfiles
+    - ^/var/cache/fontconfig
+    - ^/var/db/pkg
+    - ^/var/db/repos
+    - ^/var/lib/portage
+    - ^/var/log
 
   # subpackages_templates:
   # - layerbase
