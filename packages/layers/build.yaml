@@ -1,3 +1,8 @@
-{{ template "community.build" . }}
 
-{{ template "community.subpackages" . }}
+{{/* debug */}}
+{{/*- if eq .Values.name "fonttools" }}
+{{- include "community.dump" ( printf "debug:\n%s\nend debug" ( ( include "community.build" . ) | toYaml ) ) }}
+{{- end */}}
+{{/* end debug */}}
+
+{{ template "community.build" . }}
