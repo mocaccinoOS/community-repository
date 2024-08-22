@@ -545,9 +545,9 @@ subpackages:
 - category: "{{ . }}"
   name: "{{ $values.name }}"
   version: "{{ $values.version }}"
-        {{/*- if eq . "layerbase" }}
+        {{- if eq . "layerbase" }}
   hidden: {{ $values.hidden }}
-        {{- end */}}
+        {{- end }}
         {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
     {{- end }}
