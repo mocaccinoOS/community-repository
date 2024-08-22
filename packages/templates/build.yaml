@@ -65,7 +65,7 @@ steps:
 
 {{- include "community.includes_excludes" ( list .Values .Values.category ) }}
 
-{{ template "community.subpackages" .Values }}
+{{- ( include "community.subpackages" .Values }}
 
 {{/* debug */}}
 {{/*- if eq .Values.name "fonttools" }}
