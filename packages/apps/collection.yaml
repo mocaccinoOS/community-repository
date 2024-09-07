@@ -14330,10 +14330,11 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Qt5
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+9"
+  version: "2.6.1.1-r1+10"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -14350,10 +14351,10 @@ packages:
   - atom: "media-gfx/luminance-hdr"
     use: "fits openmp sse2"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
   - <<: *layers-cfitsio
   build_requires:
-  - <<: *buildbase-kde-common
+  - <<: *buildbase-qt
   - <<: *buildbase-cfitsio
   requires_final_images: true
   
