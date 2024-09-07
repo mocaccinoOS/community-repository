@@ -5212,7 +5212,7 @@ packages:
 
 - category: "apps"
   name: "dolphin-plugins-git"
-  version: "23.08.5"
+  version: "24.05.2"
   uri:
   - https://apps.kde.org/dolphin_plugins/
   license: "GPL-2"
@@ -5220,7 +5220,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/dolphin-plugins-git
+      kde-apps/dolphin-plugins-git:6
   provides:
   - category: "kde-apps"
     name: "dolphin-plugins-git"
@@ -6680,7 +6680,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "23.08.5"
+  version: "24.05.2"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -6688,7 +6688,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/kate
+      kde-apps/kate:6
   provides:
   - category: "kde-apps"
     name: "kate"
@@ -6859,7 +6859,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "23.08.5-r1"
+  version: "24.05.2"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6867,7 +6867,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/konqueror
+      kde-apps/konqueror:6
   provides:
   - category: "kde-apps"
     name: "konqueror"
@@ -9326,7 +9326,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.2.5"
+  version: "4.2.6"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -9334,7 +9334,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      net-analyzer/wireshark
+      net-analyzer/wireshark:6
   provides:
   - category: "net-analyzer"
     name: "wireshark"
@@ -9343,12 +9343,12 @@ packages:
   - atom: "net-analyzer/wireshark"
     use: "qt6 wifi"
   requires:
-  - <<: *layers-qt6
+  - <<: *layers-qt
   - category: "entity"
     name: "pcap"
     version: ">=0"
   build_requires:
-  - <<: *layers-qt6
+  - <<: *layers-qt
 
 - &apps-worker
   category: "apps"
@@ -11762,7 +11762,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "30.2.0-r1+1"
+  version: "30.2.3"
   uri:
   - https://obsproject.com
   - https://jmvalin.ca/demo/rnnoise/
@@ -11808,7 +11808,7 @@ packages:
   # - atom: "net-libs/librist"
   #   accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt6
+  - <<: *layers-qt
   - <<: *apps-luajit
   - <<: *libs-asio
   - <<: *libs-mbedtls
@@ -11816,7 +11816,7 @@ packages:
   - <<: *libs-uthash
   - <<: *libs-websocketpp
   build_requires:
-  - <<: *layers-qt6
+  - <<: *layers-qt
 
 - category: "apps"
   name: "oh-my-posh"
