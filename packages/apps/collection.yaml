@@ -7046,7 +7046,7 @@ packages:
 - &apps-kvantum
   category: "apps"
   name: "kvantum"
-  version: "1.1.2"
+  version: "1.1.2-r1"
   uri:
   - https://github.com/tsujan/Kvantum
   license: "GPL-3"
@@ -7062,6 +7062,7 @@ packages:
   atoms:
   - atom: "x11-themes/kvantum"
     accept_keywords: "~amd64"
+    use: qt6 -qt5
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -7135,9 +7136,9 @@ packages:
   - atom: "media-gfx/librecad"
     use: "tools"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
 
 - &apps-linuxtv-utils
   category: "apps"
