@@ -1,1 +1,8 @@
+
+{{/* debug */}}
+{{/*- if eq .Values.name "fonttools" }}
+{{- include "community.dump" ( printf "debug:\n%s\nend debug" ( include "community.build" . ) ) }}
+{{- end */}}
+{{/* end debug */}}
+
 {{ template "community.build" . }}
