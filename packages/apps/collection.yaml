@@ -11325,29 +11325,30 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- category: "apps"
-  name: "kwave"
-  version: "24.05.1"
-  uri:
-  - https://apps.kde.org/kwave
-  license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
-  description: "Sound editor built on KDE Frameworks 5 that can edit many types of audio files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-apps/kwave
-  provides:
-  - category: "kde-apps"
-    name: "kwave"
-    version: ">=0"
-  atoms:
-  - atom: "kde-apps/kwave"
-    use: "flac mp3 opus oss vorbis"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *libs-id3lib
-  build_requires:
-  - <<: *layers-kde-common
+# Qt5
+# - category: "apps"
+#   name: "kwave"
+#   version: "24.05.1"
+#   uri:
+#   - https://apps.kde.org/kwave
+#   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
+#   description: "Sound editor built on KDE Frameworks 5 that can edit many types of audio files"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       kde-apps/kwave
+#   provides:
+#   - category: "kde-apps"
+#     name: "kwave"
+#     version: ">=0"
+#   atoms:
+#   - atom: "kde-apps/kwave"
+#     use: "flac mp3 opus oss vorbis"
+#   requires:
+#   - <<: *layers-kde-common
+#   - <<: *libs-id3lib
+#   build_requires:
+#   - <<: *layers-kde-common
 
 # - &apps-kweather
 #   category: "apps"
