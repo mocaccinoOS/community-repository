@@ -11280,29 +11280,30 @@ packages:
   #- <<: *layers-kde-common
   - <<: *layers-qt
 
-- category: "apps"
-  name: "krename"
-  version: "5.0.2-r1+3"
-  uri:
-  - https://apps.kde.org/krename
-  license: "GPL-2"
-  description: "Powerful batch file renamer"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      kde-misc/krename
-  provides:
-  - category: "kde-misc"
-    name: "krename"
-    version: ">=0"
-  atoms:
-  - atom: "kde-misc/krename"
-    use: "exif pdf taglib truetype"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-podofo
-  build_requires:
-  - <<: *layers-kde-common
+#Qt5
+# - category: "apps"
+#   name: "krename"
+#   version: "5.0.2-r1+3"
+#   uri:
+#   - https://apps.kde.org/krename
+#   license: "GPL-2"
+#   description: "Powerful batch file renamer"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       kde-misc/krename
+#   provides:
+#   - category: "kde-misc"
+#     name: "krename"
+#     version: ">=0"
+#   atoms:
+#   - atom: "kde-misc/krename"
+#     use: "exif pdf taglib truetype"
+#   requires:
+#   - <<: *layers-kde-common
+#   - <<: *apps-podofo
+#   build_requires:
+#   - <<: *layers-kde-common
 
 - category: "apps"
   name: "ktorrent"
