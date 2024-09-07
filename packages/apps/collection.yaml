@@ -2640,6 +2640,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libopusenc
+  category: "libs"
+  name: "libopusenc"
+  version: "0.2.1-r1"
+  uri:
+  - https://www.opus-codec.org/
+  license: "BSD"
+  description: "High-level API for encoding .opus files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libopusenc
+  provides:
+  - category: "media-libs"
+    name: "libopusenc"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libprojectm
   category: "libs"
   name: "libprojectm"
@@ -6728,6 +6749,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+  # TODO: replace by kde-apps/kcolorchooser
 # - category: "apps"
 #   name: "kcoloredit"
 #   version: "2.0.0_p20171121-r1+1"
@@ -11683,7 +11705,7 @@ packages:
 
 - category: "apps"
   name: "musescore"
-  version: "4.4.1"
+  version: "4.4.1+1"
   uri:
   - https://musescore.org/
   license: "GPL-2"
@@ -11702,6 +11724,8 @@ packages:
     use: "osc omr portmidi sf3 sfz alsa jack mp3 portaudio pulseaudio webengine"
   requires:
   - <<: *layers-kde-common
+  - <<: *libs-tinyxml2
+  - <<: *libs/libopusenc
   - <<: *apps-designer
   build_requires:
   - <<: *layers-kde-common
@@ -15995,6 +16019,7 @@ packages:
   - <<: *layers-kde-common
   - <<: *layers-sci-libs
   - <<: *libs-qxlsx
+  # - <<: *apps-cantor
   - <<: *libs-libcerf
   build_requires:
   - <<: *buildbase-kde-common
