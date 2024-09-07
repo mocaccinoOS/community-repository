@@ -5802,9 +5802,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# Qt5 only
 - category: "apps"
   name: "flameshot"
-  version: "12.1.0-r2+1"
+  version: "12.1.0-r2+2"
   uri:
   - https://flameshot.org
   license: "Apache-2.0 Free-Art-1.3 GPL-3+"
@@ -5817,10 +5818,13 @@ packages:
   - category: "media-gfx"
     name: "flameshot"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/flameshot"
+    use: "-wayland"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
 
 - category: "apps"
   name: "foliate"
