@@ -1919,19 +1919,37 @@ packages:
   version: "23.2.2"
   uri:
   - https://github.com/Intel-Media-SDK/MediaSDK
-  license: "MIT"
-  description: "Intel Media SDK"
+  - https://github.com/intel/media-driver
+  - https://github.com/intel/vpl-gpu-rt/
+  license: "MIT BSD no-source-code"
+  description: |
+    Intel Media SDK
+    Intel Media Driver for VA-API (iHD)
+    oneAPI Video Processing Library Intel GPU implementation
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      media-libs/libva-intel-media-driver
+      media-libs/oneVPL-intel-gpu
       media-libs/intel-mediasdk
   provides:
   - category: "media-libs"
     name: "intel-mediasdk"
     version: ">=0"
+  - category: "media-libs"
+    name: "oneVPL-intel-gpu"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libva-intel-media-driver"
+    version: ">=0"
   atoms:
   - atom: "media-libs/intel-mediasdk"
     accept_keywords: "~amd64"
+  - atom: "media-libs/oneVPL-intel-gpu"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/libva-intel-media-driver"
+    accept_keywords: "~amd64"
+    license: "no-source-code"
   requires:
   - <<: *layers-X
   build_requires:
