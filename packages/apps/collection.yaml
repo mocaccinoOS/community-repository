@@ -1913,6 +1913,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-intel-mediasdk
+  category: "libs"
+  name: "intel-mediasdk"
+  version: "23.2.2"
+  uri:
+  - https://github.com/Intel-Media-SDK/MediaSDK
+  license: "MIT"
+  description: "Intel Media SDK"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/intel-mediasdk
+  provides:
+  - category: "media-libs"
+    name: "intel-mediasdk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-javax-inject
   category: "libs"
   name: "javax-inject"
@@ -11832,6 +11853,7 @@ packages:
   - <<: *layers-qt
   - <<: *apps-luajit
   - <<: *libs-asio
+  - <<: *libs-intel-mediasdk
   - <<: *libs-mbedtls
   - <<: *libs-nlohmann_json
   - <<: *libs-uthash
