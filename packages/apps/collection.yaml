@@ -1918,29 +1918,35 @@ packages:
   name: "intel-mediasdk"
   version: "23.2.2"
   uri:
-  - https://github.com/Intel-Media-SDK/MediaSDK
+  - https://github.com/intel/gmmlib
   - https://github.com/intel/media-driver
   - https://github.com/intel/vpl-gpu-rt/
+  - https://github.com/Intel-Media-SDK/MediaSDK
   license: "MIT BSD no-source-code"
   description: |
-    Intel Media SDK
+    Intel Graphics Memory Management Library
     Intel Media Driver for VA-API (iHD)
     oneAPI Video Processing Library Intel GPU implementation
+    Intel Media SDK
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      media-libs/gmmlib
       media-libs/libva-intel-media-driver
       media-libs/oneVPL-intel-gpu
       media-libs/intel-mediasdk
   provides:
   - category: "media-libs"
+    name: "gmmlib"
+    version: ">=0"
+  - category: "media-libs"
     name: "intel-mediasdk"
     version: ">=0"
   - category: "media-libs"
-    name: "oneVPL-intel-gpu"
+    name: "libva-intel-media-driver"
     version: ">=0"
   - category: "media-libs"
-    name: "libva-intel-media-driver"
+    name: "oneVPL-intel-gpu"
     version: ">=0"
   atoms:
   - atom: "media-libs/intel-mediasdk"
