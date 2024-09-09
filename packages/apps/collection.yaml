@@ -11351,7 +11351,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# Qt5
 - category: "apps"
   name: "krename"
   version: "5.0.2-r1+4"
@@ -11397,7 +11396,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# Qt5
 - category: "apps"
   name: "kwave"
   version: "24.05.2"
@@ -15495,7 +15493,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.8.0+3"
+  version: "1.8.0+2"
   uri:
   - http://www.dyne.org/software/frei0r/
   license: "GPL-2"
@@ -15516,7 +15514,9 @@ packages:
   - <<: *libs-gavl
   - <<: *libs-opencv
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *layerbase-sci-libs
+  requires_final_images: true
 
 - &libs-sdl
   category: "libs"
@@ -16122,7 +16122,7 @@ packages:
 
 - category: "apps"
   name: "nomacs"
-  version: "3.16.224-r6+3"
+  version: "3.16.224-r6+1"
   uri:
   - https://nomacs.org
   license: "GPL-3+"
@@ -16145,7 +16145,7 @@ packages:
   - <<: *buildbase-qt
   - <<: *layerbase-sci-libs
   requires_final_images: true
-  
+
 - &apps-octave
   category: "apps"
   name: "octave"
@@ -17280,7 +17280,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "7+2"
+  version: "7+1"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -17408,46 +17408,46 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-gmic
-  category: "apps"
-  name: "gmic"
-  version: "3.4.2-r101"
-  uri:
-  - http://gmic.eu/
-  - https://github.com/GreycLab/gmic
-  - https://framagit.org/dtschump/gmic
-  license: "CeCILL-2 GPL-3"
-  description: "GREYC's Magic Image Converter"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/gmic
-  overlays:
-  - enable: "stefantalpalaru"
-  provides:
-  - category: "media-gfx"
-    name: "gmic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "cimg"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/gmic"
-    accept_keywords: "~amd64"
-    use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
-  - atom: "media-libs/cimg"
-    accept_keywords: "~amd64"
-  optrequires:
-  - <<: *apps-gimp
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-qt
-  - <<: *libs-opencv
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  - <<: *layerbase-sci-libs
-  requires_final_images: true
+# - &apps-gmic
+#   category: "apps"
+#   name: "gmic"
+#   version: "3.4.2-r101"
+#   uri:
+#   - http://gmic.eu/
+#   - https://github.com/GreycLab/gmic
+#   - https://framagit.org/dtschump/gmic
+#   license: "CeCILL-2 GPL-3"
+#   description: "GREYC's Magic Image Converter"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/gmic
+#   overlays:
+#   - enable: "stefantalpalaru"
+#   provides:
+#   - category: "media-gfx"
+#     name: "gmic"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "cimg"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/gmic"
+#     accept_keywords: "~amd64"
+#     use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+#   - atom: "media-libs/cimg"
+#     accept_keywords: "~amd64"
+#   optrequires:
+#   - <<: *apps-gimp
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   - <<: *libs-opencv
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-qt
+#   - <<: *layerbase-sci-libs
+#   requires_final_images: true
 
 - category: "apps"
   name: "krita"
@@ -17569,7 +17569,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.1.1-r2+2"
+  version: "4.1.1-r2+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
