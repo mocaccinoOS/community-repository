@@ -10277,7 +10277,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.1.0"
+  version: "3.0.0"
   uri:
   - http://www.xsane.org/
   license: "GPL-2"
@@ -10287,7 +10287,7 @@ packages:
     emerge.packages: >-
       media-sound/amarok
   overlays:
-  - enable: "gentoo-zh"
+  - enable: "robert7k"
   provides:
   - category: "media-sound"
     name: "amarok"
@@ -10297,11 +10297,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/amarok"
-    use: "mariadb mtp -qt5 qt6 wikipedia handbook # debug ipod lastfm podcast"
+    use: "mariadb mtp wikipedia debug handbook # ipod lastfm podcast"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
-  # - <<: *apps-designer
+  - <<: *apps-designer
   build_requires:
   - <<: *layers-kde-common
 
