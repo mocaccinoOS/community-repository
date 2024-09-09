@@ -60,6 +60,10 @@ stubs:
   name: "kde-common"
   version: ">=0"
 
+- &layers-kde-kf5
+  category: "layers"
+  name: "kde-kf5"
+
 - &layers-kde-apps-minimal
   category: "layers"
   name: "kde-apps-minimal"
@@ -11347,30 +11351,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-#Qt5
-# - category: "apps"
-#   name: "krename"
-#   version: "5.0.2-r1+3"
-#   uri:
-#   - https://apps.kde.org/krename
-#   license: "GPL-2"
-#   description: "Powerful batch file renamer"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       kde-misc/krename
-#   provides:
-#   - category: "kde-misc"
-#     name: "krename"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-misc/krename"
-#     use: "exif pdf taglib truetype"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *apps-podofo
-#   build_requires:
-#   - <<: *layers-kde-common
+# Qt5
+- category: "apps"
+  name: "krename"
+  version: "5.0.2-r1+4"
+  uri:
+  - https://apps.kde.org/krename
+  license: "GPL-2"
+  description: "Powerful batch file renamer"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-misc/krename
+  provides:
+  - category: "kde-misc"
+    name: "krename"
+    version: ">=0"
+  atoms:
+  - atom: "kde-misc/krename"
+    use: "exif pdf taglib truetype"
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *apps-podofo
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "ktorrent"
@@ -11394,29 +11398,29 @@ packages:
   - <<: *layers-plasma
 
 # Qt5
-# - category: "apps"
-#   name: "kwave"
-#   version: "24.05.1"
-#   uri:
-#   - https://apps.kde.org/kwave
-#   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
-#   description: "Sound editor built on KDE Frameworks 5 that can edit many types of audio files"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       kde-apps/kwave
-#   provides:
-#   - category: "kde-apps"
-#     name: "kwave"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-apps/kwave"
-#     use: "flac mp3 opus oss vorbis"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *libs-id3lib
-#   build_requires:
-#   - <<: *layers-kde-common
+- category: "apps"
+  name: "kwave"
+  version: "24.05.2"
+  uri:
+  - https://apps.kde.org/kwave
+  license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
+  description: "Sound editor built on KDE Frameworks 5 that can edit many types of audio files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      kde-apps/kwave
+  provides:
+  - category: "kde-apps"
+    name: "kwave"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/kwave"
+    use: "flac mp3 opus oss vorbis"
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *libs-id3lib
+  build_requires:
+  - <<: *layers-kde-kf5
 
 # - &apps-kweather
 #   category: "apps"
