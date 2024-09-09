@@ -16118,7 +16118,7 @@ packages:
 
 - category: "apps"
   name: "nomacs"
-  version: "3.16.224-r6+2"
+  version: "3.16.224-r6+3"
   uri:
   - https://nomacs.org
   license: "GPL-3+"
@@ -16138,8 +16138,10 @@ packages:
   - <<: *layers-qt
   - <<: *libs-opencv
   build_requires:
-  - <<: *layers-qt
-
+  - <<: *buildbase-qt
+  - <<: *layerbase-sci-libs
+  requires_final_images: true
+  
 - &apps-octave
   category: "apps"
   name: "octave"
@@ -17316,7 +17318,9 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *layerbase-sci-libs
+  requires_final_images: true
 
 - &libs-wxpython
   category: "libs"
@@ -17438,6 +17442,7 @@ packages:
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
+  - <<: *layerbase-sci-libs
   requires_final_images: true
 
 - category: "apps"
