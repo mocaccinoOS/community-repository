@@ -1671,7 +1671,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.15"
+  version: "0.14"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -1937,14 +1937,14 @@ packages:
   - <<: *buildbase-openmpi
   requires_final_images: true
 
-# - <<: *def-sci-libs
-#   category: "layerbase"
-#   hidden: true
-
 - <<: *def-sci-libs
-  category: "buildbase"
-  unpack: true
+  category: "layerbase"
   hidden: true
+
+# - <<: *def-sci-libs
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 
 - &def-term-libs
