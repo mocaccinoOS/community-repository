@@ -183,6 +183,19 @@ stubs:
 #   name: "sci-libs"
 #   version: ">=0"
 
+- &layers-opencv
+  category: "layers"
+  name: "opencv"
+  version: ">=0"
+# - &layerbase-opencv
+#   category: "layerbase"
+#   name: "opencv"
+#   version: ">=0"
+- &buildbase-opencv
+  category: "buildbase"
+  name: "opencv"
+  version: ">=0"
+
 # - &layers-clang-15
 #   category: "layers"
 #   name: "clang-15"
@@ -1945,6 +1958,45 @@ packages:
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
+
+
+- &def-opencv
+  category: "layers"
+  name: "opencv"
+  version: "4.9.0-r1"
+  uri:
+  - https://opencv.org
+  license: "Apache-2.0"
+  description: "A collection of algorithms and sample code for various computer vision problems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/opencv
+  provides:
+  - category: "media-libs"
+    name: "opencv"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/opencv"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # gdal # ffmpeg needs abi_x86_32"
+    #use: "contrib contribdnn features2d python png jpeg"
+  requires:
+  - <<: *layers-qt
+  # - <<: *layers-sci-libs
+  - <<: *libs-beautifulsoup4
+  - <<: *libs-flatbuffers
+  - <<: *libs-tbb
+  - <<: *libs-xine-lib
+  build_requires:
+  - <<: *layers-qt
+  # - <<: *buildbase-qt
+  # - <<: *layerbase-sci-libs
+  # requires_final_images: true
+
+- <<: *def-opencv
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 
 - &def-term-libs
