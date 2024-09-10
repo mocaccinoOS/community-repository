@@ -13415,7 +13415,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/opencv"
-    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gdal gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # ffmpeg needs abi_x86_32"
+    use: "contrib contribcvv contribdnn contribfreetype contribhdf eigen gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl png python qt5 threads tiff v4l vaapi webp # contribovis contribsfm contribxfeatures2d cuda download gflags glog gtk3 java tesseract vtk # gdal # ffmpeg needs abi_x86_32"
+    #use: "contrib contribdnn features2d python png jpeg"
   requires:
   - <<: *layers-qt
   - <<: *layers-sci-libs
@@ -15493,7 +15494,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.8.0+2"
+  version: "1.8.0+3"
   uri:
   - http://www.dyne.org/software/frei0r/
   license: "GPL-2"
