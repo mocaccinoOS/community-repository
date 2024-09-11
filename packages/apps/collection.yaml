@@ -17652,6 +17652,8 @@ packages:
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( {15..17} )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-2.2.2.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-2.2.2.ebuild manifest
   inner_build_reqs:
   # - app-text/doxygen
   # - dev-python/sphinx
