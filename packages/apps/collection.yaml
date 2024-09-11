@@ -8797,7 +8797,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.1"
+  version: "0.8.1+1"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -8811,9 +8811,9 @@ packages:
     name: "subtitlecomposer"
     version: ">=0"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
 
 - &apps-sqlcipher
   category: "apps"
@@ -17619,9 +17619,9 @@ packages:
 #   - category: "media-libs"
 #     name: "opensubdiv"
 #     version: ">=0"
-#   - category: "media-libs"
-#     name: "osl"
-#     version: ">=0"
+#   # - category: "media-libs"
+#   #   name: "osl"
+#   #   version: ">=0"
 #   - category: "media-libs"
 #     name: "partio"
 #     version: ">=0"
@@ -17630,7 +17630,7 @@ packages:
 #     version: ">=0"
 #   atoms:
 #   - atom: "media-gfx/blender"
-#     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k -llvm_slot_17 llvm_slot_18 man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # cuda optix # oneapi # debug headless test"
+#     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k -llvm_slot_17 llvm_slot_18 man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # osl https://bugs.gentoo.org/935156 # cuda optix # oneapi # debug headless test"
 #     # accept_keywords: "~amd64"
 #   - atom: "media-gfx/alembic"
 #     use: "hdf5"
@@ -17648,8 +17648,8 @@ packages:
 #   - atom: "media-libs/opensubdiv"
 #     use: "opencl openmp ptex tbb # cuda"
 #     accept_keywords: "~amd64"
-#   - atom: "media-libs/osl"
-#     use: "gui libcxx -llvm_slot_17 llvm_slot_18 partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+#   # - atom: "media-libs/osl"
+#   #   use: "gui libcxx -llvm_slot_17 llvm_slot_18 partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
 #   env: "MAKEOPTS=\"-l0.9\""
 #   prepare:
 #   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
