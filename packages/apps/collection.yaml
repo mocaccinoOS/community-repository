@@ -13809,33 +13809,32 @@ packages:
   - <<: *buildbase-fonttools
   requires_final_images: true
 
-# Qt5
-# - &apps-cantor
-#   category: "apps"
-#   name: "cantor"
-#   version: "24.05.2"
-#   uri:
-#   - https://apps.kde.org/cantor/
-#   license: "GPL-2"
-#   description: "Interface for doing mathematics and scientific computing"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-apps/cantor
-#   provides:
-#   - category: "kde-apps"
-#     name: "cantor"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-apps/cantor"
-#     use: "analitza lua postscript python # julia qalculate R"
-#   requires:
-#   - <<: *layers-kde-common
-#   # - <<: *apps-R
-#   - <<: *apps-luajit
-#   - <<: *libs-analitza
-#   build_requires:
-#   - <<: *layers-kde-common
+- &apps-cantor
+  category: "apps"
+  name: "cantor"
+  version: "24.05.2+1"
+  uri:
+  - https://apps.kde.org/cantor/
+  license: "GPL-2"
+  description: "Interface for doing mathematics and scientific computing"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/cantor
+  provides:
+  - category: "kde-apps"
+    name: "cantor"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/cantor"
+    use: "analitza lua postscript python # julia qalculate R"
+  requires:
+  - <<: *layers-kde-common
+  # - <<: *apps-R
+  - <<: *apps-luajit
+  - <<: *libs-analitza
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "celluloid"
@@ -15953,7 +15952,7 @@ packages:
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.8.0+8"
+  version: "0.8.0+9"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -15967,11 +15966,11 @@ packages:
     name: "kcdemu"
     version: ">=0"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   - <<: *apps-cdemu
   build_requires:
   - <<: *kernel-modules-vhba-lts
-  - <<: *buildbase-kde-common
+  - <<: *buildbase-kde-kf5
   - <<: *layerbase-cdemu
   requires_final_images: true
 
