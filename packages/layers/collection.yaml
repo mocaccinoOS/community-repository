@@ -1671,30 +1671,21 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.14"
+  version: "0.15"
   uri:
   - https://xerces.apache.org/xerces-c/
-  - https://matplotlib.org/
-  - https://scipy.org/
   - https://arma.sourceforge.net
   - http://www.caam.rice.edu/software/ARPACK/
   - https://people.engr.tamu.edu/davis/suitesparse.html
-  - https://libgeos.org/
   - https://computation.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods
   - https://trac.osgeo.org/geotiff/
   - https://github.com/KarypisLab/METIS
   - https://www.unidata.ucar.edu/software/netcdf/
-  - http://ogdi.sourceforge.net/
   - https://proj.org/
-  - https://computing.llnl.gov/projects/sundials
   - https://portal.nersc.gov/project/sparse/superlu/
-  - https://laszip.org/
-  - https://sourceforge.net/projects/lpsolve/
   license: "metapackage"
   description: |
-    A validating XML parser written in a portable subset of C++
-    Pure python plotting library with matlab like syntax
-    Scientific algorithms library for Python
+    Validating XML parser written in a portable subset of C++
     Library to order a sparse matrix prior to Cholesky factorization
     Arnoldi package library to solve large scale eigenvalue problems
     Algorithm for matrix permutation into block triangular form
@@ -1702,35 +1693,21 @@ packages:
     Sparse Cholesky factorization and update/downdate library
     Column approximate minimum degree ordering algorithm
     Extended sparse matrix package
-    Translator library for raster geospatial data formats (includes OGR support)
-    Geometry engine library for Geographic Information Systems
     Parallel matrix preconditioners library
     Sparse LU factorization for circuit simulation
     Simple but educational LDL^T matrix factorization algorithm
-    Library for reading TIFF files with embedded tags for geographic information
     A package for unstructured serial graph partitioning
     Scientific library and interface for array oriented data access
-    Open Geographical Datastore Interface, a GIS support library
-    PROJ coordinate transformation software
     Multithreaded multifrontal sparse QR factorization library
     Metapackage for a suite of sparse matrix tools
     Common configurations for all packages in suitesparse
-    Suite of nonlinear solvers
     Sparse LU factorization library
-    Multithreaded sparse LU factorization library
     Unsymmetric multifrontal sparse LU factorization library
-    Library for free and lossless compression of the LAS LiDAR format
-    C/C++ library for manipulating the LAS LiDAR format common in GIS
-    Mixed Integer Linear Programming (MILP) solver
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/xerces-c
-      dev-python/matplotlib
-      dev-python/scipy
-      sci-geosciences/laszip
       sci-libs/amd
-      sci-libs/armadillo
       sci-libs/arpack
       sci-libs/btf
       sci-libs/camd
@@ -1738,27 +1715,17 @@ packages:
       sci-libs/cholmod
       sci-libs/colamd
       sci-libs/cxsparse
-      sci-libs/geos
       sci-libs/hypre
       sci-libs/klu
       sci-libs/ldl
-      sci-libs/libgeotiff
       sci-libs/metis
       sci-libs/netcdf
-      sci-libs/ogdi
-      sci-libs/proj
       sci-libs/spqr
       sci-libs/suitesparse
       sci-libs/suitesparseconfig
-      sci-libs/sundials
       sci-libs/superlu
-      sci-libs/superlu_mt
       sci-libs/umfpack
-      sci-mathematics/lpsolve
   provides:
-  - category: "dev-cpp"
-    name: "xsimd"
-    version: ">=0"
   - category: "dev-libs"
     name: "xerces-c"
     version: ">=0"
@@ -1781,9 +1748,6 @@ packages:
     name: "kiwisolver"
     version: ">=0"
   - category: "dev-python"
-    name: "matplotlib"
-    version: ">=0"
-  - category: "dev-python"
     name: "meson-python"
     version: ">=0"
   - category: "dev-python"
@@ -1792,26 +1756,14 @@ packages:
   - category: "dev-python"
     name: "pyproject-metadata"
     version: ">=0"
-  - category: "dev-python"
-    name: "pythran"
-    version: ">=0"
-  - category: "dev-python"
-    name: "scipy"
-    version: ">=0"
   - category: "media-fonts"
     name: "stix-fonts"
     version: ">=0"
   - category: "media-libs"
     name: "qhull"
     version: ">=0"
-  - category: "sci-geosciences"
-    name: "laszip"
-    version: ">=0"
   - category: "sci-libs"
     name: "amd"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "armadillo"
     version: ">=0"
   - category: "sci-libs"
     name: "arpack"
@@ -1835,9 +1787,6 @@ packages:
     name: "cxsparse"
     version: ">=0"
   - category: "sci-libs"
-    name: "geos"
-    version: ">=0"
-  - category: "sci-libs"
     name: "gklib"
     version: ">=0"
   - category: "sci-libs"
@@ -1850,19 +1799,10 @@ packages:
     name: "ldl"
     version: ">=0"
   - category: "sci-libs"
-    name: "libgeotiff"
-    version: ">=0"
-  - category: "sci-libs"
     name: "metis"
     version: ">=0"
   - category: "sci-libs"
     name: "netcdf"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "ogdi"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "proj"
     version: ">=0"
   - category: "sci-libs"
     name: "spqr"
@@ -1874,19 +1814,10 @@ packages:
     name: "suitesparseconfig"
     version: ">=0"
   - category: "sci-libs"
-    name: "sundials"
-    version: ">=0"
-  - category: "sci-libs"
     name: "superlu"
     version: ">=0"
   - category: "sci-libs"
-    name: "superlu_mt"
-    version: ">=0"
-  - category: "sci-libs"
     name: "umfpack"
-    version: ">=0"
-  - category: "sci-mathematics"
-    name: "lpsolve"
     version: ">=0"
   - category: "virtual"
     name: "blas"
@@ -1899,43 +1830,26 @@ packages:
     use: "curl iconv icu threads # cpu_flags_x86_sse2"
   - atom: "sci-libs/arpack"
     use: "mpi"
-  - atom: "sci-libs/armadillo"
-    use: "arpack superlu blas hdf5 lapack # mkl"
   - atom: "sci-libs/cholmod"
     use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp mpi"
-  - atom: "sci-libs/libgeotiff"
-    use: "jpeg tiff zlib"
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf mpi"
-  - atom: "sci-libs/proj"
-    use: "curl tiff"
   - atom: "sci-libs/spqr"
     use: "partition # tbb"
   - atom: "sci-libs/suitesparse"
     use: "lapack partition # tbb # cuda"
-  - atom: "sci-libs/superlu_mt"
-    use: "int64 openmp threads"
-  - atom: "sci-libs/sundials"
-    use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
   - atom: "virtual/mpi"
     use: "fortran # nullmpi romio cxx threads"
   inner_build_reqs:
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
-  - <<: *layers-cfitsio
-  - <<: *layers-fonttools
-  - <<: *layers-openmpi
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-cfitsio
-  - <<: *buildbase-fonttools
-  - <<: *buildbase-openmpi
-  requires_final_images: true
+  - <<: *layers-qt
 
 - <<: *def-sci-libs
   category: "layerbase"
