@@ -1848,8 +1848,12 @@ packages:
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
+  - <<: *layers-openmpi
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
+  - <<: *buildbase-openmpi
+  requires_final_images: true
+
 
 - <<: *def-sci-libs
   category: "layerbase"

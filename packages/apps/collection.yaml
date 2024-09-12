@@ -14291,6 +14291,7 @@ packages:
   - https://box2d.org/
   - http://code.google.com/p/ucpp/
   - https://projects.coin-or.org/CoinMP/
+  - https://sourceforge.net/projects/lpsolve/
   license: "LGPL-3 MPL-1.1 LGPL-2.1+ MPL-2.0 LGPL-3+ GPL-2 LGPL-2 MIT ZLIB BSD CPL-1.0"
   description: |
     A full office productivity suite
@@ -14328,7 +14329,6 @@ packages:
   - category: "dev-libs"
     name: "libixion"
     version: ">=0"
-  - category: "games-engines"
     name: "box2d"
     version: ">=0"
   - category: "sys-devel"
@@ -14337,6 +14337,10 @@ packages:
   - category: "sci-libs"
     name: "coinor-mp"
     version: ">=0"
+  - category: "sci-mathematics"
+    name: "lpsolve"
+    version: ">=0"
+  - category: "games-engines"
   atoms:
   # needs firebird: firebird
   # needs java: scripting-beanshell scripting-javascript
@@ -15976,7 +15980,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.7.1+2"
+  version: "3.7.1+4"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -16148,6 +16152,7 @@ packages:
   version: "8.3.0-r2+6"
   uri:
   - https://www.gnu.org/software/octave/
+  - https://computing.llnl.gov/projects/sundials
   license: "GPL-3"
   description: "High-level interactive language for numerical computations"
   labels:
@@ -16161,9 +16166,19 @@ packages:
   - category: "sci-libs"
     name: "qrupdate"
     version: ">=0"
+  - category: "sci-libs"
+    name: "sundials"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "superlu_mt"
+    version: ">=0"    
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
+  - atom: "sci-libs/sundials"
+    use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
+  - atom: "sci-libs/superlu_mt"
+    use: "int64 openmp threads"
   inner_build_reqs:
   - *layers-java-packages
   requires:
