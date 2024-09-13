@@ -131,32 +131,6 @@ stubs:
 #   name: "latex"
 #   version: ">=0"
 
-- &layers-cfitsio
-  category: "layers"
-  name: "cfitsio"
-  version: ">=0"
-- &layerbase-cfitsio
-  category: "layerbase"
-  name: "cfitsio"
-  version: ">=0"
-- &buildbase-cfitsio
-  category: "buildbase"
-  name: "cfitsio"
-  version: ">=0"
-
-- &layers-fonttools
-  category: "layers"
-  name: "fonttools"
-  version: ">=0"
-- &layerbase-fonttools
-  category: "layerbase"
-  name: "fonttools"
-  version: ">=0"
-- &buildbase-fonttools
-  category: "buildbase"
-  name: "fonttools"
-  version: ">=0"
-
 - &layers-openmpi
   category: "layers"
   name: "openmpi"
@@ -174,14 +148,14 @@ stubs:
   category: "layers"
   name: "sci-libs"
   version: ">=0"
-- &layerbase-sci-libs
-  category: "layerbase"
-  name: "sci-libs"
-  version: ">=0"
-# - &buildbase-sci-libs
-#   category: "buildbase"
+# - &layerbase-sci-libs
+#   category: "layerbase"
 #   name: "sci-libs"
 #   version: ">=0"
+- &buildbase-sci-libs
+  category: "buildbase"
+  name: "sci-libs"
+  version: ">=0"
 
 # - &layers-clang-15
 #   category: "layers"
@@ -1527,112 +1501,6 @@ packages:
 #   hidden: true
 
 
-- &def-cfitsio
-  category: "layers"
-  name: "cfitsio"
-  version: "4.4.1+2"
-  uri:
-  - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
-  license: "ISC"
-  description: "C and Fortran library for manipulating FITS files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/cfitsio
-  provides:
-  - category: "sci-libs"
-    name: "cfitsio"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cfitsio"
-    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
-  inner_build_reqs:
-  - <dev-lang/cfortran-20110621
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- <<: *def-cfitsio
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-cfitsio
-  category: "buildbase"
-  hidden: true
-  unpack: true
-
-
-- &def-fonttools
-  category: "layers"
-  name: "fonttools"
-  version: "4.53.1+9"
-  uri:
-  - https://github.com/fonttools/fonttools/
-  license: "BSD"
-  description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/fonttools
-  provides:
-  - category: "dev-python"
-    name: "appdirs"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fonttools"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fs"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- <<: *def-fonttools
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-fonttools
-  category: "buildbase"
-  hidden: true
-  unpack: true
-
-
-# - &def-fonttools
-#   category: "buildbase"
-#   name: "fonttools"
-#   version: "4.53.1+6"
-#   uri:
-#   - https://github.com/fonttools/fonttools/
-#   license: "BSD"
-#   description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/fonttools
-#   provides:
-#   - category: "dev-python"
-#     name: "appdirs"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "fonttools"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "fs"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-#   unpack: true
-#   hidden: true
-#   subpackages_templates:
-#   - layerbase
-#   - layers
-
-
 - &def-openmpi
   category: "layers"
   name: "openmpi"
@@ -1652,12 +1520,18 @@ packages:
   atoms:
   - atom: "sys-cluster/openmpi"
     use: "romio fortran"
+  # - atom: "virtual/mpi"
+  #   use: "fortran # nullmpi romio cxx threads"
   requires:
   - <<: *layers-X
   - <<: *apps-hwloc
   build_requires:
   - <<: *layers-X
-
+# category of the package must be buildbase
+#   subpackages_templates:
+#   - layerbase
+#   - layers
+  
 - <<: *def-openmpi
   category: "layerbase"
   hidden: true
@@ -1854,7 +1728,6 @@ packages:
   - <<: *buildbase-openmpi
   requires_final_images: true
 
-
 # - <<: *def-sci-libs
 #   category: "layerbase"
 #   hidden: true
@@ -1863,6 +1736,106 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
+
+
+# - &def-gdal
+#   category: "layers"
+#   name: "gdal"
+#   version: "0.1"
+#   uri:
+#   - https://matplotlib.org/
+#   - https://scipy.org/
+#   - https://libgeos.org/
+#   - http://ogdi.sourceforge.net/
+#   - https://proj.org/
+#   - https://laszip.org/
+#   - https://sourceforge.net/projects/lpsolve/
+#   license: "metapackage"
+#   description: |
+#     Pure python plotting library with matlab like syntax
+#     Scientific algorithms library for Python
+#     Translator library for raster geospatial data formats (includes OGR support)
+#     Geometry engine library for Geographic Information Systems
+#     Library for reading TIFF files with embedded tags for geographic information
+#     Open Geographical Datastore Interface, a GIS support library
+#     PROJ coordinate transformation software
+#     Suite of nonlinear solvers
+#     Multithreaded sparse LU factorization library
+#     Library for free and lossless compression of the LAS LiDAR format
+#     Mixed Integer Linear Programming (MILP) solver
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/matplotlib
+#       dev-python/scipy
+#       sci-geosciences/laszip
+#       sci-libs/armadillo
+#       sci-libs/geos
+#       sci-libs/libgeotiff
+#       sci-libs/ogdi
+#       sci-libs/proj
+#       sci-mathematics/lpsolve
+#   provides:
+#   - category: "dev-cpp"
+#     name: "xsimd"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "matplotlib"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pythran"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "scipy"
+#     version: ">=0"
+#   - category: "sci-geosciences"
+#     name: "laszip"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "armadillo"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "geos"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "libgeotiff"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "ogdi"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "proj"
+#     version: ">=0"
+#   - category: "sci-mathematics"
+#     name: "lpsolve"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sci-libs/armadillo"
+#     use: "arpack superlu blas hdf5 lapack # mkl"
+#   - atom: "sci-libs/libgeotiff"
+#     use: "jpeg tiff zlib"
+#   - atom: "sci-libs/proj"
+#     use: "curl tiff"
+#   inner_build_reqs:
+#   - virtual/imagemagick-tools;USE="jpeg"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-fonttools
+#   - <<: *layers-openmpi
+#   build_requires:
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-cfitsio
+#   - <<: *buildbase-fonttools
+#   requires_final_images: true
+# 
+# - <<: *def-gdal
+#   category: "layerbase"
+#   hidden: true
+# 
+# # - <<: *def-gdal
+# #   category: "buildbase"
+# #   unpack: true
+# #   hidden: true
 
 
 - &def-term-libs

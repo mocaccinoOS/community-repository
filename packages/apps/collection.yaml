@@ -131,32 +131,6 @@ stubs:
 #   name: "latex"
 #   version: ">=0"
 
-- &layers-cfitsio
-  category: "layers"
-  name: "cfitsio"
-  version: ">=0"
-- &layerbase-cfitsio
-  category: "layerbase"
-  name: "cfitsio"
-  version: ">=0"
-- &buildbase-cfitsio
-  category: "buildbase"
-  name: "cfitsio"
-  version: ">=0"
-
-- &layers-fonttools
-  category: "layers"
-  name: "fonttools"
-  version: ">=0"
-- &layerbase-fonttools
-  category: "layerbase"
-  name: "fonttools"
-  version: ">=0"
-- &buildbase-fonttools
-  category: "buildbase"
-  name: "fonttools"
-  version: ">=0"
-
 - &layers-openmpi
   category: "layers"
   name: "openmpi"
@@ -174,14 +148,14 @@ stubs:
   category: "layers"
   name: "sci-libs"
   version: ">=0"
-- &layerbase-sci-libs
-  category: "layerbase"
-  name: "sci-libs"
-  version: ">=0"
-# - &buildbase-sci-libs
-#   category: "buildbase"
+# - &layerbase-sci-libs
+#   category: "layerbase"
 #   name: "sci-libs"
 #   version: ">=0"
+- &buildbase-sci-libs
+  category: "buildbase"
+  name: "sci-libs"
+  version: ">=0"
 
 # - &layers-clang-15
 #   category: "layers"
@@ -1101,6 +1075,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-cfitsio
+  category: "libs"
+  name: "cfitsio"
+  version: "4.4.1+2"
+  uri:
+  - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
+  license: "ISC"
+  description: "C and Fortran library for manipulating FITS files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-libs/cfitsio
+  provides:
+  - category: "sci-libs"
+    name: "cfitsio"
+    version: ">=0"
+  atoms:
+  - atom: "sci-libs/cfitsio"
+    use: "bzip2 curl cpu_flags_x86_sse2 cpu_flags_x86_ssse3"
+  inner_build_reqs:
+  - <dev-lang/cfortran-20110621
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
@@ -1424,6 +1424,33 @@ packages:
   - atom: "x11-libs/fltk"
     license: "FLTK LGPL-2"
     use: "cairo examples games opengl threads xft xinerama"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-fonttools
+  category: "libs"
+  name: "fonttools"
+  version: "4.53.1+9"
+  uri:
+  - https://github.com/fonttools/fonttools/
+  license: "BSD"
+  description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/fonttools
+  provides:
+  - category: "dev-python"
+    name: "appdirs"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fonttools"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fs"
+    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -13336,16 +13363,14 @@ packages:
     use: "ogg rtlsdr websocket"
   requires:
   - <<: *layers-X
-  - <<: *layers-cfitsio
+  - <<: *libs-cfitsio
   - <<: *libs-cpp-httplib
   - <<: *libs-libnova
   - <<: *libs-nlohmann_json
   - <<: *libs-rtl-sdr
   - <<: *libs-websocketpp
   build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-cfitsio
-  requires_final_images: true
+  - <<: *layers-X
   
 # - &libs-libgit2-glib
 #   category: "apps"
@@ -13474,9 +13499,10 @@ packages:
   - atom: "sci-astronomy/wcslib"
     use: "fits"
   requires:
-  - <<: *layers-cfitsio
+  - <<: *layers-system-x
+  - <<: *libs-cfitsio
   build_requires:
-  - <<: *buildbase-cfitsio
+  - <<: *layers-system-x
 
 ################################################################################################################################################################
 ### dep 2 apps ###
@@ -13796,18 +13822,16 @@ packages:
   - sec-keys/openpgp-keys-kovidgoyal
   requires:
   - <<: *layers-qt
-  - <<: *layers-fonttools
   - <<: *apps-usbmuxd
   - <<: *apps-podofo
   - <<: *libs-beautifulsoup4
   - <<: *libs-css-parser
   - <<: *libs-feedparser
+  - <<: *libs-fonttools
   - <<: *libs-python-msgpack
   - <<: *libs-netifaces
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-fonttools
-  requires_final_images: true
+  - <<: *layers-qt
 
 - &apps-cantor
   category: "apps"
@@ -14403,7 +14427,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# Qt5
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
@@ -14425,11 +14448,9 @@ packages:
     use: "fits openmp sse2"
   requires:
   - <<: *layers-qt
-  - <<: *layers-cfitsio
+  - <<: *libs-cfitsio
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-cfitsio
-  requires_final_images: true
+  - <<: *layers-qt
   
 - &apps-mediainfo
   category: "apps"
@@ -15941,17 +15962,15 @@ packages:
     use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-fonttools
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
+  - <<: *libs-fonttools
   - <<: *libs-lockfile
   - <<: *libs-gdl
   - <<: *apps-scour
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-fonttools
-  requires_final_images: true
+  - <<: *layers-gnome-common
 
 - &apps-kcdemu
   category: "apps"
@@ -16013,13 +16032,11 @@ packages:
     use: "fits indi"
   requires:
   - <<: *layers-kde-kf5
-  - <<: *layers-cfitsio
+  - <<: *libs-cfitsio
   - <<: *libs-indilib
   - <<: *libs-wcslib
   build_requires:
-  - <<: *buildbase-kde-kf5
-  - <<: *buildbase-cfitsio
-  requires_final_images: true
+  - <<: *layers-kde-kf5
 
 - &apps-ktimetracker
   category: "apps"
@@ -16075,12 +16092,12 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *layers-sci-libs
+  - <<: *libs-cfitsio
   - <<: *libs-qxlsx
   # - <<: *apps-cantor
   - <<: *libs-libcerf
   build_requires:
   - <<: *buildbase-kde-common
-  - <<: *buildbase-cfitsio
   - <<: *layerbase-sci-libs
   requires_final_images: true
 
@@ -16183,8 +16200,6 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-cfitsio
-  - <<: *layers-fonttools
   - <<: *layers-openmpi
   - <<: *layers-sci-libs
   - <<: *layers-java
@@ -16204,10 +16219,10 @@ packages:
   - <<: *buildbase-qt
   - <<: *layerbase-XML-LibXML
   - <<: *layerbase-latex
-  - <<: *layerbase-cfitsio
-  - <<: *layerbase-fonttools
-  - <<: *layerbase-openmpi
-  - <<: *layerbase-sci-libs
+  # - <<: *layerbase-openmpi
+  # - <<: *layerbase-sci-libs
+  - <<: *buildbase-openmpi
+  - <<: *buildbase-sci-libs
   requires_final_images: true
 
 - &apps-pidgin
