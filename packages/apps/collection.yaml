@@ -6210,6 +6210,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "ghostwriter"
+  version: "24.05.2"
+  uri:
+  - https://ghostwriter.kde.org/
+  license: "GPL-3+"
+  description: "Cross-platform, aesthetic, distraction-free markdown editor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/ghostwriter
+  provides:
+  - category: "app-editors"
+    name: "ghostwriter"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "gitkraken"
   version: "10.1.0"
   uri:
