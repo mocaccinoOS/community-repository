@@ -6824,6 +6824,30 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &apps-kchmviewer
+  category: "apps"
+  name: "kchmviewer"
+  version: "8.0"
+  uri:
+  - https://www.ulduzsoft.com/kchmviewer/
+  license: "GPL-3+"
+  description: "Feature rich chm file viewer, based on Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/kchmviewer
+  provides:
+  - category: "app-text"
+    name: "kchmviewer"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/kchmviewer"
+    accept_keywords: "!amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
   # TODO: replace by kde-apps/kcolorchooser
 # - category: "apps"
 #   name: "kcoloredit"
@@ -7004,31 +7028,30 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-# # needs a qt6 buildbase
-# - category: "apps"
-#   name: "kookbook"
-#   version: "0.2"
-#   uri:
-#   - https://invent.kde.org/utilities/kookbook
-#   license: "BSD"
-#   description: "Simple recipe manager taking structured markdown for recipes"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-misc/kookbook
-#   overlays:
-#   - enable: "kde"
-#   provides:
-#   - category: "app-misc"
-#     name: "kookbook"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-misc/kookbook"
-#     accept_keywords: "**"
-#   requires:
-#   - <<: *layers-kde-common
-#   build_requires:
-#   - <<: *layers-kde-common
+- category: "apps"
+  name: "kookbook"
+  version: "0.3"
+  uri:
+  - https://invent.kde.org/utilities/kookbook
+  license: "BSD"
+  description: "Simple recipe manager taking structured markdown for recipes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/kookbook
+  overlays:
+  - enable: "kde"
+  provides:
+  - category: "app-misc"
+    name: "kookbook"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/kookbook"
+    accept_keywords: "**"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "krfb"
