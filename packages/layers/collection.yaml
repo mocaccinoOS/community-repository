@@ -1545,9 +1545,10 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.15"
+  version: "0.16"
   uri:
   - https://xerces.apache.org/xerces-c/
+  - http://www.qhull.org
   - https://arma.sourceforge.net
   - http://www.caam.rice.edu/software/ARPACK/
   - https://people.engr.tamu.edu/davis/suitesparse.html
@@ -1560,6 +1561,7 @@ packages:
   license: "metapackage"
   description: |
     Validating XML parser written in a portable subset of C++
+    Geometry library
     Library to order a sparse matrix prior to Cholesky factorization
     Arnoldi package library to solve large scale eigenvalue problems
     Algorithm for matrix permutation into block triangular form
@@ -1581,6 +1583,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/xerces-c
+      media-libs/qhull
       sci-libs/amd
       sci-libs/arpack
       sci-libs/btf
