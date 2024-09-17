@@ -1383,27 +1383,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-flatbuffers
-  category: "libs"
-  name: "flatbuffers"
-  version: "24.3.25"
-  uri:
-  - https://flatbuffers.dev/
-  license: "Apache-2.0"
-  description: "Memory efficient serialization library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/flatbuffers
-  provides:
-  - category: "dev-libs"
-    name: "flatbuffers"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-fltk
   category: "libs"
   name: "fltk"
@@ -13488,41 +13467,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-opencv
-  category: "libs"
-  name: "opencv"
-  version: "4.9.0-r1+1"
-  uri:
-  - https://opencv.org
-  license: "Apache-2.0"
-  description: "A collection of algorithms and sample code for various computer vision problems"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/opencv
-  provides:
-  - category: "media-libs"
-    name: "opencv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "quirc"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/opencv"
-    use: "  contrib contribcvv contribdnn contribfreetype contribhdf eigen features2d gphoto2 gstreamer ieee1394 jpeg jpeg2k lapack opencl openexr opengl openmp png python -qt5 qt6 quirc tbb tesseract tiff v4l vaapi video_cards_intel webp # atlas contribovis contribsfm contribxfeatures2d cuda cudnn doc debug dnnsamples examples gdal gflags glog gtk3 jasper java mkl non-free opencvapps tesseract vtk xine # ffmpeg needs abi_x86_32"
-    # use: "contrib contribdnn features2d python png jpeg"
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-sci-libs
-  - <<: *libs-beautifulsoup4
-  - <<: *libs-flatbuffers
-  - <<: *libs-tbb
-  - <<: *libs-xine-lib
-  build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
-
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
@@ -14421,7 +14365,6 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-X
-  - <<: *libs-flatbuffers
   - <<: *libs-libao
   - <<: *libs-rapidjson
   - <<: *libs-tinyxml2
@@ -15675,7 +15618,7 @@ packages:
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
-  version: "1.8.0+3"
+  version: "1.8.0+4"
   uri:
   - http://www.dyne.org/software/frei0r/
   license: "GPL-2"
@@ -15694,7 +15637,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-gavl
-  - <<: *libs-opencv
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-sci-libs
@@ -16300,7 +16242,7 @@ packages:
 
 - category: "apps"
   name: "nomacs"
-  version: "3.16.224-r6+4"
+  version: "3.16.224-r6+5"
   uri:
   - https://nomacs.org
   license: "GPL-3+"
@@ -16318,7 +16260,6 @@ packages:
     use: "raw tiff plugins"
   requires:
   - <<: *layers-qt
-  - <<: *libs-opencv
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-sci-libs
@@ -16767,7 +16708,7 @@ packages:
 # Unstable for KDE/Qt 6
 - category: "apps"
   name: "digikam"
-  version: "8.4.0-r11"
+  version: "8.4.0-r11+1"
   uri:
   - https://www.digikam.org/
   - https://www.qtav.org
@@ -16793,7 +16734,6 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *libs-liblqr
-  - <<: *libs-opencv
   - <<: *apps-hugin
   build_requires:
   - <<: *buildbase-kde-common
@@ -17467,7 +17407,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "7+2"
+  version: "7+3"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -17504,7 +17444,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
-  - <<: *libs-opencv
   - <<: *libs-openvdb
   - <<: *libs-ptex
   - <<: *libs-tbb
@@ -17629,7 +17568,6 @@ packages:
 #   requires:
 #   - <<: *layers-gnome-common
 #   - <<: *layers-qt
-#   - <<: *libs-opencv
 #   build_requires:
 #   - <<: *buildbase-gnome-common
 #   - <<: *buildbase-qt
