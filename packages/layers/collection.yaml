@@ -395,33 +395,22 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-twisted
+- &libs-typing-extensions
   category: "libs"
-  name: "twisted"
-  version: "24.7.0"
+  name: "typing-extensions"
+  version: "4.12.2"
   uri:
-  - https://www.twistedmatrix.com/trac/
-  - https://github.com/twisted/incremental
-  license: "MIT"
+  - https://pypi.org/project/typing-extensions/
+  license: "PSF-2"
   description: |
-    An asynchronous networking framework written in Python
-    Incremental is a small library that versions your Python projects
+    Backported and Experimental Type Hints for Python 3.7+
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/twisted
+      dev-python/typing-extensions
   provides:
   - category: "dev-python"
-    name: "twisted"
-    version: ">=0"
-  - category: "dev-python"
-    name: "incremental"
-    version: ">=0"
-  - category: "dev-python"
     name: "typing-extensions"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-interface"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -453,6 +442,38 @@ packages:
   - <<: *libs-random2
   build_requires:
   - <<: *layers-system-x
+
+- &libs-twisted
+  category: "libs"
+  name: "twisted"
+  version: "24.7.0+1"
+  uri:
+  - https://www.twistedmatrix.com/trac/
+  - https://github.com/twisted/incremental
+  license: "MIT"
+  description: |
+    An asynchronous networking framework written in Python
+    Incremental is a small library that versions your Python projects
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/twisted
+  provides:
+  - category: "dev-python"
+    name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "incremental"
+    version: ">=0"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-interface"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 1 apps ###
