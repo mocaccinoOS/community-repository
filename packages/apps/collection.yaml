@@ -7883,66 +7883,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-pip
-  category: "apps"
-  name: "pip"
-  version: "24.2-r1+1"
-  uri:
-  - https://pip.pypa.io/en/stable/
-  - https://pypi.org/project/pip/
-  - https://github.com/pypa/pip/
-  license: "MIT Apache-2.0 BSD BSD-2 ISC LGPL-2.1+ MPL-2.0 PSF-2"
-  description: "The PyPA recommended tool for installing Python packages"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pip
-  provides:
-  - category: "dev-python"
-    name: "distlib"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fastjsonschema"
-    version: ">=0"
-  - category: "dev-python"
-    name: "lark"
-    version: ">=0"
-  - category: "dev-python"
-    name: "linkify-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "markdown-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mdurl"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pip"
-    version: ">=0"
-  - category: "dev-python"
-    name: "poetry-core"
-    version: ">=0"
-  - category: "dev-python"
-    name: "resolvelib"
-    version: ">=0"
-  - category: "dev-python"
-    name: "rich"
-    version: ">=0"
-  - category: "dev-python"
-    name: "truststore"
-    version: ">=0"
-  - category: "dev-python"
-    name: "uc-micro-py"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-cachecontrol
-  - <<: *libs-colorama
-  - <<: *libs-pyproject-hooks
-  - <<: *libs-typing-extensions
-  build_requires:
-  - <<: *layers-sys-fs
-
 - category: "apps"
   name: "piper"
   version: "0.7-r1"
@@ -12242,6 +12182,66 @@ packages:
   - <<: *libs-uthash
   build_requires:
   - <<: *layers-X
+
+- &apps-pip
+  category: "apps"
+  name: "pip"
+  version: "24.2-r1+1"
+  uri:
+  - https://pip.pypa.io/en/stable/
+  - https://pypi.org/project/pip/
+  - https://github.com/pypa/pip/
+  license: "MIT Apache-2.0 BSD BSD-2 ISC LGPL-2.1+ MPL-2.0 PSF-2"
+  description: "The PyPA recommended tool for installing Python packages"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pip
+  provides:
+  - category: "dev-python"
+    name: "distlib"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fastjsonschema"
+    version: ">=0"
+  - category: "dev-python"
+    name: "lark"
+    version: ">=0"
+  - category: "dev-python"
+    name: "linkify-it-py"
+    version: ">=0"
+  - category: "dev-python"
+    name: "markdown-it-py"
+    version: ">=0"
+  - category: "dev-python"
+    name: "mdurl"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pip"
+    version: ">=0"
+  - category: "dev-python"
+    name: "poetry-core"
+    version: ">=0"
+  - category: "dev-python"
+    name: "resolvelib"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rich"
+    version: ">=0"
+  - category: "dev-python"
+    name: "truststore"
+    version: ">=0"
+  - category: "dev-python"
+    name: "uc-micro-py"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-cachecontrol
+  - <<: *libs-colorama
+  - <<: *libs-pyproject-hooks
+  - <<: *libs-typing-extensions
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "plymouth-kcm"
