@@ -1075,6 +1075,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-c-blosc
+  category: "libs"
+  name: "c-blosc"
+  version: "1.21.6"
+  uri:
+  - https://www.blosc.org/
+  license: "MIT"
+  description: "Blocking, shuffling and lossless compression library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/c-blosc
+  provides:
+  - category: "dev-libs"
+    name: "c-blosc"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/c-blosc"
+    use: "lz4 snappy zlib zstd"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
@@ -1746,33 +1770,6 @@ packages:
     use: "udev"
   requires:
   - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-gtkglext
-  category: "libs"
-  name: "gtkglext"
-  version: "1.2.0-r6+1"
-  uri:
-  - http://gtkglext.sourceforge.net/
-  license: "GPL-2+ LGPL-2.1+"
-  description: "GL extensions for Gtk+ 2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gtkglext
-  provides:
-  - category: "x11-libs"
-    name: "gtkglext"
-    version: ">=0"
-  atoms:
-  - atom: "x11-libs/gtkglext"
-    accept_keywords: "~amd64"
-  # preemerge:
-  # - x11-libs/gtk+:2
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -5123,27 +5120,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "cutecom"
-  version: "0.60.0_rc1"
-  uri:
-  - https://gitlab.com/cutecom/cutecom
-  license: "GPL-3+"
-  description: "A serial terminal, like minicom, written in Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-dialup/cutecom
-  provides:
-  - category: "net-dialup"
-    name: "cutecom"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-lrzsz
-  build_requires:
-  - <<: *layers-qt
-
 - &apps-dcraw
   category: "apps"
   name: "dcraw"
@@ -5191,31 +5167,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-dia
-  category: "apps"
-  name: "dia"
-  version: "0.97.3-r2"
-  uri:
-  - https://wiki.gnome.org/Apps/Dia
-  license: "GPL-2"
-  description: "Diagram/flowchart creation program"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/dia
-  provides:
-  - category: "app-office"
-    name: "dia"
-    version: ">=0"
-  atoms:
-  - atom: "app-office/dia"
-    use: "gnome-print"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
 
 - &apps-diffpdf
   category: "apps"
@@ -5352,7 +5303,7 @@ packages:
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "7.0.16"
+    version: "7.0.14"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -5361,7 +5312,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.5-r1"
+  version: "8.0.7"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5370,7 +5321,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-dotnet/dotnet-runtime-nugets:8.0.5
+      ~dev-dotnet/dotnet-runtime-nugets-6.0.32
+      ~dev-dotnet/dotnet-runtime-nugets-7.0.20
+      dev-dotnet/dotnet-runtime-nugets:8.0.7
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
@@ -5382,7 +5335,7 @@ packages:
 
 - category: "apps"
   name: "drawio-desktop-bin"
-  version: "24.0.4"
+  version: "24.4.0"
   uri:
   - https://www.drawio.com/
   license: "0BSD Apache-2.0 BSD BSD-2 CC0-1.0 GPL-2 ISC PYTHON WTFPL-2 MIT ZLIB"
@@ -5725,7 +5678,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "125-126"
+  version: "127"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5733,8 +5686,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:125
-      media-video/ffmpeg-chromium:126
+      media-video/ffmpeg-chromium:127
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -5980,7 +5932,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.17.2"
+  version: "1.18.1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -6067,7 +6019,7 @@ packages:
 - &apps-fraqtive
   category: "apps"
   name: "fraqtive"
-  version: "0.4.8-r2+1"
+  version: "0.4.8.1"
   uri:
   - https://fraqtive.mimec.org/
   license: "GPL-2"
@@ -6146,7 +6098,7 @@ packages:
 - &apps-gaupol
   category: "apps"
   name: "gaupol"
-  version: "1.13+1"
+  version: "1.15-r1"
   uri:
   - https://otsaloma.io/gaupol/
   license: "GPL-2+"
@@ -6166,27 +6118,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "gftp"
-  version: "2.9.1b+3"
-  uri:
-  - https://github.com/masneyb/gftp
-  license: "GPL-2"
-  description: "a free multithreaded file transfer client"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-ftp/gftp
-  provides:
-  - category: "net-ftp"
-    name: "gftp"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "ghostwriter"
@@ -6210,7 +6141,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.1.0"
+  version: "10.3.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6344,7 +6275,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.22.4"
+  version: "1.22.6"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6367,7 +6298,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "126.0.6478.126"
+  version: "128.0.6613.137"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6541,29 +6472,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- category: "apps"
-  name: "hexchat"
-  version: "2.16.2+1"
-  uri:
-  - https://hexchat.github.io/
-  license: "GPL-2 MIT"
-  description: "Graphical IRC client based on XChat"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-irc/hexchat
-  provides:
-  - category: "net-irc"
-    name: "hexchat"
-    version: ">=0"
-  # preemerge:
-  # - x11-libs/gtk+:2
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "httrack"
@@ -6876,7 +6784,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.11.1-r2"
+  version: "1.11.2-r2"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -7148,7 +7056,7 @@ packages:
 
 - category: "apps"
   name: "krusader"
-  version: "2.8.1"
+  version: "2.8.1-r3"
   uri:
   - https://krusader.org
   license: "GPL-2+"
@@ -7162,9 +7070,9 @@ packages:
     name: "krusader"
     version: ">=0"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "ksnip"
@@ -7216,31 +7124,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-lash
-  category: "apps"
-  name: "lash"
-  version: "0.5.4-r6"
-  uri:
-  - http://www.nongnu.org/lash/
-  license: "GPL-2"
-  description: "LASH Audio Session Handler"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/lash
-  provides:
-  - category: "media-sound"
-    name: "lash"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/lash"
-    use: "alsa gtk python"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
-
 # - category: "apps"
 #   name: "latte-dock"
 #   version: "0.10.77_p20230115+1"
@@ -7291,7 +7174,7 @@ packages:
 - &apps-linuxtv-utils
   category: "apps"
   name: "linuxtv-utils"
-  version: "0.4"
+  version: "0.5"
   uri:
   - https://www.linuxtv.org/
   - https://git.linuxtv.org/v4l-utils.git
@@ -7348,7 +7231,7 @@ packages:
 - &apps-luajit
   category: "apps"
   name: "luajit"
-  version: "2.1.0_beta3_p20220127-r2+2"
+  version: "2.1.1716656478"
   uri:
   - https://luajit.org/
   license: "MIT"
@@ -7369,7 +7252,7 @@ packages:
 - &apps-ly
   category: "apps"
   name: "ly"
-  version: "1.0.0"
+  version: "1.0.2"
   uri:
   - https://github.com/nullgemm/ly
   license: "WTFPL-2"
@@ -7448,7 +7331,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "24.05.1"
+  version: "24.05.2"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7488,35 +7371,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "milkytracker"
-  version: "1.04.00-r1+2"
-  uri:
-  - http://milkytracker.org
-  -  https://www.music.mcgill.ca/~gary/rtmidi
-  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT"
-  description: |
-    FastTracker 2 inspired music tracker
-    A set of C++ classes that provide a common API for realtime MIDI input/output
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/milkytracker
-  provides:
-  - category: "media-sound"
-    name: "milkytracker"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/milkytracker"
-    use: "alsa jack"
-  inner_build_reqs:
-  - media-libs/rtmidi
-  requires:
-  - <<: *layers-X
-  - <<: *libs-rtmidi
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "minidlna"
@@ -7624,7 +7478,7 @@ packages:
 
 - category: "apps"
   name: "ncdu"
-  version: "1.19+1"
+  version: "1.20"
   uri:
   - https://dev.yorhel.nl/ncdu/
   license: "MIT"
@@ -7925,29 +7779,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-okteta
-  category: "apps"
-  name: "okteta"
-  version: "0.26.15"
-  uri:
-  - https://apps.kde.org/okteta/
-  - https://utils.kde.org/projects/okteta/
-  license: "GPL-2 FDL-1.2"
-  description: "Hex editor by KDE"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-editors/okteta
-  provides:
-  - category: "app-editors"
-    name: "okteta"
-    version: ">=0"
-  requires:
-  - <<: *layers-plasma
-  - <<: *apps-designer
-  build_requires:
-  - <<: *layers-plasma
-
 - category: "apps"
   name: "otter"
   version: "1.0.03-r1"
@@ -7970,34 +7801,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-oversteer
-  category: "apps"
-  name: "oversteer"
-  version: "0.8.2+1"
-  uri:
-  - https://github.com/berarma/oversteer
-  license: "GPL-3.0"
-  description: "Steering Wheel Manager for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-util/oversteer
-  overlays:
-  - enable: "ace"
-  provides:
-  - category: "games-util"
-    name: "oversteer"
-    version: ">=0"
-  atoms:
-  - atom: "games-util/oversteer"
-    accept_keywords: "~amd64"
-    license: "GPL-3.0"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-python-distutils-extra
-  build_requires:
-  - <<: *layers-sci-libs
 
 # - &apps-pandoc
 #   category: "apps"
@@ -8082,7 +7885,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "24.0"
+  version: "24.2-r1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -8250,7 +8053,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.10"
+  version: "9.13"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -8276,7 +8079,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.3-r4"
+  version: "1.5.0"
   uri:
   - https://invent.kde.org/libraries/pulseaudio-qt
   license: "LGPL-2.1"
@@ -8322,7 +8125,7 @@ packages:
 - &apps-pycodestyle
   category: "apps"
   name: "pycodestyle"
-  version: "2.12.0"
+  version: "2.12.1"
   uri:
   - https://pycodestyle.pycqa.org/en/latest/
   - https://github.com/PyCQA/pycodestyle/
@@ -8344,7 +8147,7 @@ packages:
 
 - category: "apps"
   name: "qbittorrent"
-  version: "4.6.5+1"
+  version: "4.6.6"
   uri:
   - https://www.qbittorrent.org
   license: "GPL-2"
@@ -8394,7 +8197,7 @@ packages:
 
 - category: "apps"
   name: "quassel"
-  version: "0.14.0-r2+1"
+  version: "0.14.0-r3"
   uri:
   - https://quassel-irc.org
   license: "GPL-3"
@@ -8446,7 +8249,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "0.9.91"
+  version: "1.0.1"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -8494,7 +8297,7 @@ packages:
 - &apps-qview
   category: "apps"
   name: "qview"
-  version: "6.1"
+  version: "6.1-r1"
   uri:
   - https://github.com/jurplel/qView
   license: "GPL-3"
@@ -8891,7 +8694,7 @@ packages:
 - &apps-sqlcipher
   category: "apps"
   name: "sqlcipher"
-  version: "4.5.1+3"
+  version: "4.5.5"
   uri:
   - https://www.zetetic.net/sqlcipher
   license: "BSD"
@@ -9048,7 +8851,7 @@ packages:
 
 - category: "apps"
   name: "st"
-  version: "0.9+1"
+  version: "0.9.2"
   uri:
   - https://st.suckless.org
   license: "MIT-with-advertising"
@@ -9271,7 +9074,7 @@ packages:
 - &apps-usbmuxd
   category: "apps"
   name: "usbmuxd"
-  version: "1.1.1-r2+1"
+  version: "1.1.1_p20231011"
   uri:
   - https://libimobiledevice.org/
   license: "GPL-2 GPL-3 LGPL-2.1+"
@@ -9686,30 +9489,6 @@ packages:
 ## dep 1 libs ###
 ################################################################################################################################################################
 
-- &libs-c-blosc
-  category: "libs"
-  name: "c-blosc"
-  version: "1.21.5+1"
-  uri:
-  - https://www.blosc.org/
-  license: "MIT"
-  description: "Blocking, shuffling and lossless compression library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/c-blosc
-  provides:
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-cmt-plugins
   category: "libs"
   name: "cmt-plugins"
@@ -9796,6 +9575,33 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libsrtp
+  build_requires:
+  - <<: *layers-X
+
+- &libs-gtkglext
+  category: "libs"
+  name: "gtkglext"
+  version: "1.2.0-r6+1"
+  uri:
+  - http://gtkglext.sourceforge.net/
+  license: "GPL-2+ LGPL-2.1+"
+  description: "GL extensions for Gtk+ 2.0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/gtkglext
+  provides:
+  - category: "x11-libs"
+    name: "gtkglext"
+    version: ">=0"
+  atoms:
+  - atom: "x11-libs/gtkglext"
+    accept_keywords: "~amd64"
+  # preemerge:
+  # - x11-libs/gtk+:2
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -10802,6 +10608,27 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "cutecom"
+  version: "0.60.0_rc1"
+  uri:
+  - https://gitlab.com/cutecom/cutecom
+  license: "GPL-3+"
+  description: "A serial terminal, like minicom, written in Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-dialup/cutecom
+  provides:
+  - category: "net-dialup"
+    name: "cutecom"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-lrzsz
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "darktable"
   version: "4.6.0+6"
   uri:
@@ -10856,6 +10683,31 @@ packages:
   - <<: *libs-libdispatch
   build_requires:
   - <<: *layers-qt
+
+- &apps-dia
+  category: "apps"
+  name: "dia"
+  version: "0.97.3-r2"
+  uri:
+  - https://wiki.gnome.org/Apps/Dia
+  license: "GPL-2"
+  description: "Diagram/flowchart creation program"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/dia
+  provides:
+  - category: "app-office"
+    name: "dia"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/dia"
+    use: "gnome-print"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "diff-pdf"
@@ -11159,6 +11011,27 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "gftp"
+  version: "2.9.1b+3"
+  uri:
+  - https://github.com/masneyb/gftp
+  license: "GPL-2"
+  description: "a free multithreaded file transfer client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-ftp/gftp
+  provides:
+  - category: "net-ftp"
+    name: "gftp"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "gkrellm"
   version: "2.3.11-r4+2"
   uri:
@@ -11247,7 +11120,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# Qt5
 - category: "apps"
   name: "guvcview"
   version: "2.0.8+2"
@@ -11264,9 +11136,9 @@ packages:
     name: "guvcview"
     version: ">=0"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-handbrake
   category: "apps"
@@ -11294,6 +11166,29 @@ packages:
   - <<: *libs-zimg
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "hexchat"
+  version: "2.16.2+1"
+  uri:
+  - https://hexchat.github.io/
+  license: "GPL-2 MIT"
+  description: "Graphical IRC client based on XChat"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-irc/hexchat
+  provides:
+  - category: "net-irc"
+    name: "hexchat"
+    version: ">=0"
+  # preemerge:
+  # - x11-libs/gtk+:2
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "isomaster"
@@ -11366,7 +11261,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# Qt5
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
@@ -11389,12 +11283,11 @@ packages:
   inner_build_reqs:
   - dev-ruby/asciidoctor
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-botan
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
-# Qt5
 - category: "apps"
   name: "kid3"
   version: "3.9.5"
@@ -11414,11 +11307,11 @@ packages:
   - atom: "media-sound/kid3"
     use: "acoustid mpris flac mp3 mp4 taglib vorbis # kde"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-id3lib
   - <<: *libs-libmp4v2
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "krename"
@@ -11519,6 +11412,31 @@ packages:
 #   - <<: *layers-kde-common
 #   build_requires:
 #   - <<: *layers-kde-common
+
+- &apps-lash
+  category: "apps"
+  name: "lash"
+  version: "0.5.4-r6"
+  uri:
+  - http://www.nongnu.org/lash/
+  license: "GPL-2"
+  description: "LASH Audio Session Handler"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/lash
+  provides:
+  - category: "media-sound"
+    name: "lash"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/lash"
+    use: "alsa gtk python"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-X
 
 - &apps-links
   category: "apps"
@@ -11679,6 +11597,35 @@ packages:
 #   - <<: *layers-gnome-common
 #   build_requires:
 #   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "milkytracker"
+  version: "1.04.00-r1+2"
+  uri:
+  - http://milkytracker.org
+  -  https://www.music.mcgill.ca/~gary/rtmidi
+  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT"
+  description: |
+    FastTracker 2 inspired music tracker
+    A set of C++ classes that provide a common API for realtime MIDI input/output
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/milkytracker
+  provides:
+  - category: "media-sound"
+    name: "milkytracker"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/milkytracker"
+    use: "alsa jack"
+  inner_build_reqs:
+  - media-libs/rtmidi
+  requires:
+  - <<: *layers-X
+  - <<: *libs-rtmidi
+  build_requires:
+  - <<: *layers-X
 
 # - &apps-minecraft-server
 #   category: "apps"
@@ -11997,6 +11944,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-okteta
+  category: "apps"
+  name: "okteta"
+  version: "0.26.17"
+  uri:
+  - https://apps.kde.org/okteta/
+  - https://utils.kde.org/projects/okteta/
+  license: "GPL-2 FDL-1.2"
+  description: "Hex editor by KDE"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/okteta
+  provides:
+  - category: "app-editors"
+    name: "okteta"
+    version: ">=0"
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-designer
+  build_requires:
+  - <<: *layers-plasma
+
 - &apps-openjade
   category: "apps"
   name: "openjade"
@@ -12083,6 +12053,34 @@ packages:
   - <<: *apps-ffmpeg-chromium
   build_requires:
   - <<: *layers-X
+
+- &apps-oversteer
+  category: "apps"
+  name: "oversteer"
+  version: "0.8.2+1"
+  uri:
+  - https://github.com/berarma/oversteer
+  license: "GPL-3.0"
+  description: "Steering Wheel Manager for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-util/oversteer
+  overlays:
+  - enable: "ace"
+  provides:
+  - category: "games-util"
+    name: "oversteer"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/oversteer"
+    accept_keywords: "~amd64"
+    license: "GPL-3.0"
+  requires:
+  - <<: *layers-sci-libs
+  - <<: *libs-python-distutils-extra
+  build_requires:
+  - <<: *layers-sci-libs
 
 - category: "apps"
   name: "p7zip-ui"
