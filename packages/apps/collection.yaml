@@ -9551,6 +9551,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-cachecontrol
+  category: "libs"
+  name: "cachecontrol"
+  version: "0.14.0"
+  uri:
+  - https://pypi.org/project/CacheControl/
+  license: "Apache-2.0"
+  description: "httplib2 caching for requests"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/cachecontrol
+  provides:
+  - category: "dev-python"
+    name: "cachecontrol"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-python-msgpack
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-cmt-plugins
   category: "libs"
   name: "cmt-plugins"
@@ -13380,28 +13402,6 @@ packages:
   - <<: *libs-dumb
   build_requires:
   - <<: *layers-X
-
-- &libs-cachecontrol
-  category: "libs"
-  name: "cachecontrol"
-  version: "0.14.0"
-  uri:
-  - https://pypi.org/project/CacheControl/
-  license: "Apache-2.0"
-  description: "httplib2 caching for requests"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/cachecontrol
-  provides:
-  - category: "dev-python"
-    name: "cachecontrol"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-python-msgpack
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-glpk
   category: "libs"
