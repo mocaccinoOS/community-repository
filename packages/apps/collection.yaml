@@ -12965,10 +12965,10 @@ packages:
   - atom: "dev-qt/qtdbusextended"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   # - <<: *libs-libupnpp
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "vdr"
@@ -15695,7 +15695,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+20"
+  version: "0.1+21"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -15761,7 +15761,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "0.1+21"
+  version: "0.1+22"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -15864,9 +15864,10 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+
 - category: "apps"
   name: "calligra"
-  version: "3.2.1-r9+2"
+  version: "4.0.1"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -15884,13 +15885,14 @@ packages:
     use: "activities charts crypt fontconfig gemini gsl import-filter lcms okular pdf phonon spacenav truetype X karbon sheets stage words"
   inner_build_reqs:
   - kde-apps/okular
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
   - <<: *layers-office-common
-  - <<: *libs-libspnav
+  # - <<: *libs-libspnav
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
-  - <<: *apps-designer
+  # - <<: *apps-designer
   build_requires:
   # okular in layers/kde-apps-minimal
   - <<: *buildbase-kde-common
