@@ -7078,7 +7078,7 @@ packages:
 
 - category: "apps"
   name: "krusader"
-  version: "2.8.1-r3+1"
+  version: "2.8.1-r3+2"
   uri:
   - https://krusader.org
   license: "GPL-2+"
@@ -7091,6 +7091,16 @@ packages:
   - category: "kde-misc"
     name: "krusader"
     version: ">=0"
+  - category: "kde-apps"
+    name: "kio-extras"
+    version: ">=0"
+  - category: "kde-apps"
+    name: "thumbnailers"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-apps/libkexiv2
+  - kde-plasma/kde-cli-tools-common
+  - kde-plasma/kdesu-gui
   requires:
   - <<: *layers-kde-kf5
   build_requires:
@@ -14685,32 +14695,32 @@ packages:
   # - <<: *buildbase-kde-apps-minimal
   # requires_final_images: true
 
-- category: "apps"
-  name: "mixxx"
-  version: "2.3.6+4"
-  uri:
-  - https://www.mixxx.org
-  license: "GPL-2"
-  description: "Advanced Digital DJ tool based on Qt"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/mixxx
-  provides:
-  - category: "media-sound"
-    name: "mixxx"
-    version: ">=0"
-  - atom: "media-sound/mixxx"
-    use: "ffmpeg mp3 opus"
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *libs-libebur128
-  - <<: *libs-vamp-plugin-sdk
-  - <<: *libs-libsoundtouch
-  - <<: *libs-hidapi
-  - <<: *libs-rubberband
-  build_requires:
-  - <<: *layers-kde-kf5
+# - category: "apps"
+#   name: "mixxx"
+#   version: "2.3.6+4"
+#   uri:
+#   - https://www.mixxx.org
+#   license: "GPL-2"
+#   description: "Advanced Digital DJ tool based on Qt"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-sound/mixxx
+#   provides:
+#   - category: "media-sound"
+#     name: "mixxx"
+#     version: ">=0"
+#   - atom: "media-sound/mixxx"
+#     use: "ffmpeg mp3 opus"
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *libs-libebur128
+#   - <<: *libs-vamp-plugin-sdk
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-hidapi
+#   - <<: *libs-rubberband
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - &apps-nagios
   category: "apps"
