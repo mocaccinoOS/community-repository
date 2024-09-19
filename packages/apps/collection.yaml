@@ -9213,7 +9213,7 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-  # needs newer gui-libs/gtk
+# needs newer gui-libs/gtk
 # - category: "apps"
 #   name: "warp"
 #   version: "0.6.2+2"
@@ -11978,29 +11978,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-okteta
-#   category: "apps"
-#   name: "okteta"
-#   version: "0.26.17+2"
-#   uri:
-#   - https://apps.kde.org/okteta/
-#   - https://utils.kde.org/projects/okteta/
-#   license: "GPL-2 FDL-1.2"
-#   description: "Hex editor by KDE"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       app-editors/okteta
-#   provides:
-#   - category: "app-editors"
-#     name: "okteta"
-#     version: ">=0"
-#   inner_build_requires:
-#   - <<: *apps-designer  
-#   requires:
-#   - <<: *layers-kde-kf5
-#   build_requires:
-#   - <<: *layers-kde-kf5
+- &apps-okteta
+  category: "apps"
+  name: "okteta"
+  version: "0.26.17+2"
+  uri:
+  - https://apps.kde.org/okteta/
+  - https://utils.kde.org/projects/okteta/
+  license: "GPL-2 FDL-1.2"
+  description: "Hex editor by KDE"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/okteta
+  provides:
+  - category: "app-editors"
+    name: "okteta"
+    version: ">=0"
+  inner_build_requires:
+  - <<: *apps-designer  
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - &apps-openjade
   category: "apps"
@@ -12026,7 +12026,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.9+4"
+  version: "0.9+5"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -12055,13 +12055,13 @@ packages:
     name: "mdns"
     version: ">=0"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-cpp-httplib
   - <<: *libs-nlohmann_json
   - <<: *libs-hidapi
   - <<: *libs-mbedtls
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "opera"
@@ -12365,32 +12365,32 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-# - category: "apps"
-#   name: "qcad"
-#   version: "3.27.8.4+2"
-#   uri:
-#   - http://www.qcad.org
-#   license: "GPL-3"
-#   description: "Open Source 2D CAD"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/qcad
-#   overlays:
-#   - enable: "booboo"
-#   provides:
-#   - category: "media-gfx"
-#     name: "qcad"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/qcad"
-#     accept_keywords: "~amd64"
-#   inner_build_reqs:
-#   - dev-qt/designer
-#   requires:
-#   - <<: *layers-kde-kf5
-#   build_requires:
-#   - <<: *layers-kde-kf5
+- category: "apps"
+  name: "qcad"
+  version: "3.27.8.4+2"
+  uri:
+  - http://www.qcad.org
+  license: "GPL-3"
+  description: "Open Source 2D CAD"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/qcad
+  overlays:
+  - enable: "booboo"
+  provides:
+  - category: "media-gfx"
+    name: "qcad"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/qcad"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-qt/designer
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -14694,32 +14694,32 @@ packages:
   # - <<: *buildbase-kde-apps-minimal
   # requires_final_images: true
 
-# - category: "apps"
-#   name: "mixxx"
-#   version: "2.3.6+4"
-#   uri:
-#   - https://www.mixxx.org
-#   license: "GPL-2"
-#   description: "Advanced Digital DJ tool based on Qt"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-sound/mixxx
-#   provides:
-#   - category: "media-sound"
-#     name: "mixxx"
-#     version: ">=0"
-#   - atom: "media-sound/mixxx"
-#     use: "ffmpeg mp3 opus"
-#   requires:
-#   - <<: *layers-kde-kf5
-#   - <<: *libs-libebur128
-#   - <<: *libs-vamp-plugin-sdk
-#   - <<: *libs-libsoundtouch
-#   - <<: *libs-hidapi
-#   - <<: *libs-rubberband
-#   build_requires:
-#   - <<: *layers-kde-kf5
+- category: "apps"
+  name: "mixxx"
+  version: "2.3.6+4"
+  uri:
+  - https://www.mixxx.org
+  license: "GPL-2"
+  description: "Advanced Digital DJ tool based on Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/mixxx
+  provides:
+  - category: "media-sound"
+    name: "mixxx"
+    version: ">=0"
+  - atom: "media-sound/mixxx"
+    use: "ffmpeg mp3 opus"
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *libs-libebur128
+  - <<: *libs-vamp-plugin-sdk
+  - <<: *libs-libsoundtouch
+  - <<: *libs-hidapi
+  - <<: *libs-rubberband
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - &apps-nagios
   category: "apps"
