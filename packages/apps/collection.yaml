@@ -11971,7 +11971,7 @@ packages:
 - &apps-okteta
   category: "apps"
   name: "okteta"
-  version: "0.26.17+1"
+  version: "0.26.17+2"
   uri:
   - https://apps.kde.org/okteta/
   - https://utils.kde.org/projects/okteta/
@@ -12378,9 +12378,9 @@ packages:
   inner_build_reqs:
   - dev-qt/designer
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -13335,7 +13335,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.1.11.1545"
+  version: "6.1.11.1545+1"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -14325,12 +14325,12 @@ packages:
   - atom: "kde-apps/k3b"
     use: "dvd ffmpeg flac lame mad mp3 musepack sndfile sox taglib vcd vorbis webengine"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-kf5
   - <<: *apps-dvd-rw-tools
   - <<: *apps-cdrdao
   - <<: *apps-vcdimager
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "kaffeine-tde"
@@ -14677,10 +14677,10 @@ packages:
     accept_keywords: "~amd64"
     license: "MEGA"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-libmediainfo
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   # - <<: *buildbase-gnome
   # - <<: *buildbase-kde-apps-minimal
   # requires_final_images: true
@@ -14813,6 +14813,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *layers-term-libs
+  - <<: *apps-luajit
   - <<: *libs-lpeg
   - <<: *libs-LuaBitOp
   - <<: *libs-tree-sitter
@@ -14975,7 +14976,7 @@ packages:
 - &apps-qsampler
   category: "apps"
   name: "qsampler"
-  version: "1.0.0"
+  version: "1.0.0+1"
   uri:
   - https://qsampler.sourceforge.io/
   license: "GPL-2"
@@ -15003,12 +15004,12 @@ packages:
   - atom: "media-sound/linuxsampler"
     use: "alsa jack sqlite lv2 sf2"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-dssi
   - <<: *libs-ladspa-sdk
   - <<: *libs-lv2
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "quodlibet"
@@ -15091,7 +15092,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.6.2"
+  version: "1.6.2+1"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -15108,12 +15109,12 @@ packages:
   - atom: "app-office/scribus"
     use: "boost examples hunspell minimal pdf templates # osg: dev-games/openscenegraph # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick # scripts tk: needs dev-python/pillow tk flag"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *layers-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
   - <<: *layerbase-office-common
   requires_final_images: true
 
@@ -15161,12 +15162,12 @@ packages:
     name: "sqlitebrowser"
     version: ">=0"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *apps-qhexedit2
   - <<: *libs-qcustomplot
   - <<: *libs-qscintilla
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "terminatorx"
@@ -16441,7 +16442,7 @@ packages:
 
 - category: "apps"
   name: "qsynth"
-  version: "1.0.0"
+  version: "1.0.0+1"
   uri:
   - https://qsynth.sourceforge.io/
   license: "GPL-2"
@@ -16458,10 +16459,10 @@ packages:
   - atom: "media-sound/qsynth"
     use: "alsa jack pulseaudio"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *apps-fluidsynth
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-RcloneBrowser
   category: "apps"
@@ -17551,7 +17552,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.7"
+  version: "8.7+1"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
@@ -17574,10 +17575,8 @@ packages:
   - atom: "media-sound/ardour"
     use: "doc jack nls pulseaudio"
     accept_keywords: "~amd64"
-  optrequires:
-  - <<: *apps-doxygen
-  # preemerge:
-  # - x11-libs/gtk+:2
+  inner_build_reqs:
+  - dev-util/itstool
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -17689,7 +17688,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "1.1.1"
+  version: "1.1.1+1"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
@@ -17706,7 +17705,7 @@ packages:
   - atom: "media-sound/qtractor"
     use: "aubio dssi rubberband ladspa libsamplerate mad osc vorbis sse"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-aubio
   - <<: *libs-dssi
   - <<: *libs-ladspa-sdk
@@ -17716,7 +17715,7 @@ packages:
   - <<: *libs-rubberband
   - <<: *libs-suil
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "seq24"
@@ -17995,7 +17994,7 @@ packages:
   - atom: "kde-apps/umbrello"
     use: "php"
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-kf5
   - <<: *apps-kdevelop
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-kf5
