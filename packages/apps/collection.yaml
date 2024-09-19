@@ -7078,7 +7078,7 @@ packages:
 
 - category: "apps"
   name: "krusader"
-  version: "2.8.1-r3"
+  version: "2.8.1-r3+1"
   uri:
   - https://krusader.org
   license: "GPL-2+"
@@ -8623,7 +8623,7 @@ packages:
 
 - category: "apps"
   name: "soundkonverter"
-  version: "3.0.1-r3+1"
+  version: "3.0.1-r3+2"
   uri:
   - https://www.linux-apps.com/p/1126634/
   - https://github.com/dfaust/soundkonverter
@@ -11968,29 +11968,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-okteta
-  category: "apps"
-  name: "okteta"
-  version: "0.26.17+2"
-  uri:
-  - https://apps.kde.org/okteta/
-  - https://utils.kde.org/projects/okteta/
-  license: "GPL-2 FDL-1.2"
-  description: "Hex editor by KDE"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-editors/okteta
-  provides:
-  - category: "app-editors"
-    name: "okteta"
-    version: ">=0"
-  inner_build_requires:
-  - <<: *apps-designer  
-  requires:
-  - <<: *layers-kde-kf5
-  build_requires:
-  - <<: *layers-kde-kf5
+# - &apps-okteta
+#   category: "apps"
+#   name: "okteta"
+#   version: "0.26.17+2"
+#   uri:
+#   - https://apps.kde.org/okteta/
+#   - https://utils.kde.org/projects/okteta/
+#   license: "GPL-2 FDL-1.2"
+#   description: "Hex editor by KDE"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       app-editors/okteta
+#   provides:
+#   - category: "app-editors"
+#     name: "okteta"
+#     version: ">=0"
+#   inner_build_requires:
+#   - <<: *apps-designer  
+#   requires:
+#   - <<: *layers-kde-kf5
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - &apps-openjade
   category: "apps"
@@ -12355,32 +12355,32 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-- category: "apps"
-  name: "qcad"
-  version: "3.27.8.4+2"
-  uri:
-  - http://www.qcad.org
-  license: "GPL-3"
-  description: "Open Source 2D CAD"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/qcad
-  overlays:
-  - enable: "booboo"
-  provides:
-  - category: "media-gfx"
-    name: "qcad"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/qcad"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-qt/designer
-  requires:
-  - <<: *layers-kde-kf5
-  build_requires:
-  - <<: *layers-kde-kf5
+# - category: "apps"
+#   name: "qcad"
+#   version: "3.27.8.4+2"
+#   uri:
+#   - http://www.qcad.org
+#   license: "GPL-3"
+#   description: "Open Source 2D CAD"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/qcad
+#   overlays:
+#   - enable: "booboo"
+#   provides:
+#   - category: "media-gfx"
+#     name: "qcad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/qcad"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - dev-qt/designer
+#   requires:
+#   - <<: *layers-kde-kf5
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -14687,7 +14687,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.6+3"
+  version: "2.3.6+4"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -14703,14 +14703,14 @@ packages:
   - atom: "media-sound/mixxx"
     use: "ffmpeg mp3 opus"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-libebur128
   - <<: *libs-vamp-plugin-sdk
   - <<: *libs-libsoundtouch
   - <<: *libs-hidapi
   - <<: *libs-rubberband
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-nagios
   category: "apps"
@@ -16762,7 +16762,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "digikam"
   version: "8.4.0-r11+1"
@@ -16787,7 +16786,6 @@ packages:
   atoms:
   - atom: "media-gfx/digikam"
     use: "semantic-desktop"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-liblqr
