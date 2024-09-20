@@ -16070,38 +16070,38 @@ packages:
   - <<: *layerbase-cdemu
   requires_final_images: true
 
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.7+5"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   inner_build_requires:
-#   - <<: *apps-go
-#   ready:
-#   - git clone https://github.com/akiyosi/goneovim
-#   - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.7 && make qt_bindings && make deps && make app
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cd goneovim && \
-#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-#     find -name goneovim && \
-#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "goneovim"
+  version: "0.6.8"
+  uri:
+  - https://github.com/akiyosi/goneovim
+  license: "MIT"
+  description: "A Neovim GUI written in Go, using a Qt binding for Go"
+  labels:
+    emerge.jobs: "1"
+  inner_build_requires:
+  - <<: *apps-go
+  ready:
+  - git clone https://github.com/akiyosi/goneovim
+  - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.8 && make qt_bindings && make deps && make app
+  setup:
+  - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cd goneovim && \
+    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+    find -name goneovim && \
+    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-neovim
+    skip: true
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-hugin
   category: "apps"
