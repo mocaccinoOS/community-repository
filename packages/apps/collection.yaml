@@ -16079,10 +16079,10 @@ packages:
   ready:
   - git clone https://github.com/akiyosi/goneovim
   - |
+    QT_API=5.15.0 && \
     cd goneovim && \
     git fetch --all --tags && \
     git checkout tags/v0.6.8 && \
-    sed -i 's/Exec=.*/Exec=goneovim %F/' go.mod && \
     make qt_bindings && \
     make deps && \
     make app
