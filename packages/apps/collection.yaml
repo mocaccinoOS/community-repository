@@ -2880,6 +2880,29 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
+- &libs-libutf8proc
+  category: "libs"
+  name: "libutf8proc"
+  version: "2.9.0"
+  uri:
+  - https://github.com/JuliaStrings/utf8proc
+  license: "MIT"
+  description: "A clean C Library for processing UTF-8 Unicode data"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libutf8proc
+  provides:
+  - category: "dev-libs"
+    name: "libutf8proc"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-lang/ruby
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
@@ -4162,7 +4185,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "0.22.6"
+  version: "1.0"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -4171,8 +4194,43 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/tree-sitter
+      dev-libs/tree-sitter-bash
+      dev-libs/tree-sitter-c
+      dev-libs/tree-sitter-lua
+      dev-libs/tree-sitter-markdown
+      dev-libs/tree-sitter-python
+      dev-libs/tree-sitter-query
+      dev-libs/tree-sitter-vim
+      dev-libs/tree-sitter-vimdoc
   provides:
   - category: "dev-libs"
+    name: "tree-sitter"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-bash"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-c"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-lua"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-markdown"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-python"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-query"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-vim"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "tree-sitter-vimdoc"
+    version: ">=0"
+  - category: "dev-python"
     name: "tree-sitter"
     version: ">=0"
   requires:
@@ -5948,43 +6006,6 @@ packages:
   - atom: "games-sports/foobillard"
     use: "nvidia # sdl"
     accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "foot"
-  version: "1.18.1"
-  uri:
-  - https://codeberg.org/dnkl/foot
-  license: "MIT"
-  description: "A fast, lightweight and minimalistic Wayland terminal emulator"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gui-apps/foot
-      dev-libs/libutf8proc
-      media-libs/fcft
-  provides:
-    - category: "gui-apps"
-      name: "foot"
-      version: ">=0"
-    - category: "media-libs"
-      name: "fcft"
-      version: ">=0"
-    - category: "dev-libs"
-      name: "libutf8proc"
-      version: ">=0"
-  atoms:
-  - atom: "gui-apps/foot"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/fcft"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - app-text/scdoc
-  inner_build_requires:
-  - <<: *libs-tllist
   requires:
   - <<: *layers-X
   build_requires:
@@ -11014,6 +11035,40 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "foot"
+  version: "1.18.1"
+  uri:
+  - https://codeberg.org/dnkl/foot
+  license: "MIT"
+  description: "A fast, lightweight and minimalistic Wayland terminal emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/foot
+      media-libs/fcft
+  provides:
+    - category: "gui-apps"
+      name: "foot"
+      version: ">=0"
+    - category: "media-libs"
+      name: "fcft"
+      version: ">=0"
+  atoms:
+  - atom: "gui-apps/foot"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/fcft"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - app-text/scdoc
+  inner_build_requires:
+  - <<: *libs-tllist
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libutf8proc
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "geeqie"
   version: "2.4+1"
   uri:
@@ -14824,6 +14879,7 @@ packages:
   - <<: *layers-X
   - <<: *layers-term-libs
   - <<: *apps-luajit
+  - <<: *libs-libutf8proc
   - <<: *libs-lpeg
   - <<: *libs-LuaBitOp
   - <<: *libs-tree-sitter
