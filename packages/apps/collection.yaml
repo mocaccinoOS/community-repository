@@ -14786,51 +14786,51 @@ packages:
   build_requires:
   - <<: *layers-perl-libs
 
-- &apps-neovim
-  category: "apps"
-  name: "neovim"
-  version: "0.10.1-r1"
-  uri:
-  - https://neovim.io
-  license: "Apache-2.0 vim"
-  description: |
-    "Vim-fork focused on extensibility and agility"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lua/luv
-      dev-lua/mpack
-      app-editors/neovim
-  provides:
-  - category: "app-editors"
-    name: "neovim"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "luv"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "mpack"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libmpack"
-    version: ">=0"
-  atoms:
-  - atom: "app-editors/neovim"
-    use: "lto nvimpager tui"
-  inner_build_reqs:
-  - dev-lua/busted
-  requires:
-  - <<: *layers-X
-  - <<: *layers-term-libs
-  - <<: *apps-luajit
-  - <<: *libs-lpeg
-  - <<: *libs-LuaBitOp
-  - <<: *libs-tree-sitter
-  - <<: *libs-msgpack
-  build_requires:
-  - <<: *buildbase-X
-  - <<: *buildbase-term-libs
-  requires_final_images: true
+# - &apps-neovim
+#   category: "apps"
+#   name: "neovim"
+#   version: "0.10.1-r1"
+#   uri:
+#   - https://neovim.io
+#   license: "Apache-2.0 vim"
+#   description: |
+#     "Vim-fork focused on extensibility and agility"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lua/luv
+#       dev-lua/mpack
+#       app-editors/neovim
+#   provides:
+#   - category: "app-editors"
+#     name: "neovim"
+#     version: ">=0"
+#   - category: "dev-lua"
+#     name: "luv"
+#     version: ">=0"
+#   - category: "dev-lua"
+#     name: "mpack"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libmpack"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-editors/neovim"
+#     use: "lto nvimpager tui"
+#   inner_build_reqs:
+#   - dev-lua/busted
+#   requires:
+#   - <<: *layers-X
+#   - <<: *layers-term-libs
+#   - <<: *apps-luajit
+#   - <<: *libs-lpeg
+#   - <<: *libs-LuaBitOp
+#   - <<: *libs-tree-sitter
+#   - <<: *libs-msgpack
+#   build_requires:
+#   - <<: *buildbase-X
+#   - <<: *buildbase-term-libs
+#   requires_final_images: true
 
 - &apps-nmapsi
   category: "apps"
