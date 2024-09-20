@@ -16078,7 +16078,14 @@ packages:
   - <<: *apps-go
   ready:
   - git clone https://github.com/akiyosi/goneovim
-  - cd goneovim && git fetch --all --tags && git checkout tags/v0.6.8 && make qt_bindings && make deps && make app
+  - |
+    cd goneovim && \
+    git fetch --all --tags && \
+    git checkout tags/v0.6.8 && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' go.mod && \
+    make qt_bindings && \
+    make deps && \
+    make app
   setup:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
@@ -16096,7 +16103,7 @@ packages:
   - <<: *apps-neovim
     skip: true
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *buildbase-kde-kf5
 
 - &apps-hugin
   category: "apps"
