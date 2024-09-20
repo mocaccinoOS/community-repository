@@ -6799,32 +6799,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-  # TODO: replace by kde-apps/kcolorchooser
-# - category: "apps"
-#   name: "kcoloredit"
-#   version: "2.0.0_p20171121-r1+1"
-#   uri:
-#   - https://userbase.kde.org/KColorEdit
-#   license: "GPL-2"
-#   description: "Tool for editing color palettes"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/kcoloredit
-#   provides:
-#   - category: "media-gfx"
-#     name: "kcoloredit"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/kcoloredit"
-#     use: "handbook"
-#     accept_keywords: "~amd64"
-#   inner_build_reqs:
-#   - kde-frameworks/extra-cmake-modules
-#   requires:
-#   - <<: *layers-kde-common
-#   build_requires:
-#   - <<: *layers-kde-common
+- category: "apps"
+  name: "kcolorchooser"
+  version: "24.05.2"
+  uri:
+  - https://apps.kde.org/kcolorchooser/
+  license: "MIT"
+  description: "KDE color selector/editor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kcolorchooser
+  provides:
+  - category: "kde-apps"
+    name: "kcolorchooser"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "kdiff3"
