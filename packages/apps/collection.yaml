@@ -16074,36 +16074,65 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  inner_build_requires:
-  - <<: *apps-go
-  ready:
-  - git clone https://github.com/akiyosi/goneovim
+  prepare:
   - |
-    QT_API=5.15.0 && \
-    cd goneovim && \
-    git fetch --all --tags && \
-    git checkout tags/v0.6.8 && \
-    make qt_bindings && \
-    make deps && \
-    make app
+    wget https://github.com/akiyosi/goneovim/releases/download/v0.6.8/goneovim-v0.6.8-linux.tar.bz2 && \
+    mkdir data && \
+    tar -xf goneovim-v0.6.8-linux.tar.bz2 --strip-components=1 -C data
   setup:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
-    cd goneovim && \
-    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    find -name goneovim && \
-    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    cp data/goneovim/cmd/goneovim.ico /usr/share/pixmaps && \
+    cp data/goneovim/cmd/goneovim.svg /usr/share/pixmaps && \
+    cp data/goneovim/cmd/goneovim.desktop /usr/share/applications && \
+    cp data/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+    cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
   - <<: *layers-kde-kf5
   - <<: *apps-neovim
     skip: true
   build_requires:
-  - <<: *buildbase-kde-kf5
+  - <<: *layers-kde-kf5
+
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.8"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   inner_build_requires:
+#   - <<: *apps-go
+#   ready:
+#   - git clone https://github.com/akiyosi/goneovim
+#   - |
+#     cd goneovim && \
+#     git fetch --all --tags && \
+#     git checkout tags/v0.6.8 && \
+#     make qt_bindings && \
+#     make deps && \
+#     make app
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cd goneovim && \
+#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+#     find -name goneovim && \
+#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *buildbase-kde-kf5
 
 - &apps-hugin
   category: "apps"
