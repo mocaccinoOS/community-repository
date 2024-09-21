@@ -9230,31 +9230,30 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-# needs newer gui-libs/gtk
-# - category: "apps"
-#   name: "warp"
-#   version: "0.6.2+2"
-#   uri:
-#   - https://gitlab.gnome.org/World/warp
-#   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
-#   description: "Securely send files via the internet or LAN by exchanging a word-based code"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/warp
-#   overlays:
-#   - enable: "guru"
-#   provides:
-#   - category: "net-misc"
-#     name: "warp"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-misc/warp"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "warp"
+  version: "0.7.0-r1"
+  uri:
+  - https://gitlab.gnome.org/World/warp
+  license: "BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
+  description: "Securely send files via the internet or LAN by exchanging a word-based code"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/warp
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-misc"
+    name: "warp"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/warp"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "wavemon"
