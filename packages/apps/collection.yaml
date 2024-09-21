@@ -16080,15 +16080,13 @@ packages:
     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.8/goneovim-v0.6.8-linux.tar.bz2 && \
     mkdir data && \
     tar -C data -xf goneovim-v0.6.8-linux.tar.bz2 --strip-components=1 && \
-    tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd && \
-    ls -R data && \
-    tree data
+    tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
   setup:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
-    cp data/cmd/goneovim.ico /usr/share/pixmaps && \
-    cp data/cmd/goneovim.svg /usr/share/pixmaps && \
-    cp data/cmd/goneovim.desktop /usr/share/applications && \
+    cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
+    cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
     cp data/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
