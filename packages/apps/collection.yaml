@@ -8222,6 +8222,26 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "qt5ct"
+  version: "1.8"
+  uri:
+  - https://sourceforge.net/projects/qt5ct/
+  license: "BSD-2"
+  description: "Qt5 configuration tool, similar to qtconfig for Qt4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/qt5ct
+  provides:
+  - category: "x11-misc"
+    name: "qt5ct"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
+
+- category: "apps"
   name: "quassel"
   version: "0.14.0-r3+1"
   uri:
