@@ -8266,6 +8266,26 @@ packages:
   - <<: *layers-kde-kf5
 
 - category: "apps"
+  name: "qt6ct"
+  version: "0.9"
+  uri:
+  - https://github.com/trialuser02/qt6ct/
+  license: "BSD-2"
+  description: "Qt6 Configuration Tool (for DE/WM without Qt integration)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/qt6ct
+  provides:
+  - category: "gui-apps"
+    name: "qt6ct"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "quassel"
   version: "0.14.0-r3+1"
   uri:
