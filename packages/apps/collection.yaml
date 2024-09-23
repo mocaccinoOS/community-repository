@@ -643,7 +643,8 @@ packages:
   - atom: "media-fonts/inconsolata-hellenic"
     accept_keywords: "~amd64"
 
-- <<: *fonts
+- &fonts-jetbrains-mono
+  <<: *fonts
   name: "jetbrains-mono"
   version: "2.304"
   uri:
@@ -675,7 +676,8 @@ packages:
     name: "noto-cjk"
     version: ">=0"
 
-- <<: *fonts
+- &fonts-noto-extra
+  <<: *fonts
   name: "noto-extra"
   version: "20240731"
   uri:
@@ -9344,6 +9346,38 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "wezterm"
+  version: "20240203.110809-r1"
+  uri:
+  - https://wezfurlong.org/wezterm/
+  - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
+  license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions Artistic-2 BSD BSD-2 Boost-1.0 CC0-1.0 GPL-3 ISC LGPL-2.1 MIT MPL-2.0 Unicode-DFS-2016 Unlicense WTFPL-2 ZLIB"
+  description: |
+    A GPU-accelerated cross-platform terminal emulator and multiplexer
+    X.Org cursor themes: whiteglass, redglass and handhelds
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/wezterm
+  provides:
+  - category: "x11-terms"
+    name: "wezterm"
+    version: ">=0"
+  - category: "x11-themes"
+    name: "xcursor-themes"
+    version: ">=0"
+  atoms:
+  - atom: "x11-terms/wezterm"
+    use: "wayland"
+  requires:
+  - <<: *layers-X
+  <<: *fonts-jetbrains-mono
+  # - <<:* fonts-noto-extra
+  - <<: *fonts-roboto
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "wireshark"
