@@ -8782,6 +8782,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "supercollider"
+  version: "3.13.0-r1"
+  uri:
+  - https://supercollider.github.io/
+  license: "GPL-3"
+  description: "Environment and programming language for real time audio synthesis"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/supercollider
+  provides:
+  - category: "media-sound"
+    name: "supercollider"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/supercollider"
+    use: "gpl3 fftw jack -qt5 sndfile X zeroconf # ableton-link emacs gedit server vim webengine"
+    accept_keywords: "~amd64"
+  requires:
+  # - <<: *layers-kde-kf5
+  - <<: *layers-X
+  build_requires:
+  # - <<: *layers-kde-kf5
+  - <<: *layers-X
+
 - &apps-tcsh
   category: "apps"
   name: "tcsh"
