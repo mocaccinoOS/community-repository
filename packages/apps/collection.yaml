@@ -16236,6 +16236,7 @@ packages:
     emerge.jobs: "1"
   inner_build_requires:
   - <<: *apps-go
+  - <<: *apps-designer
   ready:
   - git clone https://github.com/akiyosi/goneovim
   - |
@@ -16258,8 +16259,6 @@ packages:
     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  inner_build_requires:
-  - <<: *apps-designer
   requires:
   - <<: *layers-kde-kf5
   - <<: *apps-neovim
