@@ -16235,7 +16235,7 @@ packages:
   labels:
     emerge.jobs: "1"
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( {15} )/LLVM_COMPAT=( {18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
+  - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
   - ebuild /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild manifest
   ready:
   - git clone https://github.com/akiyosi/goneovim
