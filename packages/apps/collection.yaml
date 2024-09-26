@@ -3814,27 +3814,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pyyaml
-  category: "libs"
-  name: "pyyaml"
-  version: "6.0.2"
-  uri:
-  - https://pyyaml.org/wiki/PyYAML
-  license: "MIT"
-  description: "YAML parser and emitter for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyyaml
-  provides:
-  - category: "dev-python"
-    name: "pyyaml"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-qcustomplot
   category: "libs"
   name: "qcustomplot"
@@ -4089,28 +4068,6 @@ packages:
   provides:
   - category: "app-text"
     name: "sgml-common"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-six
-  category: "libs"
-  name: "six"
-  version: "1.16.0-r1"
-  uri:
-  - https://github.com/benjaminp/six/
-  license: "MIT"
-  description: |
-    Python 2 and 3 compatibility library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/six
-  provides:
-  - category: "dev-python"
-    name: "six"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -7538,7 +7495,7 @@ packages:
 
 - category: "apps"
   name: "meld"
-  version: "3.22.0-r2+3"
+  version: "3.22.0-r2+4"
   uri:
   - http://meldmerge.org/
   license: "GPL-2+"
@@ -8660,10 +8617,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-scour
+  category: "apps"
+  name: "scour"
+  version: "0.38.2-r1+4"
+  uri:
+  - https://github.com/scour-project/scour
+  license: "Apache-2.0"
+  description: "Take an SVG file and produce a cleaner and more concise file"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/scour
+  provides:
+  - category: "media-gfx"
+    name: "scour"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-simple-scan
   category: "apps"
   name: "simple-scan"
-  version: "46.0+2"
+  version: "46.0+3"
   uri:
   - https://gitlab.gnome.org/GNOME/simple-scan
   license: "GPL-3+"
@@ -8780,6 +8758,29 @@ packages:
   - category: "entity"
     name: "sndio"
     version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "solaar"
+  version: "1.1.13+2"
+  uri:
+  - https://pwr-solaar.github.io/Solaar/
+  license: "GPL-2"
+  description: "Linux Device Manager for Logitech Unifying Receivers and Paired Devices"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/solaar
+  provides:
+  - category: "app-misc"
+    name: "solaar"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/solaar"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
@@ -9693,7 +9694,7 @@ packages:
 - &libs-build
   category: "libs"
   name: "build"
-  version: "1.2.1+1"
+  version: "1.2.1+2"
   uri:
   - https://pypi.org/project/build/
   - https://github.com/pypa/build/
@@ -9717,7 +9718,7 @@ packages:
 - &libs-cachecontrol
   category: "libs"
   name: "cachecontrol"
-  version: "0.14.0"
+  version: "0.14.0+1"
   uri:
   - https://pypi.org/project/CacheControl/
   license: "Apache-2.0"
@@ -9971,7 +9972,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.8.1"
+  version: "1.8.1+1"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception"
@@ -10098,7 +10099,7 @@ packages:
 - &libs-libnice
   category: "libs"
   name: "libnice"
-  version: "0.1.21+2"
+  version: "0.1.22"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -10148,7 +10149,7 @@ packages:
 - &libs-lockfile
   category: "libs"
   name: "lockfile"
-  version: "0.12.2-r3+2"
+  version: "0.12.2-r3+3"
   uri:
   - https://launchpad.net/pylockfile/
   license: "MIT"
@@ -10192,7 +10193,7 @@ packages:
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "9.1.2"
+  version: "9.1.2+1"
   uri:
   - https://github.com/pikepdf/pikepdf/
   - https://pypi.org/project/pikepdf/
@@ -10241,12 +10242,10 @@ packages:
     name: "pysol-cards"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *libs-random2
-  # six may go away next time for this package
-  - <<: *libs-six
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-rubberband
   category: "libs"
@@ -10667,7 +10666,7 @@ packages:
 - &def-cdemu
   category: "apps"
   name: "cdemu"
-  version: "3.2.5-r1"
+  version: "3.2.5-r1+1"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -10763,7 +10762,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "1.2.2"
+  version: "1.2.2+1"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -10912,7 +10911,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.6.0+6"
+  version: "4.6.0+7"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -11237,7 +11236,7 @@ packages:
 
 - category: "apps"
   name: "filezilla"
-  version: "3.67.0"
+  version: "3.67.1"
   uri:
   - https://filezilla-project.org/
   license: "GPL-2"
@@ -11262,7 +11261,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.18.1+1"
+  version: "1.18.1+2"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -11378,7 +11377,7 @@ packages:
 
 - category: "apps"
   name: "gnome-games"
-  version: "1.0"
+  version: "1.0+1"
   uri:
   - https://wiki.gnome.org/Apps/Atomix
   - https://wiki.gnome.org/Apps/Five%20or%20more
@@ -11476,8 +11475,9 @@ packages:
   - atom: "games-puzzle/atomix"
     accept_keywords: "~amd64"
   inner_build_reqs:
-  - dev-libs/check
   - app-text/rarian
+  - dev-libs/check
+  - dev-util/itstool
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-libglade
@@ -11599,7 +11599,7 @@ packages:
 - &apps-handbrake
   category: "apps"
   name: "handbrake"
-  version: "1.6.1+1"
+  version: "1.6.1+2"
   uri:
   - https://handbrake.fr/
   license: "GPL-2"
@@ -11625,7 +11625,7 @@ packages:
 
 - category: "apps"
   name: "hexchat"
-  version: "2.16.2+1"
+  version: "2.16.2+2"
   uri:
   - https://hexchat.github.io/
   license: "GPL-2 MIT"
@@ -11746,7 +11746,7 @@ packages:
 
 - category: "apps"
   name: "kid3"
-  version: "3.9.5"
+  version: "3.9.5+1"
   uri:
   - https://kid3.kde.org
   license: "GPL-2+"
@@ -11872,7 +11872,7 @@ packages:
 - &apps-lash
   category: "apps"
   name: "lash"
-  version: "0.5.4-r6"
+  version: "0.5.4-r6+1"
   uri:
   - http://www.nongnu.org/lash/
   license: "GPL-2"
@@ -11897,7 +11897,7 @@ packages:
 - &apps-links
   category: "apps"
   name: "links"
-  version: "2.29-r1"
+  version: "2.29-r1+1"
   uri:
   - http://links.twibright.com/
   license: "GPL-2"
@@ -11949,7 +11949,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.17"
+  version: "0.5.17+1"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -12192,7 +12192,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.38.0-r1"
+  version: "0.38.0-r1+1"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -12223,7 +12223,7 @@ packages:
 
 - category: "apps"
   name: "musescore"
-  version: "4.4.1+1"
+  version: "4.4.2"
   uri:
   - https://musescore.org/
   license: "GPL-2"
@@ -12251,7 +12251,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.4"
+  version: "5.9.4+1"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -12314,7 +12314,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "30.2.3"
+  version: "30.2.3+1"
   uri:
   - https://obsproject.com
   - https://jmvalin.ca/demo/rnnoise/
@@ -12487,7 +12487,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "113.0.5230.62"
+  version: "113.0.5230.86"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -12592,7 +12592,7 @@ packages:
 - &apps-picom
   category: "apps"
   name: "picom"
-  version: "11.2"
+  version: "11.2+1"
   uri:
   - https://github.com/yshui/picom
   license: "MPL-2.0 MIT"
@@ -12618,7 +12618,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "24.2-r1+1"
+  version: "24.2-r1+2"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -12668,7 +12668,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "6.1.4"
+  version: "6.1.5"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -12693,7 +12693,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "16.4"
+  version: "16.4+1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -12916,7 +12916,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.2.1+2"
+  version: "3.2.1+3"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -13000,7 +13000,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.35-r2"
+  version: "1.4.35-r2+1"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -13052,28 +13052,6 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
-
-- &apps-scour
-  category: "apps"
-  name: "scour"
-  version: "0.38.2-r1+4"
-  uri:
-  - https://github.com/scour-project/scour
-  license: "Apache-2.0"
-  description: "Take an SVG file and produce a cleaner and more concise file"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/scour
-  provides:
-  - category: "media-gfx"
-    name: "scour"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-six
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "shntool"
@@ -13161,7 +13139,7 @@ packages:
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
-  version: "23.6.0+1"
+  version: "23.6.0-r1"
   uri:
   - https://www.smplayer.eu/
   license: "GPL-2+ BSD-2"
@@ -13186,7 +13164,7 @@ packages:
 
 - category: "apps"
   name: "snapper-gui"
-  version: "220626+7"
+  version: "220626+8"
   uri:
   - https://github.com/ricardomv/snapper-gui
   license: "GPL-2+"
@@ -13213,32 +13191,8 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "solaar"
-  version: "1.1.13+2"
-  uri:
-  - https://pwr-solaar.github.io/Solaar/
-  license: "GPL-2"
-  description: "Linux Device Manager for Logitech Unifying Receivers and Paired Devices"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-misc/solaar
-  provides:
-  - category: "app-misc"
-    name: "solaar"
-    version: ">=0"
-  atoms:
-  - atom: "app-misc/solaar"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pyyaml
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "soundconverter"
-  version: "4.0.3+4"
+  version: "4.0.3+5"
   uri:
   - https://soundconverter.org
   license: "GPL-3"
@@ -13338,7 +13292,7 @@ packages:
 
 - category: "apps"
   name: "tor"
-  version: "0.4.8.12"
+  version: "0.4.8.12+1"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -13449,7 +13403,7 @@ packages:
 
 - category: "apps"
   name: "vdr"
-  version: "2.6.6"
+  version: "2.6.9"
   uri:
   - http://www.tvdr.de/
   - http://www.escape-edv.de/endriss/vdr/
@@ -13701,7 +13655,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "9.17"
+  version: "9.18"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -13784,7 +13738,7 @@ packages:
 
 - category: "apps"
   name: "yamllint"
-  version: "1.32.0+3"
+  version: "1.32.0+4"
   uri:
   - https://pypi.org/project/yamllint/
   license: "GPL-3"
@@ -13798,10 +13752,9 @@ packages:
     name: "yamllint"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
-  - <<: *libs-pyyaml
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-zathura
   category: "apps"
@@ -13833,7 +13786,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.1.11.1545+1"
+  version: "6.2.0.1855"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -15124,7 +15077,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.4.2-r1+2"
+  version: "24.2.6.2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15576,7 +15529,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.10.1-r2"
+  version: "1.11.0"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   license: "GPL-3"
@@ -15598,7 +15551,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "6.1.4"
+  version: "6.1.5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
