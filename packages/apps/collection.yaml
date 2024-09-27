@@ -12209,9 +12209,6 @@ packages:
   - category: "media-video"
     name: "mpv"
     version: '>=0'
-  - category: "virtual"
-    name: "linuxtv-dvb-headers"
-    version: '>=0'
   atoms:
   - atom: "media-video/mpv"
     use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
@@ -13139,7 +13136,7 @@ packages:
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
-  version: "23.6.0-r1"
+  version: "23.6.0-r1+1"
   uri:
   - https://www.smplayer.eu/
   license: "GPL-2+ BSD-2"
@@ -13156,11 +13153,11 @@ packages:
   - atom: "media-video/smplayer"
     use: "autoshutdown mpris"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   # - <<: *media-video/mplayer
   - <<: *apps-mpv
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "snapper-gui"
@@ -13436,18 +13433,18 @@ packages:
   - category: "app-eselect"
     name: "eselect-vdr"
     version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-remote"
-    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-remote"
+  #   version: ">=0"
   - category: "media-plugins"
     name: "vdr-dvbsddevice"
     version: ">=0"
   - category: "media-plugins"
     name: "vdr-dvbhddevice"
     version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-weatherng"
-    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-weatherng"
+  #   version: ">=0"
   - category: "media-plugins"
     name: "vdr-pvr350"
     version: ">=0"
@@ -13456,9 +13453,6 @@ packages:
     version: ">=0"
   - category: "sys-process"
     name: "wait_on_pid"
-    version: ">=0"
-  - category: "virtual"
-    name: "linuxtv-dvb-headers"
     version: ">=0"
   - category: "media-tv"
     name: "gentoo-vdr-scripts"
@@ -15126,10 +15120,8 @@ packages:
   - category: "dev-libs"
     name: "libixion"
     version: ">=0"
+  - category: "games-engines"
     name: "box2d"
-    version: ">=0"
-  - category: "sys-devel"
-    name: "ucpp"
     version: ">=0"
   - category: "sci-libs"
     name: "coinor-mp"
@@ -15137,7 +15129,6 @@ packages:
   - category: "sci-mathematics"
     name: "lpsolve"
     version: ">=0"
-  - category: "games-engines"
   atoms:
   # needs firebird: firebird
   # needs java: scripting-beanshell scripting-javascript
@@ -16382,7 +16373,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "0.1+22"
+  version: "0.1+23"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -16488,7 +16479,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "4.0.1"
+  version: "4.0.1-r1"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -18592,7 +18583,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.08.0"
+  version: "24.08.1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
