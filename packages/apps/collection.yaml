@@ -7362,8 +7362,8 @@ packages:
   atoms:
   - atom: "sys-apps/lshw"
     use: "gtk sqlite"
-  prepare:
-  - emaint sync
+  # prepare:
+  # - emaint sync
   requires:
   - <<: *layers-X
   build_requires:
@@ -16656,7 +16656,8 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  # prepare:
+  prepare:
+  - emaint sync
   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild
   # - ebuild /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
