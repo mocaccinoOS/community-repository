@@ -7945,30 +7945,113 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-pandoc
-#   category: "apps"
-#   name: "pandoc"
-#   version: "3+2"
-#   uri:
-#   - https://pandoc.org
-#   license: "GPL-2+"
-#   description: "Conversion between markup formats"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#        app-text/pandoc
-#   provides:
-#   - category: "app-text"
-#     name: "pandoc"
-#     version: ">=0"
-#   atoms:
-#   - atom: "app-text/pandoc"
-#     use: "embed-data-files # doc hscolour optimize trypandoc profile"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-haskell
-#   build_requires:
-#   - <<: *layers-haskell
+# USE="hscolour" emerge --pretend --verbose app-text/pandoc
+# USE="hscolour" ACCEPT_KEYWORDS="~amd64" emerge --pretend --verbose =app-text/pandoc-3
+- &apps-pandoc
+  category: "apps"
+  name: "pandoc"
+  version: "3+2"
+  uri:
+  - https://pandoc.org
+  license: "GPL-2+"
+  description: "Conversion between markup formats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+       app-text/pandoc
+  provides:
+  - category: "app-text"
+    name: "pandoc"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "citeproc"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "commonmark"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "commonmark-extensions"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "commonmark-pandoc"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "doclayout"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "doctemplates"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "emojis"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "haddock-library"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-aeson"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-module-doclayout"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-module-path"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-module-system"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-module-text"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "hslua-module-version"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "jira-wiki-markup"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "juicypixels"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "lpeg"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc-lua-marshal"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "pandoc-types"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "skylighting"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "skylighting-core"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "texmath"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "text-conversions"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "unicode-collation"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "unicode-transforms"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/pandoc"
+    use: "embed-data-files # doc optimize trypandoc"
+    # accept_keywords: "~amd64"
+  - atom: "dev-haskell/citeproc"
+    use: "icu"
+  env: "USE=\"hscolour\""
+  requires:
+  - <<: *layers-haskell
+  build_requires:
+  - <<: *layers-haskell
 
 - category: "apps"
   name: "pdftk"
@@ -16615,38 +16698,37 @@ packages:
   - <<: *layerbase-cdemu
   requires_final_images: true
 
-- category: "apps"
-  name: "goneovim"
-  version: "0.6.8+1"
-  uri:
-  - https://github.com/akiyosi/goneovim
-  license: "MIT"
-  description: "A Neovim GUI written in Go, using a Qt binding for Go"
-  labels:
-    emerge.jobs: "1"
-  prepare:
-  - |
-    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.8.tar.gz && \
-    wget https://github.com/akiyosi/goneovim/releases/download/v0.6.8/goneovim-v0.6.8-linux.tar.bz2 && \
-    mkdir data && \
-    tar -C data -xf goneovim-v0.6.8-linux.tar.bz2 --strip-components=1 && \
-    tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
-  setup:
-  - |
-    ln -s /usr/lib/libtiff.so /usr/lib/libtiff.so.5 && \
-    mkdir -p -m 755 /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    cp data/goneovim /usr/bin && \
-    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *apps-neovim
-    skip: true
-  build_requires:
-  - <<: *layers-kde-kf5
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.8"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   prepare:
+#   - |
+#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.8.tar.gz && \
+#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.8/goneovim-v0.6.8-linux.tar.bz2 && \
+#     mkdir data && \
+#     tar -C data -xf goneovim-v0.6.8-linux.tar.bz2 --strip-components=1 && \
+#     tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     cp data/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 # - category: "apps"
 #   name: "goneovim"
