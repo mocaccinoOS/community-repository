@@ -14176,7 +14176,7 @@ packages:
 
 - category: "apps"
   name: "asbru-cm"
-  version: "6.4.0"
+  version: "6.4.0+1"
   uri:
   - https://github.com/asbru-cm/asbru-cm/
   - https://docs.asbru-cm.net/General/Installation/#gentoo
@@ -14184,6 +14184,15 @@ packages:
   description: "Ásbrú Connection Manager is a user interface that helps organizing remote terminal sessions and automating repetitive tasks."
   labels:
     emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/YAML
+      dev-perl/Type-Tiny-XS
+      =dev-perl/Crypt-CBC-2.330.0-r2
+      dev-perl/Net-ARP
+      dev-perl/Crypt-Blowfish
+      dev-perl/Gtk3-SimpleList
+      dev-perl/Expect
+    # dev-perl/Gtk3
   provides:
   - category: "net-misc"
     name: "asbru-cm"
@@ -14191,22 +14200,15 @@ packages:
   atoms:
   - atom: "dev-perl/Net-ARP"
     accept_keywords: "~amd64"
+  - atom: "dev-perl/Type-Tiny-XS"
+    use: "minimal"
   ready:
   - |    
     git clone https://github.com/asbru-cm/asbru-cm/ && \
     cd asbru-cm && \
     git fetch --all --tags && \
     git checkout tags/6.4.0
-  setup:
-  - |
-    emerge dev-perl/YAML && \
-    USE="minimal" emerge dev-perl/Type-Tiny-XS && \
-    emerge =dev-perl/Crypt-CBC-2.330.0-r2 && \
-    # emerge dev-perl/Gtk3 && \
-    emerge dev-perl/Net-ARP && \
-    emerge dev-perl/Crypt-Blowfish && \
-    emerge dev-perl/Gtk3-SimpleList && \
-    emerge dev-perl/Expect
+  completion:
   - |
     mkdir -p -m 755 /opt/asbru-cm && \
     mkdir -p -m 755 /usr/share/pixmaps && \
