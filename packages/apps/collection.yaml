@@ -16758,6 +16758,7 @@ packages:
 #     tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
 #   setup:
 #   - |
+#     ln -s libtiff.so /usr/lib/libtiff.so.5 && \
 #     mkdir -p -m 755 /usr/share/pixmaps && \
 #     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
 #     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
@@ -16772,62 +16773,64 @@ packages:
 #   build_requires:
 #   - <<: *layers-kde-kf5
 
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.8+2"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   provides:
-#   - category: "apps"
-#     name: "goneovim"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-qt/qtremoteobjects"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - emaint sync
-#   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild
-#   # - ebuild /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild manifest
-#   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
-#   # - ebuild /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild manifest
-#   ready:
-#   - git clone https://github.com/akiyosi/goneovim
-#   - |
-#     export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
-#     cd goneovim && \
-#     git fetch --all --tags && \
-#     git checkout tags/v0.6.8 && \
-#     make qt_bindings && \
-#     make deps && \
-#     make app
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cd goneovim && \
-#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-#     find -name goneovim && \
-#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   inner_build_reqs:
-#   # - dev-python/pyside2
-#   - dev-qt/qtremoteobjects
-#   inner_build_requires:
-#   - <<: *apps-go
-#   - <<: *apps-designer
-#   requires:
-#   - <<: *layers-kde-kf5
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *buildbase-kde-kf5
+- category: "apps"
+  name: "goneovim"
+  version: "0.6.8+3"
+  uri:
+  - https://github.com/akiyosi/goneovim
+  license: "MIT"
+  description: "A Neovim GUI written in Go, using a Qt binding for Go"
+  labels:
+    emerge.jobs: "1"
+  provides:
+  - category: "apps"
+    name: "goneovim"
+    version: ">=0"
+  overlays:
+  - enable: "okh"
+  atoms:
+  - atom: "dev-qt/qtremoteobjects"
+    accept_keywords: "~amd64"
+  prepare:
+  - emaint sync
+  # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild
+  # - ebuild /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild manifest
+  # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
+  # - ebuild /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild manifest
+  ready:
+  - git clone https://github.com/akiyosi/goneovim
+  - |
+    export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
+    cd goneovim && \
+    git fetch --all --tags && \
+    git checkout tags/v0.6.8 && \
+    make qt_bindings && \
+    make deps && \
+    make app
+  setup:
+  - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cd goneovim && \
+    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+    find -name goneovim && \
+    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  inner_build_reqs:
+  # - dev-python/pyside2
+  - dev-qt/qtremoteobjects
+  inner_build_requires:
+  - <<: *apps-go
+  - <<: *apps-designer
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *apps-neovim
+    skip: true
+  build_requires:
+  - <<: *buildbase-kde-kf5
 
 - &apps-hugin
   category: "apps"
