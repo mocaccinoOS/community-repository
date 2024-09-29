@@ -16782,21 +16782,18 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  # provides:
-  # - category: "apps"
-  #   name: "goneovim"
-  #   version: "0.6.8"
   overlays:
   - enable: "okh"
   # atoms:
   # - atom: "dev-qt/qtremoteobjects"
   #   accept_keywords: "~amd64"
-  # prepare:
+  prepare:
   # - emaint sync
-  # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild manifest
-  # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild manifest
+  # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
+  # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
+  # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
+  - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
+  - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
   ready:
   - |
     git clone https://github.com/akiyosi/goneovim && \
