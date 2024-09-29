@@ -16775,7 +16775,7 @@ packages:
 
 - category: "apps"
   name: "goneovim"
-  version: "0.6.8+3"
+  version: "0.6.8+4"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -16788,9 +16788,9 @@ packages:
     version: ">=0"
   overlays:
   - enable: "okh"
-  atoms:
-  - atom: "dev-qt/qtremoteobjects"
-    accept_keywords: "~amd64"
+  # atoms:
+  # - atom: "dev-qt/qtremoteobjects"
+  #   accept_keywords: "~amd64"
   # prepare:
   # - emaint sync
   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/shiboken2/shiboken2-5.15.14.ebuild
@@ -16798,8 +16798,8 @@ packages:
   # - sed -i -e 's/LLVM_COMPAT=( 15 )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild
   # - ebuild /var/db/repos/gentoo/dev-python/pyside2/pyside2-5.15.14.ebuild manifest
   ready:
-  - git clone https://github.com/akiyosi/goneovim
   - |
+    git clone https://github.com/akiyosi/goneovim && \
     export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
     cd goneovim && \
     git fetch --all --tags && \
@@ -16820,8 +16820,7 @@ packages:
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   inner_build_reqs:
-  # - dev-python/pyside2
-  - dev-qt/qtremoteobjects
+  - dev-qt/qtremoteobjects::okh
   inner_build_requires:
   - <<: *apps-go
   - <<: *apps-designer
@@ -16830,7 +16829,7 @@ packages:
   - <<: *apps-neovim
     skip: true
   build_requires:
-  - <<: *buildbase-kde-kf5
+  - <<: *layers-kde-kf5
 
 - &apps-hugin
   category: "apps"
