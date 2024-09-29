@@ -14174,86 +14174,64 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "asbru-cm"
-#   version: "5.0.0"
-#   uri:
-#   - https://www.asbru-cm.net/
-#   license: "GPL-3"
-#   description: |
-#     Asbru CM is a user interface that helps organizing remote terminal sessions
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/asbru-cm
-#   overlays:
-#   - enable: "hossie"
-#   provides:
-#   - category: "net-misc"
-#     name: "asbru-cm"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Crypt-Blowfish"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Crypt-CBC"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Crypt-Rijndael"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Expect"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "File-KeePass"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Gnome2-GConf"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "gnome2-perl"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Gnome2-Vte"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Gtk2"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Gtk2-Ex-Simple-List"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "gtk2-gladexml"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Gtk2-Unique"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "IO-Stty"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Net-ARP"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "Socket6"
-#     version: ">=0"
-#   - category: "dev-perl"
-#     name: "YAML"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-misc/asbru-cm"
-#     accept_keywords: "~amd64"
-#     use: "freerdp mosh vnc # rdesktop webdav"
-#   prepare:
-#   - ebuild /var/db/repos/hossie/net-misc/asbru-cm/asbru-cm-5.0.0.ebuild manifest
-#   optrequires:
-#   - <<: *apps-mosh
-#   - <<: *apps-tigervnc
-#   - <<: *libs-ossp-uuid
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+- category: "apps"
+  name: "asbru-cm"
+  version: "6.4.0"
+  uri:
+  - https://github.com/asbru-cm/asbru-cm/
+  - https://docs.asbru-cm.net/General/Installation/#gentoo
+  license: "GPL-3"
+  description: "Ásbrú Connection Manager is a user interface that helps organizing remote terminal sessions and automating repetitive tasks."
+  labels:
+    emerge.jobs: "1"
+  provides:
+  - category: "net-misc"
+    name: "asbru-cm"
+    version: ">=0"
+  ready:
+  - |
+    emerge dev-perl/YAML && \
+    USE="minimal" emerge dev-perl/Type-Tiny-XS && \
+    emerge =dev-perl/Crypt-CBC-2.330.0-r2 && \
+    # emerge dev-perl/Gtk3 && \
+    emerge dev-perl/Net-ARP && \
+    emerge dev-perl/Crypt-Blowfish && \
+    emerge dev-perl/Gtk3-SimpleList && \
+    emerge dev-perl/Expect && \
+    git clone https://github.com/asbru-cm/asbru-cm/ && \
+    cd asbru-cm && \
+    git fetch --all --tags && \
+    git checkout tags/6.4.0    
+  setup:
+  - |
+    mkdir -p -m 755 /opt/asbru-cm && \
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cd asbru-cm && \
+    cp -r lib /opt/asbru-cm && \
+    cp -r res /opt/asbru-cm && \
+    cp -r utils /opt/asbru-cm && \
+    cp asbru-cm /opt/asbru-cm && \
+    ln -s /opt/asbru/asbru-cm /usr/bin/asbru-cm
+    ln -s /opt/asbru/res /usr/share/asbru-cm
+    ln -s /opt/asbru/lib /usr/lib64/asbru-cm
+    cp res/asbru-cm.1 /opt/asbru-cm/res && \
+    cp res/asbru-cm.desktop /usr/share/applications && \
+    cp res/asbru-logo.svg /usr/share/icons/hicolor/scalable/apps && \
+    cp res/asbru-logo-24.png /usr/share/icons/hicolor/24x24/apps && \
+    cp res/asbru-logo-64.png /usr/share/icons/hicolor/64x64/apps && \
+    cp res/asbru-logo-256.png /usr/share/icons/hicolor/256x256/apps && \
+    cp res/asbru_bash_completion /usr/share/bash-completion/completions
+  optrequires:
+  - <<: *apps-mosh
+    skip: true
+  - <<: *apps-tigervnc
+    skip: true
+  - <<: *libs-ossp-uuid
+    skip: true
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-avalonia-ilspy
   category: "apps"
@@ -16758,7 +16736,7 @@ packages:
 #     tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
 #   setup:
 #   - |
-#     ln -s libtiff.so /usr/lib/libtiff.so.5 && \
+#     ln -s /usr/lib/libtiff.so /usr/lib/libtiff.so.5 && \
 #     mkdir -p -m 755 /usr/share/pixmaps && \
 #     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
 #     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
@@ -16773,60 +16751,60 @@ packages:
 #   build_requires:
 #   - <<: *layers-kde-kf5
 
-- category: "apps"
-  name: "goneovim"
-  version: "0.6.8+4"
-  uri:
-  - https://github.com/akiyosi/goneovim
-  license: "MIT"
-  description: "A Neovim GUI written in Go, using a Qt binding for Go"
-  labels:
-    emerge.jobs: "1"
-  overlays:
-  - enable: "okh"
-  # atoms:
-  # - atom: "dev-qt/qtremoteobjects"
-  #   accept_keywords: "~amd64"
-  prepare:
-  # - emaint sync
-  # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
-  # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
-  # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
-  - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
-  - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
-  ready:
-  - |
-    git clone https://github.com/akiyosi/goneovim && \
-    export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
-    cd goneovim && \
-    git fetch --all --tags && \
-    git checkout tags/v0.6.8 && \
-    make qt_bindings && \
-    make deps && \
-    make app
-  setup:
-  - |
-    mkdir -p -m 755 /usr/share/pixmaps && \
-    cd goneovim && \
-    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    find -name goneovim && \
-    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  inner_build_reqs:
-  - dev-qt/qtremoteobjects::okh
-  inner_build_requires:
-  - <<: *apps-go
-  - <<: *apps-designer
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *apps-neovim
-    skip: true
-  build_requires:
-  - <<: *buildbase-kde-kf5
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.8+4"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   overlays:
+#   - enable: "okh"
+#   # atoms:
+#   # - atom: "dev-qt/qtremoteobjects"
+#   #   accept_keywords: "~amd64"
+#   prepare:
+#   # - emaint sync
+#   # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
+#   # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
+#   # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
+#   - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
+#   - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
+#   ready:
+#   - |
+#     git clone https://github.com/akiyosi/goneovim && \
+#     export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
+#     cd goneovim && \
+#     git fetch --all --tags && \
+#     git checkout tags/v0.6.8 && \
+#     make qt_bindings && \
+#     make deps && \
+#     make app
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cd goneovim && \
+#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+#     find -name goneovim && \
+#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   inner_build_reqs:
+#   - dev-qt/qtremoteobjects::okh
+#   inner_build_requires:
+#   - <<: *apps-go
+#   - <<: *apps-designer
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *buildbase-kde-kf5
 
 - &apps-hugin
   category: "apps"
