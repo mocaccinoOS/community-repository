@@ -1944,6 +1944,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-IO-Tty
+  category: "libs"
+  name: "IO-Tty"
+  version: "1.200.0"
+  uri:
+  - https://metacpan.org/release/IO-Tty
+  license: "Artistic GPL-1+"
+  description: "IO::Tty and IO::Pty modules for Perl"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/IO-Tty
+  provides:
+  - category: "dev-perl"
+    name: "IO-Tty"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-javax-inject
   category: "libs"
   name: "javax-inject"
@@ -7574,33 +7595,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-mosh
-  category: "apps"
-  name: "mosh"
-  version: "1.4.0+1"
-  uri:
-  - https://mosh.org
-  license: "GPL-3"
-  description: "Mobile shell that supports roaming and intelligent local echo"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/mosh
-  provides:
-  - category: "net-misc"
-    name: "mosh"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "IO-Tty"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/mosh"
-    use: "client ufw utempter syslog # examples mosh-hardening nettle server hardened"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
@@ -12314,6 +12308,31 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-mosh
+  category: "apps"
+  name: "mosh"
+  version: "1.4.0+2"
+  uri:
+  - https://mosh.org
+  license: "GPL-3"
+  description: "Mobile shell that supports roaming and intelligent local echo"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/mosh
+  provides:
+  - category: "net-misc"
+    name: "mosh"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/mosh"
+    use: "client ufw utempter syslog # examples mosh-hardening nettle server hardened"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-IO-Tty
+  build_requires:
+  - <<: *layers-X
+
 - &apps-mpv
   category: "apps"
   name: "mpv"
@@ -14176,7 +14195,7 @@ packages:
 
 - category: "apps"
   name: "asbru-cm"
-  version: "6.4.0+1"
+  version: "6.4.0+2"
   uri:
   - https://github.com/asbru-cm/asbru-cm/
   - https://docs.asbru-cm.net/General/Installation/#gentoo
@@ -14236,6 +14255,7 @@ packages:
     skip: true
   requires:
   - <<: *layers-X
+  - <<: *libs-IO-Tty
   build_requires:
   - <<: *layers-X
 
