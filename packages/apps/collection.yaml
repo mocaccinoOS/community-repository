@@ -14188,7 +14188,16 @@ packages:
   - category: "net-misc"
     name: "asbru-cm"
     version: ">=0"
+  atoms:
+  - atom: "dev-perl/Net-ARP"
+    accept_keywords: "~amd64"
   ready:
+  - |    
+    git clone https://github.com/asbru-cm/asbru-cm/ && \
+    cd asbru-cm && \
+    git fetch --all --tags && \
+    git checkout tags/6.4.0
+  setup:
   - |
     emerge dev-perl/YAML && \
     USE="minimal" emerge dev-perl/Type-Tiny-XS && \
@@ -14198,12 +14207,6 @@ packages:
     emerge dev-perl/Crypt-Blowfish && \
     emerge dev-perl/Gtk3-SimpleList && \
     emerge dev-perl/Expect && \
-    git clone https://github.com/asbru-cm/asbru-cm/ && \
-    cd asbru-cm && \
-    git fetch --all --tags && \
-    git checkout tags/6.4.0    
-  setup:
-  - |
     mkdir -p -m 755 /opt/asbru-cm && \
     mkdir -p -m 755 /usr/share/pixmaps && \
     cd asbru-cm && \
