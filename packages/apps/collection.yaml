@@ -9412,6 +9412,10 @@ packages:
     emerge.packages: >-
       dev-python/Levenshtein
       dev-python/websocket-client
+  #     dev-libs/libappindicator:3
+  # overlays:
+  # - enable: "steam-overlay"
+  #   profile: "23"
   provides:
   - category: "net-misc"
     name: "ulauncher"
@@ -9449,7 +9453,7 @@ packages:
     cd ../build && \
     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
     find . -type d -name __pycache__ | xargs rm -rf && \
-    cp /share/applications/${PN}.desktop /usr/share/applications
+    cp /share/applications/${PN}.desktop /usr/share/applications && \
   requires:
   - <<: *layers-gnome-common
   build_requires:
