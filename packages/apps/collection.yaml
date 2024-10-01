@@ -6495,7 +6495,7 @@ packages:
   - atom: "gui-apps/gradience"
     accept_keywords: "~amd64"
   overlays:
-  - name: "guru"
+  - enable: "guru"
   provides:
   - category: "gui-apps"
     name: "gradience"
@@ -16134,7 +16134,7 @@ packages:
 
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2-r1+5"
+  version: "4.1.2.2-r1+6"
   uri:
   - https://wiki.x2go.org/doku.php
   license: "GPL-2"
@@ -16151,10 +16151,10 @@ packages:
   - atom: "net-misc/x2goclient"
     use: "ldap"
   requires:
-  - <<: *layers-plasma
+  - <<: *kde-kf5
   - <<: *apps-nx
   build_requires:
-  - <<: *layers-plasma
+  - <<: *kde-kf5
 
 - category: "apps"
   name: "x2goserver"
@@ -16171,11 +16171,8 @@ packages:
   - category: "net-misc"
     name: "x2goserver"
     version: ">=0"
-  - category: "acct-user"
-    name: "x2gouser"
-    version: ">=0"
-  - category: "acct-user"
-    name: "x2goprint"
+  - category: "x11-apps"
+    name: "xwininfo"
     version: ">=0"
   atoms:
   - atom: "net-misc/x2goserver"
