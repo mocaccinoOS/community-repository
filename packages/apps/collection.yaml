@@ -3989,6 +3989,48 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-regex
+  category: "libs"
+  name: "regex"
+  version: "2024.7.24"
+  uri:
+  - https://github.com/mrabarnett/mrab-regex/
+  license: "Apache-2.0"
+  description: "Alternative regular expression module to replace re"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/regex
+  provides:
+  - category: "dev-python"
+    name: "regex"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-reportlab
+  category: "libs"
+  name: "reportlab"
+  version: "4.2.2"
+  uri:
+  - https://www.reportlab.com/
+  license: "BSD"
+  description: "Tools for generating printable PDF documents from any data source"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/reportlab
+  provides:
+  - category: "dev-python"
+    name: "reportlab"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
@@ -6479,53 +6521,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- category: "apps"
-  name: "gradience"
-  version: "0.4.1"
-  uri:
-  - https://github.com/GradienceTeam/Gradience
-  license: "GPL-2+"
-  description: "KGNOME's main interface to configure various aspects of the desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gui-apps/gradience
-  atoms:
-  - atom: "gui-apps/gradience"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/material-color-utilities"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/svglib"
-    accept_keywords: "~amd64"
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "gui-apps"
-    name: "gradience"
-    version: ">=0"
-  - category: "dev-python"
-    name: "aiohttp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "anyascii"
-    version: ">=0"
-  - category: "dev-python"
-    name: "cssutils"
-    version: ">=0"
-  - category: "dev-python"
-    name: "material-color-utilities"
-    version: ">=0"
-  - category: "dev-python"
-    name: "svglib"
-    version: ">=0"
-  - category: "dev-python"
-    name: "yapsy"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "grub-btrfs"
@@ -13219,6 +13214,63 @@ packages:
   - <<: *buildbase-qemu
   requires_final_images: true
 
+- category: "apps"
+  name: "gradience"
+  version: "0.4.1+1"
+  uri:
+  - https://github.com/GradienceTeam/Gradience
+  license: "GPL-2+"
+  description: "KGNOME's main interface to configure various aspects of the desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/gradience
+  atoms:
+  - atom: "gui-apps/gradience"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/material-color-utilities"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/svglib"
+    accept_keywords: "~amd64"
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "gradience"
+    version: ">=0"
+  - category: "dev-python"
+    name: "aiohttp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "anyascii"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cssselect2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cssutils"
+    version: ">=0"
+  - category: "dev-python"
+    name: "material-color-utilities"
+    version: ">=0"
+  - category: "dev-python"
+    name: "svglib"
+    version: ">=0"
+    dev-python/tinycss2
+  - category: "dev-python"
+    name: "yapsy"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-util/blueprint-compiler
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-build
+  - <<: *libs-pyproject-hooks
+  - <<: *libs-reportlab
+  - <<: *libs-regex
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-rotoscope
   category: "apps"
   name: "rotoscope"
@@ -14474,7 +14526,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.16.0"
+  version: "7.16.0+1"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -14524,9 +14576,6 @@ packages:
     name: "pychm"
     version: ">=0"
   - category: "dev-python"
-    name: "regex"
-    version: ">=0"
-  - category: "dev-python"
     name: "unrardll"
     version: ">=0"
   - category: "dev-python"
@@ -14549,6 +14598,7 @@ packages:
   - <<: *libs-fonttools
   - <<: *libs-python-msgpack
   - <<: *libs-netifaces
+  - <<: *libs-regex
   build_requires:
   - <<: *layers-qt
 
@@ -14895,7 +14945,7 @@ packages:
 
 - category: "apps"
   name: "hplip"
-  version: "3.23.12-r3+3"
+  version: "3.23.12-r3+4"
   uri:
   - https://developers.hp.com/hp-linux-imaging-and-printing
   - https://developers.hp.com/hp-linux-imaging-and-printing/plugins
@@ -14915,9 +14965,6 @@ packages:
   - category: "net-print"
     name: "hplip-plugin"
     version: ">=0"
-  - category: "dev-python"
-    name: "reportlab"
-    version: ">=0"
   atoms:
   - atom: "net-print/hplip"
     use: "fax hpcups hpijs snmp # kde libnotify libusb0 minimal parport policykit qt5 static-ppds X # scanner: needs kde-misc/skanlite from layers/kde-apps-minimal"
@@ -14926,6 +14973,7 @@ packages:
     license: "hplip-plugin"
   requires:
   - <<: *layers-qt
+  - <<: *libs-reportlab
   - <<: *apps-net-snmp
   build_requires:
   - <<: *layers-qt
