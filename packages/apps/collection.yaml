@@ -6481,6 +6481,49 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "gradience"
+  version: "0.4.1"
+  uri:
+  - https://github.com/GradienceTeam/Gradience
+  license: "GPL-2+"
+  description: "KGNOME's main interface to configure various aspects of the desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/gradience
+  atoms:
+  - atom: "gui-apps/gradience"
+    accept_keywords: "~amd64"
+  overlays:
+  - name: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "gradience"
+    version: ">=0"
+  - category: "dev-python"
+    name: "aiohttp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "anyascii"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cssutils"
+    version: ">=0"
+  - category: "dev-python"
+    name: "material-color-utilities"
+    version: ">=0"
+  - category: "dev-python"
+    name: "svglib"
+    version: ">=0"
+  - category: "dev-python"
+    name: "yapsy"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "grub-btrfs"
   version: "4.13+1"
   uri:
@@ -16091,7 +16134,7 @@ packages:
 
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2-r1+4"
+  version: "4.1.2.2-r1+5"
   uri:
   - https://wiki.x2go.org/doku.php
   license: "GPL-2"
@@ -16115,7 +16158,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.3-r2+3"
+  version: "4.1.0.3-r2+4"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
