@@ -13214,63 +13214,6 @@ packages:
   - <<: *buildbase-qemu
   requires_final_images: true
 
-- category: "apps"
-  name: "gradience"
-  version: "0.4.1+1"
-  uri:
-  - https://github.com/GradienceTeam/Gradience
-  license: "GPL-2+"
-  description: "KGNOME's main interface to configure various aspects of the desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gui-apps/gradience
-  atoms:
-  - atom: "gui-apps/gradience"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/material-color-utilities"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/svglib"
-    accept_keywords: "~amd64"
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "gui-apps"
-    name: "gradience"
-    version: ">=0"
-  - category: "dev-python"
-    name: "aiohttp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "anyascii"
-    version: ">=0"
-  - category: "dev-python"
-    name: "cssselect2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "cssutils"
-    version: ">=0"
-  - category: "dev-python"
-    name: "material-color-utilities"
-    version: ">=0"
-  - category: "dev-python"
-    name: "svglib"
-    version: ">=0"
-    dev-python/tinycss2
-  - category: "dev-python"
-    name: "yapsy"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-util/blueprint-compiler
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-build
-  - <<: *libs-pyproject-hooks
-  - <<: *libs-reportlab
-  - <<: *libs-regex
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &apps-rotoscope
   category: "apps"
   name: "rotoscope"
@@ -16952,6 +16895,65 @@ packages:
 #     skip: true
 #   build_requires:
 #   - <<: *buildbase-kde-kf5
+
+- category: "apps"
+  name: "gradience"
+  version: "0.4.1+1"
+  uri:
+  - https://github.com/GradienceTeam/Gradience
+  license: "GPL-2+"
+  description: "KGNOME's main interface to configure various aspects of the desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/gradience
+  atoms:
+  - atom: "gui-apps/gradience"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/material-color-utilities"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/svglib"
+    accept_keywords: "~amd64"
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "gradience"
+    version: ">=0"
+  - category: "dev-python"
+    name: "aiohttp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "anyascii"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cssselect2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cssutils"
+    version: ">=0"
+  - category: "dev-python"
+    name: "material-color-utilities"
+    version: ">=0"
+  - category: "dev-python"
+    name: "svglib"
+    version: ">=0"
+  - category: dev-python"
+    name: "tinycss2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "yapsy"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-util/blueprint-compiler
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-build
+  - <<: *libs-pyproject-hooks
+  - <<: *libs-reportlab
+  - <<: *libs-regex
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-hugin
   category: "apps"
