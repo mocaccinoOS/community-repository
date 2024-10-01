@@ -341,7 +341,13 @@
 {{- if .enable }}
 - |
   eselect repository enable {{ .enable }}; \
-  emaint sync -r {{ .enable }}
+  emaint sync -r {{ .enable }}; \
+  eselect profile list
+{{- if and .profile .force }}
+- eselect profile set {{ .profile }} --force
+{{- else if .profile }}
+- eselect profile set {{ .profile }}
+{{- end }}
 {{- else if and .add .type .url }}
 - |
   eselect repository add {{ .add }} {{ .type }} {{ .url }} ; \
