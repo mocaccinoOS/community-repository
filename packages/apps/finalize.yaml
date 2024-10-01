@@ -6,8 +6,8 @@ install:
 - env-update && source /etc/profile
 
 {{ if and (eq .Values.category "apps") (eq .Values.name "x2goserver") }}
-- rm /var/lib/x2go/x2go_sessions
-- x2godbadmin --createdb 
+- rm /var/lib/x2go/x2go_sessions || true
+- x2godbadmin --createdb || true
 {{ end }}
 
 {{ if and (eq .Values.category "apps") (or (eq .Values.name "emacs") (eq .Values.name "xemacs")) }}
