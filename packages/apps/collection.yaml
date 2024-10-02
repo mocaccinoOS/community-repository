@@ -9446,7 +9446,7 @@ packages:
     git fetch --all --tags && \
     git checkout tags/5.15.7 && \
     export PYTHONHASHSEED=0 && \
-    export VERSION=5.15.7 && \
+    sed -i -e 's/%VERSION%/5.15.7/' setup.py && \
     python setup.py build
   completion:
   - |
