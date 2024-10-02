@@ -9449,13 +9449,14 @@ packages:
   completion:
   - |
     cd Ulauncher && \
-    export PYTHONHASHSEED=0 && \
-    export VERSION=5.15.7 && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp /share/applications/${PN}.desktop /usr/share/applications
+    && make install clean
+  # export PYTHONHASHSEED=0 && \
+  # export VERSION=5.15.7 && \
+  # env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+  # cd ../build && \
+  # rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+  # find . -type d -name __pycache__ | xargs rm -rf && \
+  # cp /share/applications/ulauncher.desktop /usr/share/applications
   inner_build_reqs:
   - dev-python/python-distutils-extra
   requires:
