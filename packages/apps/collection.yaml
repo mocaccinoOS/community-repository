@@ -17426,7 +17426,7 @@ packages:
 
 - category: "apps"
   name: "qsynth"
-  version: "1.0.0+1"
+  version: "1.0.0+2"
   uri:
   - https://qsynth.sourceforge.io/
   license: "GPL-2"
@@ -17441,12 +17441,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/qsynth"
-    use: "alsa jack pulseaudio"
+    use: "alsa jack pulseaudio # qt5"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   - <<: *apps-fluidsynth
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - &apps-RcloneBrowser
   category: "apps"
