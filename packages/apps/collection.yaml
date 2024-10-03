@@ -9402,7 +9402,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7"
+  version: "5.15.7+1"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9455,6 +9455,7 @@ packages:
     cd ../build && \
     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
     find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr/share/icons /usr/share/icons && \
     cp usr/share/applications/ulauncher.desktop /usr/share/applications
   inner_build_reqs:
   - dev-python/python-distutils-extra
@@ -14376,9 +14377,9 @@ packages:
     ln -s /opt/asbru-cm/lib /usr/lib64/asbru-cm && \
     cp res/asbru-cm.1 /opt/asbru-cm/res && \
     cp res/asbru-cm.desktop /usr/share/applications && \
-    cp res/asbru-logo.svg /usr/share/icons/hicolor/scalable/apps//asbru-cm.svg && \
-    cp res/asbru-logo-24.png /usr/share/icons/hicolor/24x24/apps//asbru-cm.png && \
-    cp res/asbru-logo-64.png /usr/share/icons/hicolor/64x64/apps//asbru-cm.png && \
+    cp res/asbru-logo.svg /usr/share/icons/hicolor/scalable/apps/asbru-cm.svg && \
+    cp res/asbru-logo-24.png /usr/share/icons/hicolor/24x24/apps/asbru-cm.png && \
+    cp res/asbru-logo-64.png /usr/share/icons/hicolor/64x64/apps/asbru-cm.png && \
     cp res/asbru-logo-256.png /usr/share/icons/hicolor/256x256/apps/asbru-cm.png && \
     cp res/asbru_bash_completion /usr/share/bash-completion/completions
   optrequires:
