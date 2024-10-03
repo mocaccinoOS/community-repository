@@ -12473,7 +12473,7 @@ packages:
 
 - category: "apps"
   name: "musescore"
-  version: "4.4.2"
+  version: "4.4.2+1"
   uri:
   - https://musescore.org/
   license: "GPL-2"
@@ -12489,14 +12489,13 @@ packages:
   atoms:
   - atom: "media-sound/musescore"
     accept_keywords: "~amd64"
-    use: "osc omr portmidi sf3 sfz alsa jack mp3 portaudio pulseaudio webengine"
+    use: "jack video # test"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   - <<: *libs-tinyxml2
   - <<: *libs-libopusenc
-  - <<: *apps-designer
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - &apps-net-snmp
   category: "apps"
