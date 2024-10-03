@@ -9402,7 +9402,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7+4"
+  version: "5.15.7+5"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9446,6 +9446,7 @@ packages:
     git fetch --all --tags && \
     git checkout tags/5.15.7 && \
     export PYTHONHASHSEED=0 && \
+    find . -type f -name "*.py" -exec sed -i 's/(\'WebKit2\', \'4.0\')/(\'WebKit2\', \'4.1\')/g' {} + && \
     sed -i -e 's/%VERSION%/5.15.7/' setup.py && \
     python setup.py build
   completion:
