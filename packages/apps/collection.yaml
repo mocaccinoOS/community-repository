@@ -9452,11 +9452,13 @@ packages:
   - |
     cd Ulauncher && \
     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+    # ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' && \
+    find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" && \
     ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' && \
     cd ../build && \
     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
     find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr/share/bin /usr/share && \
+    # cp -r usr/share/bin /usr/share && \
     cp -r usr/share/icons /usr/share && \
     cp usr/share/applications/ulauncher.desktop /usr/share/applications
   inner_build_reqs:
