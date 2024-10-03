@@ -11802,7 +11802,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.0.8+2"
+  version: "2.0.8+3"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -11815,10 +11815,13 @@ packages:
   - category: "media-video"
     name: "guvcview"
     version: ">=0"
+  atoms:
+  - atom: "games-util/goverlay-bin"
+    use: "-qt5"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-X
 
 - &apps-handbrake
   category: "apps"
