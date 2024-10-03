@@ -9452,7 +9452,7 @@ packages:
   - |
     cd Ulauncher && \
     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    find . | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" && \
+    find .. | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" && \
     cp -r bin /usr/bin && \
     # cd build && \
     # rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
