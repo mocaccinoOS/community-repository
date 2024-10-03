@@ -9452,16 +9452,10 @@ packages:
   - |
     cd Ulauncher && \
     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    find .. | sed -e "s/[^-][^\/]*\//  |/g" -e "s/|\([^ ]\)/|-\1/" && \
-    cp -r bin /usr/bin && \
-    # cd build && \
-    # rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    # find . -type d -name __pycache__ | xargs rm -rf && \
-    # cp -r scripts-3.12/* /usr/bin && \
-    cp -r build/lib /usr/lib && \
-    cp ulauncher.service /usr/lib/systemd/user/ && \
-    cp -r build/usr/share/icons /usr/share && \
-    cp build/share/applications/ulauncher.desktop /usr/share/applications
+    cd ../build && \
+    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+    find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr /usr
   inner_build_reqs:
   - dev-python/python-distutils-extra
   requires:
