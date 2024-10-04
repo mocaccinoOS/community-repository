@@ -10920,10 +10920,10 @@ packages:
   build_requires:
   - <<: *kernel-modules-vhba-lts
 
-- <<: *def-cdemu
-  category: "buildbase"
-  unpack: true
-  hidden: true
+# - <<: *def-cdemu
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 - <<: *def-cdemu
   category: "layerbase"
@@ -17123,7 +17123,7 @@ packages:
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.8.0+9"
+  version: "0.9.0+3"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -17141,8 +17141,8 @@ packages:
   - <<: *apps-cdemu
   build_requires:
   - <<: *kernel-modules-vhba-lts
-  - <<: *buildbase-kde-common
   - <<: *layerbase-cdemu
+  - <<: *buildbase-kde-common
   requires_final_images: true
 
 - category: "apps"
