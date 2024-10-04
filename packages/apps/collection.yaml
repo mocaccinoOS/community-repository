@@ -10890,7 +10890,7 @@ packages:
 - &def-cdemu
   category: "apps"
   name: "cdemu"
-  version: "3.2.5-r1+1"
+  version: "3.2.5-r1+2"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -11971,6 +11971,7 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
+# Unstable for KDE/Qt 6
 - category: "apps"
   name: "kid3"
   version: "3.9.6"
@@ -11997,6 +11998,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# Unstable for KDE/Qt 6
 - category: "apps"
   name: "krename"
   version: "5.0.60_pre20240906"
@@ -12472,6 +12474,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# Unstable for KDE/Qt 6
 - category: "apps"
   name: "musescore"
   version: "4.4.2+1"
@@ -17425,9 +17428,10 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Unstable for KDE/Qt 6
 - category: "apps"
   name: "qsynth"
-  version: "1.0.0+2"
+  version: "1.0.1"
   uri:
   - https://qsynth.sourceforge.io/
   license: "GPL-2"
@@ -17442,12 +17446,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/qsynth"
-    use: "alsa jack pulseaudio # qt5"
+    use: "alsa jack pulseaudio qt6"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
   - <<: *apps-fluidsynth
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
 
 - &apps-RcloneBrowser
   category: "apps"
