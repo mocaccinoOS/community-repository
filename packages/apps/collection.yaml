@@ -17120,10 +17120,11 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Unstable for KDE/Qt 6
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.8.0+9"
+  version: "0.9.0+4"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -17136,13 +17137,16 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
+  atoms:
+  - atom: "app-cdr/kcdemu"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
   - <<: *kernel-modules-vhba-lts
-  - <<: *buildbase-kde-kf5
   - <<: *layerbase-cdemu
+  - <<: *buildbase-kde-common
   requires_final_images: true
 
 - category: "apps"
