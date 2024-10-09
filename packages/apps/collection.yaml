@@ -2501,6 +2501,35 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libkcddb
+  category: "libs"
+  name: "libkcddb"
+  version: "24.08.1"
+  uri:
+  - https://apps.kde.org/
+  license: "GPL-2+ FDL-1.2"
+  description: "KDE library for CDDB/Common files for libkcddb"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/libkcddb
+  provides:
+  - category: "kde-apps"
+    name: "libkcddb"
+    version: ">=0"
+  - category: "kde-apps"
+    name: "libkcddb-common"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/libkcddb"
+    accept_keywords: "~amd64"
+  - atom: "kde-apps/libkcddb-common"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
@@ -9232,10 +9261,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/soundkonverter"
-    use: "lame"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-kf5
+  - <<: *libs-libkcddb
   build_requires:
   - <<: *layers-kde-kf5
 
@@ -15311,6 +15340,7 @@ packages:
   - <<: *apps-dvd-rw-tools
   - <<: *apps-cdrdao
   - <<: *apps-vcdimager
+  - <<: *libs-libkcddb
   build_requires:
   - <<: *layers-kde-common
 
