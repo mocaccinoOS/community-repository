@@ -15290,7 +15290,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "24.05.2"
+  version: "24.08.1"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -15305,14 +15305,15 @@ packages:
     version: ">=0"
   atoms:
   - atom: "kde-apps/k3b"
-    use: "dvd ffmpeg flac lame mad mp3 musepack sndfile sox taglib vcd vorbis webengine"
+    use: "dvd ffmpeg flac lame mad musepack sndfile sox taglib vcd vorbis webengine"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   - <<: *apps-dvd-rw-tools
   - <<: *apps-cdrdao
   - <<: *apps-vcdimager
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "kaffeine-tde"
