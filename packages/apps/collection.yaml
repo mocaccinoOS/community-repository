@@ -16123,7 +16123,7 @@ packages:
 - &apps-qsampler
   category: "apps"
   name: "qsampler"
-  version: "1.0.0+1"
+  version: "1.0.0+2"
   uri:
   - https://qsampler.sourceforge.io/
   license: "GPL-2"
@@ -16147,16 +16147,16 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/qsampler"
-    use: "libgig"
+    use: "libgig qt6"
   - atom: "media-sound/linuxsampler"
     use: "alsa jack sqlite lv2 sf2"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   - <<: *libs-dssi
   - <<: *libs-ladspa-sdk
   - <<: *libs-lv2
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "quodlibet"
