@@ -13362,18 +13362,20 @@ packages:
 
 - category: "apps"
   name: "qmmp"
-  version: "2.2.0"
+  version: "1.6.4+5"
   uri:
   - https://qmmp.ylsoftware.com
   license: "GPL-3"
-  description: "Qt6-based audio player with winamp/xmms skins support"
+  description: "Qt5-based audio player with winamp/xmms skins support"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/qmmp
-  overlays:
-  - enable: "Miezhiko"
+      media-plugins/qmmp-plugin-pack
   provides:
+  - category: "media-plugins"
+    name: "qmmp-plugin-pack"
+    version: ">=0"
   - category: "media-sound"
     name: "qmmp"
     version: ">=0"
@@ -13382,12 +13384,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/qmmp"
-    use: "aac alsa analyzer cdda cover crossfade cue dbus enca ffmpeg flac mad musepack notifier opus pipewire pulseaudio sndfile tray udisks vorbis wavpack -midi # -archive -bs2b -curl -game -gnome -jack -ladspa -lyrics -mms -mplayer -oss -projectm -qsui -qtmedia -scrobbler -shout -sid -soxr -stereo -xmp"
+    use: "aac alsa analyzer cdda cover crossfade cue dbus enca ffmpeg flac mad musepack notifier opus pipewire projectm pulseaudio sndfile tray udisks vorbis wavpack -midi # -archive -bs2b -curl -game -gnome -jack -ladspa -lyrics -mms -mplayer -oss -qsui -qtmedia -scrobbler -shout -sid -soxr -stereo -xmp"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   - <<: *libs-cmt-plugins
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "qtox"
@@ -16140,12 +16142,12 @@ packages:
   - atom: "media-sound/linuxsampler"
     use: "alsa jack sqlite lv2 sf2"
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
   - <<: *libs-dssi
   - <<: *libs-ladspa-sdk
   - <<: *libs-lv2
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-qt
 
 - category: "apps"
   name: "quodlibet"
@@ -18891,7 +18893,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.2.3"
+  version: "5.2.3+1"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -18920,9 +18922,6 @@ packages:
   # KDE 5
   - category: "kde-apps"
     name: "libkdcraw"
-    version: ">=0"
-  - category: "kde-frameworks"
-    name: "kitemmodels"
     version: ">=0"
   - category: "media-gfx"
     name: "krita"
