@@ -2729,7 +2729,7 @@ packages:
 - &libs-libprojectm
   category: "libs"
   name: "libprojectm"
-  version: "4.1.1-r1+3"
+  version: "4.1.1-r1+4"
   uri:
   - https://github.com/projectM-visualizer/projectm
   license: "LGPL-2"
@@ -2737,19 +2737,15 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libprojectm:0
       media-libs/libprojectm:4
   provides:
   - category: "media-libs"
     name: "libprojectm"
     version: ">=0"
-  atoms:
-  - atom: "media-libs/libprojectm"
-    use: "gles2 sdl qt5"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-X
 
 - &libs-libsfml
   category: "libs"
