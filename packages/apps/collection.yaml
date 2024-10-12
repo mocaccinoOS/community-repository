@@ -7997,11 +7997,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-       app-text/pandoc
+       app-text/pandoc-cli
   provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
   - category: "app-text"
     name: "pandoc-cli"
     version: ">=0"
@@ -8246,8 +8243,6 @@ packages:
     name: "wai-cors"
     version: ">=0"
   atoms:
-  - atom: "app-text/pandoc"
-    accept_keywords: "~amd64"
   - atom: "app-text/pandoc-cli"
     accept_keywords: "~amd64"
     use: "lua server"
@@ -8418,8 +8413,10 @@ packages:
   env: "MAKEOPTS=\"-j5 -l0.9\" USE=\"hscolour\""
   inner_build_reqs:
   - app-text/dos2unix;USE="nls"
-  preemerge:
-  - app-text/pandoc-cli;ACCEPT_KEYWORDS="~amd64" USE="-lua -server"
+  # preemerge:
+  # - app-text/pandoc-cli;ACCEPT_KEYWORDS="~amd64" USE="-lua -server"
+  unmerge:
+  - app-text/pandoc
   requires:
   - <<: *layers-haskell
   build_requires:
