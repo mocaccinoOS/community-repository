@@ -15133,7 +15133,7 @@ packages:
 
 - category: "apps"
   name: "avidemux"
-  version: "2.8.1+4"
+  version: "2.8.1+5"
   uri:
   - http://fixounet.free.fr/avidemux
   - http://aften.sourceforge.net/
@@ -15184,11 +15184,13 @@ packages:
   inner_build_reqs:
   - dev-lang/yasm
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-libmp4v2
   - <<: *apps-twolame
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "bat"
