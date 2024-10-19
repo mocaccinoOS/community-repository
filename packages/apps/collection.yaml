@@ -1016,7 +1016,6 @@ packages:
     name: "openpgp-keys-botan"
     version: ">=0"
   inner_build_reqs:
-  - app-arch/xz-utils
   - dev-python/sphinx
   requires:
   - <<: *layers-system-x
@@ -3324,9 +3323,6 @@ packages:
   - category: "dev-libs"
     name: "msgpack"
     version: ">=0"
-  # inner_build_reqs:
-  # - =app-arch/xz-utils-5.2.10
-  # - sys-libs/zlib
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6260,7 +6256,6 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - app-admin/chrpath
-  - app-arch/xz-utils
   excludes:
   - ^/usr/share/mime/application/vnd.ms-word.xml$
   requires:
@@ -15468,7 +15463,6 @@ packages:
 #   version: "0.21.2-r3+1"
 #   uri:
 #   - https://www.freecad.org/
-#   - https://matplotlib.org/
 #   - https://ngsolve.org/
 #   - https://www.opencascade.com
 #   - https://www.orocos.org/kdl
@@ -15476,7 +15470,6 @@ packages:
 #   license: "metapackage"
 #   description: |
 #     QT based Computer Aided Design application
-#     Pure python plotting library with matlab like syntax
 #     Automatic 3d tetrahedral mesh generator
 #     Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
 #     Kinematics and Dynamics Library (KDL)
@@ -15501,9 +15494,6 @@ packages:
 #   - category: "dev-python"
 #     name: "shiboken6"
 #     version: ">=0"
-#   - category: "dev-python"
-#     name: "matplotlib"
-#     version: ">=0"
 #   - category: "media-gfx"
 #     name: "netgen"
 #     version: ">=0"
@@ -15525,9 +15515,6 @@ packages:
 #   atoms:
 #   - atom: "media-gfx/freecad"
 #     use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
-#   - atom: "dev-python/matplotlib"
-#     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
-#     use: "cairo excel gtk3 latex # webagg # qt5 tk wxwidgets"
 #   - atom: "media-gfx/netgen"
 #     use: "ffmpeg gui jpeg mpi opencascade python"
 #   - atom: "media-gfx/openscad"
@@ -17387,6 +17374,72 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &def-vtk-opencascade
+  category: "lib"
+  name: "vtk"
+  version: "0.1"
+  uri:
+  - https://www.vtk.org/
+  - https://www.opencascade.com
+  - https://matplotlib.org/
+  license: "metapackage"
+  description: |
+    The Visualization Toolkit
+    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
+    Pure python plotting library with matlab like syntax
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/freecad
+      sci-libs/opencascade
+  provides:
+  - category: "sci-libs"
+    name: "vtk"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "opencascade"
+    version: ">=0"
+  - category: "dev-python"
+    name: "matplotlib"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "proj"
+    version: ">=0"
+  atoms:
+  - atom: "sci-libs/vtk"
+    use: "ffmpeg freetype imaging mpi mysql odbc opencascade openmp openvdb qt5 -qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging pdal postgres python threads tk web"
+  - atom: "sci-libs/opencascade"
+    use: "eigen ffmpeg freeimage freetype json opengl optimize tbb vtk X # jemalloc tk"
+  - atom: "dev-python/matplotlib"
+    license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
+    use: "cairo excel gtk3 late qt5x # webagg # tk wxwidgets"
+  - atom: "sci-libs/proj"
+    use: "curl tiff"
+  inner_build_reqs:
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *layers-sci-libs
+  - <<: *libs-gl2ps
+  - <<: *libs-libharu
+  - <<: *libs-openvdb
+  - <<: *libs-rapidjson
+  - <<: *libs-tbb
+  # - <<: *libs-tk
+  libs-nlohmann_json
+  build_requires:
+  - <<: *layers-kde-kf5
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
+
+# - <<: *def-vtk-opencascade
+#   category: "layerbase"
+#   hidden: true
+# 
+# # - <<: *def-vtk-opencascade
+# #   category: "buildbase"
+# #   unpack: true
+# #   hidden: true
 
 ################################################################################################################################################################
 ### dep 3 apps ###
