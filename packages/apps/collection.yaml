@@ -17412,7 +17412,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &def-vtk-opencascade
+- &def-vtk
   category: "libs"
   name: "vtk"
   version: "0.1"
@@ -17476,7 +17476,6 @@ packages:
   preemerge:
   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
   requires:
-  - <<: *layers-qt
   - <<: *layers-sci-libs
   - <<: *libs-fonttools
   - <<: *libs-freeimage
@@ -17489,15 +17488,13 @@ packages:
   # - <<: *libs-tk
   - <<: *libs-utfcpp
   build_requires:
-  - <<: *layers-qt
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-sci-libs
 
-# - <<: *def-vtk-opencascade
+# - <<: *def-vtk
 #   category: "layerbase"
 #   hidden: true
 # 
-# # - <<: *def-vtk-opencascade
+# # - <<: *def-vtk
 # #   category: "buildbase"
 # #   unpack: true
 # #   hidden: true
