@@ -1429,6 +1429,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-freeimage
+  category: "libs"
+  name: "freeimage"
+  version: "3.18.0-r11"
+  uri:
+  - https://freeimage.sourceforge.io/
+  license: "GPL-2 FIPL-1.0"
+  description: "Image library supporting many formats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/freeimage
+  atoms:
+  - atom: "media-libs/freeimage"
+    use: "jpeg jpeg2k mng openexr png raw tiff webp"
+  provides:
+  - category: "media-libs"
+    name: "freeimage"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-freeradius-client
   category: "apps"
   name: "freeradius-client"
@@ -4440,6 +4464,27 @@ packages:
   provides:
   - category: "dev-libs"
     name: "uthash"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-utfcpp
+  category: "libs"
+  name: "utfcpp"
+  version: "3.2.1"
+  uri:
+  - https://github.com/nemtrif/utfcpp
+  license: "Boost-1.0"
+  description: "UTF-8 C++ library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/utfcpp
+  provides:
+  - category: "dev-libs"
+    name: "utfcpp"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -13084,7 +13129,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "83.0+1"
+  version: "83.0+2"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -13097,9 +13142,6 @@ packages:
   - category: "media-video"
     name: "mkvtoolnix"
     version: ">=0"
-  - category: "dev-libs"
-    name: "utfcpp"
-    version: ">=0"
   atoms:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
@@ -13108,6 +13150,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
+  - <<: *libs-utfcpp
   build_requires:
   - <<: *layers-qt
 
@@ -15458,9 +15501,10 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Unstable for KDE/Qt 6
 # - category: "apps"
 #   name: "freecad"
-#   version: "0.21.2-r3+1"
+#   version: "1.0_rc2"
 #   uri:
 #   - https://www.freecad.org/
 #   - https://ngsolve.org/
@@ -15515,14 +15559,13 @@ packages:
 #   atoms:
 #   - atom: "media-gfx/freecad"
 #     use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
+#     accept_keywords: "~amd64"
 #   - atom: "media-gfx/netgen"
 #     use: "ffmpeg gui jpeg mpi opencascade python"
 #   - atom: "media-gfx/openscad"
 #     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
 #   - atom: "sci-libs/med"
 #     use: "mpi python fortran"
-#   - atom: "sci-libs/opencascade"
-#     use: "eigen freeimage freetype json opengl optimize tbb vtk # ffmpeg jemalloc tk X"
 #   - atom: "sci-libs/pcl"
 #     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
 #   inner_build_reqs:
@@ -16212,7 +16255,7 @@ packages:
 - &apps-megasync
   category: "apps"
   name: "megasync"
-  version: "5.5.0.0"
+  version: "5.5.0.0+1"
   uri:
   - https://mega.io
   - https://github.com/meganz/MEGAsync
@@ -16228,9 +16271,6 @@ packages:
   - category: "net-misc"
     name: "megasync"
     version: ">=0"
-  - category: "media-libs"
-    name: "freeimage"
-    version: ">=0"
   atoms:
   - atom: "net-misc/megasync"
     use: "mediainfo thumbnail # dolphin nautilus nemo thunar"
@@ -16238,6 +16278,7 @@ packages:
     license: "MEGA"
   requires:
   - <<: *layers-kde-kf5
+  - <<: *libs-freeimage
   - <<: *libs-libmediainfo
   build_requires:
   - <<: *layers-kde-kf5
@@ -17394,32 +17435,44 @@ packages:
       sci-libs/vtk
       sci-libs/opencascade
   provides:
-  - category: "sci-libs"
-    name: "vtk"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "opencascade"
-    version: ">=0"
+    dev-cpp/cli11
   - category: "dev-python"
     name: "matplotlib"
+    version: ">=0"
+    dev-python/mpi4py
+    sci-libs/cgnslib
+  - category: "sci-libs"
+    name: "opencascade"
     version: ">=0"
   - category: "sci-libs"
     name: "proj"
     version: ">=0"
+  - category: "sci-libs"
+    name: "vtk"
+    version: ">=0"
   atoms:
-  - atom: "sci-libs/vtk"
-    use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb qt5 -qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
-  - atom: "sci-libs/opencascade"
-    use: "eigen ffmpeg freeimage freetype json opengl tbb vtk X # gles2 gles2-only jemalloc optimize tk"
-    accept_keywords: "~amd64"
+  - atom: "sci-libs/cgnslib"
+    use: "hdf5 # base-scope legacy scoping tools fortran mpi szip"
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
     use: "cairo excel gtk3 late qt5x # webagg # tk wxwidgets"
+  - atom: "sci-libs/opencascade"
+    use: "eigen ffmpeg freeimage freetype json opengl tbb vtk X # gles2 gles2-only jemalloc optimize tk"
+    license: "Open-CASCADE-LGPL-2.1-Exception-1.0 LGPL-2.1"
+    accept_keywords: "~amd64"
   - atom: "sci-libs/proj"
     use: "curl tiff"
+  - atom: "sci-libs/vtk"
+    use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
+    license: "BSD LGPL-2"
+  inner_build_reqs:
+  - dev-libs/pegtl
+  preemerge:
+  - sci-libs/opencascade;USE="-vtk"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *layers-sci-libs
+  - <<: *libs-freeimage
   - <<: *libs-gl2ps
   - <<: *libs-libharu
   - <<: *libs-nlohmann_json
@@ -17427,8 +17480,9 @@ packages:
   - <<: *libs-rapidjson
   - <<: *libs-tbb
   # - <<: *libs-tk
+  - <<: *libs-utfcpp
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
