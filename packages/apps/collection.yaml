@@ -17337,85 +17337,85 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &def-vtk
-  category: "libs"
-  name: "vtk"
-  version: "0.1"
-  uri:
-  - https://www.vtk.org/
-  - https://www.opencascade.com
-  - https://matplotlib.org/
-  license: "metapackage"
-  description: |
-    The Visualization Toolkit
-    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
-    Pure python plotting library with matlab like syntax
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/vtk:0/9.3
-      sci-libs/opencascade
-  provides:
-  - category: "dev-cpp"
-    name: "cli11"
-    version: ">=0"
-  - category: "dev-python"
-    name: "matplotlib"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mpi4py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "xlwt"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "cgnslib"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "opencascade"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "proj"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "vtk"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cgnslib"
-    use: "hdf5 szip # base-scope legacy scoping tools fortran mpi"
-  - atom: "dev-python/matplotlib"
-    license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
-    use: "cairo excel gtk3 late -qt5 # webagg # tk wxwidgets"
-  - atom: "sci-libs/opencascade"
-    use: "eigen freeimage freetype json opengl tbb vtk X # ffmpeg gles2 gles2-only jemalloc optimize tk"
-    license: "Open-CASCADE-LGPL-2.1-Exception-1.0 LGPL-2.1"
-    accept_keywords: "~amd64"
-  - atom: "sci-libs/proj"
-    use: "curl tiff"
-  - atom: "sci-libs/vtk"
-    use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
-    license: "BSD LGPL-2"
-  inner_build_reqs:
-  - dev-libs/pegtl
-  # - virtual/imagemagick-tools;USE="jpeg"
-  preemerge:
-  - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-fonttools
-  - <<: *libs-freeimage
-  - <<: *libs-gl2ps
-  - <<: *libs-libharu
-  - <<: *libs-nlohmann_json
-  - <<: *libs-openvdb
-  - <<: *libs-rapidjson
-  - <<: *libs-tbb
-  # - <<: *libs-tk
-  - <<: *libs-utfcpp
-  build_requires:
-  - <<: *buildbase-sci-libs
-  - <<: *layerbase-latex
-  requires_final_images: true
+# - &def-vtk
+#   category: "libs"
+#   name: "vtk"
+#   version: "0.1"
+#   uri:
+#   - https://www.vtk.org/
+#   - https://www.opencascade.com
+#   - https://matplotlib.org/
+#   license: "metapackage"
+#   description: |
+#     The Visualization Toolkit
+#     Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
+#     Pure python plotting library with matlab like syntax
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sci-libs/vtk:0/9.3
+#       sci-libs/opencascade
+#   provides:
+#   - category: "dev-cpp"
+#     name: "cli11"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "matplotlib"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "mpi4py"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "xlwt"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "cgnslib"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "opencascade"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "proj"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "vtk"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sci-libs/cgnslib"
+#     use: "hdf5 szip # base-scope legacy scoping tools fortran mpi"
+#   - atom: "dev-python/matplotlib"
+#     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
+#     use: "cairo excel gtk3 late -qt5 # webagg # tk wxwidgets"
+#   - atom: "sci-libs/opencascade"
+#     use: "eigen freeimage freetype json opengl tbb vtk X # ffmpeg gles2 gles2-only jemalloc optimize tk"
+#     license: "Open-CASCADE-LGPL-2.1-Exception-1.0 LGPL-2.1"
+#     accept_keywords: "~amd64"
+#   - atom: "sci-libs/proj"
+#     use: "curl tiff"
+#   - atom: "sci-libs/vtk"
+#     use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
+#     license: "BSD LGPL-2"
+#   inner_build_reqs:
+#   - dev-libs/pegtl
+#   # - virtual/imagemagick-tools;USE="jpeg"
+#   preemerge:
+#   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
+#   requires:
+#   - <<: *layers-sci-libs
+#   - <<: *libs-fonttools
+#   - <<: *libs-freeimage
+#   - <<: *libs-gl2ps
+#   - <<: *libs-libharu
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-openvdb
+#   - <<: *libs-rapidjson
+#   - <<: *libs-tbb
+#   # - <<: *libs-tk
+#   - <<: *libs-utfcpp
+#   build_requires:
+#   - <<: *buildbase-sci-libs
+#   - <<: *layerbase-latex
+#   requires_final_images: true
   
 # - <<: *def-vtk
 #   category: "layerbase"
@@ -18046,11 +18046,11 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# Unstable for KDE/Qt 6
+# Unstable for KDE/Qt 6 - can't be done untill all dependents of x11-libs/qscintilla moves to 6
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "9.2.0-r1"
+  version: "8.3.0-r2+10"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
@@ -18101,7 +18101,8 @@ packages:
   - <<: *libs-rapidjson
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
+  # - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf6
   - <<: *layerbase-XML-LibXML
   - <<: *layerbase-latex
   # - <<: *layerbase-openmpi
