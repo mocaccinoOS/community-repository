@@ -17414,7 +17414,6 @@ packages:
   - <<: *libs-utfcpp
   build_requires:
   - <<: *buildbase-sci-libs
-  - <<: *buildbase-perl-libs
   - <<: *layerbase-latex
   requires_final_images: true
   
@@ -18047,10 +18046,11 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
+# Unstable for KDE/Qt 6
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "8.3.0-r2+9"
+  version: "9.2.0-r1"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
@@ -18076,6 +18076,7 @@ packages:
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
+    accept_keywords: "~amd64"
   - atom: "sci-libs/sundials"
     use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
   - atom: "sci-libs/superlu_mt"
