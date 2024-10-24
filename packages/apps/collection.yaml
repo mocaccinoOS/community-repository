@@ -733,6 +733,26 @@ packages:
   - atom: "media-fonts/robotoslab"
     accept_keywords: "~amd64"
 
+- &stix-fonts
+  <<: *fonts
+  name: "stix-fonts"
+  version: "2.11"
+  uri:
+  - https://www.stixfonts.org/
+  license: "OFL-1.1"
+  description: "Comprehensive OpenType font set of mathematical symbols and alphabets"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/stix-fonts
+  provides:
+  - category: "media-fonts"
+    name: "stix-fonts"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/stix-fonts"
+    use: "X"
+
 - &fonts-texcm-ttf
   <<: *fonts
   name: "texcm-ttf"
@@ -17365,10 +17385,22 @@ packages:
     name: "cli11"
     version: ">=0"
   - category: "dev-python"
+    name: "contourpy"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cycler"
+    version: ">=0"
+  - category: "dev-python"
     name: "matplotlib"
     version: ">=0"
   - category: "dev-python"
+    name: "meson-python"
+    version: ">=0"
+  - category: "dev-python"
     name: "mpi4py"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyproject-metadata"
     version: ">=0"
   - category: "dev-python"
     name: "xlwt"
@@ -17407,6 +17439,7 @@ packages:
   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
   requires:
   - <<: *layers-sci-libs
+  - <<: *stix-fonts
   - <<: *libs-fonttools
   - <<: *libs-freeimage
   - <<: *libs-gl2ps
