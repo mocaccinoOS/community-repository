@@ -10168,7 +10168,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7+6"
+  version: "5.15.7+7"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -10220,6 +10220,7 @@ packages:
     cp -r usr /
   inner_build_reqs:
   - dev-python/python-distutils-extra
+  - dev-python/meson-python
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -17365,7 +17366,7 @@ packages:
 - &def-vtk
   category: "libs"
   name: "vtk"
-  version: "0.2"
+  version: "0.3"
   uri:
   - https://www.vtk.org/
   - https://www.opencascade.com
@@ -17400,13 +17401,7 @@ packages:
     name: "matplotlib"
     version: ">=0"
   - category: "dev-python"
-    name: "meson-python"
-    version: ">=0"
-  - category: "dev-python"
     name: "mpi4py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyproject-metadata"
     version: ">=0"
   - category: "dev-python"
     name: "xlwt"
@@ -17440,7 +17435,7 @@ packages:
     license: "BSD LGPL-2"
   inner_build_reqs:
   - dev-libs/pegtl
-  # - virtual/imagemagick-tools;USE="jpeg"
+  - dev-python/meson-python
   preemerge:
   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
   requires:
@@ -18637,11 +18632,11 @@ packages:
 #   - app-text/dos2unix
 #   - dev-lang/swig
 #   requires:
-#   - <<: *layers-vtk
+#   - <<: *libs-vtk
 #   - <<: *libs-coin
 #   - <<: *libs-libspnav
 #   build_requires:
-#   - <<: *layers-vtk
+#   - <<: *libs-vtk
 
 - category: "apps"
   name: "freeciv"
