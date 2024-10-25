@@ -248,8 +248,8 @@ stubs:
 #   name: "cdemu"
 #   version: ">=0"
 
-- &libs-vtk
-  category: "libs"
+- &layers-vtk
+  category: "layers"
   name: "vtk"
   version: ">=0"
   
@@ -17364,7 +17364,7 @@ packages:
   - <<: *layers-X
 
 - &def-vtk
-  category: "libs"
+  category: "layers"
   name: "vtk"
   version: "0.3"
   uri:
@@ -18566,78 +18566,78 @@ packages:
   requires_final_images: true
 
 # Unstable for KDE/Qt 6
-- category: "apps"
-  name: "freecad"
-  version: "1.0_rc2"
-  uri:
-  - https://www.freecad.org/
-  - https://ngsolve.org/
-  - https://www.orocos.org/kdl
-  - https://pointclouds.org/
-  license: "metapackage"
-  description: |
-    QT based Computer Aided Design application
-    Automatic 3d tetrahedral mesh generator
-    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
-    Kinematics and Dynamics Library (KDL)
-    2D/3D image and point cloud processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/freecad
-  provides:
-  - category: "media-gfx"
-    name: "freecad"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "OpenNI2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pivy"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyside6"
-    version: ">=0"
-  - category: "dev-python"
-    name: "shiboken6"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "netgen"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "openscad"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "med"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "orocos_kdl"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "pcl"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/freecad"
-    use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
-    accept_keywords: "~amd64"
-  - atom: "media-gfx/netgen"
-    use: "ffmpeg gui jpeg mpi opencascade python"
-  - atom: "media-gfx/openscad"
-    use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
-  - atom: "sci-libs/med"
-    use: "mpi python fortran"
-  - atom: "sci-libs/pcl"
-    use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
-  inner_build_reqs:
-  - app-text/dos2unix
-  - dev-lang/swig
-  requires:
-  - <<: *libs-vtk
-  - <<: *libs-coin
-  - <<: *libs-libspnav
-  - <<: *libs-qtpy
-  build_requires:
-  - <<: *libs-vtk
+# - category: "apps"
+#   name: "freecad"
+#   version: "1.0_rc2"
+#   uri:
+#   - https://www.freecad.org/
+#   - https://ngsolve.org/
+#   - https://www.orocos.org/kdl
+#   - https://pointclouds.org/
+#   license: "metapackage"
+#   description: |
+#     QT based Computer Aided Design application
+#     Automatic 3d tetrahedral mesh generator
+#     Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
+#     Kinematics and Dynamics Library (KDL)
+#     2D/3D image and point cloud processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/freecad
+#   provides:
+#   - category: "media-gfx"
+#     name: "freecad"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "OpenNI2"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pivy"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pyside6"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "shiboken6"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "netgen"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "openscad"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "med"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "orocos_kdl"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "pcl"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/freecad"
+#     use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
+#     accept_keywords: "~amd64"
+#   - atom: "media-gfx/netgen"
+#     use: "ffmpeg gui jpeg mpi opencascade python"
+#   - atom: "media-gfx/openscad"
+#     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
+#   - atom: "sci-libs/med"
+#     use: "mpi python fortran"
+#   - atom: "sci-libs/pcl"
+#     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+#   inner_build_reqs:
+#   - app-text/dos2unix
+#   - dev-lang/swig
+#   requires:
+#   - <<: *layers-vtk
+#   - <<: *libs-coin
+#   - <<: *libs-libspnav
+#   - <<: *libs-qtpy
+#   build_requires:
+#   - <<: *layers-vtk
 
 - category: "apps"
   name: "freeciv"
