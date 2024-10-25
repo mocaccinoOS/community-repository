@@ -3921,7 +3921,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.4.1-r2+2"
+  version: "2.4.1-r2+3"
   uri:
   - https://github.com/spyder-ide/qtpy/
   license: "MIT"
@@ -3936,8 +3936,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-python/QtPy"
-    #use: "-pyqt5 pyqt6 -pyside2 pyside6 gui multimedia network opengl printsupport qml quick sql svg webchannel webengine websockets widgets xml # positioning serialport"
-    use: "gui network opengl pyqt6 qml quick sql svg webchannel webengine widgets xml -designer -help -multimedia -positioning -printsupport -pyqt5 -pyside2 -pyside6 -sensors -serialport -speech -test -testlib -websockets"
+    use: "gui multimedia network opengl printsupport -pyqt5 pyqt6 -pyside2 pyside6 qml quick sql svg webchannel webengine websockets widgets xml # designer positioning sensors serialport speech"
   requires:
   - <<: *layers-qt
   build_requires:
