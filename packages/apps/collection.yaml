@@ -1168,7 +1168,7 @@ packages:
     use: "exceptions javascript openal threads"
     env: "EMERGE_DEFAULT_OPTS=\"\""
   - atom: "media-libs/simage"
-    use: "gif jpeg png qt6 sndfile tiff vorbis zlib"
+    use: "gif jpeg png -qt5 qt6 sndfile tiff vorbis zlib"
   prepare:
   - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey\:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild manifest
