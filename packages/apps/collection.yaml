@@ -3710,7 +3710,7 @@ packages:
 - &libs-protobuf-c
   category: "libs"
   name: "protobuf-c"
-  version: "1.5.0-r2"
+  version: "1.5.0-r2+1"
   uri:
   - https://github.com/protobuf-c/protobuf-c
   license: "BSD-2"
@@ -4822,7 +4822,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "34.0.5+3"
+  version: "34.0.5+4"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -7486,38 +7486,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-# - category: "apps"
-#   name: "logitech-linux-rpm-led"
-#   version: "0.1"
-#   license: "GPL-3.0"
-#   uri:
-#   - https://github.com/IvanVojtko/logitech-linux-rpm-led
-#   license: "GPL-3.0"
-#   description: "Enable RPM LED indicator on Logitech G29 steering wheel in Linux"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/hidapi
-#   provides:
-#   - category: "dev-python"
-#     name: "hidapi"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-python/hidapi"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - git clone https://github.com/IvanVojtko/logitech-linux-rpm-led.git
-#   - cd logitech-linux-rpm-led && meson --prefix=/usr build
-#   setup:
-#   # - pip install hid
-#   # - pip install pgi
-#   - cd logitech-linux-rpm-led && ninja -C build install
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-hidapi
-#   build_requires:
-#   - <<: *layers-X
 
 - &apps-lshw
   category: "apps"
@@ -10923,6 +10891,34 @@ packages:
 #   build_requires:
 #   - <<: *layers-java
 
+- &libs-hid
+  category: "libs"
+  name: "hid"
+  version: "1.0.6"
+  uri:
+  - https://github.com/apmorton/pyhidapi
+  license: "MIT"
+  description: "hidapi bindings in ctypes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/hid
+  provides:
+  - category: "dev-python"
+    name: "hid"
+    version: ">=0"
+  prepare:
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/dev-python
+  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-hidapi
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -11822,7 +11818,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.0_rc2-r5+4"
+  version: "1.4.0_rc2-r5+5"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -13228,7 +13224,7 @@ packages:
 - &apps-mosh
   category: "apps"
   name: "mosh"
-  version: "1.4.0+2"
+  version: "1.4.0+3"
   uri:
   - https://mosh.org
   license: "GPL-3"
@@ -16280,7 +16276,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.6+5"
+  version: "2.3.6+6"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -18611,72 +18607,72 @@ packages:
   requires_final_images: true
 
 # Unstable for KDE/Qt 6
-- category: "apps"
-  name: "freecad"
-  version: "1.0_rc2"
-  uri:
-  - https://www.freecad.org/
-  - https://ngsolve.org/
-  - https://www.orocos.org/kdl
-  - https://pointclouds.org/
-  license: "metapackage"
-  description: |
-    QT based Computer Aided Design application
-    Automatic 3d tetrahedral mesh generator
-    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
-    Kinematics and Dynamics Library (KDL)
-    2D/3D image and point cloud processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/freecad
-  provides:
-  - category: "media-gfx"
-    name: "freecad"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "OpenNI2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pivy"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "netgen"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "openscad"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "med"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "orocos_kdl"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "pcl"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/freecad"
-    use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
-    accept_keywords: "~amd64"
-  - atom: "media-gfx/netgen"
-    use: "ffmpeg gui jpeg mpi opencascade python"
-  - atom: "media-gfx/openscad"
-    use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
-  - atom: "sci-libs/med"
-    use: "mpi python fortran"
-  - atom: "sci-libs/pcl"
-    use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
-  inner_build_reqs:
-  - app-text/dos2unix
-  - dev-lang/swig
-  requires:
-  - <<: *layers-vtk
-  - <<: *libs-coin
-  - <<: *libs-libspnav
-  - <<: *libs-qtpy
-  build_requires:
-  - <<: *layers-vtk
+# - category: "apps"
+#   name: "freecad"
+#   version: "1.0_rc2+1"
+#   uri:
+#   - https://www.freecad.org/
+#   - https://ngsolve.org/
+#   - https://www.orocos.org/kdl
+#   - https://pointclouds.org/
+#   license: "metapackage"
+#   description: |
+#     QT based Computer Aided Design application
+#     Automatic 3d tetrahedral mesh generator
+#     Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
+#     Kinematics and Dynamics Library (KDL)
+#     2D/3D image and point cloud processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/freecad
+#   provides:
+#   - category: "media-gfx"
+#     name: "freecad"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "OpenNI2"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pivy"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "netgen"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "openscad"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "med"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "orocos_kdl"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "pcl"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/freecad"
+#     use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
+#     accept_keywords: "~amd64"
+#   - atom: "media-gfx/netgen"
+#     use: "ffmpeg gui jpeg mpi opencascade python"
+#   - atom: "media-gfx/openscad"
+#     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
+#   - atom: "sci-libs/med"
+#     use: "python fortran # mpi"
+#   - atom: "sci-libs/pcl"
+#     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+#   inner_build_reqs:
+#   - app-text/dos2unix
+#   - dev-lang/swig
+#   requires:
+#   - <<: *layers-vtk
+#   - <<: *libs-coin
+#   - <<: *libs-libspnav
+#   - <<: *libs-qtpy
+#   build_requires:
+#   - <<: *layers-vtk
 
 - category: "apps"
   name: "freeciv"
