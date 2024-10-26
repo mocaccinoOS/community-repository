@@ -1123,7 +1123,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "129.0.6668.100"
+  version: "130.0.6723.69"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -4067,7 +4067,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.2.2"
+  version: "4.2.5"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -5017,7 +5017,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.16.50"
+  version: "9.18.0"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -5155,7 +5155,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.70.126"
+  version: "1.71.118"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5527,7 +5527,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.7.2.1"
+  version: "1.8.0"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -6418,7 +6418,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.4.0"
+  version: "10.4.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6578,7 +6578,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "129.0.6668.100"
+  version: "130.0.6723.69"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7880,7 +7880,7 @@ packages:
 
 - category: "apps"
   name: "nnn"
-  version: "4.9+1"
+  version: "5.0"
   uri:
   - https://github.com/jarun/nnn
   license: "BSD-2"
@@ -9114,7 +9114,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.15"
+  version: "9.16"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -9350,7 +9350,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "1.0.1+1"
+  version: "1.0.2"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -9423,7 +9423,8 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.10-r1+1"
+  # version: "5.10-r1+1"
+  version: "5.11-r1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -10330,7 +10331,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.94.1.24283"
+  version: "1.94.2.24286"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10444,7 +10445,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.3.4+1"
+  version: "4.4.2"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -10500,7 +10501,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.2.6+1"
+  version: "4.2.8"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -11219,10 +11220,38 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-pgi
+  category: "libs"
+  name: "pgi"
+  version: "0.0.11.2"
+  uri:
+  - https://github.com/pygobject/pgi
+  license: "LGPL 2.1+"
+  description: "GTK+/GObject Introspection Bindings for PyPy"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pgi
+  provides:
+  - category: "dev-python"
+    name: "pgi"
+    version: ">=0"
+  prepare:
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/dev-python
+  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pikepdf
   category: "libs"
   name: "pikepdf"
-  version: "9.1.2+1"
+  version: "9.3.0"
   uri:
   - https://github.com/pikepdf/pikepdf/
   - https://pypi.org/project/pikepdf/
@@ -12289,7 +12318,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.18.1+2"
+  version: "1.19.0"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -12984,7 +13013,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.17+1"
+  version: "0.5.17-r1"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -13039,7 +13068,7 @@ packages:
 
 - category: "apps"
   name: "mc"
-  version: "4.8.32"
+  version: "4.8.32-r1"
   uri:
   - https://midnight-commander.org
   license: "GPL-3"
@@ -13250,7 +13279,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.38.0-r1+1"
+  version: "0.39.0"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -13542,7 +13571,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "114.0.5282.86"
+  version: "114.0.5282.115"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -13971,7 +14000,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.2.1+3"
+  version: "3.3.1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -14321,7 +14350,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.14.0-r1+1"
+  version: "1.14.0-r2"
   uri:
   - https://tigervnc.org
   license: "GPL-2"
@@ -14347,7 +14376,7 @@ packages:
 
 - category: "apps"
   name: "tor"
-  version: "0.4.8.12+1"
+  version: "0.4.8.12-r1"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -14409,7 +14438,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.7.6+1"
+  version: "1.7.7"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -14707,7 +14736,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "9.19"
+  version: "9.20"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -18462,7 +18491,7 @@ packages:
 - &libs-pygame
   category: "libs"
   name: "pygame"
-  version: "2.6.0"
+  version: "2.6.1"
   uri:
   - https://www.pygame.org/
   license: "LGPL-2.1"
@@ -18704,7 +18733,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "11.0.0+1"
+  version: "12.0.0"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
@@ -19151,7 +19180,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.38"
+  version: "2.10.38-r1"
   uri:
   - https://www.gimp.org/
   license: "GPL-3 LGPL-3"
@@ -19183,7 +19212,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.4.1"
+  version: "2.4.2.1"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -19429,7 +19458,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.9"
+  version: "8.10"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
