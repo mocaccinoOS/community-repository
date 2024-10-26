@@ -12,7 +12,7 @@
  HOMEPAGE="
      https://github.com/apmorton/pyhidapi
  "
- SRC_URI="https://github.com/apmorton/pyhidapi/archive/refs/tags/${P}.tar.gz"
+ SRC_URI="https://github.com/apmorton/pyhidapi/archive/refs/tags/${PV}.tar.gz"
 
  LICENSE="MIT"
  SLOT="0"
