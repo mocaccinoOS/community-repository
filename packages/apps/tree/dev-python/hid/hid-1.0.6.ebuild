@@ -21,7 +21,7 @@ SLOT="0"
 KEYWORDS="amd64"
 
 DEPEND="
-	>=dev-libs/hidapi-$(ver_cut 1-3)
+	dev-libs/hidapi
 "
 RDEPEND="
 	${DEPEND}
