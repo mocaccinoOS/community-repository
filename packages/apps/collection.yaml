@@ -10908,6 +10908,7 @@ packages:
     name: "hid"
     version: ">=0"
   prepare:
+  - emerge -1 app-eselect/eselect-repository
   - eselect repository create local
   - mkdir -p /var/db/repos/local/dev-python
   - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
