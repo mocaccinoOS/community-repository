@@ -3924,19 +3924,33 @@ packages:
   version: "2.4.1-r2+3"
   uri:
   - https://github.com/spyder-ide/qtpy/
+  - https://wiki.qt.io/PySide6
   license: "MIT"
-  description: "Abstraction layer on top of PyQt and PySide with additional custom QWidgets"
+  description: |
+    Abstraction layer on top of PyQt and PySide with additional custom QWidgets
+    Python bindings for the Qt framework
+    Python binding generator for C++ libraries
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/QtPy
   provides:
   - category: "dev-python"
+    name: "pyside6"
+    version: ">=0"
+  - category: "dev-python"
     name: "QtPy"
+    version: ">=0"
+  - category: "dev-python"
+    name: "shiboken6"
     version: ">=0"
   atoms:
   - atom: "dev-python/QtPy"
-    use: "gui multimedia network opengl printsupport -pyqt5 pyqt6 -pyside2 pyside6 qml quick sql svg webchannel webengine websockets widgets xml # designer positioning sensors serialport speech"
+    use: "designer gui help multimedia network opengl positioning printsupport -pyqt5 pyqt6 -pyside2 pyside6 qml quick sensors serialport sql speech svg -testlib webchannel webengine websockets widgets xml #"
+  - atom: "dev-python/pyside6"
+    use: "3d charts concurrent designer gui help location multimedia network network-auth opengl pdfium positioning printsupport qml quick quick3d scxml sensors serialport spatialaudio speech sql svg -testlib webchannel webengine websockets widgets xml # bluetooth gles2-only help nfc "
+  - atom: "dev-python/shiboken6"
+    use: "numpy vulkan"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -18593,12 +18607,6 @@ packages:
 #     version: ">=0"
 #   - category: "dev-python"
 #     name: "pivy"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyside6"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "shiboken6"
 #     version: ">=0"
 #   - category: "media-gfx"
 #     name: "netgen"
