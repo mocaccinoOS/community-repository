@@ -3272,6 +3272,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-mathjax
+  category: "libs"
+  name: "mathjax"
+  version: "3.2.2-r2"
+  uri:
+  - https://www.mathjax.org/
+  license: "Apache-2.0"
+  description: "JavaScript display engine for LaTeX, MathML and AsciiMath"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/mathjax
+  provides:
+  - category: "dev-libs"
+    name: "mathjax"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
@@ -9553,6 +9574,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-ruby
+  category: "apps"
+  name: "ruby"
+  version: "3.1.6-r1"
+  uri:
+  - https://www.ruby-lang.org/
+  license: "Ruby-BSD BSD-2"
+  description: "An object-oriented scripting language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/ruby:3.1
+  provides:
+  - category: "dev-lang"
+    name: "ruby"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "scapy"
   version: "2.5.0+3"
@@ -10706,6 +10748,28 @@ packages:
 ################################################################################################################################################################
 ## dep 1 libs ###
 ################################################################################################################################################################
+
+- &libs-asciidoctor
+  category: "libs"
+  name: "asciidoctor"
+  version: "2.0.23"
+  uri:
+  - https://github.com/asciidoctor/asciidoctor
+  license: "MIT"
+  description: "Processor for converting AsciiDoc into HTML 5, DocBook 4.5 and other formats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-ruby/asciidoctor
+  provides:
+  - category: "dev-ruby"
+    name: "asciidoctor"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-ruby
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-build
   category: "libs"
@@ -14211,7 +14275,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.3.1+1"
+  version: "2.3.1+2"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -14239,6 +14303,7 @@ packages:
   - <<: *layers-qt
   - <<: *libs-css-parser
   - <<: *libs-cssselect
+  - <<: *libs-mathjax
   - <<: *libs-regex
   build_requires:
   - <<: *layers-qt
@@ -15398,7 +15463,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.17.0"
+  version: "7.17.0+1"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -15435,9 +15500,6 @@ packages:
   - category: "dev-python"
     name: "markdown"
     version: ">=0"
-  - category: "dev-libs"
-    name: "mathjax"
-    version: ">=0"
   - category: "dev-python"
     name: "mechanize"
     version: ">=0"
@@ -15468,6 +15530,7 @@ packages:
   - <<: *libs-css-parser
   - <<: *libs-feedparser
   - <<: *libs-fonttools
+  - <<: *libs-mathjax
   - <<: *libs-python-msgpack
   - <<: *libs-netifaces
   - <<: *libs-regex
@@ -17557,10 +17620,10 @@ packages:
 #   category: "layerbase"
 #   hidden: true
 
-- <<: *def-vtk
-  category: "buildbase"
-  unpack: true
-  hidden: true
+# - <<: *def-vtk
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 ################################################################################################################################################################
 ### dep 3 apps ###
@@ -18770,6 +18833,7 @@ packages:
 #   # - dev-go/act
 #   requires:
 #   - <<: *layers-vtk
+#   - <<: *libs-asciidoctor
 #   - <<: *libs-coin
 #   - <<: *libs-hidapi
 #   - <<: *libs-libspnav
