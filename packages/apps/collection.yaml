@@ -5030,13 +5030,21 @@ packages:
   - category: "net-dns"
     name: "bind-tools"
     version: ">=0"
+  - category: "net-dns"
+    name: "bind"
+    version: ">=0"    
   atoms:
   - atom: "net-dns/bind-tools"
-    use: "caps doc gssapi idn libedit readline xml"
+    use: "caps doc gssapi idn readline xml # libedit"
+  - atom: "net-dns/bind"
+    use: "caps dlz doc gssapi idn xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux verify-sig"
   inner_build_reqs:
   - dev-python/sphinx
   requires:
   - <<: *layers-sys-fs
+  - category: "entity"
+    name: "named"
+    version: ">=0"
   build_requires:
   - <<: *layers-sys-fs
 
@@ -9423,8 +9431,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  # version: "5.10-r1+1"
-  version: "5.11-r1"
+  version: "5.10-r1+1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -11240,7 +11247,7 @@ packages:
   - emerge -1 app-eselect/eselect-repository
   - eselect repository create local
   - mkdir -p /var/db/repos/local/dev-python
-  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
+  - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
   - chown -R portage:portage /var/db/repos/local
   - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
   requires:
@@ -14787,6 +14794,9 @@ packages:
     version: ">=0"
   - category: "app-eselect"
     name: "eselect-wine"
+    version: ">=0"
+  - category: "virtual"
+    name: "wine"
     version: ">=0"
   atoms:
   - atom: "app-emulation/wine-staging"
