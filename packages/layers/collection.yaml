@@ -131,6 +131,19 @@ stubs:
 #   name: "latex"
 #   version: ">=0"
 
+- &layers-hwloc
+  category: "layers"
+  name: "hwloc"
+  version: ">=0"
+# - &layerbase-hwloc
+#   category: "layerbase"
+#   name: "hwloc"
+#   version: ">=0"
+- &buildbase-hwloc
+  category: "buildbase"
+  name: "hwloc"
+  version: ">=0"
+
 - &layers-openmpi
   category: "layers"
   name: "openmpi"
@@ -335,30 +348,6 @@ packages:
 ################################################################################################################################################################
 ### dep 1 apps ###
 ################################################################################################################################################################
-
-- &apps-hwloc
-  category: "apps"
-  name: "hwloc"
-  version: "2.9.2+3"
-  uri:
-  - https://www.open-mpi.org/projects/hwloc/
-  license: "BSD"
-  description: "Displays the hardware topology in convenient formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwloc
-  provides:
-  - category: "sys-apps"
-    name: "hwloc"
-    version: ">=0"
-  atoms:
-  - atom: "sys-apps/hwloc"
-    use: "cairo cpuid cuda pci svg udev xml X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 ################################################################################
 ## layers ###
@@ -1340,6 +1329,40 @@ packages:
 #   hidden: true
 
 
+- &def-hwloc
+  category: "layers"
+  name: "hwloc"
+  version: "2.9.2"
+  uri:
+  - https://www.open-mpi.org/projects/hwloc/
+  license: "BSD"
+  description: "Displays the hardware topology in convenient formats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/hwloc
+  provides:
+  - category: "sys-apps"
+    name: "hwloc"
+    version: ">=0"
+  atoms:
+  - atom: "sys-apps/hwloc"
+    use: "cairo cpuid cuda pci svg udev xml X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+# - <<: *def-hwloc
+#   category: "layerbase"
+#   hidden: true
+
+- <<: *def-hwloc
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+
 - &def-openmpi
   category: "layers"
   name: "openmpi"
@@ -1363,7 +1386,7 @@ packages:
   #   use: "fortran # nullmpi romio cxx threads"
   requires:
   - <<: *layers-X
-  - <<: *apps-hwloc
+  - <<: *layers-hwloc
   build_requires:
   - <<: *layers-X
 # category of the package must be buildbase
