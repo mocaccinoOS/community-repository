@@ -14224,8 +14224,9 @@ Needs python[tk]
   - atom: "app-text/sigil"
     use: "plugins qt6"
   prepare:
-  - sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild
-  - ebuild /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild manifest
+  - |
+    sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild && \
+    ebuild /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *libs-css-parser
