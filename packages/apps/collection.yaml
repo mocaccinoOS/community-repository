@@ -14201,7 +14201,6 @@ packages:
   - <<: *layerbase-perl-libs
   requires_final_images: true
 
-# Needs python[tk]
 - category: "apps"
   name: "sigil"
   version: "2.3.1"
@@ -14224,6 +14223,7 @@ packages:
   - atom: "app-text/sigil"
     use: "plugins qt6"
   prepare:
+  # Needs python[tk], remove that
   - |
     sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild && \
     ebuild /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild manifest
