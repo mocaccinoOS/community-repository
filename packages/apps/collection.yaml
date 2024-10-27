@@ -11473,43 +11473,43 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.0.26_alpha-r1"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "lobby -editor -nvtt -pch -verify-sig"
-    accept_keywords: "~amd64"
-  # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.11.
-  # PYTHON_COMPAT=( python3_10 )
-  # prepare:
-  # - echo $SHELL || true
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_11 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
-  inner_build_reqs:
-  - app-crypt/minisign
-  inner_build_requires:
-  - <<: *apps-premake-5
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-enet
-  - <<: *libs-gloox
-  #  Required for editor
-  # - <<: *libs-wxGTK-3_0-gtk3
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.0.26_alpha-r1"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "lobby -editor -nvtt -pch -verify-sig"
+#     accept_keywords: "~amd64"
+#   # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.12.
+#   # PYTHON_COMPAT=( python3_10 )
+#   # prepare:
+#   # - echo $SHELL || true
+#   # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_12 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
+#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+#   inner_build_reqs:
+#   - app-crypt/minisign
+#   inner_build_requires:
+#   - <<: *apps-premake-5
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-enet
+#   - <<: *libs-gloox
+#   #  Required for editor
+#   # - <<: *libs-wxGTK-3_0-gtk3
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "amarok"
@@ -14203,7 +14203,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.3.1"
+  version: "2.3.1+1"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -14231,6 +14231,7 @@ packages:
   - <<: *layers-qt
   - <<: *libs-css-parser
   - <<: *libs-cssselect
+  - <<: *libs-regex
   build_requires:
   - <<: *layers-qt
 
@@ -18653,73 +18654,121 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# Unstable for KDE/Qt 6
-- category: "apps"
-  name: "freecad"
-  version: "1.0_rc2+1"
-  uri:
-  - https://www.freecad.org/
-  - https://ngsolve.org/
-  - https://www.orocos.org/kdl
-  - https://pointclouds.org/
-  license: "metapackage"
-  description: |
-    QT based Computer Aided Design application
-    Automatic 3d tetrahedral mesh generator
-    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
-    Kinematics and Dynamics Library (KDL)
-    2D/3D image and point cloud processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/freecad
-  provides:
-  - category: "media-gfx"
-    name: "freecad"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "OpenNI2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pivy"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "netgen"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "openscad"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "med"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "orocos_kdl"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "pcl"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/freecad"
-    use: "addonmgr fem gui idf image inspection material netgen openscad part-design path points qt6 raytracing robot show surface techdraw tux"
-    accept_keywords: "~amd64"
-  - atom: "media-gfx/netgen"
-    use: "ffmpeg gui jpeg mpi opencascade python"
-  - atom: "media-gfx/openscad"
-    use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
-  - atom: "sci-libs/med"
-    use: "python fortran # mpi"
-  - atom: "sci-libs/pcl"
-    use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
-  inner_build_reqs:
-  - app-text/dos2unix
-  - dev-lang/swig
-  requires:
-  - <<: *layers-vtk
-  - <<: *libs-coin
-  - <<: *libs-libspnav
-  - <<: *libs-qtpy
-  build_requires:
-  - <<: *layers-vtk
+# # Unstable for KDE/Qt 6
+# - category: "apps"
+#   name: "freecad"
+#   version: "1.0_rc2+1"
+#   uri:
+#   - https://www.freecad.org/
+#   - https://github.com/gitpython-developers/gitdb/
+#   - https://github.com/gitpython-developers/GitPython/
+#   - https://pypi.org/project/smmap/
+#   - https://structure.io/openni
+#   - https://github.com/coin3d/pivy
+#   - https://3mf.io/
+#   - https://ngsolve.org/
+#   - https://www.opencsg.org
+#   - https://openscad.org/
+#   - https://github.com/coin3d/coin/wiki
+#   - https://www.salome-platform.org/user-section/about/med
+#   - https://www.orocos.org/kdl
+#   - http://www.xmailserver.org/libpcl.html
+#   - https://www.cgal.org/
+#   # - https://pointclouds.org/
+#   license: "metapackage"
+#   description: |
+#     QT based Computer Aided Design application
+#     GitDB is a pure-Python git object database
+#     Library used to interact with Git repositories
+#     A pure Python implementation of a sliding window memory map manager
+#     OpenNI2 SDK
+#     Coin3D bindings for Python
+#     Implementation of the 3D Manufacturing Format file standard
+#     Automatic 3d tetrahedral mesh generator
+#     The Constructive Solid Geometry rendering library
+#     The Programmers Solid 3D CAD Modeller
+#     GUI binding for using Coin/Open Inventor with Qt
+#     A library to store and exchange meshed data or computation results
+#     Kinematics and Dynamics Library (KDL)
+#     Portable Coroutine Library
+#     C++ library for geometric algorithms and data structures
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/freecad
+#   provides:
+#   dev-python/gitdb
+#   dev-python/GitPython
+#   dev-python/smmap
+#   - category: "media-gfx"
+#     name: "freecad"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "OpenNI2"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pivy"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "netgen"
+#     version: ">=0"
+#   # openscad needs qt5:
+#   # - category: "media-gfx"
+#   #   name: "opencsg"
+#   #   version: ">=0"
+#   # - category: "media-gfx"
+#   #   name: "openscad"
+#   #   version: ">=0"
+#   # - category: "media-libs"
+#   #   name: "lib3mf"
+#   #   version: ">=0"
+#   - category: "media-libs"
+#     name: "quarter"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "med"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "orocos_kdl"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "pcl"
+#     version: ">=0"
+#   - category: "sci-mathematics"
+#     name: "cgal"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/freecad"
+#     use: "addonmgr fem gui idf image inspection material netgen part-design path points qt6 raytracing robot show surface techdraw tux # needs qt5: openscad"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/OpenNI2"
+#     use: "opengl"
+#   - atom: "media-gfx/netgen"
+#     use: "ffmpeg gui jpeg mpi opencascade python"
+#   - atom: "media-gfx/openscad"
+#     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
+#   - atom: "media-libs/quarterd"
+#     use: "qt6"
+#   - atom: "sci-libs/med"
+#     use: "python fortran # mpi"
+#   - atom: "sci-libs/pcl"
+#     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+#   inner_build_reqs:
+#   - app-text/dos2unix
+#   - dev-lang/swig
+#   - dev-cpp/ms-gsl
+#   # openscad needs qt5:
+#   # - dev-util/itstool
+#   # - dev-go/act
+#   requires:
+#   - <<: *layers-vtk
+#   - <<: *libs-coin
+#   - <<: *libs-hidapi
+#   - <<: *libs-libspnav
+#   - <<: *libs-qscintilla
+#   - <<: *libs-qtpy
+#   build_requires:
+#   - <<: *layers-vtk
 
 - category: "apps"
   name: "freeciv"
