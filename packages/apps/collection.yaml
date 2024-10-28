@@ -17594,6 +17594,7 @@ packages:
   - atom: "sci-libs/vtk"
     use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
     license: "BSD LGPL-2"
+  env: "MAKEOPTS=\"-j5 -l0.5\""
   inner_build_reqs:
   - dev-libs/pegtl
   - dev-python/meson-python
@@ -17617,14 +17618,14 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-# - <<: *def-vtk
-#   category: "layerbase"
-#   hidden: true
-
 - <<: *def-vtk
-  category: "buildbase"
-  unpack: true
+  category: "layerbase"
   hidden: true
+
+# - <<: *def-vtk
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 ################################################################################################################################################################
 ### dep 3 apps ###
