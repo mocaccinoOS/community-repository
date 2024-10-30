@@ -18729,7 +18729,7 @@ packages:
 # # Unstable for KDE/Qt 6
 - category: "apps"
   name: "freecad"
-  version: "1.0_rc2+1"
+  version: "1.0_rc2+2"
   uri:
   - https://www.freecad.org/
   - https://github.com/gitpython-developers/gitdb/
@@ -18831,6 +18831,7 @@ packages:
     use: "python fortran # mpi"
   - atom: "sci-libs/pcl"
     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+  env: "MAKEOPTS=\"-j5 -l0.9\""
   inner_build_reqs:
   - app-text/dos2unix
   - dev-lang/swig
@@ -18840,7 +18841,6 @@ packages:
   # - dev-go/act
   requires:
   - <<: *layers-vtk
-    skip: true
   - <<: *libs-asciidoctor
   - <<: *libs-coin
   - <<: *libs-hidapi
