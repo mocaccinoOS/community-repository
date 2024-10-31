@@ -17815,7 +17815,7 @@ packages:
 
 # - category: "apps"
 #   name: "goneovim"
-#   version: "0.6.8"
+#   version: "0.6.10"
 #   uri:
 #   - https://github.com/akiyosi/goneovim
 #   license: "MIT"
@@ -17824,11 +17824,11 @@ packages:
 #     emerge.jobs: "1"
 #   prepare:
 #   - |
-#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.8.tar.gz && \
-#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.8/goneovim-v0.6.8-linux.tar.bz2 && \
+#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.10.tar.gz && \
+#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.10/goneovim-v0.6.10-linux.tar.bz2 && \
 #     mkdir data && \
-#     tar -C data -xf goneovim-v0.6.8-linux.tar.bz2 --strip-components=1 && \
-#     tar -C data -xf v0.6.8.tar.gz --strip-components=1 goneovim-0.6.8/cmd
+#     tar -C data -xf goneovim-v0.6.10-linux.tar.bz2 --strip-components=1 && \
+#     tar -C data -xf v0.6.10.tar.gz --strip-components=1 goneovim-0.6.10/cmd
 #   setup:
 #   - |
 #     ln -s /usr/lib/libtiff.so /usr/lib/libtiff.so.5 && \
@@ -17846,60 +17846,60 @@ packages:
 #   build_requires:
 #   - <<: *layers-kde-kf5
 
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.8+4"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   overlays:
-#   - enable: "okh"
-#   # atoms:
-#   # - atom: "dev-qt/qtremoteobjects"
-#   #   accept_keywords: "~amd64"
-#   prepare:
-#   # - emaint sync
-#   # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
-#   # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
-#   # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
-#   - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
-#   - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
-#   ready:
-#   - |
-#     git clone https://github.com/akiyosi/goneovim && \
-#     export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
-#     cd goneovim && \
-#     git fetch --all --tags && \
-#     git checkout tags/v0.6.8 && \
-#     make qt_bindings && \
-#     make deps && \
-#     make app
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cd goneovim && \
-#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-#     find -name goneovim && \
-#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   inner_build_reqs:
-#   - dev-qt/qtremoteobjects::okh
-#   inner_build_requires:
-#   - <<: *apps-go
-#   - <<: *apps-designer
-#   requires:
-#   - <<: *layers-kde-kf5
-#   - <<: *apps-neovim
-#     skip: true
-#   build_requires:
-#   - <<: *buildbase-kde-kf5
+- category: "apps"
+  name: "goneovim"
+  version: "0.6.10"
+  uri:
+  - https://github.com/akiyosi/goneovim
+  license: "MIT"
+  description: "A Neovim GUI written in Go, using a Qt binding for Go"
+  labels:
+    emerge.jobs: "1"
+  overlays:
+  - enable: "okh"
+  # atoms:
+  # - atom: "dev-qt/qtremoteobjects"
+  #   accept_keywords: "~amd64"
+  prepare:
+  # - emaint sync
+  # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
+  # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
+  # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
+  - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
+  - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
+  ready:
+  - |
+    git clone https://github.com/akiyosi/goneovim && \
+    export QT_QMAKE_DIR=/usr/lib64/qt5/bin && \
+    cd goneovim && \
+    git fetch --all --tags && \
+    git checkout tags/v0.6.10 && \
+    make qt_bindings && \
+    make deps && \
+    make app
+  setup:
+  - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cd goneovim && \
+    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+    find -name goneovim && \
+    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  inner_build_reqs:
+  - dev-qt/qtremoteobjects::okh
+  inner_build_requires:
+  - <<: *apps-go
+  - <<: *apps-designer
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *apps-neovim
+    skip: true
+  build_requires:
+  - <<: *buildbase-kde-kf5
 
 - category: "apps"
   name: "gradience"
@@ -18727,128 +18727,127 @@ packages:
   requires_final_images: true
 
 # # Unstable for KDE/Qt 6
-- category: "apps"
-  name: "freecad"
-  version: "1.0_rc2+2"
-  uri:
-  - https://www.freecad.org/
-  - https://github.com/gitpython-developers/gitdb/
-  - https://github.com/gitpython-developers/GitPython/
-  - https://pypi.org/project/smmap/
-  - https://structure.io/openni
-  - https://github.com/coin3d/pivy
-  - https://3mf.io/
-  - https://ngsolve.org/
-  - https://www.opencsg.org
-  - https://openscad.org/
-  - https://github.com/coin3d/coin/wiki
-  - https://www.salome-platform.org/user-section/about/med
-  - https://www.orocos.org/kdl
-  - http://www.xmailserver.org/libpcl.html
-  - https://www.cgal.org/
-  # - https://pointclouds.org/
-  license: "metapackage"
-  description: |
-    QT based Computer Aided Design application
-    GitDB is a pure-Python git object database
-    Library used to interact with Git repositories
-    A pure Python implementation of a sliding window memory map manager
-    OpenNI2 SDK
-    Coin3D bindings for Python
-    Implementation of the 3D Manufacturing Format file standard
-    Automatic 3d tetrahedral mesh generator
-    The Constructive Solid Geometry rendering library
-    The Programmers Solid 3D CAD Modeller
-    GUI binding for using Coin/Open Inventor with Qt
-    A library to store and exchange meshed data or computation results
-    Kinematics and Dynamics Library (KDL)
-    Portable Coroutine Library
-    C++ library for geometric algorithms and data structures
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/freecad
-  provides:
-  - category: "dev-python"
-    name: "gitdb"
-    version: ">=0"
-  - category: "dev-python"
-    name: "GitPython"
-    version: ">=0"
-  - category: "dev-python"
-    name: "smmap"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "freecad"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "OpenNI2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pivy"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "netgen"
-    version: ">=0"
-  # openscad needs qt5:
-  # - category: "media-gfx"
-  #   name: "opencsg"
-  #   version: ">=0"
-  # - category: "media-gfx"
-  #   name: "openscad"
-  #   version: ">=0"
-  # - category: "media-libs"
-  #   name: "lib3mf"
-  #   version: ">=0"
-  - category: "media-libs"
-    name: "quarter"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "med"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "orocos_kdl"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "pcl"
-    version: ">=0"
-  - category: "sci-mathematics"
-    name: "cgal"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/freecad"
-    use: "addonmgr fem gui idf image inspection material netgen part-design path points qt6 raytracing robot show surface techdraw tux # needs qt5: openscad"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/OpenNI2"
-    use: "opengl"
-  - atom: "media-gfx/netgen"
-    use: "ffmpeg gui jpeg mpi opencascade python"
-  - atom: "media-gfx/openscad"
-    use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
-  - atom: "media-libs/quarterd"
-    use: "qt6"
-  - atom: "sci-libs/med"
-    use: "python fortran # mpi"
-  - atom: "sci-libs/pcl"
-    use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
-  env: "MAKEOPTS=\"-j5 -l0.9\""
-  inner_build_reqs:
-  - app-text/dos2unix
-  - dev-lang/swig
-  - dev-cpp/ms-gsl
-  # openscad needs qt5:
-  # - dev-util/itstool
-  # - dev-go/act
-  requires:
-  - <<: *layers-vtk
-  - <<: *libs-asciidoctor
-  - <<: *libs-coin
-  - <<: *libs-hidapi
-  - <<: *libs-libspnav
-  - <<: *libs-qscintilla
-  - <<: *libs-qtpy
-  build_requires:
-  - <<: *layers-vtk
+# - category: "apps"
+#   name: "freecad"
+#   version: "1.0_rc2+2"
+#   uri:
+#   - https://www.freecad.org/
+#   - https://github.com/gitpython-developers/gitdb/
+#   - https://github.com/gitpython-developers/GitPython/
+#   - https://pypi.org/project/smmap/
+#   - https://structure.io/openni
+#   - https://github.com/coin3d/pivy
+#   - https://3mf.io/
+#   - https://ngsolve.org/
+#   - https://www.opencsg.org
+#   - https://openscad.org/
+#   - https://github.com/coin3d/coin/wiki
+#   - https://www.salome-platform.org/user-section/about/med
+#   - https://www.orocos.org/kdl
+#   - http://www.xmailserver.org/libpcl.html
+#   - https://www.cgal.org/
+#   # - https://pointclouds.org/
+#   license: "metapackage"
+#   description: |
+#     QT based Computer Aided Design application
+#     GitDB is a pure-Python git object database
+#     Library used to interact with Git repositories
+#     A pure Python implementation of a sliding window memory map manager
+#     OpenNI2 SDK
+#     Coin3D bindings for Python
+#     Implementation of the 3D Manufacturing Format file standard
+#     Automatic 3d tetrahedral mesh generator
+#     The Constructive Solid Geometry rendering library
+#     The Programmers Solid 3D CAD Modeller
+#     GUI binding for using Coin/Open Inventor with Qt
+#     A library to store and exchange meshed data or computation results
+#     Kinematics and Dynamics Library (KDL)
+#     Portable Coroutine Library
+#     C++ library for geometric algorithms and data structures
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/freecad
+#   provides:
+#   - category: "dev-python"
+#     name: "gitdb"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "GitPython"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "smmap"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "freecad"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "OpenNI2"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pivy"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "netgen"
+#     version: ">=0"
+#   # openscad needs qt5:
+#   # - category: "media-gfx"
+#   #   name: "opencsg"
+#   #   version: ">=0"
+#   # - category: "media-gfx"
+#   #   name: "openscad"
+#   #   version: ">=0"
+#   # - category: "media-libs"
+#   #   name: "lib3mf"
+#   #   version: ">=0"
+#   - category: "media-libs"
+#     name: "quarter"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "med"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "orocos_kdl"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "pcl"
+#     version: ">=0"
+#   - category: "sci-mathematics"
+#     name: "cgal"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/freecad"
+#     use: "addonmgr fem gui idf image inspection material netgen part-design path points qt6 raytracing robot show surface techdraw tux # needs qt5: openscad"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/OpenNI2"
+#     use: "opengl"
+#   - atom: "media-gfx/netgen"
+#     use: "ffmpeg gui jpeg mpi opencascade python"
+#   - atom: "media-gfx/openscad"
+#     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
+#   - atom: "media-libs/quarterd"
+#     use: "qt6"
+#   - atom: "sci-libs/med"
+#     use: "python fortran # mpi"
+#   - atom: "sci-libs/pcl"
+#     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+#   inner_build_reqs:
+#   - app-text/dos2unix
+#   - dev-lang/swig
+#   - dev-cpp/ms-gsl
+#   # openscad needs qt5:
+#   # - dev-util/itstool
+#   # - dev-go/act
+#   requires:
+#   - <<: *layers-vtk
+#   - <<: *libs-asciidoctor
+#   - <<: *libs-coin
+#   - <<: *libs-hidapi
+#   - <<: *libs-libspnav
+#   - <<: *libs-qscintilla
+#   - <<: *libs-qtpy
+#   build_requires:
+#   - <<: *layers-vtk
 
 - category: "apps"
   name: "freeciv"
