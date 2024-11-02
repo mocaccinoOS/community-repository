@@ -194,7 +194,7 @@
 ################################################################################
 
 {{- define "community.package_setup" }}
-{{/* setup files will always have 'layers' category for layers, layerbases and buildbases */}}
+{{/* setup files will always have <<layers>> category for layers, layerbases and buildbases */}}
 {{- include "community.copy_package_setup_files" ( printf "%s-%s" ( .category | replace "layerbase" "layers" | replace "buildbase" "layers" ) .name ) }}
 
 {{- $filepath := "/etc/portage/package" }}
