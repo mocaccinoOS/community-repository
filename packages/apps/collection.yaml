@@ -6614,37 +6614,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-go-dev
-  category: "apps"
-  name: "go-dev"
-  version: "1.23.1"
-  uri:
-  - https://github.com/go-delve/delve
-  - https://github.com/golang/tools/blob/master/gopls/README.md
-  license: "MIT BSD BSD-2 Apache-2.0"
-  description: |
-    A source-level debugger for the Go programming language
-    "Go please" is the official Go language server
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-go/delve
-      dev-go/gopls
-  provides:
-  - category: "dev-go"
-    name: "delve"
-    version: ">=0"
-  - category: "dev-go"
-    name: "gopls"
-    version: ">=0"
-  atoms:
-  - atom: "dev-go/delve"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - category: "apps"
   name: "google-chrome"
   version: "130.0.6723.69"
@@ -12136,6 +12105,32 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-delve
+  category: "apps"
+  name: "delve"
+  version: "1.22.1"
+  uri:
+  - https://github.com/go-delve/delve
+  license: "MIT BSD BSD-2 Apache-2.0"
+  description: |
+    A source-level debugger for the Go programming language
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-go/delve
+  provides:
+  - category: "dev-go"
+    name: "delve"
+    version: ">=0"
+  atoms:
+  - atom: "dev-go/delve"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-dia
   category: "apps"
   name: "dia"
@@ -12686,7 +12681,7 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
+  
 - &apps-gopls
   category: "apps"
   name: "gopls"
