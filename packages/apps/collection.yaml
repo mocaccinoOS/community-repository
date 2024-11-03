@@ -4115,6 +4115,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-rnnoise
+  category: "apps"
+  name: "rnnoise"
+  version: "0.4.1_p20210122-r1"
+  uri:
+  - https://jmvalin.ca/demo/rnnoise/
+  license: "GPL-2 BSD"
+  description: |
+    Recurrent neural network for audio noise reduction
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/rnnoise
+  provides:
+  - category: "media-libs"
+    name: "rnnoise"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
@@ -4751,6 +4773,27 @@ packages:
   provides:
   - category: "media-libs"
     name: "zimg"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-zita-convolver
+  category: "libs"
+  name: "zita-convolver"
+  version: "4.0.3"
+  uri:
+  - https://kokkinizita.linuxaudio.org/linuxaudio/
+  license: "GPL-3+"
+  description: "C++ library implementing a real-time convolution matrix"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/zita-convolver
+  provides:
+  - category: "media-libs"
+    name: "zita-convolver"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -13510,7 +13553,6 @@ packages:
   version: "30.2.3+1"
   uri:
   - https://obsproject.com
-  - https://jmvalin.ca/demo/rnnoise/
   license: "GPL-2 BSD"
   description: |
     Software for Recording and Streaming Live Video Content
@@ -13525,9 +13567,6 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "qr-code-generator"
-    version: ">=0"
-  - category: "media-libs"
-    name: "rnnoise"
     version: ">=0"
   - category: "media-libs"
     name: "libvpl"
@@ -13559,6 +13598,7 @@ packages:
   - <<: *libs-intel-mediasdk
   - <<: *libs-mbedtls
   - <<: *libs-nlohmann_json
+  - <<: *libs-rnnoise
   - <<: *libs-uthash
   - <<: *libs-websocketpp
   build_requires:
@@ -17702,6 +17742,34 @@ packages:
   - <<: *apps-fluidsynth
   build_requires:
   - <<: *layers-qt
+
+- &apps-calf
+  category: "apps"
+  name: "calf"
+  version: "0.90.3-r2"
+  uri:
+  - https://calf-studio-gear.org/
+  license: "LGPL-2.1"
+  description: "A set of open source instruments and effects for digital audio workstations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-plugins/calf
+  provides:
+  - category: "media-plugins"
+    name: "calf"
+    version: ">=0"
+  atoms:
+  - atom: "media-plugins/calf"
+    use: "gtk jack lash lv2 # experimental cpu_flags_x86_sse"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  - <<: *libs-lv2
+  - <<: *apps-fluidsynth
+  - <<: *apps-lash
+  build_requires:
+  - <<: *layers-X
 
 # Unstable for KDE/Qt 6
 - category: "apps"
