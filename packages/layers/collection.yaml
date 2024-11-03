@@ -858,6 +858,116 @@ packages:
   unpack: true
 
 
+- &def-ruby
+  category: "layers"
+  name: "ruby"
+  version: "3.1.6-r1"
+  uri:
+  - https://www.ruby-lang.org/
+  license: "Ruby-BSD BSD-2"
+  description: "An object-oriented scripting language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/ruby:3.1
+      app-eselect/eselect-ruby
+  provides:
+  - category: "app-eselect"
+    name: "eselect-ruby"
+    version: ">=0"
+  - category: "virtual"
+    name: "ruby-ssl"
+    version: ">=0"
+  - category: "virtual"
+    name: "rubygems"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "ruby"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "bundler"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "did_you_mean"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "io-console"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "irb"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "json"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "logger"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "minitest"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "power_assert"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "psych"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rake"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rbs"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rdoc"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "reline"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rexml"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rss"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "rubygems"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "stringio"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "strscan"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "test-unit"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "typeprof"
+    version: ">=0"
+  - category: "dev-util"
+    name: "colm"
+    version: ">=0"
+  - category: "dev-util"
+    name: "ragel"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/ruby"
+    mask: "dev-lang/ruby:3.2"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- <<: *def-ruby
+  category: "layerbase"
+  hidden: true
+
+# - <<: *def-ruby
+#   category: "buildbase"
+#   hidden: true
+#   unpack: true
+
+
 - &def-XML-LibXML
   category: "layers"
   name: "XML-LibXML"
@@ -894,7 +1004,7 @@ packages:
 - &def-latex
   category: "layers"
   name: "latex"
-  version: "0.16+1"
+  version: "0.17"
   uri:
   - http://www.tug.org/texlive/
   - http://hutchinson.belmont.ma.us/tth/
@@ -1099,63 +1209,6 @@ packages:
   - category: "dev-ruby"
     name: "abbrev"
     version: ">=0"
-  - category: "dev-ruby"
-    name: "bundler"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "did_you_mean"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "io-console"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "irb"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "json"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "minitest"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "power_assert"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "psych"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rake"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rbs"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rdoc"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "reline"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rexml"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rss"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "rubygems"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "stringio"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "strscan"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "test-unit"
-    version: ">=0"
-  - category: "dev-ruby"
-    name: "typeprof"
-    version: ">=0"
   - category: "dev-tex"
     name: "biber"
     version: ">=0"
@@ -1297,9 +1350,6 @@ packages:
   - category: "dev-texlive"
     name: "texlive-xetex"
     version: ">=0"
-  - category: "dev-util"
-    name: "ragel"
-    version: ">=0"
   - category: "media-gfx"
     name: "sam2p"
     version: ">=0"
@@ -1317,12 +1367,6 @@ packages:
     version: ">=0"
   - category: "virtual"
     name: "perl-if"
-    version: ">=0"
-  - category: "virtual"
-    name: "ruby-ssl"
-    version: ">=0"
-  - category: "virtual"
-    name: "rubygems"
     version: ">=0"
   - category: "virtual"
     name: "texi2dvi"
@@ -1424,44 +1468,6 @@ packages:
   category: "buildbase"
   hidden: true
   unpack: true
-
-
-- &def-ruby
-  category: "layers"
-  name: "ruby"
-  version: "3.1.6-r1"
-  uri:
-  - https://www.ruby-lang.org/
-  license: "Ruby-BSD BSD-2"
-  description: "An object-oriented scripting language"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/ruby:3.1
-      app-eselect/eselect-ruby
-  provides:
-  - category: "dev-lang"
-    name: "ruby"
-    version: ">=0"
-  - category: "app-eselect"
-    name: "eselect-ruby"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/ruby"
-    mask: "dev-lang/ruby:3.2"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- <<: *def-ruby
-  category: "layerbase"
-  hidden: true
-
-# - <<: *def-ruby
-#   category: "buildbase"
-#   hidden: true
-#   unpack: true
 
 
 - &def-sci-libs
