@@ -13550,7 +13550,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "30.2.3+1"
+  version: "30.2.3+2"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -18819,6 +18819,65 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
   requires_final_images: true
+
+- &apps-easyeffects
+  category: "apps"
+  name: "easyeffects"
+  version: "7.1.6"
+  uri:
+  - https://github.com/wwmm/easyeffects
+  - https://lsp-plug.in
+  - https://drobilla.net/software/mda-lv2.html
+  - https://www.zamaudio.com/
+  license: "GPL-3 LGPL-3 GPL-2+ MIT"
+  description: |
+    Limiter, auto volume and many other plugins for PipeWire applications
+    Linux Studio Plugins
+    LV2 port of the MDA plugins by Paul Kellett
+    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easyeffects
+  provides:
+  - category: "media-sound"
+    name: "easyeffects"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lsp-plugins"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "mda-lv2"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "zam-plugins"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/easyeffects"
+    use: "calf doc mda-lv2 zamaudio"
+  - atom: "media-libs/lsp-plugins"
+    use: "lv2 vst X # doc jack ladspa"
+  - atom: "media-plugins/zam-plugins"
+    use: "jack opengl"
+  inner_build_reqs:
+  - dev-util/itstool
+  - dev-util/lv2lint
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tbb
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-libbs2b
+  - <<: *libs-libebur128
+  - <<: *libs-libsoundtouch
+  - <<: *libs-lilv
+  - <<: *libs-lv2
+  - <<: *libs-rnnoise
+  - <<: *libs-zita-convolver
+  - <<: *apps-calf
+  build_requires:
+  - <<: *layers-gnome-common
 
 # # Unstable for KDE/Qt 6
 # - category: "apps"
