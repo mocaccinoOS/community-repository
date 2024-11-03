@@ -105,6 +105,19 @@ stubs:
   virtual/jre
   virtual/jdk
 
+- &layers-ruby
+  category: "layers"
+  name: "ruby"
+  version: ">=0"
+- &layerbase-ruby
+  category: "layerbase"
+  name: "ruby"
+  version: ">=0"
+# - &buildbase-ruby
+#   category: "buildbase"
+#   name: "ruby"
+#   version: ">=0"
+
 - &layers-XML-LibXML
   category: "layers"
   name: "XML-LibXML"
@@ -912,14 +925,9 @@ packages:
   - atom: "app-text/texlive"
     use: "context extra games graphics humanities luatex metapost music pdfannotextractor pstricks publishers science tex4ht texi2html xetex -cjk png truetype xml X l10n_af l10n_ar l10n_as l10n_bg l10n_bn l10n_br l10n_ca l10n_cs l10n_cy l10n_da l10n_de l10n_el l10n_en l10n_eo l10n_es l10n_et l10n_eu l10n_fa l10n_fi l10n_fr l10n_ga l10n_gl l10n_gu l10n_he l10n_hi l10n_hr l10n_hsb l10n_hu l10n_hy l10n_ia l10n_id l10n_is l10n_it -l10n_ja -l10n_ko l10n_kn l10n_la l10n_lo l10n_lt l10n_lv l10n_ml l10n_mn l10n_mr l10n_nb l10n_nl l10n_nn l10n_no l10n_or l10n_pa l10n_pl l10n_pt l10n_rm l10n_ro l10n_ru l10n_sa l10n_sco l10n_sk l10n_sl l10n_sq l10n_sr l10n_sv l10n_ta l10n_te l10n_th l10n_tk l10n_tr l10n_uk l10n_vi -l10n_zh"
     # use: "-cjk -l10n_ja -l10n_ko -l10n_zh"
-  - atom: "dev-lang/ruby"
-    mask: "dev-lang/ruby:3.2"
   # - atom: "dev-libs/kpathsea"
   #   mask: "dev-libs/kpathsea-6.2.1:0/6.3.3"
   provides:
-  - category: "app-eselect"
-    name: "eselect-ruby"
-    version: ">=0"
   - category: "app-text"
     name: "dvipng"
     version: ">=0"
@@ -949,9 +957,6 @@ packages:
     version: ">=0"
   - category: "app-text"
     name: "xdvik"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "ruby"
     version: ">=0"
   - category: "dev-perl"
     name: "Business-ISBN"
@@ -1326,9 +1331,11 @@ packages:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
   requires:
   - <<: *layers-perl-libs
+  - <<: *layers-ruby
   - <<: *layers-XML-LibXML
   build_requires:
   - <<: *buildbase-perl-libs
+  - <<: *layerbase-ruby
   - <<: *layerbase-XML-LibXML
   requires_final_images: true
 
@@ -1414,6 +1421,43 @@ packages:
   hidden: true
 
 - <<: *def-openmpi
+  category: "buildbase"
+  hidden: true
+  unpack: true
+
+- &defs-ruby
+  category: "apps"
+  name: "ruby"
+  version: "3.1.6-r1"
+  uri:
+  - https://www.ruby-lang.org/
+  license: "Ruby-BSD BSD-2"
+  description: "An object-oriented scripting language"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/ruby:3.1
+      app-eselect/eselect-ruby
+  provides:
+  - category: "dev-lang"
+    name: "ruby"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-ruby"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/ruby"
+    mask: "dev-lang/ruby:3.2"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- <<: *def-ruby
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-ruby
   category: "buildbase"
   hidden: true
   unpack: true
