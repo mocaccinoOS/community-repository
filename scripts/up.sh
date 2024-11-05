@@ -494,14 +494,17 @@ function ensurePortageTree() {
     fi
     
     if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
-        local PORTAGE_HASH=$(curl --silent --location  https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+        local PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
     
         # --remote-name
         curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
     
         mkdir -p "${PORTAGE_TREE_PATH}"
-        tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1
-        rm ./tree.tar.gz
+        if tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1 ; then
+            rm ./tree.tar.gz
+        else
+            exit 1
+        fi
     fi
 }
 
