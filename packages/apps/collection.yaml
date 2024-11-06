@@ -4401,7 +4401,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+2"
+  version: "0.8.0_p20210321-r3+3"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -4418,7 +4418,7 @@ packages:
   atoms:
   - atom: "dev-libs/tre"
     use: "agrep alloca approx nls profile python"
-    accept_keywords: "~amd64"
+    # accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -14176,31 +14176,32 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-R
-  category: "apps"
-  name: "R"
-  version: "4.3.1-r1+5"
-  uri:
-  - https://www.r-project.org
-  license: "LGPL-2.1"
-  description: "Language and environment for statistical computing and graphics"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/R
-  provides:
-  - category: "dev-lang"
-    name: "R"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/R"
-    use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
-  requires:
-  - <<: *layers-java
-  - <<: *apps-tk
-  - <<: *libs-tre
-  build_requires:
-  - <<: *layers-java
+# tre can't build
+# - &apps-R
+#   category: "apps"
+#   name: "R"
+#   version: "4.3.1-r1+5"
+#   uri:
+#   - https://www.r-project.org
+#   license: "LGPL-2.1"
+#   description: "Language and environment for statistical computing and graphics"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lang/R
+#   provides:
+#   - category: "dev-lang"
+#     name: "R"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-lang/R"
+#     use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
+#   requires:
+#   - <<: *layers-java
+#   - <<: *apps-tk
+#   - <<: *libs-tre
+#   build_requires:
+#   - <<: *layers-java
 
 - category: "apps"
   name: "regexxer"
@@ -15936,35 +15937,35 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- category: "apps"
-  name: "kaffeine-tde"
-  version: "14.1.2"
-  uri:
-  - https://trinitydesktop.org
-  license: "GPL-2"
-  description: "Media player for TDE using Xine and GStreamer backends."
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      trinity-apps/kaffeine::trinity-official
-  overlays:
-  - add: "trinity-official"
-    type: "git"
-    url: "https://mirror.git.trinitydesktop.org/gitea/TDE/tde-packaging-gentoo.git"
-  provides:
-  - category: "trinity-apps"
-    name: "kaffeine"
-    version: ">=0"
-  atoms:
-  - atom: "trinity-apps/kaffeine"
-    accept_keywords: "~amd64"
-    use: "dpms dvb encode gstreamer vorbis xcb xinerama"
-  requires:
-  - <<: *layers-trinity
-  - <<: *libs-xine-lib
-  build_requires:
-  - <<: *layers-trinity
-  - <<: *libs-xine-lib
+# - category: "apps"
+#   name: "kaffeine-tde"
+#   version: "14.1.2"
+#   uri:
+#   - https://trinitydesktop.org
+#   license: "GPL-2"
+#   description: "Media player for TDE using Xine and GStreamer backends."
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       trinity-apps/kaffeine::trinity-official
+#   overlays:
+#   - add: "trinity-official"
+#     type: "git"
+#     url: "https://mirror.git.trinitydesktop.org/gitea/TDE/tde-packaging-gentoo.git"
+#   provides:
+#   - category: "trinity-apps"
+#     name: "kaffeine"
+#     version: ">=0"
+#   atoms:
+#   - atom: "trinity-apps/kaffeine"
+#     accept_keywords: "~amd64"
+#     use: "dpms dvb encode gstreamer vorbis xcb xinerama"
+#   requires:
+#   - <<: *layers-trinity
+#   - <<: *libs-xine-lib
+#   build_requires:
+#   - <<: *layers-trinity
+#   - <<: *libs-xine-lib
 
 - category: "apps"
   name: "kdegames"
