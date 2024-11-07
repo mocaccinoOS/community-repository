@@ -3444,6 +3444,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+  # can't rebuild
 - &libs-nas
   category: "libs"
   name: "nas"
@@ -4398,6 +4399,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+  # can't rebuild
 - &libs-tre
   category: "libs"
   name: "tre"
@@ -4419,8 +4421,6 @@ packages:
   - atom: "dev-libs/tre"
     use: "agrep alloca approx nls profile python"
     # accept_keywords: "~amd64"
-  prepare:
-  - emaint sync
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -11197,6 +11197,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+  # can't rebuild due to nas
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
@@ -15556,7 +15557,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-text/calibre"
-    use: "font-subsetting ios speech system-mathjax test udisks unrar verify-sig"
+    use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
   inner_build_reqs:
   - dev-lang/rapydscript-ng
   - dev-python/PyQt-builder
@@ -16195,7 +16196,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-lang/lazarus"
-    use: "extras gui # gtk2"
+    use: "extras gui gtk # gtk2 qt5 qt6"
   - atom: "dev-libs/libqt5pas"
     accept_keywords: "~amd64"
   inner_build_reqs:
@@ -16203,7 +16204,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-fpc
-  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
 
@@ -16953,6 +16953,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# can't rebuild due to nas
 - &apps-timidity
   category: "apps"
   name: "timidity"
@@ -17669,7 +17670,7 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.4.1"
+  version: "4.4.1+1"
   uri:
   - https://audacious-media-player.org
   - http://ampache-browser.org
@@ -17700,7 +17701,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-plugins/audacious"
-    use: "nls"
+    use: "nls qt6"
   - atom: "media-plugins/audacious-plugins"
     use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # lirc"
   - atom: "media-libs/ampache_browser"
@@ -19290,10 +19291,11 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
+  # can't rebuild due to nas
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.21.7"
+  version: "1.19.8"
   uri:
   - https://github.com/brndnmtthws/conky
   license: "GPL-3 BSD LGPL-2.1 MIT"
