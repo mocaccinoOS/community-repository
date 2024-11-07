@@ -4401,7 +4401,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+3"
+  version: "0.8.0_p20210321-r3+2"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -6999,27 +6999,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-javatoolkit
-  category: "apps"
-  name: "javatoolkit"
-  version: "0.6.7-r1+1"
-  uri:
-  - https://wiki.gentoo.org/wiki/Project:Java
-  license: "GPL-2"
-  description: "Collection of Gentoo-specific tools for Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/javatoolkit
-  provides:
-  - category: "dev-java"
-    name: "javatoolkit"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - category: "apps"
   name: "joe"
   version: "4.6-r2+1"
@@ -9009,7 +8988,7 @@ packages:
 
 - category: "apps"
   name: "pdftk"
-  version: "3.3.3_p20231025"
+  version: "3.3.3_p20231025+1"
   uri:
   - https://gitlab.com/pdftk-java/pdftk
   license: "GPL-2"
@@ -9028,8 +9007,6 @@ packages:
   - category: "dev-java"
     name: "commons-lang"
     version: ">=0"
-  inner_build_requires:
-  - <<: *apps-javatoolkit
   requires:
   - <<: *layers-java
   build_requires:
@@ -11669,8 +11646,6 @@ packages:
   - category: "dev-java"
     name: "ant-core"
     version: ">=0"
-  # inner_build_requires:
-  # - <<: *apps-javatoolkit
   requires:
   - <<: *layers-java
   build_requires:
@@ -12122,7 +12097,7 @@ packages:
 
 - category: "apps"
   name: "deadbeef"
-  version: "1.9.6-r1"
+  version: "1.9.6-r2"
   uri:
   - https://deadbeef.sourceforge.io
   license: "BSD GPL-2 LGPL-2.1"
@@ -12532,7 +12507,7 @@ packages:
 
 - category: "apps"
   name: "gftp"
-  version: "2.9.1b+3"
+  version: "2.9.1b-r1"
   uri:
   - https://github.com/masneyb/gftp
   license: "GPL-2"
@@ -13456,7 +13431,7 @@ packages:
 # Unstable for KDE/Qt 6
 - category: "apps"
   name: "musescore"
-  version: "4.4.2+1"
+  version: "4.4.3"
   uri:
   - https://musescore.org/
   license: "GPL-2"
@@ -14781,7 +14756,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "6.9.3447.51"
+  version: "7.0.3495.6"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -15022,7 +14997,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.2.3.2056"
+  version: "6.2.6.2503"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -15111,7 +15086,7 @@ packages:
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
-  version: "0.1.21+1"
+  version: "0.1.22"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -15133,7 +15108,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.0.8+3"
+  version: "2.1.0"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -15527,7 +15502,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.17.0+1"
+  version: "7.19.0"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -16202,7 +16177,7 @@ packages:
 - &apps-lazarus
   category: "apps"
   name: "lazarus"
-  version: "2.0.12+2"
+  version: "3.4-r1"
   uri:
   - hhttps://www.freepascal.org/
   license: "GPL-2 LGPL-2.1-with-linking-exception"
@@ -16235,7 +16210,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.6.2+1"
+  version: "24.2.6.2+2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -16308,7 +16283,6 @@ packages:
     use: "accessibility base bluetooth -branding clang coinmp cups dbus eds googledrive gstreamer gtk java ldap mariadb nlpsolver pdfimport vulkan"
   inner_build_reqs:
   - *layers-java-packages
-  # - dev-java/javatoolkit
   # - dev-java/bsh
   # - dev-java/rhino
   - sys-devel/lld
@@ -16426,7 +16400,7 @@ packages:
 - &apps-megasync
   category: "apps"
   name: "megasync"
-  version: "5.5.0.0+1"
+  version: "5.6.0.0"
   uri:
   - https://mega.io
   - https://github.com/meganz/MEGAsync
@@ -17154,7 +17128,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.5.35+2"
+  version: "21.5.35-r4"
   uri:
   - https://www.xemacs.org/
   license: "GPL-3+"
@@ -17223,7 +17197,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.3-r1+4"
+  version: "0.9.4"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -17695,7 +17669,7 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.3.1+4"
+  version: "4.4.1"
   uri:
   - https://audacious-media-player.org
   - http://ampache-browser.org
@@ -18174,7 +18148,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.7.1+5"
+  version: "3.7.3"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -19319,7 +19293,7 @@ packages:
 - &apps-conky
   category: "apps"
   name: "conky"
-  version: "1.19.8"
+  version: "1.21.7"
   uri:
   - https://github.com/brndnmtthws/conky
   license: "GPL-3 BSD LGPL-2.1 MIT"
@@ -19607,7 +19581,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2024.6"
+  version: "1.2024.7"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -19723,7 +19697,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.10"
+  version: "8.10-r1"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
