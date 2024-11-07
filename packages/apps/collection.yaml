@@ -16191,14 +16191,14 @@ packages:
   - category: "dev-lang"
     name: "lazarus"
     version: ">=0"
-  - category: "dev-libs"
-    name: "libqt5pas"
-    version: ">=0"
+  # - category: "dev-libs"
+  #   name: "libqt5pas"
+  #   version: ">=0"
   atoms:
   - atom: "dev-lang/lazarus"
     use: "extras gui gtk # gtk2 qt5 qt6"
-  - atom: "dev-libs/libqt5pas"
-    accept_keywords: "~amd64"
+  # - atom: "dev-libs/libqt5pas"
+  #   accept_keywords: "~amd64"
   inner_build_reqs:
   - net-misc/rsync
   requires:
@@ -16210,7 +16210,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.6.2+2"
+  version: "24.2.6.2+1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -17670,7 +17670,7 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.4.1+1"
+  version: "4.4.1+2"
   uri:
   - https://audacious-media-player.org
   - http://ampache-browser.org
@@ -17703,9 +17703,9 @@ packages:
   - atom: "media-plugins/audacious"
     use: "nls qt6"
   - atom: "media-plugins/audacious-plugins"
-    use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # lirc"
+    use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio qt6 scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # lirc"
   - atom: "media-libs/ampache_browser"
-    use: "nls"
+    use: "nls qt6"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbs2b
