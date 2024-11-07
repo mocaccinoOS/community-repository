@@ -4419,6 +4419,8 @@ packages:
   - atom: "dev-libs/tre"
     use: "agrep alloca approx nls profile python"
     # accept_keywords: "~amd64"
+  prepare:
+  - emaint sync
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -9537,6 +9539,8 @@ packages:
   - atom: "media-gfx/rawtherapee"
     use: "openmp # tcmalloc"
   env: "MAKEOPTS=\"-j5 -l0.9\""
+  prepare:
+  - emaint sync
   requires:
   - <<: *layers-X
   build_requires:
@@ -11651,8 +11655,8 @@ packages:
 
 - &apps-ant
   category: "apps"
-  name: "ant-core"
-  version: "1.10.14"
+  name: "ant"
+  version: "1.10.14-r3"
   uri:
   - https://ant.apache.org/
   license: "Apache-2.0"
@@ -11660,13 +11664,13 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-java/ant-core
+      dev-java/ant
   provides:
   - category: "dev-java"
     name: "ant-core"
     version: ">=0"
-  inner_build_requires:
-  - <<: *apps-javatoolkit
+  # inner_build_requires:
+  # - <<: *apps-javatoolkit
   requires:
   - <<: *layers-java
   build_requires:
