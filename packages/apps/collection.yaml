@@ -16196,7 +16196,7 @@ packages:
   #   version: ">=0"
   atoms:
   - atom: "dev-lang/lazarus"
-    use: "extras gui gtk # gtk2 qt5 qt6"
+    use: "extras gui gtk -gtk2 -qt5 -qt6"
   # - atom: "dev-libs/libqt5pas"
   #   accept_keywords: "~amd64"
   inner_build_reqs:
@@ -17700,12 +17700,14 @@ packages:
     name: "bio2jack"
     version: ">=0"
   atoms:
+  - atom: "media-sound/audacious"
+    use: "qt6 # gtk"
   - atom: "media-plugins/audacious"
-    use: "nls qt6"
+    use: "nls qt6 # gtk"
   - atom: "media-plugins/audacious-plugins"
-    use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio qt6 scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # lirc"
+    use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio qt6 scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # gtk lirc"
   - atom: "media-libs/ampache_browser"
-    use: "nls qt6"
+    use: "nls qt6 # gtk"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbs2b
