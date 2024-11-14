@@ -12320,7 +12320,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3-r6"
+  version: "2.4.3-r6+1"
   uri:
   - https://wiki.gnome.org/Apps/EasyTAG
   license: "GPL-2 GPL-2+ LGPL-2 LGPL-2+ LGPL-2.1+"
@@ -12338,6 +12338,7 @@ packages:
     use: "flac mp3 mp4 opus speex vorbis wavpack"
   inner_build_reqs:
   - app-text/yelp-tools
+  - app-text/docbook-xml-dtd:4.4
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-id3lib
@@ -14447,7 +14448,7 @@ packages:
 - &apps-tesseract
   category: "apps"
   name: "tesseract"
-  version: "5.4.1"
+  version: "5.4.1+1"
   uri:
   - https://github.com/tesseract-ocr
   license: "Apache-2.0"
@@ -14469,6 +14470,8 @@ packages:
     use: "float32 jpeg opencl openmp png tiff training webp"
   - atom: "app-text/tessdata_best"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - app-text/asciidoc
   requires:
   - <<: *layers-X
   - <<: *libs-leptonica
@@ -19332,7 +19335,7 @@ packages:
   # - <<: *apps-xmms2
   - <<: *libs-libircclient
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
 
 - category: "apps"
   name: "deluge"
