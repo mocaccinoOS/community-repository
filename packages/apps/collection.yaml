@@ -9515,8 +9515,6 @@ packages:
   - atom: "media-gfx/rawtherapee"
     use: "openmp # tcmalloc"
   env: "MAKEOPTS=\"-j5 -l0.9\""
-  prepare:
-  - emaint sync
   requires:
   - <<: *layers-X
   build_requires:
@@ -11196,7 +11194,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  # can't rebuild due to nas
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
@@ -16955,7 +16952,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# can't rebuild due to nas
 - &apps-timidity
   category: "apps"
   name: "timidity"
@@ -19297,7 +19293,6 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
-  # can't rebuild due to nas
 - &apps-conky
   category: "apps"
   name: "conky"
