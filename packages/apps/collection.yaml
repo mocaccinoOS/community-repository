@@ -5227,7 +5227,7 @@ packages:
 
 - category: "apps"
   name: "brasero"
-  version: "3.12.3-r2"
+  version: "3.12.3-r2+1"
   uri:
   - https://wiki.gnome.org/Apps/Brasero
   license: "GPL-2+ CC-BY-SA-3.0"
@@ -5243,6 +5243,8 @@ packages:
   atoms:
   - atom: "app-cdr/brasero"
     use: "playlist -css"
+  inner_build_reqs:
+  - dev-util/itstool
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -9513,7 +9515,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/rawtherapee"
-    use: "openmp # tcmalloc"
+    use: "openmp # jpegxl tcmalloc"
   env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-X
