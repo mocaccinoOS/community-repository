@@ -4402,7 +4402,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+8"
+  version: "0.8.0_p20210321-r3+2"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -9617,34 +9617,34 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "rawtherapee"
-  version: "5.11-r2"
-  uri:
-  - https://www.rawtherapee.com
-  license: "GPL-3"
-  description: "A powerful cross-platform raw image processing program"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/rawtherapee
-  provides:
-  - category: "media-libs"
-    name: "libiptcdata"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "rawtherapee"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/rawtherapee"
-    use: "openmp # jpegxl tcmalloc"
-  - atom: "media-libs/libiptcdata"
-    use: "nls python"
-  env: "MAKEOPTS=\"-j5 -l0.9\""
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - category: "apps"
+#   name: "rawtherapee"
+#   version: "5.11-r2"
+#   uri:
+#   - https://www.rawtherapee.com
+#   license: "GPL-3"
+#   description: "A powerful cross-platform raw image processing program"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-gfx/rawtherapee
+#   provides:
+#   - category: "media-libs"
+#     name: "libiptcdata"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "rawtherapee"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/rawtherapee"
+#     use: "openmp # jpegxl tcmalloc"
+#   - atom: "media-libs/libiptcdata"
+#     use: "nls python"
+#   env: "MAKEOPTS=\"-j5 -l0.9\""
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "redshift"
