@@ -1902,26 +1902,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-http-parser
-  category: "libs"
-  name: "http-parser"
-  version: "2.9.4-r2+1"
-  uri:
-  - https://github.com/nodejs/http-parser
-  license: "MIT"
-  description: "HTTP request/response parser for C"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/http-parser
-  provides:
-  - category: "net-libs"
-    name: "http-parser"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-http-parser
+#   category: "libs"
+#   name: "http-parser"
+#   version: "2.9.4-r2+1"
+#   uri:
+#   - https://github.com/nodejs/http-parser
+#   license: "MIT"
+#   description: "HTTP request/response parser for C"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/http-parser
+#   provides:
+#   - category: "net-libs"
+#     name: "http-parser"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 # should be in desktop repo
 - &libs-id3lib
@@ -4398,11 +4398,11 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-  # can't rebuild
+# can't rebuild
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+3"
+  version: "0.8.0_p20210321-r3+8"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -9638,6 +9638,8 @@ packages:
   atoms:
   - atom: "media-gfx/rawtherapee"
     use: "openmp # jpegxl tcmalloc"
+  - atom: "media-libs/libiptcdata"
+    use: "nls python"
   env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-X
@@ -11232,12 +11234,14 @@ packages:
   - category: "dev-libs"
     name: "libgit2"
     version: ">=0"
+  - category: "net-libs"
+    name: "llhttp"
+    version: ">=0"
   atoms:
   - atom: "dev-libs/libgit2"
     use: "gssapi ssh threads"
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-http-parser
   build_requires:
   - <<: *layers-sys-fs
 
@@ -13463,10 +13467,13 @@ packages:
     name: "net-snmp"
     version: ">=0"
   - category: "dev-perl"
+    name: "Authen-NTLM"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Mail-Sender"
     version: ">=0"
   - category: "dev-perl"
-    name: "Authen-NTLM"
+    name: "Mozilla-CA"
     version: ">=0"
   - category: "virtual"
     name: "perl-Socket"
@@ -13761,31 +13768,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "p7zip-ui-17"
-  version: "17.05-r1"
-  uri:
-  - http://p7zip.sourceforge.net/
-  license: "LGPL-2.1 unRAR"
-  description: |
-    The UI of the Port of 7-Zip archiver for Unix
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =app-arch/p7zip-17.05-r1
-  provides:
-  - category: "app-arch"
-    name: "p7zip"
-    version: ">=0"
-  atoms:
-  - atom: "app-arch/p7zip"
-    use: "natspec pch rar"
-    license: "unRAR"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "pcem"
   version: "17-r2+2"
   uri:
@@ -13913,7 +13895,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "17.1"
+  version: "17.1+1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -13933,8 +13915,8 @@ packages:
   - atom: "dev-db/postgresql"
     use: "icu kerberos ldap nls pam perl python readline server systemd ssl tcl threads uuid xml zlib # llvm"
   inner_build_reqs:
-  - acct-group/postgres
-  - acct-user/postgres
+  - acct-group/postgres acct-user/postgres
+  - app-text/docbook-sgml-dtd app-text/docbook-dsssl-stylesheets app-text/docbook-xml-dtd app-text/openjade
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
