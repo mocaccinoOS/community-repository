@@ -7346,7 +7346,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "kimagemapeditor"
   version: "24.08.3"
@@ -7362,9 +7361,6 @@ packages:
   - category: "kde-apps"
     name: "kimagemapeditor"
     version: ">=0"
-  atoms:
-  - atom: "kde-apps/kimagemapeditor"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -12926,7 +12922,6 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "kid3"
   version: "3.9.6"
@@ -12945,7 +12940,6 @@ packages:
   atoms:
   - atom: "media-sound/kid3"
     use: "acoustid mpris flac kde mp3 mp4 taglib vorbis"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-id3lib
@@ -12953,7 +12947,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "krename"
   version: "5.0.60_pre20240906"
@@ -12972,7 +12965,6 @@ packages:
   atoms:
   - atom: "kde-misc/krename"
     use: "exif pdf taglib truetype"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *apps-podofo
@@ -18144,7 +18136,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# Unstable for KDE/Qt 6
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
@@ -18161,9 +18152,6 @@ packages:
   - category: "app-cdr"
     name: "kcdemu"
     version: ">=0"
-  atoms:
-  - atom: "app-cdr/kcdemu"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
@@ -18338,7 +18326,7 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# Unstable for KDE/Qt 6 - can't be done untill all dependents of x11-libs/qscintilla moves to 6
+# Unstable for KDE/Qt 6 - can't be done until all dependents of x11-libs/qscintilla moves to 6
 - &apps-octave
   category: "apps"
   name: "octave"
@@ -18478,7 +18466,6 @@ packages:
   atoms:
   - atom: "media-sound/qsynth"
     use: "alsa jack pulseaudio qt6"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *apps-fluidsynth
