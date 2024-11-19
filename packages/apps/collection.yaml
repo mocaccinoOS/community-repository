@@ -679,7 +679,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20240731"
+  version: "20240830"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1145,7 +1145,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "130.0.6723.116"
+  version: "131.0.6778.69"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2390,7 +2390,7 @@ packages:
 - &libs-libebur128
   category: "libs"
   name: "libebur128"
-  version: "1.2.6+3"
+  version: "1.2.6-r1"
   uri:
   - https://github.com/jiixyj/libebur128
   license: "MIT"
@@ -2474,7 +2474,7 @@ packages:
 - &libs-libgii-libggi
   category: "libs"
   name: "libgii"
-  version: "0.2+16"
+  version: "0.2+17"
   uri:
   - https://ibiblio.org/ggicore/packages/libgii.html
   - https://ibiblio.org/ggicore/packages/libggi.html
@@ -2886,7 +2886,7 @@ packages:
 - &libs-libsidplayfp
   category: "libs"
   name: "libsidplayfp"
-  version: "2.9.0"
+  version: "2.10.0"
   uri:
   - https://sourceforge.net/projects/sidplay-residfp/
   license: "GPL-2"
@@ -3376,7 +3376,7 @@ packages:
 - &libs-motif
   category: "libs"
   name: "motif"
-  version: "2.3.8-r5+1"
+  version: "2.3.8-r6"
   uri:
   - https://sourceforge.net/projects/motif/
   license: "LGPL-2.1+ MIT"
@@ -4402,7 +4402,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r3+2"
+  version: "0.8.0_p20210321-r3+3"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
@@ -4842,7 +4842,7 @@ packages:
 
 - category: "apps"
   name: "alacritty"
-  version: "0.13.2+1"
+  version: "0.13.2-r1"
   uri:
   - https://alacritty.org
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 BSD BSD-2 CC0-1.0 FTL ISC MIT MPL-2.0"
@@ -4938,6 +4938,51 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
+
+- &apps-ant
+  category: "apps"
+  name: "ant"
+  version: "1.10.14-r3"
+  uri:
+  - https://ant.apache.org/
+  license: "Apache-2.0"
+  description: "Java-based build tool similar to 'make' that uses XML configuration files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/ant
+  provides:
+  - category: "dev-java"
+    name: "ant-core"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
+- &apps-astyle
+  category: "apps"
+  name: "astyle"
+  version: "3.6.1"
+  uri:
+  - http://astyle.sourceforge.net/
+  license: "MIT"
+  description: "Artistic Style is a re-indenter and reformatter for C++, C and Java source code"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-util/astyle
+  provides:
+  - category: "dev-util"
+    name: "astyle"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/astyle"
+    use: "java"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
 
 - &apps-apcupsd
   category: "apps"
@@ -5204,7 +5249,7 @@ packages:
 - &apps-bottom
   category: "apps"
   name: "bottom"
-  version: "0.10.1"
+  version: "0.10.1-r1"
   uri:
   - https://github.com/ClementTsang/bottom
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 MIT MPL-2.0 Unlicense ZLIB"
@@ -5252,7 +5297,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.71.123"
+  version: "1.73.89"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5275,7 +5320,7 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
+  
 - &apps-brother-dcp1610w-bin
   category: "apps"
   name: "brother-dcp1610w-bin"
@@ -5307,6 +5352,35 @@ packages:
     # ln -s /opt/brother/Printers/DCP1610W/cupswrapper/brother_lpdwrapper_DCP1610W /usr/lib/cups/filter
   excludes:
   - ^/var/tmp
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-brother-scan4-bin
+  category: "apps"
+  name: "brother-scan4-bin"
+  version: "0.4.10-r2+1"
+  uri:
+  - http://support.brother.com/g/s/id/linux/en/index.html
+  license: "GPL-2 brother-eula no-source-code"
+  description: "Brother scanner tool version 4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/brother-scan4-bin
+  overlays:
+  - enable: "brother-overlay"
+  provides:
+  - category: "media-gfx"
+    name: "brother-scan4-bin"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/brother-scan4-bin"
+    license: "GPL-2 brother-eula no-source-code"
+    use: "avahi"
+  inner_build_reqs:
+  - virtual/libusb:0
   requires:
   - <<: *layers-X
   build_requires:
@@ -5377,6 +5451,36 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+
+- &apps-clamav
+  category: "apps"
+  name: "clamav"
+  version: "1.4.1-r2"
+  uri:
+  - https://www.clamav.net
+  license: "GPL-2"
+  description: "Clam Anti-Virus Scanner"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-antivirus/clamav
+  provides:
+  - category: "app-antivirus"
+    name: "clamav"
+    version: ">=0"
+  atoms:
+  - atom: "app-antivirus/clamav"
+    use: "clamonacc clamapp systemd"
+  inner_build_reqs:
+  - acct-group/clamav
+  - acct-user/clamav
+  requires:
+  - <<: *layers-X
+  - category: "entity"
+    name: "clamav"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "cmatrix"
@@ -6087,7 +6191,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "127-128"
+  version: "128"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6095,7 +6199,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:127
       media-video/ffmpeg-chromium:128
   provides:
   - category: "media-video"
@@ -6515,7 +6618,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.4.1"
+  version: "10.5.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6675,7 +6778,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "130.0.6723.116"
+  version: "131.0.6778.69"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6800,6 +6903,29 @@ packages:
   atoms:
   - atom: "app-text/gtkspell"
     use: "introspection"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "guvcview"
+  version: "2.1.0"
+  uri:
+  - http://guvcview.sourceforge.net
+  license: "GPL-3"
+  description: "Simple Qt5 or GTK+3 interface for capturing and viewing video from v4l2 devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/guvcview
+  provides:
+  - category: "media-video"
+    name: "guvcview"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/guvcview"
+    use: "-qt5"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7286,7 +7412,7 @@ packages:
 
 - category: "apps"
   name: "kooha"
-  version: "2.2.3+2"
+  version: "2.2.3-r1"
   uri:
   - https://github.com/SeaDve/Kooha
   license: "GPL-3"
@@ -9188,7 +9314,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.20"
+  version: "9.20_p15"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -9497,7 +9623,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.10-r1+1"
+  version: "5.11-r2"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -10404,7 +10530,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.95.1.24307"
+  version: "1.95.2.24313"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10468,7 +10594,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.7.0-r1+1"
+  version: "0.7.0-r2"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -10574,7 +10700,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.2.8"
+  version: "4.4.1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -10628,7 +10754,7 @@ packages:
 - &apps-xaos
   category: "apps"
   name: "xaos"
-  version: "4.2.1_p20210828+1"
+  version: "4.3.3"
   uri:
   - https://xaos-project.github.io/
   license: "GPL-2"
@@ -11097,7 +11223,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.8.1+1"
+  version: "1.8.4"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception"
@@ -11498,7 +11624,7 @@ packages:
 - &libs-twisted
   category: "libs"
   name: "twisted"
-  version: "24.7.0+2"
+  version: "24.10.0"
   uri:
   - https://www.twistedmatrix.com/trac/
   - https://github.com/twisted/incremental
@@ -11629,51 +11755,6 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-- &apps-ant
-  category: "apps"
-  name: "ant"
-  version: "1.10.14-r3"
-  uri:
-  - https://ant.apache.org/
-  license: "Apache-2.0"
-  description: "Java-based build tool similar to 'make' that uses XML configuration files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/ant
-  provides:
-  - category: "dev-java"
-    name: "ant-core"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
-- &apps-astyle
-  category: "apps"
-  name: "astyle"
-  version: "3.4.9"
-  uri:
-  - http://astyle.sourceforge.net/
-  license: "MIT"
-  description: "Artistic Style is a re-indenter and reformatter for C++, C and Java source code"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-util/astyle
-  provides:
-  - category: "dev-util"
-    name: "astyle"
-    version: ">=0"
-  atoms:
-  - atom: "dev-util/astyle"
-    use: "java"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
 # - &apps-bedrock-server
 #   category: "apps"
 #   name: "bedrock-server"
@@ -11701,35 +11782,6 @@ packages:
 #     version: ">=0"
 #   build_requires:
 #   - <<: *layers-system-x
-
-- &apps-brother-scan4-bin
-  category: "apps"
-  name: "brother-scan4-bin"
-  version: "0.4.10-r2+1"
-  uri:
-  - http://support.brother.com/g/s/id/linux/en/index.html
-  license: "GPL-2 brother-eula no-source-code"
-  description: "Brother scanner tool version 4"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/brother-scan4-bin
-  overlays:
-  - enable: "brother-overlay"
-  provides:
-  - category: "media-gfx"
-    name: "brother-scan4-bin"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/brother-scan4-bin"
-    license: "GPL-2 brother-eula no-source-code"
-    use: "avahi"
-  inner_build_reqs:
-  - virtual/libusb:0
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "cairo-clock"
@@ -11909,36 +11961,6 @@ packages:
   - <<: *libs-gtk2
   - <<: *apps-fig2dev
   - <<: *libs-libemf
-  build_requires:
-  - <<: *layers-X
-
-- &apps-clamav
-  category: "apps"
-  name: "clamav"
-  version: "1.4.1-r1"
-  uri:
-  - https://www.clamav.net
-  license: "GPL-2"
-  description: "Clam Anti-Virus Scanner"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-antivirus/clamav
-  provides:
-  - category: "app-antivirus"
-    name: "clamav"
-    version: ">=0"
-  atoms:
-  - atom: "app-antivirus/clamav"
-    use: "clamonacc clamapp systemd"
-  inner_build_reqs:
-  - acct-group/clamav
-  - acct-user/clamav
-  requires:
-  - <<: *layers-X
-  - category: "entity"
-    name: "clamav"
-    version: ">=0"
   build_requires:
   - <<: *layers-X
 
@@ -12193,7 +12215,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "0.2+14"
+  version: "0.2+15"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -12755,29 +12777,6 @@ packages:
   - <<: *apps-mangohud
   build_requires:
   - <<: *layers-qt
-
-- category: "apps"
-  name: "guvcview"
-  version: "2.0.8+3"
-  uri:
-  - http://guvcview.sourceforge.net
-  license: "GPL-3"
-  description: "Simple Qt5 or GTK+3 interface for capturing and viewing video from v4l2 devices"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/guvcview
-  provides:
-  - category: "media-video"
-    name: "guvcview"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/guvcview"
-    use: "-qt5"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &apps-handbrake
   category: "apps"
@@ -13349,7 +13348,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "83.0+2"
+  version: "86.0"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -13458,7 +13457,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.4+1"
+  version: "5.9.4-r1"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -13691,7 +13690,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "114.0.5282.154"
+  version: "114.0.5282.185"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -13754,7 +13753,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-arch/p7zip
+      =app-arch/p7zip-16.02-r8
   provides:
   - category: "app-arch"
     name: "p7zip"
@@ -13766,6 +13765,31 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-wxGTK-3_0-gtk3
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "p7zip-ui-17"
+  version: "17.05-r1"
+  uri:
+  - http://p7zip.sourceforge.net/
+  license: "LGPL-2.1 unRAR"
+  description: |
+    The UI of the Port of 7-Zip archiver for Unix
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =app-arch/p7zip-17.05-r1
+  provides:
+  - category: "app-arch"
+    name: "p7zip"
+    version: ">=0"
+  atoms:
+  - atom: "app-arch/p7zip"
+    use: "natspec pch rar"
+    license: "unRAR"
+  requires:
+  - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
 
@@ -13897,7 +13921,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "16.4+1"
+  version: "17.1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -14567,7 +14591,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.7.7"
+  version: "1.7.8"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
