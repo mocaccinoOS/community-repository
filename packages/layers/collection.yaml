@@ -379,6 +379,177 @@ packages:
 ## layers ###
 ################################################################################
 
+- &def-office-common
+  category: "layers"
+  name: "office-common"
+  version: "1.0+22"
+  uri:
+  - https://wiki.documentfoundation.org/DLP/Libraries/libabw
+  - https://bitbucket.org/tagoh/liblangtag/wiki/Home
+  - https://sourceforge.net/projects/libebook/
+  - https://sourceforge.net/projects/libepubgen/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libetonyek
+  - https://software.wise-guys.nl/libtextcat/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libmspub
+  - https://sourceforge.net/p/libmwaw/wiki/Home/
+  - http://libwpd.sourceforge.net/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libqxp
+  - https://sourceforge.net/p/libwps/wiki/Home/
+  - https://github.com/hunspell/mythes
+  - http://clucene.sourceforge.net/
+  - http://www.iodbc.org/
+  - https://gitlab.com/mdds/mdds
+  - http://librdf.org/rasqal/
+  - http://librdf.org/
+  - https://wiki.documentfoundation.org/DLP/Libraries/libfreehand
+  - https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker
+  - https://wiki.documentfoundation.org/DLP/Libraries/libzmf
+  license: "Apache-2.0 BSD-2 GPL-2 GPL-2+ LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0"
+  description: |
+    Library parsing abiword documents
+    Interface library to access tags for identifying languages
+    Library parsing various ebook formats
+    EPUB generator for librevenge
+    Library parsing Apple Keynote presentations
+    Library implementing N-gram-based text categorization
+    Library parsing Microsoft Publisher documents
+    Library parsing many pre-OSX MAC text formats
+    Library to generate ODF documents from libwpd and libwpg
+    Library parsing QuarkXpress documents
+    Microsoft Works file word processor format import filter library
+    Simple thesaurus for LibreOffice
+    High-performance, full-featured text search engine based off of lucene in C++
+    ODBC Interface for Linux
+    Collection of multi-dimensional data structure and indexing algorithm
+    The RDF Parser Toolkit
+    Library that handles Resource Description Framework (RDF)
+    High-level interface for the Resource Description Framework
+    Library for import of FreeHand drawings
+    C++ Library that parses the file format of Aldus/Adobe PageMaker documents
+    Library for parsing Zoner Callisto/Draw documents
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/libabw
+      app-text/liblangtag
+      app-text/libebook
+      app-text/libepubgen
+      app-text/libetonyek
+      app-text/libexttextcat
+      app-text/libmspub
+      app-text/libmwaw
+      app-text/libodfgen
+      app-text/libqxp
+      app-text/libwps
+      app-text/mythes
+      dev-cpp/clucene
+      dev-db/libiodbc
+      dev-util/mdds
+      dev-libs/rasqal
+      dev-libs/redland
+      media-libs/libfreehand
+      media-libs/libpagemaker
+      media-libs/libzmf
+  provides:
+  - category: "app-text"
+    name: "libabw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libodfgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libebook"
+    version: ">=0"
+  - category: "app-text"
+    name: "libetonyek"
+    version: ">=0"
+  - category: "app-text"
+    name: "libexttextcat"
+    version: ">=0"
+  - category: "app-text"
+    name: "liblangtag"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmwaw"
+    version: ">=0"
+  - category: "app-text"
+    name: "libmspub"
+    version: ">=0"
+  - category: "app-text"
+    name: "libepubgen"
+    version: ">=0"
+  - category: "app-text"
+    name: "libqxp"
+    version: ">=0"
+  - category: "app-text"
+    name: "libwps"
+    version: ">=0"
+  - category: "app-text"
+    name: "mythes"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "clucene"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rasqal"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "redland"
+    version: ">=0"
+  - category: "dev-db"
+    name: "libiodbc"
+    version: ">=0"
+  - category: "dev-util"
+    name: "mdds"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libfreehand"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libpagemaker"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libzmf"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/libebook"
+    use: "tools"
+  - atom: "app-text/libmwaw"
+    use: "tools"
+  - atom: "app-text/libqxp"
+    use: "tools"
+  - atom: "media-libs/libzmf"
+    use: "tools"
+  - atom: "dev-db/libiodbc"
+    use: "gtk"
+  - atom: "dev-libs/rasqal"
+    use: "crypt gmp mhash pcre xml"
+  - atom: "dev-libs/redland"
+    use: "berkdb iodbc mysql odbc sqlite # postgres"
+  - atom: "app-text/liblangtag"
+    use: "introspection"
+  - atom: "media-libs/libpagemaker"
+    use: "tools"
+  - atom: "app-text/libwps"
+    use: "tools"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-gtk2
+  - <<: *libs-raptor
+  - <<: *libs-mhash
+  build_requires:
+  - <<: *layers-X
+
+- <<: *def-office-common
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-office-common
+  category: "buildbase"
+  hidden: true
+  unpack: true
+
+
 # dev-perl/AppConfig                Template-Toolkit
 # dev-perl/Capture-Tiny             layers/latex apps/x2goserver
 # dev-perl/Carp-Always              shutter
@@ -690,177 +861,6 @@ packages:
   hidden: true
 
 
-- &def-office-common
-  category: "layers"
-  name: "office-common"
-  version: "1.0+22"
-  uri:
-  - https://wiki.documentfoundation.org/DLP/Libraries/libabw
-  - https://bitbucket.org/tagoh/liblangtag/wiki/Home
-  - https://sourceforge.net/projects/libebook/
-  - https://sourceforge.net/projects/libepubgen/
-  - https://wiki.documentfoundation.org/DLP/Libraries/libetonyek
-  - https://software.wise-guys.nl/libtextcat/
-  - https://wiki.documentfoundation.org/DLP/Libraries/libmspub
-  - https://sourceforge.net/p/libmwaw/wiki/Home/
-  - http://libwpd.sourceforge.net/
-  - https://wiki.documentfoundation.org/DLP/Libraries/libqxp
-  - https://sourceforge.net/p/libwps/wiki/Home/
-  - https://github.com/hunspell/mythes
-  - http://clucene.sourceforge.net/
-  - http://www.iodbc.org/
-  - https://gitlab.com/mdds/mdds
-  - http://librdf.org/rasqal/
-  - http://librdf.org/
-  - https://wiki.documentfoundation.org/DLP/Libraries/libfreehand
-  - https://wiki.documentfoundation.org/DLP/Libraries/libpagemaker
-  - https://wiki.documentfoundation.org/DLP/Libraries/libzmf
-  license: "Apache-2.0 BSD-2 GPL-2 GPL-2+ LGPL-2 LGPL-2.1 LGPL-3 MIT MPL-1.1 MPL-2.0"
-  description: |
-    Library parsing abiword documents
-    Interface library to access tags for identifying languages
-    Library parsing various ebook formats
-    EPUB generator for librevenge
-    Library parsing Apple Keynote presentations
-    Library implementing N-gram-based text categorization
-    Library parsing Microsoft Publisher documents
-    Library parsing many pre-OSX MAC text formats
-    Library to generate ODF documents from libwpd and libwpg
-    Library parsing QuarkXpress documents
-    Microsoft Works file word processor format import filter library
-    Simple thesaurus for LibreOffice
-    High-performance, full-featured text search engine based off of lucene in C++
-    ODBC Interface for Linux
-    Collection of multi-dimensional data structure and indexing algorithm
-    The RDF Parser Toolkit
-    Library that handles Resource Description Framework (RDF)
-    High-level interface for the Resource Description Framework
-    Library for import of FreeHand drawings
-    C++ Library that parses the file format of Aldus/Adobe PageMaker documents
-    Library for parsing Zoner Callisto/Draw documents
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/libabw
-      app-text/liblangtag
-      app-text/libebook
-      app-text/libepubgen
-      app-text/libetonyek
-      app-text/libexttextcat
-      app-text/libmspub
-      app-text/libmwaw
-      app-text/libodfgen
-      app-text/libqxp
-      app-text/libwps
-      app-text/mythes
-      dev-cpp/clucene
-      dev-db/libiodbc
-      dev-util/mdds
-      dev-libs/rasqal
-      dev-libs/redland
-      media-libs/libfreehand
-      media-libs/libpagemaker
-      media-libs/libzmf
-  provides:
-  - category: "app-text"
-    name: "libabw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libodfgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libebook"
-    version: ">=0"
-  - category: "app-text"
-    name: "libetonyek"
-    version: ">=0"
-  - category: "app-text"
-    name: "libexttextcat"
-    version: ">=0"
-  - category: "app-text"
-    name: "liblangtag"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmwaw"
-    version: ">=0"
-  - category: "app-text"
-    name: "libmspub"
-    version: ">=0"
-  - category: "app-text"
-    name: "libepubgen"
-    version: ">=0"
-  - category: "app-text"
-    name: "libqxp"
-    version: ">=0"
-  - category: "app-text"
-    name: "libwps"
-    version: ">=0"
-  - category: "app-text"
-    name: "mythes"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "clucene"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rasqal"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "redland"
-    version: ">=0"
-  - category: "dev-db"
-    name: "libiodbc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "mdds"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libfreehand"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libpagemaker"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libzmf"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/libebook"
-    use: "tools"
-  - atom: "app-text/libmwaw"
-    use: "tools"
-  - atom: "app-text/libqxp"
-    use: "tools"
-  - atom: "media-libs/libzmf"
-    use: "tools"
-  - atom: "dev-db/libiodbc"
-    use: "gtk"
-  - atom: "dev-libs/rasqal"
-    use: "crypt gmp mhash pcre xml"
-  - atom: "dev-libs/redland"
-    use: "berkdb iodbc mysql odbc sqlite # postgres"
-  - atom: "app-text/liblangtag"
-    use: "introspection"
-  - atom: "media-libs/libpagemaker"
-    use: "tools"
-  - atom: "app-text/libwps"
-    use: "tools"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  - <<: *libs-raptor
-  - <<: *libs-mhash
-  build_requires:
-  - <<: *layers-X
-
-- <<: *def-office-common
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-office-common
-  category: "buildbase"
-  hidden: true
-  unpack: true
-
-
 - &def-ruby
   category: "layers"
   name: "ruby"
@@ -974,7 +974,7 @@ packages:
 - &def-XML-LibXML
   category: "layers"
   name: "XML-LibXML"
-  version: "2.21.0+1"
+  version: "2.21.0+2"
   uri:
   - https://metacpan.org/release/XML-LibXML
   license: "Artistic GPL-1+"
