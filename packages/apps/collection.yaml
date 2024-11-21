@@ -13453,7 +13453,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.4-r1"
+  version: "5.9.4-r1+1"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -13472,9 +13472,6 @@ packages:
   - category: "dev-perl"
     name: "Mail-Sender"
     version: ">=0"
-  - category: "dev-perl"
-    name: "Mozilla-CA"
-    version: ">=0"
   - category: "virtual"
     name: "perl-Socket"
     version: ">=0"
@@ -13487,11 +13484,11 @@ packages:
   # inner_build_reqs:
   # - app-text/doxygen
   requires:
-  - <<: *layers-X
+  - <<: *layers-perl-libs
   - <<: *libs-perl-Tk
   build_requires:
   # - <<: *layers-qt
-  - <<: *layers-X
+  - <<: *layers-perl-libs
 
 - category: "apps"
   name: "nwipe"
