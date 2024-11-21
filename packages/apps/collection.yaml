@@ -15755,7 +15755,7 @@ packages:
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
-  version: "6.0.1-r1"
+  version: "6.0.1-r1+1"
   uri:
   - http://www.gnuplot.info/
   license: "gnuplot"
@@ -15770,7 +15770,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "sci-visualization/gnuplot"
-    use: "bitmap gd libcerf regis cairo doc examples ggi latex libcaca lua qt5 readline wxwidgets X # aqua"
+    use: "bitmap gd libcerf regis cairo doc examples ggi latex libcaca lua qt6 readline wxwidgets X # aqua"
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
@@ -16489,9 +16489,9 @@ packages:
   - category: "net-analyzer"
     name: "nagios-core"
     version: ">=0"
-  - category: "net-analyzer"
-    name: "nagios-plugins"
-    version: ">=0"
+  # - category: "net-analyzer"
+  #   name: "nagios-plugins"
+  #   version: ">=0"
   - category: "net-analyzer"
     name: "nagios-plugin-check_lm_sensors"
     version: ">=0"
@@ -16917,7 +16917,7 @@ packages:
 
 - category: "apps"
   name: "terminatorx"
-  version: "4.2.0-r1"
+  version: "4.2.0-r1+1"
   uri:
   - https://www.terminatorx.org/
   - http://www.underbit.com/products/mad/
@@ -16944,6 +16944,7 @@ packages:
     use: "alsa jack mad pulseaudio vorbis sox"
   inner_build_reqs:
   - app-text/gnome-doc-utils
+  - dev-util/itstool
   requires:
   - <<: *layers-X
   - <<: *libs-ladspa-sdk
@@ -18929,14 +18930,13 @@ packages:
     version: ">=0"
   atoms:
   - atom: "games-strategy/freeciv"
-    # use: "-qt5 sdl"
-    use: "gtk4 -qt5"
+    use: "json mapimg modpack mysql nls qt6 readline rule-editor sdl server sound system-lua #dedicated gtk3 gtk4 web-server"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   - <<: *libs-sdl2
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-qt
 
 - &apps-graphviz
   category: "apps"
