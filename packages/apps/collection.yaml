@@ -5311,13 +5311,18 @@ packages:
     type: "git"
     url: "https://gitlab.com/jason.oliveira/brave-overlay.git"
   provides:
+  - category: "dev-libs"
+    name: "libpthread-stubs"
+    version: ">=0"
   - category: "www-client"
     name: "brave-bin"
     version: ">=0"
   atoms:
+  - atom: "dev-libs/ibpthread-stubs"
+    accept_keywords: "~amd64"
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
-    use: "-qt5 -qt6"
+    use: "keyring"
   requires:
   - <<: *layers-gnome-common
   build_requires:
