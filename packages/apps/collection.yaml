@@ -5297,7 +5297,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.73.89"
+  version: "1.73.89+1"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5307,7 +5307,9 @@ packages:
     emerge.packages: >-
       www-client/brave-bin
   overlays:
-  - enable: "gentoo-zh"
+  - add: "brave-overlay"
+    type: "git"
+    url: "https://gitlab.com/jason.oliveira/brave-overlay.git"
   provides:
   - category: "www-client"
     name: "brave-bin"
@@ -5320,7 +5322,7 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  
+
 - &apps-brother-dcp1610w-bin
   category: "apps"
   name: "brother-dcp1610w-bin"
