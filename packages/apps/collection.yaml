@@ -10528,7 +10528,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.95.2.24313"
+  version: "1.95.3.24321"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10544,6 +10544,10 @@ packages:
   atoms:
   - atom: "app-editors/vscodium"
     accept_keywords: "~amd64"
+  prepare:
+  - |
+    mv /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.2.24313.ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild && \
+    ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   build_requires:
