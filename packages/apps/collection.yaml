@@ -7637,6 +7637,29 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
+- &apps-leocad
+  category: "apps"
+  name: "leocad"
+  version: "23.03"
+  uri:
+  - http://www.leocad.org
+  license: "GPL-2"
+  description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/leocad
+  overlays:
+  - enable: "anard"
+  provides:
+  - category: "media-gfx"
+    name: "leocad"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
+  
 - &apps-librecad
   category: "apps"
   name: "librecad"
