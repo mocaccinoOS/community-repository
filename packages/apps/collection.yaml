@@ -7660,6 +7660,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-23.03.ebuild
+  - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
   - ebuild /var/db/repos/anard/media-gfx/leocad/leocad-23.03.ebuild manifest
   requires:
   - <<: *layers-kde-kf5
