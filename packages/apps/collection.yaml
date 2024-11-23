@@ -7658,6 +7658,9 @@ packages:
   atoms:
   - atom: "media-gfx/leocad"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-23.03.ebuild
+  - ebuild /var/db/repos/anard/media-gfx/leocad/leocad-23.03.ebuild manifest
   requires:
   - <<: *layers-kde-kf5
   build_requires:
