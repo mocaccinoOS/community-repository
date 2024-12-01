@@ -14738,7 +14738,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.5.2+2"
+  version: "1.5.3"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -14746,9 +14746,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-im/vesktop
+      net-im/vesktop-bin
   overlays:
-  - enable: "kzd"
+  - enable: "guru"
   provides:
   - category: "net-im"
     name: "vesktop"
@@ -19641,7 +19641,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8"
+  version: "8+1"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -19679,8 +19679,8 @@ packages:
     use: "opengl python"
   - atom: "media-libs/openimageio"
     use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt5 raw truetype"
-  # preemerge:
-  # - media-libs/opencolorio;USE="-opengl"
+  preemerge:
+  - media-libs/opencolorio;USE="-opengl"
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
