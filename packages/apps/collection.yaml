@@ -14751,10 +14751,10 @@ packages:
   - enable: "guru"
   provides:
   - category: "net-im"
-    name: "vesktop"
+    name: "vesktop-bin"
     version: ">=0"
   atoms:
-  - atom: "net-im/vesktop"
+  - atom: "net-im/vesktop-bin"
     accept_keywords: "~amd64"
   # inner_build_requires:
   # - <<: *apps-nodejs
@@ -19641,7 +19641,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8+1"
+  version: "8+2"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -19678,9 +19678,9 @@ packages:
   - atom: "media-libs/opencolorio"
     use: "opengl python"
   - atom: "media-libs/openimageio"
-    use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt5 raw truetype"
-  preemerge:
-  - media-libs/opencolorio;USE="-opengl"
+    use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt6 raw truetype"
+  # preemerge:
+  # - media-libs/opencolorio;USE="-opengl"
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
