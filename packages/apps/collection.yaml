@@ -19641,7 +19641,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8+2"
+  version: "8+3"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -19688,7 +19688,7 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-qt
   # - <<: *buildbase-qt
   # - <<: *buildbase-sci-libs
   # requires_final_images: true
@@ -19913,6 +19913,7 @@ packages:
   - atom: "media-gfx/krita"
     use: "color-management fftw gif gsl heif jpegxl mypaint-brush-engine openexr pdf qtmedia raw vc webp"
   requires:
+  - <<: *layers-qt
   - <<: *layers-kde-kf5
   - <<: *libs-quazip
   - <<: *libs-libjxl
@@ -19920,7 +19921,9 @@ packages:
   - <<: *libs-ocio-oiio
   - <<: *libs-vc
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *buildbase-kde-kf5
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "qtractor"
