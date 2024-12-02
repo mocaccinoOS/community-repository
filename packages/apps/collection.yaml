@@ -19641,7 +19641,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8+3"
+  version: "8+4"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
@@ -19681,6 +19681,8 @@ packages:
     use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt6 raw truetype"
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
+  prepare:
+  - emerge -1 sys-devel/gcc:13 dev-libs/boost
   requires:
   - <<: *layers-qt
   - <<: *libs-dcmtk
@@ -19688,10 +19690,7 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-qt
-  # - <<: *buildbase-qt
-  # - <<: *buildbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-qt
 
 - &libs-wxpython
   category: "libs"
