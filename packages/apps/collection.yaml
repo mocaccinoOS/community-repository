@@ -274,10 +274,10 @@ stubs:
 #   name: "cdemu"
 #   version: ">=0"
 
-- &layers-vtk
-  category: "layers"
-  name: "vtk"
-  version: ">=0"
+# - &layers-vtk
+#   category: "layers"
+#   name: "vtk"
+#   version: ">=0"
 # - &layerbase-vtk
 #   category: "layerbase"
 #   name: "vtk"
@@ -17598,98 +17598,98 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &def-vtk
-  category: "layers"
-  name: "vtk"
-  version: "0.6"
-  uri:
-  - https://www.vtk.org/
-  - https://www.opencascade.com
-  - https://matplotlib.org/
-  license: "metapackage"
-  description: |
-    The Visualization Toolkit
-    Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
-    Pure python plotting library with matlab like syntax
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-libs/vtk:0/9.3
-      sci-libs/opencascade
-  provides:
-  - category: "dev-cpp"
-    name: "cli11"
-    version: ">=0"
-  - category: "dev-python"
-    name: "contourpy"
-    version: ">=0"
-  - category: "dev-python"
-    name: "cppy"
-    version: ">=0"
-  - category: "dev-python"
-    name: "cycler"
-    version: ">=0"
-  - category: "dev-python"
-    name: "kiwisolver"
-    version: ">=0"
-  - category: "dev-python"
-    name: "matplotlib"
-    version: ">=0"
-  # - category: "dev-python"
-  #   name: "mpi4py"
-  #   version: ">=0"
-  - category: "dev-python"
-    name: "xlwt"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "cgnslib"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "opencascade"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "proj"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "vtk"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/cgnslib"
-    use: "hdf5 szip # base-scope legacy scoping tools fortran mpi"
-  - atom: "dev-python/matplotlib"
-    license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
-    use: "cairo excel gtk3 late -qt5 # webagg # tk wxwidgets"
-  - atom: "sci-libs/opencascade"
-    use: "eigen freeimage freetype json opengl tbb vtk X # ffmpeg gles2 gles2-only jemalloc optimize tk"
-    license: "Open-CASCADE-LGPL-2.1-Exception-1.0 LGPL-2.1"
-    accept_keywords: "~amd64"
-  - atom: "sci-libs/proj"
-    use: "curl tiff"
-  - atom: "sci-libs/vtk"
-    use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
-    license: "BSD LGPL-2"
-  inner_build_reqs:
-  - dev-libs/pegtl
-  - dev-python/meson-python
-  preemerge:
-  - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *fonts-stix-fonts
-  - <<: *libs-fonttools
-  - <<: *libs-freeimage
-  - <<: *libs-gl2ps
-  - <<: *libs-libharu
-  - <<: *libs-nlohmann_json
-  - <<: *libs-openvdb
-  - <<: *libs-rapidjson
-  - <<: *libs-tbb
-  - <<: *apps-tk
-  - <<: *libs-utfcpp
-  build_requires:
-  - <<: *buildbase-sci-libs
-  - <<: *layerbase-latex
-  requires_final_images: true
+# - &def-vtk
+#   category: "layers"
+#   name: "vtk"
+#   version: "0.6"
+#   uri:
+#   - https://www.vtk.org/
+#   - https://www.opencascade.com
+#   - https://matplotlib.org/
+#   license: "metapackage"
+#   description: |
+#     The Visualization Toolkit
+#     Development platform for CAD/CAE, 3D surface/solid modeling and data exchange
+#     Pure python plotting library with matlab like syntax
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       sci-libs/vtk:0/9.3
+#       sci-libs/opencascade
+#   provides:
+#   - category: "dev-cpp"
+#     name: "cli11"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "contourpy"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "cppy"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "cycler"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "kiwisolver"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "matplotlib"
+#     version: ">=0"
+#   # - category: "dev-python"
+#   #   name: "mpi4py"
+#   #   version: ">=0"
+#   - category: "dev-python"
+#     name: "xlwt"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "cgnslib"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "opencascade"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "proj"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "vtk"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sci-libs/cgnslib"
+#     use: "hdf5 szip # base-scope legacy scoping tools fortran mpi"
+#   - atom: "dev-python/matplotlib"
+#     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
+#     use: "cairo excel gtk3 late -qt5 # webagg # tk wxwidgets"
+#   - atom: "sci-libs/opencascade"
+#     use: "eigen freeimage freetype json opengl tbb vtk X # ffmpeg gles2 gles2-only jemalloc optimize tk"
+#     license: "Open-CASCADE-LGPL-2.1-Exception-1.0 LGPL-2.1"
+#     accept_keywords: "~amd64"
+#   - atom: "sci-libs/proj"
+#     use: "curl tiff"
+#   - atom: "sci-libs/vtk"
+#     use: "ffmpeg freetype imaging mysql odbc opencascade openmp openvdb -qt5 qt6 rendering sdl tbb views vtkm # all-modules boost gdal gles2-only java las logging mpi pdal postgres python threads tk web"
+#     license: "BSD LGPL-2"
+#   inner_build_reqs:
+#   - dev-libs/pegtl
+#   - dev-python/meson-python
+#   preemerge:
+#   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
+#   requires:
+#   - <<: *layers-sci-libs
+#   - <<: *fonts-stix-fonts
+#   - <<: *libs-fonttools
+#   - <<: *libs-freeimage
+#   - <<: *libs-gl2ps
+#   - <<: *libs-libharu
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-openvdb
+#   - <<: *libs-rapidjson
+#   - <<: *libs-tbb
+#   - <<: *apps-tk
+#   - <<: *libs-utfcpp
+#   build_requires:
+#   - <<: *buildbase-sci-libs
+#   - <<: *layerbase-latex
+#   requires_final_images: true
 
 # - <<: *def-vtk
 #   category: "layerbase"
@@ -18825,129 +18825,129 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# Unstable for KDE/Qt 6
-- category: "apps"
-  name: "freecad"
-  version: "1.0.0+10"
-  uri:
-  - https://www.freecad.org/
-  - https://github.com/gitpython-developers/gitdb/
-  - https://github.com/gitpython-developers/GitPython/
-  - https://pypi.org/project/smmap/
-  - https://structure.io/openni
-  - https://github.com/coin3d/pivy
-  - https://3mf.io/
-  - https://ngsolve.org/
-  - https://www.opencsg.org
-  - https://openscad.org/
-  - https://github.com/coin3d/coin/wiki
-  - https://www.salome-platform.org/user-section/about/med
-  - https://www.orocos.org/kdl
-  - http://www.xmailserver.org/libpcl.html
-  - https://www.cgal.org/
-  # - https://pointclouds.org/
-  license: "metapackage"
-  description: |
-    QT based Computer Aided Design application
-    GitDB is a pure-Python git object database
-    Library used to interact with Git repositories
-    A pure Python implementation of a sliding window memory map manager
-    OpenNI2 SDK
-    Coin3D bindings for Python
-    Implementation of the 3D Manufacturing Format file standard
-    Automatic 3d tetrahedral mesh generator
-    The Constructive Solid Geometry rendering library
-    The Programmers Solid 3D CAD Modeller
-    GUI binding for using Coin/Open Inventor with Qt
-    A library to store and exchange meshed data or computation results
-    Kinematics and Dynamics Library (KDL)
-    Portable Coroutine Library
-    C++ library for geometric algorithms and data structures
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/freecad
-  provides:
-  - category: "dev-python"
-    name: "gitdb"
-    version: ">=0"
-  - category: "dev-python"
-    name: "GitPython"
-    version: ">=0"
-  - category: "dev-python"
-    name: "smmap"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "freecad"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "OpenNI2"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pivy"
-    version: ">=0"
-  # can't build
-  # - category: "media-gfx"
-  #   name: "netgen"
-  #   version: ">=0"
-  - category: "media-gfx"
-    name: "opencsg"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "openscad"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lib3mf"
-    version: ">=0"
-  - category: "media-libs"
-    name: "quarter"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "med"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "orocos_kdl"
-    version: ">=0"
-  # - category: "sci-libs"
-  #   name: "pcl"
-  #   version: ">=0"
-  - category: "sci-mathematics"
-    name: "cgal"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/freecad"
-    use: "addonmgr fem gui idf image inspection material part-design openscad path points qt6 raytracing robot show surface techdraw tux # netgen: doesn't build"
-  - atom: "dev-libs/OpenNI2"
-    use: "opengl"
-  - atom: "media-gfx/netgen"
-    use: "ffmpeg gui jpeg mpi opencascade python"
-  - atom: "media-gfx/openscad"
-    use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
-  - atom: "media-libs/quarterd"
-    use: "qt6"
-  - atom: "sci-libs/med"
-    use: "python fortran # mpi"
-  - atom: "sci-libs/pcl"
-    use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
-  inner_build_reqs:
-  - app-text/dos2unix
-  - dev-lang/swig
-  - dev-cpp/ms-gsl
-  # needed by openscad:
-  - dev-qt/qtconcurrent:5 dev-qt/qtopengl:5 dev-qt/qtmultimedia:5
-  - dev-util/itstool
-  - dev-go/act
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *layers-vtk
-  - <<: *libs-asciidoctor
-  - <<: *libs-coin
-  - <<: *libs-hidapi
-  - <<: *libs-libspnav
-  - <<: *libs-qscintilla
-  - <<: *libs-qtpy
-  build_requires:
-  - <<: *layers-vtk
+# # Unstable for KDE/Qt 6
+# - category: "apps"
+#   name: "freecad"
+#   version: "1.0.0+10"
+#   uri:
+#   - https://www.freecad.org/
+#   - https://github.com/gitpython-developers/gitdb/
+#   - https://github.com/gitpython-developers/GitPython/
+#   - https://pypi.org/project/smmap/
+#   - https://structure.io/openni
+#   - https://github.com/coin3d/pivy
+#   - https://3mf.io/
+#   - https://ngsolve.org/
+#   - https://www.opencsg.org
+#   - https://openscad.org/
+#   - https://github.com/coin3d/coin/wiki
+#   - https://www.salome-platform.org/user-section/about/med
+#   - https://www.orocos.org/kdl
+#   - http://www.xmailserver.org/libpcl.html
+#   - https://www.cgal.org/
+#   # - https://pointclouds.org/
+#   license: "metapackage"
+#   description: |
+#     QT based Computer Aided Design application
+#     GitDB is a pure-Python git object database
+#     Library used to interact with Git repositories
+#     A pure Python implementation of a sliding window memory map manager
+#     OpenNI2 SDK
+#     Coin3D bindings for Python
+#     Implementation of the 3D Manufacturing Format file standard
+#     Automatic 3d tetrahedral mesh generator
+#     The Constructive Solid Geometry rendering library
+#     The Programmers Solid 3D CAD Modeller
+#     GUI binding for using Coin/Open Inventor with Qt
+#     A library to store and exchange meshed data or computation results
+#     Kinematics and Dynamics Library (KDL)
+#     Portable Coroutine Library
+#     C++ library for geometric algorithms and data structures
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-gfx/freecad
+#   provides:
+#   - category: "dev-python"
+#     name: "gitdb"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "GitPython"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "smmap"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "freecad"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "OpenNI2"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pivy"
+#     version: ">=0"
+#   # can't build
+#   # - category: "media-gfx"
+#   #   name: "netgen"
+#   #   version: ">=0"
+#   - category: "media-gfx"
+#     name: "opencsg"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "openscad"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lib3mf"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "quarter"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "med"
+#     version: ">=0"
+#   - category: "sci-libs"
+#     name: "orocos_kdl"
+#     version: ">=0"
+#   # - category: "sci-libs"
+#   #   name: "pcl"
+#   #   version: ">=0"
+#   - category: "sci-mathematics"
+#     name: "cgal"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/freecad"
+#     use: "addonmgr fem gui idf image inspection material part-design openscad path points qt6 raytracing robot show surface techdraw tux # netgen: doesn't build"
+#   - atom: "dev-libs/OpenNI2"
+#     use: "opengl"
+#   - atom: "media-gfx/netgen"
+#     use: "ffmpeg gui jpeg mpi opencascade python"
+#   - atom: "media-gfx/openscad"
+#     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
+#   - atom: "media-libs/quarterd"
+#     use: "qt6"
+#   - atom: "sci-libs/med"
+#     use: "python fortran # mpi"
+#   - atom: "sci-libs/pcl"
+#     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
+#   inner_build_reqs:
+#   - app-text/dos2unix
+#   - dev-lang/swig
+#   - dev-cpp/ms-gsl
+#   # needed by openscad:
+#   - dev-qt/qtconcurrent:5 dev-qt/qtopengl:5 dev-qt/qtmultimedia:5
+#   - dev-util/itstool
+#   - dev-go/act
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *layers-vtk
+#   - <<: *libs-asciidoctor
+#   - <<: *libs-coin
+#   - <<: *libs-hidapi
+#   - <<: *libs-libspnav
+#   - <<: *libs-qscintilla
+#   - <<: *libs-qtpy
+#   build_requires:
+#   - <<: *layers-vtk
 
 - category: "apps"
   name: "freeciv"
