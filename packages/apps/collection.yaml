@@ -4506,7 +4506,7 @@ packages:
 - &libs-udis86
   category: "libs"
   name: "udis86"
-  version: "1.7.2-r1+5"
+  version: "1.7.2-r1+6"
   uri:
   - http://udis86.sourceforge.net/
   license: "BSD"
@@ -4520,7 +4520,7 @@ packages:
     name: "udis86"
     version: ">=0"
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..12} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..11} )/PYTHON_COMPAT=( python3_{9..12} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
   inner_build_reqs:
   - dev-lang/yasm
