@@ -1071,7 +1071,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "6.2.4"
+  version: "6.2.4+1"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1087,10 +1087,13 @@ packages:
   - category: "kde-plasma"
     name: "breeze-plymouth"
     version: ">=0"
+  inner_build_reqs:
+  = kde-frameworks/extra-cmake-modules
   requires:
+  - <<: *layers-X
   - <<: *apps-grub
   build_requires:
-  - <<: *apps-grub
+  - <<: *layers-X
 
 - &libs-c-blosc
   category: "libs"
@@ -1664,7 +1667,7 @@ packages:
 - &libs-glfw
   category: "libs"
   name: "glfw"
-  version: "3.4"
+  version: "3.4+1"
   uri:
   - https://www.glfw.org/
   license: "ZLIB"
@@ -1677,6 +1680,8 @@ packages:
   - category: "media-libs"
     name: "glfw"
     version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-X
   build_requires:
@@ -4402,7 +4407,7 @@ packages:
 - &libs-tre
   category: "libs"
   name: "tre"
-  version: "0.8.0_p20210321-r4"
+  version: "0.8.0_p20210321-r3+2"
   uri:
   - https://laurikari.net/tre/
   - https://github.com/laurikari/tre
