@@ -13235,6 +13235,9 @@ packages:
     name: "moddb"
     version: ">=0"
   - category: "dev-python"
+    name: "protobuf"
+    version: ">=0"
+  - category: "dev-python"
     name: "pyrate-limiter"
     version: ">=0"
   - category: "dev-python"
@@ -15583,7 +15586,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.19.0"
+  version: "7.20.0"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -15657,10 +15660,11 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# Unstable for KDE/Qt 6
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.08.1"
+  version: "24.12.0"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -15677,12 +15681,12 @@ packages:
   - atom: "kde-apps/cantor"
     use: "analitza lua postscript python # julia qalculate R"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   # - <<: *apps-R
   - <<: *apps-luajit
   - <<: *libs-analitza
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "celluloid"
@@ -15761,7 +15765,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.3.7"
+  version: "2.4.0"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -15887,32 +15891,9 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "hplip"
-#   version: "3.23.12-r3+1"
-#   uri:
-#   - https://developers.hp.com/hp-linux-imaging-and-printing
-#   license: "GPL-2"
-#   description: "HP Linux Imaging and Printing - Print, scan, fax drivers and service tools"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-print/hplip
-#   provides:
-#   - category: "net-print"
-#     name: "hplip"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-print/hplip"
-#     use: "hpijs -snmp"
-#   requires:
-#   - <<: *layers-qt
-#   build_requires:
-#   - <<: *layers-qt
-
 - category: "apps"
   name: "hplip"
-  version: "3.24.4"
+  version: "3.24.4-r1"
   uri:
   - https://developers.hp.com/hp-linux-imaging-and-printing
   - https://developers.hp.com/hp-linux-imaging-and-printing/plugins
@@ -15975,7 +15956,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -16031,7 +16012,7 @@ packages:
 
 - category: "apps"
   name: "kdegames"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
     - https://apps.kde.org/categories/games/
   license: "metapackage"
@@ -16292,7 +16273,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.6.2+2"
+  version: "24.2.7.2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -16608,7 +16589,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.10.1-r1+1"
+  version: "0.10.2"
   uri:
   - https://neovim.io
   license: "Apache-2.0 vim"
@@ -16763,7 +16744,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "6.1.5"
+  version: "6.2.4"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -16876,7 +16857,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.68.0"
+  version: "1.68.1"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -16949,7 +16930,7 @@ packages:
 
 - category: "apps"
   name: "skanpage"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
   - https://apps.kde.org/skanpage/
   license: "|| ( GPL-2 GPL-3 ) CC0-1.0"
@@ -17101,7 +17082,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -17152,7 +17133,7 @@ packages:
 
 - category: "apps"
   name: "x2goclient"
-  version: "4.1.2.2-r1+6"
+  version: "4.1.2.3"
   uri:
   - https://wiki.x2go.org/doku.php
   license: "GPL-2"
@@ -17176,7 +17157,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.3-r2+4"
+  version: "4.1.0.6"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
@@ -17752,7 +17733,7 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.4.1+2"
+  version: "4.4.2"
   uri:
   - https://audacious-media-player.org
   - http://ampache-browser.org
@@ -17802,7 +17783,7 @@ packages:
 - &apps-calf
   category: "apps"
   name: "calf"
-  version: "0.90.3-r2"
+  version: "0.90.4"
   uri:
   - https://calf-studio-gear.org/
   license: "LGPL-2.1"
@@ -17916,7 +17897,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "11.3.0"
+  version: "11.4.0"
   uri:
   - https://flacon.github.io/
   license: "LGPL-2.1+"
@@ -18110,7 +18091,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2023.0.0-r1+3"
+  version: "2024.0.1"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
@@ -18174,7 +18155,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.3.2-r2+4"
+  version: "1.4-r1"
   uri:
   - https://inkscape.org/
   license: "GPL-2 LGPL-2.1"
@@ -18662,7 +18643,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.24.0+1"
+  version: "7.28.0-r1"
   uri:
   - http://www.mltframework.org/
   license: "GPL-3"
@@ -18808,7 +18789,7 @@ packages:
 - &apps-cmus
   category: "apps"
   name: "cmus"
-  version: "2.11.0"
+  version: "2.12.0"
   uri:
   - https://cmus.github.io/
   license: "GPL-2"
@@ -19098,7 +19079,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -19249,7 +19230,7 @@ packages:
 - &libs-dcmtk
   category: "libs"
   name: "dcmtk"
-  version: "3.6.7-r1+6"
+  version: "3.6.8"
   uri:
   - https://dicom.offis.de/dcmtk.php.en
   license: "OFFIS"
@@ -19921,7 +19902,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.2.3+2"
+  version: "5.2.6"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -19972,7 +19953,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "1.3.0"
+  version: "1.4.0-r1"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
@@ -20211,7 +20192,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.08.1"
+  version: "24.08.31"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -20261,7 +20242,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "24.08.1"
+  version: "24.08.3"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
