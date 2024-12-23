@@ -864,6 +864,7 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
+# Unstable for KDE/Qt 6
 - &libs-analitza
   category: "libs"
   name: "analitza"
@@ -3796,7 +3797,7 @@ packages:
     name: "ptex"
     version: ">=0"
   inner_build_reqs:
-  - app-text/doxygen
+  - app-text/doxygen;USE="llvm_slot_18"
   requires:
   - <<: *layers-qt
   build_requires:
@@ -9706,7 +9707,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.11-r2"
+  version: "5.11-r2+1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -9726,8 +9727,10 @@ packages:
   - atom: "media-gfx/rawtherapee"
     use: "openmp # jpegxl tcmalloc"
   - atom: "media-libs/libiptcdata"
-    use: "nls -python"
+    use: "nls python"
   env: "MAKEOPTS=\"-j5 -l0.9\""
+  preemerge:
+  - media-libs/libiptcdata;USE="-python"
   requires:
   - <<: *layers-X
   build_requires:
@@ -10060,7 +10063,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.1+1"
+  version: "0.8.1+2"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -11256,7 +11259,7 @@ packages:
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
-  version: "0.99_beta19-r11+1"
+  version: "0.99_beta19-r11+2"
   uri:
   - http://libcaca.zoy.org/
   license: "GPL-2 ISC LGPL-2.1 WTFPL-2"
@@ -12942,7 +12945,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "24.08.3"
+  version: "24.08.3+1"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -17512,7 +17515,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+21"
+  version: "0.1+22"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -17578,7 +17581,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "0.1+23"
+  version: "0.1+24"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -18825,7 +18828,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "8.4.0-r11+2"
+  version: "8.4.0-r11+3"
   uri:
   - https://www.digikam.org/
   - https://www.qtav.org
@@ -19675,7 +19678,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8+5"
+  version: "8+6"
   uri:
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
