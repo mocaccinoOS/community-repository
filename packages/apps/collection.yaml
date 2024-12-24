@@ -4159,6 +4159,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-rtaudio
+  category: "libs"
+  name: "rtaudio"
+  version: "6.0.1"
+  uri:
+  - https://www.music.mcgill.ca/~gary/rtaudio/
+  license: "MIT"
+  description: "A set of cross-platform C++ classes for realtime audio I/O"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/rtaudio
+  provides:
+  - category: "media-libs"
+    name: "rtaudio"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/rtaudio"
+    use: "alsa jack pulseaudio"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
@@ -18651,7 +18675,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.28.0-r1"
+  version: "7.28.0-r1+1"
   uri:
   - http://www.mltframework.org/
   license: "GPL-3"
@@ -18664,14 +18688,9 @@ packages:
   - category: "media-libs"
     name: "mlt"
     version: ">=0"
-  - category: "media-libs"
-    name: "rtaudio"
-    version: ">=0"
   atoms:
   - atom: "media-libs/mlt"
     use: "ffmpeg frei0r gtk jack libsamplerate opencv opengl python qt6 rtaudio rubberband sdl vdpau vidstab xine xml"
-  - atom: "media-libs/rtaudio"
-    use: "alsa jack pulseaudio"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
@@ -18680,6 +18699,7 @@ packages:
   - <<: *libs-sdl2
   - <<: *libs-xine-lib
   - <<: *libs-frei0r-plugins
+  - <<: *libs-rtaudio
   build_requires:
   - <<: *layers-kde-common
 
@@ -19579,7 +19599,7 @@ packages:
 
 - category: "apps"
   name: "museseq"
-  version: "4.2.1+2"
+  version: "4.2.1+3"
   uri:
   - https://github.com/muse-sequencer/muse
   license: "GPL-2"
@@ -19619,6 +19639,7 @@ packages:
   - <<: *libs-liblrdf
   - <<: *libs-lilv
   - <<: *libs-lv2
+  - <<: *libs-rtaudio
   - <<: *libs-rubberband
   - <<: *libs-sord
   build_requires:
