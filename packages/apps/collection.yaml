@@ -19627,8 +19627,10 @@ packages:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
-  # - <<: *layers-qt
+  - <<: *layers-qt
   - <<: *layers-kde-kf5
   - <<: *apps-designer
   - <<: *apps-fluidsynth
