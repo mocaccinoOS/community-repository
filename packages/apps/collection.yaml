@@ -5173,7 +5173,7 @@ packages:
     version: ">=0"
   - category: "net-dns"
     name: "bind"
-    version: ">=0"    
+    version: ">=0"
   atoms:
   - atom: "net-dns/bind-tools"
     use: "caps doc gssapi idn readline xml # libedit"
@@ -6646,6 +6646,30 @@ packages:
   atoms:
   - atom: "media-video/gaupol"
     use: "spell"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- &apps-ghostty
+  category: "apps"
+  name: "ghostty"
+  version: "1.0.1"
+  uri:
+  - https://ghostty.org
+  license: "MIT"
+  description: "Fast, feature-rich, and cross-platform terminal emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/ghostty
+  provides:
+  - category: "x11-terms"
+    name: "ghostty"
+    version: ">=0"
+  atoms:
+  - atom: "x11-terms/ghostty"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
