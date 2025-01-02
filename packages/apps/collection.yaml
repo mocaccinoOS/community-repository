@@ -3597,6 +3597,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-oniguruma
+  category: "libs"
+  name: "oniguruma"
+  version: "6.9.9"
+  uri:
+  - https://github.com/kkos/oniguruma
+  license: "BSD-2"
+  description: "Regular expression library for different character encodings"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/oniguruma
+  provides:
+  - category: "dev-libs"
+    name: "oniguruma"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
@@ -6654,7 +6675,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.0.1"
+  version: "1.0.1+1"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -6674,6 +6695,7 @@ packages:
   - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-gnome-common
+- <<: *libs-oniguruma
   build_requires:
   - <<: *layers-gnome-common
 
@@ -15585,7 +15607,7 @@ packages:
 
 - category: "apps"
   name: "bat"
-  version: "0.24.0-r2"
+  version: "0.24.0-r2+1"
   uri:
   - https://github.com/sharkdp/bat
   license: "Apache-2.0 BSD BSD-2 CC0-1.0 LGPL-3+ MIT"
@@ -15598,15 +15620,13 @@ packages:
   - category: "sys-apps"
     name: "bat"
     version: ">=0"
-  - category: "dev-libs"
-    name: "oniguruma"
-    version: ">=0"
   atoms:
   - atom: "sys-apps/bat"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-libgit2
+  - <<: *libs-oniguruma
   build_requires:
   - <<: *layers-sys-fs
 
