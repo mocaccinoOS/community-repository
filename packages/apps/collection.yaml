@@ -3777,27 +3777,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-protobuf-c
-  category: "libs"
-  name: "protobuf-c"
-  version: "1.5.0-r2+2"
-  uri:
-  - https://github.com/protobuf-c/protobuf-c
-  license: "BSD-2"
-  description: "Protocol Buffers implementation in C"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/protobuf-c
-  provides:
-  - category: "dev-libs"
-    name: "protobuf-c"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-ptex
   category: "libs"
   name: "ptex"
@@ -6669,33 +6648,6 @@ packages:
     use: "spell"
   requires:
   - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- &apps-ghostty
-  category: "apps"
-  name: "ghostty"
-  version: "1.0.1+1"
-  uri:
-  - https://ghostty.org
-  license: "MIT"
-  description: "Fast, feature-rich, and cross-platform terminal emulator"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-terms/ghostty
-  provides:
-  - category: "x11-terms"
-    name: "ghostty"
-    version: ">=0"
-  atoms:
-  - atom: "x11-terms/ghostty"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-oniguruma
   build_requires:
   - <<: *layers-gnome-common
 
@@ -11370,7 +11322,6 @@ packages:
     ise: "ssl threads"
   requires:
   - <<: *layers-X
-  - <<: *libs-protobuf-c
   build_requires:
   - <<: *layers-X
 
@@ -13176,36 +13127,36 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-# - &apps-kweather
-#   category: "apps"
-#   name: "kweather"
-#   version: "22.11+1"
-#   uri:
-#   - https://apps.kde.org/kweather/
-#   license: "GPL-2+"
-#   description: "Weather forecast application for Plasma with flat and dynamic/animated views"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-misc/kweather
-#   provides:
-#   - category: "kde-misc"
-#     name: "kweather"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "kweathercore"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-misc/kweather"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/kweathercore"
-#     accept_keywords: "~amd64"
-#   inner_build_requires:
-#   - <<: *libs-qtpositioning-geoclue
-#   requires:
-#   - <<: *layers-kde-common
-#   build_requires:
-#   - <<: *layers-kde-common
+- &apps-kweather
+  category: "apps"
+  name: "kweather"
+  version: "24.08.3"
+  uri:
+  - https://apps.kde.org/kweather/
+  license: "GPL-2+"
+  description: "Weather forecast application for Plasma with flat and dynamic/animated views"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-misc/kweather
+  provides:
+  - category: "kde-misc"
+    name: "kweather"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "kweathercore"
+    version: ">=0"
+  atoms:
+  - atom: "kde-misc/kweather"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/kweathercore"
+    accept_keywords: "~amd64"
+  inner_build_requires:
+  - <<: *libs-qtpositioning-geoclue
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - &apps-lash
   category: "apps"
@@ -15879,6 +15830,33 @@ packages:
   - <<: *layers-gnome-common
   - <<: *apps-dcraw
   - <<: *libs-libchamplain
+  build_requires:
+  - <<: *layers-gnome-common
+
+- &apps-ghostty
+  category: "apps"
+  name: "ghostty"
+  version: "1.0.1+1"
+  uri:
+  - https://ghostty.org
+  license: "MIT"
+  description: "Fast, feature-rich, and cross-platform terminal emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/ghostty
+  provides:
+  - category: "x11-terms"
+    name: "ghostty"
+    version: ">=0"
+  atoms:
+  - atom: "x11-terms/ghostty"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-oniguruma
   build_requires:
   - <<: *layers-gnome-common
 
