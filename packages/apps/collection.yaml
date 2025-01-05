@@ -3970,7 +3970,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.4.2-r1"
+  version: "2.4.2-r1+1"
   uri:
   - https://github.com/spyder-ide/qtpy/
   - https://wiki.qt.io/PySide6
@@ -4000,6 +4000,11 @@ packages:
     use: "charts concurrent gui multimedia network network-auth opengl pdfium printsupport qml quick quick3d scxml spatialaudio sql svg -testlib webchannel webengine websockets widgets xml # 3d bluetooth designer gles2-only help location nfc positioning serialport sensors speech"
   - atom: "dev-python/shiboken6"
     use: "numpy # vulkan"
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/dev-python/pyside6/pyside6-6.8.1.ebuild
+  - ebuild /var/db/repos/gentoo/dev-python/pyside6/pyside6-6.8.1.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/dev-python/shiboken6/shiboken6-6.8.1.ebuild
+  - ebuild /var/db/repos/gentoo/dev-python/shiboken6/shiboken6-6.8.1.ebuild manifest
   requires:
   - <<: *layers-qt
   build_requires:
@@ -4429,30 +4434,30 @@ packages:
   - <<: *layers-system-x
 
 # can't build
-- &libs-tre
-  category: "libs"
-  name: "tre"
-  version: "0.8.0_p20210321-r4"
-  uri:
-  - https://laurikari.net/tre/
-  - https://github.com/laurikari/tre
-  license: "BSD-2"
-  description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tre
-  provides:
-  - category: "dev-libs"
-    name: "tre"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/tre"
-    use: "agrep alloca approx nls profile python"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-tre
+#   category: "libs"
+#   name: "tre"
+#   version: "0.8.0_p20210321-r4"
+#   uri:
+#   - https://laurikari.net/tre/
+#   - https://github.com/laurikari/tre
+#   license: "BSD-2"
+#   description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-libs/tre
+#   provides:
+#   - category: "dev-libs"
+#     name: "tre"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-libs/tre"
+#     use: "agrep alloca approx nls profile python"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-tree-sitter
   category: "libs"
@@ -5445,7 +5450,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20221215-r1"
+  version: "1.7.0_pre20221215-r1+1"
   uri:
   - https://celestia.space
   license: "GPL-2+"
@@ -5463,9 +5468,11 @@ packages:
     use: "ffmpeg glut lua nls qt5"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  # - <<: *layers-qt
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  # - <<: *layers-qt
 
 - &apps-clamav
   category: "apps"
@@ -5587,7 +5594,7 @@ packages:
 - &apps-coquillo
   category: "apps"
   name: "coquillo"
-  version: "2.0.1-r1"
+  version: "2.0.1-r1+1"
   uri:
   - https://www.linux-apps.com/content/show.php/Coquillo?content=141896
   license: "LGPL-3"
@@ -5604,9 +5611,11 @@ packages:
   - atom: "media-sound/coquillo"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  # - <<: *layers-qt
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  # - <<: *layers-qt
 
 - category: "apps"
   name: "cuetools"
@@ -7599,9 +7608,6 @@ packages:
     name: "krusader"
     version: ">=0"
   - category: "kde-apps"
-    name: "kio-extras"
-    version: ">=0"
-  - category: "kde-apps"
     name: "thumbnailers"
     version: ">=0"
   inner_build_reqs:
@@ -7610,10 +7616,8 @@ packages:
   - kde-plasma/kdesu-gui
   requires:
   - <<: *layers-kde-common
-  # - <<: *layers-kde-apps-minimal
   build_requires:
   - <<: *layers-kde-common
-  # - <<: *layers-kde-apps-minimal
 
 - category: "apps"
   name: "ksnip"
@@ -7900,9 +7904,10 @@ packages:
   build_requires:
   - <<: *kernel-modules-nvidia-drivers-lts
 
+# Unstable for KDE/Qt 6
 - category: "apps"
   name: "marble"
-  version: "24.08.3"
+  version: "24.12.0-r1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7915,13 +7920,13 @@ packages:
   - category: "kde-apps"
     name: "marble"
     version: ">=0"
-  # atoms:
-  # - atom: "kde-apps/marble"
-  #   use: "plasma"
+  atoms:
+  - atom: "kde-apps/marble"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-plasma
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-plasma
 
 - category: "apps"
   name: "meld"
@@ -9367,7 +9372,7 @@ packages:
 
 - category: "apps"
   name: "polari"
-  version: "46.0"
+  version: "46.0+1"
   uri:
   - https://wiki.gnome.org/Apps/Polari
   license: "GPL-2+"
@@ -9377,12 +9382,11 @@ packages:
     emerge.packages: >-
       net-irc/polari
   provides:
-  - category: "net-im"
-    name: "telepathy-logger"
-    version: ">=0"
   - category: "net-irc"
     name: "polari"
     version: ">=0"
+  inner_build_reqs:
+  - dev-util/itstool
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -10349,9 +10353,9 @@ packages:
   - atom: "app-admin/systemdgenie"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "testdisk"
@@ -20178,7 +20182,7 @@ packages:
   prepare:
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-1.14.6.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( {15..17} )/LLVM_COMPAT=( {15..18} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-2.2.2.ebuild
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-2.2.2.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-2.2.2.ebuild manifest
   inner_build_reqs:
   # - *apps-doxygen-packages
