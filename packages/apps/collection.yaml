@@ -15187,7 +15187,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.1.0"
+  version: "2.1.0+1"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -15292,7 +15292,7 @@ packages:
 - &libs-wcslib
   category: "libs"
   name: "wcslib"
-  version: "8.3-r1"
+  version: "8.3-r1+1"
   uri:
   - https://www.atnf.csiro.au/people/mcalabre/WCS/
   license: "LGPL-3"
@@ -16419,7 +16419,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+10"
+  version: "2.6.1.1-r1+11"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -18228,7 +18228,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.7.3"
+  version: "3.7.3+1"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -18290,7 +18290,7 @@ packages:
 
 - category: "apps"
   name: "labplot"
-  version: "2.11.1+1"
+  version: "2.11.1+2"
   uri:
   - https://labplot.kde.org/
   - https://sourceforge.net/projects/matio/
@@ -18397,7 +18397,7 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "8.3.0-r2+11"
+  version: "8.3.0-r2+12"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
@@ -20135,7 +20135,7 @@ packages:
   - atom: "media-libs/embree"
     use: "compact-polys ispc raymask ssp tbb # tutorial"
   - atom: "dev-lang/ispc"
-    use: "-llvm_slot_17 llvm_slot_18 # openmp"
+    use: "-llvm_slot_17 -llvm_slot_18 llvm_slot_19 # openmp"
     accept_keywords: "~amd64"
   - atom: "media-libs/oidn"
     use: "hip -llvm_slot_17 llvm_slot_18 openimageio # cuda"
@@ -20165,6 +20165,7 @@ packages:
   - dev-debug/valgrind
   requires:
   - <<: *layers-qt
+  - <<: *layers-hwloc
   - <<: *libs-zstandard
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
@@ -20177,7 +20178,9 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-hwloc
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 - category: "apps"
   name: "displaycal-py3"
