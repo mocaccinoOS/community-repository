@@ -11982,7 +11982,7 @@ packages:
 - &def-cdemu
   category: "apps"
   name: "cdemu"
-  version: "3.2.5-r1+2"
+  version: "3.2.5-r1+3"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -13750,6 +13750,9 @@ packages:
   provides:
   - category: "app-text"
     name: "openjade"
+    version: ">=0"
+  - category: "app-text"
+    name: "opensp"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -17251,7 +17254,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      x11-libs/dnd
       app-xemacs/xemacs-base
       app-editors/xemacs
   provides:
@@ -17260,9 +17262,6 @@ packages:
     version: ">=0"
   - category: "app-xemacs"
     name: "xemacs-base"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "dnd"
     version: ">=0"
   - category: "app-xemacs"
     name: "fsf-compat"
@@ -17275,7 +17274,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-editors/xemacs"
-    use: "pop dnd xim alsa gif gpm ldap athena motif nas neXt Xaw3d xface X jpeg tiff png xft gdbm berkdb # postgres freewnn mule"
+    use: "athena pop xim alsa berkdb gdbm gif gpm jpeg ldap motif nas neXt png tiff X Xaw3d xface xft # postgres"
   inner_build_reqs:
   - sys-devel/autoconf:2.1
   excludes:
