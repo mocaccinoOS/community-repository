@@ -16719,7 +16719,7 @@ packages:
 - &apps-openra
   category: "apps"
   name: "openra"
-  version: "20231010-r1+3"
+  version: "20231010-r1+4"
   uri:
   -  https://www.openra.net/
   license: "Apache-2.0 vim"
@@ -18419,17 +18419,17 @@ packages:
   - category: "sci-libs"
     name: "sundials"
     version: ">=0"
-  - category: "sci-libs"
-    name: "superlu_mt"
-    version: ">=0"    
+  # - category: "sci-libs"
+  #   name: "superlu_mt"
+  #   version: ">=0"    
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
     # accept_keywords: "~amd64"
   - atom: "sci-libs/sundials"
-    use: "hypre int64 sparse superlumt fortran lapack mpi openmp threads"
-  - atom: "sci-libs/superlu_mt"
-    use: "int64 openmp threads"
+    use: "hypre int64 sparse fortran lapack mpi openmp threads # superlumt"
+  # - atom: "sci-libs/superlu_mt"
+  #   use: "int64 openmp threads"
   inner_build_reqs:
   - *layers-java-packages
   requires:
