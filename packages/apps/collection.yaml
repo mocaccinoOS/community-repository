@@ -20129,7 +20129,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/blender"
-    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k -llvm_slot_17 -llvm_slot_18 llvm_slot_19 man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # osl https://bugs.gentoo.org/935156 # cuda optix # oneapi # debug headless test"
+    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # osl https://bugs.gentoo.org/935156 # cuda optix # oneapi # debug headless test"
     # accept_keywords: "~amd64"
   - atom: "media-gfx/alembic"
     use: "hdf5"
@@ -20137,10 +20137,10 @@ packages:
   - atom: "media-libs/embree"
     use: "compact-polys ispc raymask ssp tbb # tutorial"
   - atom: "dev-lang/ispc"
-    use: "-llvm_slot_17 -llvm_slot_18 llvm_slot_19 # openmp"
+    # use: "# gpu openmp"
     accept_keywords: "~amd64"
   - atom: "media-libs/oidn"
-    use: "hip -llvm_slot_17 llvm_slot_18 openimageio # cuda"
+    use: "hip openimageio # cuda"
   - atom: "media-libs/openpgl"
     use: "cpu_flags_x86_avx2"
     accept_keywords: "~amd64"
@@ -20148,8 +20148,8 @@ packages:
     use: "opencl openmp ptex tbb # cuda"
     accept_keywords: "~amd64"
   # - atom: "media-libs/osl"
-  #   use: "gui libcxx -llvm_slot_17 -llvm_slot_18 llvm_slot_19 partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-  env: "MAKEOPTS=\"-l0.9\""
+  #   use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 llvm_slot_19\""
   prepare:
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
