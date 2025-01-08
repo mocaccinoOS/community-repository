@@ -3931,10 +3931,15 @@ packages:
   - category: "x11-libs"
     name: "qscintilla"
     version: ">=0"
+  # atoms:
+  # - atom: "x11-libs/qscintilla"
+  #   use: "-qt5 +qt6"
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &libs-qtpy
   category: "libs"
@@ -14541,10 +14546,12 @@ packages:
     name: "sqliteman"
     version: ">=0"
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-qscintilla
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-tesseract
   category: "apps"
@@ -18423,7 +18430,7 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# Unstable for KDE/Qt 6 - can't be done until all dependents of x11-libs/qscintilla moves to 6
+  # superlu_mt disabled due to https://bugs.gentoo.org/886466
 - &apps-octave
   category: "apps"
   name: "octave"
@@ -18462,6 +18469,8 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-gnome-common
+  # - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
   - <<: *layers-openmpi
   - <<: *layers-sci-libs
   - <<: *layers-java
@@ -18482,8 +18491,6 @@ packages:
   - <<: *buildbase-kde-kf5
   - <<: *layerbase-XML-LibXML
   - <<: *layerbase-latex
-  # - <<: *layerbase-openmpi
-  # - <<: *layerbase-sci-libs
   - <<: *buildbase-openmpi
   - <<: *buildbase-sci-libs
   requires_final_images: true
