@@ -11508,6 +11508,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-tiff-compat
+  category: "libs"
+  name: "tiff-compat"
+  version: "4.4.0-r1"
+  uri:
+  - http://libtiff.maptools.org
+  license: "libtiff"
+  description: "Tag Image File Format (TIFF) library (compat package for libtiff.so.5)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/tiff-compat
+  provides:
+  - category: "media-libs"
+    name: "gegl"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/tiff-compat"
+    use: "cxx jbig jpeg lzma verify-sig webp zlib zstd"
+    license: "libtiff"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-jbigkit
+  build_requires:
+  - <<: *layers-X
+
 - &libs-lockfile
   category: "libs"
   name: "lockfile"
@@ -17994,6 +18020,8 @@ packages:
   - <<: *layers-X
   - <<: *apps-neovim
     skip: true
+  - <<: *libs-tiff-compat
+    skip: true
   build_requires:
   - <<: *layers-X
 
@@ -18644,7 +18672,7 @@ packages:
 - &libs-gegl
   category: "libs"
   name: "gegl"
-  version: "0.4.48"
+  version: "0.4.48+1"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"

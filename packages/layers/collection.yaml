@@ -1399,7 +1399,8 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 # - <<: *def-hwloc
 #   category: "layerbase"
@@ -1437,7 +1438,8 @@ packages:
   - <<: *layers-hwloc
   build_requires:
   # - <<: *layers-X
-  - <<: *layers-hwloc
+  - <<: *buildbase-hwloc
+  requires_final_images: true
   
 # category of the package must be buildbase
 #   subpackages_templates:
