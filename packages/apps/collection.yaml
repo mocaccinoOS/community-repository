@@ -6482,6 +6482,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "fooyin"
+  version: "0.8.1"
+  uri:
+  - https://www.fooyin.org
+  license: "GPL-3"
+  description: "A customizable music player, Qt clone of foobar2000"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/fooyin
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-libs"
+    name: "kdsingleapplication"
+    version: ">=0"  
+  - category: "media-sound"
+    name: "fooyin"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/fooyin"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libebur128
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-fpc
   category: "apps"
   name: "fpc"
