@@ -511,6 +511,11 @@ stubs:
   build_requires:
   - <<: *layers-system-x
 
+- &development-gcc
+  category: "development"
+  name: "gcc"
+  version: ">=0"
+  
 ################################################################################################################################################################
 ### fonts stub ###
 ################################################################################################################################################################
@@ -3969,6 +3974,7 @@ packages:
   - ebuild /var/db/repos/gentoo/dev-python/shiboken6/shiboken6-6.8.1.ebuild manifest
   requires:
   - <<: *layers-qt
+  - <<: *development-gcc
   build_requires:
   - <<: *layers-qt
 
@@ -16852,6 +16858,9 @@ packages:
   atoms:
   - atom: "net-misc/pulseaudio-dlna"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( .* )/PYTHON_COMPAT=( python3_12 )/' /var/db/repos/gentoo/net-misc/pulseaudio-dlna/pulseaudio-dlna-*.ebuild
+  - ebuild /var/db/repos/gentoo/net-misc/pulseaudio-dlna/pulseaudio-dlna-*.ebuild manifest
   requires:
   - <<: *layers-X
   - <<: *libs-netifaces
@@ -18043,7 +18052,7 @@ packages:
 
 - category: "apps"
   name: "goneovim"
-  version: "0.6.11+1"
+  version: "0.6.11+2"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -18067,6 +18076,8 @@ packages:
     cp data/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+  excludes:
+  - ^/usr/lib/share/libtiff.so.5
   requires:
   - <<: *layers-X
   - <<: *apps-neovim
@@ -19544,6 +19555,7 @@ packages:
     use: "clang dot doxysearch gui -llvm_slot_18 llvm_slot_19 # doc"
   requires:
   - <<: *layers-plasma
+  - <<: *development-gcc
   - <<: *apps-graphviz
   build_requires:
   - <<: *layers-plasma
