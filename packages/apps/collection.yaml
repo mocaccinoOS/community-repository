@@ -3769,39 +3769,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-pychromecast
-  category: "libs"
-  name: "pychromecast"
-  version: "14.0.1+1"
-  uri:
-  - https://github.com/home-assistant-libs/pychromecast
-  - https://github.com/ur1katz/casttube
-  license: "MIT"
-  description: |
-    Python module to talk to Google Chromecast
-    casttube provides a way to interact with the Youtube Chromecast api
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/casttube
-      dev-python/pychromecast
-  provides:
-  - category: "dev-python"
-    name: "pychromecast"
-    version: ">=0"
-  - category: "dev-python"
-    name: "casttube"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/casttube"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/pychromecast"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
@@ -3848,6 +3815,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-python-distutils-extra
+  category: "libs"
+  name: "python-distutils-extra"
+  version: "2.47+4"
+  uri:
+  - https://salsa.debian.org/python-team/packages/python-distutils-extra/
+  - https://launchpad.net/python-distutils-extra/
+  license: "GPL-2+"
+  description: "Gettext support, themed icons and scrollkeeper-based documentation in distutils"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/python-distutils-extra
+  provides:
+  - category: "dev-python"
+    name: "python-distutils-extra"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-python-msgpack
   category: "libs"
   name: "python-msgpack"
@@ -3872,22 +3861,21 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-python-distutils-extra
+- &libs-python-protobuf
   category: "libs"
-  name: "python-distutils-extra"
-  version: "2.47+4"
+  name: "python-protobuf"
+  version: "5.28.0"
   uri:
-  - https://salsa.debian.org/python-team/packages/python-distutils-extra/
-  - https://launchpad.net/python-distutils-extra/
-  license: "GPL-2+"
-  description: "Gettext support, themed icons and scrollkeeper-based documentation in distutils"
+  - https://protobuf.dev/
+  license: "BSD"
+  description: "Google's Protocol Buffers - Python bindings"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/python-distutils-extra
+      dev-python/protobuf
   provides:
   - category: "dev-python"
-    name: "python-distutils-extra"
+    name: "protobuf"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -11678,6 +11666,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-pychromecast
+  category: "libs"
+  name: "pychromecast"
+  version: "14.0.1+2"
+  uri:
+  - https://github.com/home-assistant-libs/pychromecast
+  - https://github.com/ur1katz/casttube
+  license: "MIT"
+  description: |
+    Python module to talk to Google Chromecast
+    casttube provides a way to interact with the Youtube Chromecast api
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/casttube
+      dev-python/pychromecast
+  provides:
+  - category: "dev-python"
+    name: "pychromecast"
+    version: ">=0"
+  - category: "dev-python"
+    name: "casttube"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-protobuf
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pysol-cards
   category: "libs"
   name: "pysol-cards"
@@ -13267,7 +13284,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.18"
+  version: "0.5.18+1"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -13285,9 +13302,6 @@ packages:
   provides:
   - category: "dev-python"
     name: "moddb"
-    version: ">=0"
-  - category: "dev-python"
-    name: "protobuf"
     version: ">=0"
   - category: "dev-python"
     name: "pyrate-limiter"
@@ -13319,6 +13333,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-beautifulsoup4
+  - <<: *libs-python-protobuf
   - <<: *fonts-fluid-soundfont
   build_requires:
   - <<: *layers-gnome-common
@@ -14092,41 +14107,6 @@ packages:
   - <<: *libs-plotutils
   build_requires:
   - <<: *layers-X
-
-# - category: "apps"
-#   name: "pulseaudio-dlna"
-#   version: "0.6.5_p1-r1"
-#   uri:
-#   - https://github.com/Cygn/pulseaudio-dlna
-#   license: "GPL-3"
-#   description: "A lightweight DLNA/UPNP/Chromecast streaming server for PulseAudio"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/pulseaudio-dlna
-#   provides:
-#   - category: "net-misc"
-#     name: "pulseaudio-dlna"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "docopt"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "notify2"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyroute2"
-#     version: ">=0"
-#   # media-sound/pulseaudio-daemon?
-#   atoms:
-#   - atom: "net-misc/pulseaudio-dlna"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-netifaces
-#   - <<: *libs-pychromecast
-#   build_requires:
-#   - <<: *layers-X
 
 - category: "apps"
   name: "qcad"
@@ -16843,6 +16823,41 @@ packages:
   - <<: *apps-ufw
   build_requires:
   - <<: *layers-plasma
+
+- category: "apps"
+  name: "pulseaudio-dlna"
+  version: "0.6.5_p1-r1+1"
+  uri:
+  - https://github.com/Cygn/pulseaudio-dlna
+  license: "GPL-3"
+  description: "A lightweight DLNA/UPNP/Chromecast streaming server for PulseAudio"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/pulseaudio-dlna
+  provides:
+  - category: "net-misc"
+    name: "pulseaudio-dlna"
+    version: ">=0"
+  - category: "dev-python"
+    name: "docopt"
+    version: ">=0"
+  - category: "dev-python"
+    name: "notify2"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyroute2"
+    version: ">=0"
+  # media-sound/pulseaudio-daemon?
+  atoms:
+  - atom: "net-misc/pulseaudio-dlna"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-netifaces
+  - <<: *libs-pychromecast
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "q4wine"
@@ -19706,7 +19721,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r3+3"
+  version: "2.0.1-r3+4"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -19724,6 +19739,7 @@ packages:
     use: "openmp"
   requires:
   - <<: *layers-X
+  - <<: *libs-python-protobuf
   - <<: *libs-libmypaint
   - <<: *apps-mypaint-brushes
   build_requires:
