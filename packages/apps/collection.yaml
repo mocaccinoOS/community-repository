@@ -18052,7 +18052,7 @@ packages:
 
 - category: "apps"
   name: "goneovim"
-  version: "0.6.11+3"
+  version: "0.6.11+4"
   uri:
   - https://github.com/akiyosi/goneovim
   license: "MIT"
@@ -18061,18 +18061,19 @@ packages:
     emerge.jobs: "1"
   prepare:
   - |
-    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.10.tar.gz && \
-    wget https://github.com/akiyosi/goneovim/releases/download/v0.6.10/goneovim-v0.6.10-linux.tar.bz2 && \
+    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.11.tar.gz && \
+    wget https://github.com/akiyosi/goneovim/releases/download/v0.6.11/goneovim-v0.6.11-linux.tar.bz2 && \
     mkdir data && \
-    tar -C data -xf goneovim-v0.6.10-linux.tar.bz2 --strip-components=1 && \
-    tar -C data -xf v0.6.10.tar.gz --strip-components=1 goneovim-0.6.10/cmd
+    tar -C data -xf goneovim-v0.6.11-linux.tar.bz2 --strip-components=1 && \
+    tar -C data -xf v0.6.11.tar.gz --strip-components=1 goneovim-0.6.11/cmd
   setup:
   - |
-    ln -s /usr/lib/libtiff.so /usr/lib/libtiff.so.5 && \
     mkdir -p -m 755 /usr/share/pixmaps && \
     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
     cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
     cp data/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
