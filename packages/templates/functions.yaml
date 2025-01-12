@@ -258,7 +258,7 @@
 
 {{- $value := ( index $atom "usepkg_exclude" ) }}
 {{- if $value }}
-  EMERGE_DEFAULT_OPTS=$(echo ${EMERGE_DEFAULT_OPTS} | sed '/--usepkg-exclude/! s/$/ --usepkg-exclude '"''"'/' | sed -e 's/--usepkg-exclude '"'"'\(.*\)'"'"'/--usepkg-exclude '"'"'{{ $atom.atom }} \1'"'"'/'); \
+  EMERGE_DEFAULT_OPTS=$(echo ${EMERGE_DEFAULT_OPTS} | sed "/--usepkg-exclude/! s/$/ --usepkg-exclude ''/" | sed -e "s/--usepkg-exclude '\(.*\)'/--usepkg-exclude 'category\/pakage \1'/"); \
   echo ${EMERGE_DEFAULT_OPTS}; \
 {{- end }}
 
