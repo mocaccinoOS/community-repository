@@ -1459,7 +1459,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.22"
+  version: "0.23"
   uri:
   - https://xerces.apache.org/xerces-c/
   - http://www.qhull.org
@@ -1603,6 +1603,8 @@ packages:
     use: "partition # tbb"
   - atom: "sci-libs/suitesparse"
     use: "lapack partition # tbb # cuda"
+  - atom: "sci-libs/umfpack"
+    usepkg_exclude: true
   - atom: "virtual/mpi"
     use: "fortran # nullmpi romio cxx threads"
   inner_build_reqs:
