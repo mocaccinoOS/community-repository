@@ -222,7 +222,7 @@
 {{- end }}
 
 {{- $atom := . }}
-# {{- range ( "accept_keywords license use" | splitList " " ) }}
+{{- range ( "accept_keywords license use" | splitList " " ) }}
   find {{ $filepath }}.{{ . }}/ -type f -a \( -name "*.{{ . }}" \) -a -exec sed -i -e "/{{ $atom.atom | replace "/" "\\/" }}/d" {} +; \
 {{- $value := ( index $atom . ) }}
 {{- if $value }}
@@ -258,8 +258,8 @@
 
 {{- $value := ( index $atom "usepkg_exclude" ) }}
 {{- if $value }}
-  EMERGE_DEFAULT_OPTS=$($\{EMERGE_DEFAULT_OPTS\} | sed '/$\{EMERGE_DEFAULT_OPTS\}/! s/^/$\\{EMERGE_DEFAULT_OPTS\\}/' | sed '/--usepkg-exclude/! s/$/ --usepkg-exclude '"''"'/' | sed -e 's/--usepkg-exclude '"'"'\(.*\)'"'"'/--usepkg-exclude '"'"'{{ $atom.atom }} \1'"'"'/'); \
-  echo $\{EMERGE_DEFAULT_OPTS\}; \
+  EMERGE_DEFAULT_OPTS=$(${EMERGE_DEFAULT_OPTS} | sed '/--usepkg-exclude/! s/$/ --usepkg-exclude '"''"'/' | sed -e 's/--usepkg-exclude '"'"'\(.*\)'"'"'/--usepkg-exclude '"'"'{{ $atom.atom }} \1'"'"'/'); \
+  echo ${EMERGE_DEFAULT_OPTS}; \
 {{- end }}
 
 {{- if eq ( mod $count 50 ) 0 }}
