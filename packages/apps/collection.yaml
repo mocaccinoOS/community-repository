@@ -687,7 +687,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20241101"
+  version: "20241201"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1157,7 +1157,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "131.0.6778.204"
+  version: "131.0.6778.264"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1418,7 +1418,7 @@ packages:
 - &libs-flann
   category: "libs"
   name: "flann"
-  version: "1.9.1-r6"
+  version: "1.9.1-r7"
   uri:
   - https://github.com/mariusmuja/flann
   license: "BSD"
@@ -1810,7 +1810,7 @@ packages:
 - &libs-gst-plugins-v4l2
   category: "libs"
   name: "gst-plugins-v4l2"
-  version: "1.22.11"
+  version: "1.22.12"
   uri:
   - https://gstreamer.freedesktop.org/
   license: "GPL-2"
@@ -1965,7 +1965,7 @@ packages:
 - &libs-iniparser
   category: "libs"
   name: "iniparser"
-  version: "4.1-r1"
+  version: "4.1-r2"
   uri:
   - https://github.com/ndevilla/iniparser
   license: "GPL-2"
@@ -2328,7 +2328,7 @@ packages:
 - &libs-libdv
   category: "libs"
   name: "libdv"
-  version: "1.0.0-r4+2"
+  version: "1.0.0-r5"
   uri:
   - http://libdv.sourceforge.net/
   license: "GPL-2"
@@ -5418,7 +5418,7 @@ packages:
 
 - category: "apps"
   name: "celestia"
-  version: "1.7.0_pre20221215-r1+1"
+  version: "1.7.0_pre20241231"
   uri:
   - https://celestia.space
   license: "GPL-2+"
@@ -5433,14 +5433,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "sci-astronomy/celestia"
-    use: "ffmpeg glut lua nls qt5"
+    use: "ffmpeg glut lto lua nls qt6 sdl"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
+  - <<: *layers-qt
 
 - &apps-clamav
   category: "apps"
@@ -6872,7 +6870,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "131.0.6778.204"
+  version: "131.0.6778.264"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -8057,7 +8055,7 @@ packages:
 
 - category: "apps"
   name: "ncdu"
-  version: "1.20"
+  version: "1.21"
   uri:
   - https://dev.yorhel.nl/ncdu/
   license: "MIT"
@@ -9449,7 +9447,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.22"
+  version: "9.22_p17"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -9570,7 +9568,7 @@ packages:
 
 - category: "apps"
   name: "qmplay2"
-  version: "24.06.16"
+  version: "24.12.28"
   uri:
   - https://github.com/zaps166/QMPlay2
   license: "LGPL-3"
@@ -9613,7 +9611,7 @@ packages:
 
 - category: "apps"
   name: "qt6ct"
-  version: "0.9"
+  version: "0.9-r1"
   uri:
   - https://github.com/trialuser02/qt6ct/
   license: "BSD-2"
@@ -10013,6 +10011,34 @@ packages:
 #   build_requires:
 #   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "snapper-gui"
+  version: "220626+8"
+  uri:
+  - https://github.com/ricardomv/snapper-gui
+  license: "GPL-2+"
+  description: "GUI for snapper, a tool for Linux filesystem snapshot management"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-backup/snapper-gui
+  overlays:
+  - enable: "gentoo-zh"
+  provides:
+  - category: "app-backup"
+    name: "snapper"
+    version: ">=0"
+  - category: "app-backup"
+    name: "snapper-gui"
+    version: ">=0"
+  atoms:
+  - atom: "app-backup/snapper-gui"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-sndio
   category: "apps"
   name: "sndio"
@@ -10041,7 +10067,7 @@ packages:
 
 - category: "apps"
   name: "solaar"
-  version: "1.1.13+2"
+  version: "1.1.14-r1"
   uri:
   - https://pwr-solaar.github.io/Solaar/
   license: "GPL-2"
@@ -10646,6 +10672,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-vesktop
+  category: "apps"
+  name: "vesktop"
+  version: "1.5.4"
+  uri:
+  - https://github.com/Vencord/Vesktop
+  license: "GPL-3"
+  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/vesktop-bin
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-im"
+    name: "vesktop-bin"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/vesktop-bin"
+    accept_keywords: "~amd64"
+  # inner_build_requires:
+  # - <<: *apps-nodejs
+  requires:
+  - <<: *layers-X
+  build_requires:
+  # - <<: *layers-X
+  - <<: *apps-chromium
+
 - category: "apps"
   name: "video-trimmer"
   version: "0.8.0+18"
@@ -10732,7 +10787,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.7.0-r2"
+  version: "0.8.0"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -10838,7 +10893,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.4.2"
+  version: "4.4.2-r1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -11167,7 +11222,7 @@ packages:
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
-  version: "1.22.11"
+  version: "1.22.12"
   uri:
   - https://gstreamer.freedesktop.org/
   license: "GPL-2"
@@ -12038,7 +12093,7 @@ packages:
 - &apps-cava
   category: "apps"
   name: "cava"
-  version: "0.10.3"
+  version: "0.10.3-r1"
   uri:
   - http://cdrdao.sourceforge.net
   license: "MIT Unlicense"
@@ -12336,7 +12391,7 @@ packages:
 - &apps-delve
   category: "apps"
   name: "delve"
-  version: "1.22.1"
+  version: "1.23.1"
   uri:
   - https://github.com/go-delve/delve
   license: "MIT BSD BSD-2 Apache-2.0"
@@ -12656,7 +12711,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.20.0"
+  version: "1.20.1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -12708,6 +12763,33 @@ packages:
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
+
+- &apps-ghostty
+  category: "apps"
+  name: "ghostty"
+  version: "1.0.1-r1"
+  uri:
+  - https://ghostty.org
+  license: "MIT"
+  description: "Fast, feature-rich, and cross-platform terminal emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/ghostty
+  provides:
+  - category: "x11-terms"
+    name: "ghostty"
+    version: ">=0"
+  atoms:
+  - atom: "x11-terms/ghostty"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-oniguruma
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "gkrellm"
@@ -12991,7 +13073,7 @@ packages:
 
 - category: "apps"
   name: "isomaster"
-  version: "1.3.17"
+  version: "1.3.17-r1"
   uri:
   - http://littlesvr.ca/isomaster
   license: "MIT"
@@ -13159,7 +13241,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "24.08.3"
+  version: "24.12.0"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -13176,10 +13258,10 @@ packages:
   - atom: "kde-apps/kwave"
     use: "flac mp3 opus oss vorbis"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *kde-common
   - <<: *libs-id3lib
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *kde-common
 
 - &apps-kweather
   category: "apps"
@@ -13676,7 +13758,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "31.0.0-r2"
+  version: "31.0.0-r3"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -13810,7 +13892,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.9+6"
+  version: "0.9-r1"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -13849,7 +13931,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "115.0.5322.109"
+  version: "115.0.5322.119"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14328,7 +14410,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.37"
+  version: "1.4.39"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -14497,36 +14579,8 @@ packages:
   - <<: *layers-kde-kf5
 
 - category: "apps"
-  name: "snapper-gui"
-  version: "220626+8"
-  uri:
-  - https://github.com/ricardomv/snapper-gui
-  license: "GPL-2+"
-  description: "GUI for snapper, a tool for Linux filesystem snapshot management"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-backup/snapper-gui
-  overlays:
-  - enable: "gentoo-zh"
-  provides:
-  - category: "app-backup"
-    name: "snapper"
-    version: ">=0"
-  - category: "app-backup"
-    name: "snapper-gui"
-    version: ">=0"
-  atoms:
-  - atom: "app-backup/snapper-gui"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "soundconverter"
-  version: "4.0.3+5"
+  version: "4.0.5"
   uri:
   - https://soundconverter.org
   license: "GPL-3"
@@ -14692,7 +14746,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.7.8"
+  version: "1.8.0"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -14826,35 +14880,6 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
-
-- &apps-vesktop
-  category: "apps"
-  name: "vesktop"
-  version: "1.5.3"
-  uri:
-  - https://github.com/Vencord/Vesktop
-  license: "GPL-3"
-  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/vesktop-bin
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-im"
-    name: "vesktop-bin"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/vesktop-bin"
-    accept_keywords: "~amd64"
-  # inner_build_requires:
-  # - <<: *apps-nodejs
-  requires:
-  - <<: *layers-X
-  build_requires:
-  # - <<: *layers-X
-  - <<: *apps-chromium
   
 - &apps-visual-regexp
   category: "apps"
@@ -15124,7 +15149,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.3.1.5673"
+  version: "6.3.5.6065"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -15148,10 +15173,10 @@ packages:
   inner_build_reqs:
   - dev-util/bbe
   requires:
-  - <<: *layers-kde-kf5
-  - <<: *libs-quazip
+  - <<: *layers-X
+  # - <<: *libs-quazip
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 2 libs ###
@@ -15850,33 +15875,6 @@ packages:
   - <<: *layers-gnome-common
   - <<: *apps-dcraw
   - <<: *libs-libchamplain
-  build_requires:
-  - <<: *layers-gnome-common
-
-- &apps-ghostty
-  category: "apps"
-  name: "ghostty"
-  version: "1.0.1+1"
-  uri:
-  - https://ghostty.org
-  license: "MIT"
-  description: "Fast, feature-rich, and cross-platform terminal emulator"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-terms/ghostty
-  provides:
-  - category: "x11-terms"
-    name: "ghostty"
-    version: ">=0"
-  atoms:
-  - atom: "x11-terms/ghostty"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-oniguruma
   build_requires:
   - <<: *layers-gnome-common
 
@@ -16988,7 +16986,7 @@ packages:
 
 - category: "apps"
   name: "rosegarden"
-  version: "24.06"
+  version: "24.12"
   uri:
   - https://github.com/benjamimgois/rosegarden
   license: "GPL-2"
@@ -17068,7 +17066,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.13.0"
+  version: "3.13.1"
   uri:
   - https://sqlitebrowser.org/
   license: "GPL-3+ MPL-2.0"
@@ -18931,7 +18929,7 @@ packages:
 
 - category: "apps"
   name: "digikam"
-  version: "8.5.0"
+  version: "8.5.0-r1"
   uri:
   - https://www.digikam.org/
   - https://www.qtav.org
@@ -19502,7 +19500,7 @@ packages:
 
 - category: "apps"
   name: "deluge"
-  version: "2.1.1-r5+1"
+  version: "2.1.1-r6"
   uri:
   - https://deluge-torrent.org/
   license: "GPL-2"
