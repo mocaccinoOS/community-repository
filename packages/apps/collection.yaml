@@ -10067,7 +10067,7 @@ packages:
 
 - category: "apps"
   name: "solaar"
-  version: "1.1.14-r1"
+  version: "1.1.14-r1+1"
   uri:
   - https://pwr-solaar.github.io/Solaar/
   license: "GPL-2"
@@ -10085,6 +10085,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
+  - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-X
 
@@ -16986,7 +16987,7 @@ packages:
 
 - category: "apps"
   name: "rosegarden"
-  version: "24.12"
+  version: "24.12+1"
   uri:
   - https://github.com/benjamimgois/rosegarden
   license: "GPL-2"
@@ -17000,13 +17001,15 @@ packages:
     name: "rosegarden"
     version: ">=0"
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-dssi
   - <<: *libs-ladspa-sdk
   - <<: *libs-liblo
   - <<: *libs-liblrdf
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  # - <<: *layers-qt
 
 - category: "apps"
   name: "scribus"
