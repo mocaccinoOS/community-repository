@@ -258,11 +258,12 @@
 
 {{- $value := ( index $atom "usepkg_exclude" ) }}
 {{- if $value }}
+  cat /etc/portage/make.conf || true; \
   grep -qx 'EMERGE_DEFAULT_OPTS=.*' /etc/portage/make.conf || echo 'EMERGE_DEFAULT_OPTS=' >> /etc/portage/make.conf; \
   sed -i -e "/EMERGE_DEFAULT_OPTS=.*--usepkg-exclude/! s/$/ --usepkg-exclude/" /etc/portage/make.conf; \
   sed -i -e "/EMERGE_DEFAULT_OPTS=.*--usepkg-exclude[ ]*'/! s/\(EMERGE_DEFAULT_OPTS=.*--usepkg-exclude\)[ ]*/\1 ''/" /etc/portage/make.conf; \
   sed -i -e "/--usepkg-exclude[ ]*'.*{{ $atom.atom | replace "/" "\\/" }}.*'/! s/--usepkg-exclude\([ ]*\)'\(.*\)'/--usepkg-exclude '{{ $atom.atom | replace "/" "\\/" }} \2'/" /etc/portage/make.conf; \
-  cat /etc/portage/make.conf
+  cat /etc/portage/make.conf; \
 {{- end }}
 
 {{- if eq ( mod $count 50 ) 0 }}
