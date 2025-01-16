@@ -259,9 +259,9 @@
 {{- $value := ( index $atom "usepkg_exclude" ) }}
 {{- if $value }}
   cat /etc/portage/make.conf || true; \
-  grep -qx 'EMERGE_DEFAULT_OPTS=.*' /etc/portage/make.conf || echo 'EMERGE_DEFAULT_OPTS=' >> /etc/portage/make.conf; \
-  sed -i -e "/EMERGE_DEFAULT_OPTS=.*--usepkg-exclude/! s/$/ --usepkg-exclude/" /etc/portage/make.conf; \
-  sed -i -e "/EMERGE_DEFAULT_OPTS=.*--usepkg-exclude[ ]*'/! s/\(EMERGE_DEFAULT_OPTS=.*--usepkg-exclude\)[ ]*/\1 ''/" /etc/portage/make.conf; \
+  grep -qx '^EMERGE_DEFAULT_OPTS=.*' /etc/portage/make.conf || echo 'EMERGE_DEFAULT_OPTS=' >> /etc/portage/make.conf; \
+  sed -i -e "/^EMERGE_DEFAULT_OPTS=.*--usepkg-exclude/! s/^\(EMERGE_DEFAULT_OPTS=.*\)/\1 --usepkg-exclude/" /etc/portage/make.conf; \
+  sed -i -e "/^EMERGE_DEFAULT_OPTS=.*--usepkg-exclude[ ]*'/! s/^\(EMERGE_DEFAULT_OPTS=.*--usepkg-exclude\)[ ]*/\1 ''/" /etc/portage/make.conf; \
   sed -i -e "/--usepkg-exclude[ ]*'.*{{ $atom.atom | replace "/" "\\/" }}.*'/! s/--usepkg-exclude\([ ]*\)'\(.*\)'/--usepkg-exclude '{{ $atom.atom | replace "/" "\\/" }} \2'/" /etc/portage/make.conf; \
   cat /etc/portage/make.conf; \
 {{- end }}
@@ -309,6 +309,8 @@
 
 {{- $package := . }}
 
+{{- $atoms := .atoms }}
+
 {{- range ( "outer_build_requires" | splitList " " ) }}
 {{- if ( index $package . ) }}
 {{- range ( index $package . ) }}
@@ -322,7 +324,7 @@
 {{- if .outer_build_reqs }}
 {{- range .outer_build_reqs }}
 {{- if . }}
-{{ include "community.emerge" . }}
+{{ include "community.emerge" ( list . $atoms ) }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -379,7 +381,7 @@
 {{- if .inner_build_reqs }}
 {{- range .inner_build_reqs }}
 {{- if . }}
-{{ include "community.emerge" . }}
+{{ include "community.emerge" ( list . $atoms ) }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -459,6 +461,8 @@
 
 {{- $current_package := printf "%s-%s" .category .name }}
 
+{{- $atoms := .atoms }}
+
 {{- if .setup }}
 {{- range .setup }}
 {{- if . }}
@@ -469,7 +473,7 @@
 
 {{- if .preemerge }}
 {{- range .preemerge }}
-{{- include "community.emerge" . }}
+{{- include "community.emerge" ( list . $atoms ) }}
 {{- end }}
 {{- end }}
 
@@ -485,7 +489,7 @@
 {{- include "community.package_setup" . }}
 {{- end }}
 
-{{- include "community.emerge" ( index .labels "emerge.packages" ) }}
+{{- include "community.emerge" ( list ( index .labels "emerge.packages" ) $atoms ) }}
 
 {{- end }}
 {{- end }}
@@ -521,7 +525,7 @@
 
 {{- define "community.emerge" }}
 
-{{- $tokens := . | splitList ";" }}
+{{- $tokens := ( index . 0 ) | splitList ";" }}
 {{- if eq ( len $tokens ) 1 }}
 - emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
 {{- else if eq ( len $tokens ) 2 }}
