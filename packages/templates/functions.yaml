@@ -263,7 +263,7 @@
   sed -i -e "/^EMERGE_DEFAULT_OPTS=.*--usepkg-exclude/! s/^\(EMERGE_DEFAULT_OPTS=.*\)/\1 --usepkg-exclude/" /etc/portage/make.conf; \
   sed -i -e "/^EMERGE_DEFAULT_OPTS=.*--usepkg-exclude[ ]*'/! s/^\(EMERGE_DEFAULT_OPTS=.*--usepkg-exclude\)[ ]*/\1 ''/" /etc/portage/make.conf; \
   sed -i -e "/--usepkg-exclude[ ]*'.*{{ $atom.atom | replace "/" "\\/" }}.*'/! s/--usepkg-exclude\([ ]*\)'\(.*\)'/--usepkg-exclude '{{ $atom.atom | replace "/" "\\/" }} \2'/" /etc/portage/make.conf; \
-  sed -i -e "s/--usepkg-exclude '[ ]*\(.*\)[ ]*'/--usepkg-exclude '\1'/" /etc/portage/make.conf; \
+  sed -i -E "s/--usepkg-exclude ' *([^ ']*([^']*[^ ])) *'/--my-option '\1'/g" /etc/portage/make.conf; \
   cat /etc/portage/make.conf; \
 {{- end }}
 
