@@ -524,8 +524,6 @@
 
 {{- define "community.emerge" }}
 
-- cat /etc/portage/make.conf; \
-  
 {{- $tokens := ( index . 0 ) | splitList ";" }}
 {{- if eq ( len $tokens ) 1 }}
 - emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
