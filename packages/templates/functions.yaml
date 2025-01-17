@@ -256,14 +256,16 @@
   echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 
-{{- $value := ( index $atom "usepkg_exclude" ) }}
+{{/* not working */}}
+{{/*- $value := ( index $atom "usepkg_exclude" ) }}
 {{- if $value }}
   grep -qx '^EMERGE_DEFAULT_OPTS=.*' /etc/portage/make.conf || echo 'EMERGE_DEFAULT_OPTS=' >> /etc/portage/make.conf; \
   sed -i -E '/^EMERGE_DEFAULT_OPTS=["'"'"'].*["'"'"']$/! s/^EMERGE_DEFAULT_OPTS=["'"'"']*(.*)["'"'"']*$/EMERGE_DEFAULT_OPTS="\1"/' /etc/portage/make.conf; \
   sed -i -E '/^EMERGE_DEFAULT_OPTS=".*--usepkg-exclude.*"/! s/^EMERGE_DEFAULT_OPTS="(.*)"/EMERGE_DEFAULT_OPTS="\1 --usepkg-exclude"/' /etc/portage/make.conf; \
   sed -i -E '/--usepkg-exclude[ ]*'"'"'.*{{ $atom.atom | replace "/" "\\/" }}.*'"'"'"/! s/--usepkg-exclude([ ]*)'"'"'*(.*)'"'"'*"/--usepkg-exclude '"'"'{{ $atom.atom | replace "/" "\\/" }} \2'"'"'"/' /etc/portage/make.conf; \
   sed -i -E 's/--usepkg-exclude '"'"' *([^ '"'"']*([^'"'"']*[^ ])) *'"'"'"/--usepkg-exclude '"'"'\1'"'"'"/g' /etc/portage/make.conf; \
-{{- end }}
+{{- end */}}
+{{/* end not working */}}
 
 {{- if eq ( mod $count 50 ) 0 }}
   echo;
@@ -524,11 +526,27 @@
 
 {{- define "community.emerge" }}
 
+{{- $usepkg_exclude := "" }}
+{{- range ( index . 1 ) }}
+
+{{- $atom := . }}
+
+{{- $value := ( index $atom "usepkg_exclude" ) }}
+{{- if $value }}
+{{- $usepkg_exclude = trim ( printf "%s %s" $usepkg_exclude ( trim $atom.atom | replace "/" "\\/" ) ) }}
+{{- end }}
+
+{{- end }}
+
+{{- if $usepkg_exclude }}
+{{- $usepkg_exclude = printf "--usepkg-exclude \"%s\"" $usepkg_exclude }}
+{{- end }}
+
 {{- $tokens := ( index . 0 ) | splitList ";" }}
 {{- if eq ( len $tokens ) 1 }}
-- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
+- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }}
 {{- else if eq ( len $tokens ) 2 }}
-- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}"
+- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }}
 {{- end }}
 - rm -rf /etc/portage/gnupg || true;
 - rm -rf /var/cache/binpkgs/* || true;
