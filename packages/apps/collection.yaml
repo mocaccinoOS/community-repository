@@ -13604,10 +13604,11 @@ packages:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
   prepare:
-  - echo "media-video/mkvtoolnix compiler-clang" > /etc/portage/package.env/01-media-video_mkvtoolnix.env
+  - sed -i '/qtbase/d' /etc/portage/package.env/01-qt.env
   inner_build_reqs:
   - dev-ruby/rake
   - app-text/po4a
+  - dev-qt/qtbase:6
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
