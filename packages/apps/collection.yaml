@@ -14222,6 +14222,52 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-qalculate-gtk
+  category: "apps"
+  name: "qalculate-gtk"
+  version: "5.3.0"
+  uri:
+  - https://qalculate.github.io/
+  license: "GPL-2+"
+  description: "Modern multi-purpose calculator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-calculators/qalculate-gtk
+  provides:
+  - category: "sci-calculators"
+    name: "qalculate-gtk"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-util/intltool
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libqalculate
+  build_requires:
+  - <<: *layers-X
+
+- &apps-qalculate-qt
+  category: "apps"
+  name: "qalculate-qt"
+  version: "5.3.0"
+  uri:
+  - https://github.com/Qalculate/qalculate-qt
+  license: "GPL-2+"
+  description: "Qt-based UI for libqalculate"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-calculators/qalculate-qt
+  provides:
+  - category: "sci-calculators"
+    name: "qalculate-qt"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libqalculate
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "qcad"
   version: "3.27.8.4+3"
