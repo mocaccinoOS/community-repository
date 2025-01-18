@@ -492,7 +492,7 @@ function ensurePortageTree() {
     fi
     
     if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
-        local PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+        PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
     
         echo -e "\n\e\033[0;32;1mDownloading https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz ...\e[0m"
         
@@ -534,7 +534,7 @@ mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 echo > "${PACKAGES_INFO_FILE}"
 echo > "${PACKAGES_UP_FILE}"
 
-echo -e "\n\e\033[0;32;1mLooking for upgradable packages...\e[0m!\n"
+echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${PORTAGE_HASH}) ...\e[0m!\n"
 
 COLLECTIONS=("layers" "apps")
 
