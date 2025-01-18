@@ -2797,6 +2797,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libqalculate
+  category: "libs"
+  name: "libqalculate"
+  version: "5.3.0-r1"
+  uri:
+  - https://qalculate.github.io/
+  license: "GPL-2+"
+  description: "A modern multi-purpose calculator library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/libqalculate
+  provides:
+  - category: "sci-libs"
+    name: "libqalculate"
+    version: ">=0"
+  atoms:
+  - atom: "sci-libs/libqalculate"
+    use: "icu readline # curl gnuplot"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
@@ -13587,11 +13611,11 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "86.0+3"
+  version: "86.0"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
-  description: "Tools to create, alter, and inspect Matroska files"
+  description: "Tools to create, alter and inspect Matroska files"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -13603,12 +13627,9 @@ packages:
   atoms:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
-  prepare:
-  - sed -i '/qtbase/d' /etc/portage/package.env/01-qt.env
   inner_build_reqs:
   - dev-ruby/rake
   - app-text/po4a
-  - dev-qt/qtbase:6
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
