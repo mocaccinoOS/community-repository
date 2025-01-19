@@ -6678,6 +6678,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-geany
+  category: "apps"
+  name: "geany"
+  version: "2.0"
+  uri:
+  - https://www.geany.org
+  license: "GPL-2+ HPND"
+  description: "GTK+ based fast and lightweight IDE"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/geany
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-util"
+    name: "geany"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "geeqie"
   version: "2.4+2"
