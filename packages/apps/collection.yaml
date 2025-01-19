@@ -4425,30 +4425,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-tre
-  category: "libs"
-  name: "tre"
-  version: "0.8.0_p20210321-r4+1"
-  uri:
-  - https://laurikari.net/tre/
-  - https://github.com/laurikari/tre
-  license: "BSD-2"
-  description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tre
-  provides:
-  - category: "dev-libs"
-    name: "tre"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/tre"
-    use: "agrep alloca approx nls profile python"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# can't build
+# - &libs-tre
+#   category: "libs"
+#   name: "tre"
+#   version: "0.8.0_p20210321-r4"
+#   uri:
+#   - https://laurikari.net/tre/
+#   - https://github.com/laurikari/tre
+#   license: "BSD-2"
+#   description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-libs/tre
+#   provides:
+#   - category: "dev-libs"
+#     name: "tre"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-libs/tre"
+#     use: "agrep alloca approx nls profile python"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-tree-sitter
   category: "libs"
