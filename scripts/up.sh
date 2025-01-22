@@ -492,23 +492,30 @@ function ensurePortageTree() {
     fi
     
     if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
-        PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+        #PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+        PORTAGE_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
     
-        echo -e "\n\e\033[0;32;1mDownloading https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz ...\e[0m"
-        
-        # --remote-name
-        curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
-    
-        echo -e "\e\033[0;32;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz downloaded.\e[0m"
-    
-        mkdir -p "${PORTAGE_TREE_PATH}"
-        if tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1 ; then
-            rm ./tree.tar.gz
-        else
-            echo -e "\e\033[0;31;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz could not be downloaded.\e[0m"
-            # cat "https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz"
-        
+        if [[ -z "${PORTAGE_HASH}" ]] ; then
+            echo -e "\e\033[0;31;1mTree hash could not be retrieved.\e[0m"
+            
             exit 1
+        else
+            echo -e "\n\e\033[0;32;1mDownloading https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz ...\e[0m"
+            
+            # --remote-name
+            curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
+        
+            echo -e "\e\033[0;32;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz downloaded.\e[0m"
+        
+            mkdir -p "${PORTAGE_TREE_PATH}"
+            if tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1 ; then
+                rm ./tree.tar.gz
+            else
+                echo -e "\e\033[0;31;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz could not be downloaded.\e[0m"
+                # cat "https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz"
+            
+                exit 1
+            fi
         fi
     fi
 }
