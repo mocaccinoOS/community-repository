@@ -256,17 +256,6 @@
   echo -e "{{ $atom.atom }} {{ $value }}" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
 
-{{/* not working */}}
-{{/*- $value := ( index $atom "usepkg_exclude" ) }}
-{{- if $value }}
-  grep -qx '^EMERGE_DEFAULT_OPTS=.*' /etc/portage/make.conf || echo 'EMERGE_DEFAULT_OPTS=' >> /etc/portage/make.conf; \
-  sed -i -E '/^EMERGE_DEFAULT_OPTS=["'"'"'].*["'"'"']$/! s/^EMERGE_DEFAULT_OPTS=["'"'"']*(.*)["'"'"']*$/EMERGE_DEFAULT_OPTS="\1"/' /etc/portage/make.conf; \
-  sed -i -E '/^EMERGE_DEFAULT_OPTS=".*--usepkg-exclude.*"/! s/^EMERGE_DEFAULT_OPTS="(.*)"/EMERGE_DEFAULT_OPTS="\1 --usepkg-exclude"/' /etc/portage/make.conf; \
-  sed -i -E '/--usepkg-exclude[ ]*'"'"'.*{{ $atom.atom | replace "/" "\\/" }}.*'"'"'"/! s/--usepkg-exclude([ ]*)'"'"'*(.*)'"'"'*"/--usepkg-exclude '"'"'{{ $atom.atom | replace "/" "\\/" }} \2'"'"'"/' /etc/portage/make.conf; \
-  sed -i -E 's/--usepkg-exclude '"'"' *([^ '"'"']*([^'"'"']*[^ ])) *'"'"'"/--usepkg-exclude '"'"'\1'"'"'"/g' /etc/portage/make.conf; \
-{{- end */}}
-{{/* end not working */}}
-
 {{- if eq ( mod $count 50 ) 0 }}
   echo;
 {{- end }}
