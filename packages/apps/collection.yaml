@@ -6268,7 +6268,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "128-131"
+  version: "128-131+1"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6277,7 +6277,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/ffmpeg-chromium:128
-      media-video/ffmpeg-chromium:132
+      media-video/ffmpeg-chromium:131
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -14046,7 +14046,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "116.0.5366.35+1"
+  version: "116.0.5366.35+2"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -17701,7 +17701,7 @@ packages:
     A library for handling the decoding of various sound file formats
     Library that allows you to use TrueType fonts in SDL applications
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl-gfx
       media-libs/sdl-image
@@ -17745,8 +17745,7 @@ packages:
   - <<: *libs-libmikmod
   - <<: *libs-smpeg
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-X
 
 - &libs-sdl2
   category: "libs"
@@ -17764,7 +17763,7 @@ packages:
     Simple Direct Media Layer Network Support Library
     Library that allows you to use TrueType fonts in SDL applications
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl2-gfx
       media-libs/sdl2-image
@@ -17801,8 +17800,7 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
+  - <<: *layers-X
 
 # - &def-vtk
 #   category: "layers"
