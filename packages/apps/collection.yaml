@@ -6268,7 +6268,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "128-132+1"
+  version: "128-131"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -14046,7 +14046,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "116.0.5366.35"
+  version: "116.0.5366.35+1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14142,6 +14142,7 @@ packages:
   atoms:
   - atom: "app-emulation/pcem"
     use: "alsa networking"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-wxGTK
@@ -14656,8 +14657,8 @@ packages:
   prepare:
   # Needs python[tk], remove that
   - |
-    sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild && \
-    ebuild /var/db/repos/gentoo/app-text/sigil/sigil-2.3.1.ebuild manifest
+    sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-*.ebuild && \
+    ebuild /var/db/repos/gentoo/app-text/sigil/sigil-*.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *libs-css-parser
@@ -15809,6 +15810,9 @@ packages:
   provides:
   - category: "kde-apps"
     name: "cantor"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "cln"
     version: ">=0"
   atoms:
   - atom: "kde-apps/cantor"
@@ -17741,7 +17745,8 @@ packages:
   - <<: *libs-libmikmod
   - <<: *libs-smpeg
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - &libs-sdl2
   category: "libs"
@@ -17796,7 +17801,8 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 # - &def-vtk
 #   category: "layers"
