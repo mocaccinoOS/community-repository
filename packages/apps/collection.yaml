@@ -597,24 +597,24 @@ packages:
     name: "fontawesome"
     version: ">=0"
 
-# - &fonts-font-cursor-misc
-#   <<: *fonts
-#   name: "font-cursor-misc"
-#   version: "1.0.4+2"
-#   uri:
-#   - https://www.x.org/wiki
-#   license: "MIT"
-#   description: "X.Org cursor font"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-fonts/font-cursor-misc
-#   provides:
-#   - category: "media-fonts"
-#     name: "font-cursor-misc"
-#     version: ">=0"
-#   inner_build_reqs:
-#   - x11-apps/bdftopcf
+- &fonts-font-cursor-misc
+  <<: *fonts
+  name: "font-cursor-misc"
+  version: "1.0.4+3"
+  uri:
+  - https://www.x.org/wiki
+  license: "MIT"
+  description: "X.Org cursor font"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/font-cursor-misc
+  provides:
+  - category: "media-fonts"
+    name: "font-cursor-misc"
+    version: ">=0"
+  inner_build_reqs:
+  - x11-apps/bdftopcf
 
 - <<: *fonts
   name: "inconsolata"
@@ -6220,7 +6220,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "128-132"
+  version: "128-132+1"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6229,7 +6229,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/ffmpeg-chromium:128
-      media-video/ffmpeg-chromium:130
+      media-video/ffmpeg-chromium:132
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -10852,7 +10852,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.8.1"
+  version: "0.8.0"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -17333,7 +17333,7 @@ packages:
 
 - category: "apps"
   name: "x2goserver"
-  version: "4.1.0.6+1"
+  version: "4.1.0.6+2"
   uri:
   - http://www.x2go.org
   license: "GPL-2"
@@ -17361,7 +17361,7 @@ packages:
   - category: "entity"
     name: "x2goprint"
     version: ">=0"
-  # - <<: *fonts-font-cursor-misc
+  - <<: *fonts-font-cursor-misc
   build_requires:
   - <<: *layers-perl-libs
 
