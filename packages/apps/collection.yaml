@@ -2504,6 +2504,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-glpk
+  category: "libs"
+  name: "glpk"
+  version: "5.0-r3"
+  uri:
+  - https://www.gnu.org/software/glpk/
+  license: "GPL-3"
+  description: "GNU Linear Programming Kit"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sci-mathematics/glpk
+  provides:
+  - category: "sci-mathematics"
+    name: "glpk"
+    version: ">=0"
+  atoms:
+  - atom: "sci-mathematics/glpk"
+    use: "gmp odbc mysql"
+  requires:
+  - <<: *layers-office-common
+  - <<: *layers-sci-libs
+  build_requires:
+  - <<: *buildbase-office-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
+
 - &libs-libharu
   category: "libs"
   name: "libharu"
@@ -2980,6 +3007,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-libvisio
+  category: "libs"
+  name: "libvisio"
+  version: "0.1.8"
+  uri:
+  - https://wiki.documentfoundation.org/DLP/Libraries/libvisio
+  license: "GPL-2+ LGPL-2.1 MPL-1.1"
+  description: "Library parsing the file format of MS Visio documents"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libvisio
+  provides:
+  - category: "media-libs"
+    name: "libvisio"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-libXaw3d
   category: "libs"
@@ -5276,7 +5324,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.73.104"
+  version: "1.74.48"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -10872,6 +10920,7 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
+  - gui-libs/libadwaita:ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -11287,7 +11336,7 @@ packages:
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
-  version: "1.22.12"
+  version: "1.24.11"
   uri:
   - https://gstreamer.freedesktop.org/
   license: "GPL-2"
@@ -12400,7 +12449,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "4.8.0+1"
+  version: "4.8.0-r1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -12456,7 +12505,7 @@ packages:
 - &apps-delve
   category: "apps"
   name: "delve"
-  version: "1.23.1"
+  version: "1.24.0"
   uri:
   - https://github.com/go-delve/delve
   license: "MIT BSD BSD-2 Apache-2.0"
@@ -12528,7 +12577,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "0.2+17"
+  version: "0.2+18"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -12776,7 +12825,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.20.1"
+  version: "1.20.1-r1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -12832,7 +12881,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.0.1-r1"
+  version: "1.0.1-r3"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -13651,7 +13700,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "86.0+1"
+  version: "88.0"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -13997,7 +14046,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "115.0.5322.119"
+  version: "116.0.5366.35"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14077,7 +14126,7 @@ packages:
 
 - category: "apps"
   name: "pcem"
-  version: "17-r2+2"
+  version: "17_p20241210"
   uri:
   - https://pcem-emulator.co.uk/
   license: "GPL-2+"
@@ -14292,7 +14341,7 @@ packages:
 - &apps-qdevicemonitor
   category: "apps"
   name: "qdevicemonitor"
-  version: "1.0.1-r2+3"
+  version: "1.0.1-r3"
   uri:
   - https://github.com/alopatindev/qdevicemonitor
   license: "GPL-3"
@@ -14585,7 +14634,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.3.1+2"
+  version: "2.4.0"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -14974,7 +15023,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.0.3495.26"
+  version: "7.0.3495.27"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -15215,7 +15264,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.3.5.6065"
+  version: "6.3.6.6315"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -15273,33 +15322,6 @@ packages:
   - <<: *libs-dumb
   build_requires:
   - <<: *layers-X
-
-- &libs-glpk
-  category: "libs"
-  name: "glpk"
-  version: "5.0-r1+1"
-  uri:
-  - https://www.gnu.org/software/glpk/
-  license: "GPL-3"
-  description: "GNU Linear Programming Kit"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-mathematics/glpk
-  provides:
-  - category: "sci-mathematics"
-    name: "glpk"
-    version: ">=0"
-  atoms:
-  - atom: "sci-mathematics/glpk"
-    use: "gmp odbc mysql"
-  requires:
-  - <<: *layers-office-common
-  - <<: *layers-sci-libs
-  build_requires:
-  - <<: *buildbase-office-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
 
 - &libs-gst-plugins-libnice
   category: "libs"
@@ -15377,27 +15399,6 @@ packages:
 #   - <<: *libs-libgit2
 #   build_requires:
 #   - <<: *layers-X
-
-- &libs-libvisio
-  category: "libs"
-  name: "libvisio"
-  version: "0.1.7+10"
-  uri:
-  - https://wiki.documentfoundation.org/DLP/Libraries/libvisio
-  license: "GPL-2+ LGPL-2.1 MPL-1.1"
-  description: "Library parsing the file format of MS Visio documents"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libvisio
-  provides:
-  - category: "media-libs"
-    name: "libvisio"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-openvdb
   category: "libs"
@@ -15796,7 +15797,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.12.0"
+  version: "24.12.1"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -15898,7 +15899,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.4.1"
+  version: "2.4.2"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -16598,7 +16599,7 @@ packages:
 - &apps-megasync
   category: "apps"
   name: "megasync"
-  version: "5.7.0.0"
+  version: "5.7.1.0"
   uri:
   - https://mega.io
   - https://github.com/meganz/MEGAsync
@@ -17679,7 +17680,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+22"
+  version: "0.1+23"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -17745,7 +17746,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "0.1+24"
+  version: "0.1+25"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
