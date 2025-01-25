@@ -7137,6 +7137,26 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "htop"
+  version: "3.3.0+13"
+  uri:
+  - https://htop.dev
+  license: "BSD GPL-2+"
+  description: "Interactive process viewer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/htop
+  provides:
+  - category: "sys-fs"
+    name: "htop"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "httrack"
   version: "3.49.5+1"
   uri:
