@@ -7146,9 +7146,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sys-fs/htop
+      sys-process/htop
   provides:
-  - category: "sys-fs"
+  - category: "sys-process"
     name: "htop"
     version: ">=0"
   requires:
@@ -8513,6 +8513,7 @@ packages:
 
 # USE="hscolour" emerge --pretend --verbose app-text/pandoc
 # USE="hscolour" ACCEPT_KEYWORDS="~amd64" emerge --pretend --verbose =app-text/pandoc-2.18-r2
+# USE="hscolour" ACCEPT_KEYWORDS="~amd64" emerge --pretend --verbose app-text/pandoc
 - &apps-pandoc
   category: "apps"
   name: "pandoc"
@@ -17709,7 +17710,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+22"
+  version: "0.1+23"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -17757,11 +17758,13 @@ packages:
   - atom: "media-libs/sdl-image"
     use: "gif jpeg png tiff webp"
   - atom: "media-libs/sdl-mixer"
-    use: "midi mod smpeg wav flac mad mikmod modplug mp3 timidity vorbis # playtools fluidsynth"
+    use: "midi mod wav flac mad mikmod modplug mp3 timidity vorbis # smpeg playtools fluidsynth"
   - atom: "media-libs/sdl-sound"
     use: "flac mikmod modplug mp3 mpeg speex vorbis"
   - atom: "media-libs/sdl-ttf"
     use: "X"
+  prepare:
+  - media-sound/mpg123-base;USE="sdl"
   optrequires:
   # - <<: *apps-fluidsynth
   - <<: *apps-timidity
@@ -17818,6 +17821,8 @@ packages:
     use: "midi mod tremor wav flac mp3 opus timidity vorbis # playtools fluidsynth"
   - atom: "media-libs/sdl2-ttf"
     use: "harfbuzz X"
+  prepare:
+  - media-sound/mpg123-base;USE="sdl"
   optrequires:
   - <<: *libs-AOMediaCodecs
   # - <<: *apps-fluidsynth
