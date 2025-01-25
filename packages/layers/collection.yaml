@@ -1862,7 +1862,7 @@ packages:
 - &def-haskell
   category: "layers"
   name: "haskell"
-  version: "0.24"
+  version: "0.25"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -2862,7 +2862,8 @@ packages:
   requires:
   - <<: *layers-ghc
   build_requires:
-  - <<: *layers-ghc
+  - <<: *buildbase-ghc
+  requires_final_images: true
 
 # - <<: *def-haskell
 #   category: "layerbase"
