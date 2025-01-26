@@ -5154,6 +5154,29 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "bashtop"
+  version: "0.9.25+102"
+  uri:
+  - https://github.com/aristocratos/bashtop
+  license: "Apache-2.0"
+  description: "Resource monitor that shows usage and stats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/bashtop
+  provides:
+  - category: "sys-process"
+    name: "bashtop"
+    version: ">=0"
+  atoms:
+  - atom: "sys-process/bashtop"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "bchunk"
   version: "1.2.2-r1+1"
   uri:
