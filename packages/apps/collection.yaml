@@ -5011,6 +5011,26 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- category: "apps"
+  name: "atop"
+  version: "2.11"
+  uri:
+  - https://www.atoptool.nl
+  license: "GPL-2"
+  description: "Resource-specific view of processes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/atop
+  provides:
+  - category: "sys-process"
+    name: "atop"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
