@@ -1459,7 +1459,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.23+4"
+  version: "0.24"
   uri:
   - https://xerces.apache.org/xerces-c/
   - http://www.qhull.org
@@ -1497,6 +1497,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/xerces-c
+      dev-python/scipy
+      dev-python/matplotlib
       media-libs/qhull
       sci-libs/amd
       sci-libs/arpack
@@ -1519,6 +1521,24 @@ packages:
   provides:
   - category: "dev-libs"
     name: "xerces-c"
+    version: ">=0"
+  - category: "dev-python"
+    name: "contourpy"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cppy"
+    version: ">=0"
+  - category: "dev-python"
+    name: "cycler"
+    version: ">=0"
+  - category: "dev-python"
+    name: "kiwisolver"
+    version: ">=0"
+  - category: "dev-python"
+    name: "matplotlib"
+    version: ">=0"
+  - category: "dev-python"
+    name: "scipy"
     version: ">=0"
   - category: "media-libs"
     name: "qhull"
@@ -1597,6 +1617,8 @@ packages:
     use: "int64 fortran openmp mpi"
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
+  - atom: "dev-python/matplotlib"
+    license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf mpi"
   - atom: "sci-libs/spqr"
@@ -1608,6 +1630,12 @@ packages:
   - atom: "virtual/mpi"
     use: "fortran # nullmpi romio cxx threads"
   inner_build_reqs:
+  - dev-python/beniget
+  - dev-python/pooch
+  - dev-python/meson-python
+  - dev-python/pyproject-metadata
+  - dev-python/pythran
+  - dev-python/gast
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
