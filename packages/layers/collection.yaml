@@ -278,6 +278,11 @@ stubs:
 ### fonts ###
 ################################################################################
 
+- &fonts-stix-fonts
+  category: "fonts"
+  name: "stix-fonts"
+  version: ">=0"
+
 ################################################################################
 ### libs ###
 ################################################################################
@@ -291,6 +296,33 @@ packages:
 ################################################################################################################################################################
 ### dep 0 libs ###
 ################################################################################################################################################################
+
+- &libs-fonttools
+  category: "libs"
+  name: "fonttools"
+  version: "4.55.3"
+  uri:
+  - https://github.com/fonttools/fonttools/
+  license: "BSD"
+  description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/fonttools
+  provides:
+  - category: "dev-python"
+    name: "appdirs"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fonttools"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fs"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 # https://bugs.gentoo.org/768993
 - &libs-gtk2
@@ -1640,6 +1672,8 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-openmpi
+  - <<: *fonts-stix-fonts
+  - <<: *libs-fonttools
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-openmpi
@@ -1653,100 +1687,6 @@ packages:
   category: "buildbase"
   unpack: true
   hidden: true
-
-
-# - &def-gdal
-#   category: "layers"
-#   name: "gdal"
-#   version: "0.1"
-#   uri:
-#   - https://scipy.org/
-#   - https://libgeos.org/
-#   - http://ogdi.sourceforge.net/
-#   - https://proj.org/
-#   - https://laszip.org/
-#   - https://sourceforge.net/projects/lpsolve/
-#   license: "metapackage"
-#   description: |
-#     Scientific algorithms library for Python
-#     Translator library for raster geospatial data formats (includes OGR support)
-#     Geometry engine library for Geographic Information Systems
-#     Library for reading TIFF files with embedded tags for geographic information
-#     Open Geographical Datastore Interface, a GIS support library
-#     PROJ coordinate transformation software
-#     Suite of nonlinear solvers
-#     Multithreaded sparse LU factorization library
-#     Library for free and lossless compression of the LAS LiDAR format
-#     Mixed Integer Linear Programming (MILP) solver
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/scipy
-#       sci-geosciences/laszip
-#       sci-libs/armadillo
-#       sci-libs/geos
-#       sci-libs/libgeotiff
-#       sci-libs/ogdi
-# #       sci-libs/proj
-#       sci-mathematics/lpsolve
-#   provides:
-#   - category: "dev-cpp"
-#     name: "xsimd"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pythran"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "scipy"
-#     version: ">=0"
-#   - category: "sci-geosciences"
-#     name: "laszip"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "armadillo"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "geos"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "libgeotiff"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "ogdi"
-#     version: ">=0"
-# #   - category: "sci-libs"
-# #     name: "proj"
-# #     version: ">=0"
-#   - category: "sci-mathematics"
-#     name: "lpsolve"
-#     version: ">=0"
-#   atoms:
-#   - atom: "sci-libs/armadillo"
-#     use: "arpack superlu blas hdf5 lapack # mkl"
-#   - atom: "sci-libs/libgeotiff"
-#     use: "jpeg tiff zlib"
-# #   - atom: "sci-libs/proj"
-# #     use: "curl tiff"
-#   inner_build_reqs:
-#   - virtual/imagemagick-tools;USE="jpeg"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-fonttools
-#   - <<: *layers-openmpi
-#   build_requires:
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-cfitsio
-#   - <<: *buildbase-fonttools
-#   requires_final_images: true
-# 
-# - <<: *def-gdal
-#   category: "layerbase"
-#   hidden: true
-# 
-# # - <<: *def-gdal
-# #   category: "buildbase"
-# #   unpack: true
-# #   hidden: true
 
 
 - &def-term-libs
