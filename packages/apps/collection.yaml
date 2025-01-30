@@ -1176,41 +1176,41 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-coin
-  category: "libs"
-  name: "coin"
-  version: "4.0.3"
-  uri:
-  - https://github.com/coin3d/coin/wiki
-  license: "GPL-2 PEL"
-  description: "A high-level 3D graphics toolkit, fully compatible with SGI Open Inventor 2.1"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/coin
-  provides:
-  - category: "media-libs"
-    name: "coin"
-    version: ">=0"
-  - category: "media-libs"
-    name: "simage"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/coin"
-    use: "exceptions javascript openal threads"
-    env: "EMERGE_DEFAULT_OPTS=\"\""
-  - atom: "media-libs/simage"
-    use: "gif jpeg png -qt5 qt6 sndfile tiff vorbis zlib"
-  prepare:
-  - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey\:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild manifest
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-gnome-common
-  requires_final_images: true
+# - &libs-coin
+#   category: "libs"
+#   name: "coin"
+#   version: "4.0.3"
+#   uri:
+#   - https://github.com/coin3d/coin/wiki
+#   license: "GPL-2 PEL"
+#   description: "A high-level 3D graphics toolkit, fully compatible with SGI Open Inventor 2.1"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/coin
+#   provides:
+#   - category: "media-libs"
+#     name: "coin"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "simage"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-libs/coin"
+#     use: "exceptions javascript openal threads"
+#     env: "EMERGE_DEFAULT_OPTS=\"\""
+#   - atom: "media-libs/simage"
+#     use: "gif jpeg png -qt5 qt6 sndfile tiff vorbis zlib"
+#   prepare:
+#   - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey\:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
+#   - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild manifest
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *buildbase-qt
+#   - <<: *buildbase-gnome-common
+#   requires_final_images: true
 
 # - &libs-collada-dom
 #   category: "libs"
@@ -1344,47 +1344,47 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-cubeb
-  category: "libs"
-  name: "cubeb"
-  version: "0.2_p20231121+1"
-  uri:
-  - https://github.com/mozilla/cubeb
-  license: "ISC"
-  description: "Cross-platform audio library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/cubeb
-  provides:
-  - category: "media-libs"
-    name: "cubeb"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-cubeb
+#   category: "libs"
+#   name: "cubeb"
+#   version: "0.2_p20231121+1"
+#   uri:
+#   - https://github.com/mozilla/cubeb
+#   license: "ISC"
+#   description: "Cross-platform audio library"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/cubeb
+#   provides:
+#   - category: "media-libs"
+#     name: "cubeb"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
-- &libs-enet
-  category: "libs"
-  name: "enet"
-  version: "1.3.18"
-  uri:
-  - http://enet.bespin.org/
-  license: "MIT"
-  description: "Relatively thin, simple and robust network communication layer on top of UDP"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/enet
-  provides:
-  - category: "net-libs"
-    name: "enet"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-enet
+#   category: "libs"
+#   name: "enet"
+#   version: "1.3.18"
+#   uri:
+#   - http://enet.bespin.org/
+#   license: "MIT"
+#   description: "Relatively thin, simple and robust network communication layer on top of UDP"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/enet
+#   provides:
+#   - category: "net-libs"
+#     name: "enet"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-feedparser
   category: "libs"
@@ -1437,7 +1437,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.3.8"
+  version: "1.3.8+1"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -1697,30 +1697,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gloox
-  category: "libs"
-  name: "gloox"
-  version: "1.0.28"
-  uri:
-  - https://camaya.net/gloox/
-  license: "GPL-3"
-  description: "A portable high-level Jabber/XMPP library for C++"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/gloox
-  provides:
-  - category: "net-libs"
-    name: "gloox"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/gloox"
-    use: "gnutls idn ssl zlib"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
+# - &libs-gloox
+#   category: "libs"
+#   name: "gloox"
+#   version: "1.0.28"
+#   uri:
+#   - https://camaya.net/gloox/
+#   license: "GPL-3"
+#   description: "A portable high-level Jabber/XMPP library for C++"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/gloox
+#   provides:
+#   - category: "net-libs"
+#     name: "gloox"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-libs/gloox"
+#     use: "gnutls idn ssl zlib"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-sys-fs
+#   build_requires:
+#   - <<: *layers-sys-fs
 
 - &libs-gmime-2
   category: "libs"
@@ -2044,27 +2044,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-javax-inject
-  category: "libs"
-  name: "javax-inject"
-  version: "1-r4+2"
-  uri:
-  - https://github.com/javax-inject/javax-inject
-  license: "Apache-2.0"
-  description: "Dependency injection for Java (JSR-330)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/javax-inject
-  provides:
-  - category: "dev-java"
-    name: "javax-inject"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
 - &libs-jbigkit
   category: "libs"
   name: "jbigkit"
@@ -2086,26 +2065,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-jsr305
-  category: "libs"
-  name: "jsr305"
-  version: "3.0.2-r1+1"
-  uri:
-  - https://jcp.org/en/jsr/detail?id
-  license: "BSD"
-  description: "Annotations for Software Defect Detection in Java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/jsr305
-  provides:
-  - category: "dev-java"
-    name: "jsr305"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
+# - &libs-jsr305
+#   category: "libs"
+#   name: "jsr305"
+#   version: "3.0.2-r1+1"
+#   uri:
+#   - https://jcp.org/en/jsr/detail?id
+#   license: "BSD"
+#   description: "Annotations for Software Defect Detection in Java"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-java/jsr305
+#   provides:
+#   - category: "dev-java"
+#     name: "jsr305"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-java
+#   build_requires:
+#   - <<: *layers-java
 
 - &libs-ladspa-sdk
   category: "libs"
@@ -2323,26 +2302,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libdv
-  category: "libs"
-  name: "libdv"
-  version: "1.0.0-r5"
-  uri:
-  - http://libdv.sourceforge.net/
-  license: "GPL-2"
-  description: "Software codec for dv-format video (camcorders etc)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libdv
-  provides:
-  - category: "media-libs"
-    name: "libdv"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-libdv
+#   category: "libs"
+#   name: "libdv"
+#   version: "1.0.0-r5"
+#   uri:
+#   - http://libdv.sourceforge.net/
+#   license: "GPL-2"
+#   description: "Software codec for dv-format video (camcorders etc)"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/libdv
+#   provides:
+#   - category: "media-libs"
+#     name: "libdv"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-libdvdcss
   category: "libs"
@@ -2428,26 +2407,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libfpx
-  category: "libs"
-  name: "libfpx"
-  version: "1.3.1_p10-r1"
-  uri:
-  - https://github.com/ImageMagick/libfpx
-  license: "Flashpix"
-  description: "A library for manipulating FlashPIX images"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libfpx
-  provides:
-  - category: "media-libs"
-    name: "libfpx"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-libfpx
+#   category: "libs"
+#   name: "libfpx"
+#   version: "1.3.1_p10-r1"
+#   uri:
+#   - https://github.com/ImageMagick/libfpx
+#   license: "Flashpix"
+#   description: "A library for manipulating FlashPIX images"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/libfpx
+#   provides:
+#   - category: "media-libs"
+#     name: "libfpx"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-libgii-libggi
   category: "libs"
@@ -3119,29 +3098,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-loudmouth
-  category: "libs"
-  name: "loudmouth"
-  version: "1.5.4+3"
-  uri:
-  - https://github.com/mcabber/loudmouth
-  license: "LGPL-2.1"
-  description: "Lightweight C Jabber library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/loudmouth
-  provides:
-  - category: "net-libs"
-    name: "loudmouth"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/loudmouth"
-    use: "asyncns ssl openssl"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
+# - &libs-loudmouth
+#   category: "libs"
+#   name: "loudmouth"
+#   version: "1.5.4+3"
+#   uri:
+#   - https://github.com/mcabber/loudmouth
+#   license: "LGPL-2.1"
+#   description: "Lightweight C Jabber library"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-libs/loudmouth
+#   provides:
+#   - category: "net-libs"
+#     name: "loudmouth"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-libs/loudmouth"
+#     use: "asyncns ssl openssl"
+#   requires:
+#   - <<: *layers-sys-fs
+#   build_requires:
+#   - <<: *layers-sys-fs
 
 - &libs-lrzsz
   category: "libs"
@@ -3378,26 +3357,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-MIME-tools
-  category: "libs"
-  name: "MIME-tools"
-  version: "5.515.0"
-  uri:
-  - https://metacpan.org/release/MIME-tools
-  license: "Artistic GPL-1+"
-  description: "A Perl module for parsing and creating MIME entities"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/MIME-tools
-  provides:
-  - category: "dev-perl"
-    name: "MIME-tools"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-MIME-tools
+#   category: "libs"
+#   name: "MIME-tools"
+#   version: "5.515.0"
+#   uri:
+#   - https://metacpan.org/release/MIME-tools
+#   license: "Artistic GPL-1+"
+#   description: "A Perl module for parsing and creating MIME entities"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-perl/MIME-tools
+#   provides:
+#   - category: "dev-perl"
+#     name: "MIME-tools"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-motif
   category: "libs"
@@ -3596,26 +3575,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-nv-codec-headers
-  category: "libs"
-  name: "nv-codec-headers"
-  version: "12.1.14.0+1"
-  uri:
-  - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
-  license: "MIT"
-  description: "FFmpeg version of headers required to interface with Nvidias codec APIs"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/nv-codec-headers
-  provides:
-  - category: "media-libs"
-    name: "nv-codec-headers"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-nv-codec-headers
+#   category: "libs"
+#   name: "nv-codec-headers"
+#   version: "12.1.14.0+1"
+#   uri:
+#   - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
+#   license: "MIT"
+#   description: "FFmpeg version of headers required to interface with Nvidias codec APIs"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/nv-codec-headers
+#   provides:
+#   - category: "media-libs"
+#     name: "nv-codec-headers"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-oniguruma
   category: "libs"
@@ -3728,27 +3707,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-plib
-  category: "libs"
-  name: "plib"
-  version: "1.8.5-r4+1"
-  uri:
-  - http://plib.sourceforge.net/
-  license: "LGPL-2"
-  description: "Multimedia library used by many games"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/plib
-  provides:
-  - category: "media-libs"
-    name: "plib"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-plotutils
   category: "libs"
   name: "plotutils"
@@ -3860,28 +3818,6 @@ packages:
   provides:
   - category: "dev-python"
     name: "pyproject-hooks"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-python-distutils-extra
-  category: "libs"
-  name: "python-distutils-extra"
-  version: "2.47+4"
-  uri:
-  - https://salsa.debian.org/python-team/packages/python-distutils-extra/
-  - https://launchpad.net/python-distutils-extra/
-  license: "GPL-2+"
-  description: "Gettext support, themed icons and scrollkeeper-based documentation in distutils"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/python-distutils-extra
-  provides:
-  - category: "dev-python"
-    name: "python-distutils-extra"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -4353,29 +4289,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-t1lib
-  category: "libs"
-  name: "t1lib"
-  version: "5.1.2-r5"
-  uri:
-  - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
-  license: "LGPL-2 GPL-2"
-  description: "A Type 1 Font Rasterizer Library for UNIX/X11"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/t1lib
-  provides:
-  - category: "media-libs"
-    name: "t1lib"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/t1lib"
-    use: "X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-t1lib
+#   category: "libs"
+#   name: "t1lib"
+#   version: "5.1.2-r5"
+#   uri:
+#   - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
+#   license: "LGPL-2 GPL-2"
+#   description: "A Type 1 Font Rasterizer Library for UNIX/X11"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/t1lib
+#   provides:
+#   - category: "media-libs"
+#     name: "t1lib"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-libs/t1lib"
+#     use: "X"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-Text-CSV
   category: "libs"
@@ -4419,28 +4355,6 @@ packages:
   provides:
   - category: "dev-libs"
     name: "tinyxml2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-tomsfastmath
-  category: "libs"
-  name: "tomsfastmath"
-  version: "0.13.1-r1+2"
-  uri:
-  - https://www.libtom.net/TomsFastMath/
-  - https://github.com/libtom/tomsfastmath
-  license: "Unlicense"
-  description: "Fast public domain large integer arithmetic library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tomsfastmath
-  provides:
-  - category: "dev-libs"
-    name: "tomsfastmath"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -4987,6 +4901,28 @@ packages:
   build_requires:
   - <<: *layers-java
 
+# - &apps-asciidoctor
+#   category: "apps"
+#   name: "asciidoctor"
+#   version: "2.0.23"
+#   uri:
+#   - https://github.com/asciidoctor/asciidoctor
+#   license: "MIT"
+#   description: "Processor for converting AsciiDoc into HTML 5, DocBook 4.5 and other formats"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-ruby/asciidoctor
+#   provides:
+#   - category: "dev-ruby"
+#     name: "asciidoctor"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   - <<: *layers-ruby
+#   build_requires:
+#   - <<: *layers-ruby
+
 - &apps-astyle
   category: "apps"
   name: "astyle"
@@ -5010,29 +4946,6 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
-
-- category: "apps"
-  name: "atop"
-  version: "2.11"
-  uri:
-  - https://www.atoptool.nl
-  license: "GPL-2"
-  description: "Resource-specific view of processes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/atop
-  provides:
-  - category: "sys-process"
-    name: "acct"
-    version: ">=0"
-  - category: "sys-process"
-    name: "atop"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &apps-apcupsd
   category: "apps"
@@ -5152,29 +5065,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "bashtop"
-  version: "0.9.25+102"
-  uri:
-  - https://github.com/aristocratos/bashtop
-  license: "Apache-2.0"
-  description: "Resource monitor that shows usage and stats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/bashtop
-  provides:
-  - category: "sys-process"
-    name: "bashtop"
-    version: ">=0"
-  atoms:
-  - atom: "sys-process/bashtop"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "bchunk"
@@ -5783,10 +5673,12 @@ packages:
   - atom: "app-text/diffpdf"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
-
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
+ 
 - category: "apps"
   name: "diffuse"
   version: "0.9.0+1"
@@ -9862,30 +9754,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "soundkonverter"
-#   version: "3.0.1-r3+2"
-#   uri:
-#   - https://www.linux-apps.com/p/1126634/
-#   - https://github.com/dfaust/soundkonverter
-#   license: "GPL-2"
-#   description: "Frontend to various audio converters"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/soundkonverter
-#   provides:
-#   - category: "media-sound"
-#     name: "soundkonverter"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/soundkonverter"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-kde-kf5
-#   build_requires:
-#   - <<: *layers-kde-kf5
-
 - &apps-spacenavd
   category: "apps"
   name: "spacenavd"
@@ -10858,28 +10726,6 @@ packages:
 ################################################################################################################################################################
 ## dep 1 libs ###
 ################################################################################################################################################################
-
-- &libs-asciidoctor
-  category: "libs"
-  name: "asciidoctor"
-  version: "2.0.23"
-  uri:
-  - https://github.com/asciidoctor/asciidoctor
-  license: "MIT"
-  description: "Processor for converting AsciiDoc into HTML 5, DocBook 4.5 and other formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-ruby/asciidoctor
-  provides:
-  - category: "dev-ruby"
-    name: "asciidoctor"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *layers-ruby
-  build_requires:
-  - <<: *layers-ruby
 
 - &libs-build
   category: "libs"
@@ -13734,7 +13580,7 @@ packages:
 - &apps-oversteer
   category: "apps"
   name: "oversteer"
-  version: "0.8.2+1"
+  version: "0.8.2+2"
   uri:
   - https://github.com/berarma/oversteer
   license: "GPL-3.0"
@@ -13753,9 +13599,10 @@ packages:
   - atom: "games-util/oversteer"
     accept_keywords: "~amd64"
     license: "GPL-3.0"
+  inner_build_reqs:
+  - dev-python/python-distutils-extra
   requires:
   - <<: *layers-sci-libs
-  - <<: *libs-python-distutils-extra
   build_requires:
   - <<: *layers-sci-libs
 
@@ -14370,9 +14217,10 @@ packages:
   - category: "media-sound"
     name: "soundconverter"
     version: ">=0"
+  inner_build_reqs
+  - dev-python/python-distutils-extra
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-python-distutils-extra
   build_requires:
   - <<: *layers-gnome-common
 
@@ -14435,7 +14283,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.14.1-r3"
+  version: "1.14.1-r3+1"
   uri:
   - https://tigervnc.org
   license: "GPL-2"
@@ -14493,7 +14341,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "4.0.6-r5"
+  version: "4.0.6-r5+1"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -14736,7 +14584,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.4.2+2"
+  version: "4.5.5"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -16523,7 +16371,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.11.0"
+  version: "1.11.0+1"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   license: "GPL-3"
@@ -16539,7 +16387,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-pikepdf
-  - <<: *libs-python-distutils-extra
   build_requires:
   - <<: *layers-X
 
@@ -16625,7 +16472,7 @@ packages:
 - &apps-qsampler
   category: "apps"
   name: "qsampler"
-  version: "1.0.0-r1"
+  version: "1.0.0-r1+1"
   uri:
   - https://qsampler.sourceforge.io/
   license: "GPL-2"
@@ -17156,7 +17003,7 @@ packages:
 
 - category: "apps"
   name: "yoshimi"
-  version: "2.3.3.1-r1"
+  version: "2.3.3.2-r1"
   uri:
   - http://yoshimi.sourceforge.net/
   license: "GPL-2"
@@ -18334,7 +18181,6 @@ packages:
   # - <<: *apps-gtkspell
   - <<: *libs-libgadu
   - <<: *libs-meanwhile
-  - <<: *libs-farstream
   - <<: *libs-gmime-2
   - <<: *libs-libnice
   # - <<: *apps-tk
@@ -18392,36 +18238,6 @@ packages:
   - <<: *apps-rclone
   build_requires:
   - <<: *layers-qt
-
-# - &apps-speed-dreams
-#   category: "apps"
-#   name: "speed-dreams"
-#   version: "2.2.3+1"
-#   uri:
-#   - http://www.speed-dreams.org/
-#   license: "GPL-2+ BitstreamVera CC0-1.0 Free-Art-1.2 OFL-1.1"
-#   description: |
-#     Fork of the famous open racing car simulator TORCS
-#     Library for collision detection of three-dimensional objects
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-sports/speed-dreams
-#   provides:
-#   - category: "games-sports"
-#     name: "speed-dreams"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-sports/speed-dreams"
-#     use: "osggraph"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-openscenegraph
-#   - <<: *libs-plib
-#   - <<: *libs-enet
-#   build_requires:
-#   - <<: *layers-X
 
 - category: "apps"
   name: "stellarium"
