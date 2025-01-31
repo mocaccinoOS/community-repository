@@ -329,6 +329,15 @@ stubs:
 ### libs refs ###
 ################################################################################################################################################################
 
+- &libs-fonttools
+  category: "libs"
+  name: "fonttools"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/fonttools
+
 - &libs-gtk2
   category: "libs"
   name: "gtk2"
@@ -1344,27 +1353,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-cubeb
-#   category: "libs"
-#   name: "cubeb"
-#   version: "0.2_p20231121+1"
-#   uri:
-#   - https://github.com/mozilla/cubeb
-#   license: "ISC"
-#   description: "Cross-platform audio library"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/cubeb
-#   provides:
-#   - category: "media-libs"
-#     name: "cubeb"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 # - &libs-enet
 #   category: "libs"
 #   name: "enet"
@@ -1454,33 +1442,6 @@ packages:
   - atom: "x11-libs/fltk"
     license: "FLTK LGPL-2"
     use: "cairo examples games opengl threads xft xinerama"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-fonttools
-  category: "libs"
-  name: "fonttools"
-  version: "4.55.3"
-  uri:
-  - https://github.com/fonttools/fonttools/
-  license: "BSD"
-  description: "Library for manipulating TrueType, OpenType, AFM and Type1 fonts"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/fonttools
-  provides:
-  - category: "dev-python"
-    name: "appdirs"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fonttools"
-    version: ">=0"
-  - category: "dev-python"
-    name: "fs"
-    version: ">=0"
   requires:
   - <<: *layers-X
   build_requires:
@@ -2065,27 +2026,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-jsr305
-#   category: "libs"
-#   name: "jsr305"
-#   version: "3.0.2-r1+1"
-#   uri:
-#   - https://jcp.org/en/jsr/detail?id
-#   license: "BSD"
-#   description: "Annotations for Software Defect Detection in Java"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-java/jsr305
-#   provides:
-#   - category: "dev-java"
-#     name: "jsr305"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-java
-#   build_requires:
-#   - <<: *layers-java
-
 - &libs-ladspa-sdk
   category: "libs"
   name: "ladspa-sdk"
@@ -2302,27 +2242,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &libs-libdv
-#   category: "libs"
-#   name: "libdv"
-#   version: "1.0.0-r5"
-#   uri:
-#   - http://libdv.sourceforge.net/
-#   license: "GPL-2"
-#   description: "Software codec for dv-format video (camcorders etc)"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/libdv
-#   provides:
-#   - category: "media-libs"
-#     name: "libdv"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 - &libs-libdvdcss
   category: "libs"
   name: "libdvdcss"
@@ -2406,27 +2325,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-# - &libs-libfpx
-#   category: "libs"
-#   name: "libfpx"
-#   version: "1.3.1_p10-r1"
-#   uri:
-#   - https://github.com/ImageMagick/libfpx
-#   license: "Flashpix"
-#   description: "A library for manipulating FlashPIX images"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/libfpx
-#   provides:
-#   - category: "media-libs"
-#     name: "libfpx"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
 
 - &libs-libgii-libggi
   category: "libs"
@@ -3098,30 +2996,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &libs-loudmouth
-#   category: "libs"
-#   name: "loudmouth"
-#   version: "1.5.4+3"
-#   uri:
-#   - https://github.com/mcabber/loudmouth
-#   license: "LGPL-2.1"
-#   description: "Lightweight C Jabber library"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-libs/loudmouth
-#   provides:
-#   - category: "net-libs"
-#     name: "loudmouth"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-libs/loudmouth"
-#     use: "asyncns ssl openssl"
-#   requires:
-#   - <<: *layers-sys-fs
-#   build_requires:
-#   - <<: *layers-sys-fs
-
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
@@ -3336,48 +3210,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-meanwhile
-  category: "libs"
-  name: "meanwhile"
-  version: "1.1.1"
-  uri:
-  - http://meanwhile.sourceforge.net/
-  license: "LGPL-2"
-  description: "Meanwhile (Sametime protocol) library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/meanwhile
-  provides:
-  - category: "net-libs"
-    name: "meanwhile"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# - &libs-MIME-tools
-#   category: "libs"
-#   name: "MIME-tools"
-#   version: "5.515.0"
-#   uri:
-#   - https://metacpan.org/release/MIME-tools
-#   license: "Artistic GPL-1+"
-#   description: "A Perl module for parsing and creating MIME entities"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-perl/MIME-tools
-#   provides:
-#   - category: "dev-perl"
-#     name: "MIME-tools"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 - &libs-motif
   category: "libs"
   name: "motif"
@@ -3574,27 +3406,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-# - &libs-nv-codec-headers
-#   category: "libs"
-#   name: "nv-codec-headers"
-#   version: "12.1.14.0+1"
-#   uri:
-#   - https://git.videolan.org/?p=ffmpeg/nv-codec-headers.git
-#   license: "MIT"
-#   description: "FFmpeg version of headers required to interface with Nvidias codec APIs"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/nv-codec-headers
-#   provides:
-#   - category: "media-libs"
-#     name: "nv-codec-headers"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
 
 - &libs-oniguruma
   category: "libs"
@@ -4289,30 +4100,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-t1lib
-#   category: "libs"
-#   name: "t1lib"
-#   version: "5.1.2-r5"
-#   uri:
-#   - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
-#   license: "LGPL-2 GPL-2"
-#   description: "A Type 1 Font Rasterizer Library for UNIX/X11"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-libs/t1lib
-#   provides:
-#   - category: "media-libs"
-#     name: "t1lib"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-libs/t1lib"
-#     use: "X"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
-
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
@@ -4689,6 +4476,27 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-xsimd
+  category: "libs"
+  name: "xsimd"
+  version: "13.0.0-r1"
+  uri:
+  - https://github.com/xtensor-stack/xsimd
+  license: "BSD"
+  description: "C++ wrappers for SIMD intrinsics"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/xsimd
+  provides:
+  - category: "dev-cpp"
+    name: "xsimd"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x  
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-xmlsec
   category: "libs"
   name: "xmlsec"
@@ -4900,28 +4708,6 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
-
-# - &apps-asciidoctor
-#   category: "apps"
-#   name: "asciidoctor"
-#   version: "2.0.23"
-#   uri:
-#   - https://github.com/asciidoctor/asciidoctor
-#   license: "MIT"
-#   description: "Processor for converting AsciiDoc into HTML 5, DocBook 4.5 and other formats"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-ruby/asciidoctor
-#   provides:
-#   - category: "dev-ruby"
-#     name: "asciidoctor"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-system-x
-#   - <<: *layers-ruby
-#   build_requires:
-#   - <<: *layers-ruby
 
 - &apps-astyle
   category: "apps"
@@ -6225,7 +6011,6 @@ packages:
     use: "cpudetection gpl mmal threads vaapi vdpau vulkan # nvenc"
   requires:
   - <<: *layers-X
-  # - <<: *libs-nv-codec-headers
   build_requires:
   - <<: *layers-X
 
@@ -10862,33 +10647,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gtkglext
-  category: "libs"
-  name: "gtkglext"
-  version: "1.2.0-r6+1"
-  uri:
-  - http://gtkglext.sourceforge.net/
-  license: "GPL-2+ LGPL-2.1+"
-  description: "GL extensions for Gtk+ 2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gtkglext
-  provides:
-  - category: "x11-libs"
-    name: "gtkglext"
-    version: ">=0"
-  atoms:
-  - atom: "x11-libs/gtkglext"
-    accept_keywords: "~amd64"
-  # preemerge:
-  # - x11-libs/gtk+:2
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
-
 # - &libs-guava
 #   category: "libs"
 #   name: "guava"
@@ -11007,30 +10765,6 @@ packages:
   - <<: *libs-ftgl
   build_requires:
   # - <<: *layers-java
-  - <<: *layers-X
-
-- &libs-libgadu
-  category: "libs"
-  name: "libgadu"
-  version: "1.12.2-r1+2"
-  uri:
-  - https://libgadu.net/
-  license: "LGPL-2.1"
-  description: "Client-side library for the Gadu-Gadu protocol"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libgadu
-  provides:
-  - category: "net-libs"
-    name: "libgadu"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/libgadu"
-    ise: "ssl threads"
-  requires:
-  - <<: *layers-X
-  build_requires:
   - <<: *layers-X
 
 - &libs-libgit2
@@ -11676,7 +11410,7 @@ packages:
 
 - category: "apps"
   name: "cairo-dock"
-  version: "3.4.1+3"
+  version: "3.4.1+4"
   uri:
   - http://www.glx-dock.org
   license: "GPL-3"
@@ -11697,6 +11431,9 @@ packages:
 #   - category: "x11-plugins"
 #     name: "cairo-dock-plugins"
 #     version: ">=0"
+  - category: "x11-libs"
+    name: "gtkglext"
+    version: ">=0"
   atoms:
   - atom: "x11-misc/cairo-dock"
     accept_keywords: "~amd64"
@@ -11705,9 +11442,11 @@ packages:
     accept_keywords: "~amd64"
   - atom: "x11-themes/cairo-dock-themes"
     accept_keywords: "~amd64"
+  - atom: "x11-libs/gtkglext"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gtkglext
+  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-gnome-common
 
@@ -12664,7 +12403,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-AOMediaCodecs
-  # - <<: *libs-nv-codec-headers
   - <<: *libs-zimg
   build_requires:
   - <<: *layers-X
@@ -13580,7 +13318,7 @@ packages:
 - &apps-oversteer
   category: "apps"
   name: "oversteer"
-  version: "0.8.2+2"
+  version: "0.8.2+3"
   uri:
   - https://github.com/berarma/oversteer
   license: "GPL-3.0"
@@ -13603,6 +13341,7 @@ packages:
   - dev-python/python-distutils-extra
   requires:
   - <<: *layers-sci-libs
+  - <<: *libs-xsimd
   build_requires:
   - <<: *layers-sci-libs
 
@@ -17336,21 +17075,6 @@ packages:
 #   - category: "dev-cpp"
 #     name: "cli11"
 #     version: ">=0"
-#   - category: "dev-python"
-#     name: "contourpy"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "cppy"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "cycler"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "kiwisolver"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "matplotlib"
-#     version: ">=0"
 #   # - category: "dev-python"
 #   #   name: "mpi4py"
 #   #   version: ">=0"
@@ -17372,8 +17096,6 @@ packages:
 #   atoms:
 #   - atom: "sci-libs/cgnslib"
 #     use: "hdf5 szip # base-scope legacy scoping tools fortran mpi"
-#   - atom: "dev-python/matplotlib"
-#     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
 #     use: "cairo excel gtk3 late -qt5 # webagg # tk wxwidgets"
 #   - atom: "sci-libs/opencascade"
 #     use: "eigen freeimage freetype json opengl tbb vtk X # ffmpeg gles2 gles2-only jemalloc optimize tk"
@@ -17386,13 +17108,10 @@ packages:
 #     license: "BSD LGPL-2"
 #   inner_build_reqs:
 #   - dev-libs/pegtl
-#   - dev-python/meson-python
 #   preemerge:
 #   - sci-libs/opencascade;ACCEPT_KEYWORDS="~amd64" USE="-vtk"
 #   requires:
 #   - <<: *layers-sci-libs
-#   - <<: *fonts-stix-fonts
-#   - <<: *libs-fonttools
 #   - <<: *libs-freeimage
 #   - <<: *libs-gl2ps
 #   - <<: *libs-libharu
@@ -18135,7 +17854,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.13+1"
+  version: "2.14.13+2"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -18150,6 +17869,12 @@ packages:
   provides:
   - category: "net-im"
     name: "pidgin"
+    version: ">=0"
+  - category: "net-libs"
+    name: "libgadu"
+    version: ">=0"
+  - category: "net-libs"
+    name: "meanwhile"
     version: ">=0"
   - category: "dev-libs"
     name: "libgnt"
@@ -18169,6 +17894,8 @@ packages:
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl v4l xscreensaver zephyr zeroconf # aqua tk"
+  - atom: "net-libs/libgadu"
+    ise: "ssl threads"
   - atom: "x11-plugins/pidgin-sipe"
     use: "dbus kerberos ocs2005-message-hack openssl telepathy voice"
   inner_build_reqs:
@@ -18179,8 +17906,6 @@ packages:
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
   # - <<: *apps-gtkspell
-  - <<: *libs-libgadu
-  - <<: *libs-meanwhile
   - <<: *libs-gmime-2
   - <<: *libs-libnice
   # - <<: *apps-tk
@@ -18620,6 +18345,7 @@ packages:
 #   - atom: "sci-libs/pcl"
 #     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
 #   inner_build_reqs:
+#   - dev-ruby/asciidoctor
 #   - app-text/dos2unix
 #   - dev-lang/swig
 #   - dev-cpp/ms-gsl
@@ -18630,7 +18356,6 @@ packages:
 #   requires:
 #   - <<: *layers-kde-kf5
 #   - <<: *layers-vtk
-#   - <<: *libs-asciidoctor
 #   - <<: *libs-coin
 #   - <<: *libs-hidapi
 #   - <<: *libs-libspnav
@@ -18862,32 +18587,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-qt
-
-- &libs-dcmtk
-  category: "libs"
-  name: "dcmtk"
-  version: "3.6.8"
-  uri:
-  - https://dicom.offis.de/dcmtk.php.en
-  license: "OFFIS"
-  description: "The DICOM Toolkit"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/dcmtk
-  provides:
-  - category: "sci-libs"
-    name: "dcmtk"
-    version: ">=0"
-  atoms:
-  - atom: "sci-libs/dcmtk"
-    license: "OFFIS"
-    use: "png ssl tcpd tiff threads xml zlib"
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-graphviz
   build_requires:
   - <<: *layers-qt
 
@@ -19312,15 +19011,26 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "8+6"
+  version: "9"
   uri:
+  - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
   - https://github.com/OpenImageIO
-  - https://opencolorio.org
   - https://github.com/AcademySoftwareFoundation/OpenColorIO
   - https://github.com/imageworks/pystring
-  license: "BSD"
-  description: "A library for reading and writing images"
+  - https://github.com/Tessil/robin-map
+  - https://dicom.offis.de/dcmtk.php.en
+  - https://github.com/zlib-ng/minizip-ng
+  - https://github.com/zlib-ng/zlib-ng
+  license: "metapackage"
+  description: |
+    Color management framework for visual effects and animation
+    A library for reading and writing images
+    C++ functions matching the interface and behavior of python string methods
+    C++ fast hash map and hash set using robin hood hashing
+    The DICOM Toolkit
+    Fork of the popular zip manipulation library found in the zlib distribution
+    Fork of the zlib data compression library
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -19339,6 +19049,9 @@ packages:
   - category: "dev-cpp"
     name: "robin-map"
     version: ">=0"
+  - category: "sci-libs"
+    name: "dcmtk"
+    version: ">=0"
   - category: "sys-libs"
     name: "minizip-ng"
     version: ">=0"
@@ -19350,11 +19063,13 @@ packages:
     use: "opengl python"
   - atom: "media-libs/openimageio"
     use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt6 raw truetype"
+  - atom: "sci-libs/dcmtk"
+    license: "OFFIS"
+    use: "png ssl tcpd tiff threads xml zlib"
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
   requires:
   - <<: *layers-qt
-  - <<: *libs-dcmtk
   - <<: *libs-openvdb
   - <<: *libs-ptex
   - <<: *libs-tbb
@@ -19545,7 +19260,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.2.6"
+  version: "5.2.6+1"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -19556,9 +19271,6 @@ packages:
     emerge.packages: >-
       media-gfx/krita
   provides:
-  - category: "dev-cpp"
-    name: "xsimd"
-    version: ">=0"
   - category: "dev-libs"
     name: "immer"
     version: ">=0"
@@ -19588,6 +19300,7 @@ packages:
   - <<: *libs-libmypaint
   - <<: *libs-ocio-oiio
   - <<: *libs-vc
+  - <<: *libs-xsimd
   build_requires:
   - <<: *layers-kde-kf5
 
