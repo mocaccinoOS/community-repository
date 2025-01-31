@@ -282,6 +282,13 @@ stubs:
   category: "fonts"
   name: "stix-fonts"
   version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/stix-fonts
+  atoms:
+  - atom: "media-fonts/stix-fonts"
+    use: "X"
 
 ################################################################################
 ### libs ###
@@ -414,7 +421,7 @@ packages:
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.0+26"
+  version: "1.0+26+1"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -1494,6 +1501,8 @@ packages:
   version: "0.24"
   uri:
   - https://xerces.apache.org/xerces-c/
+  - https://matplotlib.org/
+  - https://scipy.org/
   - http://www.qhull.org
   - https://arma.sourceforge.net
   - http://www.caam.rice.edu/software/ARPACK/
@@ -1507,6 +1516,8 @@ packages:
   license: "metapackage"
   description: |
     Validating XML parser written in a portable subset of C++
+    Pure python plotting library with matlab like syntax
+    Scientific algorithms library for Python
     Geometry library
     Library to order a sparse matrix prior to Cholesky factorization
     Arnoldi package library to solve large scale eigenvalue problems
