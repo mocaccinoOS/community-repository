@@ -1088,7 +1088,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "6.2.5"
+  version: "6.2.5+1"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1107,9 +1107,11 @@ packages:
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
+  requires:
+  - <<: *layers-plasma
   - <<: *apps-grub
   build_requires:
-  - <<: *apps-grub
+  - <<: *layers-plasma
 
 - &libs-c-blosc
   category: "libs"
