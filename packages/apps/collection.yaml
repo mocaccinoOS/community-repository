@@ -7070,6 +7070,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+  # password flag needs dev-libs/qtkeychain[qt5]
 - category: "apps"
   name: "kate"
   version: "24.08.3"
@@ -7090,7 +7091,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/libkate"
-    use: "-wxwidgets"
+    use: "-password -wxwidgets"
   requires:
   - <<: *layers-kde-apps-minimal
   build_requires:
@@ -15024,7 +15025,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.12.1"
+  version: "24.12.1+1"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
