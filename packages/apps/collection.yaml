@@ -1057,35 +1057,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-botan
-  category: "libs"
-  name: "botan"
-  version: "3.2.0-r1+3"
-  uri:
-  - https://botan.randombit.net/
-  license: "BSD-2"
-  description: "C++ crypto library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/botan
-  atoms:
-  - atom: "dev-libs/botan"
-    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
-  provides:
-  - category: "dev-libs"
-    name: "botan"
-    version: ">=0"
-  - category: "sec-keys"
-    name: "openpgp-keys-botan"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-python/sphinx
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - category: "libs"
   name: "breeze-plymouth"
   version: "6.2.5+1"
@@ -1097,16 +1068,13 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/breeze-plymouth
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules
-  - sys-boot/plymouth
   provides:
   - category: "kde-plasma"
     name: "breeze-plymouth"
     version: ">=0"
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
-  requires:
+  # - sys-boot/plymouth
   requires:
   - <<: *layers-plasma
   - <<: *apps-grub
@@ -1166,7 +1134,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "132.0.6834.83"
+  version: "132.0.6834.110"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1926,7 +1894,7 @@ packages:
 - &libs-iniparser
   category: "libs"
   name: "iniparser"
-  version: "4.1-r2"
+  version: "4.2.5"
   uri:
   - https://github.com/ndevilla/iniparser
   license: "GPL-2"
@@ -4499,30 +4467,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-xmlsec
-  category: "libs"
-  name: "xmlsec"
-  version: "1.3.5"
-  uri:
-  - https://www.aleksey.com/xmlsec
-  license: "MIT"
-  description: "Command line tool for signing, verifying, encrypting and decrypting XML"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/xmlsec
-  provides:
-  - category: "dev-libs"
-    name: "xmlsec"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/xmlsec"
-    use: "gcrypt gnutls nss openssl"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -5048,7 +4992,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.74.48"
+  version: "1.74.50"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5490,7 +5434,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.8.0"
+  version: "1.8.1.1"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -6503,7 +6447,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.6.1"
+  version: "10.6.3"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6663,7 +6607,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "132.0.6834.83"
+  version: "132.0.6834.110"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7201,6 +7145,41 @@ packages:
   - category: "x11-misc"
     name: "kdocker"
     version: ">=0"
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
+
+- &apps-keepassxc
+  category: "apps"
+  name: "keepassxc"
+  version: "2.7.9+1"
+  uri:
+  - https://keepassxc.org/
+  license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
+  description: "KeePassXC - KeePass Cross-platform Community Edition"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/keepassxc
+  atoms:
+  - atom: "app-admin/keepassxc"
+    use: "autotype browser keeshare network yubikey X"
+  - atom: "dev-libs/botan"
+    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
+  provides:
+  - category: "app-admin"
+    name: "keepassxc"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "botan"
+    version: ">=0"
+  - category: "sec-keys"
+    name: "openpgp-keys-botan"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-ruby/asciidoctor
+  - dev-python/sphinx
   requires:
   - <<: *layers-kde-kf5
   build_requires:
@@ -8701,6 +8680,50 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "pdfarranger"
+  version: "1.11.0+2"
+  uri:
+  - https://github.com/jeromerobert/pdfarranger
+  - https://gitlab.mister-muffin.de/josch/img2pdf
+  - https://github.com/pikepdf/pikepdf/
+  - https://pypi.org/project/pikepdf/
+  license: "GPL-3 LGPL-3+"
+  description: |
+    Merge or split pdfs; rearrange, rotate, crop pages
+    Losslessly convert raster images to PDF
+    Python library to work with pdf files based on qpdf
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/pdfarranger
+      media-gfx/img2pdf
+  provides:
+  - category: "app-text"
+    name: "pdfarranger"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "img2pdf"
+    version: ">=0"
+  - category: "media-libs"
+    name: "icc-profiles-openicc"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  - category: "dev-python"
+    name: "deprecated"
+    version: ">=0"
+  - category: "dev-python"
+    name: "wrapt"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-python/setuptools_scm_git_archive
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "pdftk"
   version: "3.3.3_p20231025+1"
   uri:
@@ -8755,7 +8778,7 @@ packages:
 
 - category: "apps"
   name: "piper"
-  version: "0.7-r1+1"
+  version: "0.8"
   uri:
   - https://github.com/libratbag/piper
   license: "GPL-2"
@@ -9609,7 +9632,7 @@ packages:
 
 - category: "apps"
   name: "supercollider"
-  version: "3.13.0-r1+1"
+  version: "3.13.0-r2"
   uri:
   - https://supercollider.github.io/
   license: "GPL-3"
@@ -10152,7 +10175,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.96.2.24355"
+  version: "1.96.4.25017"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10773,7 +10796,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.8.4"
+  version: "1.9.0"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception"
@@ -11050,45 +11073,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pikepdf
-  category: "libs"
-  name: "pikepdf"
-  version: "9.4.2"
-  uri:
-  - https://github.com/pikepdf/pikepdf/
-  - https://pypi.org/project/pikepdf/
-  license: "MPL-2.0"
-  description: "Python library to work with pdf files based on qpdf"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pikepdf
-  provides:
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
-  - category: "dev-python"
-    name: "deprecated"
-    version: ">=0"
-  - category: "dev-python"
-    name: "wrapt"
-    version: ">=0"
-  #prepare:
-  # Workaround upstream dropping patchsets
-  #- wget https://files.pythonhosted.org/packages/49/07/b6a6c8c5c45e27ddff1b559693a535411bf5e871212a8e4ccdd36d517634/pikepdf-4.2.0.tar.gz -O /var/cache/distfiles/pikepdf-4.2.0.tar.gz
-  #- wget https://data.gpo.zugaina.org/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild -O /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild
-  #- ebuild /var/db/repos/gentoo/dev-python/pikepdf/pikepdf-4.5.0.ebuild manifest
-  inner_build_reqs:
-  - dev-python/setuptools_scm_git_archive
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
-  version: "14.0.1+2"
+  version: "14.0.5"
   uri:
   - https://github.com/home-assistant-libs/pychromecast
   - https://github.com/ur1katz/casttube
@@ -12052,7 +12040,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.20.1-r1"
+  version: "1.20.2"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -12481,33 +12469,6 @@ packages:
   - <<: *libs-libktorrent
   build_requires:
   - <<: *layers-plasma
-
-- &apps-keepassxc
-  category: "apps"
-  name: "keepassxc"
-  version: "2.7.9+1"
-  uri:
-  - https://keepassxc.org/
-  license: "LGPL-2.1 GPL-2 GPL-3"
-  description: "KeePassXC - KeePass Cross-platform Community Edition"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-admin/keepassxc
-  atoms:
-  - atom: "app-admin/keepassxc"
-    use: "autotype browser keeshare network yubikey X"
-  provides:
-  - category: "app-admin"
-    name: "keepassxc"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-ruby/asciidoctor
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *libs-botan
-  build_requires:
-  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "kid3"
@@ -13272,7 +13233,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "116.0.5366.35+2"
+  version: "116.0.5366.51"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -13291,7 +13252,6 @@ packages:
     use: "ffmpeg-chromium -qt5"
   requires:
   - <<: *layers-X
-  - <<: *libs-chrome-binary-plugins
   - <<: *apps-ffmpeg-chromium
   build_requires:
   - <<: *layers-X
@@ -13694,8 +13654,8 @@ packages:
   atoms:
   - atom: "www-client/qutebrowser"
     use: "adblock pdf widevine"
-  optrequires:
-  - <<: *libs-chrome-binary-plugins
+  # optrequires:
+  # - <<: *libs-chrome-binary-plugins
   requires:
   - <<: *layers-qt
   - <<: *libs-beautifulsoup4
@@ -13970,7 +13930,7 @@ packages:
 - &apps-tesseract
   category: "apps"
   name: "tesseract"
-  version: "5.4.1+3"
+  version: "5.5.0"
   uri:
   - https://github.com/tesseract-ocr
   license: "Apache-2.0"
@@ -14091,7 +14051,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.8.0"
+  version: "1.8.1"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -14360,7 +14320,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "9.22"
+  version: "10.0"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -14578,7 +14538,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.1.0+1"
+  version: "2.1.1"
   uri:
   - https://www.indilib.org/
   license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
@@ -15293,34 +15253,6 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-- &apps-img2pdf
-  category: "apps"
-  name: "img2pdf"
-  version: "0.5.1+1"
-  uri:
-  - https://gitlab.mister-muffin.de/josch/img2pdf
-  license: "LGPL-3+"
-  description: "Losslessly convert raster images to PDF"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/img2pdf
-  provides:
-  - category: "media-gfx"
-    name: "img2pdf"
-    version: ">=0"
-  - category: "media-libs"
-    name: "icc-profiles-openicc"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/img2pdf"
-    # use: "# gui needs dev-lang/python tk
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pikepdf
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "k3b"
   version: "24.08.3"
@@ -15640,7 +15572,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2+1"
+  version: "24.2.7.2+2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15648,6 +15580,7 @@ packages:
   - https://github.com/tdf/libcmis
   - https://gitlab.com/orcus/orcus/blob/master/README.md
   - https://gitlab.com/ixion/ixion
+  - https://www.aleksey.com/xmlsec
   - https://box2d.org/
   - http://code.google.com/p/ucpp/
   - https://projects.coin-or.org/CoinMP/
@@ -15659,6 +15592,7 @@ packages:
     Import filter for old StarOffice documents
     C++ client library for the CMIS interface
     Standalone file import filter library for spreadsheet documents
+    Command line tool for signing, verifying, encrypting and decrypting XML
     General purpose formula parser & interpreter
     C++ engine for simulating rigid bodies in 2D games
     A quick and light preprocessor, but anyway fully compliant to C99
@@ -15689,6 +15623,9 @@ packages:
   - category: "dev-libs"
     name: "libixion"
     version: ">=0"
+  - category: "dev-libs"
+    name: "xmlsec"
+    version: ">=0"
   - category: "dev-python"
     name: "lxml"
     version: ">=0"
@@ -15711,6 +15648,8 @@ packages:
   # postgres
   - atom: "app-office/libreoffice"
     use: "accessibility base bluetooth -branding clang coinmp cups dbus eds googledrive gstreamer gtk java ldap mariadb nlpsolver pdfimport vulkan"
+  - atom: "dev-libs/xmlsec"
+    use: "gcrypt gnutls nss openssl"
   inner_build_reqs:
   - *layers-java-packages
   # - dev-java/bsh
@@ -15732,7 +15671,6 @@ packages:
   # - <<: *libs-bsh
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
-  - <<: *libs-xmlsec
   - <<: *apps-fontforge
   - <<: *libs-libvisio
   build_requires:
@@ -16005,7 +15943,7 @@ packages:
 - &apps-nmapsi
   category: "apps"
   name: "nmapsi"
-  version: "0.5_alpha2-r1+1"
+  version: "0.5_alpha2_p20240407"
   uri:
   - https://github.com/nmapsi4/nmapsi4
   license: "GPL-2"
@@ -16086,27 +16024,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-dotnet-6
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "pdfarranger"
-  version: "1.11.0+1"
-  uri:
-  - https://github.com/jeromerobert/pdfarranger
-  license: "GPL-3"
-  description: "Merge or split pdfs; rearrange, rotate, crop pages"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/pdfarranger
-  provides:
-  - category: "app-text"
-    name: "pdfarranger"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-pikepdf
   build_requires:
   - <<: *layers-X
 
@@ -16367,7 +16284,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.13.1"
+  version: "3.13.1-r1"
   uri:
   - https://sqlitebrowser.org/
   license: "GPL-3+ MPL-2.0"
@@ -16519,7 +16436,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.23.0_p3"
+  version: "3.24.0_p1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -16749,7 +16666,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r5"
+  version: "3.0.6-r6"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
