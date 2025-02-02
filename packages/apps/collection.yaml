@@ -2561,27 +2561,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libnova
-  category: "libs"
-  name: "libnova"
-  version: "0.16.0+2"
-  uri:
-  - http://libnova.sourceforge.net/
-  license: "LGPL-2"
-  description: "Celestial Mechanics and Astronomical Calculation Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/libnova
-  provides:
-  - category: "sci-libs"
-    name: "libnova"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libntlm
   category: "libs"
   name: "libntlm"
@@ -3888,27 +3867,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-rtl-sdr
-  category: "libs"
-  name: "rtl-sdr"
-  version: "2.0.1"
-  uri:
-  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
-  license: "GPL-2"
-  description: "Turns your Realtek RTL2832 based DVB dongle into a SDR receiver"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/rtl-sdr
-  provides:
-  - category: "net-wireless"
-    name: "rtl-sdr"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 - &libs-rtmidi
   category: "libs"
@@ -14484,11 +14442,16 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.1.1"
+  version: "2.1.1+1"
   uri:
   - https://www.indilib.org/
-  license: "BSD GPL-2+ LGPL-2+ LGPL-2.1+"
-  description: "INDI Astronomical Control Protocol library"
+  - http://libnova.sourceforge.net/
+  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
+  license: "metapackage BSD GPL-2 GPL-2+ LGPL-2 LGPL-2+ LGPL-2.1+"
+  description: |
+    INDI Astronomical Control Protocol library
+    Celestial Mechanics and Astronomical Calculation Library
+    Turns your Realtek RTL2832 based DVB dongle into a SDR receiver
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14500,13 +14463,17 @@ packages:
   atoms:
   - atom: "sci-libs/indilib"
     use: "ogg rtlsdr websocket"
+  - category: "sci-libs"
+    name: "libnova"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "rtl-sdr"
+    version: ">=0"
   requires:
   - <<: *layers-X
   - <<: *libs-cfitsio
   - <<: *libs-cpp-httplib
-  - <<: *libs-libnova
   - <<: *libs-nlohmann_json
-  - <<: *libs-rtl-sdr
   - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-X
@@ -17823,7 +17790,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-hwloc
-  #- <<: *libs-indilib
+  - <<: *libs-indilib
   - <<: *libs-qxlsx
   - <<: *libs-tbb
   build_requires:
