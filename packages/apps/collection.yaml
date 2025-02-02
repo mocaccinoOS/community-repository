@@ -2805,33 +2805,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &libs-libupnpp
-#   category: "libs"
-#   name: "libupnpp"
-#   version: "0.23.0+1"
-#   uri:
-#   - https://www.lesbonscomptes.com/upmpdcli
-#   - https://framagit.org/medoc92/npupnp
-#   license: "GPL-2 BSD"
-#   description: |
-#     The libupnpp C++ library wraps libupnp for easier use by upmpdcli and upplay
-#     A C++ base UPnP library, derived from Portable UPnP, a.k.a libupnp
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-libs/libupnpp
-#   provides:
-#   - category: "net-libs"
-#     name: "libupnpp"
-#     version: ">=0"
-#   - category: "net-libs"
-#     name: "libnpupnp"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-sys-fs
-#   build_requires:
-#   - <<: *layers-sys-fs
-
 - &libs-libutf8proc
   category: "libs"
   name: "libutf8proc"
@@ -3687,9 +3660,9 @@ packages:
   - category: "x11-libs"
     name: "qscintilla"
     version: ">=0"
-  # atoms:
-  # - atom: "x11-libs/qscintilla"
-  #   use: "-qt5 +qt6"
+  atoms:
+  - atom: "x11-libs/qscintilla"
+    use: "qt5 -qt6"
   requires:
   # - <<: *layers-qt
   - <<: *layers-kde-kf5
@@ -16284,7 +16257,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.13.1-r1"
+  version: "3.13.1-r1+1"
   uri:
   - https://sqlitebrowser.org/
   license: "GPL-3+ MPL-2.0"
@@ -16666,7 +16639,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r6"
+  version: "3.0.6-r7"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
@@ -16686,6 +16659,7 @@ packages:
   - dev-lang/ruby:3.1;USE="ruby_targets_ruby31"
   requires:
   - <<: *layers-X
+  - <<: *fonts-roboto
   - <<: *libs-mxml
   - <<: *libs-liblo
   - <<: *libs-dssi
