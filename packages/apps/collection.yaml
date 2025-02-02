@@ -10766,33 +10766,6 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-- &libs-libgit2
-  category: "libs"
-  name: "libgit2"
-  version: "1.9.0"
-  uri:
-  - https://libgit2.org/
-  license: "GPL-2-with-linking-exception"
-  description: "A linkable library for Git"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libgit2
-  provides:
-  - category: "dev-libs"
-    name: "libgit2"
-    version: ">=0"
-  - category: "net-libs"
-    name: "llhttp"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/libgit2"
-    use: "gssapi ssh threads"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-libgnomecanvas
   category: "libs"
   name: "libgnomecanvas"
@@ -11395,7 +11368,7 @@ packages:
 - &apps-cava
   category: "apps"
   name: "cava"
-  version: "0.10.3-r1"
+  version: "0.10.3-r1+1"
   uri:
   - http://cdrdao.sourceforge.net
   license: "MIT Unlicense"
@@ -12374,7 +12347,7 @@ packages:
 
 - category: "apps"
   name: "isomaster"
-  version: "1.3.17-r1"
+  version: "1.3.17-r1+1"
   uri:
   - http://littlesvr.ca/isomaster
   license: "MIT"
@@ -14537,31 +14510,6 @@ packages:
   - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-X
-  
-# - &libs-libgit2-glib
-#   category: "apps"
-#   name: "libgit2-glib"
-#   version: "1.2.0+1"
-#   uri:
-#   - https://wiki.gnome.org/Projects/Libgit2-glib
-#   license: "LGPL-2+"
-#   description: "Git library for GLib"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/libgit2-glib
-#   provides:
-#   - category: "dev-libs"
-#     name: "libgit2-glib"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-libs/libgit2-glib"
-#     use: "ssh vala"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-libgit2
-#   build_requires:
-#   - <<: *layers-X
 
 - &libs-openvdb
   category: "libs"
@@ -14833,7 +14781,7 @@ packages:
 
 - category: "apps"
   name: "bat"
-  version: "0.24.0-r2+1"
+  version: "0.24.0-r2+2"
   uri:
   - https://github.com/sharkdp/bat
   license: "Apache-2.0 BSD BSD-2 CC0-1.0 LGPL-3+ MIT"
@@ -14846,12 +14794,19 @@ packages:
   - category: "sys-apps"
     name: "bat"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libgit2"
+    version: ">=0"
+  - category: "net-libs"
+    name: "llhttp"
+    version: ">=0"
   atoms:
   - atom: "sys-apps/bat"
     accept_keywords: "~amd64"
+  - atom: "dev-libs/libgit2"
+    use: "gssapi ssh threads"
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-libgit2
   - <<: *libs-oniguruma
   build_requires:
   - <<: *layers-sys-fs
