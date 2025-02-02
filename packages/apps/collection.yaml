@@ -4684,6 +4684,29 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "atop"
+  version: "2.11"
+  uri:
+  - https://www.atoptool.nl
+  license: "GPL-2"
+  description: "Resource-specific view of processes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/atop
+  provides:
+  - category: "sys-process"
+    name: "acct"
+    version: ">=0"
+  - category: "sys-process"
+    name: "atop"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "b5i2iso"
   version: "0.2-r2+1"
   uri:
@@ -4728,6 +4751,29 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "bashtop"
+  version: "0.9.25+102"
+  uri:
+  - https://github.com/aristocratos/bashtop
+  license: "Apache-2.0"
+  description: "Resource monitor that shows usage and stats"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/bashtop
+  provides:
+  - category: "sys-process"
+    name: "bashtop"
+    version: ">=0"
+  atoms:
+  - atom: "sys-process/bashtop"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "bchunk"
