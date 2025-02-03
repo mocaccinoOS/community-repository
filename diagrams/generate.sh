@@ -24,8 +24,8 @@ echo -e '\n'; \
 echo -e '\n@enduml'; \
 ) > apps-collection.puml
 
-# All requires from C-R:
-##########################
+# All requires from C-R
+#########################
 
 ( \
 echo -e '@startuml\n'; \
@@ -45,6 +45,26 @@ echo -e '\n'; \
        | select("\(.category)/\(.name)" | IN($crpackages)) | "\"" + $category + "/" + $name + "\" --u--> \"\(.category)/\(.name)\""'); \
 echo -e '\n@enduml'; \
 ) > apps-collection-only.puml
+
+# All requires from C-R, simple
+#################################
+
+( \
+echo -e '@startuml\n'; \
+(yq r -j ../packages/apps/collection.yaml \
+| jq -r '{buildbase: "<< (B,#6495ED) >>", layerbase: "<< (λ,#98FB98) >>", layers: "<< (L,#9ACD32) >>", libs: "<< (l,#FF7700) >>", apps: "<< (a,#FF00FF) >>", utils: "<< (u,#4B0082) >>", fonts: "<< (f,#48D1CC) >>", development: "<< (d,#D4AC0D) >>", entity: "<< (e,#5DADE2) >>"} as $packages_styles
+       | .packages[]
+       | "entity \"\(.name)\" as \(.category)/\(.name) \($packages_styles[.category]) {\n\n}"'); \
+echo -e '\n'; \
+(yq r -j ../packages/apps/collection.yaml \
+| jq -r '(.packages[] | "\(.category)/\(.name)") as $crpackages
+       | .packages[]
+       | .name as $name
+       | .category as $category
+       | if (.optrequires) then .requires[] + .optrequires[] else .requires[] end
+       | select("\(.category)/\(.name)" | IN($crpackages)) | "\"" + $category + "/" + $name + "\" --u--> \"\(.category)/\(.name)\""'); \
+echo -e '\n@enduml'; \
+) > apps-collection-only-and-simple.puml
 
 # Run plantuml
 ################
