@@ -15,7 +15,7 @@ echo -e '@startuml\n'; \
        | [(if (.optrequires) then .requires[] + .optrequires[] else .requires[] end)] as $deps
        | "entity \"\(.name)\" as \(.category)/\(.name) \($packages_styles[.category]) {\n\( ( (if (.provides) then [( .provides[] | "  \($deps_styles["provides"]) \(.category)-\(.name)" )] | join("\n") | . + "\n..\n" else "" end) ) )\( ( [ $deps[] | "  \($deps_styles[.category]) \(.category)-\(.name)" ] ) | join("\n") )\n}"'); \
 echo -e '\n'; \
-(yq r -j /run/media/admius/LIBRARY/development/github.com/mocaccinoOS/community-repository/packages/apps/collection.yaml \
+(yq r -j ../packages/apps/collection.yaml \
 | jq -r '.packages[]
        | .name as $name
        | .category as $category
@@ -36,7 +36,7 @@ echo -e '@startuml\n'; \
        | [(if (.optrequires) then .requires[] + .optrequires[] else .requires[] end)] as $deps
        | "entity \"\(.name)\" as \(.category)/\(.name) \($packages_styles[.category]) {\n\( ( (if (.provides) then [( .provides[] | "  \($deps_styles["provides"]) \(.category)-\(.name)" )] | join("\n") | . + "\n..\n" else "" end) ) )\( ( [ $deps[] | "  \($deps_styles[.category]) \(.category)-\(.name)" ] ) | join("\n") )\n}"'); \
 echo -e '\n'; \
-(yq r -j /run/media/admius/LIBRARY/development/github.com/mocaccinoOS/community-repository/packages/apps/collection.yaml \
+(yq r -j ../packages/apps/collection.yaml \
 | jq -r '(.packages[] | "\(.category)/\(.name)") as $crpackages
        | .packages[]
        | .name as $name
@@ -44,7 +44,7 @@ echo -e '\n'; \
        | if (.optrequires) then .requires[] + .optrequires[] else .requires[] end
        | select("\(.category)/\(.name)" | IN($crpackages)) | "\"" + $category + "/" + $name + "\" --u--> \"\(.category)/\(.name)\""'); \
 echo -e '\n@enduml'; \
-) > apps-collection_only.puml
+) > apps-collection-only.puml
 
 # Run plantuml
 ################
