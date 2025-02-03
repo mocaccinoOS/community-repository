@@ -4131,22 +4131,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-typing-extensions
+- &libs-twisted
   category: "libs"
-  name: "typing-extensions"
-  version: "4.12.2+1"
+  name: "twisted"
+  version: "24.11.0"
   uri:
-  - https://pypi.org/project/typing-extensions/
-  license: "PSF-2"
+  - https://www.twistedmatrix.com/trac/
+  - https://github.com/twisted/incremental
+  license: "MIT"
   description: |
-    Backported and Experimental Type Hints for Python 3.7+
+    An asynchronous networking framework written in Python
+    Incremental is a small library that versions your Python projects
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/typing-extensions
+      dev-python/twisted
   provides:
   - category: "dev-python"
-    name: "typing-extensions"
+    name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "incremental"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zope-interface"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -9538,7 +9546,6 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
-  - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-X
 
@@ -11144,37 +11151,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-twisted
-  category: "libs"
-  name: "twisted"
-  version: "24.11.0"
-  uri:
-  - https://www.twistedmatrix.com/trac/
-  - https://github.com/twisted/incremental
-  license: "MIT"
-  description: |
-    An asynchronous networking framework written in Python
-    Incremental is a small library that versions your Python projects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/twisted
-  provides:
-  - category: "dev-python"
-    name: "twisted"
-    version: ">=0"
-  - category: "dev-python"
-    name: "incremental"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zope-interface"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-typing-extensions
-  build_requires:
-  - <<: *layers-X
-
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
@@ -11250,7 +11226,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.1.1"
+  version: "3.1.1+1"
   uri:
   - https://amarok.kde.org/
   license: "GPL-2"
@@ -13360,7 +13336,6 @@ packages:
   - <<: *libs-cachecontrol
   - <<: *libs-colorama
   - <<: *libs-pyproject-hooks
-  - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-sys-fs
 
