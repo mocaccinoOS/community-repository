@@ -1,0 +1,287 @@
+@startuml
+
+'!pragma layout smetana
+
+scale 0.8
+
+'skinparam linetype ortho
+'skinparam linetype polyline
+
+'skinparam padding 10
+skinparam nodesep 50
+skinparam ranksep 100
+
+skinparam artifact {
+    backgroundColor #F5DEB3
+}
+
+skinparam package<<gentoo>> {
+    backgroundColor #DDDAEC
+}
+
+skinparam package<<repo>> {
+    backgroundColor #00FFFF
+}
+
+skinparam package<<collection>> {
+    backgroundColor #DAA520
+}
+
+skinparam package<<build base>> {
+    /'
+    borderColor Transparent
+    backgroundColor Transparent
+    fontColor Transparent
+    stereotypeFontColor Transparent
+    '/
+  
+    backgroundColor #FFD700
+}
+
+skinparam package<<layer>> {
+    /'
+    borderColor Transparent
+    backgroundColor Transparent
+    fontColor Transparent
+    stereotypeFontColor Transparent
+    '/
+  
+    backgroundColor #FFFFE0
+}
+
+skinparam package<<development>> {
+    backgroundColor 4169E1
+}
+
+skinparam package<<build base>> {
+    backgroundColor #FFD700
+}
+
+skinparam artifact<<build base>> {
+    backgroundColor #FFD700
+}
+
+skinparam package<<requires final images>> {
+    backgroundColor #FFEE00
+}
+
+skinparam package<<meta>> {
+    backgroundColor #E6E6FA
+}
+
+
+skinparam package<<kernel-sources>> {
+    backgroundColor #DA70D6
+}
+
+skinparam package<<kernel-modules>> {
+    backgroundColor #EE82EE
+}
+
+allow_mixing
+
+package "os-commons" <<repo>> {
+    collections "entities"
+    
+    package "cli" {
+    }
+}
+
+package "desktop" <<repo>> {
+
+    package "stage3" <<gentoo>> {
+    } 
+    
+    package "gentoo-portage" <<requires final images>> <<layer>> {
+    }
+
+    package "apps" <<collection>> {
+        artifact "flatpak" <<build base>> <<unpack>>
+        artifact "grub" <<build base>> <<unpack>>
+        artifact "pavucontrol-qt" <<build base>> <<unpack>>
+        artifact "vlc"
+    }
+    
+    package "meta" <<collection>> {
+        package "systemd-groups" <<meta>> {
+        }    
+    }    
+
+    package "cinnamon" <<layer>> {
+    }
+
+    package "codecs" <<layer>> {
+    }
+
+    package "enlightenment" <<requires final images>> <<layer>> {
+    }
+
+    package "firmware" <<layer>> {
+    }
+
+    package "gnome" <<layer>> {
+    }
+
+    package "gnome-common" <<requires final images>> <<layer>> {
+    }
+
+    package "java" <<requires final images>> <<layer>> {
+    }
+
+    package "kde-apps-minimal" <<layer>> {
+    }
+
+    package "kde-common" <<build base>> <<unpack>> <<layer>> {
+    }
+
+    package "kde-pim" <<layer>> {
+    }
+
+    package "lxqt" <<requires final images>> <<layer>> {
+    }
+
+    package "mate" <<layer>> {
+    }
+    
+    package "maui-shell" <<requires final images>> <<layer>> {
+    }
+
+    package "plasma" <<layer>> {
+    }
+
+    package "qt" <<build base>> <<unpack>> <<requires final images>> <<layer>> {
+    }
+
+    package "sys-fs" <<layer>> {
+    }
+    
+    package "development" <<development>> {
+        artifact "gcc-base" {
+        }
+        
+        artifact "gcc" {
+        }
+    }
+    
+    package "system-x" <<collection>> as sxc {
+        package "system-x" <<build base>> <<unpack>> <<layer>> {
+        }
+        
+        package "system-x-devel" <<layer>> {
+        }
+    }
+
+    package "fynedesk" <<requires final images>> <<layer>> {
+    }
+    
+    package "pangolin-desktop" <<layer>> {
+    }
+    
+    package "trinity" <<requires final images>> <<layer>> {
+    }
+    
+    package "wayfire" <<layer>> {
+    }
+
+    package "office-common" <<layer>> {
+    }
+
+    package "X" <<build base>> <<unpack>> <<layer>> {
+    }
+    
+    package "xfce" <<layer>> {
+    }    
+    
+    package "mocaccino-lts-sources" <<kernel-sources>> <<build base>> <<unpack>> {
+    }
+    
+    package "mocaccino-sources" <<kernel-sources>> <<build base>> <<unpack>> {
+    }
+    
+    package "virtualbox-modules-lts" <<kernel-modules>> <<build base>> <<unpack>> {
+    }
+}
+
+"stage3" <-- "gentoo-portage"
+
+"gentoo-portage" <-- "system-x"
+
+"system-x" <-- "firmware"
+
+"gnome-common" <-- "cinnamon"
+
+"system-x" <-- "codecs"
+"entities" <---- "codecs"
+
+"X" <-- "enlightenment"
+
+"X" <-- "gnome-common"
+"entities" <---- "gnome-common"
+
+"gnome-common" <-- "gnome"
+"X" <-- "gnome"
+"entities" <---- "gnome"
+
+"X" <-- "java"
+"X" <-- "office-common"
+
+"plasma" <-- "kde-apps-minimal"
+"qt" <-- "kde-common"
+"entities" <---- "kde-common"
+
+"plasma" <-- "kde-pim"
+"entities" <---- "kde-pim"
+ 
+"kde-common" <-- "lxqt"
+"pavucontrol-qt" <-- "lxqt"
+
+"qt" <-- "pavucontrol-qt"
+
+"X" <-- "mate"
+"gnome-common" <-- "mate"
+
+"X" <-- "grub"
+
+"X" <-- "trinity"
+"X" <-- "fynedesk"
+"X" <-- "pangolin-desktop"
+
+"kde-common" <-- "plasma"
+"vlc" <-- "plasma"
+"entities" <-- "plasma"
+
+"X" <-- "qt"
+
+"system-x" <-- "sys-fs"
+
+"entities" <-- "systemd-groups"
+
+"cli" <---- "gcc-base"
+
+"gcc-base" <-- "system-x"
+"systemd-groups" <-- "system-x"
+"entities" <-- "system-x"
+"gcc-base" <-- "system-x-devel"
+"system-x" <-- "system-x-devel"
+
+"system-x" <-- "mocaccino-lts-sources"
+"system-x" <-- "mocaccino-sources"
+
+"mocaccino-lts-sources" <-- "virtualbox-modules-lts"
+"mocaccino-sources" <-- "virtualbox-modules-lts"
+"X" <-- "virtualbox-modules-lts"
+
+"system-x" <-- "X"
+"sys-fs" <-- "X"
+"codecs" <-- "X"
+
+"gnome-common" <-- "wayfire"
+"gnome-common" <-- "xfce"
+
+"kde-common" <-- "maui-shell"
+"plasma" <-- "maui-shell"
+
+"qt" <-- "vlc"
+"X" <-- "flatpak"
+
+@enduml
