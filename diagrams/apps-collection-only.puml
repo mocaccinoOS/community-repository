@@ -675,11 +675,6 @@ entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#D4AC0D><U+24D3></color> development-gcc
 }
-entity "quazip" as libs/quazip << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-quazip
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "qxlsx" as libs/qxlsx << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-qxlsx
 ..
@@ -769,8 +764,10 @@ entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "typing-extensions" as libs/typing-extensions << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-typing-extensions
+entity "twisted" as libs/twisted << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-twisted
+  <color:#34495E><U+24DF></color> dev-python-incremental
+  <color:#34495E><U+24DF></color> dev-python-zope-interface
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -798,11 +795,6 @@ entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-vamp-plugin-sdk
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "vc" as libs/vc << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> sci-libs-vc
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "vdf" as libs/vdf << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-vdf
@@ -1908,7 +1900,6 @@ entity "solaar" as apps/solaar << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-misc-solaar
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
 }
 entity "spacenavd" as apps/spacenavd << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-misc-spacenavd
@@ -2255,14 +2246,6 @@ entity "tbb" as libs/tbb << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#9ACD32><U+2756></color> layers-hwloc
 }
-entity "twisted" as libs/twisted << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-twisted
-  <color:#34495E><U+24DF></color> dev-python-incremental
-  <color:#34495E><U+24DF></color> dev-python-zope-interface
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
-}
 entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-xine-lib
 ..
@@ -2272,13 +2255,6 @@ entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-libdvdcss
   <color:#FF7700><U+1F79B></color> libs-libfame
   <color:#FF00FF><U+25C9></color> apps-vcdimager
-}
-entity "amarok" as apps/amarok << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-sound-amarok
-  <color:#34495E><U+24DF></color> media-libs-taglib-extras
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF00FF><U+25C9></color> apps-designer
 }
 entity "cairo-clock" as apps/cairo-clock << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-cairo-clock
@@ -2756,7 +2732,6 @@ entity "pip" as apps/pip << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-cachecontrol
   <color:#FF7700><U+1F79B></color> libs-colorama
   <color:#FF7700><U+1F79B></color> libs-pyproject-hooks
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
 }
 entity "plymouth-kcm" as apps/plymouth-kcm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-plasma-plymouth-kcm
@@ -4149,16 +4124,16 @@ entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-immer
   <color:#34495E><U+24DF></color> dev-libs-lager
   <color:#34495E><U+24DF></color> dev-libs-libunibreak
+  <color:#34495E><U+24DF></color> dev-libs-quazip
   <color:#34495E><U+24DF></color> dev-libs-zug
   <color:#34495E><U+24DF></color> kde-apps-libkdcraw
   <color:#34495E><U+24DF></color> media-gfx-krita
+  <color:#34495E><U+24DF></color> sci-libs-vc
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-quazip
   <color:#FF7700><U+1F79B></color> libs-libmypaint
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
-  <color:#FF7700><U+1F79B></color> libs-vc
   <color:#FF7700><U+1F79B></color> libs-xsimd
 }
 entity "qtractor" as apps/qtractor << (a,#FF00FF) >> {
@@ -4477,7 +4452,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sqlitebrowser" --u--> "libs/qscintilla"
 "apps/octave" --u--> "libs/qscintilla"
 "apps/kdegames" --u--> "libs/qtpy"
-"apps/krita" --u--> "libs/quazip"
 "apps/labplot" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/qxlsx"
 "libs/pysol-cards" --u--> "libs/random2"
@@ -4508,9 +4482,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kodi" --u--> "libs/tinyxml2"
 "apps/emacs" --u--> "libs/tree-sitter"
 "apps/neovim" --u--> "libs/tree-sitter"
-"apps/solaar" --u--> "libs/typing-extensions"
-"libs/twisted" --u--> "libs/typing-extensions"
-"apps/pip" --u--> "libs/typing-extensions"
+"apps/kdegames" --u--> "libs/twisted"
 "apps/wxhexeditor" --u--> "libs/udis86"
 "apps/nagios" --u--> "libs/uriparser"
 "apps/obs-studio" --u--> "libs/uthash"
@@ -4520,7 +4492,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mixxx" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
 "apps/ardour" --u--> "libs/vamp-plugin-sdk"
-"apps/krita" --u--> "libs/vc"
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
@@ -4554,7 +4525,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/clamtk" --u--> "apps/clamav"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/hugin" --u--> "apps/dcraw"
-"apps/amarok" --u--> "apps/designer"
 "apps/calligraplan" --u--> "apps/designer"
 "apps/museseq" --u--> "apps/designer"
 "apps/dotnet-sdk-6" --u--> "apps/dotnet-common"
@@ -4672,7 +4642,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/ocio-oiio" --u--> "libs/tbb"
 "apps/easyeffects" --u--> "libs/tbb"
 "apps/blender" --u--> "libs/tbb"
-"apps/kdegames" --u--> "libs/twisted"
 "apps/vdr" --u--> "libs/xine-lib"
 "apps/kaffeine-tde" --u--> "libs/xine-lib"
 "apps/quodlibet" --u--> "libs/xine-lib"

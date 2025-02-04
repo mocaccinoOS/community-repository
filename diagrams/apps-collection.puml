@@ -675,11 +675,6 @@ entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#D4AC0D><U+24D3></color> development-gcc
 }
-entity "quazip" as libs/quazip << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-quazip
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "qxlsx" as libs/qxlsx << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-qxlsx
 ..
@@ -769,8 +764,10 @@ entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "typing-extensions" as libs/typing-extensions << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-typing-extensions
+entity "twisted" as libs/twisted << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-twisted
+  <color:#34495E><U+24DF></color> dev-python-incremental
+  <color:#34495E><U+24DF></color> dev-python-zope-interface
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -798,11 +795,6 @@ entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-vamp-plugin-sdk
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "vc" as libs/vc << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> sci-libs-vc
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "vdf" as libs/vdf << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-vdf
@@ -1908,7 +1900,6 @@ entity "solaar" as apps/solaar << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-misc-solaar
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
 }
 entity "spacenavd" as apps/spacenavd << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-misc-spacenavd
@@ -2255,14 +2246,6 @@ entity "tbb" as libs/tbb << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#9ACD32><U+2756></color> layers-hwloc
 }
-entity "twisted" as libs/twisted << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-twisted
-  <color:#34495E><U+24DF></color> dev-python-incremental
-  <color:#34495E><U+24DF></color> dev-python-zope-interface
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
-}
 entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-xine-lib
 ..
@@ -2272,13 +2255,6 @@ entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-libdvdcss
   <color:#FF7700><U+1F79B></color> libs-libfame
   <color:#FF00FF><U+25C9></color> apps-vcdimager
-}
-entity "amarok" as apps/amarok << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-sound-amarok
-  <color:#34495E><U+24DF></color> media-libs-taglib-extras
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF00FF><U+25C9></color> apps-designer
 }
 entity "cairo-clock" as apps/cairo-clock << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-cairo-clock
@@ -2756,7 +2732,6 @@ entity "pip" as apps/pip << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-cachecontrol
   <color:#FF7700><U+1F79B></color> libs-colorama
   <color:#FF7700><U+1F79B></color> libs-pyproject-hooks
-  <color:#FF7700><U+1F79B></color> libs-typing-extensions
 }
 entity "plymouth-kcm" as apps/plymouth-kcm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-plasma-plymouth-kcm
@@ -4149,16 +4124,16 @@ entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-immer
   <color:#34495E><U+24DF></color> dev-libs-lager
   <color:#34495E><U+24DF></color> dev-libs-libunibreak
+  <color:#34495E><U+24DF></color> dev-libs-quazip
   <color:#34495E><U+24DF></color> dev-libs-zug
   <color:#34495E><U+24DF></color> kde-apps-libkdcraw
   <color:#34495E><U+24DF></color> media-gfx-krita
+  <color:#34495E><U+24DF></color> sci-libs-vc
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-quazip
   <color:#FF7700><U+1F79B></color> libs-libmypaint
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
-  <color:#FF7700><U+1F79B></color> libs-vc
   <color:#FF7700><U+1F79B></color> libs-xsimd
 }
 entity "qtractor" as apps/qtractor << (a,#FF00FF) >> {
@@ -4379,7 +4354,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/qscintilla" --u--> "layers/kde-kf5"
 "libs/qtpy" --u--> "layers/qt"
 "libs/qtpy" --u--> "development/gcc"
-"libs/quazip" --u--> "layers/qt"
 "libs/qxlsx" --u--> "layers/qt"
 "libs/random2" --u--> "layers/system-x"
 "libs/rapidjson" --u--> "layers/system-x"
@@ -4396,13 +4370,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/Text-CSV" --u--> "layers/X"
 "libs/tinyxml2" --u--> "layers/system-x"
 "libs/tree-sitter" --u--> "layers/system-x"
-"libs/typing-extensions" --u--> "layers/X"
+"libs/twisted" --u--> "layers/X"
 "libs/udis86" --u--> "layers/system-x"
 "libs/uriparser" --u--> "layers/system-x"
 "libs/uthash" --u--> "layers/system-x"
 "libs/utfcpp" --u--> "layers/system-x"
 "libs/vamp-plugin-sdk" --u--> "layers/X"
-"libs/vc" --u--> "layers/system-x"
 "libs/vdf" --u--> "layers/system-x"
 "libs/websocketpp" --u--> "layers/system-x"
 "libs/wxGTK" --u--> "layers/gnome-common"
@@ -4605,7 +4578,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sndio" --u--> "layers/X"
 "apps/sndio" --u--> "entity/sndio"
 "apps/solaar" --u--> "layers/X"
-"apps/solaar" --u--> "libs/typing-extensions"
 "apps/spacenavd" --u--> "layers/X"
 "apps/subtitlecomposer" --u--> "layers/kde-kf5"
 "apps/sqlcipher" --u--> "layers/system-x"
@@ -4698,16 +4670,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/sord" --u--> "libs/serd"
 "libs/tbb" --u--> "layers/X"
 "libs/tbb" --u--> "layers/hwloc"
-"libs/twisted" --u--> "layers/X"
-"libs/twisted" --u--> "libs/typing-extensions"
 "libs/xine-lib" --u--> "layers/gnome-common"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
 "libs/xine-lib" --u--> "libs/libcaca"
 "libs/xine-lib" --u--> "libs/libdvdcss"
 "libs/xine-lib" --u--> "libs/libfame"
 "libs/xine-lib" --u--> "apps/vcdimager"
-"apps/amarok" --u--> "layers/kde-kf5"
-"apps/amarok" --u--> "apps/designer"
 "apps/cairo-clock" --u--> "layers/X"
 "apps/cairo-clock" --u--> "libs/libglade"
 "apps/cairo-dock" --u--> "layers/gnome-common"
@@ -4872,7 +4840,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/pip" --u--> "libs/cachecontrol"
 "apps/pip" --u--> "libs/colorama"
 "apps/pip" --u--> "libs/pyproject-hooks"
-"apps/pip" --u--> "libs/typing-extensions"
 "apps/plymouth-kcm" --u--> "layers/plasma"
 "apps/plymouth-kcm" --u--> "apps/grub"
 "apps/postgresql" --u--> "layers/sys-fs"
@@ -5457,10 +5424,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "apps/calf"
 "apps/krita" --u--> "layers/qt"
 "apps/krita" --u--> "layers/kde-kf5"
-"apps/krita" --u--> "libs/quazip"
 "apps/krita" --u--> "libs/libmypaint"
 "apps/krita" --u--> "libs/ocio-oiio"
-"apps/krita" --u--> "libs/vc"
 "apps/krita" --u--> "libs/xsimd"
 "apps/qtractor" --u--> "layers/kde-kf5"
 "apps/qtractor" --u--> "libs/aubio"

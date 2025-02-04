@@ -393,9 +393,6 @@ entity "qscintilla" as libs/qscintilla << (l,#FF7700) >> {
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
 
 }
-entity "quazip" as libs/quazip << (l,#FF7700) >> {
-
-}
 entity "qxlsx" as libs/qxlsx << (l,#FF7700) >> {
 
 }
@@ -444,7 +441,7 @@ entity "tinyxml2" as libs/tinyxml2 << (l,#FF7700) >> {
 entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 
 }
-entity "typing-extensions" as libs/typing-extensions << (l,#FF7700) >> {
+entity "twisted" as libs/twisted << (l,#FF7700) >> {
 
 }
 entity "udis86" as libs/udis86 << (l,#FF7700) >> {
@@ -460,9 +457,6 @@ entity "utfcpp" as libs/utfcpp << (l,#FF7700) >> {
 
 }
 entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
-
-}
-entity "vc" as libs/vc << (l,#FF7700) >> {
 
 }
 entity "vdf" as libs/vdf << (l,#FF7700) >> {
@@ -1224,13 +1218,7 @@ entity "sord" as libs/sord << (l,#FF7700) >> {
 entity "tbb" as libs/tbb << (l,#FF7700) >> {
 
 }
-entity "twisted" as libs/twisted << (l,#FF7700) >> {
-
-}
 entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
-
-}
-entity "amarok" as apps/amarok << (a,#FF00FF) >> {
 
 }
 entity "cairo-clock" as apps/cairo-clock << (a,#FF00FF) >> {
@@ -2138,7 +2126,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sqlitebrowser" --u--> "libs/qscintilla"
 "apps/octave" --u--> "libs/qscintilla"
 "apps/kdegames" --u--> "libs/qtpy"
-"apps/krita" --u--> "libs/quazip"
 "apps/labplot" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/qxlsx"
 "libs/pysol-cards" --u--> "libs/random2"
@@ -2169,9 +2156,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kodi" --u--> "libs/tinyxml2"
 "apps/emacs" --u--> "libs/tree-sitter"
 "apps/neovim" --u--> "libs/tree-sitter"
-"apps/solaar" --u--> "libs/typing-extensions"
-"libs/twisted" --u--> "libs/typing-extensions"
-"apps/pip" --u--> "libs/typing-extensions"
+"apps/kdegames" --u--> "libs/twisted"
 "apps/wxhexeditor" --u--> "libs/udis86"
 "apps/nagios" --u--> "libs/uriparser"
 "apps/obs-studio" --u--> "libs/uthash"
@@ -2181,7 +2166,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mixxx" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
 "apps/ardour" --u--> "libs/vamp-plugin-sdk"
-"apps/krita" --u--> "libs/vc"
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
@@ -2215,7 +2199,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/clamtk" --u--> "apps/clamav"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/hugin" --u--> "apps/dcraw"
-"apps/amarok" --u--> "apps/designer"
 "apps/calligraplan" --u--> "apps/designer"
 "apps/museseq" --u--> "apps/designer"
 "apps/dotnet-sdk-6" --u--> "apps/dotnet-common"
@@ -2333,7 +2316,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/ocio-oiio" --u--> "libs/tbb"
 "apps/easyeffects" --u--> "libs/tbb"
 "apps/blender" --u--> "libs/tbb"
-"apps/kdegames" --u--> "libs/twisted"
 "apps/vdr" --u--> "libs/xine-lib"
 "apps/kaffeine-tde" --u--> "libs/xine-lib"
 "apps/quodlibet" --u--> "libs/xine-lib"

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 #=============================================
 #  export plantuml diagram from a collection
