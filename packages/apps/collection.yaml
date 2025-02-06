@@ -4479,7 +4479,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.2.1"
+  version: "3.2.1+1"
   uri:
   - https://amarok.kde.org/
   license: "GPL-2"
@@ -4494,21 +4494,14 @@ packages:
   - category: "media-sound"
     name: "amarok"
     version: ">=0"
-  - category: "media-libs"
-    name: "taglib-extras"
-    version: ">=0"
   atoms:
   - atom: "media-sound/amarok"
-    use: "mtp wikipedia # mariadb ipod lastfm podcast"
+    use: "mariadb mtp wikipedia # ipod lastfm podcast"
     accept_keywords: "~amd64"
-  prepare:
-  - |
-    sed -i -e "s/.*dev-qt\/linguist-tools.*//" /var/db/repos/robert7k/media-sound/amarok/amarok-*.ebuild && \
-    ebuild /var/db/repos/robert7k/media-sound/amarok/amarok-*.ebuild manifest
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "amberol"
