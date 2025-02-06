@@ -4499,8 +4499,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/amarok"
-    use: "mariadb mtp wikipedia # ipod lastfm podcast"
+    use: "mtp wikipedia # mariadb ipod lastfm podcast"
     accept_keywords: "~amd64"
+  prepare:
+  - |
+    sed -i -e "s/.*dev-qt\/linguist-tools.*//" /var/db/repos/robert7k/media-sound/amarok/amarok-*.ebuild && \
+    ebuild /var/db/repos/robert7k/media-sound/amarok/amarok-*.ebuild manifest
   requires:
   - <<: *layers-kde-common
   build_requires:
