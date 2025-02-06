@@ -4477,34 +4477,34 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - category: "apps"
-#   name: "amarok"
-#   version: "3"
-#   uri:
-#   - https://amarok.kde.org/
-#   license: "GPL-2"
-#   description: "Advanced audio player based on KDE frameworks"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-sound/amarok
-#   overlays:
-#   - enable: "kde"
-#   provides:
-#   - category: "media-sound"
-#     name: "amarok"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "taglib-extras"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/amarok"
-#     use: "mariadb mtp -qt5 qt6 wikipedia # ipod lastfm podcast"
-#     accept_keywords: "**"
-#   requires:
-#   - <<: *layers-kde-common
-#   build_requires:
-#   - <<: *layers-kde-common
+- category: "apps"
+  name: "amarok"
+  version: "3.2.1"
+  uri:
+  - https://amarok.kde.org/
+  license: "GPL-2"
+  description: "Advanced audio player based on KDE frameworks"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/amarok
+  overlays:
+  - enable: "robert7k"
+  provides:
+  - category: "media-sound"
+    name: "amarok"
+    version: ">=0"
+  - category: "media-libs"
+    name: "taglib-extras"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/amarok"
+    use: "mariadb mtp wikipedia # ipod lastfm podcast"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "amberol"
