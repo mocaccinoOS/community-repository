@@ -884,7 +884,7 @@ packages:
 - &libs-analitza
   category: "libs"
   name: "analitza"
-  version: "24.12.0+1"
+  version: "24.12.1"
   uri:
   - https://kde.org/
   license: "GPL-2"
@@ -1134,7 +1134,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "132.0.6834.110"
+  version: "133.0.6943.53"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1581,7 +1581,7 @@ packages:
 - &libs-gl2ps
   category: "libs"
   name: "gl2ps"
-  version: "1.4.2-r1"
+  version: "1.4.2-r1+1"
   uri:
   - http://www.geuz.org/gl2ps/
   license: "LGPL-2"
@@ -1600,10 +1600,7 @@ packages:
   requires:
   - <<: *layers-latex
   build_requires:
-  - <<: *buildbase-perl-libs
-  - <<: *layerbase-latex
-  - <<: *layerbase-XML-LibXML
-  requires_final_images: true
+  - <<: *layers-latex
 
 - &libs-glfw
   category: "libs"
@@ -1780,27 +1777,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- &libs-gts
-  category: "libs"
-  name: "gts"
-  version: "20121130+4"
-  uri:
-  - http://gts.sourceforge.net/
-  license: "LGPL-2"
-  description: "GNU Triangulated Surface Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-libs/gts
-  provides:
-  - category: "sci-libs"
-    name: "gts"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-gupnp-igd
   category: "libs"
@@ -2011,27 +1987,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "ladspa-sdk"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-lasi
-  category: "libs"
-  name: "lasi"
-  version: "1.1.3+3"
-  uri:
-  - http://www.unifont.org/lasi
-  license: "GPL-2"
-  description: "C++ library for postscript stream output"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lasi
-  provides:
-  - category: "media-libs"
-    name: "lasi"
     version: ">=0"
   requires:
   - <<: *layers-X
@@ -2351,33 +2306,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-glpk
-  category: "libs"
-  name: "glpk"
-  version: "5.0-r3"
-  uri:
-  - https://www.gnu.org/software/glpk/
-  license: "GPL-3"
-  description: "GNU Linear Programming Kit"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-mathematics/glpk
-  provides:
-  - category: "sci-mathematics"
-    name: "glpk"
-    version: ">=0"
-  atoms:
-  - atom: "sci-mathematics/glpk"
-    use: "gmp odbc mysql"
-  requires:
-  - <<: *layers-office-common
-  - <<: *layers-sci-libs
-  build_requires:
-  - <<: *buildbase-office-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
-
 - &libs-libharu
   category: "libs"
   name: "libharu"
@@ -2581,30 +2509,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libopenmpt
-  category: "libs"
-  name: "libopenmpt"
-  version: "0.6.6+2"
-  uri:
-  - https://lib.openmpt.org/libopenmpt/
-  license: "BSD"
-  description: "Library to decode tracked music files (modules)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libopenmpt
-  provides:
-  - category: "media-libs"
-    name: "libopenmpt"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libopenmpt"
-    use: "examples mp3 ogg vorbis zlib"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-libopusenc
   category: "libs"
@@ -3158,27 +3062,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-msgpack
-  category: "libs"
-  name: "msgpack"
-  version: "6.0.0-r1+1"
-  uri:
-  - https://msgpack.org/
-  license: "Boost-1.0"
-  description: "MessagePack is a binary-based efficient data interchange format"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/msgpack
-  provides:
-  - category: "dev-libs"
-    name: "msgpack"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-mxml
   category: "libs"
   name: "mxml"
@@ -3260,27 +3143,6 @@ packages:
     version: ">=0"
   - category: "virtual"
     name: "perl-Digest"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-netifaces
-  category: "libs"
-  name: "netifaces"
-  version: "0.11.0-r2+1"
-  uri:
-  - https://pypi.org/project/netifaces/
-  license: "MIT"
-  description: "Portable network interface information"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/netifaces
-  provides:
-  - category: "dev-python"
-    name: "netifaces"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3890,27 +3752,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-serd
-  category: "libs"
-  name: "serd"
-  version: "0.32.2"
-  uri:
-  - http://drobilla.net/software/serd/
-  license: "ISC"
-  description: "Library for RDF syntax which supports reading and writing Turtle and NTriples"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/serd
-  provides:
-  - category: "dev-libs"
-    name: "serd"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-sgml-common
   category: "libs"
   name: "sgml-common"
@@ -4256,7 +4097,7 @@ packages:
 - &libs-vdf
   category: "libs"
   name: "vdf"
-  version: "3.4_p20240630"
+  version: "4.0"
   uri:
   - https://github.com/ValvePython/vdf
   license: "MIT"
@@ -4961,7 +4802,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.74.50"
+  version: "1.74.51"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5199,7 +5040,7 @@ packages:
 - &apps-converseen
   category: "apps"
   name: "converseen"
-  version: "0.12.0.1"
+  version: "0.12.2.4"
   uri:
   - https://converseen.fasterland.net/
   license: "GPL-3+"
@@ -5403,7 +5244,7 @@ packages:
 - &apps-distrobox
   category: "apps"
   name: "distrobox"
-  version: "1.8.1.1"
+  version: "1.8.1.2"
   uri:
   - https://distrobox.privatedns.org/
   license: "GPL-3"
@@ -6553,7 +6394,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.23.5"
+  version: "1.23.5-r1"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6576,7 +6417,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "132.0.6834.110"
+  version: "133.0.6943.53"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6708,7 +6549,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.1.0"
+  version: "2.2.1"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -7409,7 +7250,7 @@ packages:
 
 - category: "apps"
   name: "ksnip"
-  version: "1.10.1+1"
+  version: "1.11.0_pre20250130"
   uri:
   - https://github.com/ksnip/ksnip
   license: "GPL-2+"
@@ -7513,7 +7354,7 @@ packages:
 - &apps-qalculate-gtk
   category: "apps"
   name: "qalculate-gtk"
-  version: "5.3.0"
+  version: "5.4.0"
   uri:
   - https://qalculate.github.io/
   license: "GPL-2+"
@@ -7536,7 +7377,7 @@ packages:
 - &apps-qalculate-qt
   category: "apps"
   name: "qalculate-qt"
-  version: "5.3.0"
+  version: "5.4.0"
   uri:
   - https://github.com/Qalculate/qalculate-qt
   license: "GPL-2+"
@@ -7710,7 +7551,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.7.2+1"
+  version: "0.8.0_rc2"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -8986,7 +8827,7 @@ packages:
 
 - category: "apps"
   name: "qbittorrent"
-  version: "5.0.2"
+  version: "5.0.3"
   uri:
   - https://www.qbittorrent.org
   license: "GPL-2"
@@ -9076,7 +8917,7 @@ packages:
 
 - category: "apps"
   name: "quassel"
-  version: "0.14.0-r3+1"
+  version: "0.14.0-r4"
   uri:
   - https://quassel-irc.org
   license: "GPL-3"
@@ -10209,7 +10050,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.8.0"
+  version: "0.8.1"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -10260,7 +10101,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.4.2-r100"
+  version: "4.4.3"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -10866,7 +10707,7 @@ packages:
 - &libs-libmikmod
   category: "libs"
   name: "libmikmod"
-  version: "3.3.11.1-r2+2"
+  version: "3.3.12"
   uri:
   - http://mikmod.sourceforge.net/
   license: "LGPL-2+ LGPL-2.1"
@@ -10938,29 +10779,44 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-tiff-compat
+- &libs-lilv
   category: "libs"
-  name: "tiff-compat"
-  version: "4.4.0-r1"
+  name: "lilv"
+  version: "0.24.24+1"
   uri:
-  - http://libtiff.maptools.org
-  license: "libtiff"
-  description: "Tag Image File Format (TIFF) library (compat package for libtiff.so.5)"
+  - http://drobilla.net/software/lilv/
+  - http://drobilla.net/software/serd/
+  - http://drobilla.net/software/sord/
+  - http://drobilla.net/software/sratom/
+  license: "ISC"
+  description: |
+    Library to make the use of LV2 plugins as simple as possible for applications    
+    Library for RDF syntax which supports reading and writing Turtle and NTriples
+    Library for storing RDF data in memory
+    Library for serialising LV2 atoms to/from RDF, particularly the Turtle syntax
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/tiff-compat
+      media-libs/lilv
   provides:
+  - category: "dev-libs"
+    name: "lilv"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "serd"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "sord"
+    version: ">=0"
   - category: "media-libs"
-    name: "gegl"
+    name: "sratom"
     version: ">=0"
   atoms:
-  - atom: "media-libs/tiff-compat"
-    use: "cxx jbig jpeg lzma verify-sig webp zlib zstd"
-    license: "libtiff"
+  - atom: "media-libs/lilv"
+    use: "dyn-manifest"
   requires:
   - <<: *layers-X
-  - <<: *libs-jbigkit
+  - <<: *libs-lv2
   build_requires:
   - <<: *layers-X
 
@@ -11116,28 +10972,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-sord
-  category: "libs"
-  name: "sord"
-  version: "0.16.16-r1+1"
-  uri:
-  - http://drobilla.net/software/sord/
-  license: "ISC"
-  description: "Library for storing RDF data in memory"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/sord
-  provides:
-  - category: "dev-libs"
-    name: "sord"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-serd
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-tbb
   category: "libs"
   name: "tbb"
@@ -11157,6 +10991,32 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *layers-hwloc
+  build_requires:
+  - <<: *layers-X
+
+- &libs-tiff-compat
+  category: "libs"
+  name: "tiff-compat"
+  version: "4.4.0-r1"
+  uri:
+  - http://libtiff.maptools.org
+  license: "libtiff"
+  description: "Tag Image File Format (TIFF) library (compat package for libtiff.so.5)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/tiff-compat
+  provides:
+  - category: "media-libs"
+    name: "gegl"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/tiff-compat"
+    use: "cxx jbig jpeg lzma verify-sig webp zlib zstd"
+    license: "libtiff"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-jbigkit
   build_requires:
   - <<: *layers-X
 
@@ -11822,7 +11682,7 @@ packages:
 
 - category: "apps"
   name: "easytag"
-  version: "2.4.3-r6+1"
+  version: "2.4.3-r7"
   uri:
   - https://wiki.gnome.org/Apps/EasyTAG
   license: "GPL-2 GPL-2+ LGPL-2 LGPL-2+ LGPL-2.1+"
@@ -12001,7 +11861,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.0.1-r3"
+  version: "1.1.0"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -12447,7 +12307,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "24.12.0"
+  version: "24.12.1"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -12941,7 +12801,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.37"
+  version: "0.38"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -13138,7 +12998,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "116.0.5366.51"
+  version: "116.0.5366.71"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -13462,7 +13322,7 @@ packages:
 
 - category: "apps"
   name: "qmmp"
-  version: "1.6.4-r1"
+  version: "2.1.9"
   uri:
   - https://qmmp.ylsoftware.com
   license: "GPL-3"
@@ -13473,11 +13333,11 @@ packages:
       media-sound/qmmp
       media-plugins/qmmp-plugin-pack
   provides:
-  - category: "media-plugins"
-    name: "qmmp-plugin-pack"
-    version: ">=0"
   - category: "media-sound"
     name: "qmmp"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "qmmp-plugin-pack"
     version: ">=0"
   - category: "app-i18n"
     name: "enca"
@@ -14224,7 +14084,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.0"
+  version: "10.0+1"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -14507,31 +14367,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &libs-wcslib
-  category: "libs"
-  name: "wcslib"
-  version: "8.3-r1+1"
-  uri:
-  - https://www.atnf.csiro.au/people/mcalabre/WCS/
-  license: "LGPL-3"
-  description: "Astronomical World Coordinate System transformations library"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      sci-astronomy/wcslib
-  provides:
-  - category: "sci-astronomy"
-    name: "wcslib"
-    version: ">=0"
-  atoms:
-  - atom: "sci-astronomy/wcslib"
-    use: "fits"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-cfitsio
-  build_requires:
-  - <<: *layers-system-x
-
 ################################################################################################################################################################
 ### dep 2 apps ###
 ################################################################################################################################################################
@@ -14804,7 +14639,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.20.0+1"
+  version: "7.22.0"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -14844,6 +14679,9 @@ packages:
   - category: "dev-python"
     name: "mechanize"
     version: ">=0"
+  - category: "dev-python"
+    name: "netifaces"
+    version: ">=0"
   - category: "media-gfx"
     name: "optipng"
     version: ">=0"
@@ -14873,7 +14711,6 @@ packages:
   - <<: *libs-fonttools
   - <<: *libs-mathjax
   - <<: *libs-python-msgpack
-  - <<: *libs-netifaces
   - <<: *libs-regex
   build_requires:
   - <<: *layers-qt
@@ -15173,36 +15010,6 @@ packages:
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-kde-common
-
-- category: "apps"
-  name: "kaffeine-tde"
-  version: "14.1.1+1"
-  uri:
-  - https://trinitydesktop.org
-  license: "GPL-2"
-  description: "Media player for TDE using Xine and GStreamer backends."
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      trinity-apps/kaffeine::trinity-official
-  overlays:
-  - add: "trinity-official"
-    type: "git"
-    url: "https://mirror.git.trinitydesktop.org/gitea/TDE/tde-packaging-gentoo.git"
-  provides:
-  - category: "trinity-apps"
-    name: "kaffeine"
-    version: ">=0"
-  atoms:
-  - atom: "trinity-apps/kaffeine"
-    accept_keywords: "~amd64"
-    use: "dpms dvb encode gstreamer vorbis xcb xinerama"
-  requires:
-  - <<: *layers-trinity
-  - <<: *libs-xine-lib
-  build_requires:
-  - <<: *layers-trinity
-  - <<: *libs-xine-lib
 
 - category: "apps"
   name: "kdegames"
@@ -15598,7 +15405,7 @@ packages:
 - &apps-luminance-hdr
   category: "apps"
   name: "luminance-hdr"
-  version: "2.6.1.1-r1+11"
+  version: "2.6.1.1-r2"
   uri:
   - http://qtpfsgui.sourceforge.net
   license: "GPL-2"
@@ -15698,7 +15505,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.6+8"
+  version: "2.3.6-r2"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -15791,10 +15598,10 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.10.2"
+  version: "0.10.3"
   uri:
   - https://neovim.io
-  license: "Apache-2.0 vim"
+  license: "Apache-2.0 Boost-1.0 vim"
   description: |
     "Vim-fork focused on extensibility and agility"
   labels:
@@ -15807,6 +15614,9 @@ packages:
   - category: "app-editors"
     name: "neovim"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libmpack"
+    version: ">=0"
   - category: "dev-lua"
     name: "luv"
     version: ">=0"
@@ -15814,7 +15624,7 @@ packages:
     name: "mpack"
     version: ">=0"
   - category: "dev-libs"
-    name: "libmpack"
+    name: "msgpack"
     version: ">=0"
   atoms:
   - atom: "app-editors/neovim"
@@ -15829,7 +15639,6 @@ packages:
   - <<: *libs-lpeg
   - <<: *libs-LuaBitOp
   - <<: *libs-tree-sitter
-  - <<: *libs-msgpack
   build_requires:
   - <<: *buildbase-X
   - <<: *buildbase-term-libs
@@ -15898,7 +15707,7 @@ packages:
 - &apps-openra
   category: "apps"
   name: "openra"
-  version: "20231010-r1+4"
+  version: "20231010-r2"
   uri:
   -  https://www.openra.net/
   license: "Apache-2.0 vim"
@@ -15938,44 +15747,6 @@ packages:
   - <<: *apps-ufw
   build_requires:
   - <<: *layers-plasma
-
-# - category: "apps"
-#   name: "pulseaudio-dlna"
-#   version: "0.6.5_p1-r1+1"
-#   uri:
-#   - https://github.com/Cygn/pulseaudio-dlna
-#   license: "GPL-3"
-#   description: "A lightweight DLNA/UPNP/Chromecast streaming server for PulseAudio"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/pulseaudio-dlna
-#   provides:
-#   - category: "net-misc"
-#     name: "pulseaudio-dlna"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "docopt"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "notify2"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyroute2"
-#     version: ">=0"
-#   # media-sound/pulseaudio-daemon?
-#   atoms:
-#   - atom: "net-misc/pulseaudio-dlna"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - sed -i -e 's/PYTHON_COMPAT=( .* )/PYTHON_COMPAT=( python3_12 )/' /var/db/repos/gentoo/net-misc/pulseaudio-dlna/pulseaudio-dlna-*.ebuild
-#   - ebuild /var/db/repos/gentoo/net-misc/pulseaudio-dlna/pulseaudio-dlna-*.ebuild manifest
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-netifaces
-#   - <<: *libs-pychromecast
-#   build_requires:
-#   - <<: *layers-X
 
 - category: "apps"
   name: "q4wine"
@@ -16561,7 +16332,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r7"
+  version: "3.0.6-r7+1"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
@@ -16594,31 +16365,6 @@ packages:
 ### dep 3 libs ###
 ################################################################################################################################################################
 
-- &libs-devil
-  category: "libs"
-  name: "devil"
-  version: "1.7.8-r6+1"
-  uri:
-  - http://openil.sourceforge.net/
-  license: "LGPL-2.1"
-  description: "DevIL image library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/devil
-  provides:
-  - category: "media-libs"
-    name: "devil"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/devil"
-    use: "allegro gif glut jpeg mng opengl png sdl static-libs tiff X xpm"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-allegro
-  build_requires:
-  - <<: *layers-X
-
 - &libs-farstream
   category: "libs"
   name: "farstream"
@@ -16645,30 +16391,6 @@ packages:
   - <<: *libs-gst-plugins-srtp
   build_requires:
   - <<: *layers-gnome-common
-
-- &libs-fluidsynth-dssi
-  category: "libs"
-  name: "fluidsynth-dssi"
-  version: "1.0.0-r2"
-  uri:
-  - http://dssi.sourceforge.net/
-  license: "GPL-2"
-  description: "DSSI Soft Synth Interface"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/fluidsynth-dssi
-  provides:
-  - category: "media-libs"
-    name: "fluidsynth-dssi"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-dssi
-  - <<: *libs-liblo
-  - <<: *apps-fluidsynth
-  build_requires:
-  - <<: *layers-X
 
 - &libs-freeipmi
   category: "libs"
@@ -16935,17 +16657,19 @@ packages:
 
 - category: "apps"
   name: "audacious"
-  version: "4.4.2"
+  version: "4.4.2+1"
   uri:
   - https://audacious-media-player.org
   - http://ampache-browser.org
   - https://github.com/ampache-browser/ampache_browser
   - http://bio2jack.sourceforge.net/
-  license: "BSD-2 LGPL-2.1 GPL-2+ GPL-3 GPL-3+"
+  - https://lib.openmpt.org/libopenmpt/
+  license: "BSD BSD-2 LGPL-2.1 GPL-2+ GPL-3 GPL-3+"
   description: |
     Audacious Player - Your music, your way, no exceptions
     Ampache desktop client library
     A library for porting blocked I/O OSS/ALSA audio applications to JACK
+    Library to decode tracked music files (modules)
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -16964,6 +16688,9 @@ packages:
   - category: "media-libs"
     name: "bio2jack"
     version: ">=0"
+  - category: "media-libs"
+    name: "libopenmpt"
+    version: ">=0"
   atoms:
   - atom: "media-sound/audacious"
     use: "qt6 # gtk"
@@ -16973,10 +16700,11 @@ packages:
     use: "aac alsa ampache bs2b cdda cue ffmpeg flac fluidsynth gme http jack openmpt lame libnotify libsamplerate mms modplug mp3 nls opengl pulseaudio qt6 scrobbler sdl sid sndfile soxr speedpitch streamtuner vorbis wavpack # gtk lirc"
   - atom: "media-libs/ampache_browser"
     use: "nls qt6 # gtk"
+  - atom: "media-libs/libopenmpt"
+    use: "examples mp3 ogg vorbis zlib"
   requires:
   - <<: *layers-qt
   - <<: *libs-libbs2b
-  - <<: *libs-libopenmpt
   - <<: *libs-libsidplayfp
   - <<: *apps-fluidsynth
   build_requires:
@@ -17092,7 +16820,6 @@ packages:
     use: "alsa core-inline hardened opengl X"
   requires:
   - <<: *layers-X
-  - <<: *libs-libmikmod
   - <<: *libs-sdl
   build_requires:
   - <<: *layers-X
@@ -17415,7 +17142,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.7.4"
+  version: "3.7.4-r1"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -17423,11 +17150,13 @@ packages:
   - https://community.kde.org/Qt5PatchCollection
   - https://invent.kde.org/qt/qt/
   - https://www.qt.io/
-  license: "GPL-2+ GPL-3+ BSD GPL-3"
+  - https://www.atnf.csiro.au/people/mcalabre/WCS/
+  license: "BSD GPL-2 GPL-3+ GPL-3+ LGPL-3"
   description: |
     Desktop Planetarium
     Cross-platform Sextractor and Astrometry.net-Based internal astrometric solver
     3D data visualization library for the Qt5 framework
+    Astronomical World Coordinate System transformations library
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -17443,14 +17172,18 @@ packages:
     name: "stellarsolver"
     version: ">=0"
   # sci-astronomy/erfa
+  - category: "sci-astronomy"
+    name: "wcslib"
+    version: ">=0"  
   atoms:
   - atom: "sci-astronomy/kstars"
     use: "fits indi -password"
+  - atom: "sci-astronomy/wcslib"
+    use: "fits"
   requires:
   - <<: *layers-kde-kf5
   - <<: *libs-cfitsio
   - <<: *libs-indilib
-  - <<: *libs-wcslib
   build_requires:
   - <<: *layers-kde-kf5
 
@@ -17584,12 +17317,15 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "8.3.0-r2+12"
+  version: "9.2.0-r1"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
+  - https://www.gnu.org/software/glpk/
   license: "GPL-3"
-  description: "High-level interactive language for numerical computations"
+  description: |
+    High-level interactive language for numerical computations
+    GNU Linear Programming Kit
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -17597,6 +17333,9 @@ packages:
   provides:
   - category: "sci-mathematics"
     name: "octave"
+    version: ">=0"
+  - category: "sci-mathematics"
+    name: "glpk"
     version: ">=0"
   - category: "sci-libs"
     name: "qrupdate"
@@ -17611,8 +17350,10 @@ packages:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
     # accept_keywords: "~amd64"
+  - atom: "sci-mathematics/glpk"
+    use: "gmp odbc mysql"
   - atom: "sci-libs/sundials"
-    use: "hypre int64 sparse fortran lapack mpi openmp threads # superlumt"
+    use: "hypre int64 sparse fortran lapack mpi openmp threads superlumt #"
   # - atom: "sci-libs/superlu_mt"
   #   use: "int64 openmp threads"
   inner_build_reqs:
@@ -17621,15 +17362,13 @@ packages:
   - <<: *layers-gnome-common
   # - <<: *layers-qt
   - <<: *layers-kde-kf5
-  - <<: *layers-XML-LibXML
+  - <<: *layers-office-common
   - <<: *layers-latex
-  - <<: *layers-openmpi
   - <<: *layers-sci-libs
   - <<: *layers-java
   - <<: *apps-pstoedit
   - <<: *apps-epstool
   - <<: *apps-fig2dev
-  - <<: *libs-glpk
   - <<: *apps-gnuplot
   - <<: *libs-fltk
   - <<: *libs-gl2ps
@@ -17639,9 +17378,10 @@ packages:
   - <<: *buildbase-gnome-common
   # - <<: *buildbase-qt
   - <<: *buildbase-kde-kf5
+  - <<: *layerbase-office-common
   - <<: *layerbase-XML-LibXML
   - <<: *layerbase-latex
-  - <<: *buildbase-openmpi
+  #- <<: *buildbase-openmpi
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
@@ -17913,30 +17653,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-sratom
-  category: "libs"
-  name: "sratom"
-  version: "0.6.16+1"
-  uri:
-  - http://drobilla.net/software/sratom/
-  license: "ISC"
-  description: "Library for serialising LV2 atoms to/from RDF, particularly the Turtle syntax"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/sratom
-  provides:
-  - category: "media-libs"
-    name: "sratom"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-serd
-  - <<: *libs-sord
-  - <<: *libs-lv2
-  build_requires:
-  - <<: *layers-X
-
 - &libs-suil
   category: "libs"
   name: "suil"
@@ -18162,15 +17878,21 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "12.0.0-r100"
+  version: "12.2.1-r1"
   uri:
   - https://www.graphviz.org/
   - https://gitlab.com/graphviz/graphviz/
   - https://www.gnu.org/software/guile/
-  license: "CPL-1.0 LGPL-3+"
+  - http://openil.sourceforge.net/
+  - http://www.unifont.org/lasi
+  - http://gts.sourceforge.net/
+  license: "CPL-1.0 GPL-2 LGPL-2 LGPL-2.1 LGPL-3+"
   description: |
     Open Source Graph Visualization Software
     GNU Ubiquitous Intelligent Language for Extensions
+    DevIL image library
+    C++ library for postscript stream output
+    GNU Triangulated Surface Library
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -18182,17 +17904,26 @@ packages:
   - category: "dev-scheme"
     name: "guile"
     version: ">=0"
+  - category: "media-libs"
+    name: "devil"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lasi"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "gts"
+    version: ">=0"
   atoms:
   - atom: "media-gfx/graphviz"
     use: "cairo devil gtk gts guile java lasi lefty nls pdf perl postscript python qt5 svg tcl webp X # ruby"
+  - atom: "media-libs/devil"
+    use: "allegro gif glut jpeg mng opengl png sdl static-libs tiff X xpm"
   inner_build_reqs:
   - *layers-java-packages
   requires:
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *libs-devil
-  - <<: *libs-gts
-  - <<: *libs-lasi
+  - <<: *libs-allegro
   build_requires:
   - <<: *layers-qt
 
@@ -18410,34 +18141,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-lilv
-  category: "libs"
-  name: "lilv"
-  version: "0.24.24"
-  uri:
-  - http://drobilla.net/software/lilv/
-  license: "ISC"
-  description: "Library to make the use of LV2 plugins as simple as possible for applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/lilv
-  provides:
-  - category: "dev-libs"
-    name: "lilv"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/lilv"
-    use: "dyn-manifest"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-serd
-  - <<: *libs-sord
-  - <<: *libs-lv2
-  - <<: *libs-sratom
-  build_requires:
-  - <<: *layers-X
-
 ################################################################################################################################################################
 ### dep 5 apps ###
 ################################################################################################################################################################
@@ -18466,14 +18169,10 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-gnome-common
-  - <<: *libs-serd
-  - <<: *libs-sord
   - <<: *libs-libsoundtouch
-  - <<: *libs-lv2
   - <<: *libs-lilv
   - <<: *libs-portsmf
   - <<: *libs-rapidjson
-  - <<: *libs-sratom
   - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
   - <<: *libs-wxGTK
@@ -18745,7 +18444,6 @@ packages:
   - <<: *libs-lv2
   - <<: *libs-rtaudio
   - <<: *libs-rubberband
-  - <<: *libs-sord
   build_requires:
   # - <<: *layers-kde-common
   - <<: *layers-kde-kf5
@@ -18961,7 +18659,6 @@ packages:
   uri:
   - https://github.com/wwmm/easyeffects
   - https://lsp-plug.in
-  - https://drobilla.net/software/mda-lv2.html
   - https://www.zamaudio.com/
   license: "GPL-3 LGPL-3 GPL-2+ MIT"
   description: |
@@ -19102,7 +18799,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "1.4.0-r1"
+  version: "1.5.1-r1"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
