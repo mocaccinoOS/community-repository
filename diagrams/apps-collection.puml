@@ -94,11 +94,6 @@ entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "argtable" as libs/argtable << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-argtable
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "asio" as libs/asio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-asio
 ..
@@ -748,6 +743,12 @@ entity "vdf" as libs/vdf << (l,#FF7700) >> {
 }
 entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-websocketpp
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "python-deprecated" as libs/python-deprecated << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-deprecated
+  <color:#34495E><U+24DF></color> dev-python-wrapt
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -1495,6 +1496,7 @@ entity "mandelbulber" as apps/mandelbulber << (a,#FF00FF) >> {
 entity "mangohud" as apps/mangohud << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-mangohud
 ..
+  <color:#9ACD32><U+2756></color> layers-X
   null kernel-modules-nvidia-drivers-lts
 }
 entity "marble" as apps/marble << (a,#FF00FF) >> {
@@ -1662,16 +1664,6 @@ entity "pandoc" as apps/pandoc << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-haskell-wai-cors
 ..
   <color:#9ACD32><U+2756></color> layers-haskell
-}
-entity "pdfarranger" as apps/pdfarranger << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-text-pdfarranger
-  <color:#34495E><U+24DF></color> media-gfx-img2pdf
-  <color:#34495E><U+24DF></color> media-libs-icc-profiles-openicc
-  <color:#34495E><U+24DF></color> dev-python-pikepdf
-  <color:#34495E><U+24DF></color> dev-python-deprecated
-  <color:#34495E><U+24DF></color> dev-python-wrapt
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "pdftk" as apps/pdftk << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-pdftk
@@ -2083,12 +2075,6 @@ entity "dssi" as libs/dssi << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-liblo
 }
-entity "dumb" as libs/dumb << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-dumb
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-argtable
-}
 entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-srtp
 ..
@@ -2275,7 +2261,8 @@ entity "clementine" as apps/clementine << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-clementine
   <color:#34495E><U+24DF></color> media-libs-libmygpo-qt
 ..
-  <color:#FF7700><U+1F79B></color> libs-libprojectm
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-libprojectm
 }
 entity "cpu-x" as apps/cpu-x << (a,#FF00FF) >> {
@@ -2353,7 +2340,6 @@ entity "easytag" as apps/easytag << (a,#FF00FF) >> {
 entity "emacs" as apps/emacs << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-editors-emacs
   <color:#34495E><U+24DF></color> app-emacs-emacs-common
-  <color:#34495E><U+24DF></color> net-libs-liblockfile
   <color:#34495E><U+24DF></color> dev-db-m17n-db
   <color:#34495E><U+24DF></color> dev-libs-m17n-lib
   <color:#34495E><U+24DF></color> dev-libs-libotf
@@ -2678,6 +2664,15 @@ entity "pcem" as apps/pcem << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-wxGTK
 }
+entity "pdfarranger" as apps/pdfarranger << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-text-pdfarranger
+  <color:#34495E><U+24DF></color> media-gfx-img2pdf
+  <color:#34495E><U+24DF></color> media-libs-icc-profiles-openicc
+  <color:#34495E><U+24DF></color> dev-python-pikepdf
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-python-deprecated
+}
 entity "picom" as apps/picom << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-picom
 ..
@@ -2740,7 +2735,8 @@ entity "qmmp" as apps/qmmp << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-plugins-qmmp-plugin-pack
   <color:#34495E><U+24DF></color> app-i18n-enca
 ..
-  <color:#FF7700><U+1F79B></color> libs-libprojectm
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#FF7700><U+1F79B></color> libs-cmt-plugins
   <color:#FF7700><U+1F79B></color> libs-libprojectm
 }
 entity "qtox" as apps/qtox << (a,#FF00FF) >> {
@@ -2942,13 +2938,6 @@ entity "zoom" as apps/zoom << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "allegro" as libs/allegro << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-allegro
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-physfs
-  <color:#FF7700><U+1F79B></color> libs-dumb
-}
 entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-libnice
 ..
@@ -2997,11 +2986,10 @@ entity "asbru-cm" as apps/asbru-cm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-perl-Type
   <color:#34495E><U+24DF></color> dev-perl-YAML
 ..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-IO-Tty
+  <color:#FF7700><U+1F79B></color> libs-ossp-uuid
   <color:#FF00FF><U+25C9></color> apps-mosh
-  <color:#FF00FF><U+25C9></color> apps-mosh
-  <color:#FF00FF><U+25C9></color> apps-mosh
-  <color:#FF00FF><U+25C9></color> apps-tigervnc
-  <color:#FF00FF><U+25C9></color> apps-tigervnc
   <color:#FF00FF><U+25C9></color> apps-tigervnc
 }
 entity "avalonia-ilspy" as apps/avalonia-ilspy << (a,#FF00FF) >> {
@@ -3041,12 +3029,14 @@ entity "calibre" as apps/calibre << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-python-dnspython
   <color:#34495E><U+24DF></color> dev-python-html2text
   <color:#34495E><U+24DF></color> dev-python-html5-parser
+  <color:#34495E><U+24DF></color> dev-python-jaconv
   <color:#34495E><U+24DF></color> dev-python-jeepney
   <color:#34495E><U+24DF></color> dev-python-lxml-html-clean
   <color:#34495E><U+24DF></color> dev-python-markdown
   <color:#34495E><U+24DF></color> dev-python-mechanize
   <color:#34495E><U+24DF></color> dev-python-netifaces
   <color:#34495E><U+24DF></color> media-gfx-optipng
+  <color:#34495E><U+24DF></color> dev-python-pykakasi
   <color:#34495E><U+24DF></color> dev-python-pychm
   <color:#34495E><U+24DF></color> dev-python-unrardll
   <color:#34495E><U+24DF></color> dev-python-xxhash
@@ -3061,6 +3051,7 @@ entity "calibre" as apps/calibre << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-mathjax
   <color:#FF7700><U+1F79B></color> libs-python-msgpack
   <color:#FF7700><U+1F79B></color> libs-regex
+  <color:#FF7700><U+1F79B></color> libs-python-deprecated
 }
 entity "cantor" as apps/cantor << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-apps-cantor
@@ -3541,8 +3532,9 @@ entity "sdl" as libs/sdl << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-sdl-sound
   <color:#34495E><U+24DF></color> media-libs-sdl-ttf
 ..
-  <color:#FF00FF><U+25C9></color> apps-timidity
-  <color:#FF00FF><U+25C9></color> apps-timidity
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libmikmod
+  <color:#FF7700><U+1F79B></color> libs-smpeg
   <color:#FF00FF><U+25C9></color> apps-timidity
 }
 entity "sdl2" as libs/sdl2 << (l,#FF7700) >> {
@@ -3552,6 +3544,7 @@ entity "sdl2" as libs/sdl2 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-sdl2-net
   <color:#34495E><U+24DF></color> media-libs-sdl2-ttf
 ..
+  <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-AOMediaCodecs
   <color:#FF00FF><U+25C9></color> apps-timidity
 }
@@ -3697,6 +3690,7 @@ entity "octave" as apps/octave << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-libs-sundials
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
   <color:#9ACD32><U+2756></color> layers-office-common
   <color:#9ACD32><U+2756></color> layers-latex
@@ -3808,14 +3802,17 @@ entity "digikam" as apps/digikam << (a,#FF00FF) >> {
 }
 entity "graphviz" as apps/graphviz << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-graphviz
+  <color:#34495E><U+24DF></color> dev-libs-argtable
   <color:#34495E><U+24DF></color> dev-scheme-guile
+  <color:#34495E><U+24DF></color> media-libs-allegro
   <color:#34495E><U+24DF></color> media-libs-devil
+  <color:#34495E><U+24DF></color> media-libs-dumb
   <color:#34495E><U+24DF></color> media-libs-lasi
   <color:#34495E><U+24DF></color> sci-libs-gts
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-java
-  <color:#FF7700><U+1F79B></color> libs-allegro
+  <color:#FF7700><U+1F79B></color> libs-physfs
 }
 entity "hedgewars" as apps/hedgewars << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-strategy-hedgewars
@@ -3860,7 +3857,8 @@ entity "warmux" as apps/warmux << (a,#FF00FF) >> {
 entity "gtkmm" as libs/gtkmm << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-gtkmm
 ..
-  <color:#FF00FF><U+25C9></color> apps-graphviz
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF00FF><U+25C9></color> apps-graphviz
 }
 entity "libmypaint" as libs/libmypaint << (l,#FF7700) >> {
@@ -3888,24 +3886,20 @@ entity "conky" as apps/conky << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-conky
   <color:#34495E><U+24DF></color> dev-lang-lua:5.3
 ..
-  null kernel-modules-nvidia-drivers-lts
-  null kernel-modules-nvidia-drivers-lts
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF00FF><U+25C9></color> apps-hddtemp
+  <color:#FF7700><U+1F79B></color> libs-libircclient
   null kernel-modules-nvidia-drivers-lts
   <color:#FF00FF><U+25C9></color> apps-apcupsd
-  <color:#FF00FF><U+25C9></color> apps-apcupsd
-  <color:#FF00FF><U+25C9></color> apps-apcupsd
   <color:#FF00FF><U+25C9></color> apps-cmus
-  <color:#FF00FF><U+25C9></color> apps-cmus
-  <color:#FF00FF><U+25C9></color> apps-cmus
-  <color:#FF00FF><U+25C9></color> apps-vim
-  <color:#FF00FF><U+25C9></color> apps-vim
   <color:#FF00FF><U+25C9></color> apps-vim
 }
 entity "deluge" as apps/deluge << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-p2p-deluge
 ..
-  <color:#FF7700><U+1F79B></color> libs-pygame
-  <color:#FF7700><U+1F79B></color> libs-pygame
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#5DADE2><U+24D4></color> entity-deluge
+  <color:#FF7700><U+1F79B></color> libs-twisted
   <color:#FF7700><U+1F79B></color> libs-pygame
 }
 entity "doxygen" as apps/doxygen << (a,#FF00FF) >> {
@@ -4155,7 +4149,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "fonts/fluid-soundfont" --u--> "layers/X"
 "libs/analitza" --u--> "layers/kde-common"
 "libs/AOMediaCodecs" --u--> "layers/X"
-"libs/argtable" --u--> "layers/system-x"
 "libs/asio" --u--> "layers/system-x"
 "libs/aubio" --u--> "layers/X"
 "libs/babl" --u--> "layers/X"
@@ -4284,6 +4277,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/vamp-plugin-sdk" --u--> "layers/X"
 "libs/vdf" --u--> "layers/system-x"
 "libs/websocketpp" --u--> "layers/system-x"
+"libs/python-deprecated" --u--> "layers/system-x"
 "libs/wxGTK" --u--> "layers/gnome-common"
 "libs/wxGTK-3_0-gtk3" --u--> "layers/gnome-common"
 "libs/xsimd" --u--> "layers/system-x"
@@ -4429,6 +4423,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/luajit" --u--> "layers/system-x"
 "apps/ly" --u--> "layers/X"
 "apps/mandelbulber" --u--> "layers/qt"
+"apps/mangohud" --u--> "layers/X"
 "apps/mangohud" --u--> "kernel-modules/nvidia-drivers-lts"
 "apps/marble" --u--> "layers/plasma"
 "apps/meld" --u--> "layers/gnome-common"
@@ -4447,7 +4442,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nx" --u--> "layers/X"
 "apps/otter" --u--> "layers/qt"
 "apps/pandoc" --u--> "layers/haskell"
-"apps/pdfarranger" --u--> "layers/X"
 "apps/pdftk" --u--> "layers/java"
 "apps/peek" --u--> "layers/gnome-common"
 "apps/piper" --u--> "layers/X"
@@ -4536,8 +4530,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/dssi" --u--> "layers/X"
 "libs/dssi" --u--> "libs/ladspa-sdk"
 "libs/dssi" --u--> "libs/liblo"
-"libs/dumb" --u--> "layers/X"
-"libs/dumb" --u--> "libs/argtable"
 "libs/gst-plugins-srtp" --u--> "layers/X"
 "libs/gst-plugins-srtp" --u--> "libs/libsrtp"
 "libs/hid" --u--> "layers/system-x"
@@ -4604,7 +4596,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/chemtool" --u--> "libs/gtk2"
 "apps/chemtool" --u--> "apps/fig2dev"
 "apps/chemtool" --u--> "libs/libemf"
-"apps/clementine" --u--> "libs/libprojectm"
+"apps/clementine" --u--> "layers/kde-kf5"
+"apps/clementine" --u--> "layers/gnome-common"
 "apps/clementine" --u--> "libs/libprojectm"
 "apps/cpu-x" --u--> "layers/X"
 "apps/cpu-x" --u--> "libs/glfw"
@@ -4741,6 +4734,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/p7zip-ui" --u--> "libs/wxGTK-3_0-gtk3"
 "apps/pcem" --u--> "layers/gnome-common"
 "apps/pcem" --u--> "libs/wxGTK"
+"apps/pdfarranger" --u--> "layers/X"
+"apps/pdfarranger" --u--> "libs/python-deprecated"
 "apps/picom" --u--> "layers/X"
 "apps/picom" --u--> "libs/libconfig"
 "apps/picom" --u--> "libs/uthash"
@@ -4761,7 +4756,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/qdevicemonitor" --u--> "layers/gnome-common"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
 "apps/qdevicemonitor" --u--> "apps/usbmuxd"
-"apps/qmmp" --u--> "libs/libprojectm"
+"apps/qmmp" --u--> "layers/kde-kf5"
+"apps/qmmp" --u--> "libs/cmt-plugins"
 "apps/qmmp" --u--> "libs/libprojectm"
 "apps/qtox" --u--> "layers/kde-kf5"
 "apps/qtox" --u--> "apps/sqlcipher"
@@ -4828,9 +4824,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/zathura" --u--> "layers/X"
 "apps/zathura" --u--> "libs/girara"
 "apps/zoom" --u--> "layers/X"
-"libs/allegro" --u--> "layers/X"
-"libs/allegro" --u--> "libs/physfs"
-"libs/allegro" --u--> "libs/dumb"
 "libs/gst-plugins-libnice" --u--> "layers/gnome-common"
 "libs/gst-plugins-libnice" --u--> "libs/libnice"
 "libs/indilib" --u--> "layers/X"
@@ -4848,11 +4841,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/amsynth" --u--> "libs/liblo"
 "apps/amsynth" --u--> "libs/lv2"
 "apps/amsynth" --u--> "apps/lash"
+"apps/asbru-cm" --u--> "layers/X"
+"apps/asbru-cm" --u--> "libs/IO-Tty"
+"apps/asbru-cm" --u--> "libs/ossp-uuid"
 "apps/asbru-cm" --u--> "apps/mosh"
-"apps/asbru-cm" --u--> "apps/mosh"
-"apps/asbru-cm" --u--> "apps/mosh"
-"apps/asbru-cm" --u--> "apps/tigervnc"
-"apps/asbru-cm" --u--> "apps/tigervnc"
 "apps/asbru-cm" --u--> "apps/tigervnc"
 "apps/avalonia-ilspy" --u--> "layers/X"
 "apps/avalonia-ilspy" --u--> "apps/dotnet-sdk-8"
@@ -4873,6 +4865,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/calibre" --u--> "libs/mathjax"
 "apps/calibre" --u--> "libs/python-msgpack"
 "apps/calibre" --u--> "libs/regex"
+"apps/calibre" --u--> "libs/python-deprecated"
 "apps/cantor" --u--> "layers/kde-common"
 "apps/cantor" --u--> "apps/luajit"
 "apps/cantor" --u--> "libs/analitza"
@@ -5058,9 +5051,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/freeipmi" --u--> "apps/nagios"
 "libs/frei0r-plugins" --u--> "layers/qt"
 "libs/frei0r-plugins" --u--> "libs/gavl"
+"libs/sdl" --u--> "layers/X"
+"libs/sdl" --u--> "libs/libmikmod"
+"libs/sdl" --u--> "libs/smpeg"
 "libs/sdl" --u--> "apps/timidity"
-"libs/sdl" --u--> "apps/timidity"
-"libs/sdl" --u--> "apps/timidity"
+"libs/sdl2" --u--> "layers/X"
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
 "libs/sdl2" --u--> "apps/timidity"
 "apps/audacious" --u--> "layers/qt"
@@ -5119,6 +5114,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/labplot" --u--> "libs/libcerf"
 "apps/nomacs" --u--> "layers/kde-kf5"
 "apps/octave" --u--> "layers/gnome-common"
+"apps/octave" --u--> "layers/qt"
 "apps/octave" --u--> "layers/kde-kf5"
 "apps/octave" --u--> "layers/office-common"
 "apps/octave" --u--> "layers/latex"
@@ -5175,7 +5171,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/digikam" --u--> "apps/hugin"
 "apps/graphviz" --u--> "layers/qt"
 "apps/graphviz" --u--> "layers/java"
-"apps/graphviz" --u--> "libs/allegro"
+"apps/graphviz" --u--> "libs/physfs"
 "apps/hedgewars" --u--> "layers/qt"
 "apps/hedgewars" --u--> "libs/physfs"
 "apps/hedgewars" --u--> "libs/sdl2"
@@ -5195,7 +5191,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nut" --u--> "apps/i2c-tools"
 "apps/warmux" --u--> "layers/X"
 "apps/warmux" --u--> "libs/sdl"
-"libs/gtkmm" --u--> "apps/graphviz"
+"libs/gtkmm" --u--> "layers/X"
+"libs/gtkmm" --u--> "libs/gtk2"
 "libs/gtkmm" --u--> "apps/graphviz"
 "libs/libmypaint" --u--> "layers/X"
 "libs/libmypaint" --u--> "libs/gegl"
@@ -5209,20 +5206,16 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/wxGTK"
 "apps/audacity" --u--> "apps/twolame"
-"apps/conky" --u--> "kernel-modules/nvidia-drivers-lts"
-"apps/conky" --u--> "kernel-modules/nvidia-drivers-lts"
+"apps/conky" --u--> "layers/X"
+"apps/conky" --u--> "apps/hddtemp"
+"apps/conky" --u--> "libs/libircclient"
 "apps/conky" --u--> "kernel-modules/nvidia-drivers-lts"
 "apps/conky" --u--> "apps/apcupsd"
-"apps/conky" --u--> "apps/apcupsd"
-"apps/conky" --u--> "apps/apcupsd"
-"apps/conky" --u--> "apps/cmus"
-"apps/conky" --u--> "apps/cmus"
 "apps/conky" --u--> "apps/cmus"
 "apps/conky" --u--> "apps/vim"
-"apps/conky" --u--> "apps/vim"
-"apps/conky" --u--> "apps/vim"
-"apps/deluge" --u--> "libs/pygame"
-"apps/deluge" --u--> "libs/pygame"
+"apps/deluge" --u--> "layers/X"
+"apps/deluge" --u--> "entity/deluge"
+"apps/deluge" --u--> "libs/twisted"
 "apps/deluge" --u--> "libs/pygame"
 "apps/doxygen" --u--> "layers/plasma"
 "apps/doxygen" --u--> "development/gcc"

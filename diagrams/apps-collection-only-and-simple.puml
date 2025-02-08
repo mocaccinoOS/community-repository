@@ -57,9 +57,6 @@ entity "analitza" as libs/analitza << (l,#FF7700) >> {
 entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 
 }
-entity "argtable" as libs/argtable << (l,#FF7700) >> {
-
-}
 entity "asio" as libs/asio << (l,#FF7700) >> {
 
 }
@@ -433,6 +430,9 @@ entity "vdf" as libs/vdf << (l,#FF7700) >> {
 
 }
 entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
+
+}
+entity "python-deprecated" as libs/python-deprecated << (l,#FF7700) >> {
 
 }
 entity "wxGTK" as libs/wxGTK << (l,#FF7700) >> {
@@ -900,9 +900,6 @@ entity "otter" as apps/otter << (a,#FF00FF) >> {
 entity "pandoc" as apps/pandoc << (a,#FF00FF) >> {
 
 }
-entity "pdfarranger" as apps/pdfarranger << (a,#FF00FF) >> {
-
-}
 entity "pdftk" as apps/pdftk << (a,#FF00FF) >> {
 
 }
@@ -1135,9 +1132,6 @@ entity "cmt-plugins" as libs/cmt-plugins << (l,#FF7700) >> {
 
 }
 entity "dssi" as libs/dssi << (l,#FF7700) >> {
-
-}
-entity "dumb" as libs/dumb << (l,#FF7700) >> {
 
 }
 entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
@@ -1389,6 +1383,9 @@ entity "p7zip-ui" as apps/p7zip-ui << (a,#FF00FF) >> {
 entity "pcem" as apps/pcem << (a,#FF00FF) >> {
 
 }
+entity "pdfarranger" as apps/pdfarranger << (a,#FF00FF) >> {
+
+}
 entity "picom" as apps/picom << (a,#FF00FF) >> {
 
 }
@@ -1489,9 +1486,6 @@ entity "zathura" as apps/zathura << (a,#FF00FF) >> {
 
 }
 entity "zoom" as apps/zoom << (a,#FF00FF) >> {
-
-}
-entity "allegro" as libs/allegro << (l,#FF7700) >> {
 
 }
 entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
@@ -1866,7 +1860,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/handbrake" --u--> "libs/AOMediaCodecs"
 "apps/links" --u--> "libs/AOMediaCodecs"
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
-"libs/dumb" --u--> "libs/argtable"
 "apps/obs-studio" --u--> "libs/asio"
 "apps/ardour" --u--> "libs/aubio"
 "apps/qtractor" --u--> "libs/aubio"
@@ -1930,6 +1923,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/isomaster" --u--> "libs/iniparser"
 "apps/obs-studio" --u--> "libs/intel-mediasdk"
 "apps/mosh" --u--> "libs/IO-Tty"
+"apps/asbru-cm" --u--> "libs/IO-Tty"
 "libs/tiff-compat" --u--> "libs/jbigkit"
 "libs/cmt-plugins" --u--> "libs/ladspa-sdk"
 "libs/dssi" --u--> "libs/ladspa-sdk"
@@ -1970,6 +1964,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/linux-wbfs-manager" --u--> "libs/libglade"
 "apps/rotoscope" --u--> "libs/libglade"
 "apps/blender" --u--> "libs/libharu"
+"apps/conky" --u--> "libs/libircclient"
 "apps/kget" --u--> "libs/libktorrent"
 "apps/ktorrent" --u--> "libs/libktorrent"
 "libs/dssi" --u--> "libs/liblo"
@@ -1990,8 +1985,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gkrellm" --u--> "libs/libntlm"
 "apps/musescore" --u--> "libs/libopusenc"
 "apps/clementine" --u--> "libs/libprojectm"
-"apps/clementine" --u--> "libs/libprojectm"
-"apps/qmmp" --u--> "libs/libprojectm"
 "apps/qmmp" --u--> "libs/libprojectm"
 "apps/extreme-tuxracer" --u--> "libs/libsfml"
 "apps/xmms2" --u--> "libs/libshout"
@@ -2055,10 +2048,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ghostty" --u--> "libs/oniguruma"
 "apps/bat" --u--> "libs/oniguruma"
 "apps/postgresql" --u--> "libs/ossp-uuid"
+"apps/asbru-cm" --u--> "libs/ossp-uuid"
 "libs/lockfile" --u--> "libs/pbr"
 "apps/net-snmp" --u--> "libs/perl-Tk"
 "apps/warzone2100" --u--> "libs/physfs"
-"libs/allegro" --u--> "libs/physfs"
+"apps/graphviz" --u--> "libs/physfs"
 "apps/hedgewars" --u--> "libs/physfs"
 "apps/neverball" --u--> "libs/physfs"
 "apps/audacity" --u--> "libs/portsmf"
@@ -2097,6 +2091,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/displaycal-py3" --u--> "libs/send2trash"
 "apps/openjade" --u--> "libs/sgml-common"
 "apps/tor" --u--> "libs/sgml-common"
+"libs/sdl" --u--> "libs/smpeg"
 "libs/pygame" --u--> "libs/smpeg2"
 "apps/clamtk" --u--> "libs/Text-CSV"
 "libs/libmediainfo" --u--> "libs/tinyxml2"
@@ -2105,6 +2100,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/emacs" --u--> "libs/tree-sitter"
 "apps/neovim" --u--> "libs/tree-sitter"
 "apps/kdegames" --u--> "libs/twisted"
+"apps/deluge" --u--> "libs/twisted"
 "apps/wxhexeditor" --u--> "libs/udis86"
 "apps/nagios" --u--> "libs/uriparser"
 "apps/obs-studio" --u--> "libs/uthash"
@@ -2117,6 +2113,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
+"apps/pdfarranger" --u--> "libs/python-deprecated"
+"apps/calibre" --u--> "libs/python-deprecated"
 "apps/diff-pdf" --u--> "libs/wxGTK"
 "apps/filezilla" --u--> "libs/wxGTK"
 "apps/pcem" --u--> "libs/wxGTK"
@@ -2136,8 +2134,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/libreoffice" --u--> "apps/ant"
 "apps/plantuml" --u--> "apps/ant"
 "apps/kdevelop" --u--> "apps/astyle"
-"apps/conky" --u--> "apps/apcupsd"
-"apps/conky" --u--> "apps/apcupsd"
 "apps/conky" --u--> "apps/apcupsd"
 "apps/displaycal-py3" --u--> "apps/argyllcms"
 "apps/gnome-nettool" --u--> "apps/bind-tools"
@@ -2167,6 +2163,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gopls" --u--> "apps/go"
 "apps/rclone" --u--> "apps/go"
 "apps/gkrellm" --u--> "apps/hddtemp"
+"apps/conky" --u--> "apps/hddtemp"
 "apps/nut" --u--> "apps/i2c-tools"
 "apps/q4wine" --u--> "apps/icoutils"
 "apps/kdevelop" --u--> "apps/kapptemplate"
@@ -2210,6 +2207,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/displaycal-py3" --u--> "libs/build"
 "apps/pip" --u--> "libs/cachecontrol"
 "apps/inkscape" --u--> "libs/cachecontrol"
+"apps/qmmp" --u--> "libs/cmt-plugins"
 "apps/fluidsynth" --u--> "libs/cmt-plugins"
 "apps/terminatorx" --u--> "libs/cmt-plugins"
 "apps/amsynth" --u--> "libs/dssi"
@@ -2218,7 +2216,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/zynaddsubfx" --u--> "libs/dssi"
 "apps/museseq" --u--> "libs/dssi"
 "apps/qtractor" --u--> "libs/dssi"
-"libs/allegro" --u--> "libs/dumb"
 "libs/farstream" --u--> "libs/gst-plugins-srtp"
 "apps/logitech-linux-rpm-led" --u--> "libs/hid"
 "apps/cdemu" --u--> "libs/libao"
@@ -2238,6 +2235,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ardour" --u--> "libs/liblrdf"
 "apps/mediainfo" --u--> "libs/libmediainfo"
 "apps/megasync" --u--> "libs/libmediainfo"
+"libs/sdl" --u--> "libs/libmikmod"
 "apps/cmus" --u--> "libs/libmikmod"
 "libs/gst-plugins-libnice" --u--> "libs/libnice"
 "apps/pidgin" --u--> "libs/libnice"
@@ -2281,8 +2279,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/museseq" --u--> "apps/lash"
 "apps/seq24" --u--> "apps/lash"
 "apps/asbru-cm" --u--> "apps/mosh"
-"apps/asbru-cm" --u--> "apps/mosh"
-"apps/asbru-cm" --u--> "apps/mosh"
 "apps/smplayer" --u--> "apps/mpv"
 "apps/celluloid" --u--> "apps/mpv"
 "apps/tokodon" --u--> "apps/mpv"
@@ -2293,9 +2289,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/octave" --u--> "apps/pstoedit"
 "apps/skanpage" --u--> "apps/tesseract"
 "apps/asbru-cm" --u--> "apps/tigervnc"
-"apps/asbru-cm" --u--> "apps/tigervnc"
-"apps/asbru-cm" --u--> "apps/tigervnc"
-"apps/graphviz" --u--> "libs/allegro"
 "libs/farstream" --u--> "libs/gst-plugins-libnice"
 "apps/kstars" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/indilib"
@@ -2315,8 +2308,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/goneovim" --u--> "apps/neovim"
 "apps/RcloneBrowser" --u--> "apps/rclone"
 "libs/sdl" --u--> "apps/timidity"
-"libs/sdl" --u--> "apps/timidity"
-"libs/sdl" --u--> "apps/timidity"
 "libs/sdl2" --u--> "apps/timidity"
 "apps/pidgin" --u--> "libs/farstream"
 "apps/nut" --u--> "libs/freeipmi"
@@ -2333,15 +2324,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gimp" --u--> "libs/gegl"
 "apps/kdenlive" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
-"apps/deluge" --u--> "libs/pygame"
-"apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"
 "apps/ardour" --u--> "libs/suil"
 "apps/qtractor" --u--> "libs/suil"
 "apps/conky" --u--> "apps/cmus"
-"apps/conky" --u--> "apps/cmus"
-"apps/conky" --u--> "apps/cmus"
-"libs/gtkmm" --u--> "apps/graphviz"
 "libs/gtkmm" --u--> "apps/graphviz"
 "apps/doxygen" --u--> "apps/graphviz"
 "apps/lyx" --u--> "apps/graphviz"

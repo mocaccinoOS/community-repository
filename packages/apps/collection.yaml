@@ -935,27 +935,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-argtable
-  category: "libs"
-  name: "argtable"
-  version: "2.13-r4+2"
-  uri:
-  - http://argtable.sourceforge.net/
-  license: "LGPL-2"
-  description: "An ANSI C library for parsing GNU-style command-line options with minimal fuss"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/argtable
-  provides:
-  - category: "dev-libs"
-    name: "argtable"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-asio
   category: "libs"
   name: "asio"
@@ -10385,28 +10364,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-dumb
-  category: "libs"
-  name: "dumb"
-  version: "2.0.3+3"
-  uri:
-  - https://github.com/kode54/dumb
-  license: "DUMB-0.9.3"
-  description: "Module/tracker based music format parser and player library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/dumb
-  provides:
-  - category: "media-libs"
-    name: "dumb"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-argtable
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
@@ -14239,32 +14196,6 @@ packages:
 ### dep 2 libs ###
 ################################################################################################################################################################
 
-- &libs-allegro
-  category: "libs"
-  name: "allegro"
-  version: "4.4.3.1-r1+1"
-  uri:
-  - https://liballeg.org/
-  license: "BSD ZLIB"
-  description: "Cross-platform library aimed at video game and multimedia programming"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/allegro:0
-  provides:
-  - category: "media-libs"
-    name: "allegro"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/allegro"
-    use: "alsa dumb flac gtk jpeg openal opengl opus oss physfs png pulseaudio truetype vorbis webp X xinerama"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-physfs
-  - <<: *libs-dumb
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
@@ -17306,78 +17237,78 @@ packages:
   requires_final_images: true
 
 #   # superlu_mt disabled due to https://bugs.gentoo.org/886466
-# - &apps-octave
-#   category: "apps"
-#   name: "octave"
-#   version: "9.2.0-r1"
-#   uri:
-#   - https://www.gnu.org/software/octave/
-#   - https://computing.llnl.gov/projects/sundials
-#   - https://www.gnu.org/software/glpk/
-#   license: "GPL-3"
-#   description: |
-#     High-level interactive language for numerical computations
-#     GNU Linear Programming Kit
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sci-mathematics/octave
-#   provides:
-#   - category: "sci-mathematics"
-#     name: "octave"
-#     version: ">=0"
-#   - category: "sci-mathematics"
-#     name: "glpk"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "qrupdate"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "sundials"
-#     version: ">=0"
-#   # - category: "sci-libs"
-#   #   name: "superlu_mt"
-#   #   version: ">=0"    
-#   atoms:
-#   - atom: "sci-mathematics/octave"
-#     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
-#     # accept_keywords: "~amd64"
-#   - atom: "sci-mathematics/glpk"
-#     use: "gmp odbc mysql"
-#   - atom: "sci-libs/sundials"
-#     use: "hypre int64 sparse fortran lapack mpi openmp threads superlumt #"
-#   - atom: "sci-libs/superlu_mt"
-#     use: "int64"
-#   # - atom: "sci-libs/superlu_mt"
-#   #   use: "int64 openmp threads"
-#   inner_build_reqs:
-#   - *layers-java-packages
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *layers-kde-kf5
-#   - <<: *layers-office-common
-#   - <<: *layers-latex
-#   - <<: *layers-sci-libs
-#   - <<: *layers-java
-#   - <<: *apps-pstoedit
-#   - <<: *apps-epstool
-#   - <<: *apps-fig2dev
-#   - <<: *apps-gnuplot
-#   - <<: *libs-fltk
-#   - <<: *libs-gl2ps
-#   - <<: *libs-qscintilla
-#   - <<: *libs-rapidjson
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-kde-kf5
-#   - <<: *layerbase-office-common
-#   - <<: *layerbase-XML-LibXML
-#   - <<: *layerbase-latex
-#   #- <<: *buildbase-openmpi
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-octave
+  category: "apps"
+  name: "octave"
+  version: "9.2.0-r1"
+  uri:
+  - https://www.gnu.org/software/octave/
+  - https://computing.llnl.gov/projects/sundials
+  - https://www.gnu.org/software/glpk/
+  license: "GPL-3"
+  description: |
+    High-level interactive language for numerical computations
+    GNU Linear Programming Kit
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-mathematics/octave
+  provides:
+  - category: "sci-mathematics"
+    name: "octave"
+    version: ">=0"
+  - category: "sci-mathematics"
+    name: "glpk"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "qrupdate"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "sundials"
+    version: ">=0"
+  # - category: "sci-libs"
+  #   name: "superlu_mt"
+  #   version: ">=0"    
+  atoms:
+  - atom: "sci-mathematics/octave"
+    use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
+    # accept_keywords: "~amd64"
+  - atom: "sci-mathematics/glpk"
+    use: "gmp odbc mysql"
+  - atom: "sci-libs/sundials"
+    use: "hypre int64 sparse fortran lapack mpi openmp threads superlumt #"
+  - atom: "sci-libs/superlu_mt"
+    use: "int64"
+  # - atom: "sci-libs/superlu_mt"
+  #   use: "int64 openmp threads"
+  inner_build_reqs:
+  - *layers-java-packages
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  - <<: *layers-office-common
+  - <<: *layers-latex
+  - <<: *layers-sci-libs
+  - <<: *layers-java
+  - <<: *apps-pstoedit
+  - <<: *apps-epstool
+  - <<: *apps-fig2dev
+  - <<: *apps-gnuplot
+  - <<: *libs-fltk
+  - <<: *libs-gl2ps
+  - <<: *libs-qscintilla
+  - <<: *libs-rapidjson
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
+  - <<: *layerbase-office-common
+  - <<: *layerbase-XML-LibXML
+  - <<: *layerbase-latex
+  #- <<: *buildbase-openmpi
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-pidgin
   category: "apps"
@@ -17872,19 +17803,25 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "12.2.1-r1"
+  version: "12.2.1-r1+1"
   uri:
   - https://www.graphviz.org/
+  - http://argtable.sourceforge.net/
   - https://gitlab.com/graphviz/graphviz/
   - https://www.gnu.org/software/guile/
+  - https://liballeg.org/
   - http://openil.sourceforge.net/
+  - https://github.com/kode54/dumb
   - http://www.unifont.org/lasi
   - http://gts.sourceforge.net/
-  license: "CPL-1.0 GPL-2 LGPL-2 LGPL-2.1 LGPL-3+"
+  license: "BSD CPL-1.0 DUMB-0.9.3 GPL-2 LGPL-2 LGPL-2.1 LGPL-3+ ZLIB"
   description: |
     Open Source Graph Visualization Software
+    An ANSI C library for parsing GNU-style command-line options with minimal fuss
     GNU Ubiquitous Intelligent Language for Extensions
+    Cross-platform library aimed at video game and multimedia programming
     DevIL image library
+    Module/tracker based music format parser and player library
     C++ library for postscript stream output
     GNU Triangulated Surface Library
   labels:
@@ -17895,11 +17832,20 @@ packages:
   - category: "media-gfx"
     name: "graphviz"
     version: ">=0"
+  - category: "dev-libs"
+    name: "argtable"
+    version: ">=0"
   - category: "dev-scheme"
     name: "guile"
     version: ">=0"
   - category: "media-libs"
+    name: "allegro"
+    version: ">=0"
+  - category: "media-libs"
     name: "devil"
+    version: ">=0"
+  - category: "media-libs"
+    name: "dumb"
     version: ">=0"
   - category: "media-libs"
     name: "lasi"
@@ -17910,6 +17856,8 @@ packages:
   atoms:
   - atom: "media-gfx/graphviz"
     use: "cairo devil gtk gts guile java lasi lefty nls pdf perl postscript python qt5 svg tcl webp X # ruby"
+  - atom: "media-libs/allegro"
+    use: "alsa dumb flac gtk jpeg openal opengl opus oss physfs png pulseaudio truetype vorbis webp X xinerama"
   - atom: "media-libs/devil"
     use: "allegro gif glut jpeg mng opengl png sdl static-libs tiff X xpm"
   inner_build_reqs:
@@ -17917,7 +17865,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *libs-allegro
+  - <<: *libs-physfs
   build_requires:
   - <<: *layers-qt
 
