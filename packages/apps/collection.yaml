@@ -2397,30 +2397,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-liblockfile
-  category: "libs"
-  name: "liblockfile"
-  version: "1.17+1"
-  uri:
-  - https://github.com/miquels/liblockfile
-  license: "LGPL-2"
-  description: "Implements functions designed to lock the standard mailboxes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/liblockfile
-  provides:
-  - category: "net-libs"
-    name: "liblockfile"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - category: "entity"
-    name: "mail"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -2930,43 +2906,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-m17n-lib
-  category: "libs"
-  name: "m17n-lib"
-  version: "1.8.4-r1"
-  uri:
-  - ttps://savannah.nongnu.org/projects/m17n
-  license: "LGPL-2.1"
-  description: |
-    Multilingual Library for Unix/Linux
-    Database for the m17n library
-    Library for handling OpenType fonts (OTF)
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libotf
-      dev-db/m17n-db
-      dev-libs/m17n-lib
-  provides:
-  - category: "dev-db"
-    name: "m17n-db"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "m17n-lib"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libotf"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/libotf"
-    use: "X"
-  - atom: "dev-libs/m17n-lib"
-    use: "X gd libotf libxml2 bidi fontconfig spell xft # anthy"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-mac
   category: "libs"
   name: "mac"
@@ -3301,33 +3240,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-plotutils
-  category: "libs"
-  name: "plotutils"
-  version: "2.6-r3"
-  uri:
-  - https://www.gnu.org/software/plotutils/
-  license: "GPL-2"
-  description: "Powerful C/C++ function library for exporting 2-D vector graphics"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/plotutils
-  provides:
-  - category: "media-libs"
-    name: "plotutils"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libxmi"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/plotutils"
-    use: "png X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-portsmf
   category: "libs"
@@ -3898,7 +3810,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "1.0+3"
+  version: "1.0+4"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3908,13 +3820,13 @@ packages:
     emerge.packages: >-
       dev-libs/tree-sitter
       dev-libs/tree-sitter-bash
-      dev-libs/tree-sitter-c
-      dev-libs/tree-sitter-lua
-      dev-libs/tree-sitter-markdown
+      =dev-libs/tree-sitter-c-0.21*
+      =dev-libs/tree-sitter-lua-0.1*
+      =dev-libs/tree-sitter-markdown-0.2*
       dev-libs/tree-sitter-python
-      dev-libs/tree-sitter-query
-      dev-libs/tree-sitter-vim
-      dev-libs/tree-sitter-vimdoc
+      =dev-libs/tree-sitter-query-0.4*
+      =dev-libs/tree-sitter-vim-0.4*
+      =dev-libs/tree-sitter-vimdoc-3*
   provides:
   - category: "dev-libs"
     name: "tree-sitter"
@@ -5288,7 +5200,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.6"
+  version: "0.6+1"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -5300,14 +5212,14 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-eselect/eselect-dotnet
-      dev-dotnet/dotnet-runtime-nugets:6.0.25
+      dev-dotnet/dotnet-runtime-nugets:6.0.36
   provides:
   - category: "app-eselect"
     name: "eselect-dotnet"
     version: ">=0"
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "6.0.25"
+    version: "6.0.36"
   completion:
   # - echo "DOTNET_CLI_TELEMETRY_OPTOUT=true" > /etc/environment.d/90-dotnet.conf
   - echo "DOTNET_CLI_TELEMETRY_OPTOUT=1" > /etc/environment.d/90-dotnet.conf
@@ -5341,7 +5253,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.7"
+  version: "8.0.11"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5350,13 +5262,13 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      ~dev-dotnet/dotnet-runtime-nugets-6.0.32
+      ~dev-dotnet/dotnet-runtime-nugets-6.0.36
       ~dev-dotnet/dotnet-runtime-nugets-7.0.20
-      dev-dotnet/dotnet-runtime-nugets:8.0.7
+      dev-dotnet/dotnet-runtime-nugets:8.0.11
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
-    version: "8.0.5-r1"
+    version: "8.0.11"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -7551,7 +7463,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.8.0_rc2"
+  version: "0.7.2+1"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -8633,6 +8545,33 @@ packages:
   - <<: *layers-plasma
   build_requires:
   - <<: *layers-plasma
+
+- &apps-plotutils
+  category: "apps"
+  name: "plotutils"
+  version: "2.6-r3"
+  uri:
+  - https://www.gnu.org/software/plotutils/
+  license: "GPL-2"
+  description: "Powerful C/C++ function library for exporting 2-D vector graphics"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/plotutils
+  provides:
+  - category: "media-libs"
+    name: "plotutils"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libxmi"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/plotutils"
+    use: "png X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-podofo
   category: "apps"
@@ -10070,7 +10009,6 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
-  - gui-libs/libadwaita:ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -10807,6 +10745,9 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "sord"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "zix"
     version: ">=0"
   - category: "media-libs"
     name: "sratom"
@@ -11596,7 +11537,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417-r4+3"
+  version: "6.0.417-r4+4"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11653,7 +11594,7 @@ packages:
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.203+1"
+  version: "8.0.108+10"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11710,28 +11651,51 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "29.4"
+  version: "29.4+1"
   uri:
   - https://www.gnu.org/software/emacs
-  license: "GPL-3+ FDL-1.3+ BSD HPND MIT W3C unicode PSF-2"
-  description: "The extensible, customizable, self-documenting real-time display editor"
+  - https://github.com/miquels/liblockfile
+  - https://savannah.nongnu.org/projects/m17n
+  license: "BSD FDL-1.3+ GPL-3+ HPND LGPL-2 LGPL-2.1 MIT PSF-2 unicode W3C"
+  description: |
+    The extensible, customizable, self-documenting real-time display editor
+    Implements functions designed to lock the standard mailboxes
+    Multilingual Library for Unix/Linux
+    Database for the m17n library
+    Library for handling OpenType fonts (OTF)
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-editors/emacs
       app-emacs/emacs-common
   provides:
-  - name: emacs
-    category: app-editors
-    version: '>=0'
-  - name: emacs-common
-    category: app-emacs
-    version: '>=0'
+  - name: "emacs"
+    category: "app-editors"
+    version: ">=0"
+  - name: "emacs-common"
+    category: "app-emacs"
+    version: ">=0"
+  - category: "net-libs"
+    name: "liblockfile"
+    version: ">=0"
+  - category: "dev-db"
+    name: "m17n-db"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "m17n-lib"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libotf"
+    version: ">=0"
   atoms:
   - atom: "app-emacs/emacs-common"
     use: "gui # games"
   - atom: "app-editors/emacs"
     use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd tree-sitter X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
+  - atom: "dev-libs/libotf"
+    use: "X"
+  - atom: "dev-libs/m17n-lib"
+    use: "X gd libotf libxml2 bidi fontconfig spell xft # anthy"
   excludes:
   - ^/usr/bin/ctags$
   - ^/usr/bin/etags$
@@ -11747,9 +11711,10 @@ packages:
   - <<: *layers-gnome-common
   - <<: *apps-eselect-emacs
   - <<: *libs-gpm
-  - <<: *libs-liblockfile
-  - <<: *libs-m17n-lib
   - <<: *libs-tree-sitter
+  - category: "entity"
+    name: "mail"
+    version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
 
@@ -11861,7 +11826,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.1.0"
+  version: "1.0.1-r3"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -13260,7 +13225,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libemf
-  - <<: *libs-plotutils
+  - <<: *apps-plotutils
   build_requires:
   - <<: *layers-X
 
@@ -15598,7 +15563,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.10.3"
+  version: "0.10.3+1"
   uri:
   - https://neovim.io
   license: "Apache-2.0 Boost-1.0 vim"
@@ -17360,8 +17325,8 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-qt
-  #- <<: *layers-kde-kf5
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *layers-office-common
   - <<: *layers-latex
   - <<: *layers-sci-libs
@@ -17376,8 +17341,8 @@ packages:
   - <<: *libs-rapidjson
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  #- <<: *buildbase-kde-kf5
+  # - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
   - <<: *layerbase-office-common
   - <<: *layerbase-XML-LibXML
   - <<: *layerbase-latex

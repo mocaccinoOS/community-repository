@@ -388,12 +388,6 @@ entity "liblo" as libs/liblo << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "liblockfile" as libs/liblockfile << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-liblockfile
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-  <color:#5DADE2><U+24D4></color> entity-mail
-}
 entity "liblqr" as libs/liblqr << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-liblqr
 ..
@@ -509,13 +503,6 @@ entity "lzip" as libs/lzip << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "m17n-lib" as libs/m17n-lib << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-db-m17n-db
-  <color:#34495E><U+24DF></color> dev-libs-m17n-lib
-  <color:#34495E><U+24DF></color> dev-libs-libotf
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "mac" as libs/mac << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-sound-mac
 ..
@@ -589,12 +576,6 @@ entity "physfs" as libs/physfs << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-games-physfs
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "plotutils" as libs/plotutils << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-plotutils
-  <color:#34495E><U+24DF></color> media-libs-libxmi
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "portsmf" as libs/portsmf << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-portsmf
@@ -1715,6 +1696,12 @@ entity "plasma-sdk" as apps/plasma-sdk << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-plasma
 }
+entity "plotutils" as apps/plotutils << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-libs-plotutils
+  <color:#34495E><U+24DF></color> media-libs-libxmi
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "podofo" as apps/podofo << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-podofo
 ..
@@ -2169,6 +2156,7 @@ entity "lilv" as libs/lilv << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-lilv
   <color:#34495E><U+24DF></color> dev-libs-serd
   <color:#34495E><U+24DF></color> dev-libs-sord
+  <color:#34495E><U+24DF></color> dev-libs-zix
   <color:#34495E><U+24DF></color> media-libs-sratom
 ..
   <color:#9ACD32><U+2756></color> layers-X
@@ -2365,13 +2353,16 @@ entity "easytag" as apps/easytag << (a,#FF00FF) >> {
 entity "emacs" as apps/emacs << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-editors-emacs
   <color:#34495E><U+24DF></color> app-emacs-emacs-common
+  <color:#34495E><U+24DF></color> net-libs-liblockfile
+  <color:#34495E><U+24DF></color> dev-db-m17n-db
+  <color:#34495E><U+24DF></color> dev-libs-m17n-lib
+  <color:#34495E><U+24DF></color> dev-libs-libotf
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF00FF><U+25C9></color> apps-eselect-emacs
   <color:#FF7700><U+1F79B></color> libs-gpm
-  <color:#FF7700><U+1F79B></color> libs-liblockfile
-  <color:#FF7700><U+1F79B></color> libs-m17n-lib
   <color:#FF7700><U+1F79B></color> libs-tree-sitter
+  <color:#5DADE2><U+24D4></color> entity-mail
 }
 entity "extreme-tuxracer" as apps/extreme-tuxracer << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-action-extreme-tuxracer
@@ -2729,7 +2720,7 @@ entity "pstoedit" as apps/pstoedit << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libemf
-  <color:#FF7700><U+1F79B></color> libs-plotutils
+  <color:#FF00FF><U+25C9></color> apps-plotutils
 }
 entity "qcad" as apps/qcad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-qcad
@@ -4223,8 +4214,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libircclient" --u--> "layers/system-x"
 "libs/libktorrent" --u--> "layers/kde-common"
 "libs/liblo" --u--> "layers/system-x"
-"libs/liblockfile" --u--> "layers/system-x"
-"libs/liblockfile" --u--> "entity/mail"
 "libs/liblqr" --u--> "layers/system-x"
 "libs/libmirage" --u--> "layers/X"
 "libs/libmp4v2" --u--> "layers/X"
@@ -4248,7 +4237,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/LuaBitOp" --u--> "layers/sys-fs"
 "libs/lv2" --u--> "layers/X"
 "libs/lzip" --u--> "layers/system-x"
-"libs/m17n-lib" --u--> "layers/X"
 "libs/mac" --u--> "layers/X"
 "libs/mathjax" --u--> "layers/system-x"
 "libs/mbedtls" --u--> "layers/system-x"
@@ -4263,7 +4251,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/pbr" --u--> "layers/system-x"
 "libs/perl-Tk" --u--> "layers/X"
 "libs/physfs" --u--> "layers/system-x"
-"libs/plotutils" --u--> "layers/X"
 "libs/portsmf" --u--> "layers/system-x"
 "libs/ptex" --u--> "layers/qt"
 "libs/pynacl" --u--> "layers/sys-fs"
@@ -4465,6 +4452,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/peek" --u--> "layers/gnome-common"
 "apps/piper" --u--> "layers/X"
 "apps/plasma-sdk" --u--> "layers/plasma"
+"apps/plotutils" --u--> "layers/X"
 "apps/podofo" --u--> "layers/X"
 "apps/popcorntime" --u--> "layers/X"
 "apps/polari" --u--> "layers/gnome-common"
@@ -4646,9 +4634,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/emacs" --u--> "layers/gnome-common"
 "apps/emacs" --u--> "apps/eselect-emacs"
 "apps/emacs" --u--> "libs/gpm"
-"apps/emacs" --u--> "libs/liblockfile"
-"apps/emacs" --u--> "libs/m17n-lib"
 "apps/emacs" --u--> "libs/tree-sitter"
+"apps/emacs" --u--> "entity/mail"
 "apps/extreme-tuxracer" --u--> "layers/X"
 "apps/extreme-tuxracer" --u--> "libs/libsfml"
 "apps/filezilla" --u--> "layers/gnome-common"
@@ -4768,7 +4755,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/postgresql" --u--> "entity/postgres"
 "apps/pstoedit" --u--> "layers/X"
 "apps/pstoedit" --u--> "libs/libemf"
-"apps/pstoedit" --u--> "libs/plotutils"
+"apps/pstoedit" --u--> "apps/plotutils"
 "apps/qcad" --u--> "layers/kde-kf5"
 "apps/qdevicemonitor" --u--> "layers/qt"
 "apps/qdevicemonitor" --u--> "layers/gnome-common"
