@@ -17236,77 +17236,77 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# - &apps-octave
-#   category: "apps"
-#   name: "octave"
-#   version: "9.2.0-r1"
-#   uri:
-#   - https://www.gnu.org/software/octave/
-#   - https://computing.llnl.gov/projects/sundials
-#   - https://www.gnu.org/software/glpk/
-#   license: "GPL-3"
-#   description: |
-#     High-level interactive language for numerical computations
-#     GNU Linear Programming Kit
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sci-mathematics/octave
-#   provides:
-#   - category: "sci-mathematics"
-#     name: "octave"
-#     version: ">=0"
-#   - category: "sci-mathematics"
-#     name: "glpk"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "qrupdate"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "sundials"
-#     version: ">=0"
-#   - category: "sci-libs"
-#     name: "superlu_mt"
-#     version: ">=0"    
-#   atoms:
-#   - atom: "sci-mathematics/octave"
-#     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
-#   - atom: "sci-mathematics/glpk"
-#     use: "gmp odbc mysql"
-#   - atom: "sci-libs/sundials"
-#     use: "hypre int64 sparse fortran lapack mpi openmp threads superlumt #"
-#   - atom: "sci-libs/superlu_mt"
-#     use: "int64 openmp threads"
-#   inner_build_reqs:
-#   - *layers-java-packages
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   - <<: *layers-kde-kf5
-#   - <<: *layers-XML-LibXML
-#   - <<: *layers-office-common
-#   - <<: *layers-latex
-#   - <<: *layers-openmpi
-#   - <<: *layers-sci-libs
-#   - <<: *layers-java
-#   - <<: *apps-pstoedit
-#   - <<: *apps-epstool
-#   - <<: *apps-fig2dev
-#   - <<: *apps-gnuplot
-#   - <<: *libs-fltk
-#   - <<: *libs-gl2ps
-#   - <<: *libs-qscintilla
-#   - <<: *libs-rapidjson
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-kde-kf5
-#   - <<: *layerbase-office-common
-#   - <<: *layerbase-XML-LibXML
-#   - <<: *layerbase-latex
-#   - <<: *buildbase-openmpi
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-octave
+  category: "apps"
+  name: "octave"
+  version: "9.2.0-r1"
+  uri:
+  - https://www.gnu.org/software/octave/
+  - https://computing.llnl.gov/projects/sundials
+  - https://www.gnu.org/software/glpk/
+  license: "GPL-3"
+  description: |
+    High-level interactive language for numerical computations
+    GNU Linear Programming Kit
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-mathematics/octave
+  provides:
+  - category: "sci-mathematics"
+    name: "octave"
+    version: ">=0"
+  - category: "sci-mathematics"
+    name: "glpk"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "qrupdate"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "sundials"
+    version: ">=0"
+  - category: "sci-libs"
+    name: "superlu_mt"
+    version: ">=0"    
+  atoms:
+  - atom: "sci-mathematics/octave"
+    use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
+  - atom: "sci-mathematics/glpk"
+    use: "gmp odbc mysql"
+  - atom: "sci-libs/sundials"
+    use: "hypre int64 sparse fortran lapack mpi openmp threads superlumt #"
+  - atom: "sci-libs/superlu_mt"
+    use: "int64 openmp threads"
+  inner_build_reqs:
+  - *layers-java-packages
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  - <<: *layers-XML-LibXML
+  - <<: *layers-office-common
+  - <<: *layers-latex
+  - <<: *layers-openmpi
+  - <<: *layers-sci-libs
+  - <<: *layers-java
+  - <<: *apps-pstoedit
+  - <<: *apps-epstool
+  - <<: *apps-fig2dev
+  - <<: *apps-gnuplot
+  - <<: *libs-fltk
+  - <<: *libs-gl2ps
+  - <<: *libs-qscintilla
+  - <<: *libs-rapidjson
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
+  - <<: *layerbase-office-common
+  - <<: *layerbase-XML-LibXML
+  - <<: *layerbase-latex
+  - <<: *buildbase-openmpi
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-pidgin
   category: "apps"
