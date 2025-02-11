@@ -610,6 +610,11 @@ entity "qcustomplot" as libs/qcustomplot << (l,#FF7700) >> {
 entity "qscintilla" as libs/qscintilla << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-qscintilla
 ..
+  <color:#9ACD32><U+2756></color> layers-qt
+}
+entity "qscintilla-qt5" as libs/qscintilla-qt5 << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> x11-libs-qscintilla
+..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
@@ -2035,13 +2040,19 @@ entity "xpad" as apps/xpad << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-gnome
 }
+entity "xscreensavers" as apps/xscreensavers << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-misc-xfishtank
+  <color:#34495E><U+24DF></color> x11-misc-xsnow
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "xsensors" as apps/xsensors << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-xsensors
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "xsnow" as apps/xsnow << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> x11-misc-xsnow
+entity "xwininfo" as apps/xwininfo << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-apps-xli
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -2816,7 +2827,7 @@ entity "sqliteman" as apps/sqliteman << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-db-sqliteman
 ..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-qscintilla
+  <color:#FF7700><U+1F79B></color> libs-qscintilla-qt5
 }
 entity "tesseract" as apps/tesseract << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-tesseract
@@ -3396,7 +3407,7 @@ entity "sqlitebrowser" as apps/sqlitebrowser << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-kde-kf5
   <color:#FF00FF><U+25C9></color> apps-qhexedit2
   <color:#FF7700><U+1F79B></color> libs-qcustomplot
-  <color:#FF7700><U+1F79B></color> libs-qscintilla
+  <color:#FF7700><U+1F79B></color> libs-qscintilla-qt5
 }
 entity "terminatorx" as apps/terminatorx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-terminatorx
@@ -3443,10 +3454,10 @@ entity "x2goclient" as apps/x2goclient << (a,#FF00FF) >> {
 }
 entity "x2goserver" as apps/x2goserver << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-misc-x2goserver
-  <color:#34495E><U+24DF></color> x11-apps-xwininfo
 ..
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#FF00FF><U+25C9></color> apps-nx
+  <color:#FF00FF><U+25C9></color> apps-xwininfo
   <color:#5DADE2><U+24D4></color> entity-x2gouser
   <color:#5DADE2><U+24D4></color> entity-x2goprint
   <color:#48D1CC><U+24D5></color> fonts-font-cursor-misc
@@ -3478,6 +3489,15 @@ entity "xmms2" as apps/xmms2 << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-libsidplay
   <color:#FF00FF><U+25C9></color> apps-fluidsynth
   <color:#FF7700><U+1F79B></color> libs-mac
+}
+entity "xscreensaver" as apps/xscreensaver << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-misc-xscreensaver
+  <color:#34495E><U+24DF></color> media-gfx-fbida
+  <color:#34495E><U+24DF></color> x11-libs-gdk-pixbuf-xlib
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF00FF><U+25C9></color> apps-xwininfo
+  <color:#FF7700><U+1F79B></color> libs-motif
 }
 entity "xournal" as apps/xournal << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-xournal
@@ -3692,8 +3712,10 @@ entity "octave" as apps/octave << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-XML-LibXML
   <color:#9ACD32><U+2756></color> layers-office-common
   <color:#9ACD32><U+2756></color> layers-latex
+  <color:#9ACD32><U+2756></color> layers-openmpi
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#9ACD32><U+2756></color> layers-java
   <color:#FF00FF><U+25C9></color> apps-pstoedit
@@ -3802,11 +3824,9 @@ entity "digikam" as apps/digikam << (a,#FF00FF) >> {
 }
 entity "graphviz" as apps/graphviz << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-graphviz
-  <color:#34495E><U+24DF></color> dev-libs-argtable
   <color:#34495E><U+24DF></color> dev-scheme-guile
   <color:#34495E><U+24DF></color> media-libs-allegro
   <color:#34495E><U+24DF></color> media-libs-devil
-  <color:#34495E><U+24DF></color> media-libs-dumb
   <color:#34495E><U+24DF></color> media-libs-lasi
   <color:#34495E><U+24DF></color> sci-libs-gts
 ..
@@ -4315,6 +4335,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/openrgb" --u--> "libs/mbedtls"
 "apps/transmission" --u--> "libs/mbedtls"
 "apps/xemacs" --u--> "libs/motif"
+"apps/xscreensaver" --u--> "libs/motif"
 "apps/yoshimi" --u--> "libs/mxml"
 "apps/zynaddsubfx" --u--> "libs/mxml"
 "libs/libao" --u--> "libs/nas"
@@ -4351,9 +4372,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/lutris" --u--> "libs/python-protobuf"
 "apps/mypaint" --u--> "libs/python-protobuf"
 "apps/sqlitebrowser" --u--> "libs/qcustomplot"
-"apps/sqliteman" --u--> "libs/qscintilla"
-"apps/sqlitebrowser" --u--> "libs/qscintilla"
 "apps/octave" --u--> "libs/qscintilla"
+"apps/sqliteman" --u--> "libs/qscintilla-qt5"
+"apps/sqlitebrowser" --u--> "libs/qscintilla-qt5"
 "apps/kdegames" --u--> "libs/qtpy"
 "apps/labplot" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/qxlsx"
@@ -4486,6 +4507,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/calibre" --u--> "apps/usbmuxd"
 "libs/xine-lib" --u--> "apps/vcdimager"
 "apps/k3b" --u--> "apps/vcdimager"
+"apps/x2goserver" --u--> "apps/xwininfo"
+"apps/xscreensaver" --u--> "apps/xwininfo"
 "apps/gradience" --u--> "libs/build"
 "apps/displaycal-py3" --u--> "libs/build"
 "apps/pip" --u--> "libs/cachecontrol"
