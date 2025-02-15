@@ -17699,35 +17699,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &libs-paramiko
-  category: "libs"
-  name: "paramiko"
-  version: "3.5.0"
-  uri:
-  - https://www.paramiko.org/
-  - https://github.com/paramiko/paramiko/
-  - https://pypi.org/project/paramiko/
-  license: "LGPL-2.1"
-  description: "SSH2 protocol library"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      dev-python/paramiko
-  provides:
-  - category: "dev-python"
-    name: "paramiko"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/paramiko"
-    use: "server"
-  inner_build_reqs:
-  - dev-python/mock
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-pynacl
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-pygame
   category: "libs"
   name: "pygame"
