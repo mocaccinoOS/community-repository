@@ -9309,6 +9309,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+  category: "apps"
+  name: "stress-ng"
+  version: "0.18.10-r1"
+  uri:
+  - https://github.com/ColinIanKing/stress-ng
+  license: "GPL-2+"
+  description: "Stress test for a computer system with various selectable ways"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-benchmarks/stress-ng
+  provides:
+  - category: "app-benchmarks"
+    name: "stress-ng"
+    version: ">=0"
+  atoms:
+  - atom: "app-benchmarks/stress-ng"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "subtitlecomposer"
   version: "0.8.1+3"
