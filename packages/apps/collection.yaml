@@ -6922,44 +6922,45 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-- category: "apps"
-  name: "kernelshark"
-  version: "2.3.2"
-  uri:
-  - https://kernelshark.org/
-  license: "GPL-2 LGPL-2.1"
-  description: "Graphical reader for trace-cmd output"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/kernelshark
-  provides:
-  - category: "dev-libs"
-    name: "libtracecmd"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libtraceevent"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libtracefs"
-    version: ">=0"
-  - category: "dev-util"
-    name: "kernelshark"
-    version: ">=0"
-  - category: "media-fonts"
-    name: "freefont"
-    version: ">=0" 
-  atoms:
-  - atom: "dev-libs/libtracecmd"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/kernelshark"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - app-text/asciidoc
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
+# Currently fails to build, try later
+# - category: "apps"
+#   name: "kernelshark"
+#   version: "2.3.2"
+#   uri:
+#   - https://kernelshark.org/
+#   license: "GPL-2 LGPL-2.1"
+#   description: "Graphical reader for trace-cmd output"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-util/kernelshark
+#   provides:
+#   - category: "dev-libs"
+#     name: "libtracecmd"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libtraceevent"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libtracefs"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "kernelshark"
+#     version: ">=0"
+#   - category: "media-fonts"
+#     name: "freefont"
+#     version: ">=0" 
+#   atoms:
+#   - atom: "dev-libs/libtracecmd"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-util/kernelshark"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - app-text/asciidoc
+#   requires:
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-kgpg
   category: "apps"
@@ -9546,7 +9547,7 @@ packages:
       app-misc/screen
   provides:
   - category: "app-misc"
-    name: "screen"
+    name: "tmux"
     version: ">=0"
   requires:
   - <<: *layers-system-x
