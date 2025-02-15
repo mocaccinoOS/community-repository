@@ -1510,32 +1510,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-girara
-  category: "libs"
-  name: "girara"
-  version: "0.4.2"
-  uri:
-  - https://pwmt.org/projects/girara/
-  license: "GPL-2"
-  description: "UI library that focuses on simplicity and minimalism"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/girara
-  provides:
-  - category: "dev-libs"
-    name: "girara"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/girara"
-    use: "libnotify"
-  inner_build_reqs:
-  - dev-libs/check
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gdl
   category: "libs"
   name: "gdl"
@@ -10350,6 +10324,41 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-zathura
+  category: "apps"
+  name: "zathura"
+  version: "0.5.4+1"
+  uri:
+  - https://pwmt.org/projects/zathura/
+  - https://pwmt.org/projects/girara/
+  license: "GPL-2"
+  description: |
+    A highly customizable and functional document viewer
+    UI library that focuses on simplicity and minimalism
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/zathura
+  provides:
+  - category: "app-text"
+    name: "zathura"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "girara"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/zathura"
+    use: "synctex doc magic seccomp sqlite"
+  - atom: "dev-libs/girara"
+    use: "libnotify"
+  inner_build_reqs:
+  - dev-libs/check
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "zsh"
   version: "5.9-r6"
@@ -14229,34 +14238,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-- &apps-zathura
-  category: "apps"
-  name: "zathura"
-  version: "0.5.4"
-  uri:
-  - https://pwmt.org/projects/zathura/
-  license: "GPL-2"
-  description: "A highly customizable and functional document viewer"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/zathura
-  provides:
-  - category: "app-text"
-    name: "zathura"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/zathura"
-    use: "synctex doc magic seccomp sqlite"
-  inner_build_reqs:
-  - dev-libs/check
-  - dev-python/sphinx
-  requires:
-  - <<: *layers-X
-  - <<: *libs-girara
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "zoom"

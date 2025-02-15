@@ -202,11 +202,6 @@ entity "gavl" as libs/gavl << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "girara" as libs/girara << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-girara
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "gdl" as libs/gdl << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-gdl
 ..
@@ -581,11 +576,6 @@ entity "ptex" as libs/ptex << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-ptex
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-}
-entity "pynacl" as libs/pynacl << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pynacl
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
 }
 entity "pyproject-hooks" as libs/pyproject-hooks << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pyproject-hooks
@@ -1205,7 +1195,6 @@ entity "geany" as apps/geany << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-geany
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-gtk2
 }
 entity "geeqie" as apps/geeqie << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-geeqie
@@ -1854,10 +1843,10 @@ entity "solaar" as apps/solaar << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "spacenavd" as apps/spacenavd << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-misc-spacenavd
+entity "stress-ng" as apps/stress-ng << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-benchmarks-stress-ng
 ..
-  <color:#9ACD32><U+2756></color> layers-X
+  <color:#9ACD32><U+2756></color> layers-sys-fs
 }
 entity "subtitlecomposer" as apps/subtitlecomposer << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-subtitlecomposer
@@ -1891,6 +1880,11 @@ entity "tophat" as apps/tophat << (a,#FF00FF) >> {
 }
 entity "tree" as apps/tree << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-tree
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "screen" as apps/screen << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-misc-tmux
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -2053,6 +2047,12 @@ entity "xsensors" as apps/xsensors << (a,#FF00FF) >> {
 }
 entity "xwininfo" as apps/xwininfo << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-apps-xli
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "zathura" as apps/zathura << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-text-zathura
+  <color:#34495E><U+24DF></color> dev-libs-girara
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -2937,12 +2937,6 @@ entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
 }
-entity "zathura" as apps/zathura << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-text-zathura
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-girara
-}
 entity "zoom" as apps/zoom << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-qt-qtdiag
   <color:#34495E><U+24DF></color> net-im-zoom
@@ -3785,12 +3779,6 @@ entity "mlt" as libs/mlt << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-frei0r-plugins
   <color:#FF7700><U+1F79B></color> libs-rtaudio
 }
-entity "paramiko" as libs/paramiko << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-paramiko
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
-  <color:#FF7700><U+1F79B></color> libs-pynacl
-}
 entity "pygame" as libs/pygame << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pygame
 ..
@@ -4191,7 +4179,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/ftgl" --u--> "layers/X"
 "libs/game-music-emu" --u--> "layers/system-x"
 "libs/gavl" --u--> "layers/system-x"
-"libs/girara" --u--> "layers/X"
 "libs/gdl" --u--> "layers/X"
 "libs/gl2ps" --u--> "layers/latex"
 "libs/glfw" --u--> "layers/X"
@@ -4266,7 +4253,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/physfs" --u--> "layers/system-x"
 "libs/portsmf" --u--> "layers/system-x"
 "libs/ptex" --u--> "layers/qt"
-"libs/pynacl" --u--> "layers/sys-fs"
 "libs/pyproject-hooks" --u--> "layers/system-x"
 "libs/python-msgpack" --u--> "layers/system-x"
 "libs/python-protobuf" --u--> "layers/system-x"
@@ -4387,7 +4373,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/galaxy" --u--> "layers/X"
 "apps/gaupol" --u--> "layers/gnome-common"
 "apps/geany" --u--> "layers/gnome-common"
-"apps/geany" --u--> "libs/gtk2"
 "apps/geeqie" --u--> "layers/gnome-common"
 "apps/ghostwriter" --u--> "layers/kde-common"
 "apps/gitkraken" --u--> "layers/X"
@@ -4501,7 +4486,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sndio" --u--> "layers/X"
 "apps/sndio" --u--> "entity/sndio"
 "apps/solaar" --u--> "layers/X"
-"apps/spacenavd" --u--> "layers/X"
+"apps/stress-ng" --u--> "layers/sys-fs"
 "apps/subtitlecomposer" --u--> "layers/kde-kf5"
 "apps/sqlcipher" --u--> "layers/system-x"
 "apps/supercollider" --u--> "layers/kde-kf5"
@@ -4509,6 +4494,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/timeshift" --u--> "layers/gnome-common"
 "apps/tophat" --u--> "layers/gnome"
 "apps/tree" --u--> "layers/system-x"
+"apps/screen" --u--> "layers/system-x"
 "apps/shortwave" --u--> "layers/gnome-common"
 "apps/st" --u--> "layers/X"
 "apps/sweeper" --u--> "layers/kde-common"
@@ -4542,6 +4528,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xscreensavers" --u--> "layers/X"
 "apps/xsensors" --u--> "layers/X"
 "apps/xwininfo" --u--> "layers/X"
+"apps/zathura" --u--> "layers/X"
 "apps/zsh" --u--> "layers/system-x"
 "libs/build" --u--> "layers/system-x"
 "libs/build" --u--> "libs/pyproject-hooks"
@@ -4843,8 +4830,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wine-staging" --u--> "entity/rtkit"
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/yamllint" --u--> "layers/sys-fs"
-"apps/zathura" --u--> "layers/X"
-"apps/zathura" --u--> "libs/girara"
 "apps/zoom" --u--> "layers/X"
 "libs/gst-plugins-libnice" --u--> "layers/gnome-common"
 "libs/gst-plugins-libnice" --u--> "libs/libnice"
@@ -5181,8 +5166,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/mlt" --u--> "libs/xine-lib"
 "libs/mlt" --u--> "libs/frei0r-plugins"
 "libs/mlt" --u--> "libs/rtaudio"
-"libs/paramiko" --u--> "layers/sys-fs"
-"libs/paramiko" --u--> "libs/pynacl"
 "libs/pygame" --u--> "layers/X"
 "libs/pygame" --u--> "libs/sdl2"
 "libs/pygame" --u--> "libs/smpeg2"
