@@ -9533,6 +9533,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "screen"
+  version: "4.9.1-r1"
+  uri:
+  - https://www.gnu.org/software/screen
+  license: "GPL-3+"
+  description: "screen manager with VT100/ANSI terminal emulation"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/screen
+  provides:
+  - category: "app-misc"
+    name: "screen"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 # # needs >=gui-libs/gtk-4.12.4 gstreamer
 # - category: "apps"
 #   name: "tuba"
