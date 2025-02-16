@@ -573,7 +573,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
     | select(.labels != null and .labels."emerge.packages" != null) 
     | .category + "/" + .name 
     + "," + .version 
-    + "," + (.labels."emerge.packages" | sub(" "; ";"; "g")) 
+    + "," + (.labels."emerge.packages" + " " + ( [.provides[] | .category + "/" + .name] | join(" ")) | gsub("\\s+";" ";"g") | split(" ") | unique | sort | join(";")) 
     + "," + (.version | split("+") | .[0]) 
     + "," + if (.atoms != null) then [(.atoms[] | select(.accept_keywords != null) | .atom + "|" + .accept_keywords)] | join(";") else "" end 
     + "," + if (.overlays != null) then [(.overlays[] | ( .enable // .add ))] | join(";") else "" end')
