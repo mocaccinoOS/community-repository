@@ -118,19 +118,6 @@ stubs:
 #   name: "ruby"
 #   version: ">=0"
 
-- &layers-XML-LibXML
-  category: "layers"
-  name: "XML-LibXML"
-  version: ">=0"
-- &layerbase-XML-LibXML
-  category: "layerbase"
-  name: "XML-LibXML"
-  version: ">=0"
-# - &buildbase-XML-LibXML
-#   category: "buildbase"
-#   name: "XML-LibXML"
-#   version: ">=0"
-
 - &layers-latex
   category: "layers"
   name: "latex"
@@ -143,32 +130,6 @@ stubs:
 #   category: "buildbase"
 #   name: "latex"
 #   version: ">=0"
-
-- &layers-hwloc
-  category: "layers"
-  name: "hwloc"
-  version: ">=0"
-# - &layerbase-hwloc
-#   category: "layerbase"
-#   name: "hwloc"
-#   version: ">=0"
-- &buildbase-hwloc
-  category: "buildbase"
-  name: "hwloc"
-  version: ">=0"
-
-- &layers-openmpi
-  category: "layers"
-  name: "openmpi"
-  version: ">=0"
-- &layerbase-openmpi
-  category: "layerbase"
-  name: "openmpi"
-  version: ">=0"
-- &buildbase-openmpi
-  category: "buildbase"
-  name: "openmpi"
-  version: ">=0"
 
 - &layers-sci-libs
   category: "layers"
@@ -696,7 +657,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20241201"
+  version: "20250101"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1113,7 +1074,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "133.0.6943.53"
+  version: "133.0.6943.98"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -3409,7 +3370,7 @@ packages:
 - &libs-qxlsx
   category: "libs"
   name: "qxlsx"
-  version: "1.4.8+1"
+  version: "1.5.0"
   uri:
   - https://github.com/QtExcel/QXlsx
   license: "MIT"
@@ -3672,6 +3633,36 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-tbb
+  category: "libs"
+  name: "tbb"
+  version: "2021.9.0+2"
+  uri:
+  - https://www.threadingbuildingblocks.org
+  - https://www.open-mpi.org/projects/hwloc/
+  license: "Apache-2.0 BSD"
+  description: |
+    High level abstract threading library
+    Displays the hardware topology in convenient formats
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tbb
+  provides:
+  - category: "dev-cpp"
+    name: "tbb"
+    version: ">=0"
+  - category: "sys-apps"
+    name: "hwloc"
+    version: ">=0"
+  atoms:
+  - atom: "sys-apps/hwloc"
+    use: "cairo cpuid cuda pci svg udev xml X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-Text-CSV
   category: "libs"
   name: "Text-CSV"
@@ -3749,7 +3740,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "1.0+4"
+  version: "1.0+5"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3990,7 +3981,7 @@ packages:
 - &libs-python-deprecated
   category: "libs"
   name: "python-deprecated"
-  version: "1.2.15"
+  version: "1.2.18"
   uri:
   - https://github.com/laurent-laporte-pro//deprecated/
   - https://github.com/GrahamDumpleton/wrapt/
@@ -4778,7 +4769,7 @@ packages:
 
 - category: "apps"
   name: "cartridges"
-  version: "2.9.3"
+  version: "2.9.3-r1"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -5626,7 +5617,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "128-131+1"
+  version: "132"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5634,8 +5625,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:128
-      media-video/ffmpeg-chromium:131
+      media-video/ffmpeg-chromium:132
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -5855,7 +5845,7 @@ packages:
 
 - category: "apps"
   name: "foobillard"
-  version: "3.0a-r1+4"
+  version: "3.0a-r2"
   uri:
   - http://foobillard.sourceforge.net/
   license: "GPL-2"
@@ -6111,7 +6101,7 @@ packages:
 
 - category: "apps"
   name: "ghostwriter"
-  version: "24.12.1"
+  version: "24.12.2"
   uri:
   - https://ghostwriter.kde.org/
   license: "GPL-3+"
@@ -6134,7 +6124,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.6.3"
+  version: "10.7.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6271,7 +6261,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.23.5-r1"
+  version: "1.23.6"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6294,7 +6284,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "133.0.6943.53"
+  version: "133.0.6943.98"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6798,7 +6788,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.11.5"
+  version: "1.12.0"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -7465,6 +7455,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# can't build 0.8.0_rc2
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
@@ -7497,7 +7488,7 @@ packages:
 # Unstable for KDE/Qt 6
 - category: "apps"
   name: "marble"
-  version: "24.12.1-r1"
+  version: "24.12.2"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -8633,7 +8624,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.23"
+  version: "9.25"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -8869,7 +8860,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "1.0.3"
+  version: "1.0.3-r1"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -9640,7 +9631,7 @@ packages:
 - &apps-tk
   category: "apps"
   name: "tk"
-  version: "8.6.14"
+  version: "8.6.15"
   uri:
   - http://www.tcl.tk/
   license: "tcltk"
@@ -9881,7 +9872,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.5.4"
+  version: "1.5.5"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -9928,7 +9919,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.96.4.25017"
+  version: "1.97.2.25045"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10960,28 +10951,6 @@ packages:
   - <<: *layers-X
   - <<: *libs-ladspa-sdk
   - <<: *libs-vamp-plugin-sdk
-  build_requires:
-  - <<: *layers-X
-
-- &libs-tbb
-  category: "libs"
-  name: "tbb"
-  version: "2021.9.0+1"
-  uri:
-  - https://www.threadingbuildingblocks.org
-  license: "Apache-2.0"
-  description: "High level abstract threading library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/tbb
-  provides:
-  - category: "dev-cpp"
-    name: "tbb"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  - <<: *layers-hwloc
   build_requires:
   - <<: *layers-X
 
@@ -14210,14 +14179,14 @@ packages:
   - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-gnome-common
-  - <<: *layers-XML-LibXML
+  - <<: *layers-perl-libs
   - category: "entity"
     name: "rtkit"
     version: ">=0"
   - <<: *libs-vdf
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *layerbase-XML-LibXML
+  - <<: *layerbase-perl-libs
   requires_final_images: true
 
 - category: "apps"
@@ -16117,13 +16086,15 @@ packages:
   - category: "dev-debug"
     name: "valgrind"
     version: ">=0"
-  atoms:
-  - atom: "dev-debug/valgrind"
-    use: "mpi"
+  # atoms:
+  # - atom: "dev-debug/valgrind"
+  #   use: "mpi"
   requires:
-  - <<: *layers-openmpi
+  # - <<: *layers-openmpi
+  - <<: *layers-system-x
   build_requires:
-  - <<: *buildbase-openmpi
+  # - <<: *buildbase-openmpi
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "x2goclient"
@@ -17387,7 +17358,7 @@ packages:
   - atom: "sci-mathematics/glpk"
     use: "gmp odbc mysql"
   - atom: "sci-libs/sundials"
-    use: "hypre int64 sparse fortran lapack mpi openmp threads # superlumt"
+    use: "hypre int64 sparse fortran lapack openmp threads # mpi superlumt"
   - atom: "sci-libs/superlu_mt"
     use: "int64 openmp threads"
   inner_build_reqs:
@@ -17396,10 +17367,10 @@ packages:
   - <<: *layers-gnome-common
   - <<: *layers-qt
   - <<: *layers-kde-kf5
-  - <<: *layers-XML-LibXML
   - <<: *layers-office-common
+  - <<: *layers-perl-libs
   - <<: *layers-latex
-  - <<: *layers-openmpi
+  # - <<: *layers-openmpi
   - <<: *layers-sci-libs
   - <<: *layers-java
   - <<: *apps-pstoedit
@@ -17415,9 +17386,9 @@ packages:
   - <<: *buildbase-qt
   - <<: *buildbase-kde-kf5
   - <<: *layerbase-office-common
-  - <<: *layerbase-XML-LibXML
+  - <<: *layerbase-perl-libs
   - <<: *layerbase-latex
-  - <<: *buildbase-openmpi
+  # - <<: *buildbase-openmpi
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
@@ -17565,14 +17536,11 @@ packages:
     use: "-qt5 qt6"
   requires:
   - <<: *layers-qt
-  - <<: *layers-hwloc
   - <<: *libs-indilib
   - <<: *libs-qxlsx
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-hwloc
-  - <<: *buildbase-qt
-  requires_final_images: true
+  - <<: *layers-qt
 
 ################################################################################################################################################################
 ### dep 4 libs ###
@@ -17851,7 +17819,7 @@ packages:
 #   - atom: "dev-libs/OpenNI2"
 #     use: "opengl"
 #   - atom: "media-gfx/netgen"
-#     use: "ffmpeg gui jpeg mpi opencascade python"
+#     use: "ffmpeg gui jpeg opencascade python # mpi"
 #   - atom: "media-gfx/openscad"
 #     use: "cairo egl gamepad gui hidapi spacenav # mimalloc"
 #   - atom: "media-libs/quarterd"
@@ -18414,8 +18382,8 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-qt
   - <<: *buildbase-office-common
+  - <<: *layerbase-perl-libs
   - <<: *layerbase-latex
-  - <<: *layerbase-XML-LibXML
   requires_final_images: true
 
 - category: "apps"
@@ -19010,7 +18978,6 @@ packages:
   - dev-debug/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *layers-hwloc
   - <<: *libs-zstandard
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
@@ -19023,9 +18990,7 @@ packages:
   - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
-  - <<: *buildbase-hwloc
-  - <<: *buildbase-qt
-  requires_final_images: true
+  - <<: *layers-qt
 
 - category: "apps"
   name: "displaycal-py3"

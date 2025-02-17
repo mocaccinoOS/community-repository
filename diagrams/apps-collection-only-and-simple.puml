@@ -396,6 +396,9 @@ entity "smpeg" as libs/smpeg << (l,#FF7700) >> {
 entity "smpeg2" as libs/smpeg2 << (l,#FF7700) >> {
 
 }
+entity "tbb" as libs/tbb << (l,#FF7700) >> {
+
+}
 entity "Text-CSV" as libs/Text-CSV << (l,#FF7700) >> {
 
 }
@@ -1189,9 +1192,6 @@ entity "pysol-cards" as libs/pysol-cards << (l,#FF7700) >> {
 
 }
 entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
-
-}
-entity "tbb" as libs/tbb << (l,#FF7700) >> {
 
 }
 entity "tiff-compat" as libs/tiff-compat << (l,#FF7700) >> {
@@ -2095,6 +2095,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/tor" --u--> "libs/sgml-common"
 "libs/sdl" --u--> "libs/smpeg"
 "libs/pygame" --u--> "libs/smpeg2"
+"libs/openvdb" --u--> "libs/tbb"
+"apps/stellarium" --u--> "libs/tbb"
+"libs/ocio-oiio" --u--> "libs/tbb"
+"apps/easyeffects" --u--> "libs/tbb"
+"apps/blender" --u--> "libs/tbb"
 "apps/clamtk" --u--> "libs/Text-CSV"
 "libs/libmediainfo" --u--> "libs/tinyxml2"
 "apps/musescore" --u--> "libs/tinyxml2"
@@ -2257,11 +2262,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/museseq" --u--> "libs/rubberband"
 "apps/ardour" --u--> "libs/rubberband"
 "apps/qtractor" --u--> "libs/rubberband"
-"libs/openvdb" --u--> "libs/tbb"
-"apps/stellarium" --u--> "libs/tbb"
-"libs/ocio-oiio" --u--> "libs/tbb"
-"apps/easyeffects" --u--> "libs/tbb"
-"apps/blender" --u--> "libs/tbb"
 "apps/goneovim" --u--> "libs/tiff-compat"
 "apps/vdr" --u--> "libs/xine-lib"
 "apps/quodlibet" --u--> "libs/xine-lib"

@@ -675,6 +675,12 @@ entity "smpeg2" as libs/smpeg2 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "tbb" as libs/tbb << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-cpp-tbb
+  <color:#34495E><U+24DF></color> sys-apps-hwloc
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "Text-CSV" as libs/Text-CSV << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-perl-Text-CSV
 ..
@@ -2196,12 +2202,6 @@ entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
-entity "tbb" as libs/tbb << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-cpp-tbb
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#9ACD32><U+2756></color> layers-hwloc
-}
 entity "tiff-compat" as libs/tiff-compat << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-gegl
 ..
@@ -2928,7 +2928,7 @@ entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> virtual-wine
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#9ACD32><U+2756></color> layers-XML-LibXML
+  <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#5DADE2><U+24D4></color> entity-rtkit
   <color:#FF7700><U+1F79B></color> libs-vdf
 }
@@ -3438,7 +3438,7 @@ entity "tokodon" as apps/tokodon << (a,#FF00FF) >> {
 entity "valgrind" as apps/valgrind << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-debug-valgrind
 ..
-  <color:#9ACD32><U+2756></color> layers-openmpi
+  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "x2goclient" as apps/x2goclient << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-misc-x2goclient
@@ -3706,10 +3706,9 @@ entity "octave" as apps/octave << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#9ACD32><U+2756></color> layers-XML-LibXML
   <color:#9ACD32><U+2756></color> layers-office-common
+  <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#9ACD32><U+2756></color> layers-latex
-  <color:#9ACD32><U+2756></color> layers-openmpi
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#9ACD32><U+2756></color> layers-java
   <color:#FF00FF><U+25C9></color> apps-pstoedit
@@ -3756,7 +3755,6 @@ entity "stellarium" as apps/stellarium << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-astronomy-stellarium
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-  <color:#9ACD32><U+2756></color> layers-hwloc
   <color:#FF7700><U+1F79B></color> libs-indilib
   <color:#FF7700><U+1F79B></color> libs-qxlsx
   <color:#FF7700><U+1F79B></color> libs-tbb
@@ -4095,7 +4093,6 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-renderdoc
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-  <color:#9ACD32><U+2756></color> layers-hwloc
   <color:#FF7700><U+1F79B></color> libs-zstandard
   <color:#FF00FF><U+25C9></color> apps-spacenavd
   <color:#FF7700><U+1F79B></color> libs-c-blosc
@@ -4273,6 +4270,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/sgml-common" --u--> "layers/system-x"
 "libs/smpeg" --u--> "layers/X"
 "libs/smpeg2" --u--> "layers/X"
+"libs/tbb" --u--> "layers/X"
 "libs/Text-CSV" --u--> "layers/X"
 "libs/tinyxml2" --u--> "layers/system-x"
 "libs/tree-sitter" --u--> "layers/system-x"
@@ -4576,8 +4574,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/rubberband" --u--> "layers/X"
 "libs/rubberband" --u--> "libs/ladspa-sdk"
 "libs/rubberband" --u--> "libs/vamp-plugin-sdk"
-"libs/tbb" --u--> "layers/X"
-"libs/tbb" --u--> "layers/hwloc"
 "libs/tiff-compat" --u--> "layers/X"
 "libs/tiff-compat" --u--> "libs/jbigkit"
 "libs/xine-lib" --u--> "layers/gnome-common"
@@ -4826,7 +4822,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wxhexeditor" --u--> "libs/udis86"
 "apps/wxhexeditor" --u--> "libs/mhash"
 "apps/wine-staging" --u--> "layers/gnome-common"
-"apps/wine-staging" --u--> "layers/XML-LibXML"
+"apps/wine-staging" --u--> "layers/perl-libs"
 "apps/wine-staging" --u--> "entity/rtkit"
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/yamllint" --u--> "layers/sys-fs"
@@ -5013,7 +5009,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/tokodon" --u--> "layers/kde-common"
 "apps/tokodon" --u--> "apps/luajit"
 "apps/tokodon" --u--> "apps/mpv"
-"apps/valgrind" --u--> "layers/openmpi"
+"apps/valgrind" --u--> "layers/system-x"
 "apps/x2goclient" --u--> "layers/kde-kf5"
 "apps/x2goclient" --u--> "apps/nx"
 "apps/x2goserver" --u--> "layers/perl-libs"
@@ -5127,10 +5123,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/octave" --u--> "layers/gnome-common"
 "apps/octave" --u--> "layers/qt"
 "apps/octave" --u--> "layers/kde-kf5"
-"apps/octave" --u--> "layers/XML-LibXML"
 "apps/octave" --u--> "layers/office-common"
+"apps/octave" --u--> "layers/perl-libs"
 "apps/octave" --u--> "layers/latex"
-"apps/octave" --u--> "layers/openmpi"
 "apps/octave" --u--> "layers/sci-libs"
 "apps/octave" --u--> "layers/java"
 "apps/octave" --u--> "apps/pstoedit"
@@ -5152,7 +5147,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/RcloneBrowser" --u--> "layers/qt"
 "apps/RcloneBrowser" --u--> "apps/rclone"
 "apps/stellarium" --u--> "layers/qt"
-"apps/stellarium" --u--> "layers/hwloc"
 "apps/stellarium" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/tbb"
@@ -5321,7 +5315,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xsane" --u--> "layers/gnome-common"
 "apps/xsane" --u--> "apps/gimp"
 "apps/blender" --u--> "layers/qt"
-"apps/blender" --u--> "layers/hwloc"
 "apps/blender" --u--> "libs/zstandard"
 "apps/blender" --u--> "apps/spacenavd"
 "apps/blender" --u--> "libs/c-blosc"
