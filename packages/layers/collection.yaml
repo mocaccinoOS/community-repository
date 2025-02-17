@@ -118,19 +118,6 @@ stubs:
 #   name: "ruby"
 #   version: ">=0"
 
-- &layers-XML-LibXML
-  category: "layers"
-  name: "XML-LibXML"
-  version: ">=0"
-- &layerbase-XML-LibXML
-  category: "layerbase"
-  name: "XML-LibXML"
-  version: ">=0"
-# - &buildbase-XML-LibXML
-#   category: "buildbase"
-#   name: "XML-LibXML"
-#   version: ">=0"
-
 - &layers-latex
   category: "layers"
   name: "latex"
@@ -143,32 +130,6 @@ stubs:
 #   category: "buildbase"
 #   name: "latex"
 #   version: ">=0"
-
-- &layers-hwloc
-  category: "layers"
-  name: "hwloc"
-  version: ">=0"
-# - &layerbase-hwloc
-#   category: "layerbase"
-#   name: "hwloc"
-#   version: ">=0"
-- &buildbase-hwloc
-  category: "buildbase"
-  name: "hwloc"
-  version: ">=0"
-
-- &layers-openmpi
-  category: "layers"
-  name: "openmpi"
-  version: ">=0"
-- &layerbase-openmpi
-  category: "layerbase"
-  name: "openmpi"
-  version: ">=0"
-- &buildbase-openmpi
-  category: "buildbase"
-  name: "openmpi"
-  version: ">=0"
 
 - &layers-sci-libs
   category: "layers"
@@ -621,7 +582,7 @@ packages:
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.2+4"
+  version: "0.3"
   uri:
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Archive-Zip
@@ -662,6 +623,7 @@ packages:
   - https://metacpan.org/release/Tie-IxHash
   - https://metacpan.org/release/Unicode-UTF8
   - https://metacpan.org/release/X11-Protocol
+  - https://metacpan.org/release/XML-LibXML
   - https://metacpan.org/release/XML-Twig
   - https://metacpan.org/release/YAML-Syck
   license: "metapackage"
@@ -707,6 +669,7 @@ packages:
     Ordered associative arrays for Perl
     Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
+    Perl binding for libxml2
     Process huge XML documents in tree mode
     Fast, lightweight YAML loader and dumper
   labels:
@@ -740,6 +703,7 @@ packages:
       dev-perl/Text-Reform
       dev-perl/Unicode-UTF8
       dev-perl/X11-Protocol
+      dev-perl/XML-LibXML
   provides:
   - category: "dev-perl"
     name: "AppConfig"
@@ -865,6 +829,9 @@ packages:
     name: "Unicode-UTF8"
     version: ">=0"
   - category: "dev-perl"
+    name: "XML-LibXML"
+    version: ">=0"
+  - category: "dev-perl"
     name: "X11-Protocol"
     version: ">=0"
   - category: "dev-perl"
@@ -888,6 +855,8 @@ packages:
   - category: "virtual"
     name: "perl-Text-Tabs+Wrap"
     version: ">=0"
+  inner_build_reqs:
+  - dev-perl/Alien-Libxml2
   requires:
     - <<: *layers-X
   build_requires:
@@ -1008,39 +977,6 @@ packages:
   hidden: true
 
 # - <<: *def-ruby
-#   category: "buildbase"
-#   hidden: true
-#   unpack: true
-
-
-- &def-XML-LibXML
-  category: "layers"
-  name: "XML-LibXML"
-  version: "2.21.0+7"
-  uri:
-  - https://metacpan.org/release/XML-LibXML
-  license: "Artistic GPL-1+"
-  description: "Perl binding for libxml2"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/XML-LibXML
-  provides:
-  - category: "dev-perl"
-    name: "XML-LibXML"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-perl/Alien-Libxml2
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-  
-- <<: *def-XML-LibXML
-  category: "layerbase"
-  hidden: true
-
-# - <<: *def-XML-LibXML
 #   category: "buildbase"
 #   hidden: true
 #   unpack: true
@@ -1400,11 +1336,9 @@ packages:
   requires:
   - <<: *layers-perl-libs
   - <<: *layers-ruby
-  - <<: *layers-XML-LibXML
   build_requires:
   - <<: *buildbase-perl-libs
   - <<: *layerbase-ruby
-  - <<: *layerbase-XML-LibXML
   requires_final_images: true
 
 - <<: *def-latex
@@ -1415,85 +1349,6 @@ packages:
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
-
-
-- &def-hwloc
-  category: "layers"
-  name: "hwloc"
-  version: "2.9.2+4"
-  uri:
-  - https://www.open-mpi.org/projects/hwloc/
-  license: "BSD"
-  description: "Displays the hardware topology in convenient formats"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/hwloc
-  provides:
-  - category: "sys-apps"
-    name: "hwloc"
-    version: ">=0"
-  atoms:
-  - atom: "sys-apps/hwloc"
-    use: "cairo cpuid cuda pci svg udev xml X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *buildbase-X
-  requires_final_images: true
-
-# - <<: *def-hwloc
-#   category: "layerbase"
-#   hidden: true
-
-- <<: *def-hwloc
-  category: "buildbase"
-  unpack: true
-  hidden: true
-
-
-- &def-openmpi
-  category: "layers"
-  name: "openmpi"
-  version: "4.1.6+11"
-  uri:
-  - https://www.open-mpi.org
-  license: "BSD"
-  description: "A high-performance message passing library (MPI)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-cluster/openmpi
-  provides:
-  - category: "sys-cluster"
-    name: "openmpi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-cluster/openmpi"
-    use: "romio fortran"
-  # - atom: "virtual/mpi"
-  #   use: "fortran # nullmpi romio cxx threads"
-  requires:
-  # - <<: *layers-X
-  - <<: *layers-hwloc
-  build_requires:
-  # - <<: *layers-X
-  - <<: *buildbase-hwloc
-  requires_final_images: true
-  
-# category of the package must be buildbase
-#   subpackages_templates:
-#   - layerbase
-#   - layers
-  
-- <<: *def-openmpi
-  category: "layerbase"
-  hidden: true
-
-- <<: *def-openmpi
-  category: "buildbase"
-  hidden: true
-  unpack: true
 
 
 - &def-sci-libs
@@ -1647,32 +1502,32 @@ packages:
   - category: "virtual"
     name: "blas"
     version: ">=0"
-  - category: "virtual"
-    name: "mpi"
-    version: ">=0"
+  # - category: "virtual"
+  #   name: "mpi"
+  #   version: ">=0"
   atoms:
   - atom: "dev-libs/xerces-c"
     use: "curl iconv icu threads # cpu_flags_x86_sse2"
-  - atom: "sci-libs/arpack"
-    use: "mpi"
+  # - atom: "sci-libs/arpack"
+  #   use: "mpi"
   - atom: "sci-libs/cholmod"
     use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
-    use: "int64 fortran openmp mpi"
+    use: "int64 fortran openmp # mpi"
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
   - atom: "sci-libs/netcdf"
-    use: "dap tools hdf5 szip # hdf mpi"
+    use: "dap tools hdf5 szip # hdf # mpi"
   - atom: "sci-libs/spqr"
     use: "partition # tbb"
   - atom: "sci-libs/suitesparse"
     use: "lapack partition # tbb # cuda"
   - atom: "sci-libs/umfpack"
     usepkg_exclude: true
-  - atom: "virtual/mpi"
-    use: "fortran # nullmpi romio cxx threads"
+  # - atom: "virtual/mpi"
+  #   use: "fortran # nullmpi romio cxx threads"
   inner_build_reqs:
   - dev-python/beniget
   - dev-python/pooch
@@ -1683,13 +1538,14 @@ packages:
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
-  - <<: *layers-openmpi
+  # - <<: *layers-openmpi
   - <<: *fonts-stix-fonts
   - <<: *libs-fonttools
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-openmpi
-  requires_final_images: true
+  - <<: *layers-qt
+  # - <<: *buildbase-qt
+  # - <<: *buildbase-openmpi
+  # requires_final_images: true
 
 # - <<: *def-sci-libs
 #   category: "layerbase"
