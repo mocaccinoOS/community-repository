@@ -94,11 +94,6 @@ entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "asio" as libs/asio << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-cpp-asio
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "aubio" as libs/aubio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-aubio
 ..
@@ -164,11 +159,6 @@ entity "cssselect" as libs/cssselect << (l,#FF7700) >> {
 entity "feedparser" as libs/feedparser << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-feedparser
   <color:#34495E><U+24DF></color> dev-python-sgmllib3k
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "flann" as libs/flann << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> sci-libs-flann
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -360,11 +350,6 @@ entity "libglade" as libs/libglade << (l,#FF7700) >> {
 }
 entity "libharu" as libs/libharu << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libharu
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "libircclient" as libs/libircclient << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -1970,11 +1955,6 @@ entity "vcdimager" as apps/vcdimager << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "vesktop" as apps/vesktop << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> net-im-vesktop-bin
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "video-trimmer" as apps/video-trimmer << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
 }
@@ -2059,6 +2039,12 @@ entity "xwininfo" as apps/xwininfo << (a,#FF00FF) >> {
 entity "zathura" as apps/zathura << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-zathura
   <color:#34495E><U+24DF></color> dev-libs-girara
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "zoom" as apps/zoom << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-qt-qtdiag
+  <color:#34495E><U+24DF></color> net-im-zoom
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -2609,10 +2595,10 @@ entity "obs-studio" as apps/obs-studio << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-obs-studio
   <color:#34495E><U+24DF></color> dev-libs-qr-code-generator
   <color:#34495E><U+24DF></color> media-libs-libvpl
+  <color:#34495E><U+24DF></color> dev-cpp-asio
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-luajit
-  <color:#FF7700><U+1F79B></color> libs-asio
   <color:#FF7700><U+1F79B></color> libs-intel-mediasdk
   <color:#FF7700><U+1F79B></color> libs-mbedtls
   <color:#FF7700><U+1F79B></color> libs-nlohmann_json
@@ -2936,12 +2922,6 @@ entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-yamllint
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
-}
-entity "zoom" as apps/zoom << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> dev-qt-qtdiag
-  <color:#34495E><U+24DF></color> net-im-zoom
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-libnice
@@ -3305,9 +3285,11 @@ entity "neovim" as apps/neovim << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-lua-luv
   <color:#34495E><U+24DF></color> dev-lua-mpack
   <color:#34495E><U+24DF></color> dev-libs-msgpack
+  <color:#34495E><U+24DF></color> dev-libs-libtermkey
+  <color:#34495E><U+24DF></color> dev-libs-libvterm
+  <color:#34495E><U+24DF></color> dev-libs-unibilium
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#9ACD32><U+2756></color> layers-term-libs
   <color:#FF00FF><U+25C9></color> apps-luajit
   <color:#FF7700><U+1F79B></color> libs-libutf8proc
   <color:#FF7700><U+1F79B></color> libs-lpeg
@@ -3641,11 +3623,11 @@ entity "hugin" as apps/hugin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-enblend
   <color:#34495E><U+24DF></color> media-gfx-autopano-sift-C
   <color:#34495E><U+24DF></color> media-gfx-hugin
+  <color:#34495E><U+24DF></color> sci-libs-flann
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#9ACD32><U+2756></color> layers-java
-  <color:#FF7700><U+1F79B></color> libs-flann
   <color:#FF7700><U+1F79B></color> libs-wxGTK
   <color:#FF00FF><U+25C9></color> apps-dcraw
 }
@@ -3891,10 +3873,10 @@ entity "audacity" as apps/audacity << (a,#FF00FF) >> {
 entity "conky" as apps/conky << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-conky
   <color:#34495E><U+24DF></color> dev-lang-lua:5.3
+  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF00FF><U+25C9></color> apps-hddtemp
-  <color:#FF7700><U+1F79B></color> libs-libircclient
   null kernel-modules-nvidia-drivers-lts
   <color:#FF00FF><U+25C9></color> apps-apcupsd
   <color:#FF00FF><U+25C9></color> apps-cmus
@@ -4154,7 +4136,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "fonts/fluid-soundfont" --u--> "layers/X"
 "libs/analitza" --u--> "layers/kde-common"
 "libs/AOMediaCodecs" --u--> "layers/X"
-"libs/asio" --u--> "layers/system-x"
 "libs/aubio" --u--> "layers/X"
 "libs/babl" --u--> "layers/X"
 "libs/beautifulsoup4" --u--> "layers/sys-fs"
@@ -4169,7 +4150,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/css-parser" --u--> "layers/system-x"
 "libs/cssselect" --u--> "layers/system-x"
 "libs/feedparser" --u--> "layers/system-x"
-"libs/flann" --u--> "layers/system-x"
 "libs/fltk" --u--> "layers/X"
 "libs/freeimage" --u--> "layers/X"
 "apps/freeradius-client" --u--> "layers/system-x"
@@ -4208,7 +4188,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libglade" --u--> "layers/X"
 "libs/libglade" --u--> "libs/gtk2"
 "libs/libharu" --u--> "layers/system-x"
-"libs/libircclient" --u--> "layers/system-x"
 "libs/libktorrent" --u--> "layers/kde-common"
 "libs/liblo" --u--> "layers/system-x"
 "libs/liblqr" --u--> "layers/system-x"
@@ -4508,7 +4487,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/usbmuxd" --u--> "layers/gnome-common"
 "apps/usbmuxd" --u--> "entity/usbmux"
 "apps/vcdimager" --u--> "layers/X"
-"apps/vesktop" --u--> "layers/X"
 "apps/video-trimmer" --u--> "layers/gnome-common"
 "apps/vscodium" --u--> "layers/gnome-common"
 "apps/w_scan" --u--> "layers/system-x"
@@ -4527,6 +4505,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xsensors" --u--> "layers/X"
 "apps/xwininfo" --u--> "layers/X"
 "apps/zathura" --u--> "layers/X"
+"apps/zoom" --u--> "layers/X"
 "apps/zsh" --u--> "layers/system-x"
 "libs/build" --u--> "layers/system-x"
 "libs/build" --u--> "libs/pyproject-hooks"
@@ -4714,7 +4693,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nwipe" --u--> "libs/libconfig"
 "apps/obs-studio" --u--> "layers/qt"
 "apps/obs-studio" --u--> "apps/luajit"
-"apps/obs-studio" --u--> "libs/asio"
 "apps/obs-studio" --u--> "libs/intel-mediasdk"
 "apps/obs-studio" --u--> "libs/mbedtls"
 "apps/obs-studio" --u--> "libs/nlohmann_json"
@@ -4826,7 +4804,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wine-staging" --u--> "entity/rtkit"
 "apps/wine-staging" --u--> "libs/vdf"
 "apps/yamllint" --u--> "layers/sys-fs"
-"apps/zoom" --u--> "layers/X"
 "libs/gst-plugins-libnice" --u--> "layers/gnome-common"
 "libs/gst-plugins-libnice" --u--> "libs/libnice"
 "libs/indilib" --u--> "layers/X"
@@ -4954,7 +4931,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nagios" --u--> "libs/uriparser"
 "apps/nagios" --u--> "entity/nagios"
 "apps/neovim" --u--> "layers/X"
-"apps/neovim" --u--> "layers/term-libs"
 "apps/neovim" --u--> "apps/luajit"
 "apps/neovim" --u--> "libs/libutf8proc"
 "apps/neovim" --u--> "libs/lpeg"
@@ -5097,7 +5073,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/hugin" --u--> "layers/gnome-common"
 "apps/hugin" --u--> "layers/sci-libs"
 "apps/hugin" --u--> "layers/java"
-"apps/hugin" --u--> "libs/flann"
 "apps/hugin" --u--> "libs/wxGTK"
 "apps/hugin" --u--> "apps/dcraw"
 "apps/inkscape" --u--> "layers/gnome-common"
@@ -5213,7 +5188,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/audacity" --u--> "apps/twolame"
 "apps/conky" --u--> "layers/X"
 "apps/conky" --u--> "apps/hddtemp"
-"apps/conky" --u--> "libs/libircclient"
 "apps/conky" --u--> "kernel-modules/nvidia-drivers-lts"
 "apps/conky" --u--> "apps/apcupsd"
 "apps/conky" --u--> "apps/cmus"

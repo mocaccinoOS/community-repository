@@ -209,19 +209,6 @@ stubs:
   name: "perl-libs"
   version: ">=0"
 
-- &layers-term-libs
-  category: "layers"
-  name: "term-libs"
-  version: ">=0"
-# - &layerbase-term-libs
-#   category: "layerbase"
-#   name: "term-libs"
-#   version: ">=0"
-- &buildbase-term-libs
-  category: "buildbase"
-  name: "term-libs"
-  version: ">=0"
-
 # - &layers-vtk
 #   category: "layers"
 #   name: "vtk"
@@ -1552,50 +1539,6 @@ packages:
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
-
-
-- &def-term-libs
-  category: "layers"
-  name: "term-libs"
-  version: "0.1+18"
-  uri:
-  - http://www.leonerd.org.uk/code/libtermkey/
-  - https://www.leonerd.org.uk/code/libvterm/
-  - https://github.com/neovim/unibilium/
-  license: "metapackage"
-  description: |
-    Library for easy processing of keyboard entry from terminal-based programs
-    An abstract library implementation of a VT220/xterm/ECMA-48 terminal emulator
-    A very basic terminfo library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libtermkey
-      dev-libs/libvterm
-      dev-libs/unibilium
-  provides:
-  - category: "dev-libs"
-    name: "libtermkey"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libvterm"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "unibilium"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# - <<: *def-term-libs
-#   category: "layerbase"
-#   hidden: true
-
-- <<: *def-term-libs
-  category: "buildbase"
-  hidden: true
-  unpack: true
 
 
 # - &def-clang-15

@@ -94,11 +94,6 @@ entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "asio" as libs/asio << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-cpp-asio
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "aubio" as libs/aubio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-aubio
 ..
@@ -164,11 +159,6 @@ entity "cssselect" as libs/cssselect << (l,#FF7700) >> {
 entity "feedparser" as libs/feedparser << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-feedparser
   <color:#34495E><U+24DF></color> dev-python-sgmllib3k
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "flann" as libs/flann << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> sci-libs-flann
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -360,11 +350,6 @@ entity "libglade" as libs/libglade << (l,#FF7700) >> {
 }
 entity "libharu" as libs/libharu << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libharu
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "libircclient" as libs/libircclient << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -1970,11 +1955,6 @@ entity "vcdimager" as apps/vcdimager << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "vesktop" as apps/vesktop << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> net-im-vesktop-bin
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "video-trimmer" as apps/video-trimmer << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
 }
@@ -2059,6 +2039,12 @@ entity "xwininfo" as apps/xwininfo << (a,#FF00FF) >> {
 entity "zathura" as apps/zathura << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-zathura
   <color:#34495E><U+24DF></color> dev-libs-girara
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "zoom" as apps/zoom << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-qt-qtdiag
+  <color:#34495E><U+24DF></color> net-im-zoom
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -2609,10 +2595,10 @@ entity "obs-studio" as apps/obs-studio << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-obs-studio
   <color:#34495E><U+24DF></color> dev-libs-qr-code-generator
   <color:#34495E><U+24DF></color> media-libs-libvpl
+  <color:#34495E><U+24DF></color> dev-cpp-asio
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-luajit
-  <color:#FF7700><U+1F79B></color> libs-asio
   <color:#FF7700><U+1F79B></color> libs-intel-mediasdk
   <color:#FF7700><U+1F79B></color> libs-mbedtls
   <color:#FF7700><U+1F79B></color> libs-nlohmann_json
@@ -2936,12 +2922,6 @@ entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-yamllint
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
-}
-entity "zoom" as apps/zoom << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> dev-qt-qtdiag
-  <color:#34495E><U+24DF></color> net-im-zoom
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-libnice
@@ -3305,9 +3285,11 @@ entity "neovim" as apps/neovim << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-lua-luv
   <color:#34495E><U+24DF></color> dev-lua-mpack
   <color:#34495E><U+24DF></color> dev-libs-msgpack
+  <color:#34495E><U+24DF></color> dev-libs-libtermkey
+  <color:#34495E><U+24DF></color> dev-libs-libvterm
+  <color:#34495E><U+24DF></color> dev-libs-unibilium
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#9ACD32><U+2756></color> layers-term-libs
   <color:#FF00FF><U+25C9></color> apps-luajit
   <color:#FF7700><U+1F79B></color> libs-libutf8proc
   <color:#FF7700><U+1F79B></color> libs-lpeg
@@ -3641,11 +3623,11 @@ entity "hugin" as apps/hugin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-enblend
   <color:#34495E><U+24DF></color> media-gfx-autopano-sift-C
   <color:#34495E><U+24DF></color> media-gfx-hugin
+  <color:#34495E><U+24DF></color> sci-libs-flann
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#9ACD32><U+2756></color> layers-java
-  <color:#FF7700><U+1F79B></color> libs-flann
   <color:#FF7700><U+1F79B></color> libs-wxGTK
   <color:#FF00FF><U+25C9></color> apps-dcraw
 }
@@ -3891,10 +3873,10 @@ entity "audacity" as apps/audacity << (a,#FF00FF) >> {
 entity "conky" as apps/conky << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-conky
   <color:#34495E><U+24DF></color> dev-lang-lua:5.3
+  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF00FF><U+25C9></color> apps-hddtemp
-  <color:#FF7700><U+1F79B></color> libs-libircclient
   null kernel-modules-nvidia-drivers-lts
   <color:#FF00FF><U+25C9></color> apps-apcupsd
   <color:#FF00FF><U+25C9></color> apps-cmus
@@ -4148,7 +4130,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/handbrake" --u--> "libs/AOMediaCodecs"
 "apps/links" --u--> "libs/AOMediaCodecs"
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
-"apps/obs-studio" --u--> "libs/asio"
 "apps/ardour" --u--> "libs/aubio"
 "apps/qtractor" --u--> "libs/aubio"
 "libs/gegl" --u--> "libs/babl"
@@ -4175,7 +4156,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/cssselect"
 "apps/calibre" --u--> "libs/feedparser"
 "apps/quodlibet" --u--> "libs/feedparser"
-"apps/hugin" --u--> "libs/flann"
 "apps/tigervnc" --u--> "libs/fltk"
 "apps/yoshimi" --u--> "libs/fltk"
 "apps/zynaddsubfx" --u--> "libs/fltk"
@@ -4251,7 +4231,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/linux-wbfs-manager" --u--> "libs/libglade"
 "apps/rotoscope" --u--> "libs/libglade"
 "apps/blender" --u--> "libs/libharu"
-"apps/conky" --u--> "libs/libircclient"
 "apps/kget" --u--> "libs/libktorrent"
 "apps/ktorrent" --u--> "libs/libktorrent"
 "libs/dssi" --u--> "libs/liblo"
