@@ -993,30 +993,6 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
-- &libs-c-blosc
-  category: "libs"
-  name: "c-blosc"
-  version: "1.21.6"
-  uri:
-  - https://www.blosc.org/
-  license: "MIT"
-  description: "Blocking, shuffling and lossless compression library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/c-blosc
-  provides:
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
@@ -2616,28 +2592,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-log4cplus
-  category: "libs"
-  name: "log4cplus"
-  version: "2.0.7+3"
-  uri:
-  - https://log4cplus.sourceforge.io/
-  - https://github.com/log4cplus/log4cplus
-  license: "Apache-2.0 BSD-2"
-  description: "C++ port of the Log for Java (log4j) logging library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/log4cplus
-  provides:
-  - category: "dev-libs"
-    name: "log4cplus"
-    version: ">=0"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
 
 - &libs-lrzsz
   category: "libs"
@@ -14195,11 +14149,17 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "11.0.0+3"
+  version: "11.0.0+4"
   uri:
   - https://www.openvdb.org
-  license: "MPL-2.0"
-  description: "Library for the efficient manipulation of volumetric data"
+  - https://www.blosc.org/
+  - https://log4cplus.sourceforge.io/
+  - https://github.com/log4cplus/log4cplus
+  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+  description: |
+    Library for the efficient manipulation of volumetric data
+    Blocking, shuffling and lossless compression library
+    C++ port of the Log for Java (log4j) logging library
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -14208,15 +14168,21 @@ packages:
   - category: "media-gfx"
     name: "openvdb"
     version: ">=0"
+  - category: "dev-libs"
+    name: "c-blosc"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "log4cplus"
+    version: ">=0"
   atoms:
   - atom: "media-gfx/openvdb"
     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    env: "MAKEOPTS=\"-j5 -l0.9\""
+    env: "MAKEOPTS=\"-j5 -l0.8\""
+  - atom: "dev-libs/c-blosc"
+    use: "lz4 snappy zlib zstd"
   requires:
   - <<: *layers-qt
-  - <<: *libs-c-blosc
   - <<: *libs-tbb
-  - <<: *libs-log4cplus
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
@@ -17246,7 +17212,7 @@ packages:
   - atom: "sci-mathematics/glpk"
     use: "gmp odbc mysql"
   - atom: "sci-libs/sundials"
-    use: "hypre int64 sparse fortran lapack openmp threads # mpi superlumt"
+    use: "int64 sparse fortran lapack openmp threads # hypre mpi superlumt"
   - atom: "sci-libs/superlu_mt"
     use: "int64 openmp threads"
   inner_build_reqs:
@@ -18422,7 +18388,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-openvdb
-  - <<: *libs-tbb
   build_requires:
   - <<: *layers-qt
 
@@ -18852,12 +18817,10 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-spacenavd
-  - <<: *libs-c-blosc
   - <<: *libs-libspnav
   - <<: *libs-lib3ds
   - <<: *libs-libharu
   - <<: *libs-ocio-oiio
-  - <<: *libs-tbb
   build_requires:
   - <<: *layers-qt
 

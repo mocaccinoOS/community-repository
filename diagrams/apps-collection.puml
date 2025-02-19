@@ -117,11 +117,6 @@ entity "breeze-plymouth" as libs/breeze-plymouth << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-plasma
   <color:#FF00FF><U+25C9></color> apps-grub
 }
-entity "c-blosc" as libs/c-blosc << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-c-blosc
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "cfitsio" as libs/cfitsio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> sci-libs-cfitsio
 ..
@@ -448,11 +443,6 @@ entity "libzen" as libs/libzen << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libzen
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "log4cplus" as libs/log4cplus << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-log4cplus
-..
-  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
@@ -2938,11 +2928,11 @@ entity "indilib" as libs/indilib << (l,#FF7700) >> {
 }
 entity "openvdb" as libs/openvdb << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-gfx-openvdb
+  <color:#34495E><U+24DF></color> dev-libs-c-blosc
+  <color:#34495E><U+24DF></color> dev-libs-log4cplus
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-  <color:#FF7700><U+1F79B></color> libs-c-blosc
   <color:#FF7700><U+1F79B></color> libs-tbb
-  <color:#FF7700><U+1F79B></color> libs-log4cplus
   <color:#FF7700><U+1F79B></color> libs-glfw
 }
 entity "amsynth" as apps/amsynth << (a,#FF00FF) >> {
@@ -3960,7 +3950,6 @@ entity "ocio-oiio" as libs/ocio-oiio << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-openvdb
-  <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "wxpython" as libs/wxpython << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-wxpython
@@ -4061,12 +4050,10 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-spacenavd
-  <color:#FF7700><U+1F79B></color> libs-c-blosc
   <color:#FF7700><U+1F79B></color> libs-libspnav
   <color:#FF7700><U+1F79B></color> libs-lib3ds
   <color:#FF7700><U+1F79B></color> libs-libharu
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
-  <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "displaycal-py3" as apps/displaycal-py3 << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-displaycal-py3
@@ -4122,7 +4109,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/beautifulsoup4" --u--> "layers/sys-fs"
 "libs/breeze-plymouth" --u--> "layers/plasma"
 "libs/breeze-plymouth" --u--> "apps/grub"
-"libs/c-blosc" --u--> "layers/qt"
 "libs/cfitsio" --u--> "layers/system-x"
 "libs/chrome-binary-plugins" --u--> "layers/X"
 "libs/colorama" --u--> "layers/system-x"
@@ -4188,7 +4174,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libXaw3d" --u--> "layers/X"
 "libs/libxdg-basedir" --u--> "layers/system-x"
 "libs/libzen" --u--> "layers/system-x"
-"libs/log4cplus" --u--> "layers/qt"
 "libs/lrzsz" --u--> "layers/system-x"
 "libs/lttng-ust-2_12" --u--> "layers/sys-fs"
 "libs/LuaBitOp" --u--> "layers/sys-fs"
@@ -4792,9 +4777,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/indilib" --u--> "libs/nlohmann_json"
 "libs/indilib" --u--> "libs/websocketpp"
 "libs/openvdb" --u--> "layers/qt"
-"libs/openvdb" --u--> "libs/c-blosc"
 "libs/openvdb" --u--> "libs/tbb"
-"libs/openvdb" --u--> "libs/log4cplus"
 "libs/openvdb" --u--> "libs/glfw"
 "apps/amsynth" --u--> "layers/X"
 "apps/amsynth" --u--> "libs/dssi"
@@ -5214,7 +5197,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/plantuml" --u--> "apps/graphviz"
 "libs/ocio-oiio" --u--> "layers/qt"
 "libs/ocio-oiio" --u--> "libs/openvdb"
-"libs/ocio-oiio" --u--> "libs/tbb"
 "libs/wxpython" --u--> "layers/gnome-common"
 "libs/wxpython" --u--> "layers/qt"
 "libs/wxpython" --u--> "libs/wxGTK"
@@ -5263,12 +5245,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xsane" --u--> "apps/gimp"
 "apps/blender" --u--> "layers/qt"
 "apps/blender" --u--> "apps/spacenavd"
-"apps/blender" --u--> "libs/c-blosc"
 "apps/blender" --u--> "libs/libspnav"
 "apps/blender" --u--> "libs/lib3ds"
 "apps/blender" --u--> "libs/libharu"
 "apps/blender" --u--> "libs/ocio-oiio"
-"apps/blender" --u--> "libs/tbb"
 "apps/displaycal-py3" --u--> "layers/gnome-common"
 "apps/displaycal-py3" --u--> "layers/qt"
 "apps/displaycal-py3" --u--> "libs/build"

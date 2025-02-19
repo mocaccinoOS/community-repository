@@ -117,11 +117,6 @@ entity "breeze-plymouth" as libs/breeze-plymouth << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-plasma
   <color:#FF00FF><U+25C9></color> apps-grub
 }
-entity "c-blosc" as libs/c-blosc << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-c-blosc
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "cfitsio" as libs/cfitsio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> sci-libs-cfitsio
 ..
@@ -448,11 +443,6 @@ entity "libzen" as libs/libzen << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libzen
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "log4cplus" as libs/log4cplus << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-log4cplus
-..
-  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
@@ -2938,11 +2928,11 @@ entity "indilib" as libs/indilib << (l,#FF7700) >> {
 }
 entity "openvdb" as libs/openvdb << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-gfx-openvdb
+  <color:#34495E><U+24DF></color> dev-libs-c-blosc
+  <color:#34495E><U+24DF></color> dev-libs-log4cplus
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-  <color:#FF7700><U+1F79B></color> libs-c-blosc
   <color:#FF7700><U+1F79B></color> libs-tbb
-  <color:#FF7700><U+1F79B></color> libs-log4cplus
   <color:#FF7700><U+1F79B></color> libs-glfw
 }
 entity "amsynth" as apps/amsynth << (a,#FF00FF) >> {
@@ -3960,7 +3950,6 @@ entity "ocio-oiio" as libs/ocio-oiio << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-openvdb
-  <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "wxpython" as libs/wxpython << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-wxpython
@@ -4061,12 +4050,10 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-spacenavd
-  <color:#FF7700><U+1F79B></color> libs-c-blosc
   <color:#FF7700><U+1F79B></color> libs-libspnav
   <color:#FF7700><U+1F79B></color> libs-lib3ds
   <color:#FF7700><U+1F79B></color> libs-libharu
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
-  <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "displaycal-py3" as apps/displaycal-py3 << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-displaycal-py3
@@ -4119,8 +4106,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/qutebrowser" --u--> "libs/beautifulsoup4"
 "apps/calibre" --u--> "libs/beautifulsoup4"
 "apps/lollypop" --u--> "libs/beautifulsoup4"
-"libs/openvdb" --u--> "libs/c-blosc"
-"apps/blender" --u--> "libs/c-blosc"
 "libs/indilib" --u--> "libs/cfitsio"
 "apps/luminance-hdr" --u--> "libs/cfitsio"
 "apps/kstars" --u--> "libs/cfitsio"
@@ -4253,7 +4238,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
 "libs/libmediainfo" --u--> "libs/libzen"
 "apps/mediainfo" --u--> "libs/libzen"
-"libs/openvdb" --u--> "libs/log4cplus"
 "apps/cutecom" --u--> "libs/lrzsz"
 "apps/minicom" --u--> "libs/lrzsz"
 "apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
@@ -4336,9 +4320,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/pygame" --u--> "libs/smpeg2"
 "libs/openvdb" --u--> "libs/tbb"
 "apps/stellarium" --u--> "libs/tbb"
-"libs/ocio-oiio" --u--> "libs/tbb"
 "apps/easyeffects" --u--> "libs/tbb"
-"apps/blender" --u--> "libs/tbb"
 "apps/clamtk" --u--> "libs/Text-CSV"
 "libs/libmediainfo" --u--> "libs/tinyxml2"
 "apps/musescore" --u--> "libs/tinyxml2"
