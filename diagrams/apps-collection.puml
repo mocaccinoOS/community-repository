@@ -99,10 +99,11 @@ entity "aubio" as libs/aubio << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "babl" as libs/babl << (l,#FF7700) >> {
+entity "babl-gegl" as libs/babl-gegl << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-babl
+  <color:#34495E><U+24DF></color> media-libs-gegl
 ..
-  <color:#9ACD32><U+2756></color> layers-X
+  <color:#9ACD32><U+2756></color> layers-sci-libs
 }
 entity "beautifulsoup4" as libs/beautifulsoup4 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-beautifulsoup4
@@ -557,11 +558,6 @@ entity "portsmf" as libs/portsmf << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "ptex" as libs/ptex << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-ptex
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "pyproject-hooks" as libs/pyproject-hooks << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pyproject-hooks
 ..
@@ -762,11 +758,6 @@ entity "zita-convolver" as libs/zita-convolver << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-zita-convolver
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "zstandard" as libs/zstandard << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-zstandard
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
 }
 entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-alacritty
@@ -2194,7 +2185,7 @@ entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
 entity "tiff-compat" as libs/tiff-compat << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-gegl
+  <color:#34495E><U+24DF></color> media-libs-tiff-compat
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-jbigkit
@@ -3745,12 +3736,6 @@ entity "stellarium" as apps/stellarium << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-qxlsx
   <color:#FF7700><U+1F79B></color> libs-tbb
 }
-entity "gegl" as libs/gegl << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-gegl
-..
-  <color:#9ACD32><U+2756></color> layers-sci-libs
-  <color:#FF7700><U+1F79B></color> libs-babl
-}
 entity "mlt" as libs/mlt << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-mlt
 ..
@@ -3857,7 +3842,7 @@ entity "libmypaint" as libs/libmypaint << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libmypaint
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-gegl
+  <color:#FF7700><U+1F79B></color> libs-babl-gegl
 }
 entity "audacity" as apps/audacity << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-audacity
@@ -3908,7 +3893,7 @@ entity "gimp" as apps/gimp << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF00FF><U+25C9></color> apps-mypaint-brushes
-  <color:#FF7700><U+1F79B></color> libs-gegl
+  <color:#FF7700><U+1F79B></color> libs-babl-gegl
   <color:#FF7700><U+1F79B></color> libs-libmypaint
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
@@ -3968,13 +3953,13 @@ entity "ocio-oiio" as libs/ocio-oiio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-openimageio
   <color:#34495E><U+24DF></color> dev-cpp-pystring
   <color:#34495E><U+24DF></color> dev-cpp-robin-map
+  <color:#34495E><U+24DF></color> media-libs-ptex
   <color:#34495E><U+24DF></color> sci-libs-dcmtk
   <color:#34495E><U+24DF></color> sys-libs-minizip-ng
   <color:#34495E><U+24DF></color> sys-libs-zlib-ng
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-openvdb
-  <color:#FF7700><U+1F79B></color> libs-ptex
   <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "wxpython" as libs/wxpython << (l,#FF7700) >> {
@@ -4067,6 +4052,7 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-embree
   <color:#34495E><U+24DF></color> dev-lang-ispc
   <color:#34495E><U+24DF></color> dev-libs-miniz
+  <color:#34495E><U+24DF></color> dev-python-zstandard
   <color:#34495E><U+24DF></color> media-libs-oidn
   <color:#34495E><U+24DF></color> media-libs-opencollada
   <color:#34495E><U+24DF></color> media-libs-openpgl
@@ -4074,16 +4060,12 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-renderdoc
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-  <color:#FF7700><U+1F79B></color> libs-zstandard
   <color:#FF00FF><U+25C9></color> apps-spacenavd
   <color:#FF7700><U+1F79B></color> libs-c-blosc
   <color:#FF7700><U+1F79B></color> libs-libspnav
-  <color:#FF7700><U+1F79B></color> libs-openvdb
-  <color:#FF7700><U+1F79B></color> libs-glfw
   <color:#FF7700><U+1F79B></color> libs-lib3ds
   <color:#FF7700><U+1F79B></color> libs-libharu
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
-  <color:#FF7700><U+1F79B></color> libs-ptex
   <color:#FF7700><U+1F79B></color> libs-tbb
 }
 entity "displaycal-py3" as apps/displaycal-py3 << (a,#FF00FF) >> {
@@ -4136,7 +4118,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/analitza" --u--> "layers/kde-common"
 "libs/AOMediaCodecs" --u--> "layers/X"
 "libs/aubio" --u--> "layers/X"
-"libs/babl" --u--> "layers/X"
+"libs/babl-gegl" --u--> "layers/sci-libs"
 "libs/beautifulsoup4" --u--> "layers/sys-fs"
 "libs/breeze-plymouth" --u--> "layers/plasma"
 "libs/breeze-plymouth" --u--> "apps/grub"
@@ -4227,7 +4209,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/perl-Tk" --u--> "layers/X"
 "libs/physfs" --u--> "layers/system-x"
 "libs/portsmf" --u--> "layers/system-x"
-"libs/ptex" --u--> "layers/qt"
 "libs/pyproject-hooks" --u--> "layers/system-x"
 "libs/python-msgpack" --u--> "layers/system-x"
 "libs/python-protobuf" --u--> "layers/system-x"
@@ -4266,7 +4247,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/xsimd" --u--> "layers/system-x"
 "libs/zimg" --u--> "layers/system-x"
 "libs/zita-convolver" --u--> "layers/X"
-"libs/zstandard" --u--> "layers/sys-fs"
 "apps/alacritty" --u--> "layers/X"
 "apps/alligator" --u--> "layers/kde-common"
 "apps/amarok" --u--> "layers/kde-kf5"
@@ -5125,8 +5105,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/stellarium" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/tbb"
-"libs/gegl" --u--> "layers/sci-libs"
-"libs/gegl" --u--> "libs/babl"
 "libs/mlt" --u--> "layers/kde-common"
 "libs/mlt" --u--> "libs/ladspa-sdk"
 "libs/mlt" --u--> "libs/libebur128"
@@ -5175,7 +5153,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/gtkmm" --u--> "libs/gtk2"
 "libs/gtkmm" --u--> "apps/graphviz"
 "libs/libmypaint" --u--> "layers/X"
-"libs/libmypaint" --u--> "libs/gegl"
+"libs/libmypaint" --u--> "libs/babl-gegl"
 "apps/audacity" --u--> "layers/qt"
 "apps/audacity" --u--> "layers/gnome-common"
 "apps/audacity" --u--> "libs/libsoundtouch"
@@ -5202,7 +5180,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gimp" --u--> "layers/gnome-common"
 "apps/gimp" --u--> "libs/gtk2"
 "apps/gimp" --u--> "apps/mypaint-brushes"
-"apps/gimp" --u--> "libs/gegl"
+"apps/gimp" --u--> "libs/babl-gegl"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/logitech-linux-rpm-led" --u--> "layers/X"
 "apps/logitech-linux-rpm-led" --u--> "libs/hid"
@@ -5236,7 +5214,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/plantuml" --u--> "apps/graphviz"
 "libs/ocio-oiio" --u--> "layers/qt"
 "libs/ocio-oiio" --u--> "libs/openvdb"
-"libs/ocio-oiio" --u--> "libs/ptex"
 "libs/ocio-oiio" --u--> "libs/tbb"
 "libs/wxpython" --u--> "layers/gnome-common"
 "libs/wxpython" --u--> "layers/qt"
@@ -5285,16 +5262,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xsane" --u--> "layers/gnome-common"
 "apps/xsane" --u--> "apps/gimp"
 "apps/blender" --u--> "layers/qt"
-"apps/blender" --u--> "libs/zstandard"
 "apps/blender" --u--> "apps/spacenavd"
 "apps/blender" --u--> "libs/c-blosc"
 "apps/blender" --u--> "libs/libspnav"
-"apps/blender" --u--> "libs/openvdb"
-"apps/blender" --u--> "libs/glfw"
 "apps/blender" --u--> "libs/lib3ds"
 "apps/blender" --u--> "libs/libharu"
 "apps/blender" --u--> "libs/ocio-oiio"
-"apps/blender" --u--> "libs/ptex"
 "apps/blender" --u--> "libs/tbb"
 "apps/displaycal-py3" --u--> "layers/gnome-common"
 "apps/displaycal-py3" --u--> "layers/qt"

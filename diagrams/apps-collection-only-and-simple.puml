@@ -60,7 +60,7 @@ entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 entity "aubio" as libs/aubio << (l,#FF7700) >> {
 
 }
-entity "babl" as libs/babl << (l,#FF7700) >> {
+entity "babl-gegl" as libs/babl-gegl << (l,#FF7700) >> {
 
 }
 entity "beautifulsoup4" as libs/beautifulsoup4 << (l,#FF7700) >> {
@@ -327,9 +327,6 @@ entity "physfs" as libs/physfs << (l,#FF7700) >> {
 entity "portsmf" as libs/portsmf << (l,#FF7700) >> {
 
 }
-entity "ptex" as libs/ptex << (l,#FF7700) >> {
-
-}
 entity "pyproject-hooks" as libs/pyproject-hooks << (l,#FF7700) >> {
 
 }
@@ -439,9 +436,6 @@ entity "zimg" as libs/zimg << (l,#FF7700) >> {
 
 }
 entity "zita-convolver" as libs/zita-convolver << (l,#FF7700) >> {
-
-}
-entity "zstandard" as libs/zstandard << (l,#FF7700) >> {
 
 }
 entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
@@ -1731,9 +1725,6 @@ entity "RcloneBrowser" as apps/RcloneBrowser << (a,#FF00FF) >> {
 entity "stellarium" as apps/stellarium << (a,#FF00FF) >> {
 
 }
-entity "gegl" as libs/gegl << (l,#FF7700) >> {
-
-}
 entity "mlt" as libs/mlt << (l,#FF7700) >> {
 
 }
@@ -1856,7 +1847,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
 "apps/ardour" --u--> "libs/aubio"
 "apps/qtractor" --u--> "libs/aubio"
-"libs/gegl" --u--> "libs/babl"
+"libs/libmypaint" --u--> "libs/babl-gegl"
+"apps/gimp" --u--> "libs/babl-gegl"
 "apps/lutris" --u--> "libs/beautifulsoup4"
 "apps/qutebrowser" --u--> "libs/beautifulsoup4"
 "apps/calibre" --u--> "libs/beautifulsoup4"
@@ -1893,7 +1885,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/octave" --u--> "libs/gl2ps"
 "apps/cpu-x" --u--> "libs/glfw"
 "libs/openvdb" --u--> "libs/glfw"
-"apps/blender" --u--> "libs/glfw"
 "apps/pidgin" --u--> "libs/gmime-2"
 "apps/shutter" --u--> "libs/goocanvas"
 "apps/emacs" --u--> "libs/gpm"
@@ -2043,8 +2034,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/hedgewars" --u--> "libs/physfs"
 "apps/neverball" --u--> "libs/physfs"
 "apps/audacity" --u--> "libs/portsmf"
-"libs/ocio-oiio" --u--> "libs/ptex"
-"apps/blender" --u--> "libs/ptex"
 "libs/build" --u--> "libs/pyproject-hooks"
 "apps/pip" --u--> "libs/pyproject-hooks"
 "apps/gradience" --u--> "libs/pyproject-hooks"
@@ -2120,7 +2109,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/krita" --u--> "libs/xsimd"
 "apps/handbrake" --u--> "libs/zimg"
 "apps/easyeffects" --u--> "libs/zita-convolver"
-"apps/blender" --u--> "libs/zstandard"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
 "apps/libreoffice" --u--> "apps/ant"
 "apps/plantuml" --u--> "apps/ant"
@@ -2279,7 +2267,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kstars" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/indilib"
 "libs/ocio-oiio" --u--> "libs/openvdb"
-"apps/blender" --u--> "libs/openvdb"
 "apps/k3b" --u--> "apps/dvd-rw-tools"
 "apps/xmms2" --u--> "apps/fluidsynth"
 "apps/audacious" --u--> "apps/fluidsynth"
@@ -2306,8 +2293,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/neverball" --u--> "libs/sdl2"
 "apps/easyeffects" --u--> "apps/calf"
 "apps/digikam" --u--> "apps/hugin"
-"libs/libmypaint" --u--> "libs/gegl"
-"apps/gimp" --u--> "libs/gegl"
 "apps/kdenlive" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"

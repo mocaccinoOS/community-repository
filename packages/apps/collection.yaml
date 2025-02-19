@@ -939,7 +939,8 @@ packages:
   requires:
   - <<: *layers-sci-libs
   build_requires:
-  - <<: *layers-sci-libs
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &libs-beautifulsoup4
   category: "libs"
@@ -12945,7 +12946,8 @@ packages:
   - <<: *layers-sci-libs
   - <<: *libs-xsimd
   build_requires:
-  - <<: *layers-sci-libs
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - category: "apps"
   name: "p7zip-ui"
@@ -17986,7 +17988,8 @@ packages:
   - <<: *layers-X
   - <<: *libs-babl-gegl
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 ################################################################################################################################################################
 ### dep 5 apps ###
@@ -18155,8 +18158,10 @@ packages:
   - <<: *libs-babl-gegl
   - <<: *libs-libmypaint
   build_requires:
-  - <<: *layers-gnome-common
-
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
+  
 - category: "apps"
   name: "logitech-linux-rpm-led"
   version: "0.1"
