@@ -1955,6 +1955,11 @@ entity "vcdimager" as apps/vcdimager << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "vesktop" as apps/vesktop << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> net-im-vesktop-bin
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "video-trimmer" as apps/video-trimmer << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
 }
@@ -3285,7 +3290,6 @@ entity "neovim" as apps/neovim << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-lua-luv
   <color:#34495E><U+24DF></color> dev-lua-mpack
   <color:#34495E><U+24DF></color> dev-libs-msgpack
-  <color:#34495E><U+24DF></color> dev-libs-libtermkey
   <color:#34495E><U+24DF></color> dev-libs-libvterm
   <color:#34495E><U+24DF></color> dev-libs-unibilium
 ..
@@ -3872,7 +3876,6 @@ entity "audacity" as apps/audacity << (a,#FF00FF) >> {
 }
 entity "conky" as apps/conky << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-conky
-  <color:#34495E><U+24DF></color> dev-lang-lua:5.3
   <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-X
@@ -3941,7 +3944,6 @@ entity "museseq" as apps/museseq << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-liblo
   <color:#FF7700><U+1F79B></color> libs-liblrdf
   <color:#FF7700><U+1F79B></color> libs-lilv
-  <color:#FF7700><U+1F79B></color> libs-lv2
   <color:#FF7700><U+1F79B></color> libs-rtaudio
   <color:#FF7700><U+1F79B></color> libs-rubberband
 }
@@ -3995,7 +3997,6 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-liblrdf
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-lilv
-  <color:#FF7700><U+1F79B></color> libs-lv2
   <color:#FF7700><U+1F79B></color> libs-raptor
   <color:#FF7700><U+1F79B></color> libs-rubberband
   <color:#FF7700><U+1F79B></color> libs-suil
@@ -4016,7 +4017,6 @@ entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-libebur128
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-lilv
-  <color:#FF7700><U+1F79B></color> libs-lv2
   <color:#FF00FF><U+25C9></color> apps-rnnoise
   <color:#FF7700><U+1F79B></color> libs-zita-convolver
   <color:#FF00FF><U+25C9></color> apps-calf
@@ -4045,7 +4045,6 @@ entity "qtractor" as apps/qtractor << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-liblo
   <color:#FF7700><U+1F79B></color> libs-lilv
-  <color:#FF7700><U+1F79B></color> libs-lv2
   <color:#FF7700><U+1F79B></color> libs-rubberband
   <color:#FF7700><U+1F79B></color> libs-suil
 }
@@ -4285,10 +4284,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/yoshimi" --u--> "libs/lv2"
 "apps/calf" --u--> "libs/lv2"
 "libs/suil" --u--> "libs/lv2"
-"apps/museseq" --u--> "libs/lv2"
-"apps/ardour" --u--> "libs/lv2"
-"apps/easyeffects" --u--> "libs/lv2"
-"apps/qtractor" --u--> "libs/lv2"
 "apps/links" --u--> "libs/lzip"
 "apps/shntool" --u--> "libs/mac"
 "apps/xmms2" --u--> "libs/mac"

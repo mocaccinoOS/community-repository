@@ -4688,9 +4688,11 @@ packages:
   build_requires:
   - <<: *layers-X
 
+  # can't bump due to missing 'webp' flag for 'tiff'
+  # >=media-libs/tiff-4.6.0-r1 webp
 - category: "apps"
   name: "cartridges"
-  version: "2.9.3-r1"
+  version: "2.9.3"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -9790,34 +9792,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-vesktop
-#   category: "apps"
-#   name: "vesktop"
-#   version: "1.5.5"
-#   uri:
-#   - https://github.com/Vencord/Vesktop
-#   license: "GPL-3"
-#   description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-im/vesktop-bin
-#   overlays:
-#   - enable: "guru"
-#   provides:
-#   - category: "net-im"
-#     name: "vesktop-bin"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-im/vesktop-bin"
-#     accept_keywords: "~amd64"
-#   # inner_build_requires:
-#   # - <<: *apps-nodejs
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   # - <<: *layers-X
-#   - <<: *apps-chromium
+- &apps-vesktop
+  category: "apps"
+  name: "vesktop"
+  version: "1.5.5"
+  uri:
+  - https://github.com/Vencord/Vesktop
+  license: "GPL-3"
+  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/vesktop-bin
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-im"
+    name: "vesktop-bin"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/vesktop-bin"
+    accept_keywords: "~amd64"
+  # inner_build_requires:
+  # - <<: *apps-nodejs
+  requires:
+  - <<: *layers-X
+  build_requires:
+  # - <<: *layers-X
+  - <<: *apps-chromium
 
 - category: "apps"
   name: "video-trimmer"
@@ -11791,10 +11793,11 @@ packages:
   build_requires:
   - <<: *layers-X
 
+  # can't bump due to sys-libs/ncurses-6.5_p20250125 ~amd64
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.1.1"
+  version: "1.0.1-r3"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -15522,9 +15525,6 @@ packages:
     name: "msgpack"
     version: ">=0"
   - category: "dev-libs"
-    name: "libtermkey"
-    version: ">=0"
-  - category: "dev-libs"
     name: "libvterm"
     version: ">=0"
   - category: "dev-libs"
@@ -18119,9 +18119,6 @@ packages:
   - category: "app-admin"
     name: "conky"
     version: ">=0"
-  - category: "dev-lang"
-    name: "lua:5.3"
-    version: ">=0"
   - category: "net-libs"
     name: "libircclient"
     version: ">=0"
@@ -18366,7 +18363,6 @@ packages:
   - <<: *libs-liblo
   - <<: *libs-liblrdf
   - <<: *libs-lilv
-  - <<: *libs-lv2
   - <<: *libs-rtaudio
   - <<: *libs-rubberband
   build_requires:
@@ -18532,7 +18528,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.11"
+  version: "8.10-r4+1"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
@@ -18569,13 +18565,13 @@ packages:
   - <<: *libs-liblrdf
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
-  - <<: *libs-lv2
   - <<: *libs-raptor
   - <<: *libs-rubberband
   - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-easyeffects
   category: "apps"
@@ -18628,7 +18624,6 @@ packages:
   - <<: *libs-libebur128
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
-  - <<: *libs-lv2
   - <<: *libs-rnnoise
   - <<: *libs-zita-convolver
   - <<: *apps-calf
@@ -18747,7 +18742,6 @@ packages:
   - <<: *libs-ladspa-sdk
   - <<: *libs-liblo
   - <<: *libs-lilv
-  - <<: *libs-lv2
   - <<: *libs-rubberband
   - <<: *libs-suil
   build_requires:
