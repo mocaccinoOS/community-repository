@@ -439,11 +439,6 @@ entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "libzen" as libs/libzen << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-libzen
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
 ..
@@ -2104,10 +2099,10 @@ entity "liblrdf" as libs/liblrdf << (l,#FF7700) >> {
 }
 entity "libmediainfo" as libs/libmediainfo << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libmediainfo
+  <color:#34495E><U+24DF></color> media-libs-libzen
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-tinyxml2
-  <color:#FF7700><U+1F79B></color> libs-libzen
 }
 entity "libmikmod" as libs/libmikmod << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libmikmod
@@ -3222,7 +3217,6 @@ entity "mediainfo" as apps/mediainfo << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libmediainfo
-  <color:#FF7700><U+1F79B></color> libs-libzen
 }
 entity "mediainfo-gui" as apps/mediainfo-gui << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-mediainfo
@@ -3883,7 +3877,6 @@ entity "gimp" as apps/gimp << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF00FF><U+25C9></color> apps-mypaint-brushes
-  <color:#FF7700><U+1F79B></color> libs-babl-gegl
   <color:#FF7700><U+1F79B></color> libs-libmypaint
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
@@ -4173,7 +4166,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libvisio" --u--> "layers/X"
 "libs/libXaw3d" --u--> "layers/X"
 "libs/libxdg-basedir" --u--> "layers/system-x"
-"libs/libzen" --u--> "layers/system-x"
 "libs/lrzsz" --u--> "layers/system-x"
 "libs/lttng-ust-2_12" --u--> "layers/sys-fs"
 "libs/LuaBitOp" --u--> "layers/sys-fs"
@@ -4497,7 +4489,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/liblrdf" --u--> "libs/raptor"
 "libs/libmediainfo" --u--> "layers/X"
 "libs/libmediainfo" --u--> "libs/tinyxml2"
-"libs/libmediainfo" --u--> "libs/libzen"
 "libs/libmikmod" --u--> "layers/X"
 "libs/libmikmod" --u--> "libs/nas"
 "libs/libnice" --u--> "layers/gnome-common"
@@ -4872,7 +4863,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/luminance-hdr" --u--> "libs/cfitsio"
 "apps/mediainfo" --u--> "layers/X"
 "apps/mediainfo" --u--> "libs/libmediainfo"
-"apps/mediainfo" --u--> "libs/libzen"
 "apps/mediainfo-gui" --u--> "layers/gnome-common"
 "apps/mediainfo-gui" --u--> "libs/wxGTK"
 "apps/mediainfo-gui" --u--> "apps/mediainfo"
@@ -5163,7 +5153,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gimp" --u--> "layers/gnome-common"
 "apps/gimp" --u--> "libs/gtk2"
 "apps/gimp" --u--> "apps/mypaint-brushes"
-"apps/gimp" --u--> "libs/babl-gegl"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/logitech-linux-rpm-led" --u--> "layers/X"
 "apps/logitech-linux-rpm-led" --u--> "libs/hid"

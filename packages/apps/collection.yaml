@@ -2570,29 +2570,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libzen
-  category: "libs"
-  name: "libzen"
-  version: "0.4.41+1"
-  uri:
-  - https://github.com/MediaArea/ZenLib
-  license: "ZLIB"
-  description: "Shared library for libmediainfo and mediainfo"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libzen
-  provides:
-  - category: "media-libs"
-    name: "libzen"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-lang/yasm
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
@@ -10528,10 +10505,10 @@ packages:
 - &libs-libmediainfo
   category: "libs"
   name: "libmediainfo"
-  version: "23.10+1"
+  version: "23.10+2"
   uri:
   - https://mediaarea.net/mediainfo/
-  license: "BSD-2"
+  license: "BSD-2 ZLIB"
   description: "MediaInfo libraries"
   labels:
     emerge.jobs: "1"
@@ -10541,13 +10518,17 @@ packages:
   - category: "media-libs"
     name: "libmediainfo"
     version: ">=0"
+  - category: "media-libs"
+    name: "libzen"
+    version: ">=0"
   atoms:
   - atom: "media-libs/libmediainfo"
     use: "curl mms"
+  inner_build_reqs:
+  - dev-lang/yasm
   requires:
   - <<: *layers-X
   - <<: *libs-tinyxml2
-  - <<: *libs-libzen
   build_requires:
   - <<: *layers-X
 
@@ -15274,7 +15255,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-libmediainfo
-  - <<: *libs-libzen
   build_requires:
   - <<: *layers-X
 
@@ -18121,7 +18101,6 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
   - <<: *apps-mypaint-brushes
-  - <<: *libs-babl-gegl
   - <<: *libs-libmypaint
   build_requires:
   - <<: *buildbase-gnome-common

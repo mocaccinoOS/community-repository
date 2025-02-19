@@ -439,11 +439,6 @@ entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "libzen" as libs/libzen << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-libzen
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
 ..
@@ -2104,10 +2099,10 @@ entity "liblrdf" as libs/liblrdf << (l,#FF7700) >> {
 }
 entity "libmediainfo" as libs/libmediainfo << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libmediainfo
+  <color:#34495E><U+24DF></color> media-libs-libzen
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-tinyxml2
-  <color:#FF7700><U+1F79B></color> libs-libzen
 }
 entity "libmikmod" as libs/libmikmod << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libmikmod
@@ -3222,7 +3217,6 @@ entity "mediainfo" as apps/mediainfo << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libmediainfo
-  <color:#FF7700><U+1F79B></color> libs-libzen
 }
 entity "mediainfo-gui" as apps/mediainfo-gui << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-mediainfo
@@ -3883,7 +3877,6 @@ entity "gimp" as apps/gimp << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF00FF><U+25C9></color> apps-mypaint-brushes
-  <color:#FF7700><U+1F79B></color> libs-babl-gegl
   <color:#FF7700><U+1F79B></color> libs-libmypaint
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
@@ -4101,7 +4094,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ardour" --u--> "libs/aubio"
 "apps/qtractor" --u--> "libs/aubio"
 "libs/libmypaint" --u--> "libs/babl-gegl"
-"apps/gimp" --u--> "libs/babl-gegl"
 "apps/lutris" --u--> "libs/beautifulsoup4"
 "apps/qutebrowser" --u--> "libs/beautifulsoup4"
 "apps/calibre" --u--> "libs/beautifulsoup4"
@@ -4236,8 +4228,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/libvisio"
 "apps/xemacs" --u--> "libs/libXaw3d"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
-"libs/libmediainfo" --u--> "libs/libzen"
-"apps/mediainfo" --u--> "libs/libzen"
 "apps/cutecom" --u--> "libs/lrzsz"
 "apps/minicom" --u--> "libs/lrzsz"
 "apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
