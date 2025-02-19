@@ -909,32 +909,37 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-babl
+- &libs-babl-gegl
   category: "libs"
-  name: "babl"
-  version: "0.1.108"
+  name: "babl-gegl"
+  version: "0.1"
   uri:
-  - https://gegl.org/babl/
-  license: "LGPL-3"
-  description: "A dynamic, any to any, pixel format conversion library"
+  - https://gegl.org/
+  license: "GPL-3+ LGPL-3"
+  description: |
+    A dynamic, any to any, pixel format conversion library
+    A graph based image processing framework
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
       media-libs/babl
+      media-libs/gegl
   provides:
   - category: "media-libs"
     name: "babl"
     version: ">=0"
+  - category: "media-libs"
+    name: "gegl"
+    version: ">=0"
   atoms:
   - atom: "media-libs/babl"
     use: "introspection lcms vala"
-  #prepare:
-  #- sed -i "/gnome2_environment_reset/a \        sed -i -e 's/Description/description/' meson.build || die \# bug 843266" /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild
-  #- ebuild /var/db/repos/gentoo/media-libs/babl/babl-0.1.88.ebuild manifest
+  - atom: "media-libs/gegl"
+    use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
   requires:
-  - <<: *layers-X
+  - <<: *layers-sci-libs
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-sci-libs
 
 - &libs-beautifulsoup4
   category: "libs"
@@ -1305,7 +1310,7 @@ packages:
 - &libs-freeimage
   category: "libs"
   name: "freeimage"
-  version: "3.18.0-r11"
+  version: "3.18.0-r11+1"
   uri:
   - https://freeimage.sourceforge.io/
   license: "GPL-2 FIPL-1.0"
@@ -3097,29 +3102,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-ptex
-  category: "libs"
-  name: "ptex"
-  version: "2.4.2+1"
-  uri:
-  - http://ptex.us/
-  license: "BSD"
-  description: "Per-Face Texture Mapping for Production Rendering"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/ptex
-  provides:
-  - category: "media-libs"
-    name: "ptex"
-    version: ">=0"
-  inner_build_reqs:
-  - *apps-doxygen-packages
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - &libs-pyproject-hooks
   category: "libs"
   name: "pyproject-hooks"
@@ -4036,28 +4018,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-zstandard
-  category: "libs"
-  name: "zstandard"
-  version: "0.23.0+1"
-  uri:
-  - https://github.com/indygreg/python-zstandard/
-  - https://pypi.org/project/zstandard/
-  license: "BSD"
-  description: "Zstandard Bindings for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/zstandard
-  provides:
-  - category: "dev-python"
-    name: "zstandard"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 ################################################################################################################################################################
 ### dep 0 apps ###
@@ -14233,7 +14193,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "11.0.0+2"
+  version: "11.0.0+3"
   uri:
   - https://www.openvdb.org
   license: "MPL-2.0"
@@ -15169,7 +15129,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2+2"
+  version: "24.2.7.2+3"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15367,7 +15327,7 @@ packages:
 - &apps-megasync
   category: "apps"
   name: "megasync"
-  version: "5.8.0.2"
+  version: "5.8.0.2+1"
   uri:
   - https://mega.io
   - https://github.com/meganz/MEGAsync
@@ -16003,7 +15963,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.24.0_p1"
+  version: "3.24.0_p1+1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -16016,14 +15976,9 @@ packages:
   - category: "dev-debug"
     name: "valgrind"
     version: ">=0"
-  # atoms:
-  # - atom: "dev-debug/valgrind"
-  #   use: "mpi"
   requires:
-  # - <<: *layers-openmpi
   - <<: *layers-system-x
   build_requires:
-  # - <<: *buildbase-openmpi
   - <<: *layers-system-x
 
 - category: "apps"
@@ -16700,10 +16655,8 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *layers-office-common
-  # - <<: *libs-libspnav
   - <<: *apps-pstoedit
   - <<: *libs-libvisio
-  # - <<: *apps-designer
   build_requires:
   # okular in layers/kde-apps-minimal
   - <<: *buildbase-kde-common
@@ -17256,7 +17209,7 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "9.2.0-r1"
+  version: "9.2.0-r1+1"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
@@ -17303,7 +17256,6 @@ packages:
   - <<: *layers-office-common
   - <<: *layers-perl-libs
   - <<: *layers-latex
-  # - <<: *layers-openmpi
   - <<: *layers-sci-libs
   - <<: *layers-java
   - <<: *apps-pstoedit
@@ -17321,7 +17273,6 @@ packages:
   - <<: *layerbase-office-common
   - <<: *layerbase-perl-libs
   - <<: *layerbase-latex
-  # - <<: *buildbase-openmpi
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
@@ -17478,31 +17429,6 @@ packages:
 ################################################################################################################################################################
 ### dep 4 libs ###
 ################################################################################################################################################################
-
-- &libs-gegl
-  category: "libs"
-  name: "gegl"
-  version: "0.4.48+1"
-  uri:
-  - https://gegl.org/
-  license: "GPL-3+ LGPL-3"
-  description: "A graph based image processing framework"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-libs/gegl
-  provides:
-  - category: "media-libs"
-    name: "gegl"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/gegl"
-    use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-babl
-  build_requires:
-  - <<: *layers-sci-libs
 
 - &libs-mlt
   category: "libs"
@@ -18425,7 +18351,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "9+1"
+  version: "10"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
@@ -18433,8 +18359,8 @@ packages:
   - https://github.com/AcademySoftwareFoundation/OpenColorIO
   - https://github.com/imageworks/pystring
   - https://github.com/Tessil/robin-map
-  - https://dicom.offis.de/dcmtk.php.en
   - https://github.com/zlib-ng/minizip-ng
+  - https://dicom.offis.de/dcmtk.php.en
   - https://github.com/zlib-ng/zlib-ng
   license: "metapackage"
   description: |
@@ -18442,6 +18368,7 @@ packages:
     A library for reading and writing images
     C++ functions matching the interface and behavior of python string methods
     C++ fast hash map and hash set using robin hood hashing
+    Per-Face Texture Mapping for Production Rendering
     The DICOM Toolkit
     Fork of the popular zip manipulation library found in the zlib distribution
     Fork of the zlib data compression library
@@ -18463,6 +18390,9 @@ packages:
   - category: "dev-cpp"
     name: "robin-map"
     version: ">=0"
+  - category: "media-libs"
+    name: "ptex"
+    version: ">=0"
   - category: "sci-libs"
     name: "dcmtk"
     version: ">=0"
@@ -18482,10 +18412,11 @@ packages:
     use: "png ssl tcpd tiff threads xml zlib"
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
+  inner_build_reqs:
+  - *apps-doxygen-packages
   requires:
   - <<: *layers-qt
   - <<: *libs-openvdb
-  - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
   - <<: *layers-qt
@@ -18672,7 +18603,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.2.6+2"
+  version: "5.2.6+3"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -18817,7 +18748,9 @@ packages:
   - https://graphics.pixar.com/opensubdiv/docs/intro.html
   - http://opensource.imageworks.com/?p
   - http://partio.us/
-  license: "GPL-3 BL BSD Apache-2.0 MIT"
+  - https://github.com/indygreg/python-zstandard/
+  - https://pypi.org/project/zstandard/
+  license: "Apache-2.0 BL BSD GPL-3 MIT"
   description: |
     3D Creation/Animation/Publishing System
     Open framework for storing and sharing scene data
@@ -18827,6 +18760,7 @@ packages:
     An Open-Source subdivision surface library
     Advanced shading language for production GI renderers
     Library for particle IO and manipulation
+    Zstandard Bindings for Python
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -18847,6 +18781,9 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "miniz"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zstandard"
     version: ">=0"
   - category: "media-libs"
     name: "oidn"
@@ -18909,16 +18846,12 @@ packages:
   - dev-debug/valgrind
   requires:
   - <<: *layers-qt
-  - <<: *libs-zstandard
   - <<: *apps-spacenavd
   - <<: *libs-c-blosc
   - <<: *libs-libspnav
-  - <<: *libs-openvdb
-  - <<: *libs-glfw
   - <<: *libs-lib3ds
   - <<: *libs-libharu
   - <<: *libs-ocio-oiio
-  - <<: *libs-ptex
   - <<: *libs-tbb
   build_requires:
   - <<: *layers-qt
