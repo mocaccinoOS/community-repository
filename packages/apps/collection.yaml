@@ -15860,7 +15860,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/timidity++"
-    use: "alsa ao flac gtk jac nask ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs"
+    use: "alsa ao flac jac nask ncurses ogg oss slang speex tk vorbis X # gtk motif selinux Xaw3d emacs"
   - atom: "media-sound/timidity-eawpatches"
     license: "free-noncomm"
   inner_build_reqs:
@@ -15869,7 +15869,6 @@ packages:
   - acct-user/timidity
   requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
   - category: "entity"
     name: "audio"
     version: ">=0"
@@ -16856,7 +16855,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-build
-  - <<: *libs-pyproject-hooks
   - <<: *libs-reportlab
   - <<: *libs-regex
   build_requires:
