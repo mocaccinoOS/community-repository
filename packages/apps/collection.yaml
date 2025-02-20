@@ -15308,7 +15308,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.3.6-r2"
+  version: "2.5.0"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -15323,15 +15323,16 @@ packages:
     version: ">=0"
   - atom: "media-sound/mixxx"
     use: "ffmpeg mp3 opus"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *libs-libebur128
   - <<: *libs-vamp-plugin-sdk
   - <<: *libs-libsoundtouch
   - <<: *libs-hidapi
   - <<: *libs-rubberband
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - &apps-nagios
   category: "apps"
