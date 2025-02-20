@@ -18078,7 +18078,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.38-r1"
+  version: "2.10.38-r1+1"
   uri:
   - https://www.gimp.org/
   license: "GPL-3 LGPL-3"
@@ -18675,7 +18675,9 @@ packages:
   - <<: *layers-gnome-common
   - <<: *apps-gimp
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 ################################################################################################################################################################
 ### dep 7 libs ###
@@ -18687,7 +18689,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.2.1+1"
+  version: "4.2.1+2"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
