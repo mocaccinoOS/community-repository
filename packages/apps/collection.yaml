@@ -15321,9 +15321,12 @@ packages:
   - category: "media-sound"
     name: "mixxx"
     version: ">=0"
+  atoms:
   - atom: "media-sound/mixxx"
     use: "ffmpeg mp3 opus"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-cpp/ms-gsl
   requires:
   - <<: *layers-qt
   - <<: *libs-libebur128
@@ -18091,9 +18094,6 @@ packages:
   provides:
   - category: "media-gfx"
     name: "gimp"
-    version: ">=0"
-  - category: "media-libs"
-    name: "gtk-mac-integration"
     version: ">=0"
   atoms:
   - atom: "media-gfx/gimp"
