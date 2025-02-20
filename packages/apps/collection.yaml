@@ -10953,7 +10953,7 @@ packages:
 
 - category: "apps"
   name: "cairo-dock"
-  version: "3.4.1+4"
+  version: "3.4.1+5"
   uri:
   - http://www.glx-dock.org
   license: "GPL-3"
@@ -10979,6 +10979,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "x11-misc/cairo-dock"
+    use: "gtk3"
     accept_keywords: "~amd64"
   - atom: "x11-plugins/cairo-dock-plugins"
     use: "x11-plugins/cairo-dock-plugins alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
@@ -10989,7 +10990,6 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gtk2
   build_requires:
   - <<: *layers-gnome-common
 
