@@ -18409,7 +18409,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.10-r4+4"
+  version: "8.10-r4+1"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
@@ -18430,12 +18430,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/ardour"
-    use: "jack nls pulseaudio # doc"
+    use: "doc jack nls pulseaudio"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
-  # inner_build_requires:
-  # - <<: *apps-doxygen
+  inner_build_requires:
+  - <<: *apps-doxygen
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -18452,8 +18452,7 @@ packages:
   - <<: *libs-vamp-plugin-sdk
   build_requires:
   # - <<: *layers-qt
-  # - <<: *layers-kde-kf5
-  - <<: *layers-X
+  - <<: *layers-kde-kf5
 
 - &apps-easyeffects
   category: "apps"
