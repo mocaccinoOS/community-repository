@@ -15826,7 +15826,7 @@ packages:
 - &apps-timidity
   category: "apps"
   name: "timidity"
-  version: "2.15.0-r6+7"
+  version: "2.15.0-r6+8"
   uri:
   - http://timidity.sourceforge.net/
   - https://wiki.gentoo.org/wiki/No_homepage
@@ -15860,7 +15860,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/timidity++"
-    use: "alsa ao flac jac nask ncurses ogg oss slang speex tk vorbis X # gtk motif selinux Xaw3d emacs"
+    use: "alsa ao flac -gtk jac nask ncurses ogg oss slang speex tk vorbis X # motif selinux Xaw3d emacs"
   - atom: "media-sound/timidity-eawpatches"
     license: "free-noncomm"
   inner_build_reqs:
@@ -18434,7 +18434,8 @@ packages:
   - dev-util/itstool
   requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
+  - <<: *libs-gtkmm-2
+  # - <<: *libs-libgnomecanvas
   - <<: *libs-aubio
   - <<: *libs-liblo
   - <<: *libs-liblrdf
