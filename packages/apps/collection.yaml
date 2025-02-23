@@ -11690,11 +11690,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  # can't bump due to sys-libs/ncurses-6.5_p20250125 ~amd64
-- &apps-ghostty
+  - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.0.1-r3"
+  version: "1.1.2"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -11710,6 +11709,9 @@ packages:
   atoms:
   - atom: "x11-terms/ghostty"
     accept_keywords: "~amd64"
+  - atom: "x11-terms/ghostty-terminfo"
+    use: "symlink"
+    accept_keywords: "~amd64"   
   inner_build_reqs:
   - dev-lang/zig;ACCEPT_KEYWORDS="~amd64"
   requires:
