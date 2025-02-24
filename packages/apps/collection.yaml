@@ -3506,31 +3506,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-tre
-  category: "libs"
-  name: "tre"
-  version: "0.8.0_p20210321-r4"
-  uri:
-  - https://laurikari.net/tre/
-  - https://github.com/laurikari/tre
-  license: "BSD-2"
-  description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tre
-  provides:
-  - category: "dev-libs"
-    name: "tre"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/tre"
-    use: "agrep alloca approx nls profile python"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
@@ -3605,6 +3580,9 @@ packages:
   provides:
   - category: "dev-python"
     name: "twisted"
+    version: ">=0"
+  - category: "dev-python"
+    name: "hatch-fancy-pypi-readme"
     version: ">=0"
   - category: "dev-python"
     name: "incremental"
@@ -13236,32 +13214,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# # tre can't be built
-# - &apps-R
-#   category: "apps"
-#   name: "R"
-#   version: "4.3.1-r1+4"
-#   uri:
-#   - https://www.r-project.org
-#   license: "LGPL-2.1"
-#   description: "Language and environment for statistical computing and graphics"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-lang/R
-#   provides:
-#   - category: "dev-lang"
-#     name: "R"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-lang/R"
-#     use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
-#   requires:
-#   - <<: *layers-java
-#   - <<: *apps-tk
-#   - <<: *libs-tre
-#   build_requires:
-#   - <<: *layers-java
+- &apps-R
+  category: "apps"
+  name: "R"
+  version: "4.4.1"
+  uri:
+  - https://www.r-project.org
+  license: "BSD-2 LGPL-2.1"
+  description: "Language and environment for statistical computing and graphics"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/R
+  provides:
+  - category: "dev-lang"
+    name: "R"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/R"
+    use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
+  - atom: "dev-libs/tre"
+    use: "agrep alloca approx nls profile python"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-java
+  - <<: *apps-tk
+  build_requires:
+  - <<: *layers-java
 
 - category: "apps"
   name: "regexxer"
@@ -17788,7 +17767,8 @@ packages:
   - acct-user/nut
   - virtual/libusb:0
   requires:
-  - <<: *layers-X
+  # - <<: *layers-X
+  - <<: *layers-kde-kf5
   - category: "entity"
     name: "uucp"
     version: ">=0"
@@ -17799,7 +17779,8 @@ packages:
   - <<: *apps-nagios
   - <<: *apps-net-snmp
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+ - <<: *layers-kde-kf5
 
 - &apps-warmux
   category: "apps"
@@ -18080,7 +18061,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.4.2.1"
+  version: "2.4.3"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -18214,7 +18195,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2024.8"
+  version: "1.2025.0"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -18349,7 +18330,7 @@ packages:
 - &apps-ardour
   category: "apps"
   name: "ardour"
-  version: "8.10-r4+1"
+  version: "8.10-r4+10"
   uri:
   - https://ardour.org/
   - https://libwebsockets.org/
@@ -18371,28 +18352,26 @@ packages:
   atoms:
   - atom: "media-sound/ardour"
     use: "doc jack nls pulseaudio"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
   inner_build_requires:
   - <<: *apps-doxygen
   requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
+  # - <<: *libs-gtk2
   - <<: *libs-aubio
-  - <<: *libs-gtkmm-2
-  - <<: *libs-libgnomecanvas
+  # - <<: *libs-gtkmm-2
+  # - <<: *libs-libgnomecanvas
   - <<: *libs-liblo
   - <<: *libs-liblrdf
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
-  - <<: *libs-raptor
   - <<: *libs-rubberband
-  - <<: *libs-suil
+  # - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
   build_requires:
-  # - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
+  # - <<: *layers-kde-kf5
 
 - &apps-easyeffects
   category: "apps"
@@ -18540,7 +18519,7 @@ packages:
 
 - category: "apps"
   name: "qtractor"
-  version: "1.5.1-r1"
+  version: "1.5.2"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
