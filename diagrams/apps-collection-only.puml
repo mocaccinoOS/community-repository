@@ -494,15 +494,6 @@ entity "nas" as libs/nas << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "Net-SNMP" as libs/Net-SNMP << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-perl-Net-SNMP
-  <color:#34495E><U+24DF></color> dev-perl-Crypt-DES
-  <color:#34495E><U+24DF></color> dev-perl-Crypt-Rijndael
-  <color:#34495E><U+24DF></color> dev-perl-Digest-SHA1
-  <color:#34495E><U+24DF></color> virtual-perl-Digest
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "neXtaw" as libs/neXtaw << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-neXtaw
 ..
@@ -657,6 +648,11 @@ entity "tinyxml2" as libs/tinyxml2 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "tre" as libs/tre << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-libs-tre
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-bash
@@ -680,11 +676,6 @@ entity "twisted" as libs/twisted << (l,#FF7700) >> {
 }
 entity "udis86" as libs/udis86 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-udis86
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "uriparser" as libs/uriparser << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-uriparser
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -2348,12 +2339,6 @@ entity "foot" as apps/foot << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libutf8proc
 }
-entity "gftp" as apps/gftp << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> net-ftp-gftp
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-gtk2
-}
 entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-ghostty
 ..
@@ -3247,15 +3232,19 @@ entity "nagios" as apps/nagios << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-analyzer-monitoring-plugins
   <color:#34495E><U+24DF></color> net-analyzer-nagios-core
   <color:#34495E><U+24DF></color> net-analyzer-nagios-plugin-check_lm_sensors
+  <color:#34495E><U+24DF></color> dev-libs-uriparser
   <color:#34495E><U+24DF></color> dev-perl-Monitoring-Plugin
+  <color:#34495E><U+24DF></color> dev-perl-Net-SNMP
+  <color:#34495E><U+24DF></color> dev-perl-Crypt-DES
+  <color:#34495E><U+24DF></color> dev-perl-Crypt-Rijndael
+  <color:#34495E><U+24DF></color> dev-perl-Digest-SHA1
+  <color:#34495E><U+24DF></color> virtual-perl-Digest
 ..
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#FF00FF><U+25C9></color> apps-bind-tools
   <color:#FF00FF><U+25C9></color> apps-fping
   <color:#FF00FF><U+25C9></color> apps-net-snmp
   <color:#FF00FF><U+25C9></color> apps-freeradius-client
-  <color:#FF7700><U+1F79B></color> libs-Net-SNMP
-  <color:#FF7700><U+1F79B></color> libs-uriparser
   <color:#5DADE2><U+24D4></color> entity-nagios
 }
 entity "neovim" as apps/neovim << (a,#FF00FF) >> {
@@ -3486,12 +3475,6 @@ entity "farstream" as libs/farstream << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-gst-plugins-libnice
   <color:#FF7700><U+1F79B></color> libs-gst-plugins-srtp
 }
-entity "freeipmi" as libs/freeipmi << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> sys-libs-freeipmi
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF00FF><U+25C9></color> apps-nagios
-}
 entity "frei0r-plugins" as libs/frei0r-plugins << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-frei0r-plugins
 ..
@@ -3639,7 +3622,7 @@ entity "kstars" as apps/kstars << (a,#FF00FF) >> {
 entity "ktimetracker" as apps/ktimetracker << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-office-ktimetracker
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-kde-common
 }
 entity "labplot" as apps/labplot << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-visualization-labplot
@@ -3803,9 +3786,9 @@ entity "nut" as apps/nut << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#5DADE2><U+24D4></color> entity-uucp
   <color:#5DADE2><U+24D4></color> entity-nut
-  <color:#FF00FF><U+25C9></color> apps-net-snmp
-  <color:#FF7700><U+1F79B></color> libs-freeipmi
   <color:#FF00FF><U+25C9></color> apps-i2c-tools
+  <color:#FF00FF><U+25C9></color> apps-nagios
+  <color:#FF00FF><U+25C9></color> apps-net-snmp
 }
 entity "warmux" as apps/warmux << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-strategy-warmux
@@ -3953,13 +3936,17 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-libs-libwebsockets
 ..
   <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF7700><U+1F79B></color> libs-aubio
+  <color:#FF7700><U+1F79B></color> libs-gtkmm
+  <color:#FF7700><U+1F79B></color> libs-libgnomecanvas
   <color:#FF7700><U+1F79B></color> libs-liblo
   <color:#FF7700><U+1F79B></color> libs-liblrdf
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-lilv
   <color:#FF7700><U+1F79B></color> libs-raptor
   <color:#FF7700><U+1F79B></color> libs-rubberband
+  <color:#FF7700><U+1F79B></color> libs-suil
   <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
 entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
@@ -4249,7 +4236,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libmikmod" --u--> "libs/nas"
 "apps/timidity" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/nas"
-"apps/nagios" --u--> "libs/Net-SNMP"
 "apps/xemacs" --u--> "libs/neXtaw"
 "apps/mkvtoolnix" --u--> "libs/nlohmann_json"
 "apps/obs-studio" --u--> "libs/nlohmann_json"
@@ -4312,7 +4298,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdegames" --u--> "libs/twisted"
 "apps/deluge" --u--> "libs/twisted"
 "apps/wxhexeditor" --u--> "libs/udis86"
-"apps/nagios" --u--> "libs/uriparser"
 "apps/obs-studio" --u--> "libs/uthash"
 "apps/picom" --u--> "libs/uthash"
 "apps/mkvtoolnix" --u--> "libs/utfcpp"
@@ -4437,6 +4422,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/xine-lib" --u--> "libs/libcaca"
 "apps/gnuplot" --u--> "libs/libcaca"
 "apps/xournal" --u--> "libs/libgnomecanvas"
+"apps/ardour" --u--> "libs/libgnomecanvas"
 "apps/rosegarden" --u--> "libs/liblrdf"
 "apps/terminatorx" --u--> "libs/liblrdf"
 "apps/museseq" --u--> "libs/liblrdf"
@@ -4506,13 +4492,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mediainfo-gui" --u--> "apps/mediainfo"
 "apps/flacon" --u--> "apps/mediainfo"
 "apps/kdenlive" --u--> "apps/mediainfo"
-"libs/freeipmi" --u--> "apps/nagios"
+"apps/nut" --u--> "apps/nagios"
 "apps/goneovim" --u--> "apps/neovim"
 "apps/RcloneBrowser" --u--> "apps/rclone"
 "libs/sdl" --u--> "apps/timidity"
 "libs/sdl2" --u--> "apps/timidity"
 "apps/pidgin" --u--> "libs/farstream"
-"apps/nut" --u--> "libs/freeipmi"
 "libs/mlt" --u--> "libs/frei0r-plugins"
 "apps/dosbox" --u--> "libs/sdl"
 "apps/warmux" --u--> "libs/sdl"
@@ -4525,12 +4510,14 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdenlive" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"
+"apps/ardour" --u--> "libs/suil"
 "apps/qtractor" --u--> "libs/suil"
 "apps/conky" --u--> "apps/cmus"
 "libs/gtkmm" --u--> "apps/graphviz"
 "apps/doxygen" --u--> "apps/graphviz"
 "apps/lyx" --u--> "apps/graphviz"
 "apps/plantuml" --u--> "apps/graphviz"
+"apps/ardour" --u--> "libs/gtkmm"
 "apps/seq24" --u--> "libs/gtkmm"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/mypaint" --u--> "libs/libmypaint"

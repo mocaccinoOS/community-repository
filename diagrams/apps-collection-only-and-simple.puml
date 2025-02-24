@@ -291,9 +291,6 @@ entity "mxml" as libs/mxml << (l,#FF7700) >> {
 entity "nas" as libs/nas << (l,#FF7700) >> {
 
 }
-entity "Net-SNMP" as libs/Net-SNMP << (l,#FF7700) >> {
-
-}
 entity "neXtaw" as libs/neXtaw << (l,#FF7700) >> {
 
 }
@@ -384,6 +381,9 @@ entity "Text-CSV" as libs/Text-CSV << (l,#FF7700) >> {
 entity "tinyxml2" as libs/tinyxml2 << (l,#FF7700) >> {
 
 }
+entity "tre" as libs/tre << (l,#FF7700) >> {
+
+}
 entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 
 }
@@ -391,9 +391,6 @@ entity "twisted" as libs/twisted << (l,#FF7700) >> {
 
 }
 entity "udis86" as libs/udis86 << (l,#FF7700) >> {
-
-}
-entity "uriparser" as libs/uriparser << (l,#FF7700) >> {
 
 }
 entity "uthash" as libs/uthash << (l,#FF7700) >> {
@@ -1248,9 +1245,6 @@ entity "filezilla" as apps/filezilla << (a,#FF00FF) >> {
 entity "foot" as apps/foot << (a,#FF00FF) >> {
 
 }
-entity "gftp" as apps/gftp << (a,#FF00FF) >> {
-
-}
 entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
 
 }
@@ -1641,9 +1635,6 @@ entity "zynaddsubfx" as apps/zynaddsubfx << (a,#FF00FF) >> {
 entity "farstream" as libs/farstream << (l,#FF7700) >> {
 
 }
-entity "freeipmi" as libs/freeipmi << (l,#FF7700) >> {
-
-}
 entity "frei0r-plugins" as libs/frei0r-plugins << (l,#FF7700) >> {
 
 }
@@ -2001,7 +1992,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libmikmod" --u--> "libs/nas"
 "apps/timidity" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/nas"
-"apps/nagios" --u--> "libs/Net-SNMP"
 "apps/xemacs" --u--> "libs/neXtaw"
 "apps/mkvtoolnix" --u--> "libs/nlohmann_json"
 "apps/obs-studio" --u--> "libs/nlohmann_json"
@@ -2064,7 +2054,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdegames" --u--> "libs/twisted"
 "apps/deluge" --u--> "libs/twisted"
 "apps/wxhexeditor" --u--> "libs/udis86"
-"apps/nagios" --u--> "libs/uriparser"
 "apps/obs-studio" --u--> "libs/uthash"
 "apps/picom" --u--> "libs/uthash"
 "apps/mkvtoolnix" --u--> "libs/utfcpp"
@@ -2189,6 +2178,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/xine-lib" --u--> "libs/libcaca"
 "apps/gnuplot" --u--> "libs/libcaca"
 "apps/xournal" --u--> "libs/libgnomecanvas"
+"apps/ardour" --u--> "libs/libgnomecanvas"
 "apps/rosegarden" --u--> "libs/liblrdf"
 "apps/terminatorx" --u--> "libs/liblrdf"
 "apps/museseq" --u--> "libs/liblrdf"
@@ -2258,13 +2248,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mediainfo-gui" --u--> "apps/mediainfo"
 "apps/flacon" --u--> "apps/mediainfo"
 "apps/kdenlive" --u--> "apps/mediainfo"
-"libs/freeipmi" --u--> "apps/nagios"
+"apps/nut" --u--> "apps/nagios"
 "apps/goneovim" --u--> "apps/neovim"
 "apps/RcloneBrowser" --u--> "apps/rclone"
 "libs/sdl" --u--> "apps/timidity"
 "libs/sdl2" --u--> "apps/timidity"
 "apps/pidgin" --u--> "libs/farstream"
-"apps/nut" --u--> "libs/freeipmi"
 "libs/mlt" --u--> "libs/frei0r-plugins"
 "apps/dosbox" --u--> "libs/sdl"
 "apps/warmux" --u--> "libs/sdl"
@@ -2277,12 +2266,14 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdenlive" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"
+"apps/ardour" --u--> "libs/suil"
 "apps/qtractor" --u--> "libs/suil"
 "apps/conky" --u--> "apps/cmus"
 "libs/gtkmm" --u--> "apps/graphviz"
 "apps/doxygen" --u--> "apps/graphviz"
 "apps/lyx" --u--> "apps/graphviz"
 "apps/plantuml" --u--> "apps/graphviz"
+"apps/ardour" --u--> "libs/gtkmm"
 "apps/seq24" --u--> "libs/gtkmm"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/mypaint" --u--> "libs/libmypaint"

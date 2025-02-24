@@ -1022,7 +1022,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "133.0.6943.98"
+  version: "133.0.6943.126"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2820,46 +2820,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-Net-SNMP
-  category: "libs"
-  name: "Net-SNMP"
-  version: "6.0.1-r3"
-  uri:
-  - https://metacpan.org/release/Crypt-DES
-  - https://metacpan.org/release/Crypt-Rijndael
-  - https://metacpan.org/release/Digest-SHA1
-  - https://metacpan.org/release/Net-SNMP
-  license: "Artistic GPL-1+"
-  description: |
-    A SNMP Perl Module
-    Perl DES encryption module
-    Crypt::CBC compliant Rijndael encryption module
-    NIST SHA message digest algorithm
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Net-SNMP
-  provides:
-  - category: "dev-perl"
-    name: "Net-SNMP"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Crypt-DES"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Crypt-Rijndael"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Digest-SHA1"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Digest"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-neXtaw
   category: "libs"
   name: "neXtaw"
@@ -3546,31 +3506,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# can't build
-# - &libs-tre
-#   category: "libs"
-#   name: "tre"
-#   version: "0.8.0_p20210321-r4"
-#   uri:
-#   - https://laurikari.net/tre/
-#   - https://github.com/laurikari/tre
-#   license: "BSD-2"
-#   description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-libs/tre
-#   provides:
-#   - category: "dev-libs"
-#     name: "tre"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-libs/tre"
-#     use: "agrep alloca approx nls profile python"
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
+- &libs-tre
+  category: "libs"
+  name: "tre"
+  version: "0.8.0_p20210321-r4"
+  uri:
+  - https://laurikari.net/tre/
+  - https://github.com/laurikari/tre
+  license: "BSD-2"
+  description: "Lightweight, robust, and efficient POSIX compliant regexp matching library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/tre
+  provides:
+  - category: "dev-libs"
+    name: "tre"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/tre"
+    use: "agrep alloca approx nls profile python"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-tree-sitter
   category: "libs"
@@ -3631,7 +3590,7 @@ packages:
 - &libs-twisted
   category: "libs"
   name: "twisted"
-  version: "24.11.0"
+  version: "24.11.0-r1"
   uri:
   - https://www.twistedmatrix.com/trac/
   - https://github.com/twisted/incremental
@@ -3679,30 +3638,6 @@ packages:
   - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
   inner_build_reqs:
   - dev-lang/yasm
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-uriparser
-  category: "libs"
-  name: "uriparser"
-  version: "0.9.8-r1"
-  uri:
-  - https://uriparser.github.io/
-  license: "BSD"
-  description: "Strictly RFC 3986 compliant URI parsing library in C"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/uriparser
-  provides:
-  - category: "dev-libs"
-    name: "uriparser"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/uriparser"
-    use: "-doc -qt5 unicode"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4128,7 +4063,7 @@ packages:
 - &apps-apcupsd
   category: "apps"
   name: "apcupsd"
-  version: "3.14.14-r3+4"
+  version: "3.14.14-r4"
   uri:
   - http://www.apcupsd.org/
   license: "GPL-2"
@@ -4580,11 +4515,9 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  # can't bump due to missing 'webp' flag for 'tiff'
-  # >=media-libs/tiff-4.6.0-r1 webp
 - category: "apps"
   name: "cartridges"
-  version: "2.9.3"
+  version: "2.9.3-r1"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -6099,7 +6032,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "133.0.6943.98"
+  version: "133.0.6943.126"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -8465,7 +8398,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.6.1"
+  version: "1.7.0"
   uri:
   - https://invent.kde.org/libraries/pulseaudio-qt
   license: "LGPL-2.1"
@@ -8560,7 +8493,7 @@ packages:
 
 - category: "apps"
   name: "qmplay2"
-  version: "24.12.28"
+  version: "25.01.19"
   uri:
   - https://github.com/zaps166/QMPlay2
   license: "LGPL-3"
@@ -10168,7 +10101,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.3.6.6315-r1"
+  version: "6.3.10.7150"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -10223,7 +10156,7 @@ packages:
 - &libs-build
   category: "libs"
   name: "build"
-  version: "1.2.2_p1"
+  version: "1.2.2_p1-r1"
   uri:
   - https://pypi.org/project/build/
   - https://github.com/pypa/build/
@@ -12833,7 +12766,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "117.0.5408.32"
+  version: "117.0.5408.35"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -13295,8 +13228,6 @@ packages:
   atoms:
   - atom: "www-client/qutebrowser"
     use: "adblock pdf widevine"
-  # optrequires:
-  # - <<: *libs-chrome-binary-plugins
   requires:
   - <<: *layers-qt
   - <<: *libs-beautifulsoup4
@@ -15343,12 +15274,17 @@ packages:
 - &apps-nagios
   category: "apps"
   name: "nagios"
-  version: "4.5.1"
+  version: "4.5.8"
   uri:
   - https://www.nagios.org/
   - https://www.monitoring-plugins.org/
   - https://github.com/matteocorti/check_lm_sensors
+  - https://uriparser.github.io/
   - https://metacpan.org/release/Monitoring-Plugin
+  - https://metacpan.org/release/Crypt-DES
+  - https://metacpan.org/release/Crypt-Rijndael
+  - https://metacpan.org/release/Digest-SHA1
+  - https://metacpan.org/release/Net-SNMP
   license: "metapackage"
   description: |
     The Nagios metapackage
@@ -15356,7 +15292,12 @@ packages:
     Official plugins for Nagios
     50+ standard plugins for Icinga, Naemon, Nagios, Shinken, Sensu
     Nagios plugin to monitor the values of onboard sensors and disk temperatures
+    Strictly RFC 3986 compliant URI parsing library in C
     Modules to streamline Nagios, Icinga, Shinken, etc. plugins
+    A SNMP Perl Module
+    Perl DES encryption module
+    Crypt::CBC compliant Rijndael encryption module
+    NIST SHA message digest algorithm
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -15378,8 +15319,26 @@ packages:
   - category: "net-analyzer"
     name: "nagios-plugin-check_lm_sensors"
     version: ">=0"
+  - category: "dev-libs"
+    name: "uriparser"
+    version: ">=0"
   - category: "dev-perl"
     name: "Monitoring-Plugin"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Net-SNMP"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-DES"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Crypt-Rijndael"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-SHA1"
+    version: ">=0"
+  - category: "virtual"
+    name: "perl-Digest"
     version: ">=0"
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
@@ -15391,14 +15350,14 @@ packages:
     use: "ldap mysql radius samba ssl ipv6 nagios-dns nagios-ping snmp ssh # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
+  - atom: "dev-libs/uriparser"
+    use: "-doc -qt5 unicode"
   requires:
   - <<: *layers-perl-libs
   - <<: *apps-bind-tools
   - <<: *apps-fping
   - <<: *apps-net-snmp
   - <<: *libs-freeradius-client
-  - <<: *libs-Net-SNMP
-  - <<: *libs-uriparser
   - category: "entity"
     name: "nagios"
     version: ">=0"
@@ -16239,31 +16198,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-freeipmi
-  category: "libs"
-  name: "freeipmi"
-  version: "1.6.14"
-  uri:
-  - https://www.gnu.org/software/freeipmi/
-  license: "GPL-3"
-  description: "Provides Remote-Console and System Management Software as per IPMI v1.5/2.0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-libs/freeipmi
-  provides:
-  - category: "sys-libs"
-    name: "freeipmi"
-    version: ">=0"
-  atoms:
-  - atom: "sys-libs/freeipmi"
-    use: "without-root nagios"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-nagios
-  build_requires:
-  - <<: *layers-X
-
 - &libs-frei0r-plugins
   category: "libs"
   name: "frei0r-plugins"
@@ -17037,7 +16971,7 @@ packages:
 - &apps-ktimetracker
   category: "apps"
   name: "ktimetracker"
-  version: "5.0.1-r1+3"
+  version: "6.0.0_pre20250109"
   uri:
   - https://userbase.kde.org/KTimeTracker
   license: "GPL-2+ FDL-1.2"
@@ -17051,9 +16985,9 @@ packages:
     name: "ktimetracker"
     version: ">=0"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "labplot"
@@ -17444,7 +17378,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.20+1"
+  version: "0.10.22-r2"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -17825,11 +17759,14 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.0-r3+1"
+  version: "2.8.2"
   uri:
   - https://www.networkupstools.org
-  license: "GPL-2"
-  description: "Network-UPS Tools"
+  - https://www.gnu.org/software/freeipmi/
+  license: "GPL-2 GPL-3"
+  description: |
+    Network-UPS Tools
+    Provides Remote-Console and System Management Software as per IPMI v1.5/2.0
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -17842,9 +17779,10 @@ packages:
     name: "libmodbus"
     version: ">=0"
   atoms:
+  - atom: "sys-libs/freeipmi"
+    use: "without-root nagios"
   - atom: "sys-power/nut"
     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
@@ -17857,9 +17795,9 @@ packages:
   - category: "entity"
     name: "nut"
     version: ">=0"
-  - <<: *apps-net-snmp
-  - <<: *libs-freeipmi
   - <<: *apps-i2c-tools
+  - <<: *apps-nagios
+  - <<: *apps-net-snmp
   build_requires:
   - <<: *layers-qt
 
