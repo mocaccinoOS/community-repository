@@ -17358,7 +17358,7 @@ packages:
 - &libs-suil
   category: "libs"
   name: "suil"
-  version: "0.10.22-r2"
+  version: "0.10.22-r2+1"
   uri:
   - http://drobilla.net/software/suil/
   license: "ISC"
@@ -17373,10 +17373,9 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/suil"
-    use: "gtk gtk2 qt5"
+    use: "gtk qt6"
   requires:
   - <<: *layers-qt
-  - <<: *libs-gtk2
   - <<: *libs-lv2
   build_requires:
   - <<: *layers-qt
@@ -18366,16 +18365,12 @@ packages:
   # - <<: *apps-doxygen
   requires:
   - <<: *layers-X
-  # - <<: *libs-gtk2
   - <<: *libs-aubio
-  # - <<: *libs-gtkmm-2
-  # - <<: *libs-libgnomecanvas
   - <<: *libs-liblo
   - <<: *libs-liblrdf
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
   - <<: *libs-rubberband
-  # - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
   build_requires:
   #- <<: *layers-qt
