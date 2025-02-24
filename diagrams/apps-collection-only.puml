@@ -648,11 +648,6 @@ entity "tinyxml2" as libs/tinyxml2 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "tre" as libs/tre << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-tre
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-bash
@@ -669,6 +664,7 @@ entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 }
 entity "twisted" as libs/twisted << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-twisted
+  <color:#34495E><U+24DF></color> dev-python-hatch-fancy-pypi-readme
   <color:#34495E><U+24DF></color> dev-python-incremental
   <color:#34495E><U+24DF></color> dev-python-zope-interface
 ..
@@ -3781,9 +3777,11 @@ entity "neverball" as apps/neverball << (a,#FF00FF) >> {
 }
 entity "nut" as apps/nut << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sys-power-nut
+  <color:#34495E><U+24DF></color> dev-libs-libgpiod
   <color:#34495E><U+24DF></color> dev-libs-libmodbus
+  <color:#34495E><U+24DF></color> sys-libs-freeipmi
 ..
-  <color:#9ACD32><U+2756></color> layers-X
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
   <color:#5DADE2><U+24D4></color> entity-uucp
   <color:#5DADE2><U+24D4></color> entity-nut
   <color:#FF00FF><U+25C9></color> apps-i2c-tools
@@ -3936,17 +3934,12 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-libs-libwebsockets
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF7700><U+1F79B></color> libs-aubio
-  <color:#FF7700><U+1F79B></color> libs-gtkmm
-  <color:#FF7700><U+1F79B></color> libs-libgnomecanvas
   <color:#FF7700><U+1F79B></color> libs-liblo
   <color:#FF7700><U+1F79B></color> libs-liblrdf
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-lilv
-  <color:#FF7700><U+1F79B></color> libs-raptor
   <color:#FF7700><U+1F79B></color> libs-rubberband
-  <color:#FF7700><U+1F79B></color> libs-suil
   <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
 entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
@@ -4422,7 +4415,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/xine-lib" --u--> "libs/libcaca"
 "apps/gnuplot" --u--> "libs/libcaca"
 "apps/xournal" --u--> "libs/libgnomecanvas"
-"apps/ardour" --u--> "libs/libgnomecanvas"
 "apps/rosegarden" --u--> "libs/liblrdf"
 "apps/terminatorx" --u--> "libs/liblrdf"
 "apps/museseq" --u--> "libs/liblrdf"
@@ -4510,14 +4502,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdenlive" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"
-"apps/ardour" --u--> "libs/suil"
 "apps/qtractor" --u--> "libs/suil"
 "apps/conky" --u--> "apps/cmus"
 "libs/gtkmm" --u--> "apps/graphviz"
 "apps/doxygen" --u--> "apps/graphviz"
 "apps/lyx" --u--> "apps/graphviz"
 "apps/plantuml" --u--> "apps/graphviz"
-"apps/ardour" --u--> "libs/gtkmm"
 "apps/seq24" --u--> "libs/gtkmm"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/mypaint" --u--> "libs/libmypaint"

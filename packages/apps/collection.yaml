@@ -13214,33 +13214,34 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-R
-  category: "apps"
-  name: "R"
-  version: "4.4.1"
-  uri:
-  - https://www.r-project.org
-  license: "BSD-2 LGPL-2.1"
-  description: "Language and environment for statistical computing and graphics"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/R
-  provides:
-  - category: "dev-lang"
-    name: "R"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/R"
-    use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
-  - atom: "dev-libs/tre"
-    use: "agrep alloca approx nls profile python"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-java
-  - <<: *apps-tk
-  build_requires:
-  - <<: *layers-java
+# can't build due to dev-libs/tre
+# - &apps-R
+#   category: "apps"
+#   name: "R"
+#   version: "4.4.1"
+#   uri:
+#   - https://www.r-project.org
+#   license: "BSD-2 LGPL-2.1"
+#   description: "Language and environment for statistical computing and graphics"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lang/R
+#   provides:
+#   - category: "dev-lang"
+#     name: "R"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-lang/R"
+#     use: "cairo icu java jpeg lapack lto nls openmp perl png prefix profile readline tiff tk X # minimal"
+#   - atom: "dev-libs/tre"
+#     use: "agrep alloca approx nls profile python"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-java
+#   - <<: *apps-tk
+#   build_requires:
+#   - <<: *layers-java
 
 - category: "apps"
   name: "regexxer"
@@ -17738,7 +17739,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.2"
+  version: "2.8.2+1"
   uri:
   - https://www.networkupstools.org
   - https://www.gnu.org/software/freeipmi/
@@ -17755,7 +17756,13 @@ packages:
     name: "nut"
     version: ">=0"
   - category: "dev-libs"
+    name: "libgpiod"
+    version: ">=0"
+  - category: "dev-libs"
     name: "libmodbus"
+    version: ">=0"
+  - category: "sys-libs"
+    name: "freeipmi"
     version: ">=0"
   atoms:
   - atom: "sys-libs/freeipmi"
@@ -17766,6 +17773,7 @@ packages:
   - acct-group/nut
   - acct-user/nut
   - virtual/libusb:0
+  - app-text/asciidoc
   requires:
   # - <<: *layers-X
   - <<: *layers-kde-kf5
@@ -18351,11 +18359,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/ardour"
-    use: "doc jack nls pulseaudio"
+    use: "jack nls pulseaudio # doc"
   inner_build_reqs:
   - dev-util/itstool
-  inner_build_requires:
-  - <<: *apps-doxygen
+  # inner_build_requires:
+  # - <<: *apps-doxygen
   requires:
   - <<: *layers-X
   # - <<: *libs-gtk2
@@ -18370,8 +18378,8 @@ packages:
   # - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
   build_requires:
-  - <<: *layers-qt
-  # - <<: *layers-kde-kf5
+  #- <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-easyeffects
   category: "apps"
@@ -18517,9 +18525,10 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
+# can't build due to libs/dssi
 - category: "apps"
   name: "qtractor"
-  version: "1.5.2"
+  version: "1.5.1-r1"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
