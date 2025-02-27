@@ -7144,7 +7144,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# can't build 0.8.0_rc2
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
@@ -7167,6 +7166,7 @@ packages:
   - atom: "games-util/mangohud"
     use: "dbus glvnd X -wayland xnvctrl video_cards_nvidia video_cards_amdgpu -abi_x86_32 # wayland"
     accept_keywords: "~amd64"
+  env: "MAKEOPTS=\"-j5 -l0.9\" USE=\"hscolour\""
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
