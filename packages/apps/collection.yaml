@@ -2624,7 +2624,7 @@ packages:
 - &libs-lttng-ust-2_12
   category: "libs"
   name: "lttng-ust-2_12"
-  version: "2.13.8"
+  version: "2.12.10"
   uri:
   - https://lttng.org
   license: "GPL-2"
@@ -4895,28 +4895,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-# - &apps-dotnet-runtime-nugets-7
-#   category: "apps"
-#   name: "dotnet-runtime-nugets-7"
-#   version: "7.0.14+2"
-#   uri:
-#   - https://dotnet.microsoft.com/
-#   license: "MIT"
-#   description: |
-#     .NET runtime nugets
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-dotnet/dotnet-runtime-nugets:7.0.14
-#   provides:
-#   - category: "dev-dotnet"
-#     name: "dotnet-runtime-nugets"
-#     version: "7.0.14"
-#   requires:
-#   - <<: *layers-sys-fs
-#   build_requires:
-#   - <<: *layers-sys-fs
 
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
@@ -11247,35 +11225,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-# - &apps-dotnet-7
-#   category: "apps"
-#   name: "dotnet-sdk-7"
-#   version: "7.0.404-r4+3"
-#   uri:
-#   - https://dotnet.microsoft.com/
-#   license: "MIT"
-#   description: ".NET is a free, cross-platform, open-source developer platform"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-dotnet/dotnet-sdk-bin:7.0
-#   provides:
-#   - category: "dev-dotnet"
-#     name: "dotnet-sdk-bin"
-#     version: ">=0"
-#   prepare:
-#   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-7.0.404-r4.ebuild manifest
-#   inner_build_reqs:
-#   - dev-util/patchelf
-#   requires:
-#   - <<: *layers-sys-fs
-#   - <<: *apps-dotnet-common
-#   - <<: *apps-dotnet-runtime-nugets-7
-#   - <<: *libs-lttng-ust-2_12
-#   build_requires:
-#   - <<: *layers-sys-fs
-
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
@@ -11300,7 +11249,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
-  # - <<: *apps-dotnet-runtime-nugets-7
   - <<: *apps-dotnet-runtime-nugets-8
   - <<: *libs-lttng-ust-2_12
   build_requires:
