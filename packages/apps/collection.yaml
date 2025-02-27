@@ -2570,6 +2570,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-lockfile
+  category: "libs"
+  name: "lockfile"
+  version: "0.12.2-r3+4"
+  uri:
+  - https://launchpad.net/pylockfile/
+  - https://opendev.org/openstack/pbr/
+  license: "Apache-2.0 MIT"
+  description: |
+    Platform-independent file locking module
+    Inject some useful and sensible default behaviors into setuptools
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/lockfile
+  provides:
+  - category: "dev-python"
+    name: "lockfile"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pbr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
@@ -2597,7 +2624,7 @@ packages:
 - &libs-lttng-ust-2_12
   category: "libs"
   name: "lttng-ust-2_12"
-  version: "0.12.20-r10"
+  version: "2.13.8"
   uri:
   - https://lttng.org
   license: "GPL-2"
@@ -2902,27 +2929,6 @@ packages:
   atoms:
   - atom: "dev-libs/ossp-uuid"
     use: "cxx perl"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-pbr
-  category: "libs"
-  name: "pbr"
-  version: "6.1.0"
-  uri:
-  - https://opendev.org/openstack/pbr/
-  license: "Apache-2.0"
-  description: "Inject some useful and sensible default behaviors into setuptools"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pbr
-  provides:
-  - category: "dev-python"
-    name: "pbr"
-    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3683,27 +3689,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-vdf
-  category: "libs"
-  name: "vdf"
-  version: "4.0"
-  uri:
-  - https://github.com/ValvePython/vdf
-  license: "MIT"
-  description: "A module for (de)serialization to and from VDF, Valve's key-value text format"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/vdf
-  provides:
-  - category: "dev-python"
-    name: "vdf"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-websocketpp
   category: "libs"
@@ -6987,7 +6972,7 @@ packages:
 - &apps-qalculate-gtk
   category: "apps"
   name: "qalculate-gtk"
-  version: "5.4.0"
+  version: "5.5.0"
   uri:
   - https://qalculate.github.io/
   license: "GPL-2+"
@@ -7185,7 +7170,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.7.2+1"
+  version: "0.8.0_rc2"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -7458,7 +7443,7 @@ packages:
 - &apps-nmon
   category: "apps"
   name: "nmon"
-  version: "16n+1"
+  version: "16q"
   uri:
   - http://nmon.sourceforge.net/
   license: "GPL-3"
@@ -8689,7 +8674,7 @@ packages:
 
 - category: "apps"
   name: "redshift"
-  version: "1.12-r11+1"
+  version: "1.12-r12"
   uri:
   - http://jonls.dk/redshift
   license: "GPL-3"
@@ -10023,7 +10008,7 @@ packages:
 - &apps-xwininfo
   category: "apps"
   name: "xwininfo"
-  version: "1.17.0-r6+1"
+  version: "1.1.6"
   uri:
   - https://www.x.org/wiki/
   - https://gitlab.freedesktop.org/xorg/app/xwininfo
@@ -10282,35 +10267,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-java
 
-- &libs-hid
-  category: "libs"
-  name: "hid"
-  version: "1.0.6"
-  uri:
-  - https://github.com/apmorton/pyhidapi
-  license: "MIT"
-  description: "hidapi bindings in ctypes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/hid
-  provides:
-  - category: "dev-python"
-    name: "hid"
-    version: ">=0"
-  prepare:
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/dev-python
-  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-hidapi
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libao
   category: "libs"
   name: "libao"
@@ -10521,7 +10477,7 @@ packages:
 - &libs-lilv
   category: "libs"
   name: "lilv"
-  version: "0.24.24+1"
+  version: "0.24.24+2"
   uri:
   - http://drobilla.net/software/lilv/
   - http://drobilla.net/software/serd/
@@ -10562,28 +10518,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-lockfile
-  category: "libs"
-  name: "lockfile"
-  version: "0.12.2-r3+3"
-  uri:
-  - https://launchpad.net/pylockfile/
-  license: "MIT"
-  description: "Platform-independent file locking module"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/lockfile
-  provides:
-  - category: "dev-python"
-    name: "lockfile"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-pbr
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-lpeg
   category: "libs"
   name: "lpeg"
@@ -10605,37 +10539,6 @@ packages:
   - <<: *apps-luajit
   build_requires:
   - <<: *layers-sys-fs
-
-- &libs-pgi
-  category: "libs"
-  name: "pgi"
-  version: "0.0.11.2"
-  uri:
-  - https://github.com/pygobject/pgi
-  license: "LGPL 2.1+"
-  description: "GTK+/GObject Introspection Bindings for PyPy"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pgi
-  provides:
-  - category: "dev-python"
-    name: "pgi"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/pgi"
-    license: "LGPL 2.1+"
-  prepare:
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/dev-python
-  - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-pychromecast
   category: "libs"
@@ -11030,7 +10933,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.1_p28"
+  version: "1.4.1_p28-r1"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -12182,7 +12085,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.18+1"
+  version: "0.5.19"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -12657,7 +12560,7 @@ packages:
 - &apps-okteta
   category: "apps"
   name: "okteta"
-  version: "0.26.18"
+  version: "0.26.19"
   uri:
   - https://apps.kde.org/okteta/
   - https://utils.kde.org/projects/okteta/
@@ -13765,7 +13668,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.1.3570.47"
+  version: "7.1.3570.50"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -13872,7 +13775,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.1"
+  version: "10.2"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -13883,6 +13786,7 @@ packages:
   - https://source.winehq.org/git/vkd3d.git/
   - https://github.com/ValvePython/vdf
   - https://github.com/bobwya/wine.eselect
+  - https://github.com/ValvePython/vdf
   license: "BSD BSD-2 GPL-2 GPL-2+ GPL-3 LGPL-2.1 LGPL-2.1+ MIT MPL-1.1 MPL-2.0 Apache-2.0"
   description: |
     Free implementation of Windows(tm) on Unix, with Wine Staging patchset
@@ -13895,6 +13799,7 @@ packages:
     D3D12 to Vulkan translation library
     A module for (de)serialization to and from VDF, Valve's key-value text format
     Manage active wine version
+    A module for (de)serialization to and from VDF, Valve's key-value text format
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -13927,6 +13832,9 @@ packages:
   - category: "virtual"
     name: "wine"
     version: ">=0"
+  - category: "dev-python"
+    name: "vdf"
+    version: ">=0"
   atoms:
   - atom: "app-emulation/wine-staging"
     # use: "+X +abi_x86_32 +abi_x86_64 +alsa capi crossdev-mingw cups dos llvm-libunwind debug custom-cflags +fontconfig +gecko gphoto2 +gstreamer kerberos +mingw +mono netapi nls odbc opencl +opengl osmesa pcap perl pulseaudio samba scanner +sdl selinux +ssl +truetype udev udisks +unwind usb v4l +vulkan +xcomposite xinerama"
@@ -13950,7 +13858,6 @@ packages:
   - category: "entity"
     name: "rtkit"
     version: ">=0"
-  - <<: *libs-vdf
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-perl-libs
@@ -14897,7 +14804,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.1-r1+1"
+  version: "21.2"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -14992,7 +14899,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2+3"
+  version: "24.2.7.2-r1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15602,7 +15509,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.68.2"
+  version: "1.69.0"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -18038,18 +17945,48 @@ packages:
   
 - category: "apps"
   name: "logitech-linux-rpm-led"
-  version: "0.1"
+  version: "0.2"
   uri:
   - https://github.com/IvanVojtko/logitech-linux-rpm-led
-  license: "GPL-3.0"
-  description: "Enable RPM LED indicator on Logitech G29 steering wheel in Linux"
+  - https://github.com/apmorton/pyhidapi
+  - https://github.com/pygobject/pgi
+  license: "GPL-3.0 LGPL 2.1+ MIT"
+  description: |
+    Enable RPM LED indicator on Logitech G29 steering wheel in Linux
+    hidapi bindings in ctypes
+    GTK+/GObject Introspection Bindings for PyPy
   provides:
   - category: "games-util"
     name: "logitech-linux-rpm-led"
     version: ">=0"
+  - category: "dev-python"
+    name: "hid"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pgi"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/pgi"
+    license: "LGPL 2.1+"
   prepare:
+  # dev-python/hid
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/dev-python
+  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
+  # dev-python/pgi
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/dev-python
+  - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
+  # logitech-linux-rpm-led
   - git clone https://github.com/IvanVojtko/logitech-linux-rpm-led.git
   setup:
+  # logitech-linux-rpm-led
   - mkdir -p /opt/logitech-linux-rpm-led
   - cp -r logitech-linux-rpm-led/games /opt/logitech-linux-rpm-led
   - cp -r logitech-linux-rpm-led/icons /opt/logitech-linux-rpm-led
@@ -18060,8 +17997,7 @@ packages:
   - cp logitech-linux-rpm-led/requirements.txt /opt/logitech-linux-rpm-led
   requires:
   - <<: *layers-X
-  - <<: *libs-hid
-  - <<: *libs-pgi
+  - <<: *libs-hidapi
   build_requires:
   - <<: *layers-X
 
@@ -18230,7 +18166,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "10"
+  version: "10+1"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/

@@ -439,6 +439,12 @@ entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-lockfile
+  <color:#34495E><U+24DF></color> dev-python-pbr
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
 ..
@@ -511,11 +517,6 @@ entity "oniguruma" as libs/oniguruma << (l,#FF7700) >> {
 }
 entity "ossp-uuid" as libs/ossp-uuid << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-ossp-uuid
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "pbr" as libs/pbr << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pbr
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -689,11 +690,6 @@ entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-vamp-plugin-sdk
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "vdf" as libs/vdf << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-vdf
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-websocketpp
@@ -2052,12 +2048,6 @@ entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libsrtp
 }
-entity "hid" as libs/hid << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-hid
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-  <color:#FF7700><U+1F79B></color> libs-hidapi
-}
 entity "libao" as libs/libao << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libao
 ..
@@ -2119,22 +2109,11 @@ entity "lilv" as libs/lilv << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-lv2
 }
-entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-lockfile
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-  <color:#FF7700><U+1F79B></color> libs-pbr
-}
 entity "lpeg" as libs/lpeg << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-lua-lpeg
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
   <color:#FF00FF><U+25C9></color> apps-luajit
-}
-entity "pgi" as libs/pgi << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pgi
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "pychromecast" as libs/pychromecast << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pychromecast
@@ -2874,11 +2853,11 @@ entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-emulation-protontricks
   <color:#34495E><U+24DF></color> app-eselect-eselect-wine
   <color:#34495E><U+24DF></color> virtual-wine
+  <color:#34495E><U+24DF></color> dev-python-vdf
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#5DADE2><U+24D4></color> entity-rtkit
-  <color:#FF7700><U+1F79B></color> libs-vdf
 }
 entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-yamllint
@@ -3858,10 +3837,11 @@ entity "gimp" as apps/gimp << (a,#FF00FF) >> {
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-logitech-linux-rpm-led
+  <color:#34495E><U+24DF></color> dev-python-hid
+  <color:#34495E><U+24DF></color> dev-python-pgi
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-hid
-  <color:#FF7700><U+1F79B></color> libs-pgi
+  <color:#FF7700><U+1F79B></color> libs-hidapi
 }
 entity "lyx" as apps/lyx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-office-lyx
@@ -4110,9 +4090,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/regexxer" --u--> "libs/gtksourceviewmm"
 "libs/libnice" --u--> "libs/gupnp-igd"
 "libs/farstream" --u--> "libs/gupnp-igd"
-"libs/hid" --u--> "libs/hidapi"
 "apps/openrgb" --u--> "libs/hidapi"
 "apps/mixxx" --u--> "libs/hidapi"
+"apps/logitech-linux-rpm-led" --u--> "libs/hidapi"
 "apps/easytag" --u--> "libs/id3lib"
 "apps/kid3" --u--> "libs/id3lib"
 "apps/kwave" --u--> "libs/id3lib"
@@ -4200,6 +4180,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/libvisio"
 "apps/xemacs" --u--> "libs/libXaw3d"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
+"apps/inkscape" --u--> "libs/lockfile"
 "apps/cutecom" --u--> "libs/lrzsz"
 "apps/minicom" --u--> "libs/lrzsz"
 "apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
@@ -4238,7 +4219,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/bat" --u--> "libs/oniguruma"
 "apps/postgresql" --u--> "libs/ossp-uuid"
 "apps/asbru-cm" --u--> "libs/ossp-uuid"
-"libs/lockfile" --u--> "libs/pbr"
 "apps/net-snmp" --u--> "libs/perl-Tk"
 "apps/warzone2100" --u--> "libs/physfs"
 "apps/graphviz" --u--> "libs/physfs"
@@ -4297,7 +4277,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mixxx" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
 "apps/ardour" --u--> "libs/vamp-plugin-sdk"
-"apps/wine-staging" --u--> "libs/vdf"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
 "apps/pdfarranger" --u--> "libs/python-deprecated"
@@ -4403,7 +4382,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/museseq" --u--> "libs/dssi"
 "apps/qtractor" --u--> "libs/dssi"
 "libs/farstream" --u--> "libs/gst-plugins-srtp"
-"apps/logitech-linux-rpm-led" --u--> "libs/hid"
 "apps/cdemu" --u--> "libs/libao"
 "layerbase/cdemu" --u--> "libs/libao"
 "apps/cdrdao" --u--> "libs/libao"
@@ -4430,9 +4408,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ardour" --u--> "libs/lilv"
 "apps/easyeffects" --u--> "libs/lilv"
 "apps/qtractor" --u--> "libs/lilv"
-"apps/inkscape" --u--> "libs/lockfile"
 "apps/neovim" --u--> "libs/lpeg"
-"apps/logitech-linux-rpm-led" --u--> "libs/pgi"
 "apps/displaycal-py3" --u--> "libs/pychromecast"
 "apps/kdegames" --u--> "libs/pysol-cards"
 "apps/mixxx" --u--> "libs/rubberband"

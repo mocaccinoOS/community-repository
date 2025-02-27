@@ -439,6 +439,12 @@ entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-lockfile
+  <color:#34495E><U+24DF></color> dev-python-pbr
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-dialup-lrzsz
 ..
@@ -511,11 +517,6 @@ entity "oniguruma" as libs/oniguruma << (l,#FF7700) >> {
 }
 entity "ossp-uuid" as libs/ossp-uuid << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-ossp-uuid
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "pbr" as libs/pbr << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pbr
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -689,11 +690,6 @@ entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-vamp-plugin-sdk
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "vdf" as libs/vdf << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-vdf
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-websocketpp
@@ -2052,12 +2048,6 @@ entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libsrtp
 }
-entity "hid" as libs/hid << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-hid
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-  <color:#FF7700><U+1F79B></color> libs-hidapi
-}
 entity "libao" as libs/libao << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libao
 ..
@@ -2119,22 +2109,11 @@ entity "lilv" as libs/lilv << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-lv2
 }
-entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-lockfile
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-  <color:#FF7700><U+1F79B></color> libs-pbr
-}
 entity "lpeg" as libs/lpeg << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-lua-lpeg
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
   <color:#FF00FF><U+25C9></color> apps-luajit
-}
-entity "pgi" as libs/pgi << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pgi
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "pychromecast" as libs/pychromecast << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pychromecast
@@ -2874,11 +2853,11 @@ entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-emulation-protontricks
   <color:#34495E><U+24DF></color> app-eselect-eselect-wine
   <color:#34495E><U+24DF></color> virtual-wine
+  <color:#34495E><U+24DF></color> dev-python-vdf
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#5DADE2><U+24D4></color> entity-rtkit
-  <color:#FF7700><U+1F79B></color> libs-vdf
 }
 entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-yamllint
@@ -3858,10 +3837,11 @@ entity "gimp" as apps/gimp << (a,#FF00FF) >> {
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-logitech-linux-rpm-led
+  <color:#34495E><U+24DF></color> dev-python-hid
+  <color:#34495E><U+24DF></color> dev-python-pgi
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-hid
-  <color:#FF7700><U+1F79B></color> libs-pgi
+  <color:#FF7700><U+1F79B></color> libs-hidapi
 }
 entity "lyx" as apps/lyx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-office-lyx
@@ -4138,6 +4118,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libvisio" --u--> "layers/X"
 "libs/libXaw3d" --u--> "layers/X"
 "libs/libxdg-basedir" --u--> "layers/system-x"
+"libs/lockfile" --u--> "layers/system-x"
 "libs/lrzsz" --u--> "layers/system-x"
 "libs/lttng-ust-2_12" --u--> "layers/sys-fs"
 "libs/LuaBitOp" --u--> "layers/sys-fs"
@@ -4153,7 +4134,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/nlohmann_json" --u--> "layers/system-x"
 "libs/oniguruma" --u--> "layers/system-x"
 "libs/ossp-uuid" --u--> "layers/system-x"
-"libs/pbr" --u--> "layers/system-x"
 "libs/perl-Tk" --u--> "layers/X"
 "libs/physfs" --u--> "layers/system-x"
 "libs/portsmf" --u--> "layers/system-x"
@@ -4186,7 +4166,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/uthash" --u--> "layers/system-x"
 "libs/utfcpp" --u--> "layers/system-x"
 "libs/vamp-plugin-sdk" --u--> "layers/X"
-"libs/vdf" --u--> "layers/system-x"
 "libs/websocketpp" --u--> "layers/system-x"
 "libs/python-deprecated" --u--> "layers/system-x"
 "libs/wxGTK" --u--> "layers/gnome-common"
@@ -4445,8 +4424,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/dssi" --u--> "libs/liblo"
 "libs/gst-plugins-srtp" --u--> "layers/X"
 "libs/gst-plugins-srtp" --u--> "libs/libsrtp"
-"libs/hid" --u--> "layers/system-x"
-"libs/hid" --u--> "libs/hidapi"
 "libs/libao" --u--> "layers/X"
 "libs/libao" --u--> "libs/nas"
 "libs/libcaca" --u--> "layers/X"
@@ -4467,11 +4444,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libspnav" --u--> "apps/spacenavd"
 "libs/lilv" --u--> "layers/X"
 "libs/lilv" --u--> "libs/lv2"
-"libs/lockfile" --u--> "layers/system-x"
-"libs/lockfile" --u--> "libs/pbr"
 "libs/lpeg" --u--> "layers/sys-fs"
 "libs/lpeg" --u--> "apps/luajit"
-"libs/pgi" --u--> "layers/X"
 "libs/pychromecast" --u--> "layers/X"
 "libs/pychromecast" --u--> "libs/python-protobuf"
 "libs/pysol-cards" --u--> "layers/sys-fs"
@@ -4726,7 +4700,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wine-staging" --u--> "layers/gnome-common"
 "apps/wine-staging" --u--> "layers/perl-libs"
 "apps/wine-staging" --u--> "entity/rtkit"
-"apps/wine-staging" --u--> "libs/vdf"
 "apps/yamllint" --u--> "layers/sys-fs"
 "libs/gst-plugins-libnice" --u--> "layers/gnome-common"
 "libs/gst-plugins-libnice" --u--> "libs/libnice"
@@ -5117,8 +5090,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gimp" --u--> "apps/mypaint-brushes"
 "apps/gimp" --u--> "libs/libmypaint"
 "apps/logitech-linux-rpm-led" --u--> "layers/X"
-"apps/logitech-linux-rpm-led" --u--> "libs/hid"
-"apps/logitech-linux-rpm-led" --u--> "libs/pgi"
+"apps/logitech-linux-rpm-led" --u--> "libs/hidapi"
 "apps/lyx" --u--> "layers/gnome-common"
 "apps/lyx" --u--> "layers/qt"
 "apps/lyx" --u--> "layers/office-common"

@@ -258,6 +258,9 @@ entity "libXaw3d" as libs/libXaw3d << (l,#FF7700) >> {
 entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
 
 }
+entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
+
+}
 entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
 
 }
@@ -301,9 +304,6 @@ entity "oniguruma" as libs/oniguruma << (l,#FF7700) >> {
 
 }
 entity "ossp-uuid" as libs/ossp-uuid << (l,#FF7700) >> {
-
-}
-entity "pbr" as libs/pbr << (l,#FF7700) >> {
 
 }
 entity "perl-Tk" as libs/perl-Tk << (l,#FF7700) >> {
@@ -397,9 +397,6 @@ entity "utfcpp" as libs/utfcpp << (l,#FF7700) >> {
 
 }
 entity "vamp-plugin-sdk" as libs/vamp-plugin-sdk << (l,#FF7700) >> {
-
-}
-entity "vdf" as libs/vdf << (l,#FF7700) >> {
 
 }
 entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
@@ -1119,9 +1116,6 @@ entity "dssi" as libs/dssi << (l,#FF7700) >> {
 entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
 
 }
-entity "hid" as libs/hid << (l,#FF7700) >> {
-
-}
 entity "libao" as libs/libao << (l,#FF7700) >> {
 
 }
@@ -1149,13 +1143,7 @@ entity "libspnav" as libs/libspnav << (l,#FF7700) >> {
 entity "lilv" as libs/lilv << (l,#FF7700) >> {
 
 }
-entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
-
-}
 entity "lpeg" as libs/lpeg << (l,#FF7700) >> {
-
-}
-entity "pgi" as libs/pgi << (l,#FF7700) >> {
 
 }
 entity "pychromecast" as libs/pychromecast << (l,#FF7700) >> {
@@ -1871,9 +1859,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/regexxer" --u--> "libs/gtksourceviewmm"
 "libs/libnice" --u--> "libs/gupnp-igd"
 "libs/farstream" --u--> "libs/gupnp-igd"
-"libs/hid" --u--> "libs/hidapi"
 "apps/openrgb" --u--> "libs/hidapi"
 "apps/mixxx" --u--> "libs/hidapi"
+"apps/logitech-linux-rpm-led" --u--> "libs/hidapi"
 "apps/easytag" --u--> "libs/id3lib"
 "apps/kid3" --u--> "libs/id3lib"
 "apps/kwave" --u--> "libs/id3lib"
@@ -1961,6 +1949,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/libvisio"
 "apps/xemacs" --u--> "libs/libXaw3d"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
+"apps/inkscape" --u--> "libs/lockfile"
 "apps/cutecom" --u--> "libs/lrzsz"
 "apps/minicom" --u--> "libs/lrzsz"
 "apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
@@ -1999,7 +1988,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/bat" --u--> "libs/oniguruma"
 "apps/postgresql" --u--> "libs/ossp-uuid"
 "apps/asbru-cm" --u--> "libs/ossp-uuid"
-"libs/lockfile" --u--> "libs/pbr"
 "apps/net-snmp" --u--> "libs/perl-Tk"
 "apps/warzone2100" --u--> "libs/physfs"
 "apps/graphviz" --u--> "libs/physfs"
@@ -2058,7 +2046,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mixxx" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
 "apps/ardour" --u--> "libs/vamp-plugin-sdk"
-"apps/wine-staging" --u--> "libs/vdf"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
 "apps/pdfarranger" --u--> "libs/python-deprecated"
@@ -2164,7 +2151,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/museseq" --u--> "libs/dssi"
 "apps/qtractor" --u--> "libs/dssi"
 "libs/farstream" --u--> "libs/gst-plugins-srtp"
-"apps/logitech-linux-rpm-led" --u--> "libs/hid"
 "apps/cdemu" --u--> "libs/libao"
 "layerbase/cdemu" --u--> "libs/libao"
 "apps/cdrdao" --u--> "libs/libao"
@@ -2191,9 +2177,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ardour" --u--> "libs/lilv"
 "apps/easyeffects" --u--> "libs/lilv"
 "apps/qtractor" --u--> "libs/lilv"
-"apps/inkscape" --u--> "libs/lockfile"
 "apps/neovim" --u--> "libs/lpeg"
-"apps/logitech-linux-rpm-led" --u--> "libs/pgi"
 "apps/displaycal-py3" --u--> "libs/pychromecast"
 "apps/kdegames" --u--> "libs/pysol-cards"
 "apps/mixxx" --u--> "libs/rubberband"
