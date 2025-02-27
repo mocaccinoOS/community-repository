@@ -2624,7 +2624,7 @@ packages:
 - &libs-lttng-ust-2_12
   category: "libs"
   name: "lttng-ust-2_12"
-  version: "2.12.10"
+  version: "2.12.9"
   uri:
   - https://lttng.org
   license: "GPL-2"
@@ -7157,7 +7157,7 @@ packages:
     emerge.packages: >-
       games-util/mangohud
   overlays:
-  - enable: "ace"
+  - enable: "guru"
   provides:
   - category: "games-util"
     name: "mangohud"
@@ -7166,7 +7166,10 @@ packages:
   - atom: "games-util/mangohud"
     use: "dbus glvnd X -wayland xnvctrl video_cards_nvidia video_cards_amdgpu -abi_x86_32 # wayland"
     accept_keywords: "~amd64"
-  env: "MAKEOPTS=\"-j5 -l0.9\" USE=\"hscolour\""
+  prepare:
+  - |
+    sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}_vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild
+  - ebuild /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild manifest
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
