@@ -625,6 +625,23 @@ packages:
     name: "jetbrains-mono"
     version: ">=0"
 
+- &fonts-lato
+  <<: *fonts
+  name: "lato"
+  version: "2"
+  uri:
+  - https://www.latofonts.com/
+  license: "OFL-1.1"
+  description: "A sanserif typeface family with classical proportions"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/lato
+  provides:
+  - category: "media-fonts"
+    name: "lato"
+    version: ">=0"
+
 - <<: *fonts
   name: "noto-cjk"
   version: "20190416+1"
@@ -7162,12 +7179,20 @@ packages:
   - category: "games-util"
     name: "mangohud"
     version: ">=0"
+  - category: "media-libs"
+    name: "imgui"
+    version: ">=0"
+  - category: "media-libs"
+    name: "implot"
+    version: ">=0"
   atoms:
   - atom: "games-util/mangohud"
     use: "dbus mangoapp mangohudctl X xnvctrl -wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
     accept_keywords: "~amd64"
   - atom: "media-libs/imgui"
-    use: "opengl,vulkan"
+    use: "opengl vulkan"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/implot"
     accept_keywords: "~amd64"
   prepare:
   - cp ./files/* /var/db/repos/guru/games-util/mangohud/files/
@@ -7179,6 +7204,9 @@ packages:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
   - <<: *layers-X
+  - <<: *libs-glfw
+  - <<: *libs-nlohmann_json
+  - <<: *fonts-lato
   build_requires:
   - <<: *kernel-modules-nvidia-drivers-lts
 
