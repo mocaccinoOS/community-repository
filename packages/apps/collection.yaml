@@ -7164,7 +7164,10 @@ packages:
     version: ">=0"
   atoms:
   - atom: "games-util/mangohud"
-    use: "dbus glvnd X -wayland xnvctrl video_cards_nvidia video_cards_amdgpu -abi_x86_32 # wayland"
+    use: "dbus mangoapp mangohudctl X xnvctrl -wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/imgui"
+    use: "opengl,vulkan"
     accept_keywords: "~amd64"
   prepare:
   - cp ./files/* /var/db/repos/guru/games-util/mangohud/files/
@@ -16197,7 +16200,6 @@ packages:
 #   uri:
 #   - https://www.vtk.org/
 #   - https://www.opencascade.com
-#   - https://matplotlib.org/
 #   license: "metapackage"
 #   description: |
 #     The Visualization Toolkit
