@@ -7203,10 +7203,10 @@ packages:
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
   prepare:
-  - cp ./files/* /var/db/repos/guru/games-util/mangohud/files/
-  - chown -R portage:portage /var/db/repos/guru
+  - cp ./files/* /var/db/repos/gentoo/games-util/mangohud/files/
+  - chown -R portage:portage /var/db/repos/gentoo
   - |
-    sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}_vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild
+    sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}-vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild
   - ebuild /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild manifest
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts

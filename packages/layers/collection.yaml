@@ -705,6 +705,7 @@ packages:
     use: "double-precision int64 openmp"
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
+    use: "cairo gtk3 # excel latex qt5 qt6 tk webagg wxwidgets"
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf # mpi"
   - atom: "sci-libs/spqr"
@@ -716,12 +717,9 @@ packages:
   # - atom: "virtual/mpi"
   #   use: "fortran # nullmpi romio cxx threads"
   inner_build_reqs:
-  - dev-python/beniget
   - dev-python/pooch
   - dev-python/meson-python
-  - dev-python/pyproject-metadata
   - dev-python/pythran
-  - dev-python/gast
   - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
