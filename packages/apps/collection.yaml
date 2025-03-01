@@ -7203,8 +7203,10 @@ packages:
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
   prepare:
-  - cp -r ./files/* /var/db/repos/guru/games-util/mangohud/files/
-  - chown -R portage:portage /var/db/repos/guru
+  - |
+    mkdir -p -m 755 /var/db/repos/guru/games-util/mangohud/files && \
+    cp -r ./files/* /var/db/repos/guru/games-util/mangohud/files/ && \
+    chown -R portage:portage /var/db/repos/guru
   - |
     sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}-vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild
   - ebuild /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild manifest
