@@ -33,6 +33,11 @@ entity "jetbrains-mono" as fonts/jetbrains-mono << (f,#48D1CC) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "lato" as fonts/lato << (f,#48D1CC) >> {
+  <color:#34495E><U+24DF></color> media-fonts-lato
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "noto-cjk" as fonts/noto-cjk << (f,#48D1CC) >> {
   <color:#34495E><U+24DF></color> media-fonts-noto-cjk
 ..
@@ -670,11 +675,6 @@ entity "twisted" as libs/twisted << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-zope-interface
 ..
   <color:#9ACD32><U+2756></color> layers-X
-}
-entity "udis86" as libs/udis86 << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-udis86
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "uthash" as libs/uthash << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-uthash
@@ -1439,8 +1439,14 @@ entity "mandelbulber" as apps/mandelbulber << (a,#FF00FF) >> {
 }
 entity "mangohud" as apps/mangohud << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-mangohud
+  <color:#34495E><U+24DF></color> media-libs-imgui
+  <color:#34495E><U+24DF></color> media-libs-implot
+  <color:#34495E><U+24DF></color> dev-libs-stb
 ..
   <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-glfw
+  <color:#FF7700><U+1F79B></color> libs-nlohmann_json
+  <color:#48D1CC><U+24D5></color> fonts-lato
   null kernel-modules-nvidia-drivers-lts
 }
 entity "marble" as apps/marble << (a,#FF00FF) >> {
@@ -2100,7 +2106,7 @@ entity "libspnav" as libs/libspnav << (l,#FF7700) >> {
   <color:#FF00FF><U+25C9></color> apps-spacenavd
 }
 entity "lilv" as libs/lilv << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-lilv
+  <color:#34495E><U+24DF></color> media-libs-lilv
   <color:#34495E><U+24DF></color> dev-libs-serd
   <color:#34495E><U+24DF></color> dev-libs-sord
   <color:#34495E><U+24DF></color> dev-libs-zix
@@ -2841,7 +2847,6 @@ entity "wxhexeditor" as apps/wxhexeditor << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-wxGTK
-  <color:#FF7700><U+1F79B></color> libs-udis86
   <color:#FF7700><U+1F79B></color> libs-mhash
 }
 entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
@@ -3696,7 +3701,7 @@ entity "pygame" as libs/pygame << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-smpeg2
 }
 entity "suil" as libs/suil << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-suil
+  <color:#34495E><U+24DF></color> media-libs-suil
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-lv2
@@ -4032,6 +4037,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 
 "apps/oh-my-posh" --u--> "fonts/fontawesome"
 "apps/x2goserver" --u--> "fonts/font-cursor-misc"
+"apps/mangohud" --u--> "fonts/lato"
 "apps/kodi" --u--> "fonts/roboto"
 "apps/zynaddsubfx" --u--> "fonts/roboto"
 "apps/hedgewars" --u--> "fonts/wqy-zenhei"
@@ -4078,6 +4084,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/frei0r-plugins" --u--> "libs/gavl"
 "apps/inkscape" --u--> "libs/gdl"
 "apps/octave" --u--> "libs/gl2ps"
+"apps/mangohud" --u--> "libs/glfw"
 "apps/cpu-x" --u--> "libs/glfw"
 "libs/openvdb" --u--> "libs/glfw"
 "apps/pidgin" --u--> "libs/gmime-2"
@@ -4210,6 +4217,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/timidity" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/neXtaw"
+"apps/mangohud" --u--> "libs/nlohmann_json"
 "apps/mkvtoolnix" --u--> "libs/nlohmann_json"
 "apps/obs-studio" --u--> "libs/nlohmann_json"
 "apps/openrgb" --u--> "libs/nlohmann_json"
@@ -4269,7 +4277,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/neovim" --u--> "libs/tree-sitter"
 "apps/kdegames" --u--> "libs/twisted"
 "apps/deluge" --u--> "libs/twisted"
-"apps/wxhexeditor" --u--> "libs/udis86"
 "apps/obs-studio" --u--> "libs/uthash"
 "apps/picom" --u--> "libs/uthash"
 "apps/mkvtoolnix" --u--> "libs/utfcpp"

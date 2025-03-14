@@ -666,7 +666,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20250101"
+  version: "20250201"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -854,7 +854,7 @@ packages:
 - &libs-analitza
   category: "libs"
   name: "analitza"
-  version: "24.12.1"
+  version: "24.12.2"
   uri:
   - https://kde.org/
   license: "GPL-2"
@@ -967,7 +967,7 @@ packages:
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
-  version: "4.12.3+2"
+  version: "4.13.3"
   uri:
   - https://www.crummy.com/software/BeautifulSoup/bs4/
   - https://github.com/facelessuser/soupsieve/
@@ -1044,7 +1044,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "133.0.6943.126"
+  version: "134.0.6998.35"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2193,7 +2193,7 @@ packages:
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
-  version: "24.08.3-r1"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/ktorrent/
   - https://userbase.kde.org/KTorrent
@@ -2304,27 +2304,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libntlm
-  category: "libs"
-  name: "libntlm"
-  version: "1.6+1"
-  uri:
-  - https://www.nongnu.org/libntlm/
-  license: "LGPL-2"
-  description: "Microsoft's NTLM authentication (libntlm) library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libntlm
-  provides:
-  - category: "net-libs"
-    name: "libntlm"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libopusenc
   category: "libs"
   name: "libopusenc"
@@ -2349,7 +2328,7 @@ packages:
 - &libs-libprojectm
   category: "libs"
   name: "libprojectm"
-  version: "4.1.2"
+  version: "4.1.4"
   uri:
   - https://github.com/projectM-visualizer/projectm
   license: "LGPL-2"
@@ -2914,7 +2893,7 @@ packages:
 - &libs-oniguruma
   category: "libs"
   name: "oniguruma"
-  version: "6.9.9"
+  version: "6.9.10"
   uri:
   - https://github.com/kkos/oniguruma
   license: "BSD-2"
@@ -3149,7 +3128,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.4.2-r1+1"
+  version: "2.4.3"
   uri:
   - https://github.com/spyder-ide/qtpy/
   - https://wiki.qt.io/PySide6
@@ -3280,7 +3259,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.2.5"
+  version: "4.3.1"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -3876,7 +3855,7 @@ packages:
 
 - category: "apps"
   name: "alligator"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/alligator/
   license: "GPL-2+"
@@ -3896,7 +3875,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.2.1+1"
+  version: "3.2.2"
   uri:
   - https://amarok.kde.org/
   license: "GPL-2"
@@ -3905,15 +3884,13 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       media-sound/amarok
-  overlays:
-  - enable: "robert7k"
   provides:
   - category: "media-sound"
     name: "amarok"
     version: ">=0"
   atoms:
   - atom: "media-sound/amarok"
-    use: "mariadb mtp wikipedia # ipod lastfm podcast"
+    use: "handbook mariadb mtp wikipedia X # ipod lastfm podcast webengine"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-kf5
@@ -4595,7 +4572,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+"
@@ -4774,7 +4751,7 @@ packages:
 - &apps-diffpdf
   category: "apps"
   name: "diffpdf"
-  version: "2.1.3-r2+2"
+  version: "2.1.3-r3"
   uri:
   - https://www.qtrac.eu/diffpdf.html
   license: "GPL-2"
@@ -4843,7 +4820,7 @@ packages:
 
 - category: "apps"
   name: "dolphin-plugins-git"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/dolphin_plugins/
   license: "GPL-2"
@@ -5024,7 +5001,7 @@ packages:
 
 - category: "apps"
   name: "elisa"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/elisa
   license: "LGPL-3+"
@@ -5325,7 +5302,7 @@ packages:
 
 - category: "apps"
   name: "ffmpegthumbs"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://kde.org/
   license: "GPL-2+"
@@ -5372,7 +5349,7 @@ packages:
 
 - category: "apps"
   name: "filelight"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/filelight/
   - https://utils.kde.org/projects/filelight/
@@ -5477,7 +5454,7 @@ packages:
 
 - category: "apps"
   name: "foliate"
-  version: "3.1.0"
+  version: "3.2.1"
   uri:
   - https://github.com/johnfactotum/foliate
   license: "GPL-3+"
@@ -5786,7 +5763,7 @@ packages:
 
 - category: "apps"
   name: "ghostwriter"
-  version: "24.12.2"
+  version: "24.12.3"
   uri:
   - https://ghostwriter.kde.org/
   license: "GPL-3+"
@@ -5969,7 +5946,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "133.0.6943.126"
+  version: "134.0.6998.35-r1"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6360,7 +6337,7 @@ packages:
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kapptemplate
   license: "GPL-2"
@@ -6381,7 +6358,7 @@ packages:
   # password flag needs dev-libs/qtkeychain[qt5]
 - category: "apps"
   name: "kate"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -6407,7 +6384,7 @@ packages:
 
 - category: "apps"
   name: "kcharselect"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kcharselect
   license: "GPL-2"
@@ -6451,7 +6428,7 @@ packages:
 
 - category: "apps"
   name: "kcolorchooser"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kcolorchooser/
   license: "MIT"
@@ -6590,7 +6567,7 @@ packages:
 - &apps-kgpg
   category: "apps"
   name: "kgpg"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kgpg/
   license: "GPL-2"
@@ -6635,7 +6612,7 @@ packages:
 
 - category: "apps"
   name: "kimagemapeditor"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kimagemapeditor/
   license: "GPL-2"
@@ -6655,7 +6632,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6675,7 +6652,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6745,7 +6722,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/krfb
   license: "GPL-2"
@@ -6768,7 +6745,7 @@ packages:
 
 - category: "apps"
   name: "krecorder"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/krecorder/
   license: "CC0-1.0 CC-BY-4.0 GPL-3+"
@@ -6790,7 +6767,7 @@ packages:
 
 - category: "apps"
   name: "kruler"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kruler/
   license: "GPL-2+ FDL-1.2"
@@ -6969,7 +6946,7 @@ packages:
 - &apps-qalculate-qt
   category: "apps"
   name: "qalculate-qt"
-  version: "5.4.0"
+  version: "5.5.0"
   uri:
   - https://github.com/Qalculate/qalculate-qt
   license: "GPL-2+"
@@ -7194,7 +7171,6 @@ packages:
   build_requires:
   - <<: *kernel-modules-nvidia-drivers-lts
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "marble"
   version: "24.12.2"
@@ -7210,9 +7186,6 @@ packages:
   - category: "kde-apps"
     name: "marble"
     version: ">=0"
-  atoms:
-  - atom: "kde-apps/marble"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-plasma
   build_requires:
@@ -7339,7 +7312,7 @@ packages:
 
 - category: "apps"
   name: "nethogs"
-  version: "0.8.7"
+  version: "0.8.8"
   uri:
   - https://github.com/raboof/nethogs
   license: "GPL-2"
@@ -7597,7 +7570,7 @@ packages:
 - &apps-nx
   category: "apps"
   name: "nx"
-  version: "3.5.99.26+8"
+  version: "3.5.99.27"
   uri:
   - https://github.com/ArcticaProject/nx-libs
   license: "GPL-2 "
@@ -8477,7 +8450,7 @@ packages:
 
 - category: "apps"
   name: "qt5ct"
-  version: "1.8"
+  version: "1.9"
   uri:
   - https://sourceforge.net/projects/qt5ct/
   license: "BSD-2"
@@ -9001,7 +8974,7 @@ packages:
 
   category: "apps"
   name: "stress-ng"
-  version: "0.18.10-r1"
+  version: "0.18.11"
   uri:
   - https://github.com/ColinIanKing/stress-ng
   license: "GPL-2+"
@@ -9271,7 +9244,7 @@ packages:
 
 - category: "apps"
   name: "sweeper"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/sweeper/
   license: "GPL-3"
@@ -9363,7 +9336,7 @@ packages:
 
 - category: "apps"
   name: "tmux"
-  version: "3.4-r1"
+  version: "3.5a"
   uri:
   - https://tmux.github.io/
   license: "ISC"
@@ -9450,7 +9423,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7+7"
+  version: "5.15.7+8"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -10062,7 +10035,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.3.10.7150"
+  version: "6.3.11.7212"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -11507,8 +11480,11 @@ packages:
   version: "2.3.11-r4+2"
   uri:
   - http://www.gkrellm.net/
-  license: "GPL-3+"
-  description: "Single process stack of various system monitors"
+  - https://www.nongnu.org/libntlm/
+  license: "GPL-3+ LGPL-2"
+  description: |
+    Single process stack of various system monitors
+    Microsoft's NTLM authentication (libntlm) library
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -11526,7 +11502,6 @@ packages:
     name: "gkrellmd"
     version: ">=0"
   - <<: *apps-hddtemp
-  - <<: *libs-libntlm
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-X
@@ -11823,7 +11798,6 @@ packages:
   - <<: *libs-analitza
   build_requires:
   - <<: *layers-kde-common
-  - <<: *libs-analitza
 
 # TODO: gpg
 - category: "apps"
@@ -12615,7 +12589,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "117.0.5408.35"
+  version: "117.0.5408.93"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -12631,7 +12605,7 @@ packages:
   atoms:
   - atom: "www-client/opera"
     license: "OPERA-2018"
-    use: "ffmpeg-chromium -qt5"
+    use: "ffmpeg-chromium # qt6"
   requires:
   - <<: *layers-X
   - <<: *apps-ffmpeg-chromium
@@ -13636,7 +13610,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.1.3570.50"
+  version: "7.1.3570.58"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -13652,7 +13626,7 @@ packages:
   atoms:
   - atom: "www-client/vivaldi"
     license: "Vivaldi"
-    use: "ffmpeg-chromium proprietary-codecs -qt5 widevine"
+    use: "ffmpeg-chromium proprietary-codecs widevine # qt6"
   requires:
   - <<: *layers-X
   - <<: *libs-chrome-binary-plugins

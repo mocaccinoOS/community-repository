@@ -21,6 +21,9 @@ entity "inconsolata-hellenic" as fonts/inconsolata-hellenic << (f,#48D1CC) >> {
 entity "jetbrains-mono" as fonts/jetbrains-mono << (f,#48D1CC) >> {
 
 }
+entity "lato" as fonts/lato << (f,#48D1CC) >> {
+
+}
 entity "noto-cjk" as fonts/noto-cjk << (f,#48D1CC) >> {
 
 }
@@ -385,9 +388,6 @@ entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
 
 }
 entity "twisted" as libs/twisted << (l,#FF7700) >> {
-
-}
-entity "udis86" as libs/udis86 << (l,#FF7700) >> {
 
 }
 entity "uthash" as libs/uthash << (l,#FF7700) >> {
@@ -1801,6 +1801,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 
 "apps/oh-my-posh" --u--> "fonts/fontawesome"
 "apps/x2goserver" --u--> "fonts/font-cursor-misc"
+"apps/mangohud" --u--> "fonts/lato"
 "apps/kodi" --u--> "fonts/roboto"
 "apps/zynaddsubfx" --u--> "fonts/roboto"
 "apps/hedgewars" --u--> "fonts/wqy-zenhei"
@@ -1847,6 +1848,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/frei0r-plugins" --u--> "libs/gavl"
 "apps/inkscape" --u--> "libs/gdl"
 "apps/octave" --u--> "libs/gl2ps"
+"apps/mangohud" --u--> "libs/glfw"
 "apps/cpu-x" --u--> "libs/glfw"
 "libs/openvdb" --u--> "libs/glfw"
 "apps/pidgin" --u--> "libs/gmime-2"
@@ -1979,6 +1981,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/timidity" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/neXtaw"
+"apps/mangohud" --u--> "libs/nlohmann_json"
 "apps/mkvtoolnix" --u--> "libs/nlohmann_json"
 "apps/obs-studio" --u--> "libs/nlohmann_json"
 "apps/openrgb" --u--> "libs/nlohmann_json"
@@ -2038,7 +2041,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/neovim" --u--> "libs/tree-sitter"
 "apps/kdegames" --u--> "libs/twisted"
 "apps/deluge" --u--> "libs/twisted"
-"apps/wxhexeditor" --u--> "libs/udis86"
 "apps/obs-studio" --u--> "libs/uthash"
 "apps/picom" --u--> "libs/uthash"
 "apps/mkvtoolnix" --u--> "libs/utfcpp"
