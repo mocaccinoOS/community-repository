@@ -3623,32 +3623,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-udis86
-  category: "libs"
-  name: "udis86"
-  version: "1.7.2-r1+6"
-  uri:
-  - http://udis86.sourceforge.net/
-  license: "BSD"
-  description: "Disassembler library for the x86/-64 architecture sets"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/udis86
-  provides:
-  - category: "dev-libs"
-    name: "udis86"
-    version: ">=0"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..11} )/PYTHON_COMPAT=( python3_{10..12} )/' /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/udis86/udis86-1.7.2-r1.ebuild manifest
-  inner_build_reqs:
-  - dev-lang/yasm
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-uthash
   category: "libs"
   name: "uthash"
@@ -10518,7 +10492,7 @@ packages:
     emerge.packages: >-
       media-libs/lilv
   provides:
-  - category: "dev-libs"
+  - category: "media-libs"
     name: "lilv"
     version: ">=0"
   - category: "dev-libs"
@@ -13762,7 +13736,6 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-wxGTK
-  - <<: *libs-udis86
   - <<: *libs-mhash
   build_requires:
   - <<: *layers-gnome-common
@@ -16157,7 +16130,7 @@ packages:
   - atom: "media-libs/sdl-image"
     use: "gif jpeg png tiff webp"
   - atom: "media-libs/sdl-mixer"
-    use: "midi mod wav flac mad mikmod modplug mp3 timidity vorbis # smpeg mpg123 bug # playtools fluidsynth"
+    use: "midi mod wav flac mad mikmod modplug mp3 mpg123 smpeg timidity vorbis # bug # playtools fluidsynth"
   - atom: "media-libs/sdl-sound"
     use: "flac mikmod modplug mp3 mpeg speex vorbis"
   - atom: "media-libs/sdl-ttf"
@@ -17268,7 +17241,7 @@ packages:
     emerge.packages: >-
       media-libs/suil
   provides:
-  - category: "dev-libs"
+  - category: "media-libs"
     name: "suil"
     version: ">=0"
   atoms:
