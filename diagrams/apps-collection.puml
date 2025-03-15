@@ -379,11 +379,6 @@ entity "libmp4v2" as libs/libmp4v2 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "libntlm" as libs/libntlm << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-libntlm
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "libopusenc" as libs/libopusenc << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libopusenc
 ..
@@ -571,9 +566,8 @@ entity "qscintilla-qt5" as libs/qscintilla-qt5 << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pyside6
+  <color:#34495E><U+24DF></color> dev-python-pyside
   <color:#34495E><U+24DF></color> dev-python-qtpy
-  <color:#34495E><U+24DF></color> dev-python-shiboken6
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#D4AC0D><U+24D3></color> development-gcc
@@ -582,11 +576,6 @@ entity "qxlsx" as libs/qxlsx << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-qxlsx
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-}
-entity "random2" as libs/random2 << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-random2
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "rapidjson" as libs/rapidjson << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-rapidjson
@@ -2128,12 +2117,6 @@ entity "pychromecast" as libs/pychromecast << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-python-protobuf
 }
-entity "pysol-cards" as libs/pysol-cards << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pysol-cards
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
-  <color:#FF7700><U+1F79B></color> libs-random2
-}
 entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-rubberband
 ..
@@ -2328,11 +2311,11 @@ entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
 }
 entity "gkrellm" as apps/gkrellm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-gkrellm
+  <color:#34495E><U+24DF></color> net-libs-libntlm
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#5DADE2><U+24D4></color> entity-gkrellmd
   <color:#FF00FF><U+25C9></color> apps-hddtemp
-  <color:#FF7700><U+1F79B></color> libs-libntlm
   <color:#FF7700><U+1F79B></color> libs-gtk2
 }
 entity "gnome-games" as apps/gnome-games << (a,#FF00FF) >> {
@@ -3070,8 +3053,10 @@ entity "k3b" as apps/k3b << (a,#FF00FF) >> {
 }
 entity "kdegames" as apps/kdegames << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-rinutils
-  <color:#34495E><U+24DF></color> games-board-gnugo
   <color:#34495E><U+24DF></color> dev-games-freecell-solver
+  <color:#34495E><U+24DF></color> dev-python-pysol-cards
+  <color:#34495E><U+24DF></color> dev-python-random2
+  <color:#34495E><U+24DF></color> games-board-gnugo
   <color:#34495E><U+24DF></color> kde-apps-kdegames-meta
   <color:#34495E><U+24DF></color> kde-apps-bomber
   <color:#34495E><U+24DF></color> kde-apps-bovo
@@ -3120,7 +3105,6 @@ entity "kdegames" as apps/kdegames << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#FF7700><U+1F79B></color> libs-qtpy
   <color:#FF00FF><U+25C9></color> apps-gnuchess
-  <color:#FF7700><U+1F79B></color> libs-pysol-cards
   <color:#FF7700><U+1F79B></color> libs-twisted
 }
 entity "kodi" as apps/kodi << (a,#FF00FF) >> {
@@ -4111,7 +4095,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/liblqr" --u--> "layers/system-x"
 "libs/libmirage" --u--> "layers/X"
 "libs/libmp4v2" --u--> "layers/X"
-"libs/libntlm" --u--> "layers/system-x"
 "libs/libopusenc" --u--> "layers/X"
 "libs/libprojectm" --u--> "layers/X"
 "libs/libsfml" --u--> "layers/X"
@@ -4152,7 +4135,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/qtpy" --u--> "layers/qt"
 "libs/qtpy" --u--> "development/gcc"
 "libs/qxlsx" --u--> "layers/qt"
-"libs/random2" --u--> "layers/system-x"
 "libs/rapidjson" --u--> "layers/system-x"
 "libs/regex" --u--> "layers/system-x"
 "libs/reportlab" --u--> "layers/X"
@@ -4456,8 +4438,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/lpeg" --u--> "apps/luajit"
 "libs/pychromecast" --u--> "layers/X"
 "libs/pychromecast" --u--> "libs/python-protobuf"
-"libs/pysol-cards" --u--> "layers/sys-fs"
-"libs/pysol-cards" --u--> "libs/random2"
 "libs/rubberband" --u--> "layers/X"
 "libs/rubberband" --u--> "libs/ladspa-sdk"
 "libs/rubberband" --u--> "libs/vamp-plugin-sdk"
@@ -4532,7 +4512,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gkrellm" --u--> "layers/X"
 "apps/gkrellm" --u--> "entity/gkrellmd"
 "apps/gkrellm" --u--> "apps/hddtemp"
-"apps/gkrellm" --u--> "libs/libntlm"
 "apps/gkrellm" --u--> "libs/gtk2"
 "apps/gnome-games" --u--> "layers/gnome-common"
 "apps/gnome-games" --u--> "libs/libglade"
@@ -4788,7 +4767,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kdegames" --u--> "layers/perl-libs"
 "apps/kdegames" --u--> "libs/qtpy"
 "apps/kdegames" --u--> "apps/gnuchess"
-"apps/kdegames" --u--> "libs/pysol-cards"
 "apps/kdegames" --u--> "libs/twisted"
 "apps/kodi" --u--> "layers/X"
 "apps/kodi" --u--> "libs/libao"

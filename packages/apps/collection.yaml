@@ -3136,33 +3136,22 @@ packages:
   description: |
     Abstraction layer on top of PyQt and PySide with additional custom QWidgets
     Python bindings for the Qt framework
-    Python binding generator for C++ libraries
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/qtpy
   provides:
   - category: "dev-python"
-    name: "pyside6"
+    name: "pyside"
     version: ">=0"
   - category: "dev-python"
     name: "qtpy"
     version: ">=0"
-  - category: "dev-python"
-    name: "shiboken6"
-    version: ">=0"
   atoms:
   - atom: "dev-python/qtpy"
     use: "gui multimedia network opengl printsupport -pyqt5 pyqt6 -pyside2 pyside6 qml quick sql svg -testlib webchannel webengine websockets widgets xml # designer help positioning serialport sensors speech"
-  - atom: "dev-python/pyside6"
+  - atom: "dev-python/pyside"
     use: "charts concurrent gui multimedia network network-auth opengl pdfium printsupport qml quick quick3d scxml spatialaudio sql svg -testlib webchannel webengine websockets widgets xml # 3d bluetooth designer gles2-only help location nfc positioning serialport sensors speech"
-  - atom: "dev-python/shiboken6"
-    use: "numpy # vulkan"
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/dev-python/pyside6/pyside6-6.8.1.ebuild
-  - ebuild /var/db/repos/gentoo/dev-python/pyside6/pyside6-6.8.1.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/dev-python/shiboken6/shiboken6-6.8.1.ebuild
-  - ebuild /var/db/repos/gentoo/dev-python/shiboken6/shiboken6-6.8.1.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *development-gcc
@@ -3192,27 +3181,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &libs-random2
-  category: "libs"
-  name: "random2"
-  version: "1.0.2+3"
-  uri:
-  - https://pypi.org/project/random2/
-  license: "PSF-2"
-  description: "Python-2.7 random module ported to python-3"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/random2
-  provides:
-  - category: "dev-python"
-    name: "random2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-rapidjson
   category: "libs"
@@ -3460,33 +3428,6 @@ packages:
   atoms:
   - atom: "sys-apps/hwloc"
     use: "cairo cpuid cuda pci svg udev xml X"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-Text-CSV
-  category: "libs"
-  name: "Text-CSV"
-  version: "2.40.0"
-  uri:
-  - https://metacpan.org/release/Text-CSV
-  license: "Artistic GPL-1+"
-  description: "Manipulate comma-separated value strings"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Text-CSV
-  provides:
-  - category: "dev-perl"
-    name: "Text-CSV"
-    version: ">=0"
-  # - category: "dev-perl"
-  #   name: "Text-CSV_XS"
-  #   version: ">=0"
-  atoms:
-  - atom: "dev-perl/Text-CSV"
-    use: "-xs"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3893,9 +3834,9 @@ packages:
     use: "handbook mariadb mtp wikipedia X # ipod lastfm podcast webengine"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "amberol"
@@ -9431,7 +9372,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/Levenshtein
+      dev-python/levenshtein
       dev-python/websocket-client
   provides:
   - category: "net-misc"
@@ -10540,28 +10481,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pysol-cards
-  category: "libs"
-  name: "pysol-cards"
-  version: "0.18.0"
-  uri:
-  - https://pypi.org/project/pysol-cards/
-  license: "Apache-2.0 MIT"
-  description: "Deal PySol FreeCell cards"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pysol-cards
-  provides:
-  - category: "dev-python"
-    name: "pysol-cards"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-random2
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -10971,7 +10890,7 @@ packages:
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
-  version: "5.1.1"
+  version: "5.1.2"
   uri:
   - https://thetumultuousunicornofdarkness.github.io/CPU-X/
   - http://libcpuid.sourceforge.net/
@@ -11154,7 +11073,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "0.2+18"
+  version: "0.2+19"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -11277,7 +11196,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "29.4-r1"
+  version: "29.4-r2"
   uri:
   - https://www.gnu.org/software/emacs
   - https://savannah.nongnu.org/projects/m17n
@@ -11493,6 +11412,9 @@ packages:
   - category: "app-admin"
     name: "gkrellm"
     version: ">=0"
+  - category: "net-libs"
+    name: "libntlm"
+    version: ">=0"
   atoms:
   - atom: "app-admin/gkrellm"
     use: "gnutls hddtemp lm-sensors ntlm ssl X nls"
@@ -11650,7 +11572,7 @@ packages:
 - &apps-gopls
   category: "apps"
   name: "gopls"
-  version: "0.14.2+1"
+  version: "0.17.1"
   uri:
   - https://github.com/golang/tools/blob/master/gopls/README.md
   license: "BSD"
@@ -11780,7 +11702,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "24.08.3+1"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -11802,7 +11724,7 @@ packages:
 # TODO: gpg
 - category: "apps"
   name: "kget"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kget
   license: "GPL-2"
@@ -11875,7 +11797,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -11896,7 +11818,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "24.12.1"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -11921,7 +11843,7 @@ packages:
 - &apps-kweather
   category: "apps"
   name: "kweather"
-  version: "24.08.3+1"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/kweather/
   license: "GPL-2+"
@@ -12414,7 +12336,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "31.0.1"
+  version: "31.0.2"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -12550,7 +12472,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.9-r1+1"
+  version: "0.9-r2"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -12762,7 +12684,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "24.3.1-r2"
+  version: "25.0.1-r1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -12836,7 +12758,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "17.3"
+  version: "17.4"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -12991,7 +12913,7 @@ packages:
 
 - category: "apps"
   name: "qtox"
-  version: "1.17.6-r2+6"
+  version: "1.18.3"
   uri:
   - https://qtox.github.io
   license: "GPL-3+"
@@ -13716,7 +13638,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.2"
+  version: "10.3"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -14286,7 +14208,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.12.1+1"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -14338,9 +14260,10 @@ packages:
 
 - category: "apps"
   name: "clamtk"
-  version: "6.18"
+  version: "6.18-r1"
   uri:
   - https://gitlab.com/dave_m/clamtk/wikis/Home
+  - https://metacpan.org/release/Text-CSV
   license: "Artistic GPL-1+"
   description: "A graphical front-end for ClamAV"
   labels:
@@ -14357,9 +14280,14 @@ packages:
   - category: "dev-perl"
     name: "LWP-UserAgent-Cached"
     version: ">=0"
+  - category: "dev-perl"
+    name: "Text-CSV"
+    version: ">=0"
+  atoms:
+  - atom: "dev-perl/Text-CSV"
+    use: "-xs"
   requires:
   - <<: *layers-X
-  - <<: *libs-Text-CSV
   - <<: *apps-clamav
   build_requires:
   - <<: *layers-X
@@ -14390,7 +14318,7 @@ packages:
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
-  version: "2.4.2"
+  version: "2.4.3"
   uri:
   - https://www.fluidsynth.org
   license: "LGPL-2.1+"
@@ -14553,7 +14481,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -14579,11 +14507,16 @@ packages:
 
 - category: "apps"
   name: "kdegames"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
-    - https://apps.kde.org/categories/games/
+  - https://apps.kde.org/categories/games/
+  - https://pypi.org/project/pysol-cards/
+  - https://pypi.org/project/random2/
   license: "metapackage"
-  description: "KDE Games is a part of the KDE community focusing on providing desktop users with high quality gaming and entertainment software."
+  description: |
+    KDE Games is a part of the KDE community focusing on providing desktop users with high quality gaming and entertainment software.
+    Deal PySol FreeCell cards
+    Python-2.7 random module ported to python-3
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14592,11 +14525,17 @@ packages:
   - category: "dev-libs"
     name: "rinutils"
     version: ">=0"
-  - category: "games-board"
-    name: "gnugo"
-    version: ">=0"
   - category: "dev-games"
     name: "freecell-solver"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pysol-cards"
+    version: ">=0"
+  - category: "dev-python"
+    name: "random2"
+    version: ">=0"
+  - category: "games-board"
+    name: "gnugo"
     version: ">=0"
   - category: "kde-apps"
     name: "kdegames-meta"
@@ -14737,7 +14676,6 @@ packages:
   - <<: *layers-perl-libs
   - <<: *libs-qtpy
   - <<: *apps-gnuchess
-  - <<: *libs-pysol-cards
   - <<: *libs-twisted
   build_requires:
   - <<: *layers-kde-common
@@ -14840,7 +14778,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2-r1"
+  version: "24.2.7.2-r2"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -14949,7 +14887,7 @@ packages:
 
 - category: "apps"
   name: "lollypop"
-  version: "1.4.40"
+  version: "1.4.41"
   uri:
   - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -14998,7 +14936,7 @@ packages:
 - &apps-mediainfo
   category: "apps"
   name: "mediainfo"
-  version: "23.10+3"
+  version: "24.11"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2"
@@ -15525,7 +15463,7 @@ packages:
 
 - category: "apps"
   name: "skanpage"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/skanpage/
   license: "|| ( GPL-2 GPL-3 ) CC0-1.0"
@@ -15677,7 +15615,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -16056,7 +15994,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "0.1+24"
+  version: "0.1+25"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -16348,7 +16286,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "24.12.2"
+  version: "24.12.3"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -17531,7 +17469,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -17585,7 +17523,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.2+1"
+  version: "2.8.0-r3"
   uri:
   - https://www.networkupstools.org
   - https://www.gnu.org/software/freeipmi/
@@ -17828,7 +17766,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.12.0+5"
+  version: "1.13.0-r1"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -18111,7 +18049,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "10+1"
+  version: "10+2"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
@@ -18356,7 +18294,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "5.2.6+3"
+  version: "5.2.9"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -18404,7 +18342,7 @@ packages:
 # can't build due to libs/dssi
 - category: "apps"
   name: "qtractor"
-  version: "1.5.1-r1"
+  version: "1.5.2"
   uri:
   - https://qtractor.sourceforge.io
   license: "GPL-2"
@@ -18644,7 +18582,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.08.3+2"
+  version: "24.12.2-r1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -18694,7 +18632,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "24.08.3"
+  version: "24.12.2"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
