@@ -6148,26 +6148,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "iat"
-  version: "0.1.7-r1+1"
-  uri:
-  - https://www.berlios.de/software/iso9660-analyzer-tool
-  license: "GPL-2"
-  description: "BIN, MDF, PDI, CDI, NRG, and B5I converters"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/iat
-  provides:
-  - category: "app-cdr"
-    name: "iat"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-i2c-tools
   category: "apps"
   name: "i2c-tools"
@@ -6183,6 +6163,26 @@ packages:
   provides:
   - category: "sys-apps"
     name: "i2c-tools"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "iat"
+  version: "0.1.7-r1+1"
+  uri:
+  - https://www.berlios.de/software/iso9660-analyzer-tool
+  license: "GPL-2"
+  description: "BIN, MDF, PDI, CDI, NRG, and B5I converters"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/iat
+  provides:
+  - category: "app-cdr"
+    name: "iat"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -6232,6 +6232,26 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "iotop"
+  version: "0.6_p20230124"
+  uri:
+  - http://guichaz.free.fr/iotop/
+  license: "GPL-2+"
+  description: "Top-like UI used to show which process is using the I/O"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/iotop
+  provides:
+  - category: "sys-process"
+    name: "iotop"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "iptraf-ng"
