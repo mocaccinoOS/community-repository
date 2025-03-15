@@ -566,7 +566,6 @@ entity "qscintilla-qt5" as libs/qscintilla-qt5 << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-pyside
   <color:#34495E><U+24DF></color> dev-python-qtpy
 ..
   <color:#9ACD32><U+2756></color> layers-qt
@@ -630,11 +629,6 @@ entity "smpeg2" as libs/smpeg2 << (l,#FF7700) >> {
 entity "tbb" as libs/tbb << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-tbb
   <color:#34495E><U+24DF></color> sys-apps-hwloc
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
-entity "Text-CSV" as libs/Text-CSV << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-perl-Text-CSV
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -729,7 +723,7 @@ entity "alligator" as apps/alligator << (a,#FF00FF) >> {
 entity "amarok" as apps/amarok << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-amarok
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-kde-common
 }
 entity "amberol" as apps/amberol << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
@@ -914,7 +908,7 @@ entity "designer" as apps/designer << (a,#FF00FF) >> {
 entity "diffpdf" as apps/diffpdf << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-diffpdf
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "diffuse" as apps/diffuse << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-diffuse
@@ -1241,13 +1235,13 @@ entity "hwinfo" as apps/hwinfo << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "iat" as apps/iat << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-cdr-iat
+entity "i2c-tools" as apps/i2c-tools << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sys-apps-i2c-tools
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "i2c-tools" as apps/i2c-tools << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> sys-apps-i2c-tools
+entity "iat" as apps/iat << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-cdr-iat
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -1260,6 +1254,11 @@ entity "imwheel" as apps/imwheel << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-imwheel
 ..
   <color:#9ACD32><U+2756></color> layers-X
+}
+entity "iotop" as apps/iotop << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sys-process-iotop
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "iptraf-ng" as apps/iptraf-ng << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-analyzer-iptraf-ng
@@ -1889,7 +1888,6 @@ entity "ulauncher" as apps/ulauncher << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-python-websocket-client
   <color:#34495E><U+24DF></color> dev-cpp-rapidfuzz-cpp
   <color:#34495E><U+24DF></color> dev-cpp-taskflow
-  <color:#34495E><U+24DF></color> dev-libs-libappindicator
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
 }
@@ -2987,7 +2985,6 @@ entity "clamtk" as apps/clamtk << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-perl-LWP-UserAgent-Cached
 ..
   <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-Text-CSV
   <color:#FF00FF><U+25C9></color> apps-clamav
 }
 entity "dvd-rw-tools" as apps/dvd-rw-tools << (a,#FF00FF) >> {
@@ -4146,7 +4143,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/smpeg" --u--> "layers/X"
 "libs/smpeg2" --u--> "layers/X"
 "libs/tbb" --u--> "layers/X"
-"libs/Text-CSV" --u--> "layers/X"
 "libs/tinyxml2" --u--> "layers/system-x"
 "libs/tree-sitter" --u--> "layers/system-x"
 "libs/twisted" --u--> "layers/X"
@@ -4162,7 +4158,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/zita-convolver" --u--> "layers/X"
 "apps/alacritty" --u--> "layers/X"
 "apps/alligator" --u--> "layers/kde-common"
-"apps/amarok" --u--> "layers/kde-kf5"
+"apps/amarok" --u--> "layers/kde-common"
 "apps/amberol" --u--> "layers/gnome-common"
 "apps/android-tools" --u--> "layers/X"
 "apps/android-tools" --u--> "entity/android"
@@ -4201,7 +4197,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/curses-hexedit" --u--> "layers/system-x"
 "apps/dcraw" --u--> "layers/X"
 "apps/designer" --u--> "layers/kde-kf5"
-"apps/diffpdf" --u--> "layers/kde-kf5"
+"apps/diffpdf" --u--> "layers/qt"
 "apps/diffuse" --u--> "layers/X"
 "apps/distrobox" --u--> "container/docker"
 "apps/dolphin-plugins-git" --u--> "layers/kde-apps-minimal"
@@ -4262,10 +4258,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/htop" --u--> "layers/system-x"
 "apps/httrack" --u--> "layers/system-x"
 "apps/hwinfo" --u--> "layers/system-x"
-"apps/iat" --u--> "layers/system-x"
 "apps/i2c-tools" --u--> "layers/system-x"
+"apps/iat" --u--> "layers/system-x"
 "apps/icoutils" --u--> "layers/X"
 "apps/imwheel" --u--> "layers/X"
+"apps/iotop" --u--> "layers/system-x"
 "apps/iptraf-ng" --u--> "layers/system-x"
 "apps/joe" --u--> "layers/system-x"
 "apps/kapptemplate" --u--> "layers/kde-common"
@@ -4733,7 +4730,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/celluloid" --u--> "layers/gnome-common"
 "apps/celluloid" --u--> "apps/mpv"
 "apps/clamtk" --u--> "layers/X"
-"apps/clamtk" --u--> "libs/Text-CSV"
 "apps/clamtk" --u--> "apps/clamav"
 "apps/dvd-rw-tools" --u--> "layers/sys-fs"
 "apps/fluidsynth" --u--> "layers/X"
