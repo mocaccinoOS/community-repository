@@ -193,11 +193,6 @@ entity "gavl" as libs/gavl << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "gdl" as libs/gdl << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-gdl
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "gl2ps" as libs/gl2ps << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-gl2ps
 ..
@@ -436,12 +431,6 @@ entity "libXaw3d" as libs/libXaw3d << (l,#FF7700) >> {
 }
 entity "libxdg-basedir" as libs/libxdg-basedir << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-libxdg-basedir
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "lockfile" as libs/lockfile << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-python-lockfile
-  <color:#34495E><U+24DF></color> dev-python-pbr
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -717,11 +706,6 @@ entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
 }
 entity "alligator" as apps/alligator << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-news-alligator
-..
-  <color:#9ACD32><U+2756></color> layers-kde-common
-}
-entity "amarok" as apps/amarok << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-sound-amarok
 ..
   <color:#9ACD32><U+2756></color> layers-kde-common
 }
@@ -3554,13 +3538,14 @@ entity "hugin" as apps/hugin << (a,#FF00FF) >> {
 }
 entity "inkscape" as apps/inkscape << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-inkscape
+  <color:#34495E><U+24DF></color> dev-python-lockfile
+  <color:#34495E><U+24DF></color> dev-python-pbr
+  <color:#34495E><U+24DF></color> dev-libs-gdl
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-cachecontrol
   <color:#FF7700><U+1F79B></color> libs-cssselect
   <color:#FF7700><U+1F79B></color> libs-fonttools
-  <color:#FF7700><U+1F79B></color> libs-lockfile
-  <color:#FF7700><U+1F79B></color> libs-gdl
   <color:#FF00FF><U+25C9></color> apps-scour
   <color:#FF7700><U+1F79B></color> libs-libvisio
 }
@@ -4063,7 +4048,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libcaca" --u--> "libs/ftgl"
 "apps/xmms2" --u--> "libs/game-music-emu"
 "libs/frei0r-plugins" --u--> "libs/gavl"
-"apps/inkscape" --u--> "libs/gdl"
 "apps/octave" --u--> "libs/gl2ps"
 "apps/mangohud" --u--> "libs/glfw"
 "apps/cpu-x" --u--> "libs/glfw"
@@ -4167,7 +4151,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/libvisio"
 "apps/xemacs" --u--> "libs/libXaw3d"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
-"apps/inkscape" --u--> "libs/lockfile"
 "apps/cutecom" --u--> "libs/lrzsz"
 "apps/minicom" --u--> "libs/lrzsz"
 "apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
