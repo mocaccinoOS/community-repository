@@ -426,11 +426,6 @@ stubs:
 #   preemerge:
 #   - app-emulation/spice;USE="-smartcard"
 
-- &apps-qttools-designer
-  category: "apps"
-  name: "qttools-designer"
-  version: ">=0"
-
 - &apps-vim
   category: "apps"
   name: "vim"
@@ -3771,29 +3766,29 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - category: "apps"
-#   name: "amarok"
-#   version: "3.2.2"
-#   uri:
-#   - https://amarok.kde.org/
-#   license: "GPL-2"
-#   description: "Advanced audio player based on KDE frameworks"
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-sound/amarok
-#   provides:
-#   - category: "media-sound"
-#     name: "amarok"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/amarok"
-#     use: "handbook mariadb mtp wikipedia X # ipod lastfm podcast webengine"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *apps-qttools-designer
-#   build_requires:
-#   - <<: *apps-qttools-designer
+- category: "apps"
+  name: "amarok"
+  version: "3.2.2"
+  uri:
+  - https://amarok.kde.org/
+  license: "GPL-2"
+  description: "Advanced audio player based on KDE frameworks"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/amarok
+  provides:
+  - category: "media-sound"
+    name: "amarok"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/amarok"
+    use: "mariadb mtp wikipedia X # handbook ipod lastfm podcast webengine"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "amberol"
