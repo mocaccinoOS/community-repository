@@ -10811,6 +10811,12 @@ packages:
   - category: "media-libs"
     name: "libmygpo-qt"
     version: ">=0"
+  - category: "media-libs"
+    name: "libgpod"
+    version: ">=0"
+  - category: "sys-apps"
+    name: "sg3_utils"
+    version: ">=0"
   atoms:
   - atom: "media-sound/clementine"
     use: "cdda dbus ipod moodbar mtp pulseaudio udisks # alsa box dropbox googledrive lastfm projectm seafile skydrive wiimote"
@@ -14667,7 +14673,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/kodi
-      media-plugins/kodi-pvr-iptvsimple
+    # media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "dev-libs"
     name: "crossguid"
@@ -14684,20 +14690,20 @@ packages:
   - category: "media-tv"
     name: "kodi"
     version: ">=0"
-  - category: "media-plugins"
-    name: "kodi-pvr-iptvsimple"
-    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "kodi-pvr-iptvsimple"
+  #   version: ">=0"
   atoms:
   - atom: "media-tv/kodi"
     use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients -gbm -gles lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf -wayland # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
     accept_keywords: "~amd64"
   - atom: "net-libs/shairplay"
     use: "playfair"
-  - atom: "media-plugins/kodi-pvr-iptvsimple"
-    accept_keywords: "**"
-  prepare:
-  - sed -i -e 's/=media-tv\/kodi-19\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild
-  - ebuild /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild manifest
+  # - atom: "media-plugins/kodi-pvr-iptvsimple"
+  #   accept_keywords: "**"
+  # prepare:
+  # - sed -i -e 's/=media-tv\/kodi-19\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild
+  # - ebuild /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-7.6.9.ebuild manifest
   inner_build_reqs:
   - *layers-java-packages
   requires:
