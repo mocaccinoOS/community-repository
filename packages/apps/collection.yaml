@@ -362,15 +362,6 @@ stubs:
   name: "chromium"
   version: ">=0"
 
-- &apps-docker
-  category: "container"
-  name: "docker"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-containers/docker
-
 - &apps-csharp-gentoodotnetinfo
   category: "dev-util"
   name: "csharp-gentoodotnetinfo"
@@ -389,9 +380,23 @@ stubs:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-docker
+  category: "container"
+  name: "docker"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/docker
+
 - &apps-doxygen-packages >-
   app-text/doxygen;USE="-llvm_slot_18 llvm_slot_19"
   
+- &apps-flatpak
+  category: "apps"
+  name: "flatpak"
+  version: ">=0"
+    
 - &apps-grub
   category: "apps"
   name: "grub"
@@ -3606,6 +3611,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-vdf
+  category: "libs"
+  name: "vdf"
+  version: "4.0"
+  uri:
+  - https://github.com/ValvePython/vdf
+  license: "MIT"
+  description: "A module for (de)serialization to and from VDF, Valve's key-value text format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/vdf
+  provides:
+  - category: "dev-python"
+    name: "vdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-wxGTK
   category: "libs"
   name: "wxGTK"
@@ -5747,6 +5773,34 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-gnome-firmware
+  category: "apps"
+  name: "gnome-firmware"
+  version: "47.0-r1"
+  uri:
+  - https://gitlab.gnome.org/World/gnome-firmware
+  license: "GPL-2+"
+  description: "Install firmware on devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-extra/gnome-firmware
+  provides:
+  - category: "gnome-extra"
+    name: "gnome-firmware"
+    version: ">=0"
+  atoms:
+  - atom: "gnome-extra/gnome-firmware"
+    use: "systemd # elogind man"
+  inner_build_reqs:
+  - USE="introspection curl" emerge -1 sys-apps/flatpak sys-apps/fwupd
+  requires:
+  - <<: *layers-gnome-common
+  # needs sys-apps/fwupd
+  - <<: *apps-flatpak
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "gnome-shell-frippery"
@@ -11367,6 +11421,34 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-git-cola
+  category: "apps"
+  name: "git-cola"
+  version: "4.10.1"
+  uri:
+  - https://git-cola.github.io/
+  license: "GPL-2"
+  description: "The highly caffeinated git GUI"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-vcs/git-cola
+  provides:
+  - category: "dev-vcs"
+    name: "git-cola"
+    version: ">=0"
+  - category: "dev-python"
+    name: "polib"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rst-linker"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-qtpy
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "gkrellm"
   version: "2.3.11-r4+3"
@@ -13611,7 +13693,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.3"
+  version: "10.3+1"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -13620,9 +13702,7 @@ packages:
   - https://github.com/Matoking/protontricks
   - https://github.com/heftig/rtkit
   - https://source.winehq.org/git/vkd3d.git/
-  - https://github.com/ValvePython/vdf
   - https://github.com/bobwya/wine.eselect
-  - https://github.com/ValvePython/vdf
   license: "BSD BSD-2 GPL-2 GPL-2+ GPL-3 LGPL-2.1 LGPL-2.1+ MIT MPL-1.1 MPL-2.0 Apache-2.0"
   description: |
     Free implementation of Windows(tm) on Unix, with Wine Staging patchset
@@ -13633,9 +13713,7 @@ packages:
     Wrapper for Proton (Steam Play) games
     Realtime Policy and Watchdog Daemon
     D3D12 to Vulkan translation library
-    A module for (de)serialization to and from VDF, Valve's key-value text format
     Manage active wine version
-    A module for (de)serialization to and from VDF, Valve's key-value text format
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -13668,9 +13746,6 @@ packages:
   - category: "virtual"
     name: "wine"
     version: ">=0"
-  - category: "dev-python"
-    name: "vdf"
-    version: ">=0"
   atoms:
   - atom: "app-emulation/wine-staging"
     # use: "+X +abi_x86_32 +abi_x86_64 +alsa capi crossdev-mingw cups dos llvm-libunwind debug custom-cflags +fontconfig +gecko gphoto2 +gstreamer kerberos +mingw +mono netapi nls odbc opencl +opengl osmesa pcap perl pulseaudio samba scanner +sdl selinux +ssl +truetype udev udisks +unwind usb v4l +vulkan +xcomposite xinerama"
@@ -13690,6 +13765,7 @@ packages:
   - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-vdf
   - <<: *layers-perl-libs
   - category: "entity"
     name: "rtkit"
