@@ -203,11 +203,6 @@ entity "glfw" as libs/glfw << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "gmime-2" as libs/gmime-2 << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-gmime:2.6
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "goocanvas" as libs/goocanvas << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-goocanvas
   <color:#34495E><U+24DF></color> dev-perl-GooCanvas2
@@ -219,6 +214,12 @@ entity "gpm" as libs/gpm << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> sys-libs-gpm
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-plugins-gst-plugins-srtp
+  <color:#34495E><U+24DF></color> net-libs-libsrtp
+..
+  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "gst-plugins-v4l2" as libs/gst-plugins-v4l2 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-v4l2
@@ -408,11 +409,6 @@ entity "libsoundtouch" as libs/libsoundtouch << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-libsoundtouch
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
-}
-entity "libsrtp" as libs/libsrtp << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-libsrtp
-..
-  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "libutf8proc" as libs/libutf8proc << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-libutf8proc
@@ -671,6 +667,11 @@ entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
 entity "python-deprecated" as libs/python-deprecated << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-deprecated
   <color:#34495E><U+24DF></color> dev-python-wrapt
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "vdf" as libs/vdf << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-python-vdf
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -1145,6 +1146,12 @@ entity "gnofract4d" as apps/gnofract4d << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-gnofract4d
 ..
   <color:#9ACD32><U+2756></color> layers-X
+}
+entity "gnome-firmware" as apps/gnome-firmware << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> gnome-extra-gnome-firmware
+..
+  <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#FF00FF><U+25C9></color> apps-flatpak
 }
 entity "gnome-shell-frippery" as apps/gnome-shell-frippery << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> gnome-extra-gnome-shell-frippery
@@ -2024,11 +2031,12 @@ entity "dssi" as libs/dssi << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-liblo
 }
-entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-plugins-gst-plugins-srtp
+entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-plugins-gst-plugins-libnice
+  <color:#34495E><U+24DF></color> net-libs-libnice
 ..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-libsrtp
+  <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#FF7700><U+1F79B></color> libs-gupnp-igd
 }
 entity "libao" as libs/libao << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libao
@@ -2068,12 +2076,6 @@ entity "libmikmod" as libs/libmikmod << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-nas
-}
-entity "libnice" as libs/libnice << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> net-libs-libnice
-..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-gupnp-igd
 }
 entity "libspnav" as libs/libspnav << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-libspnav
@@ -2292,11 +2294,24 @@ entity "foot" as apps/foot << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-libutf8proc
 }
+entity "gftp" as apps/gftp << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> net-ftp-gftp
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-gtk2
+}
 entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-ghostty
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-oniguruma
+}
+entity "git-cola" as apps/git-cola << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-vcs-git-cola
+  <color:#34495E><U+24DF></color> dev-python-polib
+..
+  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#FF7700><U+1F79B></color> libs-qtpy
 }
 entity "gkrellm" as apps/gkrellm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-gkrellm
@@ -2830,9 +2845,9 @@ entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-emulation-protontricks
   <color:#34495E><U+24DF></color> app-eselect-eselect-wine
   <color:#34495E><U+24DF></color> virtual-wine
-  <color:#34495E><U+24DF></color> dev-python-vdf
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#FF7700><U+1F79B></color> libs-vdf
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#5DADE2><U+24D4></color> entity-rtkit
 }
@@ -2840,12 +2855,6 @@ entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-yamllint
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
-}
-entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-plugins-gst-plugins-libnice
-..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-libnice
 }
 entity "indilib" as libs/indilib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> sci-libs-indilib
@@ -3487,13 +3496,6 @@ entity "calligra" as apps/calligra << (a,#FF00FF) >> {
   <color:#FF00FF><U+25C9></color> apps-pstoedit
   <color:#FF7700><U+1F79B></color> libs-libvisio
 }
-entity "calligraplan" as apps/calligraplan << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-office-calligraplan
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-libvisio
-  <color:#FF00FF><U+25C9></color> apps-designer
-}
 entity "dosbox" as apps/dosbox << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-emulation-dosbox
 ..
@@ -3625,13 +3627,12 @@ entity "pidgin" as apps/pidgin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-plugins-pidgin-opensteamworks
   <color:#34495E><U+24DF></color> app-text-gtkspell
   <color:#34495E><U+24DF></color> app-text-enchant
+  <color:#34495E><U+24DF></color> dev-libs-gmime:2.6
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
   <color:#FF7700><U+1F79B></color> libs-farstream
   <color:#FF7700><U+1F79B></color> libs-gst-plugins-v4l2
-  <color:#FF7700><U+1F79B></color> libs-gmime-2
-  <color:#FF7700><U+1F79B></color> libs-libnice
 }
 entity "qsynth" as apps/qsynth << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-qsynth
@@ -4050,9 +4051,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/gavl" --u--> "layers/system-x"
 "libs/gl2ps" --u--> "layers/latex"
 "libs/glfw" --u--> "layers/X"
-"libs/gmime-2" --u--> "layers/system-x"
 "libs/goocanvas" --u--> "layers/X"
 "libs/gpm" --u--> "layers/system-x"
+"libs/gst-plugins-srtp" --u--> "layers/X"
 "libs/gst-plugins-v4l2" --u--> "layers/X"
 "libs/gtksourceviewmm" --u--> "layers/gnome-common"
 "libs/gupnp-igd" --u--> "layers/gnome-common"
@@ -4091,7 +4092,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libsidplay" --u--> "layers/system-x"
 "libs/libsidplayfp" --u--> "layers/system-x"
 "libs/libsoundtouch" --u--> "layers/system-x"
-"libs/libsrtp" --u--> "layers/X"
 "libs/libutf8proc" --u--> "layers/system-x"
 "libs/libvisio" --u--> "layers/X"
 "libs/libXaw3d" --u--> "layers/X"
@@ -4142,6 +4142,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/vamp-plugin-sdk" --u--> "layers/X"
 "libs/websocketpp" --u--> "layers/system-x"
 "libs/python-deprecated" --u--> "layers/system-x"
+"libs/vdf" --u--> "layers/system-x"
 "libs/wxGTK" --u--> "layers/gnome-common"
 "libs/wxGTK-3_0-gtk3" --u--> "layers/gnome-common"
 "libs/xsimd" --u--> "layers/system-x"
@@ -4234,6 +4235,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gitkraken" --u--> "layers/X"
 "apps/gmtp" --u--> "layers/X"
 "apps/gnofract4d" --u--> "layers/X"
+"apps/gnome-firmware" --u--> "layers/gnome-common"
+"apps/gnome-firmware" --u--> "apps/flatpak"
 "apps/gnome-shell-frippery" --u--> "layers/gnome"
 "apps/gnome-tweaks" --u--> "layers/gnome"
 "apps/gnumeric" --u--> "layers/gnome-common"
@@ -4400,8 +4403,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/dssi" --u--> "layers/X"
 "libs/dssi" --u--> "libs/ladspa-sdk"
 "libs/dssi" --u--> "libs/liblo"
-"libs/gst-plugins-srtp" --u--> "layers/X"
-"libs/gst-plugins-srtp" --u--> "libs/libsrtp"
+"libs/gst-plugins-libnice" --u--> "layers/gnome-common"
+"libs/gst-plugins-libnice" --u--> "libs/gupnp-igd"
 "libs/libao" --u--> "layers/X"
 "libs/libao" --u--> "libs/nas"
 "libs/libcaca" --u--> "layers/X"
@@ -4416,8 +4419,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libmediainfo" --u--> "libs/tinyxml2"
 "libs/libmikmod" --u--> "layers/X"
 "libs/libmikmod" --u--> "libs/nas"
-"libs/libnice" --u--> "layers/gnome-common"
-"libs/libnice" --u--> "libs/gupnp-igd"
 "libs/libspnav" --u--> "layers/X"
 "libs/libspnav" --u--> "apps/spacenavd"
 "libs/lilv" --u--> "layers/X"
@@ -4495,8 +4496,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/filezilla" --u--> "libs/wxGTK"
 "apps/foot" --u--> "layers/X"
 "apps/foot" --u--> "libs/libutf8proc"
+"apps/gftp" --u--> "layers/X"
+"apps/gftp" --u--> "libs/gtk2"
 "apps/ghostty" --u--> "layers/gnome-common"
 "apps/ghostty" --u--> "libs/oniguruma"
+"apps/git-cola" --u--> "layers/qt"
+"apps/git-cola" --u--> "libs/qtpy"
 "apps/gkrellm" --u--> "layers/X"
 "apps/gkrellm" --u--> "entity/gkrellmd"
 "apps/gkrellm" --u--> "apps/hddtemp"
@@ -4672,11 +4677,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wxhexeditor" --u--> "libs/wxGTK"
 "apps/wxhexeditor" --u--> "libs/mhash"
 "apps/wine-staging" --u--> "layers/gnome-common"
+"apps/wine-staging" --u--> "libs/vdf"
 "apps/wine-staging" --u--> "layers/perl-libs"
 "apps/wine-staging" --u--> "entity/rtkit"
 "apps/yamllint" --u--> "layers/sys-fs"
-"libs/gst-plugins-libnice" --u--> "layers/gnome-common"
-"libs/gst-plugins-libnice" --u--> "libs/libnice"
 "libs/indilib" --u--> "layers/X"
 "libs/indilib" --u--> "libs/cfitsio"
 "libs/indilib" --u--> "libs/cpp-httplib"
@@ -4916,9 +4920,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/calligra" --u--> "layers/office-common"
 "apps/calligra" --u--> "apps/pstoedit"
 "apps/calligra" --u--> "libs/libvisio"
-"apps/calligraplan" --u--> "layers/kde-kf5"
-"apps/calligraplan" --u--> "libs/libvisio"
-"apps/calligraplan" --u--> "apps/designer"
 "apps/dosbox" --u--> "layers/X"
 "apps/dosbox" --u--> "libs/sdl"
 "apps/flacon" --u--> "layers/qt"
@@ -4974,8 +4975,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/pidgin" --u--> "libs/gtk2"
 "apps/pidgin" --u--> "libs/farstream"
 "apps/pidgin" --u--> "libs/gst-plugins-v4l2"
-"apps/pidgin" --u--> "libs/gmime-2"
-"apps/pidgin" --u--> "libs/libnice"
 "apps/qsynth" --u--> "layers/qt"
 "apps/qsynth" --u--> "apps/fluidsynth"
 "apps/RcloneBrowser" --u--> "layers/qt"

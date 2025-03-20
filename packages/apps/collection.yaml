@@ -1497,31 +1497,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
-- &libs-gmime-2
-  category: "libs"
-  name: "gmime-2"
-  version: "2.6.23-r2+2"
-  uri:
-  - https://github.com/jstedfast/gmime
-  - http://spruce.sourceforge.net/gmime/
-  license: "LGPL-2.1+"
-  description: "Library for creating and parsing MIME messages"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/gmime:2.6
-  provides:
-  - category: "dev-libs"
-    name: "gmime:2.6"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/gmime:2.6"
-    use: "crypt idn"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-goocanvas-2
   category: "libs"
   name: "goocanvas"
@@ -1579,6 +1554,36 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-gst-plugins-srtp
+  category: "libs"
+  name: "gst-plugins-srtp"
+  version: "1.24.11"
+  uri:
+  - https://gstreamer.freedesktop.org/
+  - https://github.com/cisco/libsrtp
+  license: "BSD GPL-2"
+  description: |
+    SRTP encoder/decoder plugin for GStreamer
+    Open-source implementation of the Secure Real-time Transport Protocol (SRTP)
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-plugins/gst-plugins-srtp
+  provides:
+  - category: "media-plugins"
+    name: "gst-plugins-srtp"
+    version: ">=0"
+  - category: "net-libs"
+    name: "libsrtp"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/libsrtp"
+    use: "openssl # nss"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-gst-plugins-v4l2
   category: "libs"
@@ -2441,30 +2446,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-libsrtp
-  category: "libs"
-  name: "libsrtp"
-  version: "2.4.2+2"
-  uri:
-  - https://github.com/cisco/libsrtp
-  license: "BSD"
-  description: "Open-source implementation of the Secure Real-time Transport Protocol (SRTP)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libsrtp
-  provides:
-  - category: "net-libs"
-    name: "libsrtp"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/libsrtp"
-    use: "openssl # nss"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &libs-libutf8proc
   category: "libs"
@@ -10140,27 +10121,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gst-plugins-srtp
+- &libs-gst-plugins-libnice
   category: "libs"
-  name: "gst-plugins-srtp"
-  version: "1.24.11"
+  name: "gst-plugins-libnice"
+  version: "0.1.22"
   uri:
-  - https://gstreamer.freedesktop.org/
-  license: "GPL-2"
-  description: "SRTP encoder/decoder plugin for GStreamer"
+  - https://nice.freedesktop.org/wiki/
+  license: "MPL-1.1 LGPL-2.1"
+  description: |
+    GStreamer plugin for ICE (RFC 5245) support
+    An implementation of the Interactice Connectivity Establishment standard (ICE)
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
-      media-plugins/gst-plugins-srtp
+      media-plugins/gst-plugins-libnice
   provides:
   - category: "media-plugins"
-    name: "gst-plugins-srtp"
+    name: "gst-plugins-libnice"
     version: ">=0"
+  - category: "net-libs"
+    name: "libnice"
+    version: ">=0"
+  atoms:
+  - atom: "net-libs/libnice"
+    use: "gnutls introspection upnp"
   requires:
-  - <<: *layers-X
-  - <<: *libs-libsrtp
+  - <<: *layers-gnome-common
+  - <<: *libs-gupnp-igd
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
 
 # - &libs-guava
 #   category: "libs"
@@ -10356,31 +10345,6 @@ packages:
   - <<: *libs-nas
   build_requires:
   - <<: *layers-X
-
-- &libs-libnice
-  category: "libs"
-  name: "libnice"
-  version: "0.1.22"
-  uri:
-  - https://nice.freedesktop.org/wiki/
-  license: "MPL-1.1 LGPL-2.1"
-  description: "An implementation of the Interactice Connectivity Establishment standard (ICE)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/libnice
-  provides:
-  - category: "net-libs"
-    name: "libnice"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/libnice"
-    use: "gnutls introspection upnp"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gupnp-igd
-  build_requires:
-  - <<: *layers-gnome-common
 
 - &libs-libspnav
   category: "libs"
@@ -11391,10 +11355,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  - &apps-ghostty
+- &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.1.2+1"
+  version: "1.1.2+2"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -12504,7 +12468,7 @@ packages:
 - &apps-openjade
   category: "apps"
   name: "openjade"
-  version: "1.3.2-r9+4"
+  version: "1.3.2-r9+5"
   uri:
   - http://openjade.sourceforge.net
   license: "MIT"
@@ -12931,7 +12895,7 @@ packages:
 
 - category: "apps"
   name: "qmmp"
-  version: "2.1.9+1"
+  version: "2.1.9+2"
   uri:
   - https://qmmp.ylsoftware.com
   license: "GPL-3"
@@ -13799,28 +13763,6 @@ packages:
 ################################################################################################################################################################
 ### dep 2 libs ###
 ################################################################################################################################################################
-
-- &libs-gst-plugins-libnice
-  category: "libs"
-  name: "gst-plugins-libnice"
-  version: "0.1.22"
-  uri:
-  - https://nice.freedesktop.org/wiki/
-  license: "MPL-1.1 LGPL-2.1"
-  description: "GStreamer plugin for ICE (RFC 5245) support"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-plugins/gst-plugins-libnice
-  provides:
-  - category: "media-plugins"
-    name: "gst-plugins-libnice"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-libnice
-  build_requires:
-  - <<: *layers-gnome-common
 
 - &libs-indilib
   category: "libs"
@@ -16364,30 +16306,30 @@ packages:
   - <<: *layerbase-office-common
   requires_final_images: true
 
-- category: "apps"
-  name: "calligraplan"
-  version: "3.3.0-r1+2"
-  uri:
-  - https://calligra.org/plan/
-  license: "GPL-2"
-  description: "Project management application"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/calligraplan
-  provides:
-  - category: "app-office"
-    name: "calligraplan"
-    version: ">=0"
-  atoms:
-  - atom: "app-office/calligraplan"
-    use: "activities holidays kwallet X"
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *libs-libvisio
-  - <<: *apps-designer
-  build_requires:
-  - <<: *layers-kde-kf5
+# - category: "apps"
+#   name: "calligraplan"
+#   version: "3.3.0-r1+2"
+#   uri:
+#   - https://calligra.org/plan/
+#   license: "GPL-2"
+#   description: "Project management application"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       app-office/calligraplan
+#   provides:
+#   - category: "app-office"
+#     name: "calligraplan"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-office/calligraplan"
+#     use: "activities holidays kwallet X"
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *libs-libvisio
+#   - <<: *apps-designer
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - &apps-dosbox
   category: "apps"
@@ -16993,11 +16935,11 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.13+2"
+  version: "2.14.13+3"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
-  license: "GPL-2"
+  license: "GPL-2 LGPL-2.1+"
   description: "GTK Instant Messenger client"
   labels:
     emerge.jobs: "1"
@@ -17030,6 +16972,9 @@ packages:
   - category: "app-text"
     name: "enchant"
     version: ">=0"
+  - category: "dev-libs"
+    name: "gmime:2.6"
+    version: ">=0"
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk gui idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl v4l zephyr zeroconf # aqua tk"
@@ -17038,6 +16983,8 @@ packages:
   - atom: "x11-plugins/pidgin-sipe"
     use: "dbus kerberos ocs2005-message-hack openssl telepathy voice"
     env: "CFLAGS=\"-Wno-error=incompatible-pointer-types\""
+  - atom: "dev-libs/gmime:2.6"
+    use: "crypt idn"
   inner_build_reqs:
   - net-libs/telepathy-glib
   requires:
@@ -17046,8 +16993,6 @@ packages:
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
   # - <<: *apps-gtkspell
-  - <<: *libs-gmime-2
-  - <<: *libs-libnice
   # - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common

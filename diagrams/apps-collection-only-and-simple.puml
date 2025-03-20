@@ -120,13 +120,13 @@ entity "gl2ps" as libs/gl2ps << (l,#FF7700) >> {
 entity "glfw" as libs/glfw << (l,#FF7700) >> {
 
 }
-entity "gmime-2" as libs/gmime-2 << (l,#FF7700) >> {
-
-}
 entity "goocanvas" as libs/goocanvas << (l,#FF7700) >> {
 
 }
 entity "gpm" as libs/gpm << (l,#FF7700) >> {
+
+}
+entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
 
 }
 entity "gst-plugins-v4l2" as libs/gst-plugins-v4l2 << (l,#FF7700) >> {
@@ -238,9 +238,6 @@ entity "libsidplayfp" as libs/libsidplayfp << (l,#FF7700) >> {
 
 }
 entity "libsoundtouch" as libs/libsoundtouch << (l,#FF7700) >> {
-
-}
-entity "libsrtp" as libs/libsrtp << (l,#FF7700) >> {
 
 }
 entity "libutf8proc" as libs/libutf8proc << (l,#FF7700) >> {
@@ -388,6 +385,9 @@ entity "websocketpp" as libs/websocketpp << (l,#FF7700) >> {
 
 }
 entity "python-deprecated" as libs/python-deprecated << (l,#FF7700) >> {
+
+}
+entity "vdf" as libs/vdf << (l,#FF7700) >> {
 
 }
 entity "wxGTK" as libs/wxGTK << (l,#FF7700) >> {
@@ -646,6 +646,9 @@ entity "gmtp" as apps/gmtp << (a,#FF00FF) >> {
 
 }
 entity "gnofract4d" as apps/gnofract4d << (a,#FF00FF) >> {
+
+}
+entity "gnome-firmware" as apps/gnome-firmware << (a,#FF00FF) >> {
 
 }
 entity "gnome-shell-frippery" as apps/gnome-shell-frippery << (a,#FF00FF) >> {
@@ -1101,7 +1104,7 @@ entity "cmt-plugins" as libs/cmt-plugins << (l,#FF7700) >> {
 entity "dssi" as libs/dssi << (l,#FF7700) >> {
 
 }
-entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
+entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
 
 }
 entity "libao" as libs/libao << (l,#FF7700) >> {
@@ -1120,9 +1123,6 @@ entity "libmediainfo" as libs/libmediainfo << (l,#FF7700) >> {
 
 }
 entity "libmikmod" as libs/libmikmod << (l,#FF7700) >> {
-
-}
-entity "libnice" as libs/libnice << (l,#FF7700) >> {
 
 }
 entity "libspnav" as libs/libspnav << (l,#FF7700) >> {
@@ -1215,7 +1215,13 @@ entity "filezilla" as apps/filezilla << (a,#FF00FF) >> {
 entity "foot" as apps/foot << (a,#FF00FF) >> {
 
 }
+entity "gftp" as apps/gftp << (a,#FF00FF) >> {
+
+}
 entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
+
+}
+entity "git-cola" as apps/git-cola << (a,#FF00FF) >> {
 
 }
 entity "gkrellm" as apps/gkrellm << (a,#FF00FF) >> {
@@ -1431,9 +1437,6 @@ entity "wine-staging" as apps/wine-staging << (a,#FF00FF) >> {
 entity "yamllint" as apps/yamllint << (a,#FF00FF) >> {
 
 }
-entity "gst-plugins-libnice" as libs/gst-plugins-libnice << (l,#FF7700) >> {
-
-}
 entity "indilib" as libs/indilib << (l,#FF7700) >> {
 
 }
@@ -1621,9 +1624,6 @@ entity "calf" as apps/calf << (a,#FF00FF) >> {
 
 }
 entity "calligra" as apps/calligra << (a,#FF00FF) >> {
-
-}
-entity "calligraplan" as apps/calligraplan << (a,#FF00FF) >> {
 
 }
 entity "dosbox" as apps/dosbox << (a,#FF00FF) >> {
@@ -1835,15 +1835,15 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mangohud" --u--> "libs/glfw"
 "apps/cpu-x" --u--> "libs/glfw"
 "libs/openvdb" --u--> "libs/glfw"
-"apps/pidgin" --u--> "libs/gmime-2"
 "apps/shutter" --u--> "libs/goocanvas"
 "apps/emacs" --u--> "libs/gpm"
 "apps/links" --u--> "libs/gpm"
 "apps/mc" --u--> "libs/gpm"
 "apps/xemacs" --u--> "libs/gpm"
+"libs/farstream" --u--> "libs/gst-plugins-srtp"
 "apps/pidgin" --u--> "libs/gst-plugins-v4l2"
 "apps/regexxer" --u--> "libs/gtksourceviewmm"
-"libs/libnice" --u--> "libs/gupnp-igd"
+"libs/gst-plugins-libnice" --u--> "libs/gupnp-igd"
 "libs/farstream" --u--> "libs/gupnp-igd"
 "apps/openrgb" --u--> "libs/hidapi"
 "apps/mixxx" --u--> "libs/hidapi"
@@ -1924,13 +1924,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/audacity" --u--> "libs/libsoundtouch"
 "apps/ardour" --u--> "libs/libsoundtouch"
 "apps/easyeffects" --u--> "libs/libsoundtouch"
-"libs/gst-plugins-srtp" --u--> "libs/libsrtp"
 "apps/foot" --u--> "libs/libutf8proc"
 "apps/neovim" --u--> "libs/libutf8proc"
 "apps/libreoffice" --u--> "libs/libvisio"
 "apps/scribus" --u--> "libs/libvisio"
 "apps/calligra" --u--> "libs/libvisio"
-"apps/calligraplan" --u--> "libs/libvisio"
 "apps/inkscape" --u--> "libs/libvisio"
 "apps/xemacs" --u--> "libs/libXaw3d"
 "libs/xine-lib" --u--> "libs/libxdg-basedir"
@@ -1990,6 +1988,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/octave" --u--> "libs/qscintilla"
 "apps/sqliteman" --u--> "libs/qscintilla-qt5"
 "apps/sqlitebrowser" --u--> "libs/qscintilla-qt5"
+"apps/git-cola" --u--> "libs/qtpy"
 "apps/kdegames" --u--> "libs/qtpy"
 "apps/labplot" --u--> "libs/qxlsx"
 "apps/stellarium" --u--> "libs/qxlsx"
@@ -2032,6 +2031,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/indilib" --u--> "libs/websocketpp"
 "apps/pdfarranger" --u--> "libs/python-deprecated"
 "apps/calibre" --u--> "libs/python-deprecated"
+"apps/wine-staging" --u--> "libs/vdf"
 "apps/diff-pdf" --u--> "libs/wxGTK"
 "apps/filezilla" --u--> "libs/wxGTK"
 "apps/pcem" --u--> "libs/wxGTK"
@@ -2059,7 +2059,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/clamtk" --u--> "apps/clamav"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/hugin" --u--> "apps/dcraw"
-"apps/calligraplan" --u--> "apps/designer"
 "apps/museseq" --u--> "apps/designer"
 "apps/dotnet-sdk-6" --u--> "apps/dotnet-common"
 "apps/dotnet-sdk-8" --u--> "apps/dotnet-common"
@@ -2132,7 +2131,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/zynaddsubfx" --u--> "libs/dssi"
 "apps/museseq" --u--> "libs/dssi"
 "apps/qtractor" --u--> "libs/dssi"
-"libs/farstream" --u--> "libs/gst-plugins-srtp"
+"libs/farstream" --u--> "libs/gst-plugins-libnice"
 "apps/cdemu" --u--> "libs/libao"
 "layerbase/cdemu" --u--> "libs/libao"
 "apps/cdrdao" --u--> "libs/libao"
@@ -2151,8 +2150,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/megasync" --u--> "libs/libmediainfo"
 "libs/sdl" --u--> "libs/libmikmod"
 "apps/cmus" --u--> "libs/libmikmod"
-"libs/gst-plugins-libnice" --u--> "libs/libnice"
-"apps/pidgin" --u--> "libs/libnice"
 "apps/blender" --u--> "libs/libspnav"
 "apps/audacity" --u--> "libs/lilv"
 "apps/museseq" --u--> "libs/lilv"
@@ -2195,7 +2192,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/octave" --u--> "apps/pstoedit"
 "apps/skanpage" --u--> "apps/tesseract"
 "apps/asbru-cm" --u--> "apps/tigervnc"
-"libs/farstream" --u--> "libs/gst-plugins-libnice"
 "apps/kstars" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/indilib"
 "libs/ocio-oiio" --u--> "libs/openvdb"
