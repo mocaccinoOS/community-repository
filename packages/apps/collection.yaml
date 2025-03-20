@@ -3085,10 +3085,10 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.4.3"
+  version: "2.4.3+1"
   uri:
   - https://github.com/spyder-ide/qtpy/
-  - https://wiki.qt.io/PySide6
+  # - https://wiki.qt.io/PySide6
   license: "MIT"
   description: |
     Abstraction layer on top of PyQt and PySide with additional custom QWidgets
@@ -3106,7 +3106,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-python/qtpy"
-    use: "gui multimedia network opengl printsupport -pyqt5 pyqt6 -pyside2 -pyside6 qml quick sql svg -testlib webchannel webengine websockets widgets xml # designer help positioning serialport sensors speech"
+    use: "gui multimedia network opengl printsupport qml quick sql svg -testlib webchannel webengine websockets widgets xml # designer help positioning pyqt6 -pyside6 serialport sensors speech"
   # - atom: "dev-python/pyside"
   #   use: "charts concurrent gui multimedia network network-auth opengl pdfium printsupport qml quick quick3d scxml spatialaudio sql svg -testlib webchannel webengine websockets widgets xml # 3d bluetooth designer gles2-only help location nfc positioning serialport sensors speech"
   requires:
@@ -11421,6 +11421,10 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Messages for package dev-vcs/git-cola-4.10.1:
+# Install additional packages for optional runtime features:
+#   dev-python/notify2 for enable desktop notifications
+#   dev-python/send2trash for enables Send to Trash feature
 - &apps-git-cola
   category: "apps"
   name: "git-cola"
