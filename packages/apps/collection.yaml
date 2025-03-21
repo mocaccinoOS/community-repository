@@ -1558,7 +1558,7 @@ packages:
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
-  version: "1.24.11"
+  version: "1.24.11+1"
   uri:
   - https://gstreamer.freedesktop.org/
   - https://github.com/cisco/libsrtp
@@ -2317,7 +2317,7 @@ packages:
 - &libs-libprojectm
   category: "libs"
   name: "libprojectm"
-  version: "4.1.4"
+  version: "4.1.4+1"
   uri:
   - https://github.com/projectM-visualizer/projectm
   license: "LGPL-2"
@@ -10124,7 +10124,7 @@ packages:
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
-  version: "0.1.22"
+  version: "0.1.22+1"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -12918,12 +12918,10 @@ packages:
   atoms:
   - atom: "media-sound/qmmp"
     use: "aac alsa analyzer cdda cover crossfade cue dbus enca ffmpeg flac mad musepack notifier opus pipewire projectm pulseaudio sndfile tray udisks vorbis wavpack # archive bs2b curl game gnome jack ladspa lyrics midi mms mplayer oss qsui qtmedia scrobbler shout sid soxr stereo xmp"
-  optrequires:
-  - <<: *libs-libprojectm
-  # skip: true
   requires:
   - <<: *layers-kde-kf5
   - <<: *libs-cmt-plugins
+  - <<: *libs-libprojectm
   # - <<: *libs-game-music-emu
   # - <<: *libs-libbs2b
   # - <<: *libs-libshout
