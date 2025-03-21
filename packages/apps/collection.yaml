@@ -1049,7 +1049,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "134.0.6998.35"
+  version: "134.0.6998.88"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1289,7 +1289,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.3.8+1"
+  version: "1.4.2"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -1722,7 +1722,7 @@ packages:
 - &libs-iniparser
   category: "libs"
   name: "iniparser"
-  version: "4.2.5"
+  version: "4.2.6"
   uri:
   - https://github.com/ndevilla/iniparser
   license: "GPL-2"
@@ -2436,7 +2436,7 @@ packages:
     emerge.packages: >-
       media-libs/libsoundtouch
   provides:
-  - category: "dev-libs"
+  - category: "media-libs"
     name: "libsoundtouch"
     version: ">=0"
   atoms:
@@ -2615,7 +2615,7 @@ packages:
     emerge.packages: >-
       media-libs/lv2
   provides:
-  - category: "dev-libs"
+  - category: "media-libs"
     name: "lv2"
     version: ">=0"
   requires:
@@ -3505,7 +3505,7 @@ packages:
 - &libs-utfcpp
   category: "libs"
   name: "utfcpp"
-  version: "3.2.1"
+  version: "4.0.6"
   uri:
   - https://github.com/nemtrif/utfcpp
   license: "Boost-1.0"
@@ -3971,7 +3971,7 @@ packages:
 
 - category: "apps"
   name: "atop"
-  version: "2.11"
+  version: "2.11.0"
   uri:
   - https://www.atoptool.nl
   license: "GPL-2"
@@ -5684,7 +5684,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.7.0"
+  version: "10.8.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -5849,7 +5849,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.23.6"
+  version: "1.24.1"
   uri:
   - https://go.dev
   license: "BSD"
@@ -5872,7 +5872,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "134.0.6998.35-r1"
+  version: "134.0.6998.88-r1"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7066,7 +7066,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.8.0"
+  version: "0.8.1"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -7105,8 +7105,8 @@ packages:
     cp -r ./files/* /var/db/repos/guru/games-util/mangohud/files/ && \
     chown -R portage:portage /var/db/repos/guru
   - |
-    sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}-vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild
-  - ebuild /var/db/repos/guru/games-util/mangohud/mangohud-0.8.0.ebuild manifest
+    sed -i '/^src_prepare()/,/^\tdefault/s/^\tdefault/\teapply "${FILESDIR}\/${P}-vulkan_wsi_deps.diff"\n&/' /var/db/repos/guru/games-util/mangohud/mangohud-0.8.1.ebuild
+  - ebuild /var/db/repos/guru/games-util/mangohud/mangohud-0.8.1.ebuild manifest
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
@@ -7516,7 +7516,7 @@ packages:
 - &apps-nx
   category: "apps"
   name: "nx"
-  version: "3.5.99.27"
+  version: "3.5.99.27-r1"
   uri:
   - https://github.com/ArcticaProject/nx-libs
   license: "GPL-2 "
@@ -8054,7 +8054,7 @@ packages:
 - &apps-peek
   category: "apps"
   name: "peek"
-  version: "1.5.1-r1+1"
+  version: "1.5.1-r2"
   uri:
   - https://github.com/phw/peek
   license: "GPL-3+"
@@ -8252,7 +8252,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "9.25"
+  version: "9.26"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -8749,7 +8749,7 @@ packages:
 - &apps-simplescreenrecorder
   category: "apps"
   name: "simplescreenrecorder"
-  version: "0.4.4-r3+2"
+  version: "0.4.4-r4"
   uri:
   - https://www.maartenbaert.be/simplescreenrecorder/
   license: "GPL-3"
@@ -9426,7 +9426,7 @@ packages:
 
 - category: "apps"
   name: "usb_modeswitch"
-  version: "2.6.1"
+  version: "2.6.1-r1"
   uri:
   - https://www.draisberghof.de/usb_modeswitch/
   license: "GPL-2"
@@ -9544,7 +9544,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.97.2.25045"
+  version: "1.98.2.25072"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9978,7 +9978,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.3.11.7212"
+  version: "6.4.0.471"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -11371,6 +11371,9 @@ packages:
   - category: "x11-terms"
     name: "ghostty"
     version: ">=0"
+ - category: "x11-terms"
+    name: "ghostty-terminfo"
+    version: ">=0"
   atoms:
   - atom: "x11-terms/ghostty"
     accept_keywords: "~amd64"
@@ -12182,7 +12185,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "88.0+1"
+  version: "88.0+2"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"

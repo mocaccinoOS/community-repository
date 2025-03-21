@@ -354,7 +354,7 @@ function getLatestVersion() {
     
         local FLAVOR=$([[ "${ATOM_FLAVOR}" == "${STABLE}" ]] && echo "${STABLE}" || echo "${TESTING}")
 
-        # one overlay only, so far
+        # one overlay only, currently
         OVERLAY="${OVERLAYS[0]}"
 
         local ATOM_FLAVOR_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
