@@ -1404,27 +1404,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-gavl
-  category: "libs"
-  name: "gavl"
-  version: "1.4.0-r3+1"
-  uri:
-  - http://gmerlin.sourceforge.net
-  license: "GPL-3"
-  description: "Library for handling uncompressed audio and video data"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/gavl
-  provides:
-  - category: "media-libs"
-    name: "gavl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-gl2ps
   category: "libs"
   name: "gl2ps"
@@ -2019,27 +1998,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-libdvdcss
-  category: "libs"
-  name: "libdvdcss"
-  version: "1.4.3+3"
-  uri:
-  - https://www.videolan.org/developers/libdvdcss.html
-  license: "GPL-2"
-  description: "A portable abstraction library for DVD decryption"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libdvdcss
-  provides:
-  - category: "media-libs"
-    name: "libdvdcss"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libebur128
   category: "libs"
   name: "libebur128"
@@ -2076,27 +2034,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "libemf"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-libfame
-  category: "libs"
-  name: "libfame"
-  version: "0.9.1-r4+1"
-  uri:
-  - http://fame.sourceforge.net/
-  license: "GPL-2"
-  description: "MPEG-1 and MPEG-4 video encoding library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libfame
-  provides:
-  - category: "media-libs"
-    name: "libfame"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2514,27 +2451,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-libxdg-basedir
-  category: "libs"
-  name: "libxdg-basedir"
-  version: "1.2.3+3"
-  uri:
-  - https://github.com/devnev/libxdg-basedir
-  license: "MIT"
-  description: "Small library to access XDG Base Directories Specification paths"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libxdg-basedir
-  provides:
-  - category: "dev-libs"
-    name: "libxdg-basedir"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-lrzsz
   category: "libs"
@@ -10494,11 +10410,18 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.13-r2+5"
+  version: "1.2.13-r2+6"
   uri:
   - http://xine.sourceforge.net/
-  license: "GPL-2"
-  description: "Core libraries for Xine movie player"
+  - https://github.com/devnev/libxdg-basedir
+  - https://www.videolan.org/developers/libdvdcss.html
+  - http://fame.sourceforge.net/
+  license: "GPL-2 MIT"
+  description: |
+    Core libraries for Xine movie player
+    Small library to access XDG Base Directories Specification paths
+    A portable abstraction library for DVD decryption
+    MPEG-1 and MPEG-4 video encoding library
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10507,6 +10430,15 @@ packages:
   - category: "media-libs"
     name: "xine-lib"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libxdg-basedir"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libdvdcss"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libfame"
+    version: ">=0"
   atoms:
   - atom: "media-libs/xine-lib"
     use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
@@ -10514,10 +10446,7 @@ packages:
   - virtual/imagemagick-tools
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-libxdg-basedir
   - <<: *libs-libcaca
-  - <<: *libs-libdvdcss
-  - <<: *libs-libfame
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-X
@@ -15927,33 +15856,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-frei0r-plugins
-  category: "libs"
-  name: "frei0r-plugins"
-  version: "1.8.0+5"
-  uri:
-  - http://www.dyne.org/software/frei0r/
-  license: "GPL-2"
-  description: "A minimalistic plugin API for video effects"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-plugins/frei0r-plugins
-  provides:
-  - category: "media-plugins"
-    name: "frei0r-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-plugins/frei0r-plugins"
-    use: "facedetect scale0tilt"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-gavl
-  build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
-
 - &libs-sdl
   category: "libs"
   name: "sdl"
@@ -17065,11 +16967,16 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.28.0-r1+1"
+  version: "7.28.0-r1+2"
   uri:
   - http://www.mltframework.org/
-  license: "GPL-3"
-  description: "Open source multimedia framework for television broadcasting"
+  - http://www.dyne.org/software/frei0r/
+  - http://gmerlin.sourceforge.net
+  license: "GPL-2 GPL-3"
+  description: |
+    Open source multimedia framework for television broadcasting
+    A minimalistic plugin API for video effects
+    Library for handling uncompressed audio and video data
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -17078,9 +16985,17 @@ packages:
   - category: "media-libs"
     name: "mlt"
     version: ">=0"
+  - category: "media-plugins"
+    name: "frei0r-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "gavl"
+    version: ">=0"
   atoms:
   - atom: "media-libs/mlt"
     use: "ffmpeg frei0r gtk jack libsamplerate opencv opengl python qt6 rtaudio rubberband sdl vdpau vidstab xine xml"
+  - atom: "media-plugins/frei0r-plugins"
+    use: "facedetect scale0tilt"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-ladspa-sdk
@@ -17088,7 +17003,6 @@ packages:
   - <<: *libs-rubberband
   - <<: *libs-sdl2
   - <<: *libs-xine-lib
-  - <<: *libs-frei0r-plugins
   - <<: *libs-rtaudio
   build_requires:
   - <<: *layers-kde-common
@@ -18157,7 +18071,6 @@ packages:
   atoms:
   - atom: "media-sound/ardour"
     use: "jack nls pulseaudio # doc"
-    env: "MAKEOPTS=\"-l0.9\""
   inner_build_reqs:
   - dev-util/itstool
   # inner_build_requires:
@@ -18171,7 +18084,7 @@ packages:
   - <<: *libs-lilv
   - <<: *libs-rubberband
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-qt
 
 - &apps-easyeffects
   category: "apps"
