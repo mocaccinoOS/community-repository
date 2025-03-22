@@ -406,7 +406,7 @@ entity "libsidplayfp" as libs/libsidplayfp << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "libsoundtouch" as libs/libsoundtouch << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-libsoundtouch
+  <color:#34495E><U+24DF></color> media-libs-libsoundtouch
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -446,7 +446,7 @@ entity "LuaBitOp" as libs/LuaBitOp << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-sys-fs
 }
 entity "lv2" as libs/lv2 << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-lv2
+  <color:#34495E><U+24DF></color> media-libs-lv2
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -1759,7 +1759,7 @@ entity "simple-scan" as apps/simple-scan << (a,#FF00FF) >> {
 entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-simplescreenrecorder
 ..
-  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "skypeforlinux" as apps/skypeforlinux << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-im-skypeforlinux
@@ -2302,6 +2302,7 @@ entity "gftp" as apps/gftp << (a,#FF00FF) >> {
 }
 entity "ghostty" as apps/ghostty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-ghostty
+  <color:#34495E><U+24DF></color> x11-terms-ghostty-terminfo
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-oniguruma
@@ -2554,6 +2555,7 @@ entity "okteta" as apps/okteta << (a,#FF00FF) >> {
 entity "openjade" as apps/openjade << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-openjade
   <color:#34495E><U+24DF></color> app-text-opensp
+  <color:#34495E><U+24DF></color> net-libs-libnsl
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
   <color:#FF7700><U+1F79B></color> libs-sgml-common
@@ -3184,7 +3186,6 @@ entity "mixxx" as apps/mixxx << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-libebur128
-  <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-hidapi
   <color:#FF7700><U+1F79B></color> libs-rubberband
@@ -3571,8 +3572,7 @@ entity "kstars" as apps/kstars << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-libs-stellarsolver
   <color:#34495E><U+24DF></color> sci-astronomy-wcslib
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-cfitsio
+  <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#FF7700><U+1F79B></color> libs-indilib
 }
 entity "ktimetracker" as apps/ktimetracker << (a,#FF00FF) >> {
@@ -3589,6 +3589,16 @@ entity "labplot" as apps/labplot << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-cfitsio
   <color:#FF7700><U+1F79B></color> libs-qxlsx
   <color:#FF7700><U+1F79B></color> libs-libcerf
+}
+entity "moc" as apps/moc << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-sound-moc
+  <color:#34495E><U+24DF></color> media-libs-libtimidity
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libao
+  <color:#FF7700><U+1F79B></color> libs-libsidplay
+  <color:#FF00FF><U+25C9></color> apps-sndio
+  <color:#FF00FF><U+25C9></color> apps-timidity
 }
 entity "nomacs" as apps/nomacs << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-nomacs
@@ -3899,7 +3909,6 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-libsoundtouch
   <color:#FF7700><U+1F79B></color> libs-lilv
   <color:#FF7700><U+1F79B></color> libs-rubberband
-  <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
 entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-easyeffects
@@ -3932,13 +3941,14 @@ entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
   <color:#FF7700><U+1F79B></color> libs-libmypaint
+  <color:#FF7700><U+1F79B></color> libs-mlt
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
   <color:#FF7700><U+1F79B></color> libs-xsimd
 }
 entity "qtractor" as apps/qtractor << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-qtractor
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-aubio
   <color:#FF7700><U+1F79B></color> libs-dssi
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
@@ -4033,7 +4043,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/lollypop" --u--> "libs/beautifulsoup4"
 "libs/indilib" --u--> "libs/cfitsio"
 "apps/luminance-hdr" --u--> "libs/cfitsio"
-"apps/kstars" --u--> "libs/cfitsio"
 "apps/labplot" --u--> "libs/cfitsio"
 "apps/qutebrowser" --u--> "libs/chrome-binary-plugins"
 "apps/vivaldi" --u--> "libs/chrome-binary-plugins"
@@ -4145,6 +4154,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/extreme-tuxracer" --u--> "libs/libsfml"
 "apps/xmms2" --u--> "libs/libshout"
 "apps/xmms2" --u--> "libs/libsidplay"
+"apps/moc" --u--> "libs/libsidplay"
 "apps/audacious" --u--> "libs/libsidplayfp"
 "apps/mixxx" --u--> "libs/libsoundtouch"
 "apps/audacity" --u--> "libs/libsoundtouch"
@@ -4250,9 +4260,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/picom" --u--> "libs/uthash"
 "apps/mkvtoolnix" --u--> "libs/utfcpp"
 "libs/rubberband" --u--> "libs/vamp-plugin-sdk"
-"apps/mixxx" --u--> "libs/vamp-plugin-sdk"
 "apps/audacity" --u--> "libs/vamp-plugin-sdk"
-"apps/ardour" --u--> "libs/vamp-plugin-sdk"
 "apps/obs-studio" --u--> "libs/websocketpp"
 "libs/indilib" --u--> "libs/websocketpp"
 "apps/pdfarranger" --u--> "libs/python-deprecated"
@@ -4330,6 +4338,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sqlitebrowser" --u--> "apps/qhexedit2"
 "apps/inkscape" --u--> "apps/scour"
 "apps/cava" --u--> "apps/sndio"
+"apps/moc" --u--> "apps/sndio"
 "apps/qtox" --u--> "apps/sqlcipher"
 "apps/visual-regexp" --u--> "apps/tk"
 "apps/vkeybd" --u--> "apps/tk"
@@ -4364,6 +4373,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kodi" --u--> "libs/libao"
 "apps/timidity" --u--> "libs/libao"
 "apps/xmms2" --u--> "libs/libao"
+"apps/moc" --u--> "libs/libao"
 "apps/cmus" --u--> "libs/libao"
 "libs/xine-lib" --u--> "libs/libcaca"
 "apps/gnuplot" --u--> "libs/libcaca"
@@ -4436,6 +4446,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/RcloneBrowser" --u--> "apps/rclone"
 "libs/sdl" --u--> "apps/timidity"
 "libs/sdl2" --u--> "apps/timidity"
+"apps/moc" --u--> "apps/timidity"
 "apps/pidgin" --u--> "libs/farstream"
 "libs/mlt" --u--> "libs/frei0r-plugins"
 "apps/dosbox" --u--> "libs/sdl"
@@ -4447,6 +4458,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "apps/calf"
 "apps/digikam" --u--> "apps/hugin"
 "apps/kdenlive" --u--> "libs/mlt"
+"apps/krita" --u--> "libs/mlt"
 "apps/deluge" --u--> "libs/pygame"
 "apps/audacity" --u--> "libs/suil"
 "apps/qtractor" --u--> "libs/suil"
