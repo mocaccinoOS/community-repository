@@ -2873,27 +2873,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-perl-Tk
-  category: "libs"
-  name: "perl-Tk"
-  version: "804.36.0-r4"
-  uri:
-  - https://metacpan.org/release/Tk
-  license: "Artistic GPL-1+ tcltk BSD"
-  description: "A Perl Module for Tk"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-perl/Tk
-  provides:
-  - category: "dev-perl"
-    name: "Tk"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-physfs
   category: "libs"
   name: "physfs"
@@ -12321,7 +12300,6 @@ packages:
   # - *apps-doxygen-packages
   requires:
   - <<: *layers-perl-libs
-  - <<: *libs-perl-Tk
   build_requires:
   # - <<: *layers-qt
   - <<: *layers-perl-libs
