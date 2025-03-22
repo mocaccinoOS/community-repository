@@ -16707,16 +16707,12 @@ packages:
     emerge.packages: >-
       sci-astronomy/kstars
   provides:
-  - category: "dev-qt"
-    name: "qtdatavis3d"
-    version: ">=0"
   - category: "sci-astronomy"
     name: "kstars"
     version: ">=0"
   - category: "sci-libs"
     name: "stellarsolver"
     version: ">=0"
-  # sci-astronomy/erfa
   - category: "sci-astronomy"
     name: "wcslib"
     version: ">=0"  
@@ -18183,6 +18179,7 @@ packages:
   atoms:
   - atom: "media-sound/ardour"
     use: "jack nls pulseaudio # doc"
+    env: "MAKEOPTS=\"-l0.9\""
   inner_build_reqs:
   - dev-util/itstool
   # inner_build_requires:
