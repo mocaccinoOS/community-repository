@@ -16087,11 +16087,11 @@ packages:
   - atom: "media-libs/sdl2-image"
     use: "gif jpeg jpegxl png tiff webp # avif"
   - atom: "media-libs/sdl2-mixer"
-    use: "midi mod tremor wav flac mp3 opus timidity vorbis # playtools fluidsynth"
+    use: "midi mod modplug tremor wav flac mp3 opus timidity vorbis # playtools fluidsynth"
   - atom: "media-libs/sdl2-ttf"
     use: "harfbuzz X"
-  prepare:
-  - media-sound/mpg123-base;USE="sdl"
+  # prepare:
+  # - media-sound/mpg123-base;USE="sdl"
   optrequires:
   - <<: *libs-AOMediaCodecs
   # - <<: *apps-fluidsynth
@@ -16722,7 +16722,7 @@ packages:
     version: ">=0"  
   atoms:
   - atom: "sci-astronomy/kstars"
-    use: "opencv -password"
+    use: "-password # opencv"
   - atom: "sci-astronomy/wcslib"
     use: "fits # fortran pgplot"
   requires:
@@ -16794,41 +16794,45 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-- &apps-moc
-  category: "apps"
-  name: "moc"
-  version: "2.6_alpha3-r7"
-  uri:
-  - https://moc.daper.net
-  - http://libtimidity.sourceforge.net
-  license: "GPL-2 LGPL-2.1"
-  description: |
-    Music On Console - ncurses interface for playing audio files
-    MIDI to WAVE converter library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/moc
-  provides:
-  - category: "media-sound"
-    name: "moc"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libtimidity"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/moc"
-    use: "aac alsa cache curl ffmpeg flac jack libsamplerate mad magic modplug musepack oss sid sndfile sndio speex timidity tremor unicode vorbis wavpack"
-  optrequires:
-  - <<: *apps-timidity
-  requires:
-  - <<: *layers-X
-  # - <<: *apps-ffmpeg-4
-  - <<: *libs-libao
-  - <<: *libs-libsidplay
-  - <<: *apps-sndio
-  build_requires:
-  - <<: *layers-X
+#!!! Multiple package instances within a single package slot have been pulled
+# !!! into the dependency graph, resulting in a slot conflict:
+# media-video/ffmpeg:0
+#
+# - &apps-moc
+#   category: "apps"
+#   name: "moc"
+#   version: "2.6_alpha3-r7"
+#   uri:
+#   - https://moc.daper.net
+#   - http://libtimidity.sourceforge.net
+#   license: "GPL-2 LGPL-2.1"
+#   description: |
+#     Music On Console - ncurses interface for playing audio files
+#     MIDI to WAVE converter library
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/moc
+#   provides:
+#   - category: "media-sound"
+#     name: "moc"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "libtimidity"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/moc"
+#     use: "aac alsa cache curl ffmpeg flac jack libsamplerate mad magic modplug musepack oss sid sndfile sndio speex timidity tremor unicode vorbis wavpack"
+#   optrequires:
+#   - <<: *apps-timidity
+#   requires:
+#   - <<: *layers-X
+#   # - <<: *apps-ffmpeg-4
+#   - <<: *libs-libao
+#   - <<: *libs-libsidplay
+#   - <<: *apps-sndio
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "nomacs"
