@@ -609,14 +609,19 @@ subpackages:
 excludes:
 - ^/etc/csh.env
 - ^/etc/environment.d/10-gentoo-env.conf
+- ^/etc/ld.so.cache
 - ^/etc/ld.so.conf
+- ^/etc/portage/savedconfig
 - ^/etc/profile.env
 - ^/luetbuild
+- ^/usr/lib/cmake
+- ^/usr/lib64/cmake
 - ^/usr/portage
 - ^/usr/portage/distfiles
 - ^/usr/share/applications/mimeinfo.cache
-- ^/var/cache/edb
+- ^/usr/tmp/portage
 - ^/var/cache/distfiles
+- ^/var/cache/edb
 - ^/var/cache/fontconfig
   {{- if ne $category "layerbase" }}
 - ^/var/db/pkg
