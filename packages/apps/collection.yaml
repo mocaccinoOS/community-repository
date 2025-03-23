@@ -1151,6 +1151,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-compface
   category: "libs"
   name: "compface"
@@ -1289,7 +1290,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.4.2"
+  version: "1.4.2+1"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -1359,6 +1360,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-ftgl
   category: "libs"
   name: "ftgl"
@@ -1475,7 +1477,7 @@ packages:
 #   - <<: *layers-sys-fs
 #   build_requires:
 #   - <<: *layers-sys-fs
-
+# +++ ?
 - &libs-goocanvas-2
   category: "libs"
   name: "goocanvas"
@@ -1588,6 +1590,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-gtksourceviewmm
   category: "libs"
   name: "gtksourceviewmm"
@@ -1719,6 +1722,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++ ?
 - &libs-intel-mediasdk
   category: "libs"
   name: "intel-mediasdk"
@@ -1782,6 +1786,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-jbigkit
   category: "libs"
   name: "jbigkit"
@@ -1911,6 +1916,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-libchamplain
   category: "libs"
   name: "libchamplain"
@@ -1977,6 +1983,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-libdispatch
   category: "libs"
   name: "libdispatch"
@@ -2162,6 +2169,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -2272,6 +2280,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
@@ -2428,6 +2437,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
@@ -2452,6 +2462,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
@@ -2497,6 +2508,7 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+# +++
 - &libs-LuaBitOp
   category: "libs"
   name: "LuaBitOp"
@@ -2539,6 +2551,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-lzip
   category: "libs"
   name: "lzip"
@@ -2702,6 +2715,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-neXtaw
   category: "libs"
   name: "neXtaw"
@@ -2813,6 +2827,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-portsmf
   category: "libs"
   name: "portsmf"
@@ -3124,6 +3139,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-rtmidi
   category: "libs"
   name: "rtmidi"
@@ -3188,6 +3204,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-smpeg
   category: "libs"
   name: "smpeg"
@@ -3577,6 +3594,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -3598,6 +3616,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# +++
 - &libs-zita-convolver
   category: "libs"
   name: "zita-convolver"
@@ -10131,6 +10150,7 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
+# +++
 - &libs-libgnomecanvas
   category: "libs"
   name: "libgnomecanvas"
@@ -10304,6 +10324,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-lpeg
   category: "libs"
   name: "lpeg"
@@ -10381,6 +10402,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# +++
 - &libs-tiff-compat
   category: "libs"
   name: "tiff-compat"
@@ -11289,7 +11311,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# Messages for package dev-vcs/git-cola-4.10.1:
 # Install additional packages for optional runtime features:
 #   dev-python/notify2 for enable desktop notifications
 #   dev-python/send2trash for enables Send to Trash feature
@@ -11315,6 +11336,8 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-qtpy
+  - <<: *libs-send2trash
+    skip: true
   build_requires:
   - <<: *layers-qt
 
@@ -12000,8 +12023,8 @@ packages:
   atoms:
   - atom: "media-sound/milkytracker"
     use: "alsa jack"
-  inner_build_reqs:
-  - media-libs/rtmidi
+  # inner_build_reqs:
+  # - media-libs/rtmidi
   requires:
   - <<: *layers-X
   - <<: *libs-rtmidi
@@ -15770,7 +15793,7 @@ packages:
 
 - category: "apps"
   name: "yoshimi"
-  version: "2.3.3.2-r1"
+  version: "2.3.3.2-r1+1"
   uri:
   - http://yoshimi.sourceforge.net/
   license: "GPL-2"
@@ -15796,7 +15819,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r7+1"
+  version: "3.0.6-r7+2"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
@@ -15970,8 +15993,6 @@ packages:
     use: "midi mod modplug tremor wav flac mp3 opus timidity vorbis # playtools fluidsynth"
   - atom: "media-libs/sdl2-ttf"
     use: "harfbuzz X"
-  # prepare:
-  # - media-sound/mpg123-base;USE="sdl"
   optrequires:
   - <<: *libs-AOMediaCodecs
   # - <<: *apps-fluidsynth
@@ -16234,7 +16255,7 @@ packages:
 
 - category: "apps"
   name: "flacon"
-  version: "11.4.0+1"
+  version: "12.0.0"
   uri:
   - https://flacon.github.io/
   license: "LGPL-2.1+"
@@ -16250,6 +16271,9 @@ packages:
   atoms:
   - atom: "media-sound/flacon"
     accept_keywords: "~amd64"
+  prepare:
+  - mv /var/db/repos/gentoo/media-sound/flacon/flacon-11.4.0.ebuild /var/db/repos/gentoo/media-sound/flacon/flacon-12.0.0.ebuild
+  - ebuild /var/db/repos/gentoo/media-sound/flacon/flacon-12.0.0.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *apps-mediainfo
@@ -16740,7 +16764,7 @@ packages:
 - &apps-octave
   category: "apps"
   name: "octave"
-  version: "9.2.0-r1+1"
+  version: "9.2.0-r1+2"
   uri:
   - https://www.gnu.org/software/octave/
   - https://computing.llnl.gov/projects/sundials
@@ -17497,6 +17521,7 @@ packages:
 ### dep 5 libs ###
 ################################################################################################################################################################
 
+# +++
 - &libs-gtkmm-2
   category: "libs"
   name: "gtkmm"
@@ -18011,6 +18036,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# +++
 - &libs-wxpython
   category: "libs"
   name: "wxpython"
