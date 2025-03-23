@@ -13245,6 +13245,10 @@ packages:
   atoms:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama" # java gnutls nls
+  prepare:
+  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)/" vncviewer\/DesktopWindow.cxx || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
+  - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
+  - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild manifest
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
