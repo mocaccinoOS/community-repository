@@ -620,9 +620,11 @@ excludes:
 - ^/luetbuild
 - ^/tmp
 {{/* devel split */}}
+  {{- if ne $category "layerbase" }}
 - ^/usr/include
 - ^/usr/lib/cmake
 - ^/usr/lib64/cmake
+  {{- end }}
 - ^/usr/portage
 - ^/usr/portage/distfiles
 - ^/usr/share/applications/mimeinfo.cache
