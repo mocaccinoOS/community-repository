@@ -1574,13 +1574,15 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - app-text/docbook-xml-dtd
+  - app-text/docbook-xsl-stylesheets
   - dev-python/sphinx
   - dev-python/sphinx-rtd-theme
   - app-text/dos2unix
   requires:
   - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-sys-fs
+  # for media-libs/tiff jpeg
+  - <<: *layers-X
 
 # - <<: *def-ghc
 #   category: "layerbase"
