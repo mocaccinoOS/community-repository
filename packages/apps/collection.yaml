@@ -9753,7 +9753,7 @@ packages:
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
-  version: "0.2+4"
+  version: "0.2+5"
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
@@ -9780,8 +9780,9 @@ packages:
     license: "freedist"
     accept_keywords: "~amd64"
   prepare:
-  - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5~pre02.ebuild
-  - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5~pre02.ebuild manifest
+  - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5-r2.ebuild
+  - sed -i -e 's/\${P}/xsnow-3.8.5~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5-r2.ebuild
+  - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5-r2.ebuild manifest
   inner_build_reqs:
   - x11-misc/imake
   requires:
