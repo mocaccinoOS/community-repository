@@ -137,11 +137,6 @@ entity "colorama" as libs/colorama << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "compface" as libs/compface << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-compface
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "cpp-httplib" as libs/cpp-httplib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-cpp-httplib
 ..
@@ -2288,6 +2283,7 @@ entity "git-cola" as apps/git-cola << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-qtpy
+  <color:#FF7700><U+1F79B></color> libs-send2trash
 }
 entity "gkrellm" as apps/gkrellm << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-gkrellm
@@ -3348,10 +3344,10 @@ entity "xemacs" as apps/xemacs << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-xemacs-fsf-compat
   <color:#34495E><U+24DF></color> app-xemacs-mule-base
   <color:#34495E><U+24DF></color> app-xemacs-apel
+  <color:#34495E><U+24DF></color> media-libs-compface
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF00FF><U+25C9></color> apps-eselect-emacs
-  <color:#FF7700><U+1F79B></color> libs-compface
   <color:#FF7700><U+1F79B></color> libs-nas
   <color:#FF7700><U+1F79B></color> libs-gpm
   <color:#FF7700><U+1F79B></color> libs-libXaw3d
@@ -4006,7 +4002,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/cfitsio" --u--> "layers/system-x"
 "libs/chrome-binary-plugins" --u--> "layers/X"
 "libs/colorama" --u--> "layers/system-x"
-"libs/compface" --u--> "layers/system-x"
 "libs/cpp-httplib" --u--> "layers/X"
 "libs/css-parser" --u--> "layers/system-x"
 "libs/cssselect" --u--> "layers/system-x"
@@ -4462,6 +4457,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/ghostty" --u--> "libs/oniguruma"
 "apps/git-cola" --u--> "layers/qt"
 "apps/git-cola" --u--> "libs/qtpy"
+"apps/git-cola" --u--> "libs/send2trash"
 "apps/gkrellm" --u--> "layers/X"
 "apps/gkrellm" --u--> "entity/gkrellmd"
 "apps/gkrellm" --u--> "apps/hddtemp"
@@ -4822,7 +4818,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/x2goserver" --u--> "fonts/font-cursor-misc"
 "apps/xemacs" --u--> "layers/X"
 "apps/xemacs" --u--> "apps/eselect-emacs"
-"apps/xemacs" --u--> "libs/compface"
 "apps/xemacs" --u--> "libs/nas"
 "apps/xemacs" --u--> "libs/gpm"
 "apps/xemacs" --u--> "libs/libXaw3d"
