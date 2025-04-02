@@ -9782,7 +9782,7 @@ packages:
   prepare:
   - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
   - sed -i -e 's/\${P}/xsnow-3.8.5~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - echo -e "pkg_setup() {\n   mv \${DISTDIR}/4889-xsnow-3.8.5~pre02.tar.gz \${DISTDIR}/xsnow-3.8.5.tar.gz\n}" > /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  - echo -e "\npkg_setup() {\n   mv \${DISTDIR}/4889-xsnow-3.8.5~pre02.tar.gz \${DISTDIR}/xsnow-3.8.5.tar.gz\n}" >> /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
   - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild manifest
   inner_build_reqs:
   - x11-misc/imake
