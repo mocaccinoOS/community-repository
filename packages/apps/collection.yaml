@@ -9753,7 +9753,7 @@ packages:
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
-  version: "0.2+6"
+  version: "0.2+7"
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
@@ -9780,10 +9780,12 @@ packages:
     license: "freedist"
     accept_keywords: "~amd64"
   prepare:
+  # echo "x11-misc/xsnow freedist" >> /etc/portage/package.license/x11-misc-xsnow.license
   - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - sed -i -e 's/\${P}/xsnow-3.8.5~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - echo -e "\nsrc_unpack() {\n   ls\n   ls \${DISTDIR}\n   mv xsnow-3.8.5~pre02.tar.gz \${P}.tar.gz || die\n   unpack \${P}.tar.gz\n}" >> /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  - sed -i -e 's/\${P}/\${PN}-\${PV}~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  - sed -i -e 's/SRC_URI="\(.*\)"/SRC_URI="\1"\nS="\${WORKDIR}\/\${PN}-\${PV}~pre02"\n/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
   - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild manifest
+  # emerge x11-misc/xsnow
   inner_build_reqs:
   - x11-misc/imake
   requires:
