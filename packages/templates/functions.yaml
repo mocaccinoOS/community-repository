@@ -573,9 +573,9 @@ subpackages:
 - category: "{{ . }}"
   name: "{{ $values.name }}"
   version: "{{ $values.version }}"
-  unpack: false
+  unpack: {{ eq . "buildbase" }}
         {{- if eq . "layerbase" }}
-  hidden: {{ $values.hidden }}
+  hidden: {{ eq $values.hidden true }}
         {{- end }}
         {{- ( include "community.includes_excludes" ( list $values . ) ) | indent 2 }}
       {{- end }}
