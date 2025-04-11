@@ -415,11 +415,6 @@ entity "lttng-ust-2_12" as libs/lttng-ust-2_12 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
 }
-entity "LuaBitOp" as libs/LuaBitOp << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-lua-LuaBitOp
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
-}
 entity "lv2" as libs/lv2 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-lv2
 ..
@@ -1116,6 +1111,11 @@ entity "gnofract4d" as apps/gnofract4d << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-gnofract4d
 ..
   <color:#9ACD32><U+2756></color> layers-X
+}
+entity "gnome-maps" as apps/gnome-maps << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sci-geosciences-gnome-maps
+..
+  <color:#9ACD32><U+2756></color> layers-gnome-common
 }
 entity "gnome-firmware" as apps/gnome-firmware << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> gnome-extra-gnome-firmware
@@ -2063,12 +2063,6 @@ entity "lilv" as libs/lilv << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-lv2
 }
-entity "lpeg" as libs/lpeg << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-lua-lpeg
-..
-  <color:#9ACD32><U+2756></color> layers-sys-fs
-  <color:#FF00FF><U+25C9></color> apps-luajit
-}
 entity "pychromecast" as libs/pychromecast << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-pychromecast
   <color:#34495E><U+24DF></color> dev-python-casttube
@@ -2757,7 +2751,7 @@ entity "upplay" as apps/upplay << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-qtmpris
   <color:#34495E><U+24DF></color> dev-qt-qtdbusextended
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "vdr" as apps/vdr << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-vdr
@@ -3113,7 +3107,6 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-office-common
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#9ACD32><U+2756></color> layers-java
-  <color:#FF00FF><U+25C9></color> apps-ant
   <color:#5DADE2><U+24D4></color> entity-libreoffice
   <color:#FF00FF><U+25C9></color> apps-fontforge
   <color:#FF7700><U+1F79B></color> libs-libvisio
@@ -3183,6 +3176,8 @@ entity "nagios" as apps/nagios << (a,#FF00FF) >> {
 entity "neovim" as apps/neovim << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-editors-neovim
   <color:#34495E><U+24DF></color> dev-libs-libmpack
+  <color:#34495E><U+24DF></color> dev-lua-lpeg
+  <color:#34495E><U+24DF></color> dev-lua-LuaBitOp
   <color:#34495E><U+24DF></color> dev-lua-luv
   <color:#34495E><U+24DF></color> dev-lua-mpack
   <color:#34495E><U+24DF></color> dev-libs-msgpack
@@ -3192,8 +3187,6 @@ entity "neovim" as apps/neovim << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF00FF><U+25C9></color> apps-luajit
   <color:#FF7700><U+1F79B></color> libs-libutf8proc
-  <color:#FF7700><U+1F79B></color> libs-lpeg
-  <color:#FF7700><U+1F79B></color> libs-LuaBitOp
   <color:#FF7700><U+1F79B></color> libs-tree-sitter
 }
 entity "nmapsi" as apps/nmapsi << (a,#FF00FF) >> {
@@ -3256,7 +3249,7 @@ entity "rclone" as apps/rclone << (a,#FF00FF) >> {
 entity "rosegarden" as apps/rosegarden << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-rosegarden
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-dssi
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-liblo
@@ -3591,6 +3584,7 @@ entity "pidgin" as apps/pidgin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-gtkspell
   <color:#34495E><U+24DF></color> app-text-enchant
   <color:#34495E><U+24DF></color> dev-libs-gmime:2.6
+  <color:#34495E><U+24DF></color> x11-plugins-pidgin-skypeweb
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
@@ -4057,7 +4051,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libXaw3d" --u--> "layers/X"
 "libs/lrzsz" --u--> "layers/system-x"
 "libs/lttng-ust-2_12" --u--> "layers/sys-fs"
-"libs/LuaBitOp" --u--> "layers/sys-fs"
 "libs/lv2" --u--> "layers/X"
 "libs/lzip" --u--> "layers/system-x"
 "libs/mac" --u--> "layers/X"
@@ -4193,6 +4186,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gitkraken" --u--> "layers/X"
 "apps/gmtp" --u--> "layers/X"
 "apps/gnofract4d" --u--> "layers/X"
+"apps/gnome-maps" --u--> "layers/gnome-common"
 "apps/gnome-firmware" --u--> "layers/gnome-common"
 "apps/gnome-firmware" --u--> "apps/flatpak"
 "apps/gnome-shell-frippery" --u--> "layers/gnome"
@@ -4381,8 +4375,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libspnav" --u--> "apps/spacenavd"
 "libs/lilv" --u--> "layers/X"
 "libs/lilv" --u--> "libs/lv2"
-"libs/lpeg" --u--> "layers/sys-fs"
-"libs/lpeg" --u--> "apps/luajit"
 "libs/pychromecast" --u--> "layers/X"
 "libs/pychromecast" --u--> "libs/python-protobuf"
 "libs/rubberband" --u--> "layers/X"
@@ -4613,7 +4605,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/transmission" --u--> "layers/gnome-common"
 "apps/transmission" --u--> "entity/transmission"
 "apps/transmission" --u--> "libs/mbedtls"
-"apps/upplay" --u--> "layers/kde-kf5"
+"apps/upplay" --u--> "layers/qt"
 "apps/vdr" --u--> "layers/X"
 "apps/vdr" --u--> "libs/xine-lib"
 "apps/vdr" --u--> "apps/twolame"
@@ -4725,7 +4717,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/libreoffice" --u--> "layers/office-common"
 "apps/libreoffice" --u--> "layers/sci-libs"
 "apps/libreoffice" --u--> "layers/java"
-"apps/libreoffice" --u--> "apps/ant"
 "apps/libreoffice" --u--> "entity/libreoffice"
 "apps/libreoffice" --u--> "apps/fontforge"
 "apps/libreoffice" --u--> "libs/libvisio"
@@ -4755,8 +4746,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/neovim" --u--> "layers/X"
 "apps/neovim" --u--> "apps/luajit"
 "apps/neovim" --u--> "libs/libutf8proc"
-"apps/neovim" --u--> "libs/lpeg"
-"apps/neovim" --u--> "libs/LuaBitOp"
 "apps/neovim" --u--> "libs/tree-sitter"
 "apps/nmapsi" --u--> "layers/qt"
 "apps/nmapsi" --u--> "apps/bind-tools"
@@ -4777,7 +4766,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/quodlibet" --u--> "libs/xine-lib"
 "apps/rclone" --u--> "layers/sys-fs"
 "apps/rclone" --u--> "apps/go"
-"apps/rosegarden" --u--> "layers/kde-kf5"
+"apps/rosegarden" --u--> "layers/qt"
 "apps/rosegarden" --u--> "libs/dssi"
 "apps/rosegarden" --u--> "libs/ladspa-sdk"
 "apps/rosegarden" --u--> "libs/liblo"
