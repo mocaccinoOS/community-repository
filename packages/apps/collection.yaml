@@ -3964,7 +3964,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.18.0-r1"
+  version: "9.18.0"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -6717,7 +6717,7 @@ packages:
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03-r1"
+  version: "23.03+1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -9590,7 +9590,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.4.5"
+  version: "4.4.2-r1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -9605,7 +9605,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-analyzer/wireshark"
-    use: "qt6 wifi"
+    use: "wifi"
   requires:
   - <<: *layers-qt
   - category: "entity"
@@ -13295,12 +13295,6 @@ packages:
   - category: "net-libs"
     name: "libnpupnp"
     version: ">=0"
-  - category: "media-libs"
-    name: "qtmpris"
-    version: ">=0"
-  - category: "dev-qt"
-    name: "qtdbusextended"
-    version: ">=0"
   atoms:
   - atom: "media-sound/upplay"
     accept_keywords: "~amd64"
@@ -13308,13 +13302,8 @@ packages:
     accept_keywords: "~amd64"
   - atom: "net-libs/libnpupnp"
     accept_keywords: "~amd64"
-  - atom: "media-libs/qtmpris"
-    accept_keywords: "~amd64"
-  - atom: "dev-qt/qtdbusextended"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
-  # - <<: *libs-libupnpp
   build_requires:
   - <<: *layers-qt
 
@@ -15029,9 +15018,6 @@ packages:
     version: ">=0"
   - category: "dev-lua"
     name: "lpeg"
-    version: ">=0"
-  - category: "dev-lua"
-    name: "LuaBitOp"
     version: ">=0"
   - category: "dev-lua"
     name: "luv"
@@ -16801,7 +16787,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.13-r1"
+  version: "2.14.13-r1+1"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -16813,6 +16799,7 @@ packages:
       net-im/pidgin
       x11-plugins/pidgin-opensteamworks
       x11-plugins/pidgin-sipe
+      x11-plugins/skypeweb
   provides:
   - category: "net-im"
     name: "pidgin"
