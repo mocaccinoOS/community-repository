@@ -378,12 +378,12 @@ stubs:
 
 - &apps-doxygen-packages >-
   app-text/doxygen;USE="-llvm_slot_18 llvm_slot_19"
-  
+
 - &apps-flatpak
   category: "apps"
   name: "flatpak"
   version: ">=0"
-    
+
 - &apps-grub
   category: "apps"
   name: "grub"
@@ -464,7 +464,7 @@ stubs:
   category: "development"
   name: "gcc"
   version: ">=0"
-  
+
 ################################################################################################################################################################
 ### fonts stub ###
 ################################################################################################################################################################
@@ -3259,7 +3259,7 @@ packages:
     name: "xsimd"
     version: ">=0"
   requires:
-  - <<: *layers-system-x  
+  - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
 
@@ -4261,7 +4261,7 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
- 
+
 - category: "apps"
   name: "diffuse"
   version: "0.9.0+1"
@@ -5345,7 +5345,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - category: "apps"
   name: "gnome-maps"
   version: "46.11"
@@ -6085,7 +6085,7 @@ packages:
 #     version: ">=0"
 #   - category: "media-fonts"
 #     name: "freefont"
-#     version: ">=0" 
+#     version: ">=0"
 #   atoms:
 #   - atom: "dev-libs/libtracecmd"
 #     accept_keywords: "~amd64"
@@ -7469,7 +7469,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/citeproc"
     accept_keywords: "~amd64"
-    use: "icu" 
+    use: "icu"
   - atom: "dev-haskell/commonmark"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/commonmark-extensions"
@@ -7584,7 +7584,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/some"
     accept_keywords: "~amd64"
-    use: "newtype-unsafe" 
+    use: "newtype-unsafe"
   - atom: "dev-haskell/sop-core"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/string-conversions"
@@ -7607,7 +7607,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/transformers-base"
     accept_keywords: "~amd64"
-    use: "orphaninstances" 
+    use: "orphaninstances"
   - atom: "dev-haskell/type-equality"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/typst"
@@ -8559,7 +8559,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-  category: "apps"
+- category: "apps"
   name: "stress-ng"
   version: "0.18.12"
   uri:
@@ -9040,7 +9040,7 @@ packages:
     name: "taskflow"
     version: ">=0"
   ready:
-  - |    
+  - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
     cd Ulauncher && \
     git fetch --all --tags && \
@@ -9523,7 +9523,7 @@ packages:
   - <<: *layers-gnome
   build_requires:
   - <<: *layers-gnome
-  
+
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
@@ -9909,7 +9909,7 @@ packages:
   - atom: "media-libs/libcaca"
     use: "imlib ncurses opengl ruby slang truetype X # mono java"
   requires:
-  #- <<: *layers-java
+  # - <<: *layers-java
   - <<: *layers-X
   # - <<: *apps-mono
   build_requires:
@@ -10030,7 +10030,7 @@ packages:
   - http://drobilla.net/software/sratom/
   license: "ISC"
   description: |
-    Library to make the use of LV2 plugins as simple as possible for applications    
+    Library to make the use of LV2 plugins as simple as possible for applications
     Library for RDF syntax which supports reading and writing Turtle and NTriples
     Library for storing RDF data in memory
     Library for serialising LV2 atoms to/from RDF, particularly the Turtle syntax
@@ -11212,7 +11212,7 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-  
+
 - &apps-gopls
   category: "apps"
   name: "gopls"
@@ -12083,7 +12083,7 @@ packages:
     name: "okteta"
     version: ">=0"
   inner_build_requires:
-  - <<: *apps-designer  
+  - <<: *apps-designer
   requires:
   - <<: *layers-kde-kf5
   build_requires:
@@ -13121,7 +13121,7 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
-  
+
 - &apps-visual-regexp
   category: "apps"
   name: "visual-regexp"
@@ -13533,7 +13533,7 @@ packages:
   - atom: "dev-perl/Type-Tiny-XS"
     use: "minimal"
   ready:
-  - |    
+  - |
     git clone https://github.com/asbru-cm/asbru-cm/ && \
     cd asbru-cm && \
     git fetch --all --tags && \
@@ -14459,7 +14459,7 @@ packages:
   - dev-util/cppunit
   - media-libs/zxing-cpp
   inner_build_requires:
-  - <<: *apps-ant  
+  - <<: *apps-ant
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-office-common
@@ -14847,7 +14847,7 @@ packages:
   name: "openra"
   version: "20231010-r2"
   uri:
-  -  https://www.openra.net/
+  - https://www.openra.net/
   license: "Apache-2.0 vim"
   description: "A free RTS engine supporting games like Command & Conquer, Red Alert and Dune2k"
   labels:
@@ -15079,7 +15079,7 @@ packages:
     use: "ocr"
   requires:
   - <<: *layers-kde-common
-  #- <<: *libs-leptonica
+  # - <<: *libs-leptonica
   - <<: *apps-tesseract
   build_requires:
   - <<: *layers-kde-common
@@ -16362,7 +16362,7 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-#!!! Multiple package instances within a single package slot have been pulled
+# !!! Multiple package instances within a single package slot have been pulled
 # !!! into the dependency graph, resulting in a slot conflict:
 # media-video/ffmpeg:0
 #
@@ -16460,7 +16460,7 @@ packages:
     version: ">=0"
   # - category: "sci-libs"
   #   name: "superlu_mt"
-  #   version: ">=0"    
+  #   version: ">=0"
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
@@ -16781,8 +16781,8 @@ packages:
     use: "aac alsa ao cddb cdio discid ffmpeg flac jack libsampleratemad mikmod modplug mp4 musepack opus oss pulseaudio systemd tremor unicode vorbis wavpack # elogind examples pidgin"
   # inner_build_reqs:
   # - net-im/pidgin
-  #optrequires:
-  #- <<: *apps-pidgin
+  # optrequires:
+  # - <<: *apps-pidgin
   requires:
   - <<: *layers-X
   - <<: *libs-libao
@@ -17425,7 +17425,7 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
   requires_final_images: true
-  
+
 - category: "apps"
   name: "logitech-linux-rpm-led"
   version: "0.3"

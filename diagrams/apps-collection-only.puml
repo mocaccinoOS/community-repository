@@ -1704,6 +1704,11 @@ entity "solaar" as apps/solaar << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "spacenavd" as apps/spacenavd << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-misc-spacenavd
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "stress-ng" as apps/stress-ng << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-benchmarks-stress-ng
 ..
@@ -1712,7 +1717,7 @@ entity "stress-ng" as apps/stress-ng << (a,#FF00FF) >> {
 entity "subtitlecomposer" as apps/subtitlecomposer << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-subtitlecomposer
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-kde-common
 }
 entity "sqlcipher" as apps/sqlcipher << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-db-sqlcipher
@@ -4193,6 +4198,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sqlitebrowser" --u--> "apps/qhexedit2"
 "apps/inkscape" --u--> "apps/scour"
 "apps/cava" --u--> "apps/sndio"
+"libs/libspnav" --u--> "apps/spacenavd"
+"apps/blender" --u--> "apps/spacenavd"
 "apps/qtox" --u--> "apps/sqlcipher"
 "apps/visual-regexp" --u--> "apps/tk"
 "apps/vkeybd" --u--> "apps/tk"
