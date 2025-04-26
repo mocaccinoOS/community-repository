@@ -658,7 +658,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20250201"
+  version: "20250301"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1010,7 +1010,7 @@ packages:
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
-  version: "4.5.0"
+  version: "4.6.2"
   uri:
   - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
   license: "ISC"
@@ -1036,7 +1036,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "135.0.7049.52"
+  version: "135.0.7049.84"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1325,31 +1325,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
-- &libs-ftgl
-  category: "libs"
-  name: "ftgl"
-  version: "2.1.3_rc5-r3"
-  uri:
-  - https://sourceforge.net/projects/ftgl/
-  license: "MIT"
-  description: "library to use arbitrary fonts in OpenGL applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/ftgl
-  provides:
-  - category: "media-libs"
-    name: "ftgl"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/ftgl"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-game-music-emu
   category: "libs"
   name: "game-music-emu"
@@ -1442,7 +1417,8 @@ packages:
 #   - <<: *layers-sys-fs
 #   build_requires:
 #   - <<: *layers-sys-fs
-# +++ ?
+
+# may be included in its referring package
 - &libs-goocanvas-2
   category: "libs"
   name: "goocanvas"
@@ -1555,32 +1531,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
-- &libs-gtksourceviewmm
-  category: "libs"
-  name: "gtksourceviewmm"
-  version: "3.18.0-r2+1"
-  uri:
-  - https://wiki.gnome.org/Projects/GtkSourceView
-  license: "LGPL-2.1"
-  description: "C++ bindings for gtksourceview"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/gtksourceviewmm
-  provides:
-  - category: "dev-cpp"
-    name: "gtksourceviewmm"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-gupnp-igd
   category: "libs"
   name: "gupnp-igd"
-  version: "1.6.0+3"
+  version: "1.6.0-r1"
   uri:
   - http://gupnp.org
   - https://gitlab.gnome.org/GNOME/gupnp-igd
@@ -1687,49 +1641,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++ ?
-- &libs-intel-mediasdk
-  category: "libs"
-  name: "intel-mediasdk"
-  version: "23.2.2+1"
-  uri:
-  - https://github.com/intel/gmmlib
-  - https://github.com/intel/media-driver
-  - https://github.com/intel/vpl-gpu-rt/
-  - https://github.com/Intel-Media-SDK/MediaSDK
-  license: "MIT BSD no-source-code"
-  description: |
-    Intel Graphics Memory Management Library
-    Intel Media Driver for VA-API (iHD)
-    oneAPI Video Processing Library Intel GPU implementation
-    Intel Media SDK
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/gmmlib
-      media-libs/libva-intel-media-driver
-      media-libs/intel-mediasdk
-  provides:
-  - category: "media-libs"
-    name: "gmmlib"
-    version: ">=0"
-  - category: "media-libs"
-    name: "intel-mediasdk"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libva-intel-media-driver"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/intel-mediasdk"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/libva-intel-media-driver"
-    # accept_keywords: "~amd64"
-    license: "no-source-code"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-IO-Tty
   category: "libs"
   name: "IO-Tty"
@@ -1745,28 +1656,6 @@ packages:
   provides:
   - category: "dev-perl"
     name: "IO-Tty"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# +++
-- &libs-jbigkit
-  category: "libs"
-  name: "jbigkit"
-  version: "2.1+2"
-  uri:
-  - http://www.cl.cam.ac.uk/~mgk25/jbigkit/
-  license: "GPL-2"
-  description: "data compression algorithm for bi-level high-resolution images"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/jbigkit
-  provides:
-  - category: "media-libs"
-    name: "jbigkit"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1881,31 +1770,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
-- &libs-libchamplain
-  category: "libs"
-  name: "libchamplain"
-  version: "0.12.21+1"
-  uri:
-  - https://wiki.gnome.org/Projects/libchamplain
-  license: "LGPL-2.1+"
-  description: "Clutter based world map renderer"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/libchamplain
-  provides:
-  - category: "media-libs"
-    name: "libchamplain"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libchamplain"
-    use: "introspection gtk vala"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-libconfig
   category: "libs"
   name: "libconfig"
@@ -1942,28 +1806,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "libdiscid"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# +++
-- &libs-libdispatch
-  category: "libs"
-  name: "libdispatch"
-  version: "5.8+1"
-  uri:
-  - https://github.com/apple/swift-corelibs-libdispatch
-  license: "Apache-2.0"
-  description: "A library for concurrent code execution on multicore hardware"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libdispatch
-  provides:
-  - category: "dev-libs"
-    name: "libdispatch"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -2134,7 +1976,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
 - &libs-liblqr
   category: "libs"
   name: "liblqr"
@@ -2245,7 +2086,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
@@ -2402,7 +2242,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
 - &libs-libXaw3d
   category: "libs"
   name: "libXaw3d"
@@ -2427,7 +2266,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
@@ -2493,28 +2331,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-# +++
-- &libs-lzip
-  category: "libs"
-  name: "lzip"
-  version: "1.24.1"
-  uri:
-  - https://www.nongnu.org/lzip/lzip.html
-  license: "GPL-2+"
-  description: "Lossless data compressor based on the LZMA algorithm"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-arch/lzip
-  provides:
-  - category: "app-arch"
-    name: "lzip"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-mac
   category: "libs"
@@ -2658,28 +2474,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
-- &libs-neXtaw
-  category: "libs"
-  name: "neXtaw"
-  version: "0.15.1-r5+1"
-  uri:
-  - https://siag.nu/neXtaw/
-  license: "BSD"
-  description: "Athena Widgets with N*XTSTEP appearance"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/neXtaw
-  provides:
-  - category: "x11-libs"
-    name: "neXtaw"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-nlohmann_json
   category: "libs"
   name: "nlohmann_json"
@@ -2765,28 +2559,6 @@ packages:
   atoms:
   - atom: "dev-games/physfs"
     use: "7zip grp hog iso mvl qpak slb static-libs vdf wad zip"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-# +++
-- &libs-portsmf
-  category: "libs"
-  name: "portsmf"
-  version: "239+1"
-  uri:
-  - https://codeberg.org/tenacityteam/portsmf
-  license: "MIT"
-  description: "The Tenacity fork of PortSMF, a Standard MIDI File library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/portsmf
-  provides:
-  - category: "media-libs"
-    name: "portsmf"
-    version: ">=0"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3082,28 +2854,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
-- &libs-rtmidi
-  category: "libs"
-  name: "rtmidi"
-  version: "6.0.0+1"
-  uri:
-  - https://www.music.mcgill.ca/~gary/rtmidi
-  license: "RtMidi"
-  description: "A set of C++ classes that provide a common API for realtime MIDI input/output"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/rtmidi
-  provides:
-  - category: "media-libs"
-    name: "rtmidi"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -3147,7 +2897,7 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
+# may be included in its referring package
 - &libs-smpeg
   category: "libs"
   name: "smpeg"
@@ -3167,30 +2917,6 @@ packages:
   atoms:
   - atom: "media-libs/smpeg"
     use: "opengl"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &libs-smpeg2
-  category: "libs"
-  name: "smpeg2"
-  version: "2.0.0-r4+1"
-  uri:
-  - https://icculus.org/smpeg/
-  license: "LGPL-2+"
-  description: "SDL MPEG Player Library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/smpeg2
-  provides:
-  - category: "media-libs"
-    name: "smpeg2"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/smpeg2"
-    use: "mmx"
   requires:
   - <<: *layers-X
   build_requires:
@@ -3537,7 +3263,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -3559,27 +3284,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# +++
-- &libs-zita-convolver
-  category: "libs"
-  name: "zita-convolver"
-  version: "4.0.3+1"
-  uri:
-  - https://kokkinizita.linuxaudio.org/linuxaudio/
-  license: "GPL-3+"
-  description: "C++ library implementing a real-time convolution matrix"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/zita-convolver
-  provides:
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 0 apps ###
@@ -3964,7 +3668,7 @@ packages:
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.18.0"
+  version: "9.18.0-r1"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -4480,6 +4184,35 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "deadbeef"
+  version: "1.9.6-r2+1"
+  uri:
+  - https://deadbeef.sourceforge.io
+  - https://github.com/apple/swift-corelibs-libdispatch
+  license: "Apache-2.0 BSD GPL-2 LGPL-2.1"
+  description: |
+    DeaDBeeF is a modular audio player similar to foobar2000
+    A library for concurrent code execution on multicore hardware
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/deadbeef
+  provides:
+  - category: "media-sound"
+    name: "deadbeef"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libdispatch"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/deadbeef"
+    use: "aac alsa cdda cover flac hotkeys lastfm mp3 nls oss pipewire supereq vorbis wavpack"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-designer
   category: "apps"
@@ -5542,7 +5275,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "10.8.1"
+  version: "11.0.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -5595,7 +5328,7 @@ packages:
 
 - category: "apps"
   name: "gnofract4d"
-  version: "4.3_p20240324+1"
+  version: "4.3_p20240821"
   uri:
   - https://fract4d.github.io/gnofract4d/
   license: "BSD"
@@ -5750,7 +5483,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "135.0.7049.52"
+  version: "135.0.7049.84"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -5875,29 +5608,6 @@ packages:
   atoms:
   - atom: "app-text/gtkspell"
     use: "introspection"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "guvcview"
-  version: "2.2.1"
-  uri:
-  - http://guvcview.sourceforge.net
-  license: "GPL-3"
-  description: "Simple Qt5 or GTK+3 interface for capturing and viewing video from v4l2 devices"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/guvcview
-  provides:
-  - category: "media-video"
-    name: "guvcview"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/guvcview"
-    use: "-qt5"
   requires:
   - <<: *layers-X
   build_requires:
@@ -6717,7 +6427,7 @@ packages:
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03+1"
+  version: "23.03-r1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -7030,6 +6740,37 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "milkytracker"
+  version: "1.05.01+1"
+  uri:
+  - http://milkytracker.org
+  - https://www.music.mcgill.ca/~gary/rtmidi
+  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT RtMidi"
+  description: |
+    FastTracker 2 inspired music tracker
+    A set of C++ classes that provide a common API for realtime MIDI input/output
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/milkytracker
+  provides:
+  - category: "media-sound"
+    name: "milkytracker"
+    version: ">=0"
+  - category: "media-libs"
+    name: "rtmidi"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/milkytracker"
+    use: "alsa jack"
+  - atom: "media-libs/rtmidi"
+    license: "RtMidi"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "minidlna"
@@ -8463,7 +8204,7 @@ packages:
 
 - category: "apps"
   name: "redshift"
-  version: "1.12-r12"
+  version: "1.12-r13"
   uri:
   - http://jonls.dk/redshift
   license: "GPL-3"
@@ -8479,6 +8220,32 @@ packages:
   atoms:
   - atom: "x11-misc/redshift"
     use: "appindicator geoclue gtk nls"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "regexxer"
+  version: "0.10-r2+2"
+  uri:
+  - http://regexxer.sourceforge.net/
+  - https://wiki.gnome.org/Projects/GtkSourceView
+  license: "GPL-2 LGPL-2.1"
+  description: |
+    An interactive tool for performing search and replace operations
+    C++ bindings for gtksourceview
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/regexxer
+  provides:
+  - category: "dev-util"
+    name: "regexxer"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "gtksourceviewmm"
+    version: ">=0"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -8505,6 +8272,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-rofi
+  category: "apps"
+  name: "rofi"
+  version: "1.7.8"
+  uri:
+  - https://github.com/davatorium/rofi
+  license: "MIT"
+  description: "A window switcher, run dialog and dmenu replacement"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/rofi
+  provides:
+  - category: "x11-misc"
+    name: "rofi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "rssguard"
   version: "4.8.3"
@@ -8528,27 +8316,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-rofi
-  category: "apps"
-  name: "rofi"
-  version: "1.7.8"
-  uri:
-  - https://github.com/davatorium/rofi
-  license: "MIT"
-  description: "A window switcher, run dialog and dmenu replacement"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/rofi
-  provides:
-  - category: "x11-misc"
-    name: "rofi"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "scapy"
@@ -8817,7 +8584,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.1+3"
+  version: "0.8.1_p20250308"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -8831,9 +8598,9 @@ packages:
     name: "subtitlecomposer"
     version: ">=0"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-kde-common
 
 - &apps-sqlcipher
   category: "apps"
@@ -9133,7 +8900,7 @@ packages:
 - &apps-tk
   category: "apps"
   name: "tk"
-  version: "8.6.15"
+  version: "8.6.15+1"
   uri:
   - http://www.tcl.tk/
   license: "tcltk"
@@ -9221,7 +8988,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.1-r2"
+  version: "0.36.1-r3"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -9418,7 +9185,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.99.02289"
+  version: "1.99.12392"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9590,7 +9357,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.4.2-r1"
+  version: "4.4.5-r1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -9715,6 +9482,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-xournalpp
+  category: "apps"
+  name: "xournalpp"
+  version: "1.2.3"
+  uri:
+  - https://github.com/xournalpp/xournalpp
+  license: "GPL-2"
+  description: "Handwriting notetaking software with PDF annotation support"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/xournalpp
+  provides:
+  - category: "app-text"
+    name: "xournalpp"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-xpad
   category: "apps"
   name: "xpad"
@@ -9825,7 +9613,7 @@ packages:
 - &apps-zathura
   category: "apps"
   name: "zathura"
-  version: "0.5.4+1"
+  version: "0.5.8"
   uri:
   - https://pwmt.org/projects/zathura/
   - https://pwmt.org/projects/girara/
@@ -9859,7 +9647,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.4.1.587"
+  version: "6.4.3.827"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -10098,11 +9886,14 @@ packages:
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
-  version: "0.99_beta19-r11+2"
+  version: "0.99_beta19-r11+3"
   uri:
   - http://libcaca.zoy.org/
-  license: "GPL-2 ISC LGPL-2.1 WTFPL-2"
-  description: "A library that creates colored ASCII-art graphics"
+  - https://sourceforge.net/projects/ftgl/
+  license: "GPL-2 ISC LGPL-2.1 MIT WTFPL-2"
+  description: |
+    A library that creates colored ASCII-art graphics
+    Library to use arbitrary fonts in OpenGL applications
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -10111,6 +9902,9 @@ packages:
   - category: "media-libs"
     name: "libcaca"
     version: ">=0"
+  - category: "media-libs"
+    name: "ftgl"
+    version: ">=0"
   atoms:
   - atom: "media-libs/libcaca"
     use: "imlib ncurses opengl ruby slang truetype X # mono java"
@@ -10118,36 +9912,8 @@ packages:
   #- <<: *layers-java
   - <<: *layers-X
   # - <<: *apps-mono
-  - <<: *libs-ftgl
   build_requires:
   # - <<: *layers-java
-  - <<: *layers-X
-
-# +++
-- &libs-libgnomecanvas
-  category: "libs"
-  name: "libgnomecanvas"
-  version: "2.30.3-r1+3"
-  uri:
-  - https://library.gnome.org/devel/libgnomecanvas/stable/
-  license: "LGPL-2"
-  description: "The Gnome 2 Canvas library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      gnome-base/libgnomecanvas
-  provides:
-  - category: "gnome-base"
-    name: "libgnomecanvas"
-    version: ">=0"
-  atoms:
-  - atom: "gnome-base/libgnomecanvas"
-    use: "glade"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  - <<: *libs-libglade
-  build_requires:
   - <<: *layers-X
 
 - &libs-liblrdf
@@ -10352,15 +10118,18 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# +++
+# may be included in its referring package
 - &libs-tiff-compat
   category: "libs"
   name: "tiff-compat"
-  version: "4.4.0-r1"
+  version: "4.4.0-r1+1"
   uri:
   - http://libtiff.maptools.org
-  license: "libtiff"
-  description: "Tag Image File Format (TIFF) library (compat package for libtiff.so.5)"
+  - http://www.cl.cam.ac.uk/~mgk25/jbigkit/
+  license: "GPL-2 libtiff"
+  description: |
+    Tag Image File Format (TIFF) library (compat package for libtiff.so.5)
+    data compression algorithm for bi-level high-resolution images
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -10373,9 +10142,11 @@ packages:
   - atom: "media-libs/tiff-compat"
     use: "cxx jbig jpeg lzma verify-sig webp zlib zstd"
     license: "libtiff"
+  - category: "media-libs"
+    name: "jbigkit"
+    version: ">=0"
   requires:
   - <<: *layers-X
-  - <<: *libs-jbigkit
   build_requires:
   - <<: *layers-X
 
@@ -10755,7 +10526,7 @@ packages:
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
-  version: "5.1.3"
+  version: "5.2.0"
   uri:
   - https://thetumultuousunicornofdarkness.github.io/CPU-X/
   - http://libcpuid.sourceforge.net/
@@ -10838,30 +10609,6 @@ packages:
   - <<: *libs-AOMediaCodecs
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "deadbeef"
-  version: "1.9.6-r2"
-  uri:
-  - https://deadbeef.sourceforge.io
-  license: "BSD GPL-2 LGPL-2.1"
-  description: "DeaDBeeF is a modular audio player similar to foobar2000"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/deadbeef
-  provides:
-  - category: "media-sound"
-    name: "deadbeef"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/deadbeef"
-    use: "aac alsa cdda cover flac hotkeys lastfm mp3 nls oss pulseaudio supereq vorbis wavpack"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-libdispatch
-  build_requires:
-  - <<: *layers-qt
 
 - &apps-delve
   category: "apps"
@@ -11061,7 +10808,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "29.4-r2"
+  version: "30.1-r1"
   uri:
   - https://www.gnu.org/software/emacs
   - https://savannah.nongnu.org/projects/m17n
@@ -11526,14 +11273,39 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "guvcview"
+  version: "2.2.1+1"
+  uri:
+  - http://guvcview.sourceforge.net
+  license: "GPL-3"
+  description: "Simple Qt5 or GTK+3 interface for capturing and viewing video from v4l2 devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/guvcview
+  provides:
+  - category: "media-video"
+    name: "guvcview"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/guvcview"
+    use: "gsl qt6 sfml"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libsfml
+  build_requires:
+  - <<: *layers-X
+
 - &apps-handbrake
   category: "apps"
   name: "handbrake"
-  version: "1.6.1+3"
+  version: "1.9.0"
   uri:
   - https://handbrake.fr/
   license: "GPL-2"
-  description: "Open-source, GPL-licensed, multiplatform, multithreaded video transcoder"
+  description: |
+    Open-source, GPL-licensed, multiplatform, multithreaded video transcoder
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -11794,11 +11566,14 @@ packages:
 - &apps-links
   category: "apps"
   name: "links"
-  version: "2.30"
+  version: "2.30+1"
   uri:
   - http://links.twibright.com/
-  license: "GPL-2"
-  description: "A fast and lightweight web browser running in both graphics and text mode"
+  - https://www.nongnu.org/lzip/lzip.html
+  license: "GPL-2 GPL-2+"
+  description: |
+    A fast and lightweight web browser running in both graphics and text mode
+    less data compressor based on the LZMA algorithm
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -11806,6 +11581,9 @@ packages:
   provides:
   - category: "www-client"
     name: "links"
+    version: ">=0"
+  - category: "app-arch"
+    name: "lzip"
     version: ">=0"
   atoms:
   - atom: "www-client/links"
@@ -11815,7 +11593,6 @@ packages:
   - <<: *libs-AOMediaCodecs
 #   - <<: *libs-svgalib
   - <<: *libs-gpm
-  - <<: *libs-lzip
   build_requires:
   - <<: *layers-X
 
@@ -11952,35 +11729,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "milkytracker"
-  version: "1.05.01"
-  uri:
-  - http://milkytracker.org
-  -  https://www.music.mcgill.ca/~gary/rtmidi
-  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT"
-  description: |
-    FastTracker 2 inspired music tracker
-    A set of C++ classes that provide a common API for realtime MIDI input/output
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/milkytracker
-  provides:
-  - category: "media-sound"
-    name: "milkytracker"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/milkytracker"
-    use: "alsa jack"
-  # inner_build_reqs:
-  # - media-libs/rtmidi
-  requires:
-  - <<: *layers-X
-  - <<: *libs-rtmidi
-  build_requires:
-  - <<: *layers-X
-
 # - &apps-minecraft-server
 #   category: "apps"
 #   name: "minecraft-server"
@@ -12114,7 +11862,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.39.0-r1"
+  version: "0.39.0-r1+1"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -12133,9 +11881,10 @@ packages:
     version: '>=0'
   atoms:
   - atom: "media-video/mpv"
-    use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zlib vulkan"
+    use: "bluray cdda cli dvb dvd egl iconv jack jpeg lcms libass libmpv lua luajit openal samba sdl tools uchardet vaapi vdpau wayland xv zimg zlib vulkan"
   requires:
   - <<: *layers-X
+  - <<: *libs-zimg
   - <<: *apps-luajit
   build_requires:
   - <<: *layers-X
@@ -12279,7 +12028,6 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-luajit
-  - <<: *libs-intel-mediasdk
   - <<: *libs-mbedtls
   - <<: *libs-nlohmann_json
   - <<: *libs-rnnoise
@@ -12517,7 +12265,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.11.0+4"
+  version: "1.11.1-r1"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   - https://gitlab.mister-muffin.de/josch/img2pdf
@@ -12557,7 +12305,7 @@ packages:
 - &apps-picom
   category: "apps"
   name: "picom"
-  version: "11.2+1"
+  version: "12.5"
   uri:
   - https://github.com/yshui/picom
   license: "MPL-2.0 MIT"
@@ -12657,7 +12405,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "17.4"
+  version: "17.4+1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -12908,29 +12656,8 @@ packages:
 #   - <<: *layers-java
 
 - category: "apps"
-  name: "regexxer"
-  version: "0.10-r2+1"
-  uri:
-  - http://regexxer.sourceforge.net/
-  license: "GPL-2"
-  description: "An interactive tool for performing search and replace operations"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/regexxer
-  provides:
-  - category: "dev-util"
-    name: "regexxer"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gtksourceviewmm
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "remmina"
-  version: "1.4.39"
+  version: "1.4.40"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -13039,7 +12766,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.4.0"
+  version: "2.4.2"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -13271,7 +12998,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.9.0"
+  version: "1.9.1"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -13422,7 +13149,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.3.3635.2"
+  version: "7.3.3635.7"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -13448,7 +13175,7 @@ packages:
 
 - category: "apps"
   name: "vkeybd"
-  version: "0.1.18e"
+  version: "0.1.18e+1"
   uri:
   - http://www.alsa-project.org/~iwai/alsa.html
   license: "GPL-2"
@@ -14202,11 +13929,14 @@ packages:
 
 - category: "apps"
   name: "fotocx"
-  version: "24.50"
+  version: "24.50+1"
   uri:
   - https://kornelix.net/fotocx/fotocx.html
-  license: "GPL-3+"
-  description: "Program for improving image files made with a digital camera"
+  - https://wiki.gnome.org/Projects/libchamplain
+  license: "GPL-3+ LGPL-2.1+"
+  description: |
+    Program for improving image files made with a digital camera
+    Clutter based world map renderer
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14215,10 +13945,15 @@ packages:
   - category: "media-gfx"
     name: "fotocx"
     version: ">=0"
+  - category: "media-libs"
+    name: "libchamplain"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libchamplain"
+    use: "introspection gtk vala"
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-dcraw
-  - <<: *libs-libchamplain
   build_requires:
   - <<: *layers-gnome-common
 
@@ -14251,7 +13986,7 @@ packages:
 - &apps-gnuplot
   category: "apps"
   name: "gnuplot"
-  version: "6.0.1-r1+1"
+  version: "6.0.2"
   uri:
   - http://www.gnuplot.info/
   license: "gnuplot"
@@ -14636,7 +14371,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2-r2+2"
+  version: "24.2.7.2-r2+3"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15153,7 +14888,7 @@ packages:
 
 - category: "apps"
   name: "q4wine"
-  version: "1.3.13+2"
+  version: "1.4.0"
   uri:
   - https://q4wine.brezblock.org.ua/
   license: "GPL-3"
@@ -15295,7 +15030,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.6.3+1"
+  version: "1.6.3+2"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -15413,7 +15148,7 @@ packages:
 - &apps-timidity
   category: "apps"
   name: "timidity"
-  version: "2.15.0-r6+9"
+  version: "2.15.0-r6+10"
   uri:
   - http://timidity.sourceforge.net/
   - https://wiki.gentoo.org/wiki/No_homepage
@@ -15580,11 +15315,14 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.5.35-r8"
+  version: "21.5.35-r8+1"
   uri:
   - https://www.xemacs.org/
-  license: "GPL-3+"
-  description: "highly customizable open source text editor and application development system"
+  - https://siag.nu/neXtaw/
+  license: "BSD GPL-3+"
+  description: |
+    Highly customizable open source text editor and application development system
+    Athena Widgets with N*XTSTEP appearance
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -15608,6 +15346,9 @@ packages:
     version: ">=0"
   - category: "media-libs"
     name: "compface"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "neXtaw"
     version: ">=0"
   atoms:
   - atom: "app-editors/xemacs"
@@ -15640,7 +15381,6 @@ packages:
   - <<: *libs-gpm
   - <<: *libs-libXaw3d
   - <<: *libs-motif
-  - <<: *libs-neXtaw
   build_requires:
   - <<: *layers-X
 
@@ -15710,31 +15450,6 @@ packages:
   - <<: *layers-X
   - <<: *apps-xwininfo
   - <<: *libs-motif
-  build_requires:
-  - <<: *layers-X
-
-- &apps-xournal
-  category: "apps"
-  name: "xournal"
-  version: "0.4.8.2016-r1+1"
-  uri:
-  - http://xournal.sourceforge.net/
-  license: "GPL-2"
-  description: "An application for notetaking, sketching, and keeping a journal using a stylus"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/xournal
-  provides:
-  - category: "app-text"
-    name: "xournal"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/xournal"
-    use: "pdf"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-libgnomecanvas
   build_requires:
   - <<: *layers-X
 
@@ -16119,7 +15834,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "24.12.3"
+  version: "24.12.3+1"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -16475,7 +16190,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4-r1+1"
+  version: "1.4-r1+2"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
@@ -16787,7 +16502,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.13-r1+1"
+  version: "2.14.13-r1+2"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -17013,7 +16728,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-sdl2
-  - <<: *libs-smpeg2
   build_requires:
   - <<: *layers-X
 
@@ -17481,7 +17195,6 @@ packages:
 ### dep 5 libs ###
 ################################################################################################################################################################
 
-# +++
 - &libs-gtkmm-2
   category: "libs"
   name: "gtkmm"
@@ -17538,11 +17251,16 @@ packages:
 
 - category: "apps"
   name: "audacity"
-  version: "3.4.2-r1+1"
+  version: "3.7.2"
   uri:
   - https://web.audacityteam.org/
-  license: "GPL-2"
-  description: "Free crossplatform audio editor"
+  - https://github.com/claytonotey/libsbsms
+  - https://codeberg.org/tenacityteam/portsmf
+  license: "GPL-2 MIT"
+  description: |
+    Free crossplatform audio editor
+    A library for high quality time and pitch scale modification
+    The Tenacity fork of PortSMF, a Standard MIDI File library
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -17554,6 +17272,9 @@ packages:
   - category: "dev-libs"
     name: "libsbsms"
     version: ">=0"
+  - category: "media-libs"
+    name: "portsmf"
+    version: ">=0"
   atoms:
   - atom: "media-sound/audacity"
     use: "alsa ffmpeg flac id3tag jack ladspa lv2 mad ogg oss portmidi portmixer portsmf sbsms twolame vamp vorbis vst"
@@ -17562,7 +17283,6 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
-  - <<: *libs-portsmf
   - <<: *libs-rapidjson
   - <<: *libs-suil
   - <<: *libs-vamp-plugin-sdk
@@ -17676,15 +17396,22 @@ packages:
   version: "2.10.38-r1+1"
   uri:
   - https://www.gimp.org/
-  license: "GPL-3 LGPL-3"
-  description: "GNU Image Manipulation Program"
+  - http://liquidrescale.wikidot.com/
+  license: "GPL-2 GPL-3 LGPL-3"
+  description: |
+    GNU Image Manipulation Program
+    Content-aware resizing for the GIMP
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/gimp
+      media-plugins/gimp-lqr
   provides:
   - category: "media-gfx"
     name: "gimp"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "gimp-lqr"
     version: ">=0"
   atoms:
   - atom: "media-gfx/gimp"
@@ -17996,11 +17723,11 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# +++
+# may be included in its referring package
 - &libs-wxpython
   category: "libs"
   name: "wxpython"
-  version: "4.2.1-r2"
+  version: "4.2.2"
   uri:
   - https://www.wxpython.org/
   - https://github.com/wxWidgets/Phoenix
@@ -18124,7 +17851,6 @@ packages:
   - <<: *libs-libsoundtouch
   - <<: *libs-lilv
   - <<: *libs-rnnoise
-  - <<: *libs-zita-convolver
   - <<: *apps-calf
   build_requires:
   - <<: *layers-gnome
