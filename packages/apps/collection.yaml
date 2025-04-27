@@ -5590,30 +5590,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-gtkspell
-  category: "apps"
-  name: "gtkspell"
-  version: "3.0.10-r1+1"
-  uri:
-  - http://gtkspell.sourceforge.net/
-  license: "GPL-2+"
-  description: "Spell checking widget for GTK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/gtkspell
-  provides:
-  - category: "app-text"
-    name: "gtkspell"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/gtkspell"
-    use: "introspection"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "hardinfo"
   version: "0.6_alpha_pre20221113+1"
@@ -16476,7 +16452,7 @@ packages:
 - &apps-pidgin
   category: "apps"
   name: "pidgin"
-  version: "2.14.13-r1+2"
+  version: "2.14.13-r1+3"
   uri:
   - https://pidgin.im/
   - https://keep.imfreedom.org/libgnt/libgnt
@@ -16503,10 +16479,13 @@ packages:
     name: "libgnt"
     version: ">=0"
   - category: "x11-plugins"
+    name: "pidgin-opensteamworks"
+    version: ">=0"
+  - category: "x11-plugins"
     name: "pidgin-sipe"
     version: ">=0"
   - category: "x11-plugins"
-    name: "pidgin-opensteamworks"
+    name: "pidgin-skypeweb"
     version: ">=0"
   - category: "app-text"
     name: "gtkspell"
@@ -16517,15 +16496,9 @@ packages:
   - category: "dev-libs"
     name: "gmime:2.6"
     version: ">=0"
-  - category: "x11-plugins"
-    name: "pidgin-skypeweb"
-    version: ">=0"
-  - category: "x11-plugins"
-    name: "pidgin-sipe"
-    version: ">=0"
   atoms:
   - atom: "net-im/pidgin"
-    use: "dbus eds gadu gnutls groupwise gstreamer gtk gui idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell tcl v4l zephyr zeroconf # aqua tk"
+    use: "dbus eds gadu gnutls groupwise gstreamer gtk gui idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell v4l zephyr zeroconf # aqua tcl tk"
   - atom: "net-libs/libgadu"
     ise: "ssl threads"
   - atom: "x11-plugins/pidgin-sipe"
@@ -16540,7 +16513,6 @@ packages:
   - <<: *libs-gtk2
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
-  # - <<: *apps-gtkspell
   # - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
