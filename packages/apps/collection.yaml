@@ -3665,10 +3665,11 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# to be replaced by the net-dns/bind soon
 - &apps-bind-tools
   category: "apps"
   name: "bind-tools"
-  version: "9.18.0-r1"
+  version: "9.18.0"
   uri:
   - https://www.isc.org/software/bind
   license: "MPL-2.0"
@@ -5275,7 +5276,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "11.0.0"
+  version: "10.8.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -6427,7 +6428,7 @@ packages:
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03-r1"
+  version: "23.03+1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -8597,6 +8598,9 @@ packages:
   - category: "media-video"
     name: "subtitlecomposer"
     version: ">=0"
+  atoms:
+  - atom: "media-video/subtitlecomposer"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -8911,9 +8915,14 @@ packages:
       dev-lang/tk
   provides:
   - category: "dev-lang"
+    name: "tcl"
+    version: ">=0"
+  - category: "dev-lang"
     name: "tk"
     version: ">=0"
   atoms:
+  - atom: "dev-lang/tcl"
+    use: "threads"
   - atom: "dev-lang/tk"
     use: "threads"
   requires:
@@ -9357,7 +9366,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.4.5-r1"
+  version: "4.4.5-r1+1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -9373,8 +9382,12 @@ packages:
   atoms:
   - atom: "net-analyzer/wireshark"
     use: "wifi"
+  inner_build_reqs:
+  # in layers/gnome-common
+  - virtual/freedesktop-icon-theme
   requires:
   - <<: *layers-qt
+  - <<: *layers-gnome-common
   - category: "entity"
     name: "pcap"
     version: ">=0"
@@ -10091,7 +10104,7 @@ packages:
   license: "GPL-2 libtiff"
   description: |
     Tag Image File Format (TIFF) library (compat package for libtiff.so.5)
-    data compression algorithm for bi-level high-resolution images
+    Data compression algorithm for bi-level high-resolution images
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -11237,7 +11250,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.2.1+1"
+  version: "2.2.1+2"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -11252,7 +11265,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-video/guvcview"
-    use: "gsl qt6 sfml"
+    use: "gsl sfml # qt6"
   requires:
   - <<: *layers-X
   - <<: *libs-libsfml
@@ -12267,7 +12280,7 @@ packages:
 - &apps-picom
   category: "apps"
   name: "picom"
-  version: "12.5"
+  version: "12.5+1"
   uri:
   - https://github.com/yshui/picom
   license: "MPL-2.0 MIT"
@@ -12283,6 +12296,8 @@ packages:
   atoms:
   - atom: "x11-misc/picom"
     use: "config-file drm opengl pcre"
+  inner_build_reqs:
+  - dev-ruby/asciidoctor
   requires:
   - <<: *layers-X
   - <<: *libs-libconfig
@@ -12385,7 +12400,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-db/postgresql"
-    use: "icu kerberos ldap nls pam perl python readline server systemd ssl tcl threads uuid xml zlib # llvm"
+    use: "icu kerberos ldap nls pam perl python readline server systemd ssl threads uuid xml zlib # llvm tcl"
   inner_build_reqs:
   - acct-group/postgres acct-user/postgres
   - app-text/docbook-sgml-dtd app-text/docbook-dsssl-stylesheets app-text/docbook-xml-dtd app-text/openjade
@@ -12619,7 +12634,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.40"
+  version: "1.4.39"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -12634,7 +12649,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-misc/remmina"
-    use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet zeroconf"
+    use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit x2go # kwallet wayland X zeroconf"
     accept_keywords: "~amd64"
   # inner_build_reqs:
   # - kde-frameworks/kwallet
@@ -12728,7 +12743,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.4.2"
+  version: "2.4.2+1"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -12746,12 +12761,14 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-text/sigil"
-    use: "plugins qt6"
+    use: "plugins system-mathjax"
   prepare:
-  # Needs python[tk], remove that
+  # Remove python[tk] dependency as it's not needed
   - |
     sed -i -e "s/.*'tk'.*//" /var/db/repos/gentoo/app-text/sigil/sigil-*.ebuild && \
     ebuild /var/db/repos/gentoo/app-text/sigil/sigil-*.ebuild manifest
+  inner_build_reqs:
+  - dev-python/setuptools-rust
   requires:
   - <<: *layers-qt
   - <<: *libs-css-parser
@@ -14866,6 +14883,9 @@ packages:
   - category: "sys-fs"
     name: "fuseiso"
     version: ">=0"
+  atoms:
+  - atom: "app-emulation/q4wine"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *apps-icoutils
@@ -16152,12 +16172,10 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4-r1+2"
+  version: "1.4-r1+3"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
-  - https://opendev.org/openstack/pbr/
-  - https://github.com/gnudatalanguage/gdl
   license: "Apache-2.0 GPL-2 LGPL-2.1 MIT"
   description: |
     SVG based generic vector-drawing program
@@ -16175,15 +16193,9 @@ packages:
   - category: "dev-python"
     name: "lockfile"
     version: ">=0"
-  - category: "dev-python"
-    name: "pbr"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "gdl"
-    version: ">=0"
   atoms:
   - atom: "media-gfx/inkscape"
-    use: "cdr dbus exif imagemagick inkjar jemalloc jpeg openmp postscript readline spell svg2 visio wpg # graphicsmagick"
+    use: "cdr exif imagemagick inkjar jemalloc jpeg openmp postscript readline sourceview spell svg2 visio wpg # dia graphicsmagick X"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-cachecontrol
