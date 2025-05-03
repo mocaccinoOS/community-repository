@@ -1252,6 +1252,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-ffmpeg-compat
+  category: "libs"
+  name: "ffmpeg-compat"
+  version: "6.1.2"
+  uri:
+  - https://ffmpeg.org/
+  license: "GPL-2+"
+  description: "Complete solution to record/convert/stream audio and video"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/ffmpeg-compat
+  provides:
+  - category: "media-video"
+    name: "ffmpeg-compat"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/ffmpeg-compat"
+    use: "lame theora vaapi vdpau vorbis vpx x264"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-fltk
   category: "libs"
   name: "fltk"
@@ -2215,7 +2239,7 @@ packages:
     name: "libutf8proc"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/ruby
+  - dev-lang/ruby:3.2;USE="ruby_targets_ruby32"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -3212,7 +3236,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "x11-libs/wxGTK"
-    use: "gstreamer libnotify sdl" # webkit
+    use: "gstreamer libnotify sdl # webkit"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -3236,7 +3260,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "x11-libs/wxGTK"
-    use: "gstreamer libnotify sdl" # webkit
+    use: "gstreamer libnotify sdl # webkit"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -5913,10 +5937,10 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-kchmviewer
+- &apps-uchmviewer
   category: "apps"
-  name: "kchmviewer"
-  version: "8.0+1"
+  name: "uchmviewer"
+  version: "8.4"
   uri:
   - https://www.ulduzsoft.com/kchmviewer/
   license: "GPL-3+"
@@ -5924,13 +5948,13 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-text/kchmviewer
+      app-text/uchmviewer
   provides:
   - category: "app-text"
-    name: "kchmviewer"
+    name: "uchmviewer"
     version: ">=0"
   atoms:
-  - atom: "app-text/kchmviewer"
+  - atom: "app-text/uchmviewer"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
@@ -7128,29 +7152,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- category: "apps"
-  name: "otter"
-  version: "1.0.03-r1+1"
-  uri:
-  - http://www.cs.unm.edu/~mccune/otter/
-  license: "otter"
-  description: "An Automated Deduction System"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      www-client/otter
-  provides:
-  - category: "www-client"
-    name: "otter"
-    version: ">=0"
-  atoms:
-  - atom: "www-client/otter"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
 
 - &apps-pandoc
   category: "apps"
@@ -8362,32 +8363,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-simplescreenrecorder
-  category: "apps"
-  name: "simplescreenrecorder"
-  version: "0.4.4-r5"
-  uri:
-  - https://www.maartenbaert.be/simplescreenrecorder/
-  license: "GPL-3"
-  description: "A Simple Screen Recorder"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/simplescreenrecorder
-  provides:
-  - category: "media-video"
-    name: "simplescreenrecorder"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/simplescreenrecorder"
-    use: "asm vpx jack mp3 opengl pulseaudio theora v4l vorbis x264"
-  requires:
-  # - <<: *layers-qt
-  - <<: *layers-kde-kf5
-  build_requires:
-  # - <<: *layers-qt
-  - <<: *layers-kde-kf5
-
 - &apps-skypeforlinux
   category: "apps"
   name: "skypeforlinux"
@@ -9286,7 +9261,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.5.2"
+  version: "4.5.2+1"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -9301,11 +9276,12 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-irc/weechat"
-    use: "tcl -spell"
+    use: "-spell"
   requires:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
 
 # - category: "apps"
 #   name: "wezterm"
@@ -10104,7 +10080,7 @@ packages:
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
-  version: "1.2.13-r3"
+  version: "1.2.13-r3+1"
   uri:
   - http://xine.sourceforge.net/
   - https://github.com/devnev/libxdg-basedir
@@ -10140,6 +10116,7 @@ packages:
   - virtual/imagemagick-tools
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-ffmpeg-compat
   - <<: *libs-libcaca
   - <<: *apps-vcdimager
   build_requires:
@@ -11775,8 +11752,10 @@ packages:
   atoms:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
+  - atom: "dev-ruby/rake"
+    use: "ruby_targets_ruby32"
   inner_build_reqs:
-  - dev-ruby/rake
+  - dev-ruby/rake;USE="ruby_targets_ruby32"
   - app-text/po4a
   requires:
   - <<: *layers-qt
@@ -11956,26 +11935,15 @@ packages:
   - category: "dev-cpp"
     name: "asio"
     version: ">=0"
-  # - category: "dev-libs"
-  #   name: "cJSON"
-  #   version: ">=0"
-  # - category: "net-libs"
-  #   name: "librist"
-  #   version: ">=0"
-  # - category: "net-libs"
-  #   name: "srt"
-  #   version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
-    use: "alsa browser decklink fdk jack lua mpegts pipewire pulseaudio python qsv speex ssl truetype v4l wayland websocket # vlc # nvenc"
+    use: "alsa browser decklink fdk jack lua mpegts pipewire pulseaudio python qsv speex ssl truetype v4l wayland websocket # nvenc vlc"
     accept_keywords: "~amd64"
   - atom: "dev-libs/qr-code-generator"
     accept_keywords: "~amd64"
   - atom: "media-libs/libvpl"
     use: "dri drm examples experimental test tools vaapi wayland X"
     accept_keywords: "~amd64"
-  # - atom: "net-libs/librist"
-  #   accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *apps-luajit
@@ -12754,6 +12722,33 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-simplescreenrecorder
+  category: "apps"
+  name: "simplescreenrecorder"
+  version: "0.4.4-r5"
+  uri:
+  - https://www.maartenbaert.be/simplescreenrecorder/
+  license: "GPL-3"
+  description: "A Simple Screen Recorder"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/simplescreenrecorder
+  provides:
+  - category: "media-video"
+    name: "simplescreenrecorder"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/simplescreenrecorder"
+    use: "asm jack mp3 opengl pulseaudio theora v4l vorbis vpx x264"
+  requires:
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
+  - <<: *libs-ffmpeg-compat
+  build_requires:
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
+
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
@@ -12861,7 +12856,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.15.0+1"
+  version: "1.15.0+2"
   uri:
   - https://tigervnc.org
   license: "GPL-2"
@@ -12876,11 +12871,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-misc/tigervnc"
-    use: "dri3 drm server viewer opengl xinerama" # java gnutls nls
+    use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
   prepare:
-  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)/" vncviewer\/DesktopWindow.cxx || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
-  - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
-  - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild manifest
+  # - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)/" vncviewer\/DesktopWindow.cxx || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
+  - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild manifest
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
@@ -14284,6 +14279,7 @@ packages:
   - *layers-java-packages
   requires:
   - <<: *layers-X
+  - <<: *libs-ffmpeg-compat
   - <<: *libs-libao
   - <<: *libs-rapidjson
   - <<: *libs-tinyxml2
@@ -15345,7 +15341,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.5+1"
+  version: "0.9.5+2"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -15362,7 +15358,7 @@ packages:
   - atom: "media-sound/xmms2"
     use: "mlib-update server airplay fluidsynth gme ices mac ofa sid tremor vocoder xml server cxx perl python aac alsa ao cdda curl ffmpeg flac jack mad mms modplug mp3 musepack opus oss pulseaudio samba sndfile speex valgrind vorbis wavpack"
   inner_build_reqs:
-  - dev-debug/valgrind
+  - dev-perl/Pod-Parser
   requires:
   - <<: *layers-X
   - <<: *libs-game-music-emu
@@ -15456,7 +15452,7 @@ packages:
   - atom: "media-sound/zynaddsubfx"
     use: "dssi alsa fltk jack lash portaudio"
   inner_build_reqs:
-  - dev-lang/ruby:3.1;USE="ruby_targets_ruby31"
+  - dev-lang/ruby:3.2;USE="ruby_targets_ruby32"
   requires:
   - <<: *layers-X
   - <<: *fonts-roboto
@@ -15742,6 +15738,9 @@ packages:
     version: ">=0"
   - category: "media-libs"
     name: "libopenmpt"
+    version: ">=0"
+  - category: "virtual"
+    name: "freedesktop-icon-theme"
     version: ">=0"
   atoms:
   - atom: "media-sound/audacious"
@@ -16582,6 +16581,9 @@ packages:
     emerge.packages: >-
       sci-astronomy/stellarium
   provides:
+  - category: "dev-libs"
+    name: "md4c"
+    name: "calcmysky"
   - category: "sci-astronomy"
     name: "calcmysky"
     version: ">=0"
