@@ -12873,7 +12873,7 @@ packages:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
   prepare:
-  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx; a\\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild manifest
   excludes:
@@ -18047,43 +18047,40 @@ packages:
   - category: "media-libs"
     name: "opensubdiv"
     version: ">=0"
-  # - category: "media-libs"
-  #   name: "osl"
-  #   version: ">=0"
-  # - category: "media-libs"
-  #   name: "partio"
-  #   version: ">=0"
+  - category: "media-libs"
+    name: "osl"
+    version: ">=0"
+  - category: "media-libs"
+    name: "partio"
+    version: ">=0"
   - category: "media-gfx"
     name: "renderdoc"
     version: ">=0"
   atoms:
   - atom: "media-gfx/blender"
-    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # osl https://bugs.gentoo.org/935156 # cuda optix # oneapi # debug headless test"
-    # accept_keywords: "~amd64"
+    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # cuda optix # oneapi # debug headless test"
   - atom: "media-gfx/alembic"
     use: "hdf5"
-    accept_keywords: "~amd64"
   - atom: "media-libs/embree"
     use: "compact-polys ispc raymask ssp tbb # tutorial"
-  - atom: "dev-lang/ispc"
-    # use: "# gpu openmp"
-    accept_keywords: "~amd64"
+  # - atom: "dev-lang/ispc"
+  #   # use: "# gpu openmp"
   - atom: "media-libs/oidn"
     use: "hip openimageio # cuda"
   - atom: "media-libs/openpgl"
     use: "cpu_flags_x86_avx2"
-    accept_keywords: "~amd64"
   - atom: "media-libs/opensubdiv"
     use: "opencl openmp ptex tbb # cuda"
-    accept_keywords: "~amd64"
-  # - atom: "media-libs/osl"
-  #   use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  - atom: "media-libs/osl"
+    use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
   env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 llvm_slot_19\""
-  # prepare:
+  prepare:
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild manifest
+  - sed -i -e 's/<media-video\/ffmpeg-7/media-video\/ffmpeg/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
   inner_build_reqs:
   # - *apps-doxygen-packages
   # - dev-python/sphinx
