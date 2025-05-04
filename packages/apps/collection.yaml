@@ -12387,7 +12387,7 @@ packages:
 
 - category: "apps"
   name: "qcad"
-  version: "3.27.8.4+4"
+  version: "3.27.8.4+3"
   uri:
   - http://www.qcad.org
   license: "GPL-3"
@@ -12409,9 +12409,9 @@ packages:
   inner_build_reqs:
   - dev-qt/designer
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -12480,7 +12480,7 @@ packages:
 
 - category: "apps"
   name: "qtox"
-  version: "1.18.3-r1+2"
+  version: "1.18.3-r1+3"
   uri:
   - https://qtox.github.io
   license: "GPL-3+"
@@ -12505,13 +12505,13 @@ packages:
   - atom: "net-libs/tox"
     use: "av ipv6 # daemon dht-node log-debug +log-error log-info log-trace log-warn"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
   - <<: *apps-sqlcipher
   - category: "entity"
     name: "tox"
     version: ">=0"
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "qutebrowser"
@@ -18015,7 +18015,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      =media-gfx/alembic
+      media-gfx/alembic
       media-gfx/blender
   provides:
   - category: "media-gfx"
