@@ -99,11 +99,6 @@ entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "aubio" as libs/aubio << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-aubio
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "babl-gegl" as libs/babl-gegl << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-babl
   <color:#34495E><U+24DF></color> media-libs-gegl
@@ -157,6 +152,11 @@ entity "feedparser" as libs/feedparser << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-sgmllib3k
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "ffmpeg-compat" as libs/ffmpeg-compat << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-video-ffmpeg-compat
+..
+  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "fltk" as libs/fltk << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-fltk
@@ -1109,11 +1109,6 @@ entity "gtk-sunlight" as apps/gtk-sunlight << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "gtkspell" as apps/gtkspell << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-text-gtkspell
-..
-  <color:#9ACD32><U+2756></color> layers-X
-}
 entity "hardinfo" as apps/hardinfo << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-hardinfo
 ..
@@ -1191,8 +1186,8 @@ entity "kcharselect" as apps/kcharselect << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-kde-common
 }
-entity "kchmviewer" as apps/kchmviewer << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-text-kchmviewer
+entity "uchmviewer" as apps/uchmviewer << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-text-uchmviewer
 ..
   <color:#9ACD32><U+2756></color> layers-qt
 }
@@ -1419,11 +1414,6 @@ entity "nx" as apps/nx << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "otter" as apps/otter << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> www-client-otter
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "pandoc" as apps/pandoc << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-pandoc
   <color:#34495E><U+24DF></color> app-text-pandoc-cli
@@ -1613,7 +1603,7 @@ entity "quassel" as apps/quassel << (a,#FF00FF) >> {
 entity "qhexedit2" as apps/qhexedit2 << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-editors-qhexedit2
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "qjackctl" as apps/qjackctl << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-qjackctl
@@ -1676,11 +1666,6 @@ entity "simple-scan" as apps/simple-scan << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-simple-scan
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-}
-entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-video-simplescreenrecorder
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "skypeforlinux" as apps/skypeforlinux << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-im-skypeforlinux
@@ -1779,6 +1764,7 @@ entity "testdisk" as apps/testdisk << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "tk" as apps/tk << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-lang-tcl
   <color:#34495E><U+24DF></color> dev-lang-tk
 ..
   <color:#9ACD32><U+2756></color> layers-X
@@ -1871,6 +1857,7 @@ entity "wireshark" as apps/wireshark << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-analyzer-wireshark
 ..
   <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#5DADE2><U+24D4></color> entity-pcap
 }
 entity "worker" as apps/worker << (a,#FF00FF) >> {
@@ -1936,6 +1923,12 @@ entity "zsh" as apps/zsh << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-shells-zsh
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "aubio" as libs/aubio << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-libs-aubio
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
 }
 entity "build" as libs/build << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-build
@@ -2033,6 +2026,7 @@ entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
 }
 entity "tiff-compat" as libs/tiff-compat << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-tiff-compat
+  <color:#34495E><U+24DF></color> media-libs-jbigkit
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -2043,6 +2037,7 @@ entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libfame
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
   <color:#FF7700><U+1F79B></color> libs-libcaca
   <color:#FF00FF><U+25C9></color> apps-vcdimager
 }
@@ -2639,6 +2634,12 @@ entity "sigil" as apps/sigil << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-mathjax
   <color:#FF7700><U+1F79B></color> libs-regex
 }
+entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-video-simplescreenrecorder
+..
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
+}
 entity "smplayer" as apps/smplayer << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-smplayer
 ..
@@ -3017,6 +3018,7 @@ entity "kodi" as apps/kodi << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-tv-kodi
 ..
   <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
   <color:#FF7700><U+1F79B></color> libs-libao
   <color:#FF7700><U+1F79B></color> libs-rapidjson
   <color:#FF7700><U+1F79B></color> libs-tinyxml2
@@ -3363,6 +3365,7 @@ entity "audacious" as apps/audacious << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-ampache_browser
   <color:#34495E><U+24DF></color> media-libs-bio2jack
   <color:#34495E><U+24DF></color> media-libs-libopenmpt
+  <color:#34495E><U+24DF></color> virtual-freedesktop-icon-theme
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-libbs2b
@@ -3439,8 +3442,6 @@ entity "hugin" as apps/hugin << (a,#FF00FF) >> {
 entity "inkscape" as apps/inkscape << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-inkscape
   <color:#34495E><U+24DF></color> dev-python-lockfile
-  <color:#34495E><U+24DF></color> dev-python-pbr
-  <color:#34495E><U+24DF></color> dev-libs-gdl
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-cachecontrol
@@ -3481,7 +3482,7 @@ entity "labplot" as apps/labplot << (a,#FF00FF) >> {
 entity "nomacs" as apps/nomacs << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-nomacs
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "octave" as apps/octave << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-mathematics-octave
@@ -3511,13 +3512,12 @@ entity "pidgin" as apps/pidgin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-libs-libgadu
   <color:#34495E><U+24DF></color> net-libs-meanwhile
   <color:#34495E><U+24DF></color> dev-libs-libgnt
-  <color:#34495E><U+24DF></color> x11-plugins-pidgin-sipe
   <color:#34495E><U+24DF></color> x11-plugins-pidgin-opensteamworks
+  <color:#34495E><U+24DF></color> x11-plugins-pidgin-sipe
+  <color:#34495E><U+24DF></color> x11-plugins-pidgin-skypeweb
   <color:#34495E><U+24DF></color> app-text-gtkspell
   <color:#34495E><U+24DF></color> app-text-enchant
   <color:#34495E><U+24DF></color> dev-libs-gmime:2.6
-  <color:#34495E><U+24DF></color> x11-plugins-pidgin-skypeweb
-  <color:#34495E><U+24DF></color> x11-plugins-pidgin-sipe
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
@@ -3537,6 +3537,7 @@ entity "RcloneBrowser" as apps/RcloneBrowser << (a,#FF00FF) >> {
   <color:#FF00FF><U+25C9></color> apps-rclone
 }
 entity "stellarium" as apps/stellarium << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-libs-md4c
   <color:#34495E><U+24DF></color> sci-astronomy-calcmysky
   <color:#34495E><U+24DF></color> sci-libs-nlopt
   <color:#34495E><U+24DF></color> sci-astronomy-stellarium
@@ -3794,6 +3795,7 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
 entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-easyeffects
   <color:#34495E><U+24DF></color> media-libs-lsp-plugins
+  <color:#34495E><U+24DF></color> media-libs-zita-convolver
   <color:#34495E><U+24DF></color> media-plugins-mda-lv2
   <color:#34495E><U+24DF></color> media-plugins-zam-plugins
 ..
@@ -3914,8 +3916,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/handbrake" --u--> "libs/AOMediaCodecs"
 "apps/links" --u--> "libs/AOMediaCodecs"
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
-"apps/ardour" --u--> "libs/aubio"
-"apps/qtractor" --u--> "libs/aubio"
 "libs/libmypaint" --u--> "libs/babl-gegl"
 "apps/lutris" --u--> "libs/beautifulsoup4"
 "apps/qutebrowser" --u--> "libs/beautifulsoup4"
@@ -3936,6 +3936,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/cssselect"
 "apps/calibre" --u--> "libs/feedparser"
 "apps/quodlibet" --u--> "libs/feedparser"
+"libs/aubio" --u--> "libs/ffmpeg-compat"
+"libs/xine-lib" --u--> "libs/ffmpeg-compat"
+"apps/simplescreenrecorder" --u--> "libs/ffmpeg-compat"
+"apps/kodi" --u--> "libs/ffmpeg-compat"
 "apps/tigervnc" --u--> "libs/fltk"
 "apps/yoshimi" --u--> "libs/fltk"
 "apps/zynaddsubfx" --u--> "libs/fltk"
@@ -4214,6 +4218,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/k3b" --u--> "apps/vcdimager"
 "apps/x2goserver" --u--> "apps/xwininfo"
 "apps/xscreensaver" --u--> "apps/xwininfo"
+"apps/ardour" --u--> "libs/aubio"
+"apps/qtractor" --u--> "libs/aubio"
 "apps/gradience" --u--> "libs/build"
 "apps/displaycal-py3" --u--> "libs/build"
 "apps/pip" --u--> "libs/cachecontrol"

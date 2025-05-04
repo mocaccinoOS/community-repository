@@ -897,32 +897,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-aubio
-  category: "libs"
-  name: "aubio"
-  version: "0.4.9-r5"
-  uri:
-  - https://aubio.org/
-  license: "GPL-3"
-  description: "Library for audio labelling"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/aubio
-  provides:
-  - category: "media-libs"
-    name: "aubio"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/aubio"
-    use: "ffmpeg fftw jack libsamplerate sndfile python # double-precision"
-  inner_build_reqs:
-  - app-text/txt2man
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
@@ -6428,7 +6402,7 @@ packages:
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03-r1"
+  version: "23.03+1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -9282,7 +9256,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-
 # - category: "apps"
 #   name: "wezterm"
 #   version: "20240203.110809-r1"
@@ -9663,6 +9636,33 @@ packages:
 ################################################################################################################################################################
 ## dep 1 libs ###
 ################################################################################################################################################################
+
+- &libs-aubio
+  category: "libs"
+  name: "aubio"
+  version: "0.4.9-r5+1"
+  uri:
+  - https://aubio.org/
+  license: "GPL-3"
+  description: "Library for audio labelling"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/aubio
+  provides:
+  - category: "media-libs"
+    name: "aubio"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/aubio"
+    use: "ffmpeg fftw jack libsamplerate sndfile python # double-precision"
+  inner_build_reqs:
+  - app-text/txt2man
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ffmpeg-compat
+  build_requires:
+  - <<: *layers-X
 
 - &libs-build
   category: "libs"
@@ -12873,7 +12873,7 @@ packages:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
   prepare:
-  # - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)/" vncviewer\/DesktopWindow.cxx || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-1.14.1-r3.ebuild
+  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)/" vncviewer\/DesktopWindow.cxx || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild manifest
   excludes:
@@ -16583,7 +16583,7 @@ packages:
   provides:
   - category: "dev-libs"
     name: "md4c"
-    name: "calcmysky"
+    version: ">=0"
   - category: "sci-astronomy"
     name: "calcmysky"
     version: ">=0"
@@ -16969,7 +16969,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.0.2+3"
+  version: "1.0.2+2"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3"
@@ -17986,7 +17986,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.2.4-r1"
+  version: "4.2.4-r2"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/

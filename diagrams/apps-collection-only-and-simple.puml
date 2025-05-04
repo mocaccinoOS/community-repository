@@ -60,9 +60,6 @@ entity "analitza" as libs/analitza << (l,#FF7700) >> {
 entity "AOMediaCodecs" as libs/AOMediaCodecs << (l,#FF7700) >> {
 
 }
-entity "aubio" as libs/aubio << (l,#FF7700) >> {
-
-}
 entity "babl-gegl" as libs/babl-gegl << (l,#FF7700) >> {
 
 }
@@ -91,6 +88,9 @@ entity "cssselect" as libs/cssselect << (l,#FF7700) >> {
 
 }
 entity "feedparser" as libs/feedparser << (l,#FF7700) >> {
+
+}
+entity "ffmpeg-compat" as libs/ffmpeg-compat << (l,#FF7700) >> {
 
 }
 entity "fltk" as libs/fltk << (l,#FF7700) >> {
@@ -624,9 +624,6 @@ entity "gsmartcontrol" as apps/gsmartcontrol << (a,#FF00FF) >> {
 entity "gtk-sunlight" as apps/gtk-sunlight << (a,#FF00FF) >> {
 
 }
-entity "gtkspell" as apps/gtkspell << (a,#FF00FF) >> {
-
-}
 entity "hardinfo" as apps/hardinfo << (a,#FF00FF) >> {
 
 }
@@ -672,7 +669,7 @@ entity "kate" as apps/kate << (a,#FF00FF) >> {
 entity "kcharselect" as apps/kcharselect << (a,#FF00FF) >> {
 
 }
-entity "kchmviewer" as apps/kchmviewer << (a,#FF00FF) >> {
+entity "uchmviewer" as apps/uchmviewer << (a,#FF00FF) >> {
 
 }
 entity "kcolorchooser" as apps/kcolorchooser << (a,#FF00FF) >> {
@@ -801,9 +798,6 @@ entity "nrg2iso" as apps/nrg2iso << (a,#FF00FF) >> {
 entity "nx" as apps/nx << (a,#FF00FF) >> {
 
 }
-entity "otter" as apps/otter << (a,#FF00FF) >> {
-
-}
 entity "pandoc" as apps/pandoc << (a,#FF00FF) >> {
 
 }
@@ -898,9 +892,6 @@ entity "scour" as apps/scour << (a,#FF00FF) >> {
 
 }
 entity "simple-scan" as apps/simple-scan << (a,#FF00FF) >> {
-
-}
-entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
 
 }
 entity "skypeforlinux" as apps/skypeforlinux << (a,#FF00FF) >> {
@@ -1048,6 +1039,9 @@ entity "zoom" as apps/zoom << (a,#FF00FF) >> {
 
 }
 entity "zsh" as apps/zsh << (a,#FF00FF) >> {
+
+}
+entity "aubio" as libs/aubio << (l,#FF7700) >> {
 
 }
 entity "build" as libs/build << (l,#FF7700) >> {
@@ -1333,6 +1327,9 @@ entity "shutter" as apps/shutter << (a,#FF00FF) >> {
 
 }
 entity "sigil" as apps/sigil << (a,#FF00FF) >> {
+
+}
+entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
 
 }
 entity "smplayer" as apps/smplayer << (a,#FF00FF) >> {
@@ -1738,8 +1735,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/handbrake" --u--> "libs/AOMediaCodecs"
 "apps/links" --u--> "libs/AOMediaCodecs"
 "libs/sdl2" --u--> "libs/AOMediaCodecs"
-"apps/ardour" --u--> "libs/aubio"
-"apps/qtractor" --u--> "libs/aubio"
 "libs/libmypaint" --u--> "libs/babl-gegl"
 "apps/lutris" --u--> "libs/beautifulsoup4"
 "apps/qutebrowser" --u--> "libs/beautifulsoup4"
@@ -1760,6 +1755,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inkscape" --u--> "libs/cssselect"
 "apps/calibre" --u--> "libs/feedparser"
 "apps/quodlibet" --u--> "libs/feedparser"
+"libs/aubio" --u--> "libs/ffmpeg-compat"
+"libs/xine-lib" --u--> "libs/ffmpeg-compat"
+"apps/simplescreenrecorder" --u--> "libs/ffmpeg-compat"
+"apps/kodi" --u--> "libs/ffmpeg-compat"
 "apps/tigervnc" --u--> "libs/fltk"
 "apps/yoshimi" --u--> "libs/fltk"
 "apps/zynaddsubfx" --u--> "libs/fltk"
@@ -2038,6 +2037,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/k3b" --u--> "apps/vcdimager"
 "apps/x2goserver" --u--> "apps/xwininfo"
 "apps/xscreensaver" --u--> "apps/xwininfo"
+"apps/ardour" --u--> "libs/aubio"
+"apps/qtractor" --u--> "libs/aubio"
 "apps/gradience" --u--> "libs/build"
 "apps/displaycal-py3" --u--> "libs/build"
 "apps/pip" --u--> "libs/cachecontrol"
