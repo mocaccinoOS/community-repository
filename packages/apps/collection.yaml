@@ -17989,7 +17989,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.2.4-r2"
+  version: "4.4.1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -18015,7 +18015,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      =media-gfx/alembic-1.8.6-r1
+      =media-gfx/alembic
       media-gfx/blender
   provides:
   - category: "media-gfx"
@@ -18060,6 +18060,7 @@ packages:
   atoms:
   - atom: "media-gfx/blender"
     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # cuda optix # oneapi # debug headless test"
+    accept_keywords: "~amd64"
   - atom: "media-gfx/alembic"
     use: "hdf5"
   - atom: "media-libs/embree"
@@ -18075,13 +18076,13 @@ packages:
   - atom: "media-libs/osl"
     use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
   env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 llvm_slot_19\""
-  prepare:
+  # prepare:
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild manifest
-  - sed -i -e 's/<media-video\/ffmpeg-7/media-video\/ffmpeg/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
+  # - sed -i -e 's/<media-video\/ffmpeg-7/media-video\/ffmpeg/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
+  # - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
   inner_build_reqs:
   # - *apps-doxygen-packages
   # - dev-python/sphinx
