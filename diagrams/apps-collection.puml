@@ -1204,7 +1204,7 @@ entity "kdiff3" as apps/kdiff3 << (a,#FF00FF) >> {
 entity "kdocker" as apps/kdocker << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-kdocker
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-keepassxc
@@ -1608,7 +1608,7 @@ entity "qhexedit2" as apps/qhexedit2 << (a,#FF00FF) >> {
 entity "qjackctl" as apps/qjackctl << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-qjackctl
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "qjoypad" as apps/qjoypad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-qjoypad
@@ -2559,7 +2559,7 @@ entity "pstoedit" as apps/pstoedit << (a,#FF00FF) >> {
 entity "qcad" as apps/qcad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-qcad
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
 }
 entity "qdevicemonitor" as apps/qdevicemonitor << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-qdevicemonitor
@@ -2574,7 +2574,7 @@ entity "qmmp" as apps/qmmp << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-plugins-qmmp-plugin-pack
   <color:#34495E><U+24DF></color> app-i18n-enca
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-cmt-plugins
   <color:#FF7700><U+1F79B></color> libs-libprojectm
 }
@@ -2583,7 +2583,7 @@ entity "qtox" as apps/qtox << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-im-qtox
   <color:#34495E><U+24DF></color> kde-frameworks-sonnet
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-sqlcipher
   <color:#5DADE2><U+24D4></color> entity-tox
 }
@@ -3604,7 +3604,7 @@ entity "graphviz" as apps/graphviz << (a,#FF00FF) >> {
 entity "hedgewars" as apps/hedgewars << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-strategy-hedgewars
 ..
-  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
   <color:#FF7700><U+1F79B></color> libs-physfs
   <color:#FF7700><U+1F79B></color> libs-sdl2
   <color:#48D1CC><U+24D5></color> fonts-wqy-zenhei
@@ -3863,6 +3863,8 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-opencollada
   <color:#34495E><U+24DF></color> media-libs-openpgl
   <color:#34495E><U+24DF></color> media-libs-opensubdiv
+  <color:#34495E><U+24DF></color> media-libs-osl
+  <color:#34495E><U+24DF></color> media-libs-partio
   <color:#34495E><U+24DF></color> media-gfx-renderdoc
 ..
   <color:#9ACD32><U+2756></color> layers-qt
@@ -4138,7 +4140,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/uchmviewer" --u--> "layers/qt"
 "apps/kcolorchooser" --u--> "layers/kde-common"
 "apps/kdiff3" --u--> "layers/kde-common"
-"apps/kdocker" --u--> "layers/kde-kf5"
+"apps/kdocker" --u--> "layers/qt"
 "apps/keepassxc" --u--> "layers/kde-kf5"
 "apps/kgpg" --u--> "layers/kde-pim"
 "apps/khronos" --u--> "layers/gnome-common"
@@ -4205,7 +4207,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/quassel" --u--> "layers/kde-kf5"
 "apps/quassel" --u--> "entity/quassel"
 "apps/qhexedit2" --u--> "layers/qt"
-"apps/qjackctl" --u--> "layers/kde-kf5"
+"apps/qjackctl" --u--> "layers/qt"
 "apps/qjoypad" --u--> "layers/qt"
 "apps/qview" --u--> "layers/qt"
 "apps/rawtherapee" --u--> "layers/gnome-common"
@@ -4478,15 +4480,15 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/pstoedit" --u--> "layers/X"
 "apps/pstoedit" --u--> "libs/libemf"
 "apps/pstoedit" --u--> "apps/plotutils"
-"apps/qcad" --u--> "layers/kde-kf5"
+"apps/qcad" --u--> "layers/qt"
 "apps/qdevicemonitor" --u--> "layers/qt"
 "apps/qdevicemonitor" --u--> "layers/gnome-common"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
 "apps/qdevicemonitor" --u--> "apps/usbmuxd"
-"apps/qmmp" --u--> "layers/kde-kf5"
+"apps/qmmp" --u--> "layers/qt"
 "apps/qmmp" --u--> "libs/cmt-plugins"
 "apps/qmmp" --u--> "libs/libprojectm"
-"apps/qtox" --u--> "layers/kde-kf5"
+"apps/qtox" --u--> "layers/qt"
 "apps/qtox" --u--> "apps/sqlcipher"
 "apps/qtox" --u--> "entity/tox"
 "apps/qutebrowser" --u--> "layers/qt"
@@ -4860,7 +4862,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/graphviz" --u--> "layers/qt"
 "apps/graphviz" --u--> "layers/java"
 "apps/graphviz" --u--> "libs/physfs"
-"apps/hedgewars" --u--> "layers/qt"
+"apps/hedgewars" --u--> "layers/kde-kf5"
 "apps/hedgewars" --u--> "libs/physfs"
 "apps/hedgewars" --u--> "libs/sdl2"
 "apps/hedgewars" --u--> "fonts/wqy-zenhei"

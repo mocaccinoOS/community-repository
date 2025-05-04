@@ -5980,7 +5980,7 @@ packages:
 - &apps-kdocker
   category: "apps"
   name: "kdocker"
-  # version: "6.2"
+  version: "6.2+1"
   uri:
   - https://github.com/user-none/KDocker
   license: "GPL-2+"
@@ -5994,9 +5994,9 @@ packages:
     name: "kdocker"
     version: ">=0"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - &apps-keepassxc
   category: "apps"
@@ -8053,7 +8053,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "1.0.3-r1"
+  version: "1.0.3-r1+1"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -8070,9 +8070,9 @@ packages:
   - atom: "media-sound/qjackctl"
     use: "alsa dbus portaudio"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - &apps-qjoypad
   category: "apps"
@@ -12387,7 +12387,7 @@ packages:
 
 - category: "apps"
   name: "qcad"
-  version: "3.27.8.4+3"
+  version: "3.27.8.4+4"
   uri:
   - http://www.qcad.org
   license: "GPL-3"
@@ -12404,13 +12404,14 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/qcad"
+    use: "-qt5 qt6"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-qt/designer
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -12443,7 +12444,7 @@ packages:
 
 - category: "apps"
   name: "qmmp"
-  version: "2.1.9+3"
+  version: "2.1.9+4"
   uri:
   - https://qmmp.ylsoftware.com
   license: "GPL-3"
@@ -12467,7 +12468,7 @@ packages:
   - atom: "media-sound/qmmp"
     use: "aac alsa analyzer cdda cover crossfade cue dbus enca ffmpeg flac mad musepack notifier opus pipewire projectm pulseaudio sndfile tray udisks vorbis wavpack # archive bs2b curl game gnome jack ladspa lyrics midi mms mplayer oss qsui qtmedia scrobbler shout sid soxr stereo xmp"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *libs-cmt-plugins
   - <<: *libs-libprojectm
   # - <<: *libs-game-music-emu
@@ -12475,11 +12476,11 @@ packages:
   # - <<: *libs-libshout
   # - <<: *libs-libsidplayfp
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - category: "apps"
   name: "qtox"
-  version: "1.18.3-r1+1"
+  version: "1.18.3-r1+2"
   uri:
   - https://qtox.github.io
   license: "GPL-3+"
@@ -12504,13 +12505,13 @@ packages:
   - atom: "net-libs/tox"
     use: "av ipv6 # daemon dht-node log-debug +log-error log-info log-trace log-warn"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *apps-sqlcipher
   - category: "entity"
     name: "tox"
     version: ">=0"
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - category: "apps"
   name: "qutebrowser"
@@ -16372,7 +16373,6 @@ packages:
     use: "raw tiff plugins"
   requires:
   - <<: *layers-qt
-  # - <<: *layers-kde-kf5
   build_requires:
   - <<: *buildbase-qt
   - <<: *buildbase-sci-libs
