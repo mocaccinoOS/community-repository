@@ -5633,62 +5633,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-hip
-  category: "apps"
-  name: "hip"
-  version: "6.3.3"
-  uri:
-  - https://github.com/ROCm/clr
-  license: "Apache-2.0 MIT"
-  description: "C++ Heterogeneous-Compute Interface for Portability"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/hip
-  provides:
-  - category: "dev-util"
-    name: "hip"
-    version: ">=0"
-  - category: "dev-util"
-    name: "hipcc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocm-comgr"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocm-device-libs"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocminfo"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocr-runtime"
-    version: ">=0"
-  - category: "dev-util"
-    name: "roct-thunk-interface"
-    version: ">=0"
-  atoms:
-  - atom: "dev-util/hip"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/hipcc"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocm-comgr"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocm-device-libs"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocminfo"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocr-runtime"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/roct-thunk-interface"
-    accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *apps-doxygen
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "htop"
   version: "3.3.0+13"
@@ -17903,6 +17847,62 @@ packages:
 #   - <<: *buildbase-qt
 #   - <<: *buildbase-sci-libs
 #   requires_final_images: true
+
+- &apps-hip
+  category: "apps"
+  name: "hip"
+  version: "6.3.3"
+  uri:
+  - https://github.com/ROCm/clr
+  license: "Apache-2.0 MIT"
+  description: "C++ Heterogeneous-Compute Interface for Portability"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/hip
+  provides:
+  - category: "dev-util"
+    name: "hip"
+    version: ">=0"
+  - category: "dev-util"
+    name: "hipcc"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocm-comgr"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocm-device-libs"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocminfo"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocr-runtime"
+    version: ">=0"
+  - category: "dev-util"
+    name: "roct-thunk-interface"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/hip"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/hipcc"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocm-comgr"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocm-device-libs"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocminfo"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocr-runtime"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/roct-thunk-interface"
+    accept_keywords: "~amd64"
+  inner_build_requires:
+  - <<: *apps-doxygen
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "krita"
