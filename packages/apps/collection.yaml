@@ -17885,6 +17885,9 @@ packages:
   - category: "dev-util"
     name: "rocminfo"
     version: ">=0"
+  - category: "sys-process"
+    name: "numactl"
+    version: ">=0"
   atoms:
   - atom: "dev-libs/hipother"
     accept_keywords: "~amd64"
@@ -17904,6 +17907,11 @@ packages:
     accept_keywords: "~amd64"
   inner_build_requires:
   - <<: *apps-doxygen
+  inner_build_reqs:
+  - llvm-core/lld
+  - llvm-core/lld-toolchain-symlinks
+  - app-editors/vim-core
+  - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-X
   build_requires:
