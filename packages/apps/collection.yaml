@@ -17093,7 +17093,7 @@ packages:
   - atom: "sys-libs/freeipmi"
     use: "without-root nagios"
   - atom: "sys-power/nut"
-    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf"
+    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
@@ -17113,8 +17113,7 @@ packages:
   - <<: *apps-net-snmp
   build_requires:
   # - <<: *layers-qt
-  - <<: *buildbase-kde-kf5
-  requires_final_images: true
+  - <<: *layers-kde-kf5
 
 - &apps-warmux
   category: "apps"
