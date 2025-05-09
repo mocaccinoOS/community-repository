@@ -17851,7 +17851,7 @@ packages:
 - &apps-hip
   category: "apps"
   name: "hip"
-  version: "6.3.3+2"
+  version: "6.3.3+3"
   uri:
   - https://github.com/ROCm/clr
   license: "Apache-2.0 MIT"
@@ -17885,6 +17885,12 @@ packages:
   - category: "sys-process"
     name: "numactl"
     version: ">=0"
+  - category: "llvm-core"
+    name: "lld"
+    version: ">=0"
+  - category: "llvm-core"
+    name: "lld-toolchain-symlinks"
+    version: ">=0"
   atoms:
   - atom: "dev-libs/rocm-comgr"
     accept_keywords: "~amd64"
@@ -17903,8 +17909,6 @@ packages:
   inner_build_requires:
   - <<: *apps-doxygen
   inner_build_reqs:
-  - llvm-core/lld
-  - llvm-core/lld-toolchain-symlinks
   - app-editors/vim-core
   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
   requires:
