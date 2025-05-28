@@ -5587,6 +5587,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-guake
+  category: "apps"
+  name: "guake"
+  version: "3.10.0+31"
+  uri:
+  - http://guake-project.org
+  license: "GPL-2+"
+  description: "Drop-down terminal for GNOME"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-terms/guake
+  provides:
+  - category: "x11-terms"
+    name: "guake"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "hardinfo"
   version: "0.6_alpha_pre20240320"
