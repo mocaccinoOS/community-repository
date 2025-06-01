@@ -1587,7 +1587,7 @@ packages:
   - atom: "app-admin/haskell-updater"
     accept_keywords: "~amd64"
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}} )/PYTHON_COMPAT=( python3_{10..123} )/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild manifest
   inner_build_reqs:
   - app-text/docbook-xml-dtd
@@ -1614,7 +1614,7 @@ packages:
 - &def-haskell
   category: "layers"
   name: "haskell"
-  version: "0.25+1"
+  version: "0.25"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
