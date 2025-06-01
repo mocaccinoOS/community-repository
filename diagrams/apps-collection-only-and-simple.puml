@@ -267,13 +267,7 @@ entity "python-msgpack" as libs/python-msgpack << (l,#FF7700) >> {
 entity "python-protobuf" as libs/python-protobuf << (l,#FF7700) >> {
 
 }
-entity "qcustomplot" as libs/qcustomplot << (l,#FF7700) >> {
-
-}
 entity "qscintilla" as libs/qscintilla << (l,#FF7700) >> {
-
-}
-entity "qscintilla-qt5" as libs/qscintilla-qt5 << (l,#FF7700) >> {
 
 }
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
@@ -337,9 +331,6 @@ entity "vdf" as libs/vdf << (l,#FF7700) >> {
 
 }
 entity "wxGTK" as libs/wxGTK << (l,#FF7700) >> {
-
-}
-entity "wxGTK-3_0-gtk3" as libs/wxGTK-3_0-gtk3 << (l,#FF7700) >> {
 
 }
 entity "xsimd" as libs/xsimd << (l,#FF7700) >> {
@@ -624,6 +615,9 @@ entity "gsmartcontrol" as apps/gsmartcontrol << (a,#FF00FF) >> {
 entity "gtk-sunlight" as apps/gtk-sunlight << (a,#FF00FF) >> {
 
 }
+entity "guake" as apps/guake << (a,#FF00FF) >> {
+
+}
 entity "hardinfo" as apps/hardinfo << (a,#FF00FF) >> {
 
 }
@@ -753,7 +747,7 @@ entity "mandelbulber" as apps/mandelbulber << (a,#FF00FF) >> {
 entity "mangohud" as apps/mangohud << (a,#FF00FF) >> {
 
 }
-entity "marble" as apps/marble << (a,#FF00FF) >> {
+entity "mcron" as apps/mcron << (a,#FF00FF) >> {
 
 }
 entity "meld" as apps/meld << (a,#FF00FF) >> {
@@ -1275,9 +1269,6 @@ entity "opera" as apps/opera << (a,#FF00FF) >> {
 entity "oversteer" as apps/oversteer << (a,#FF00FF) >> {
 
 }
-entity "p7zip-ui" as apps/p7zip-ui << (a,#FF00FF) >> {
-
-}
 entity "pcem" as apps/pcem << (a,#FF00FF) >> {
 
 }
@@ -1336,9 +1327,6 @@ entity "smplayer" as apps/smplayer << (a,#FF00FF) >> {
 
 }
 entity "soundconverter" as apps/soundconverter << (a,#FF00FF) >> {
-
-}
-entity "sqliteman" as apps/sqliteman << (a,#FF00FF) >> {
 
 }
 entity "tesseract" as apps/tesseract << (a,#FF00FF) >> {
@@ -1695,6 +1683,9 @@ entity "ardour" as apps/ardour << (a,#FF00FF) >> {
 entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
 
 }
+entity "hip" as apps/hip << (a,#FF00FF) >> {
+
+}
 entity "krita" as apps/krita << (a,#FF00FF) >> {
 
 }
@@ -1906,10 +1897,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/pychromecast" --u--> "libs/python-protobuf"
 "apps/lutris" --u--> "libs/python-protobuf"
 "apps/mypaint" --u--> "libs/python-protobuf"
-"apps/sqlitebrowser" --u--> "libs/qcustomplot"
+"apps/sqlitebrowser" --u--> "libs/qscintilla"
 "apps/octave" --u--> "libs/qscintilla"
-"apps/sqliteman" --u--> "libs/qscintilla-qt5"
-"apps/sqlitebrowser" --u--> "libs/qscintilla-qt5"
 "apps/git-cola" --u--> "libs/qtpy"
 "apps/kdegames" --u--> "libs/qtpy"
 "apps/labplot" --u--> "libs/qxlsx"
@@ -1960,7 +1949,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/hugin" --u--> "libs/wxGTK"
 "apps/audacity" --u--> "libs/wxGTK"
 "libs/wxpython" --u--> "libs/wxGTK"
-"apps/p7zip-ui" --u--> "libs/wxGTK-3_0-gtk3"
 "apps/oversteer" --u--> "libs/xsimd"
 "apps/krita" --u--> "libs/xsimd"
 "apps/handbrake" --u--> "libs/zimg"
@@ -1977,7 +1965,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/clamtk" --u--> "apps/clamav"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/hugin" --u--> "apps/dcraw"
-"apps/museseq" --u--> "apps/designer"
 "apps/dotnet-sdk-6" --u--> "apps/dotnet-common"
 "apps/dotnet-sdk-8" --u--> "apps/dotnet-common"
 "apps/dotnet-sdk-8" --u--> "apps/dotnet-runtime-nugets-8"
@@ -2156,6 +2143,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/krita" --u--> "libs/ocio-oiio"
 "apps/blender" --u--> "libs/ocio-oiio"
 "apps/displaycal-py3" --u--> "libs/wxpython"
+"apps/blender" --u--> "apps/hip"
 "apps/umbrello" --u--> "apps/kdevelop"
 
 @enduml

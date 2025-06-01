@@ -453,20 +453,10 @@ entity "python-protobuf" as libs/python-protobuf << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "qcustomplot" as libs/qcustomplot << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> dev-libs-qcustomplot
-..
-  <color:#9ACD32><U+2756></color> layers-qt
-}
 entity "qscintilla" as libs/qscintilla << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-qscintilla
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-}
-entity "qscintilla-qt5" as libs/qscintilla-qt5 << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> x11-libs-qscintilla
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "qtpy" as libs/qtpy << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-python-qtpy
@@ -536,7 +526,6 @@ entity "tree-sitter" as libs/tree-sitter << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-c
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-lua
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-markdown
-  <color:#34495E><U+24DF></color> dev-libs-tree-sitter-python
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-query
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-vim
   <color:#34495E><U+24DF></color> dev-libs-tree-sitter-vimdoc
@@ -584,11 +573,6 @@ entity "vdf" as libs/vdf << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "wxGTK" as libs/wxGTK << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> x11-libs-wxGTK
-..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
-}
-entity "wxGTK-3_0-gtk3" as libs/wxGTK-3_0-gtk3 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> x11-libs-wxGTK
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
@@ -1109,6 +1093,11 @@ entity "gtk-sunlight" as apps/gtk-sunlight << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "guake" as apps/guake << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-terms-guake
+..
+  <color:#9ACD32><U+2756></color> layers-gnome-common
+}
 entity "hardinfo" as apps/hardinfo << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-hardinfo
 ..
@@ -1337,10 +1326,10 @@ entity "mangohud" as apps/mangohud << (a,#FF00FF) >> {
   <color:#48D1CC><U+24D5></color> fonts-lato
   null kernel-modules-nvidia-drivers-lts
 }
-entity "marble" as apps/marble << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> kde-apps-marble
+entity "mcron" as apps/mcron << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> games-util-mcrcon
 ..
-  <color:#9ACD32><U+2756></color> layers-plasma
+  <color:#9ACD32><U+2756></color> layers-system-x
 }
 entity "meld" as apps/meld << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-meld
@@ -1884,7 +1873,7 @@ entity "xmahjongg" as apps/xmahjongg << (a,#FF00FF) >> {
 entity "xournalpp" as apps/xournalpp << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-xournalpp
 ..
-  <color:#9ACD32><U+2756></color> layers-X
+  <color:#9ACD32><U+2756></color> layers-gnome-common
 }
 entity "xpad" as apps/xpad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-xpad
@@ -2491,12 +2480,6 @@ entity "oversteer" as apps/oversteer << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-sci-libs
   <color:#FF7700><U+1F79B></color> libs-xsimd
 }
-entity "p7zip-ui" as apps/p7zip-ui << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-arch-p7zip
-..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-wxGTK-3_0-gtk3
-}
 entity "pcem" as apps/pcem << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-emulation-pcem
 ..
@@ -2559,7 +2542,7 @@ entity "pstoedit" as apps/pstoedit << (a,#FF00FF) >> {
 entity "qcad" as apps/qcad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-qcad
 ..
-  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "qdevicemonitor" as apps/qdevicemonitor << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-qdevicemonitor
@@ -2583,7 +2566,7 @@ entity "qtox" as apps/qtox << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-im-qtox
   <color:#34495E><U+24DF></color> kde-frameworks-sonnet
 ..
-  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#FF00FF><U+25C9></color> apps-sqlcipher
   <color:#5DADE2><U+24D4></color> entity-tox
 }
@@ -2650,12 +2633,6 @@ entity "soundconverter" as apps/soundconverter << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-soundconverter
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-}
-entity "sqliteman" as apps/sqliteman << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> dev-db-sqliteman
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF7700><U+1F79B></color> libs-qscintilla-qt5
 }
 entity "tesseract" as apps/tesseract << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-tesseract
@@ -3212,11 +3189,11 @@ entity "skanpage" as apps/skanpage << (a,#FF00FF) >> {
 }
 entity "sqlitebrowser" as apps/sqlitebrowser << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-db-sqlitebrowser
+  <color:#34495E><U+24DF></color> dev-libs-qcustomplot
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#FF00FF><U+25C9></color> apps-qhexedit2
-  <color:#FF7700><U+1F79B></color> libs-qcustomplot
-  <color:#FF7700><U+1F79B></color> libs-qscintilla-qt5
+  <color:#FF7700><U+1F79B></color> libs-qscintilla
 }
 entity "terminatorx" as apps/terminatorx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-terminatorx
@@ -3733,7 +3710,6 @@ entity "museseq" as apps/museseq << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-kde-kf5
-  <color:#FF00FF><U+25C9></color> apps-designer
   <color:#FF00FF><U+25C9></color> apps-fluidsynth
   <color:#FF00FF><U+25C9></color> apps-lash
   <color:#FF7700><U+1F79B></color> libs-dssi
@@ -3811,6 +3787,20 @@ entity "easyeffects" as apps/easyeffects << (a,#FF00FF) >> {
   <color:#FF00FF><U+25C9></color> apps-rnnoise
   <color:#FF00FF><U+25C9></color> apps-calf
 }
+entity "hip" as apps/hip << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-libs-rocm-comgr
+  <color:#34495E><U+24DF></color> dev-libs-rocm-device-libs
+  <color:#34495E><U+24DF></color> dev-libs-rocr-runtime
+  <color:#34495E><U+24DF></color> dev-libs-roct-thunk-interface
+  <color:#34495E><U+24DF></color> dev-util-hip
+  <color:#34495E><U+24DF></color> dev-util-hipcc
+  <color:#34495E><U+24DF></color> dev-util-rocminfo
+  <color:#34495E><U+24DF></color> sys-process-numactl
+  <color:#34495E><U+24DF></color> llvm-core-lld
+  <color:#34495E><U+24DF></color> llvm-core-lld-toolchain-symlinks
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-immer
   <color:#34495E><U+24DF></color> dev-libs-lager
@@ -3856,6 +3846,8 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-blender
   <color:#34495E><U+24DF></color> media-gfx-alembic
   <color:#34495E><U+24DF></color> media-libs-embree
+  <color:#34495E><U+24DF></color> dev-cpp-gflags
+  <color:#34495E><U+24DF></color> dev-cpp-glog
   <color:#34495E><U+24DF></color> dev-lang-ispc
   <color:#34495E><U+24DF></color> dev-libs-miniz
   <color:#34495E><U+24DF></color> dev-python-zstandard
@@ -3866,6 +3858,7 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-osl
   <color:#34495E><U+24DF></color> media-libs-partio
   <color:#34495E><U+24DF></color> media-gfx-renderdoc
+  <color:#34495E><U+24DF></color> sci-physics-bullet
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-spacenavd
@@ -3873,6 +3866,7 @@ entity "blender" as apps/blender << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-lib3ds
   <color:#FF7700><U+1F79B></color> libs-libharu
   <color:#FF7700><U+1F79B></color> libs-ocio-oiio
+  <color:#FF00FF><U+25C9></color> apps-hip
 }
 entity "displaycal-py3" as apps/displaycal-py3 << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-displaycal-py3
@@ -3995,9 +3989,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/pyproject-hooks" --u--> "layers/system-x"
 "libs/python-msgpack" --u--> "layers/system-x"
 "libs/python-protobuf" --u--> "layers/system-x"
-"libs/qcustomplot" --u--> "layers/qt"
 "libs/qscintilla" --u--> "layers/qt"
-"libs/qscintilla-qt5" --u--> "layers/kde-kf5"
 "libs/qtpy" --u--> "layers/qt"
 "libs/qtpy" --u--> "development/gcc"
 "libs/qxlsx" --u--> "layers/qt"
@@ -4020,7 +4012,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/python-deprecated" --u--> "layers/system-x"
 "libs/vdf" --u--> "layers/system-x"
 "libs/wxGTK" --u--> "layers/gnome-common"
-"libs/wxGTK-3_0-gtk3" --u--> "layers/gnome-common"
 "libs/xsimd" --u--> "layers/system-x"
 "libs/zimg" --u--> "layers/system-x"
 "apps/alacritty" --u--> "layers/X"
@@ -4122,6 +4113,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/grub-btrfs" --u--> "apps/grub"
 "apps/gsmartcontrol" --u--> "layers/X"
 "apps/gtk-sunlight" --u--> "layers/X"
+"apps/guake" --u--> "layers/gnome-common"
 "apps/hardinfo" --u--> "layers/X"
 "apps/hddtemp" --u--> "layers/system-x"
 "apps/htop" --u--> "layers/system-x"
@@ -4169,7 +4161,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mangohud" --u--> "libs/nlohmann_json"
 "apps/mangohud" --u--> "fonts/lato"
 "apps/mangohud" --u--> "kernel-modules/nvidia-drivers-lts"
-"apps/marble" --u--> "layers/plasma"
+"apps/mcron" --u--> "layers/system-x"
 "apps/meld" --u--> "layers/gnome-common"
 "apps/milkytracker" --u--> "layers/X"
 "apps/minidlna" --u--> "layers/X"
@@ -4264,7 +4256,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/xaos" --u--> "layers/qt"
 "apps/xli" --u--> "layers/X"
 "apps/xmahjongg" --u--> "layers/X"
-"apps/xournalpp" --u--> "layers/X"
+"apps/xournalpp" --u--> "layers/gnome-common"
 "apps/xpad" --u--> "layers/gnome"
 "apps/xscreensavers" --u--> "layers/X"
 "apps/xsensors" --u--> "layers/X"
@@ -4459,8 +4451,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/opera" --u--> "libs/ffmpeg-chromium"
 "apps/oversteer" --u--> "layers/sci-libs"
 "apps/oversteer" --u--> "libs/xsimd"
-"apps/p7zip-ui" --u--> "layers/gnome-common"
-"apps/p7zip-ui" --u--> "libs/wxGTK-3_0-gtk3"
 "apps/pcem" --u--> "layers/gnome-common"
 "apps/pcem" --u--> "libs/wxGTK"
 "apps/pdfarranger" --u--> "layers/X"
@@ -4480,7 +4470,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/pstoedit" --u--> "layers/X"
 "apps/pstoedit" --u--> "libs/libemf"
 "apps/pstoedit" --u--> "apps/plotutils"
-"apps/qcad" --u--> "layers/qt"
+"apps/qcad" --u--> "layers/kde-kf5"
 "apps/qdevicemonitor" --u--> "layers/qt"
 "apps/qdevicemonitor" --u--> "layers/gnome-common"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
@@ -4488,7 +4478,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/qmmp" --u--> "layers/qt"
 "apps/qmmp" --u--> "libs/cmt-plugins"
 "apps/qmmp" --u--> "libs/libprojectm"
-"apps/qtox" --u--> "layers/qt"
+"apps/qtox" --u--> "layers/kde-common"
 "apps/qtox" --u--> "apps/sqlcipher"
 "apps/qtox" --u--> "entity/tox"
 "apps/qutebrowser" --u--> "layers/qt"
@@ -4514,8 +4504,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/smplayer" --u--> "layers/kde-kf5"
 "apps/smplayer" --u--> "apps/mpv"
 "apps/soundconverter" --u--> "layers/gnome-common"
-"apps/sqliteman" --u--> "layers/kde-kf5"
-"apps/sqliteman" --u--> "libs/qscintilla-qt5"
 "apps/tesseract" --u--> "layers/X"
 "apps/tesseract" --u--> "libs/leptonica"
 "apps/tigervnc" --u--> "layers/X"
@@ -4698,10 +4686,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/scribus" --u--> "libs/libvisio"
 "apps/skanpage" --u--> "layers/kde-common"
 "apps/skanpage" --u--> "apps/tesseract"
-"apps/sqlitebrowser" --u--> "layers/kde-kf5"
+"apps/sqlitebrowser" --u--> "layers/kde-common"
 "apps/sqlitebrowser" --u--> "apps/qhexedit2"
-"apps/sqlitebrowser" --u--> "libs/qcustomplot"
-"apps/sqlitebrowser" --u--> "libs/qscintilla-qt5"
+"apps/sqlitebrowser" --u--> "libs/qscintilla"
 "apps/terminatorx" --u--> "layers/X"
 "apps/terminatorx" --u--> "libs/ladspa-sdk"
 "apps/terminatorx" --u--> "libs/liblrdf"
@@ -4923,7 +4910,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/lyx" --u--> "apps/graphviz"
 "apps/museseq" --u--> "layers/qt"
 "apps/museseq" --u--> "layers/kde-kf5"
-"apps/museseq" --u--> "apps/designer"
 "apps/museseq" --u--> "apps/fluidsynth"
 "apps/museseq" --u--> "apps/lash"
 "apps/museseq" --u--> "libs/dssi"
@@ -4964,6 +4950,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "libs/lilv"
 "apps/easyeffects" --u--> "apps/rnnoise"
 "apps/easyeffects" --u--> "apps/calf"
+"apps/hip" --u--> "layers/X"
 "apps/krita" --u--> "layers/qt"
 "apps/krita" --u--> "layers/kde-kf5"
 "apps/krita" --u--> "libs/libmypaint"
@@ -4989,6 +4976,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/blender" --u--> "libs/lib3ds"
 "apps/blender" --u--> "libs/libharu"
 "apps/blender" --u--> "libs/ocio-oiio"
+"apps/blender" --u--> "apps/hip"
 "apps/displaycal-py3" --u--> "layers/gnome-common"
 "apps/displaycal-py3" --u--> "layers/qt"
 "apps/displaycal-py3" --u--> "libs/build"
