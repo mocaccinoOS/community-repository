@@ -6789,7 +6789,7 @@ packages:
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
-  version: "2.0.2-r2"
+  version: "2.0.2-r2+1"
   uri:
   - https://github.com/mypaint/mypaint-brushes
   license: "CC0-1.0"
@@ -6797,7 +6797,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/mypaint-brushes
+      media-gfx/mypaint-brushes:1.0
+      media-gfx/mypaint-brushes:2.0
   provides:
   - category: "media-gfx"
     name: "mypaint-brushes"
@@ -13209,6 +13210,9 @@ packages:
     use: "gui # rar"
   - atom: "app-emulation/protontricks"
     use: "gui"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild
+  - ebuild /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild manifest
   inner_build_reqs:
   - acct-group/rtkit
   - acct-user/rtkit
@@ -13291,7 +13295,7 @@ packages:
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
-  version: "12.0.1"
+  version: "12.0.1+1"
   uri:
   - https://www.openvdb.org
   - https://www.blosc.org/
@@ -13310,11 +13314,17 @@ packages:
   - category: "media-gfx"
     name: "openvdb"
     version: ">=0"
+  - category: "dev-cpp"
+    name: "robin-map"
+    version: ">=0"
   - category: "dev-libs"
     name: "c-blosc"
     version: ">=0"
   - category: "dev-libs"
     name: "log4cplus"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nanobind"
     version: ">=0"
   atoms:
   - atom: "media-gfx/openvdb"
@@ -13322,6 +13332,9 @@ packages:
     env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
+  inner_build_reqs:
+  # neeed by dev-python/nanobind
+  - dev-python/scikit-build-core
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -16346,9 +16359,6 @@ packages:
   - category: "sci-libs"
     name: "sundials"
     version: ">=0"
-  # - category: "sci-libs"
-  #   name: "superlu_mt"
-  #   version: ">=0"
   atoms:
   - atom: "sci-mathematics/octave"
     use: "fltk glpk gnuplot json qhull qrupdate sparse sundials curl doc fftw gui hdf5 java opengl portaudio postscript readline sndfile ssl X zlib java # imagemagick"
@@ -17051,9 +17061,8 @@ packages:
   - <<: *apps-nagios
   - <<: *apps-net-snmp
   build_requires:
-  - <<: *layers-X
   # - <<: *layers-qt
-  # - <<: *layers-kde-kf5
+  - <<: *layers-kde-kf5
 
 - &apps-warmux
   category: "apps"
@@ -17280,10 +17289,47 @@ packages:
   build_requires:
   - <<: *layers-plasma
 
+# - &apps-gimp
+#   category: "apps"
+#   name: "gimp"
+#   version: "2.10.38-r2"
+#   uri:
+#   - https://www.gimp.org/
+#   - http://liquidrescale.wikidot.com/
+#   license: "GPL-2 GPL-3 LGPL-3"
+#   description: |
+#     GNU Image Manipulation Program
+#     Content-aware resizing for the GIMP
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-gfx/gimp
+#       media-plugins/gimp-lqr
+#   provides:
+#   - category: "media-gfx"
+#     name: "gimp"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "gimp-lqr"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/gimp"
+#     use: "aalib alsa aqua doc gnome heif jpeg2k jpegxl mng openexr postscript udev unwind vector-icons webp wmf xpm # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-gtk2
+#   - <<: *apps-mypaint-brushes
+#   - <<: *libs-liblqr
+#   - <<: *libs-libmypaint
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
+
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "2.10.38-r2"
+  version: "3.0.2-r1"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
@@ -17300,17 +17346,18 @@ packages:
   - category: "media-gfx"
     name: "gimp"
     version: ">=0"
-  - category: "media-plugins"
-    name: "gimp-lqr"
-    version: ">=0"
   atoms:
   - atom: "media-gfx/gimp"
-    use: "aalib alsa aqua doc gnome heif jpeg2k jpegxl mng openexr postscript udev unwind vector-icons webp wmf xpm # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl lua luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-util/gi-docgen  
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-gtk2
-  - <<: *apps-mypaint-brushes
+  - <<: *libs-cfitsio
   - <<: *libs-libmypaint
+  - <<: *apps-luajit  
+  - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
@@ -17579,9 +17626,6 @@ packages:
     version: ">=0"
   - category: "dev-cpp"
     name: "pystring"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "robin-map"
     version: ">=0"
   - category: "media-libs"
     name: "ptex"
@@ -17874,9 +17918,6 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "lager"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libunibreak"
     version: ">=0"
   - category: "dev-libs"
     name: "quazip"
