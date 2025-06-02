@@ -13211,7 +13211,7 @@ packages:
   - atom: "app-emulation/protontricks"
     use: "gui"
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild
   - ebuild /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild manifest
   inner_build_reqs:
   - acct-group/rtkit
@@ -17013,7 +17013,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.3"
+  version: "2.8.3+1"
   uri:
   - https://www.networkupstools.org
   - https://www.gnu.org/software/freeipmi/
