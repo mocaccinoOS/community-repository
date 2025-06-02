@@ -10986,7 +10986,7 @@ packages:
 
 - category: "apps"
   name: "gnome-games"
-  version: "1.0+3"
+  version: "1.0+4"
   uri:
   - https://wiki.gnome.org/Apps/Atomix
   - https://wiki.gnome.org/Apps/Five%20or%20more
@@ -11089,7 +11089,6 @@ packages:
   - dev-util/itstool
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-libglade
   build_requires:
   - <<: *layers-gnome-common
 
@@ -17043,7 +17042,7 @@ packages:
   - atom: "sys-libs/freeipmi"
     use: "without-root nagios"
   - atom: "sys-power/nut"
-    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf # https://bugs.gentoo.org/920259"
+    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
@@ -17063,7 +17062,7 @@ packages:
   - <<: *apps-net-snmp
   build_requires:
   # - <<: *layers-qt
-  - <<: *buildbase-kde-kf5
+  - <<: *layers-kde-kf5
 
 - &apps-warmux
   category: "apps"
@@ -17289,43 +17288,6 @@ packages:
   - <<: *apps-graphviz
   build_requires:
   - <<: *layers-plasma
-
-# - &apps-gimp
-#   category: "apps"
-#   name: "gimp"
-#   version: "2.10.38-r2"
-#   uri:
-#   - https://www.gimp.org/
-#   - http://liquidrescale.wikidot.com/
-#   license: "GPL-2 GPL-3 LGPL-3"
-#   description: |
-#     GNU Image Manipulation Program
-#     Content-aware resizing for the GIMP
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/gimp
-#       media-plugins/gimp-lqr
-#   provides:
-#   - category: "media-gfx"
-#     name: "gimp"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "gimp-lqr"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/gimp"
-#     use: "aalib alsa aqua doc gnome heif jpeg2k jpegxl mng openexr postscript udev unwind vector-icons webp wmf xpm # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-gtk2
-#   - <<: *apps-mypaint-brushes
-#   - <<: *libs-liblqr
-#   - <<: *libs-libmypaint
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
 
 - &apps-gimp
   category: "apps"
