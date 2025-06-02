@@ -6789,7 +6789,7 @@ packages:
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
-  version: "2.0.2-r2+1"
+  version: "2.0.2-r2+2"
   uri:
   - https://github.com/mypaint/mypaint-brushes
   license: "CC0-1.0"
@@ -13144,7 +13144,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.8"
+  version: "10.8+1"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -13938,7 +13938,7 @@ packages:
 
 - category: "apps"
   name: "hplip"
-  version: "3.25.2"
+  version: "3.25.2+1"
   uri:
   - https://developers.hp.com/hp-linux-imaging-and-printing
   - https://developers.hp.com/hp-linux-imaging-and-printing/plugins
@@ -13963,6 +13963,7 @@ packages:
     use: "fax hpcups hpijs snmp # kde libnotify libusb0 minimal parport policykit qt5 static-ppds X # scanner: needs kde-misc/skanlite from layers/kde-apps-minimal"
   - atom: "net-print/hplip-plugin"
     use: "orblite"
+    accept_keywords: "~amd64"
     license: "hplip-plugin"
   requires:
   - <<: *layers-kde-kf5
@@ -16919,7 +16920,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.0.2-r1"
+  version: "1.0.2-r1+1"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3"
@@ -17013,7 +17014,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.3+1"
+  version: "2.8.3+2"
   uri:
   - https://www.networkupstools.org
   - https://www.gnu.org/software/freeipmi/
@@ -17042,7 +17043,7 @@ packages:
   - atom: "sys-libs/freeipmi"
     use: "without-root nagios"
   - atom: "sys-power/nut"
-    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
+    use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd tcpd usb xml zeroconf # https://bugs.gentoo.org/920259"
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
@@ -17329,19 +17330,19 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.0.2-r1"
+  version: "3.0.2-r1+1"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
   license: "GPL-2 GPL-3 LGPL-3"
   description: |
     GNU Image Manipulation Program
-    Content-aware resizing for the GIMP
+  # Content-aware resizing for the GIMP
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       media-gfx/gimp
-      media-plugins/gimp-lqr
+    # media-plugins/gimp-lqr
   provides:
   - category: "media-gfx"
     name: "gimp"
