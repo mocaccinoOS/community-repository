@@ -17063,7 +17063,7 @@ packages:
   - <<: *apps-net-snmp
   build_requires:
   # - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *buildbase-kde-kf5
 
 - &apps-warmux
   category: "apps"
@@ -17352,7 +17352,8 @@ packages:
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
     accept_keywords: "~amd64"
   inner_build_reqs:
-  - dev-util/gi-docgen  
+  - dev-libs/gobject-introspection;USE="doctool"
+  - dev-util/gi-docgen
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-cfitsio
