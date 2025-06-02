@@ -18099,7 +18099,9 @@ packages:
   - atom: "sci-physics/bullet"
     use: "double-precision"
   env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 llvm_slot_19\""
-  # prepare:
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild manifest
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
