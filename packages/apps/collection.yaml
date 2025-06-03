@@ -5828,6 +5828,9 @@ packages:
   atoms:
   - atom: "kde-apps/kalarm"
     use: "pim handbook X # mpv speech"
+  prepare:
+  - sed -i -e 's/media-video\/vlc:=/=media-video\/vlc-9999/' /var/db/repos/gentoo/kde-apps/kalarm/kalarm-*.ebuild
+  - ebuild /var/db/repos/gentoo/kde-apps/kalarm/kalarm-*.ebuild manifest
   requires:
   - <<: *layers-kde-pim
   - <<: *apps-vlc
