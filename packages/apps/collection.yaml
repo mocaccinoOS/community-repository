@@ -427,17 +427,17 @@ stubs:
     emerge.packages: >-
       app-editors/vim
 
-- &apps-vlc
-  category: "apps"
-  name: "vlc"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/vlc
-  atoms:
-  - atom: "media-video/vlc"
-    accept_keywords: "**"
+# - &apps-vlc
+#   category: "apps"
+#   name: "vlc"
+#   version: ">=0"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-video/vlc
+#   atoms:
+#   - atom: "media-video/vlc"
+#     accept_keywords: "**"
 
 - &apps-xdelta-3
   category: "apps"
@@ -5827,13 +5827,9 @@ packages:
     version: ">=0"
   atoms:
   - atom: "kde-apps/kalarm"
-    use: "pim handbook X # mpv speech"
-  prepare:
-  - sed -i -e 's/media-video\/vlc:=/=media-video\/vlc-9999/' /var/db/repos/gentoo/kde-apps/kalarm/kalarm-*.ebuild
-  - ebuild /var/db/repos/gentoo/kde-apps/kalarm/kalarm-*.ebuild manifest
+    use: "mpv pim handbook X # speech"
   requires:
   - <<: *layers-kde-pim
-  - <<: *apps-vlc
   build_requires:
   - <<: *layers-kde-pim
 
