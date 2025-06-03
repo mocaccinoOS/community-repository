@@ -3319,7 +3319,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "34.0.5+5"
+  version: "35.0.2"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -3332,6 +3332,7 @@ packages:
   - category: "dev-util"
     name: "android-tools"
     version: ">=0"
+    accept_keywords: "~amd64"
   - category: "dev-util"
     name: "android-udev-rules"
     version: ">=0"
@@ -3683,7 +3684,7 @@ packages:
 - &apps-bluefish
   category: "apps"
   name: "bluefish"
-  version: "2.2.15+1"
+  version: "2.2.17"
   uri:
   - https://bluefish.openoffice.nl/
   license: "GPL-3+"
@@ -3696,9 +3697,10 @@ packages:
   - category: "app-editors"
     name: "bluefish"
     version: ">=0"
-  # atoms:
-  # - atom: "app-editors/bluefish"
-  #   use: "spell nls python # gucharmap"
+  atoms:
+  - atom: "app-editors/bluefish"
+    use: "spell nls python # gucharmap"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4905,7 +4907,7 @@ packages:
 - &apps-fontforge
   category: "apps"
   name: "fontforge"
-  version: "20230101-r2+1"
+  version: "20230101-r2+2"
   uri:
   - http://fontforge.sourceforge.net/
   license: "BSD"
@@ -6636,7 +6638,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "24.12.3-r1"
+  version: "24.12.3-r1+1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -9219,7 +9221,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.5.2+1"
+  version: "4.5.2+2"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -10365,7 +10367,7 @@ packages:
 
 - category: "apps"
   name: "clementine"
-  version: "1.4.1_p28-r1+1"
+  version: "1.4.1_p28-r1+2"
   uri:
   - https://www.clementine-player.org
   license: "GPL-3"
@@ -11237,7 +11239,7 @@ packages:
 
 - category: "apps"
   name: "hexchat"
-  version: "2.16.2-r1"
+  version: "2.16.2-r1+1"
   uri:
   - https://hexchat.github.io/
   license: "GPL-2 MIT"
@@ -11750,7 +11752,7 @@ packages:
 - &apps-mosh
   category: "apps"
   name: "mosh"
-  version: "1.4.0+4"
+  version: "1.4.0+5"
   uri:
   - https://mosh.org
   license: "GPL-3"
@@ -11894,7 +11896,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "31.0.3-r1"
+  version: "31.0.3-r1+1"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -12283,7 +12285,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "17.5"
+  version: "17.5+1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -12536,7 +12538,7 @@ packages:
 
 - category: "apps"
   name: "remmina"
-  version: "1.4.40-r2"
+  version: "1.4.40-r2+1"
   uri:
   - https://remmina.org/
   license: "GPL-2+-with-openssl-exception"
@@ -12645,7 +12647,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.4.2+1"
+  version: "2.4.2+2"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -13613,7 +13615,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.22.0+2"
+  version: "7.22.0+3"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -13693,11 +13695,10 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# Unstable for KDE/Qt 6
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "24.12.3"
+  version: "24.12.3+1"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -14175,7 +14176,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.2-r5"
+  version: "21.2-r5+1"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -14271,7 +14272,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2-r2+3"
+  version: "24.2.7.2-r2+4"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -14502,7 +14503,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.5.1"
+  version: "2.5.1+1"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -16033,7 +16034,7 @@ packages:
 - &apps-hugin
   category: "apps"
   name: "hugin"
-  version: "2024.0.1+1"
+  version: "2024.0.1+2"
   uri:
   - http://hugin.sf.net
   - http://tclap.sourceforge.net
@@ -17968,7 +17969,7 @@ packages:
 - &apps-xsane
   category: "apps"
   name: "xsane"
-  version: "0.999-r6+1"
+  version: "0.999-r6+2"
   uri:
   - http://www.xsane.org/
   license: "GPL-2"
@@ -17983,7 +17984,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/xsane"
-    use: "nls jpeg png tiff gimp lcms # ocr"
+    use: "nls jpeg png tiff lcms # ocr # gimp no 3.0 yet"
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-gimp
@@ -18163,7 +18164,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.12.3"
+  version: "24.12.3+1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"

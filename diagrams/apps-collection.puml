@@ -2237,7 +2237,6 @@ entity "gnome-games" as apps/gnome-games << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-puzzle-gnome-taquin
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-libglade
 }
 entity "gnuchess" as apps/gnuchess << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-board-gnuchess
@@ -2752,8 +2751,10 @@ entity "indilib" as libs/indilib << (l,#FF7700) >> {
 }
 entity "openvdb" as libs/openvdb << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-gfx-openvdb
+  <color:#34495E><U+24DF></color> dev-cpp-robin-map
   <color:#34495E><U+24DF></color> dev-libs-c-blosc
   <color:#34495E><U+24DF></color> dev-libs-log4cplus
+  <color:#34495E><U+24DF></color> dev-python-nanobind
 ..
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-tbb
@@ -3468,8 +3469,7 @@ entity "octave" as apps/octave << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-libs-sundials
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#9ACD32><U+2756></color> layers-qt
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#9ACD32><U+2756></color> layers-office-common
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#9ACD32><U+2756></color> layers-latex
@@ -3607,7 +3607,7 @@ entity "nut" as apps/nut << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-libmodbus
   <color:#34495E><U+24DF></color> sys-libs-freeipmi
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-X
   <color:#5DADE2><U+24D4></color> entity-uucp
   <color:#5DADE2><U+24D4></color> entity-nut
   <color:#FF00FF><U+25C9></color> apps-i2c-tools
@@ -3677,12 +3677,12 @@ entity "doxygen" as apps/doxygen << (a,#FF00FF) >> {
 }
 entity "gimp" as apps/gimp << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-gimp
-  <color:#34495E><U+24DF></color> media-plugins-gimp-lqr
 ..
   <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-gtk2
-  <color:#FF00FF><U+25C9></color> apps-mypaint-brushes
+  <color:#FF7700><U+1F79B></color> libs-cfitsio
   <color:#FF7700><U+1F79B></color> libs-libmypaint
+  <color:#FF00FF><U+25C9></color> apps-luajit
+  <color:#FF00FF><U+25C9></color> apps-mypaint-brushes
 }
 entity "logitech-linux-rpm-led" as apps/logitech-linux-rpm-led << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> games-util-logitech-linux-rpm-led
@@ -3740,7 +3740,6 @@ entity "ocio-oiio" as libs/ocio-oiio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-opencolorio
   <color:#34495E><U+24DF></color> media-libs-openimageio
   <color:#34495E><U+24DF></color> dev-cpp-pystring
-  <color:#34495E><U+24DF></color> dev-cpp-robin-map
   <color:#34495E><U+24DF></color> media-libs-ptex
   <color:#34495E><U+24DF></color> sci-libs-dcmtk
   <color:#34495E><U+24DF></color> sys-libs-minizip-ng
@@ -3804,7 +3803,6 @@ entity "hip" as apps/hip << (a,#FF00FF) >> {
 entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-immer
   <color:#34495E><U+24DF></color> dev-libs-lager
-  <color:#34495E><U+24DF></color> dev-libs-libunibreak
   <color:#34495E><U+24DF></color> dev-libs-quazip
   <color:#34495E><U+24DF></color> dev-libs-zug
   <color:#34495E><U+24DF></color> kde-apps-libkdcraw
@@ -4369,7 +4367,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/gkrellm" --u--> "apps/hddtemp"
 "apps/gkrellm" --u--> "libs/gtk2"
 "apps/gnome-games" --u--> "layers/gnome-common"
-"apps/gnome-games" --u--> "libs/libglade"
 "apps/gnuchess" --u--> "layers/system-x"
 "apps/gopls" --u--> "layers/system-x"
 "apps/gopls" --u--> "apps/go"
@@ -4800,8 +4797,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/labplot" --u--> "libs/libcerf"
 "apps/nomacs" --u--> "layers/qt"
 "apps/octave" --u--> "layers/gnome-common"
-"apps/octave" --u--> "layers/qt"
-"apps/octave" --u--> "layers/kde-kf5"
+"apps/octave" --u--> "layers/kde-common"
 "apps/octave" --u--> "layers/office-common"
 "apps/octave" --u--> "layers/perl-libs"
 "apps/octave" --u--> "layers/latex"
@@ -4860,7 +4856,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/neverball" --u--> "fonts/wqy-microhei"
 "apps/neverball" --u--> "libs/sdl2"
 "apps/neverball" --u--> "libs/physfs"
-"apps/nut" --u--> "layers/kde-kf5"
+"apps/nut" --u--> "layers/X"
 "apps/nut" --u--> "entity/uucp"
 "apps/nut" --u--> "entity/nut"
 "apps/nut" --u--> "apps/i2c-tools"
@@ -4896,9 +4892,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/doxygen" --u--> "development/gcc"
 "apps/doxygen" --u--> "apps/graphviz"
 "apps/gimp" --u--> "layers/gnome-common"
-"apps/gimp" --u--> "libs/gtk2"
-"apps/gimp" --u--> "apps/mypaint-brushes"
+"apps/gimp" --u--> "libs/cfitsio"
 "apps/gimp" --u--> "libs/libmypaint"
+"apps/gimp" --u--> "apps/luajit"
+"apps/gimp" --u--> "apps/mypaint-brushes"
 "apps/logitech-linux-rpm-led" --u--> "layers/X"
 "apps/logitech-linux-rpm-led" --u--> "libs/hidapi"
 "apps/lyx" --u--> "layers/gnome-common"
