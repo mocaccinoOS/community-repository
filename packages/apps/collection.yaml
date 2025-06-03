@@ -5809,30 +5809,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-kalarm
-  category: "libs"
-  name: "kalarm"
-  version: "24.12.3"
-  uri:
-  - https://apps.kde.org/kalarm/
-  license: "GPL-2+ FDL-1.2+"
-  description: "Application to manage alarms and other timer based alerts for the desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/kalarm
-  provides:
-  - category: "kde-apps"
-    name: "kalarm"
-    version: ">=0"
-  atoms:
-  - atom: "kde-apps/kalarm"
-    use: "mpv pim handbook X # speech"
-  requires:
-  - <<: *layers-kde-pim
-  build_requires:
-  - <<: *layers-kde-pim
-
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
@@ -14025,6 +14001,31 @@ packages:
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-kde-common
+
+- &apps-kalarm
+  category: "libs"
+  name: "kalarm"
+  version: "24.12.3"
+  uri:
+  - https://apps.kde.org/kalarm/
+  license: "GPL-2+ FDL-1.2+"
+  description: "Application to manage alarms and other timer based alerts for the desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kalarm
+  provides:
+  - category: "kde-apps"
+    name: "kalarm"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/kalarm"
+    use: "mpv pim handbook X # speech"
+  requires:
+  - <<: *layers-kde-pim
+  - <<: *apps-mpv
+  build_requires:
+  - <<: *layers-kde-pim
 
 - category: "apps"
   name: "kdegames"
