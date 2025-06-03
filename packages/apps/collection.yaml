@@ -2541,6 +2541,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-oxygen-icons
+  category: "libs"
+  name: "oxygen-icons"
+  version: "6.1.0"
+  uri:
+  - https://develop.kde.org/frameworks/oxygen-icons/
+  license: "LGPL-3"
+  description: "Oxygen SVG icon theme"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-frameworks/oxygen-icons
+  provides:
+  - category: "kde-frameworks"
+    name: "oxygen-icons"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &libs-physfs
   category: "libs"
   name: "physfs"
