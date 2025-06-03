@@ -3339,6 +3339,7 @@ packages:
   atoms:
   - atom: "dev-util/android-tools"
     use: "python udev"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lang/go
   - virtual/libusb:0
@@ -4921,7 +4922,7 @@ packages:
   - *libs-sphinx-packages
   provides:
   - category: "media-libs"
-    name: "media-libs/libuninameslist"
+    name: "libuninameslist"
     version: ">=0"
   - category: "media-gfx"
     name: "fontforge"
@@ -5804,6 +5805,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &apps-kalarm
+  category: "libs"
+  name: "kalarm"
+  version: "24.12.3"
+  uri:
+  - https://apps.kde.org/kalarm/
+  license: "GPL-2+ FDL-1.2+"
+  description: "Application to manage alarms and other timer based alerts for the desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kalarm
+  provides:
+  - category: "kde-apps"
+    name: "kalarm"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/kalarm"
+    use: "pim handbook speech X # mpv"
+  requires:
+  - <<: *layers-kde-pim
+  build_requires:
+  - <<: *layers-kde-pim
 
 - &apps-kapptemplate
   category: "apps"
@@ -14376,7 +14401,7 @@ packages:
   - <<: *libs-libvisio
   build_requires:
   - <<: *buildbase-gnome-common
-  - <<: *layerbase-office-common
+  - <<: *buildbase-office-common
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
@@ -16943,7 +16968,6 @@ packages:
   - atom: "dev-haskell/text"
     accept_keywords: "~amd64"
   inner_build_reqs:
-  # - dev-lang/ghc
   - dev-haskell/parsec
   - dev-lang/fpc
   requires:
@@ -17969,7 +17993,7 @@ packages:
 - &apps-xsane
   category: "apps"
   name: "xsane"
-  version: "0.999-r6+2"
+  version: "0.999-r6+3"
   uri:
   - http://www.xsane.org/
   license: "GPL-2"
@@ -17987,7 +18011,8 @@ packages:
     use: "nls jpeg png tiff lcms # ocr # gimp no 3.0 yet"
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-gimp
+  - <<: *libs-gtk2
+  # - <<: *apps-gimp
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-sci-libs
