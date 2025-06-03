@@ -435,6 +435,9 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/vlc
+  atoms:
+  - atom: "media-video/vlc"
+    accept_keywords: "**"
 
 - &apps-xdelta-3
   category: "apps"
@@ -854,7 +857,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/analitza:6
+      kde-apps/analitza
   provides:
   - category: "kde-apps"
     name: "analitza"
@@ -1940,7 +1943,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/libktorrent:6
+      net-libs/libktorrent
   provides:
   - category: "net-libs"
     name: "libktorrent"
@@ -4258,7 +4261,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/dolphin-plugins-git:6
+      kde-apps/dolphin-plugins-git
   provides:
   - category: "kde-apps"
     name: "dolphin-plugins-git"
@@ -4439,14 +4442,14 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/elisa:6
+      media-sound/elisa
   provides:
   - category: "media-sound"
     name: "elisa"
     version: ">=0"
   requires:
   - <<: *layers-kde-common
-  - <<: *apps-vlc
+  # - <<: *apps-vlc
   build_requires:
   - <<: *layers-kde-common
 
@@ -4740,7 +4743,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/ffmpegthumbs:6
+      kde-apps/ffmpegthumbs
   provides:
   - category: "kde-apps"
     name: "ffmpegthumbs"
@@ -4788,7 +4791,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/filelight:6
+      kde-apps/filelight
   provides:
   - category: "kde-apps"
     name: "filelight"
@@ -5827,6 +5830,7 @@ packages:
     use: "pim handbook speech X # mpv"
   requires:
   - <<: *layers-kde-pim
+  - <<: *apps-vlc
   build_requires:
   - <<: *layers-kde-pim
 
@@ -5841,7 +5845,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/kapptemplate:6
+      kde-apps/kapptemplate
   provides:
   - category: "kde-apps"
     name: "kapptemplate"
@@ -5862,7 +5866,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/kate:6
+      kde-apps/kate
   provides:
   - category: "kde-apps"
     name: "kate"
@@ -5888,7 +5892,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/kcharselect:6
+      kde-apps/kcharselect
   provides:
   - category: "kde-apps"
     name: "kcharselect"
@@ -6071,7 +6075,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/kgpg:6
+      kde-apps/kgpg
   provides:
   - category: "kde-apps"
     name: "kgpg"
@@ -6136,7 +6140,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/kompare:6
+      kde-apps/kompare
   provides:
   - category: "kde-apps"
     name: "kompare"
@@ -6156,7 +6160,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/konqueror:6
+      kde-apps/konqueror
   provides:
   - category: "kde-apps"
     name: "konqueror"
@@ -6271,7 +6275,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/kruler:6
+      kde-apps/kruler
   provides:
   - category: "kde-apps"
     name: "kruler"
@@ -11317,7 +11321,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      kde-apps/kalgebra:6
+      kde-apps/kalgebra
   provides:
   - category: "kde-apps"
     name: "kalgebra"
@@ -11339,7 +11343,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/kget:6
+      kde-apps/kget
   provides:
   - category: "kde-apps"
     name: "kget"
@@ -11412,7 +11416,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      net-p2p/ktorrent:6
+      net-p2p/ktorrent
   provides:
   - category: "net-p2p"
     name: "ktorrent"
@@ -14007,7 +14011,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      kde-apps/k3b:6
+      kde-apps/k3b
   provides:
   - category: "kde-apps"
     name: "k3b"
@@ -14995,7 +14999,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/skanpage:6
+      media-gfx/skanpage
   provides:
   - category: "media-gfx"
     name: "skanpage"
