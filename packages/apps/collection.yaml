@@ -5597,7 +5597,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo2"
-  version: "2.2.13"
+  version: "2.2.13+1"
   uri:
   - https://hardinfo2.org
   license: "GPL-2+ GPL-3+ LGPL-2.1+"
@@ -5612,12 +5612,28 @@ packages:
   - category: "app-admin"
     name: "hardinfo2"
     version: ">=0"
+  - category: "app-benchmark"
+    name: "sysbench"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "cJSON"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "concurrencykit"
+    version: ">=0"
+  - category: "net-misc"
+    name: "iperf"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "lsscsi"
+    version: ">=0"
   atoms:
   - atom: "app-admin/hardinfo2"
     use: "vulkan"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
+  - <<: *apps-luajit
   build_requires:
   - <<: *layers-X
 
