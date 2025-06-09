@@ -16671,6 +16671,9 @@ packages:
     use: "deep-sky media nls qt6 stars telescope # gps webengine"
   - atom: "sci-astronomy/calcmysky"
     use: "-qt5 qt6"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/sci-libs/nlopt/nlopt-*.ebuild
+  - ebuild /var/db/repos/gentoo/sci-libs/nlopt/nlopt-*.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *libs-indilib
