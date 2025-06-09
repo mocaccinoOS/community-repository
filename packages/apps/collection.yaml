@@ -5456,14 +5456,14 @@ packages:
     use: "systemd"
     accept_keywords: "~amd64"
   # prepare:
-  # - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # - sed -i -e 's/doman/# doman/' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # # - sed -i -e 's/86c86/121c121/' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # # - sed -i -e '/\\ No newline at end of file/d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - sed -i -e '/86c86/,$d' /var/lib/layman/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - ebuild /var/lib/layman/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
+  # - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # - sed -i -e 's/doman/# doman/' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
+  # - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # # - sed -i -e 's/86c86/121c121/' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # # - sed -i -e '/\\ No newline at end of file/d' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - sed -i -e '/86c86/,$d' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
+  # - ebuild /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
   requires:
   - <<: *apps-grub
   build_requires:
@@ -9616,7 +9616,7 @@ packages:
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
-  version: "4.13.4+1"
+  version: "4.13.4+2"
   uri:
   - https://www.crummy.com/software/BeautifulSoup/bs4/
   - https://github.com/facelessuser/soupsieve/
@@ -10074,13 +10074,7 @@ packages:
     name: "twisted"
     version: ">=0"
   - category: "dev-python"
-    name: "hatch-fancy-pypi-readme"
-    version: ">=0"
-  - category: "dev-python"
     name: "incremental"
-    version: ">=0"
-  - category: "dev-python"
-    name: "typing-extensions"
     version: ">=0"
   - category: "dev-python"
     name: "zope-interface"
@@ -14978,7 +14972,7 @@ packages:
 
 - category: "apps"
   name: "quodlibet"
-  version: "4.6.0-r2"
+  version: "4.6.0-r2+1"
   uri:
   - https://quodlibet.readthedocs.io/
   license: "GPL-2"
@@ -16147,8 +16141,8 @@ packages:
   inner_build_reqs:
   - dev-util/blueprint-compiler
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..12}/PYTHON_COMPAT=( python3_{11..13}/' /var/db/repos/gentoo/gui-apps/gradience/gradience-*.ebuild
-  - ebuild /var/db/repos/gentoo/gui-apps/gradience/gradience-*.ebuild manifest
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..12}/PYTHON_COMPAT=( python3_{11..13}/' /var/db/repos/guru/gui-apps/gradience/gradience-*.ebuild
+  - ebuild /var/db/repos/guru/gui-apps/gradience/gradience-*.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-build
