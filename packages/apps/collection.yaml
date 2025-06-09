@@ -3074,7 +3074,7 @@ packages:
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
-  version: "0.8.2-r1"
+  version: "0.8.2-r1+1"
   uri:
   - https://www.zaphoyd.com/websocketpp
   license: "BSD"
@@ -3841,7 +3841,7 @@ packages:
 
 - category: "apps"
   name: "cartridges"
-  version: "2.12.1"
+  version: "2.12.1+1"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -5103,7 +5103,7 @@ packages:
 - &apps-gaupol
   category: "apps"
   name: "gaupol"
-  version: "1.15-r1+1"
+  version: "1.15-r1+2"
   uri:
   - https://otsaloma.io/gaupol/
   license: "GPL-2+"
@@ -7617,7 +7617,7 @@ packages:
 
 - category: "apps"
   name: "piper"
-  version: "0.8"
+  version: "0.9"
   uri:
   - https://github.com/libratbag/piper
   license: "GPL-2"
@@ -8243,7 +8243,7 @@ packages:
 
 - category: "apps"
   name: "scapy"
-  version: "2.6.1"
+  version: "2.6.1+1"
   uri:
   - https://scapy.net/
   - https://github.com/secdev/scapy
@@ -8358,7 +8358,7 @@ packages:
 
 - category: "apps"
   name: "snapper-gui"
-  version: "220626+8"
+  version: "220626+9"
   uri:
   - https://github.com/ricardomv/snapper-gui
   license: "GPL-2+"
@@ -8893,7 +8893,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7+9"
+  version: "5.15.7+10"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -12486,7 +12486,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.5.0-r1"
+  version: "3.5.0-r1+1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -14443,7 +14443,7 @@ packages:
 
 - category: "apps"
   name: "lollypop"
-  version: "1.4.41"
+  version: "1.4.41+1"
   uri:
   - https://wiki.gnome.org/Apps/Lollypop
   license: "GPL-3+"
@@ -14491,7 +14491,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.19"
+  version: "0.5.19+2"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -14747,7 +14747,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.11.0+1"
+  version: "0.11.0+2"
   uri:
   - https://neovim.io
   license: "Apache-2.0 Boost-1.0 vim"
@@ -14994,6 +14994,9 @@ packages:
   atoms:
   - atom: "media-sound/quodlibet"
     use: "dbus gstreamer udev"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..12}/PYTHON_COMPAT=( python3_{11..13}/' /var/db/repos/gentoo/media-sound/quodlibet/quodlibet-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-sound/quodlibet/quodlibet-*.ebuild manifest
   inner_build_reqs:
   - dev-util/intltool
   requires:
