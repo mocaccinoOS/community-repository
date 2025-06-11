@@ -7607,7 +7607,7 @@ packages:
 
 - category: "pcmanfm"
   name: "pcmanfm"
-  version: "1.3.2-r2"
+  version: "1.3.2-r2+1"
   uri:
   - https://github.com/lxde/pcmanfm
   license: "GPL-2"
@@ -7628,9 +7628,10 @@ packages:
   inner_build_reqs:
   - dev-util/intltool
   requires:
+  - <<: *layers-gnome-common
   - <<: *layers-lxqt
   build_requires:
-  - <<: *layers-lxqt
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "pdftk"
