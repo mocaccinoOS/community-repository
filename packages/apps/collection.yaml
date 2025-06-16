@@ -11941,6 +11941,68 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &apps-nbfc-gtk
+  category: "apps"
+  name: "nbfc-gtk"
+  version: "0.2.1"
+  uri:
+  - https://github.com/nbfc-linux/nbfc-gtk
+  license: "GPL-3.0"
+  description: "GUI for NBFC-Linux based on GTK"
+  labels:
+    emerge.jobs: "1"
+  provides:
+  - category: "sys-power"
+    name: "nbfc-gtk"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/nbfc-linux/nbfc-gtk.git && \
+    cd nbfc-gtk && \
+    git fetch --all --tags && \
+    git checkout tags/0.2.1 && \
+    make
+  setup:
+  - |
+    cd nbfc-gtk && \
+    make install
+  requires:
+  - <<: *layers-X
+  - <<: *apps-nbfc-linux
+  build_requires:
+  - <<: *layers-X
+
+- &apps-nbfc-qt
+  category: "apps"
+  name: "nbfc-qt"
+  version: "0.4.2"
+  uri:
+  - https://github.com/nbfc-linux/nbfc-qt
+  license: "GPL-3.0"
+  description: "GUI for NBFC-Linux based on QT"
+  labels:
+    emerge.jobs: "1"
+  provides:
+  - category: "sys-power"
+    name: "nbfc-qt"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/nbfc-linux/nbfc-qt.git && \
+    cd nbfc-qt && \
+    git fetch --all --tags && \
+    git checkout tags/0.4.2 && \
+    make
+  setup:
+  - |
+    cd nbfc-qt && \
+    make install
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-nbfc-linux
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
