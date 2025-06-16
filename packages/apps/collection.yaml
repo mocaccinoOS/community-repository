@@ -12117,23 +12117,28 @@ packages:
   labels:
     emerge.jobs: "1"
   provides:
-  - category: "apps"
+  - category: "app-misc"
     name: "OpenLinkHub"
-    version: "0.5.8"
+    version: ">=0"
   ready:
   - |
     git clone https://github.com/jurkovic-nikola/OpenLinkHub.git && \
     cd OpenLinkHub && \
     git fetch --all --tags && \
-    git checkout tags/v0.5.8 && \
+    git checkout tags/0.5.8 && \
     go build .
   setup:
   - |
-    mkdir -p -m 755 /usr/share/pixmaps && \
     cd OpenLinkHub && \
-    cp ./static/img/512.ico /usr/share/pixmaps/OpenLinkHub.ico && \
+    sed -i -e "s/sudo //" install.sh && \
+    sed -i -e "s/systemctl/#systemctl/" install.sh && \
+    sed -i -e "s/udevadm/#udevadm/" install.sh && \
+    sed -i -e "s/\/usr\/lib\/systemd\/system\/OpenLinkHub.service/\/usr\/lib\/systemd\/system\/OpenLinkHub.service/" install.sh && \
     chmod +x install.sh && \
     ./install.sh && \
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cp ./static/img/512.png /usr/share/pixmaps/OpenLinkHub.png && \
+    mkdir -p -m 755 /usr/share/applications && \
     echo "[Desktop Entry]" > /usr/share/applications/OpenLinkHub.desktop && \
     echo "Name=OpenLinkHub" >> /usr/share/applications/OpenLinkHub.desktop && \
     echo "GenericName=OpenLinkHub" >> /usr/share/applications/OpenLinkHub.desktop && \
@@ -12144,9 +12149,10 @@ packages:
     echo "Terminal=false" >> /usr/share/applications/OpenLinkHub.desktop && \
     echo "Type=Application" >> /usr/share/applications/OpenLinkHub.desktop && \
     echo "Categories=Utility" >> /usr/share/applications/OpenLinkHub.desktop
+  inner_build_requires:
+  - <<: *apps-go
   requires:
   - <<: *layers-system-x
-  - <<: *apps-go
   build_requires:
   - <<: *layers-system-x
 
