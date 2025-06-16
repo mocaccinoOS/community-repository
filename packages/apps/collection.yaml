@@ -11257,8 +11257,7 @@ packages:
   uri:
   - https://github.com/golang/tools/blob/master/gopls/README.md
   license: "BSD"
-  description: |
-    "Go please" is the official Go language server
+  description: "Go please" is the official Go language server"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -12105,6 +12104,50 @@ packages:
   - <<: *layers-kde-kf5
   build_requires:
   - <<: *layers-kde-kf5
+
+- &apps-OpenLinkHub
+  category: "apps"
+  name: "OpenLinkHub"
+  version: "0.5.8"
+  uri:
+  - https://github.com/jurkovic-nikola/OpenLinkHub
+  license: "GPL-3.0"
+  description: "Open source interface for iCUE LINK Hub and other Corsair AIOs, Hubs for Linux. Manage RGB lighting, fan speeds, system metrics, as well as keyboards, mice, headsets via a web dashboard."
+  labels:
+    emerge.jobs: "1"
+  provides:
+  - category: "apps"
+    name: "OpenLinkHub"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/jurkovic-nikola/OpenLinkHub.git && \
+    cd OpenLinkHub && \
+    git fetch --all --tags && \
+    git checkout tags/v0.5.8 && \
+    go build .
+  setup:
+  - |
+    mkdir -p -m 755 /usr/share/pixmaps && \
+    cd OpenLinkHub && \
+    cp ./static/img/512.ico /usr/share/pixmaps/OpenLinkHub.ico && \
+    chmod +x install.sh && \
+    sudo ./install.sh && \
+    echo "[Desktop Entry]" > /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Name=OpenLinkHub" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "GenericName=OpenLinkHub" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Comment=Open source interface for iCUE LINK Hub and other Corsair AIOs, Hubs for Linux" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Exec=http://localhost:27003" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "TryExec=http://localhost:27003" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Icon=OpenLinkHub.ico" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Terminal=false" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Type=Application" >> /usr/share/applications/OpenLinkHub.desktop && \
+    echo "Categories=Utility" >> /usr/share/applications/OpenLinkHub.desktop
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-openjade
   category: "apps"
