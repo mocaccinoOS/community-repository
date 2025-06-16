@@ -6839,6 +6839,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-nbfc-linux
+  category: "apps"
+  name: "nbfc-linux"
+  version: "0.1.7-r1"
+  uri:
+  - https://github.com/nbfc-linux/nbfc-linux
+  license: "GPL-3"
+  description: "Lightweight C port of NoteBook FanControl (no Mono required)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-power/nbfc-linux
+  overlays:
+  - enable: "bobwya"
+  provides:
+  - category: "sys-power"
+    name: "nbfc-linux"
+    version: ">=0"
+  atoms:
+  - atom: "sys-power/nbfc-linux"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "ncdu"
   version: "1.21"
