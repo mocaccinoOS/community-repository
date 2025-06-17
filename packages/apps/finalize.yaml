@@ -25,3 +25,7 @@ install:
 {{ if and (eq .Values.category "apps") ( contains "dotnet-sdk-" .Values.name) }}
 - eselect dotnet update ifunset
 {{ end }}
+
+{{ if and (eq .Values.category "apps") (eq .Values.name "OpenLinkHub") }}
+- if ! id "openlinkhub" >/dev/null 2>&1; then useradd -r "openlinkhub" --shell=/bin/false; fi
+{{ end }}
