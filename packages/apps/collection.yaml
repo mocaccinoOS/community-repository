@@ -70,11 +70,6 @@ stubs:
   name: "kde-pim"
   version: ">=0"
 
-- &layers-lxqt
-  category: "layers"
-  name: "lxqt"
-  version: ">=0"
-
 - &layers-plasma
   category: "layers"
   name: "plasma"
@@ -382,7 +377,7 @@ stubs:
       app-containers/docker
 
 - &apps-doxygen-packages >-
-  app-text/doxygen;USE="-llvm_slot_18 llvm_slot_19"
+  app-text/doxygen;USE="-llvm_slot_18 -llvm_slot_19 llvm_slot_20"
 
 - &apps-flatpak
   category: "apps"
@@ -666,7 +661,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20250401"
+  version: "20250501"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -991,7 +986,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "136.0.7103.113"
+  version: "137.0.7151.103"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1096,7 +1091,7 @@ packages:
 - &libs-cpp-httplib
   category: "libs"
   name: "cpp-httplib"
-  version: "0.18.1"
+  version: "0.20.1"
   uri:
   - https://github.com/yhirose/cpp-httplib/
   license: "MIT"
@@ -1210,7 +1205,7 @@ packages:
 - &libs-ffmpeg-compat
   category: "libs"
   name: "ffmpeg-compat"
-  version: "6.1.2-r1"
+  version: "6.1.2-r2"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2+"
@@ -1234,7 +1229,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.4.3"
+  version: "1.4.3-r1"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -1307,7 +1302,7 @@ packages:
 - &libs-game-music-emu
   category: "libs"
   name: "game-music-emu"
-  version: "0.6.3-r1"
+  version: "0.6.4"
   uri:
   - https://bitbucket.org/mpyne/game-music-emu/wiki/Home
   license: "LGPL-2.1"
@@ -2148,7 +2143,7 @@ packages:
 - &libs-libshout
   category: "libs"
   name: "libshout"
-  version: "2.4.6+2"
+  version: "2.4.6-r1"
   uri:
   - https://www.icecast.org/
   license: "LGPL-2"
@@ -2239,7 +2234,7 @@ packages:
 - &libs-libutf8proc
   category: "libs"
   name: "libutf8proc"
-  version: "2.10.0"
+  version: "2.10.0+1"
   uri:
   - https://github.com/JuliaStrings/utf8proc
   license: "MIT"
@@ -2253,7 +2248,7 @@ packages:
     name: "libutf8proc"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/ruby:3.2;USE="ruby_targets_ruby32"
+  - dev-lang/ruby:3.3;USE="ruby_targets_ruby33"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -2672,7 +2667,7 @@ packages:
 - &libs-python-protobuf
   category: "libs"
   name: "python-protobuf"
-  version: "6.30.2"
+  version: "6.30.2-r1"
   uri:
   - https://protobuf.dev/
   license: "BSD"
@@ -2816,7 +2811,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.3.1+1"
+  version: "4.4.1"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -3782,7 +3777,7 @@ packages:
 
 - category: "apps"
   name: "brasero"
-  version: "3.12.3-r2+1"
+  version: "3.12.3-r3"
   uri:
   - https://wiki.gnome.org/Apps/Brasero
   license: "GPL-2+ CC-BY-SA-3.0"
@@ -3807,7 +3802,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.79.118"
+  version: "1.79.126"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4208,7 +4203,7 @@ packages:
 - &apps-designer
   category: "apps"
   name: "designer"
-  version: "5.15.16"
+  version: "5.15.17"
   uri:
   - https://www.qt.io/
   license: "GPL-2 GPL-3 LGPL-3 FDL-1.3"
@@ -4416,7 +4411,7 @@ packages:
 - &apps-dvdauthor
   category: "apps"
   name: "dvdauthor"
-  version: "0.7.2-r3"
+  version: "0.7.2-r4"
   uri:
   - http://dvdauthor.sourceforge.net/
   license: "GPL-2"
@@ -4625,7 +4620,7 @@ packages:
 
 - category: "apps"
   name: "epiphany"
-  version: "46.4"
+  version: "46.4-r1"
   uri:
   - https://gitlab.gnome.org/GNOME/epiphany
   license: "GPL-3+"
@@ -4890,7 +4885,7 @@ packages:
 
 - category: "apps"
   name: "flam3"
-  version: "3.1.1"
+  version: "3.1.1-r1"
   uri:
   - https://flam3.com/
   license: "GPL-3"
@@ -5190,7 +5185,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.5"
+  version: "2.5-r1"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -5221,7 +5216,7 @@ packages:
 
 - category: "apps"
   name: "ghostwriter"
-  version: "25.04.1"
+  version: "25.04.2"
   uri:
   - https://ghostwriter.kde.org/
   license: "GPL-3+"
@@ -5244,7 +5239,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "11.1.1"
+  version: "11.2.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -5317,7 +5312,7 @@ packages:
 
 - category: "apps"
   name: "gnome-maps"
-  version: "46.11"
+  version: "46.11-r1"
   uri:
   - https://apps.gnome.org/Maps/
   license: "CC0-1.0 GPL-2+"
@@ -5406,7 +5401,7 @@ packages:
 - &apps-gnumeric
   category: "apps"
   name: "gnumeric"
-  version: "1.12.57+3"
+  version: "1.12.57-r1"
   uri:
   - http://www.gnumeric.org/
   license: "GPL-2"
@@ -5429,7 +5424,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.24.3"
+  version: "1.24.4"
   uri:
   - https://go.dev
   license: "BSD"
@@ -5452,7 +5447,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "136.0.7103.113"
+  version: "137.0.7151.103"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -5561,7 +5556,7 @@ packages:
 - &apps-guake
   category: "apps"
   name: "guake"
-  version: "3.10.0+31+1"
+  version: "3.10+32"
   uri:
   - http://guake-project.org
   license: "GPL-2+"
@@ -6393,7 +6388,7 @@ packages:
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03+1"
+  version: "23.03-r1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -6667,7 +6662,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "24.12.3-r1+1"
+  version: "24.12.3-r1+2"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7145,7 +7140,7 @@ packages:
 - &apps-nx
   category: "apps"
   name: "nx"
-  version: "3.5.99.27-r1"
+  version: "3.5.99.27-r2"
   uri:
   - https://github.com/ArcticaProject/nx-libs
   license: "GPL-2 "
@@ -7632,42 +7627,6 @@ packages:
   requires_final_images: true
 
 - category: "apps"
-  name: "pcmanfm"
-  version: "1.3.2-r2+3"
-  uri:
-  - https://github.com/lxde/pcmanfm
-  license: "GPL-2"
-  description: "Fast lightweight tabbed filemanager"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      x11-misc/pcmanfm
-  provides:
-  - category: "x11-misc"
-    name: "pcmanfm"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "libfm"
-    version: ">=0"
-  atoms:
-  - atom: "x11-misc/pcmanfm"
-    accept_keywords: "~amd64"
-  - atom: "x11-libs/libfm"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-util/intltool
-  - lxde-base/menu-cache
-  excludes:
-  - ^/usr/share/mime/application/x-ms-dos-executable.xml
-  - ^/usr/share/mime/application/x-ms-win-installer.xml
-  - ^/usr/share/mime/application/x-vbscript.xml
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-lxqt
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "pdftk"
   version: "3.3.3_p20231025+1"
   uri:
@@ -7894,7 +7853,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.3"
+  version: "10.4-r2"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -8078,7 +8037,7 @@ packages:
 
 - category: "apps"
   name: "quassel"
-  version: "0.14.0-r5"
+  version: "0.14.0-r6"
   uri:
   - https://quassel-irc.org
   license: "GPL-3"
@@ -8130,7 +8089,7 @@ packages:
 
 - category: "apps"
   name: "qjackctl"
-  version: "1.0.3-r1+1"
+  version: "1.0.4"
   uri:
   - https://qjackctl.sourceforge.io/
   license: "GPL-2"
@@ -9100,7 +9059,7 @@ packages:
 - &apps-vcdimager
   category: "apps"
   name: "vcdimager"
-  version: "2.0.1+5"
+  version: "2.0.1-r1"
   uri:
   - https://www.gnu.org/software/vcdimager/
   license: "GPL-2"
@@ -9123,7 +9082,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.5.6"
+  version: "1.5.7"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -9170,7 +9129,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.100.23258"
+  version: "1.100.33714"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9235,7 +9194,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "0.8.1"
+  version: "0.9.2"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -9636,7 +9595,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.4.10.2027"
+  version: "6.4.13.2309"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -13106,7 +13065,7 @@ packages:
 
 - category: "apps"
   name: "transmission"
-  version: "4.0.6-r5+2"
+  version: "4.0.6-r5+3"
   uri:
   - https://transmissionbt.com
   license: "GPL-2 MIT"
@@ -13338,7 +13297,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.5.5+3"
+  version: "4.5.5+4"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -14569,7 +14528,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "24.2.7.2-r2+4"
+  version: "24.2.7.2-r2+5"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15765,7 +15724,7 @@ packages:
   - atom: "media-sound/zynaddsubfx"
     use: "dssi alsa fltk jack lash portaudio"
   inner_build_reqs:
-  - dev-lang/ruby:3.2;USE="ruby_targets_ruby32"
+  - dev-lang/ruby:3.3;USE="ruby_targets_ruby33"
   requires:
   - <<: *layers-X
   - <<: *fonts-roboto
@@ -17630,7 +17589,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.13.2"
+  version: "1.13.2+1"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -17648,7 +17607,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-text/doxygen"
-    use: "clang dot doxysearch gui -llvm_slot_18 llvm_slot_19 # doc"
+    use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 llvm_slot_20 # doc"
   requires:
   - <<: *layers-plasma
   - <<: *development-gcc
@@ -18166,7 +18125,7 @@ packages:
 - &apps-hip
   category: "apps"
   name: "hip"
-  version: "6.3.3+3"
+  version: "6.3.3+4"
   uri:
   - https://github.com/ROCm/clr
   license: "Apache-2.0 MIT"
@@ -18370,7 +18329,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.4.3"
+  version: "4.4.3+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -18466,7 +18425,7 @@ packages:
     use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
   - atom: "sci-physics/bullet"
     use: "double-precision"
-  env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 llvm_slot_19\""
+  env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild manifest
@@ -18534,7 +18493,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.12.3+1"
+  version: "24.12.3+2"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
