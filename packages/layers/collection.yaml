@@ -755,11 +755,10 @@ packages:
 # dev-perl/X11-Protocol             shutter
 # dev-perl/XML-LibXML               wine-staging <- dev-perl/XML-LibXML-Simple
 # dev-perl/Tk                       net-analyzer/net-snmp
-
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.5+5"
+  version: "0.4+1"
   uri:
   - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Archive-Zip
@@ -1042,14 +1041,14 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - <<: *def-perl-libs
-#   category: "layerbase"
-#   hidden: true
-# 
-# - <<: *def-perl-libs
-#   category: "buildbase"
-#   unpack: true
-#   hidden: true
+- <<: *def-perl-libs
+  category: "layerbase"
+  hidden: true
+
+- <<: *def-perl-libs
+  category: "buildbase"
+  unpack: true
+  hidden: true
 
 
 - &def-ruby
