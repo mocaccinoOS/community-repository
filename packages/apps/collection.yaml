@@ -1205,7 +1205,7 @@ packages:
 - &libs-ffmpeg-compat
   category: "libs"
   name: "ffmpeg-compat"
-  version: "6.1.2-r2"
+  version: "6.1.2-r2+1"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2+"
@@ -1214,6 +1214,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/ffmpeg-compat
+      media-video/ffmpeg-compat:4
   provides:
   - category: "media-video"
     name: "ffmpeg-compat"
@@ -12479,7 +12480,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.4-r2+1"
+  version: "10.4-r2+2"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -16602,41 +16603,41 @@ packages:
 # !!! into the dependency graph, resulting in a slot conflict:
 # media-video/ffmpeg:0
 #
-# - &apps-moc
-#   category: "apps"
-#   name: "moc"
-#   version: "2.6_alpha3-r7"
-#   uri:
-#   - https://moc.daper.net
-#   - http://libtimidity.sourceforge.net
-#   license: "GPL-2 LGPL-2.1"
-#   description: |
-#     Music On Console - ncurses interface for playing audio files
-#     MIDI to WAVE converter library
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/moc
-#   provides:
-#   - category: "media-sound"
-#     name: "moc"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "libtimidity"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/moc"
-#     use: "aac alsa cache curl ffmpeg flac jack libsamplerate mad magic modplug musepack oss sid sndfile sndio speex timidity tremor unicode vorbis wavpack"
-#   optrequires:
-#   - <<: *apps-timidity
-#   requires:
-#   - <<: *layers-X
-#   # - <<: *apps-ffmpeg-4
-#   - <<: *libs-libao
-#   - <<: *libs-libsidplay
-#   - <<: *apps-sndio
-#   build_requires:
-#   - <<: *layers-X
+- &apps-moc
+  category: "apps"
+  name: "moc"
+  version: "2.6_alpha3-r8"
+  uri:
+  - https://moc.daper.net
+  - http://libtimidity.sourceforge.net
+  license: "GPL-2 LGPL-2.1"
+  description: |
+    Music On Console - ncurses interface for playing audio files
+    MIDI to WAVE converter library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/moc
+  provides:
+  - category: "media-sound"
+    name: "moc"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libtimidity"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/moc"
+    use: "aac alsa cache curl ffmpeg flac jack libsamplerate mad magic modplug musepack oss sid sndfile sndio speex timidity tremor unicode vorbis wavpack"
+  optrequires:
+  - <<: *apps-timidity
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ffmpeg-compat
+  - <<: *libs-libao
+  - <<: *libs-libsidplay
+  - <<: *apps-sndio
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "nomacs"
@@ -18432,7 +18433,7 @@ packages:
   - atom: "media-libs/openpgl"
     use: "cpu_flags_x86_avx2"
   - atom: "media-libs/opensubdiv"
-    use: "opencl openmp ptex tbb # cuda"
+    use: "glfw opencl opengl openmp ptex tbb # cuda"
     accept_keywords: "~amd64"
   - atom: "media-libs/osl"
     use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c "
