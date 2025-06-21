@@ -6385,10 +6385,11 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
+# 23.03-r1 package is broken
 - &apps-leocad
   category: "apps"
   name: "leocad"
-  version: "23.03-r1"
+  version: "23.03+1"
   uri:
   - http://www.leocad.org
   license: "GPL-2"
@@ -7852,32 +7853,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "proton-ge-custom-bin"
-  version: "10.4-r2"
-  uri:
-  - https://github.com/GloriousEggroll/proton-ge-custom
-  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-  description: "A fancy custom distribution of Valves Proton with various patches"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-emulation/proton-ge-custom-bin
-  overlays:
-  - enable: "kzd"
-  provides:
-  - category: "app-emulation"
-    name: "proton-ge-custom-bin"
-    version: ">=0"
-  atoms:
-  - atom: "app-emulation/proton-ge-custom-bin"
-    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "pulseaudio-qt"
   version: "1.7.0"
   uri:
@@ -9214,6 +9189,7 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
+  - =dev-lang/vala-0.56.18;ACCEPT_KEYWORDS="~amd64"
   - gui-libs/libadwaita;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-gnome-common
@@ -12501,6 +12477,42 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- category: "apps"
+  name: "proton-ge-custom-bin"
+  version: "10.4-r2+1"
+  uri:
+  - https://github.com/GloriousEggroll/proton-ge-custom
+  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+  description: "A fancy custom distribution of Valves Proton with various patches"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/proton-ge-custom-bin
+  overlays:
+  - enable: "kzd"
+  provides:
+  - category: "app-emulation"
+    name: "proton-ge-custom-bin"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "openssl-compat"
+    version: ">=0"
+  - category: "dev-util"
+    name: "mingw64-toolchain"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "vkd3d-proton"
+    version: ">=0"
+  atoms:
+  - atom: "app-emulation/proton-ge-custom-bin"
+    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ffmpeg-compat
+  build_requires:
+  - <<: *layers-X
+
 - &apps-pstoedit
   category: "apps"
   name: "pstoedit"
@@ -14582,15 +14594,15 @@ packages:
   - category: "dev-libs"
     name: "xmlsec"
     version: ">=0"
-  - category: "dev-python"
-    name: "lxml"
-    version: ">=0"
+  # - category: "dev-python"
+  #   name: "lxml"
+  #   version: ">=0"
   - category: "games-engines"
     name: "box2d"
     version: ">=0"
-  - category: "sci-libs"
-    name: "coinor-mp"
-    version: ">=0"
+  # - category: "sci-libs"
+  #   name: "coinor-mp"
+  #   version: ">=0"
   - category: "sci-mathematics"
     name: "lpsolve"
     version: ">=0"
@@ -18421,14 +18433,17 @@ packages:
     use: "cpu_flags_x86_avx2"
   - atom: "media-libs/opensubdiv"
     use: "opencl openmp ptex tbb # cuda"
+    accept_keywords: "~amd64"
   - atom: "media-libs/osl"
-    use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+    use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c "
   - atom: "sci-physics/bullet"
     use: "double-precision"
   env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild manifest
+  # - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild
+  # - ebuild /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {18..20} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild manifest
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
