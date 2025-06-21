@@ -2550,6 +2550,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-openssl-compat
+  category: "libs"
+  name: "openssl-compat"
+  version: "1.1.1u"
+  uri:
+  - https://www.openssl.org/
+  license: "openssl"
+  description: "Full-strength general purpose cryptography library (including SSL and TLS)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/openssl-compat
+  provides:
+  - category: "dev-libs"
+    name: "openssl-compat"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
@@ -7826,33 +7847,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-powerpanel
-  category: "apps"
-  name: "powerpanel"
-  version: "1.4.1-r1+2"
-  uri:
-  - https://www.cyberpowersystems.com/
-  license: "PowerPanel"
-  description: "PowerPanel software for CyberPower UPS systems"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/powerpanel
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "app-misc"
-    name: "powerpanel"
-    version: ">=0"
-  atoms:
-  - atom: "app-misc/powerpanel"
-    license: "PowerPanel"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - category: "apps"
   name: "pulseaudio-qt"
   version: "1.7.0"
@@ -12478,9 +12472,37 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-powerpanel
+  category: "apps"
+  name: "powerpanel"
+  version: "1.4.1-r1+3"
+  uri:
+  - https://www.cyberpowersystems.com/
+  license: "PowerPanel"
+  description: "PowerPanel software for CyberPower UPS systems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/powerpanel
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-misc"
+    name: "powerpanel"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/powerpanel"
+    license: "PowerPanel"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-openssl-compat
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.4-r2+2"
+  version: "10.4-r2+3"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -12495,12 +12517,6 @@ packages:
   - category: "app-emulation"
     name: "proton-ge-custom-bin"
     version: ">=0"
-  - category: "dev-libs"
-    name: "openssl-compat"
-    version: ">=0"
-  - category: "dev-util"
-    name: "mingw64-toolchain"
-    version: ">=0"
   - category: "app-emulation"
     name: "vkd3d-proton"
     version: ">=0"
@@ -12508,9 +12524,12 @@ packages:
   - atom: "app-emulation/proton-ge-custom-bin"
     license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-X
   - <<: *libs-ffmpeg-compat
+  - <<: *libs-openssl-compat
   build_requires:
   - <<: *layers-X
 
@@ -18338,7 +18357,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.4.3"
+  version: "4.4.3+1"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
