@@ -16599,10 +16599,6 @@ packages:
   - <<: *buildbase-sci-libs
   requires_final_images: true
 
-# !!! Multiple package instances within a single package slot have been pulled
-# !!! into the dependency graph, resulting in a slot conflict:
-# media-video/ffmpeg:0
-#
 - &apps-moc
   category: "apps"
   name: "moc"
@@ -18342,7 +18338,7 @@ packages:
 
 - category: "apps"
   name: "blender"
-  version: "4.4.3+1"
+  version: "4.4.3"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -18443,8 +18439,8 @@ packages:
   prepare:
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/opensubdiv/opensubdiv-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {18..20} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {18..20} )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
   # - sed -i -e 's/PYTHON_COMPAT=( python3_{9..10} )/PYTHON_COMPAT=( python3_{9..11} )/' /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-libs/partio/partio-*.ebuild manifest
   # - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {15..19} )/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
