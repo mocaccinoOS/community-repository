@@ -18536,7 +18536,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "24.12.3+2"
+  version: "24.12.3+3"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -18565,8 +18565,8 @@ packages:
   - atom: "dev-util/kdevelop"
     use: "gdbui hex plasma qmake # reviewboard subversion"
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( \(.*\) )/LLVM_COMPAT=( \1 19 )/' /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-24.08.3.ebuild
-  - ebuild /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-24.08.3.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( \(.*\) )/LLVM_COMPAT=( \1 20 )/' /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild manifest
   requires:
   - <<: *layers-plasma
   # - <<: *apps-okteta
