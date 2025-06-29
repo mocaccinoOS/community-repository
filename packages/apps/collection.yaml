@@ -17050,39 +17050,39 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - category: "apps"
-#   name: "digikam"
-#   version: "8.6.0"
-#   uri:
-#   - https://www.digikam.org/
-#   - https://www.qtav.org
-#   license: "GPL-2 GPL-3+ LGPL-2.1+"
-#   description: |
-#     Digital photo management application
-#     Multimedia playback framework based on Qt + FFmpeg
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/digikam
-#   provides:
-#   - category: "media-libs"
-#     name: "qtav"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "digikam"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/digikam"
-#     use: "semantic-desktop"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *libs-liblqr
-#   - <<: *apps-hugin
-#   build_requires:
-#   - <<: *buildbase-kde-common
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- category: "apps"
+  name: "digikam"
+  version: "8.6.0"
+  uri:
+  - https://www.digikam.org/
+  - https://www.qtav.org
+  license: "GPL-2 GPL-3+ LGPL-2.1+"
+  description: |
+    Digital photo management application
+    Multimedia playback framework based on Qt + FFmpeg
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/digikam
+  provides:
+  - category: "media-libs"
+    name: "qtav"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "digikam"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/digikam"
+    use: "semantic-desktop"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-liblqr
+  - <<: *apps-hugin
+  build_requires:
+  - <<: *buildbase-kde-common
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 # # Unstable for KDE/Qt 6
 # - category: "apps"
@@ -17827,18 +17827,14 @@ packages:
       =media-sound/museseq-4.2.1
   overlays:
   - enable: "proaudio-gentoo"
-  # - enable: "tgbugs-overlay"
   provides:
   - category: "media-sound"
     name: "museseq"
     version: ">=0"
-  # - category: "dev-python"
-  #   name: Pyro4"
-  #   version: ">=0"
   atoms:
   - atom: "media-sound/museseq"
     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-    accept_keywords: "~amd64"
+    accept_keywords: "**"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
