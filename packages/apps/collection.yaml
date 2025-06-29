@@ -17833,8 +17833,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/museseq"
-    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-    accept_keywords: "**"
+    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband vst"
+    accept_keywords: "~amd64"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
@@ -18270,7 +18270,6 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-# can't build due to libs/dssi
 - category: "apps"
   name: "qtractor"
   version: "1.5.4"
@@ -18365,7 +18364,7 @@ packages:
 # osl disabled
 - category: "apps"
   name: "blender"
-  version: "4.4.3+1"
+  version: "4.4.3+2"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
