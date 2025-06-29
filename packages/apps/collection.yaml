@@ -17846,10 +17846,11 @@ packages:
   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
+  inner_build_requires:
+  - <<: *apps-designer
   requires:
   - <<: *layers-qt
   - <<: *layers-kde-kf5
-  # - <<: *apps-designer
   - <<: *apps-fluidsynth
   - <<: *apps-lash
   - <<: *libs-dssi
@@ -17861,8 +17862,7 @@ packages:
   - <<: *libs-rubberband
   build_requires:
   # - <<: *layers-kde-common
-  - <<: *buildbase-kde-kf5
-  requires_final_images: true
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "mypaint"
