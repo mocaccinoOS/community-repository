@@ -12847,7 +12847,7 @@ packages:
 - &apps-shutter
   category: "apps"
   name: "shutter"
-  version: "0.99.6"
+  version: "0.99.6+1"
   uri:
   - https://shutter-project.org/
   license: "GPL-3+"
@@ -17816,7 +17816,7 @@ packages:
 
 - category: "apps"
   name: "museseq"
-  version: "4.2.1+4"
+  version: "4.2.1+5"
   uri:
   - https://github.com/muse-sequencer/muse
   license: "GPL-2"
@@ -17824,7 +17824,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-sound/museseq-4.2.1
+      media-sound/museseq
   overlays:
   - enable: "proaudio-gentoo"
   provides:
@@ -17833,8 +17833,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/museseq"
-    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband vst"
-    accept_keywords: "~amd64"
+    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
+    accept_keywords: "**"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
