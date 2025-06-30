@@ -17816,7 +17816,7 @@ packages:
 
 - category: "apps"
   name: "museseq"
-  version: "4.2.1+5"
+  version: "4.2.1+6"
   uri:
   - https://github.com/muse-sequencer/muse
   license: "GPL-2"
@@ -17824,7 +17824,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-sound/museseq
+      =media-sound/museseq-4.2.1
   overlays:
   - enable: "proaudio-gentoo"
   provides:
@@ -17834,14 +17834,14 @@ packages:
   atoms:
   - atom: "media-sound/museseq"
     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-    accept_keywords: "**"
+    accept_keywords: "~amd64"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
-  # inner_build_reqs:
-  # - kde-frameworks/extra-cmake-modules
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   inner_build_requires:
   - <<: *apps-designer
   requires:
