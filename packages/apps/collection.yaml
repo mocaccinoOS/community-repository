@@ -2414,7 +2414,7 @@ packages:
 - &libs-mbedtls
   category: "libs"
   name: "mbedtls"
-  version: "2.28.9-r1"
+  version: "3.6.3.1"
   uri:
   - https://tls.mbed.org/
   license: "Apache-2.0"
@@ -2422,7 +2422,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/mbedtls
+      net-libs/mbedtls:0
+      net-libs/mbedtls:3
   provides:
   - category: "net-libs"
     name: "mbedtls"
@@ -2430,6 +2431,7 @@ packages:
   atoms:
   - atom: "net-libs/mbedtls"
     use: "havege threads zlib"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4490,6 +4492,9 @@ packages:
     use: "vbe-mode"
   - atom: "sys-apps/edid-fixdim"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild
+  - ebuild /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild manifest
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10089,7 +10094,7 @@ packages:
 - &libs-twisted
   category: "libs"
   name: "twisted"
-  version: "25.5.0"
+  version: "25.5.0+1"
   uri:
   - https://www.twistedmatrix.com/trac/
   - https://github.com/twisted/incremental
@@ -10111,6 +10116,8 @@ packages:
   - category: "dev-python"
     name: "zope-interface"
     version: ">=0"
+  inner_build_reqs:
+  - dev-python/hatch-fancy-pypi-readme
   requires:
   - <<: *layers-X
   - <<: *libs-typing-extensions
@@ -12244,7 +12251,7 @@ packages:
 - &apps-oversteer
   category: "apps"
   name: "oversteer"
-  version: "0.8.2+5"
+  version: "0.8.2+4"
   uri:
   - https://github.com/berarma/oversteer
   license: "GPL-3.0"
@@ -14309,11 +14316,11 @@ packages:
     emerge.packages: >-
       kde-apps/kdegames-meta
   provides:
-  - category: "dev-libs"
-    name: "rinutils"
-    version: ">=0"
   - category: "dev-games"
     name: "freecell-solver"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rinutils"
     version: ">=0"
   - category: "dev-python"
     name: "pysol-cards"
@@ -14323,6 +14330,9 @@ packages:
     version: ">=0"
   - category: "games-board"
     name: "gnugo"
+    version: ">=0"
+  - category: "games-puzzle"
+    name: "skladnik"
     version: ">=0"
   - category: "kde-apps"
     name: "kdegames-meta"
@@ -17336,6 +17346,9 @@ packages:
   - category: "kde-apps"
     name: "kdenlive"
     version: ">=0"
+  - category: "media-libs"
+    name: "opentimelineio"
+    version: ">=0"
   atoms:
   - atom: "kde-apps/kdenlive"
     use: "semantic-desktop share v4l # gles2-only"
@@ -17816,7 +17829,7 @@ packages:
 
 - category: "apps"
   name: "museseq"
-  version: "4.2.1+7"
+  version: "4.2.1+6"
   uri:
   - https://github.com/muse-sequencer/muse
   license: "GPL-2"
@@ -18559,7 +18572,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-util/kdevelop"
-    use: "gdbui hex plasma qmake # reviewboard subversion"
+    use: "gdbui hex plasma qmake # reviewboard subversion -llvm_slot_15 -llvm_slot_16 -llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20"
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( \(.*\) )/LLVM_COMPAT=( \1 20 )/' /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild manifest
