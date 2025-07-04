@@ -4458,7 +4458,7 @@ packages:
 
 - category: "apps"
   name: "edid-tools"
-  version: "0.3"
+  version: "0.3+1"
   uri:
   - http://www.polypux.org/projects/read-edid/
   - https://git.linuxtv.org/edid-decode.git/
@@ -4495,6 +4495,8 @@ packages:
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild
   - ebuild /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild manifest
+  inner_build_reqs:
+  - dev-build/meson-format-array dev-build/meson
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -18573,9 +18575,6 @@ packages:
   atoms:
   - atom: "dev-util/kdevelop"
     use: "gdbui hex plasma qmake # reviewboard subversion -llvm_slot_15 -llvm_slot_16 -llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20"
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( \(.*\) )/LLVM_COMPAT=( \1 20 )/' /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-util/kdevelop/kdevelop-*.ebuild manifest
   requires:
   - <<: *layers-plasma
   # - <<: *apps-okteta
