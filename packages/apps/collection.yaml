@@ -986,7 +986,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  # version: "138.0.7204.92"
+  version: "138.0.7204.92"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6603,15 +6603,15 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       x11-misc/ly
-  atoms:
-  - atom: "x11-misc/ly"
-    accept_keywords: "~amd64"
   overlays:
   - enable: "guru"
   provides:
   - category: "x11-misc"
     name: "ly"
     version: ">=0"
+  atoms:
+  - atom: "x11-misc/ly"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lang/zig-bin:0.13;ACCEPT_KEYWORDS="~amd64"
   requires:
@@ -11986,7 +11986,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.38"
+  version: "0.38+1"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -12348,7 +12348,7 @@ packages:
 - &apps-picom
   category: "apps"
   name: "picom"
-  version: "12.5+1"
+  version: "12.5+2"
   uri:
   - https://github.com/yshui/picom
   license: "MPL-2.0 MIT"
@@ -14631,6 +14631,9 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "xmlsec"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "zxcvbn-c"
     version: ">=0"
   # - category: "dev-python"
   #   name: "lxml"
