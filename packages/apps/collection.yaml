@@ -9329,7 +9329,7 @@ packages:
     accept_keywords: "~amd64"
     use: "apparmor clipboard"
   - atom: "app-containers/waydroid-images"
-    accept_keywords: "~amd64"
+    accept_keywords: "**"
     use: "system-vanilla system-gapps vendor-mainline vendor-halium"
   - atom: "dev-python/gbinder"
     accept_keywords: "~amd64"
@@ -9339,10 +9339,10 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e "/net-firewall\/nftables/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e "/~NFT_/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e "/~NF_/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e "/~ANDROID_BINDERFS/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
   inner_build_reqs:
   - app-portage/gemato
