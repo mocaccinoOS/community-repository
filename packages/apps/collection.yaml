@@ -6041,7 +6041,7 @@ packages:
     name: "openpgp-keys-botan"
     version: ">=0"
   inner_build_reqs:
-  - dev-ruby/asciidoctor
+  - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
   - dev-python/sphinx
   requires:
   - <<: *layers-kde-kf5
@@ -6049,44 +6049,44 @@ packages:
   - <<: *layers-kde-kf5
 
 # Currently fails to build, try later
-# - category: "apps"
-#   name: "kernelshark"
-#   version: "2.3.2"
-#   uri:
-#   - https://kernelshark.org/
-#   license: "GPL-2 LGPL-2.1"
-#   description: "Graphical reader for trace-cmd output"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-util/kernelshark
-#   provides:
-#   - category: "dev-libs"
-#     name: "libtracecmd"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "libtraceevent"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "libtracefs"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "kernelshark"
-#     version: ">=0"
-#   - category: "media-fonts"
-#     name: "freefont"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-libs/libtracecmd"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/kernelshark"
-#     accept_keywords: "~amd64"
-#   inner_build_reqs:
-#   - app-text/asciidoc
-#   requires:
-#   - <<: *layers-qt
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "kernelshark"
+  version: "2.4.0-r1"
+  uri:
+  - https://kernelshark.org/
+  license: "GPL-2 LGPL-2.1"
+  description: "Graphical reader for trace-cmd output"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/kernelshark
+  provides:
+  - category: "dev-libs"
+    name: "libtracecmd"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libtraceevent"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libtracefs"
+    version: ">=0"
+  - category: "dev-util"
+    name: "kernelshark"
+    version: ">=0"
+  - category: "media-fonts"
+    name: "freefont"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/libtracecmd"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/kernelshark"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - app-text/asciidoc
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-kgpg
   category: "apps"
@@ -6445,49 +6445,38 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-- &apps-qalculate-gtk
+- &apps-lxc
   category: "apps"
-  name: "qalculate-gtk"
-  version: "5.5.1"
+  name: "lxc"
+  version: "6.0.4-r1"
   uri:
-  - https://qalculate.github.io/
-  license: "GPL-2+"
-  description: "Modern multi-purpose calculator"
+  - https://linuxcontainers.org/
+  - https://github.com/lxc/lxc
+  license: "GPL-2 LGPL-2.1 LGPL-3"
+  description: |
+    A userspace interface for the Linux kernel containment features
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      sci-calculators/qalculate-gtk
+      app-containers/lxc
   provides:
-  - category: "sci-calculators"
-    name: "qalculate-gtk"
+  - category: "app-containers"
+    name: "lxc"
     version: ">=0"
+  atoms:
+  - atom: "app-containers/lxc"
+    use: "apparmor caps io-uring lto man pam seccomp ssl systemd tools verify-sig"
   inner_build_reqs:
-  - dev-util/intltool
+  - app-text/docbook2X
+  - dev-build/meson-format-array dev-build/meson
+  - sec-keys/openpgp-keys-linuxcontainers
   requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- &apps-qalculate-qt
-  category: "apps"
-  name: "qalculate-qt"
-  version: "5.5.1"
-  uri:
-  - https://github.com/Qalculate/qalculate-qt
-  license: "GPL-2+"
-  description: "Qt-based UI for libqalculate"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sci-calculators/qalculate-qt
-  provides:
-  - category: "sci-calculators"
-    name: "qalculate-qt"
+  - <<: *layers-sys-fs
+  - category: "entity"
+    name: "lxc"
     version: ">=0"
-  requires:
-  - <<: *layers-qt
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-sys-fs
 
 - &apps-librecad
   category: "apps"
@@ -7921,6 +7910,50 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &apps-qalculate-gtk
+  category: "apps"
+  name: "qalculate-gtk"
+  version: "5.5.1"
+  uri:
+  - https://qalculate.github.io/
+  license: "GPL-2+"
+  description: "Modern multi-purpose calculator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-calculators/qalculate-gtk
+  provides:
+  - category: "sci-calculators"
+    name: "qalculate-gtk"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-util/intltool
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-qalculate-qt
+  category: "apps"
+  name: "qalculate-qt"
+  version: "5.5.1"
+  uri:
+  - https://github.com/Qalculate/qalculate-qt
+  license: "GPL-2+"
+  description: "Qt-based UI for libqalculate"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-calculators/qalculate-qt
+  provides:
+  - category: "sci-calculators"
+    name: "qalculate-qt"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "qbittorrent"
@@ -17204,7 +17237,7 @@ packages:
 #   - atom: "sci-libs/pcl"
 #     use: "opengl openni2 pcap png qhull qt6 usb vtk # cuda doc opengl png qt5 qt6 usb tutorials"
 #   inner_build_reqs:
-#   - dev-ruby/asciidoctor
+#   - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
 #   - app-text/dos2unix
 #   - dev-lang/swig
 #   - dev-cpp/ms-gsl
