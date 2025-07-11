@@ -9287,6 +9287,74 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-waydroid
+  category: "apps"
+  name: "waydroid"
+  version: "1.5.4"
+  uri:
+  - https://waydro.id
+  - https://sourceforge.net/projects/waydroid/files/images
+  license: "Apache-2.0 GPL-3"
+  description: |
+    Container-based approach to boot a full Android system on Linux systems
+    Manage images for app-containers/waydroid using portage
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/waydroid
+      app-containers/waydroid-images
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-containers"
+    name: "waydroid"
+    version: ">=0"
+  - category: "app-containers"
+    name: "waydroid-images"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyclip"
+    version: ">=0"
+  - category: "dev-python"
+    name: "gbinder"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libglibutil"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "gbinder"
+    version: ">=0"
+  atoms:
+  - atom: "app-containers/waydroid"
+    accept_keywords: "~amd64"
+    use: "apparmor clipboard"
+  - atom: "app-containers/waydroid-images"
+    accept_keywords: "~amd64"
+    use: "system-vanilla system-gapps vendor-mainline vendor-halium"
+  - atom: "dev-python/gbinder"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/gbinder"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/libglibutil"
+    accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e "/net-firewall\/nftables/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e "/~NFT_/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e "/~NF_/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e "/~ANDROID_BINDERFS/d" /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
+  inner_build_reqs:
+  - app-portage/gemato
+  # - virtual/dist-kernel
+  # - virtual/linux-sources
+  requires:
+  - <<: *layers-X
+  - <<: *apps-lxc
+  # - <<: *apps-nftables
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "weechat"
   version: "4.5.2+2"
