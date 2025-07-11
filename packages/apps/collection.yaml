@@ -222,11 +222,6 @@ stubs:
 #   name: "vtk"
 #   version: ">=0"
 
-- &apps-apparmor
-  category: "apps"
-  name: "apparmor"
-  version: ">=0"
-
 
 ################################################################################################################################################################
 ### kernel refs ###
@@ -269,6 +264,15 @@ stubs:
 ################################################################################################################################################################
 ### libs refs ###
 ################################################################################################################################################################
+
+- &libs-apparmor
+  category: "apps"
+  name: "apparmor"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-libs/libapparmor
 
 - &libs-fonttools
   category: "libs"
@@ -6474,7 +6478,7 @@ packages:
 - &apps-lxc
   category: "apps"
   name: "lxc"
-  version: "6.0.4-r1+1"
+  version: "6.0.4-r1+2"
   uri:
   - https://linuxcontainers.org/
   - https://github.com/lxc/lxc
@@ -6500,7 +6504,7 @@ packages:
   - sec-keys/openpgp-keys-linuxcontainers
   requires:
   - <<: *layers-sys-fs
-  - <<: *apps-apparmor
+  - <<: *libs-apparmor
   - category: "entity"
     name: "lxc"
     version: ">=0"
