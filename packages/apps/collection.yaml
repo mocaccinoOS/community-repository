@@ -9290,7 +9290,7 @@ packages:
 - &apps-waydroid
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.5.4"
+  version: "1.5.4+1"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -9324,6 +9324,12 @@ packages:
   - category: "dev-libs"
     name: "gbinder"
     version: ">=0"
+  - category: "gui-apps"
+    name: "wl-clipboard"
+    version: ">=0"
+  - category: "x11-misc"
+    name: "xclip"
+    version: ">=0"
   atoms:
   - atom: "app-containers/waydroid"
     accept_keywords: "~amd64"
@@ -9349,7 +9355,7 @@ packages:
   inner_build_reqs:
   - app-portage/gemato
   # - virtual/dist-kernel
-  # - virtual/linux-sources
+  - virtual/linux-sources
   requires:
   - <<: *layers-X
   - <<: *apps-lxc
