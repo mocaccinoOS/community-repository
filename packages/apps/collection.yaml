@@ -4483,6 +4483,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-dysk
+  category: "apps"
+  name: "dysk"
+  version: "2.10.1"
+  uri:
+  - https://dystroy.org/dysk
+  license: "MIT Unicode-DFS-2016 || ( Apache-2.0 Boost-1.0)"
+  description: "give information on mounted filesystems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/dysk
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "sys-apps"
+    name: "dysk"
+    version: ">=0"
+  atoms:
+  - atom: "sys-apps/dysk"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "edid-tools"
   version: "0.3+1"
