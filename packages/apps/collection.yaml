@@ -9287,7 +9287,7 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &apps-waydroid
+- &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
   version: "1.5.4+1"
@@ -9331,19 +9331,24 @@ packages:
     name: "xclip"
     version: ">=0"
   atoms:
-  - atom: "app-containers/waydroid"
+  - &atom1
+    atom: "app-containers/waydroid"
     accept_keywords: "~amd64"
     use: "apparmor clipboard"
   - atom: "app-containers/waydroid-images"
     accept_keywords: "**"
     use: "system-gapps -system-vanilla -vendor-halium vendor-mainline"
-  - atom: "dev-python/pyclip"
+  - &atom2
+    atom: "dev-python/pyclip"
     accept_keywords: "~amd64"
-  - atom: "dev-python/gbinder"
+  - &atom3
+    atom: "dev-python/gbinder"
     accept_keywords: "~amd64"
-  - atom: "dev-libs/gbinder"
+  - &atom4
+    atom: "dev-libs/gbinder"
     accept_keywords: "~amd64"
-  - atom: "dev-libs/libglibutil"
+  - &atom5
+    atom: "dev-libs/libglibutil"
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
@@ -9362,6 +9367,18 @@ packages:
   # - <<: *apps-nftables
   build_requires:
   - <<: *layers-X
+
+- <<: *apps-waydroid-gapps
+  name: "waydroid-vanilla"
+  atoms:
+  - <<: *atom1
+  - atom: "app-containers/waydroid-images"
+    accept_keywords: "**"
+    use: "-system-gapps system-vanilla -vendor-halium vendor-mainline"
+  - <<: *atom2
+  - <<: *atom3
+  - <<: *atom4
+  - <<: *atom5
 
 - category: "apps"
   name: "weechat"
