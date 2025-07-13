@@ -8,6 +8,9 @@ env:
 {{- end }}
 - EMERGE_DEFAULT_OPTS="--getbinpkg --quiet"
 - FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox binpkg-request-signature"
+{{- range .Values.env }}
+- {{ . }}
+{{- end }}
 
 requires:
 {{- range .Values.build_requires }}
@@ -54,7 +57,7 @@ prelude:
   {{/*- if eq .Values.name "blender" }}
     {{- template "community.dumpList" ( include "community.package_setup" .Values ) }}
     {{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.package_setup" .Values ) ) | fromYaml ) "debug" ) }}
-    {{- end */}}
+  {{- end */}}
   {{/* end debug */}}
 
   {{- include "community.package_setup" .Values }}

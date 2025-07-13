@@ -18,6 +18,11 @@ entity "font-cursor-misc" as fonts/font-cursor-misc << (f,#48D1CC) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "freefont" as fonts/freefont << (f,#48D1CC) >> {
+  <color:#34495E><U+24DF></color> media-fonts-freefont
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
 entity "inconsolata" as fonts/inconsolata << (f,#48D1CC) >> {
   <color:#34495E><U+24DF></color> media-fonts-inconsolata
 ..
@@ -847,6 +852,11 @@ entity "dvdauthor" as apps/dvdauthor << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "dysk" as apps/dysk << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sys-apps-dysk
+..
+  <color:#9ACD32><U+2756></color> layers-sys-fs
+}
 entity "edid-tools" as apps/edid-tools << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-read-edid
   <color:#34495E><U+24DF></color> sys-apps-edid-decode
@@ -1209,6 +1219,17 @@ entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
+entity "kernelshark" as apps/kernelshark << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-libs-libtracecmd
+  <color:#34495E><U+24DF></color> dev-libs-libtraceevent
+  <color:#34495E><U+24DF></color> dev-libs-libtracefs
+  <color:#34495E><U+24DF></color> dev-util-kernelshark
+  <color:#34495E><U+24DF></color> dev-util-null
+  <color:#34495E><U+24DF></color> sys-process-null
+..
+  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#48D1CC><U+24D5></color> fonts-freefont
+}
 entity "kgpg" as apps/kgpg << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-apps-kgpg
 ..
@@ -1280,15 +1301,12 @@ entity "leocad" as apps/leocad << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
-entity "qalculate-gtk" as apps/qalculate-gtk << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> sci-calculators-qalculate-gtk
+entity "lxc" as apps/lxc << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-containers-lxc
 ..
-  <color:#9ACD32><U+2756></color> layers-X
-}
-entity "qalculate-qt" as apps/qalculate-qt << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> sci-calculators-qalculate-qt
-..
-  <color:#9ACD32><U+2756></color> layers-qt
+  <color:#9ACD32><U+2756></color> layers-sys-fs
+  <color:#FF00FF><U+25C9></color> apps-apparmor
+  <color:#5DADE2><U+24D4></color> entity-lxc
 }
 entity "librecad" as apps/librecad << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-librecad
@@ -1569,6 +1587,16 @@ entity "pycodestyle" as apps/pycodestyle << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "qalculate-gtk" as apps/qalculate-gtk << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sci-calculators-qalculate-gtk
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "qalculate-qt" as apps/qalculate-qt << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sci-calculators-qalculate-qt
+..
+  <color:#9ACD32><U+2756></color> layers-qt
+}
 entity "qbittorrent" as apps/qbittorrent << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-p2p-qbittorrent
 ..
@@ -1836,6 +1864,32 @@ entity "wavemon" as apps/wavemon << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-wireless-wavemon
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
+}
+entity "waydroid-gapps" as apps/waydroid-gapps << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-containers-waydroid
+  <color:#34495E><U+24DF></color> app-containers-waydroid-images
+  <color:#34495E><U+24DF></color> dev-python-pyclip
+  <color:#34495E><U+24DF></color> dev-python-gbinder
+  <color:#34495E><U+24DF></color> dev-libs-libglibutil
+  <color:#34495E><U+24DF></color> dev-libs-gbinder
+  <color:#34495E><U+24DF></color> gui-apps-wl-clipboard
+  <color:#34495E><U+24DF></color> x11-misc-xclip
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF00FF><U+25C9></color> apps-lxc
+}
+entity "waydroid-vanilla" as apps/waydroid-vanilla << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-containers-waydroid
+  <color:#34495E><U+24DF></color> app-containers-waydroid-images
+  <color:#34495E><U+24DF></color> dev-python-pyclip
+  <color:#34495E><U+24DF></color> dev-python-gbinder
+  <color:#34495E><U+24DF></color> dev-libs-libglibutil
+  <color:#34495E><U+24DF></color> dev-libs-gbinder
+  <color:#34495E><U+24DF></color> gui-apps-wl-clipboard
+  <color:#34495E><U+24DF></color> x11-misc-xclip
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF00FF><U+25C9></color> apps-lxc
 }
 entity "weechat" as apps/weechat << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-irc-weechat
@@ -3083,6 +3137,7 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-liborcus
   <color:#34495E><U+24DF></color> dev-libs-libixion
   <color:#34495E><U+24DF></color> dev-libs-xmlsec
+  <color:#34495E><U+24DF></color> dev-libs-zxcvbn-c
   <color:#34495E><U+24DF></color> games-engines-box2d
   <color:#34495E><U+24DF></color> sci-mathematics-lpsolve
 ..
@@ -3991,6 +4046,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 
 "apps/oh-my-posh" --u--> "fonts/fontawesome"
 "apps/x2goserver" --u--> "fonts/font-cursor-misc"
+"apps/kernelshark" --u--> "fonts/freefont"
 "apps/mangohud" --u--> "fonts/lato"
 "apps/kodi" --u--> "fonts/roboto"
 "apps/zynaddsubfx" --u--> "fonts/roboto"
@@ -4270,6 +4326,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nut" --u--> "apps/i2c-tools"
 "apps/q4wine" --u--> "apps/icoutils"
 "apps/kdevelop" --u--> "apps/kapptemplate"
+"apps/waydroid-gapps" --u--> "apps/lxc"
+"apps/waydroid-vanilla" --u--> "apps/lxc"
 "apps/hardinfo2" --u--> "apps/luajit"
 "apps/mpv" --u--> "apps/luajit"
 "apps/obs-studio" --u--> "apps/luajit"
