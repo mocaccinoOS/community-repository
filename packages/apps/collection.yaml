@@ -9379,8 +9379,8 @@ packages:
   prepare:
   - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
   inner_build_reqs:

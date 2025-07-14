@@ -68,6 +68,10 @@ steps:
 
 {{- include "community.includes_excludes" ( list .Values .Values.category ) }}
 
+{{/*}}
+{{- template "community.dump" ( include "community.includes_excludes" ( list .Values .Values.category ) ) }}
+{{*/}}
+
 {{- include "community.subpackages" .Values }}
 
 {{/* debug */}}
@@ -77,4 +81,11 @@ steps:
 {{- end */}}
 {{/* end debug */}}
 
+{{- end }}
+
+{{- if .Values.package_dir }}
+package_dir: {{ .Values.package_dir }}
+
+includes:
+- {{ .Values.package_dir }}
 {{- end }}

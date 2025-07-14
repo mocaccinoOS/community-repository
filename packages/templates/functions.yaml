@@ -589,10 +589,10 @@ subpackages:
 {{- end }}
 
 ################################################################################
-## community.includes_excludes ###
+## community.init_includes_excludes ###
 ################################################################################
 
-{{- define "community.includes_excludes" }}
+{{- define "community.init_includes_excludes" }}
 
 {{- $values := index . 0 }}
 {{- $category := index . 1 }}
@@ -610,6 +610,12 @@ excludes:
 - ^/etc/portage/savedconfig
 - ^/etc/profile.env
 - ^/luetbuild
+{{/*}}
+{{- $item := ( include "community.solve_includes_excludes" ( list "^/luetbuild" $values.package_dir ) ) }}
+{{- if $item }}
+- {{ $item }}
+{{- end }}
+{{*/}}
 - ^/tmp
 {{/**/}}
   {{- if ne $category "layerbase" }}
@@ -642,6 +648,73 @@ excludes:
 - {{ . }}
     {{- end }}
   {{- end }}
+{{- end }}
+
+{{- if $values.includes }}
+includes:
+  {{- range $values.includes }}
+    {{- if . }}
+- {{ . }}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- end }}
+
+################################################################################
+## community.includes_excludes ###
+################################################################################
+
+{{- define "community.includes_excludes" }}
+
+{{- $values := index . 0 -}}
+{{- $category := index . 1 -}}
+
+{{- $includes_excludes := ( ( include "community.init_includes_excludes" ( list $values $category ) ) | fromYaml ) -}}
+
+{{- $excludes := list -}}
+
+{{- range ( get $includes_excludes "excludes" ) -}}
+  {{- $item := ( include "community.solve_includes_excludes" ( list . $values.package_dir ) ) -}}
+  {{- if $item -}}
+    {{ $excludes = append $excludes $item -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $excludes }}
+excludes:
+{{ $excludes | toYaml }}
+{{- end }}
+
+{{- $includes := get $includes_excludes "includes" }}
+{{- if $includes }}
+includes:
+{{ $includes | toYaml }}
+{{- end }}
+
+{{- end }}
+
+################################################################################
+## community.solve_includes_excludes ###
+################################################################################
+
+{{- define "community.solve_includes_excludes" }}
+
+{{- $item_to_exclude := index . 0 }}
+{{- $item_to_include := index . 1 }}
+
+{{- if $item_to_include }}
+  {{- if not ( hasPrefix "^" $item_to_include ) }}
+    {{- $item_to_include = ( printf "^%s" $item_to_include ) }}
+  {{- end }}
+  {{- if not ( hasPrefix "^" $item_to_exclude ) }}
+    {{- $item_to_exclude = ( printf "^%s" $item_to_exclude ) }}
+  {{- end }}
+  {{- if not ( hasPrefix $item_to_exclude $item_to_include ) }}
+    {{- $item_to_exclude }}
+  {{- end }}
+{{- else }}
+    {{- $item_to_exclude }}
 {{- end }}
 
 {{- end }}
