@@ -667,29 +667,40 @@ includes:
 
 {{- define "community.includes_excludes" }}
 
-{{- $values := index . 0 -}}
-{{- $category := index . 1 -}}
+{{- $values := index . 0 }}
+{{- $category := index . 1 }}
 
-{{- $includes_excludes := ( ( include "community.init_includes_excludes" ( list $values $category ) ) | fromYaml ) -}}
+{{- $includes_excludes := ( ( include "community.init_includes_excludes" ( list $values $category ) ) | fromYaml ) }}
 
-{{- $excludes := list -}}
-
-{{- range ( get $includes_excludes "excludes" ) -}}
-  {{- $item := ( include "community.solve_includes_excludes" ( list . $values.package_dir ) ) -}}
-  {{- if $item -}}
-    {{ $excludes = append $excludes $item -}}
-  {{- end -}}
-{{- end -}}
-
+{{- $excludes := ( get $includes_excludes "excludes" ) }}
 {{- if $excludes }}
+  {{- $solved_excludes := list }}
+
+  {{- range $excludes }}
+    {{- $item := ( include "community.solve_includes_excludes" ( list . $values.package_dir ) ) }}
+    {{- if $item }}
+      {{ $solved_excludes = append $solved_excludes $item }}
+    {{- end }}
+  {{- end }}
+
+  {{- if $solved_excludes }}
+    {{- if not ( empty $solved_excludes ) }}
 excludes:
-{{ $excludes | toYaml }}
+      {{- range $solved_excludes }}
+- {{ . }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 
-{{- $includes := get $includes_excludes "includes" }}
+{{- $includes := ( get $includes_excludes "includes" ) }}
 {{- if $includes }}
+  {{- if not ( empty $includes ) }}
 includes:
-{{ $includes | toYaml }}
+    {{- range $includes }}
+- {{ . }}
+    {{- end }}
+  {{- end }}
 {{- end }}
 
 {{- end }}
