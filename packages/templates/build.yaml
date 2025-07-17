@@ -12,11 +12,17 @@ env:
 - {{ . }}
 {{- end }}
 
+{{- if .Values.image }}
+image: {{ .Values.image }}
+{{- end }}
+
+{{- if .Values.build_requires }}
 requires:
-{{- range .Values.build_requires }}
+  {{- range .Values.build_requires }}
 - category: {{ .category }}
   name: {{ .name }}
   version: ">=0"
+  {{- end }}
 {{- end }}
 
 {{- if .Values.requires_final_images }}
