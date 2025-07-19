@@ -5008,33 +5008,38 @@ packages:
   build_requires:
   - <<: *layers-kde-kf5
 
-# - category: "apps"
-#   name: "foldingathome"
-#   version: "7.6.21"
-#   uri:
-#   - https://foldingathome.org
-#   license: "FAH-EULA-2014 FAH-special-permission"
-#   description: "Folding@Home is a distributed computing project for protein folding"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       sci-biology/foldingathome
-#   provides:
-#   - category: "sci-biology"
-#     name: "foldingathome"
-#     version: ">=0"
-#   atoms:
-#   - atom: "sci-biology/foldingathome"
-#     accept_keywords: "~amd64"
-#     license: "FAH-EULA-2014 FAH-special-permission"
-#   requires:
-#   - <<: *layers-sys-fs
-#   - <<: *libs-openssl-compat
-#   - category: "entity"
-#     name: "foldingathome"
-#     version: ">=0"
-#   build_requires:
-#   - <<: *layers-sys-fs
+- category: "apps"
+  name: "foldingathome"
+  version: "7.6.21"
+  uri:
+  - https://foldingathome.org
+  license: "FAH-EULA-2014 FAH-special-permission"
+  description: "Folding@Home is a distributed computing project for protein folding"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-biology/foldingathome
+  provides:
+  - category: "sci-biology"
+    name: "foldingathome"
+    version: ">=0"
+  atoms:
+  - atom: "sci-biology/foldingathome"
+    accept_keywords: "~amd64"
+    license: "FAH-EULA-2014 FAH-special-permission"
+  prepare:
+  # SRC_URI="https://download.foldingathome.org/releases  fahclient_7.6.21-64bit-release.tar.bz2"
+  # SRC_URI="https://download.foldingathome.org/releases  fahclient_${PV}-64bit-release.tar.bz2"
+  - sed -i -e 's/\/public\/release\/fahclient\/centos-6.7-64bit\/v$(ver_cut 1-2)\//\/v7\/public\/fahclient\/centos-6.7-64bit\/release\//' /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild
+  - ebuild /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild manifest
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-openssl-compat
+  - category: "entity"
+    name: "foldingathome"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "foliate"
@@ -5603,15 +5608,6 @@ packages:
   - atom: "app-backup/grub-btrfs"
     use: "systemd"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/PATCHES=\(.*\)-9999-\(.*\)/PATCHES=\1-4.11-\2/' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # - sed -i -e 's/doman/# doman/' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # # - sed -i -e '/PATCHES=( "${FILESDIR}\/${PN}-9999-remove-docs-from-make.patch" )/d' /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild
-  # - sed -i -e 's/36,38c36,38/62,64c62,64/' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # # - sed -i -e 's/86c86/121c121/' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # # - sed -i -e '/\\ No newline at end of file/d' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - sed -i -e '/86c86/,$d' /var/lib/repos/guru/app-backup/grub-btrfs/files/grub-btrfs-4.11-remove-docs-from-make.patch
-  # - ebuild /var/lib/repos/guru/app-backup/grub-btrfs/grub-btrfs-4.12.ebuild manifest
   requires:
   - <<: *apps-grub
   build_requires:
