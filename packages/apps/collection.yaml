@@ -3317,6 +3317,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-zxcvbn-c
+  category: "libs"
+  name: "zxcvbn-c"
+  version: "2.5"
+  uri:
+  - https://github.com/tsyrogit/zxcvbn-c
+  license: "MIT"
+  description: "C/C++ version of the zxcvbn password strength estimator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/zxcvbn-c
+  provides:
+  - category: "dev-libs"
+    name: "zxcvbn-c"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 
 ################################################################################################################################################################
 ### dep 0 apps ###
@@ -6089,41 +6110,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- &apps-keepassxc
-  category: "apps"
-  name: "keepassxc"
-  version: "2.7.10-r1"
-  uri:
-  - https://keepassxc.org/
-  license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
-  description: "KeePassXC - KeePass Cross-platform Community Edition"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-admin/keepassxc
-  atoms:
-  - atom: "app-admin/keepassxc"
-    use: "autotype browser keeshare network yubikey X"
-  - atom: "dev-libs/botan"
-    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
-  provides:
-  - category: "app-admin"
-    name: "keepassxc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "botan"
-    version: ">=0"
-  - category: "sec-keys"
-    name: "openpgp-keys-botan"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
-  - dev-python/sphinx
-  requires:
-  - <<: *layers-kde-kf5
-  build_requires:
-  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "kernelshark"
@@ -11643,6 +11629,42 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- &apps-keepassxc
+  category: "apps"
+  name: "keepassxc"
+  version: "2.7.10-r1"
+  uri:
+  - https://keepassxc.org/
+  license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
+  description: "KeePassXC - KeePass Cross-platform Community Edition"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/keepassxc
+  atoms:
+  - atom: "app-admin/keepassxc"
+    use: "autotype browser keeshare network yubikey X"
+  - atom: "dev-libs/botan"
+    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
+  provides:
+  - category: "app-admin"
+    name: "keepassxc"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "botan"
+    version: ">=0"
+  - category: "sec-keys"
+    name: "openpgp-keys-botan"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *libs-zxcvbn-c
+  build_requires:
+  - <<: *layers-kde-kf5
+
 # TODO: gpg
 - category: "apps"
   name: "kget"
@@ -12245,7 +12267,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "31.1.1"
+  version: "31.1.1+1"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -12278,6 +12300,8 @@ packages:
   - atom: "media-libs/libvpl"
     use: "dri drm examples experimental test tools vaapi wayland X"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-qt
   - <<: *apps-luajit
@@ -13878,7 +13902,7 @@ packages:
     emerge.packages: >-
       dev-perl/YAML
       dev-perl/Type-Tiny-XS
-      =dev-perl/Crypt-CBC-2.330.0-r2
+      =dev-perl/Crypt-CBC-2.330.0-r3
       dev-perl/Net-ARP
       dev-perl/Crypt-Blowfish
       dev-perl/Gtk3-SimpleList
@@ -14813,7 +14837,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "25.2.4.3-r1"
+  version: "25.2.4.3-r1+1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -14867,9 +14891,6 @@ packages:
   - category: "dev-libs"
     name: "xmlsec"
     version: ">=0"
-  - category: "dev-libs"
-    name: "zxcvbn-c"
-    version: ">=0"
   # - category: "dev-python"
   #   name: "lxml"
   #   version: ">=0"
@@ -14918,6 +14939,7 @@ packages:
   # - <<: *apps-postgresql
   - <<: *apps-fontforge
   - <<: *libs-libvisio
+  - <<: *libs-zxcvbn-c
   build_requires:
   - <<: *buildbase-gnome-common
   - <<: *buildbase-office-common
