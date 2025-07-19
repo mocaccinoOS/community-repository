@@ -2582,7 +2582,7 @@ packages:
 - &libs-openssl-compat
   category: "libs"
   name: "openssl-compat"
-  version: "1.1.1u"
+  version: "1.1.1u+1"
   uri:
   - https://www.openssl.org/
   license: "openssl"
@@ -2591,6 +2591,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/openssl-compat
+      dev-libs/openssl-compat:1.0.0
   provides:
   - category: "dev-libs"
     name: "openssl-compat"
@@ -5010,7 +5011,7 @@ packages:
 
 - category: "apps"
   name: "foldingathome"
-  version: "7.6.21"
+  version: "7.6.21+1"
   uri:
   - https://foldingathome.org
   license: "FAH-EULA-2014 FAH-special-permission"
@@ -5028,8 +5029,6 @@ packages:
     accept_keywords: "~amd64"
     license: "FAH-EULA-2014 FAH-special-permission"
   prepare:
-  # SRC_URI="https://download.foldingathome.org/releases  fahclient_7.6.21-64bit-release.tar.bz2"
-  # SRC_URI="https://download.foldingathome.org/releases  fahclient_${PV}-64bit-release.tar.bz2"
   - sed -i -e 's/\/public\/release\/fahclient\/centos-6.7-64bit\/v$(ver_cut 1-2)\//\/v7\/public\/fahclient\/centos-6.7-64bit\/release\//' /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild
   - ebuild /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild manifest
   requires:
