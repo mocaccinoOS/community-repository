@@ -10355,6 +10355,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( 18 )/LLVM_COMPAT=( 19 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild manifest
   # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
