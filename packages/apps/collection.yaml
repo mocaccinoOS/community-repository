@@ -10325,50 +10325,50 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.27.0-r2"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  - category: "net-libs"
-    name: "enet"
-    version: ">=0"
-  - category: "net-libs"
-    name: "gloox"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "lobby editor nvtt pch verify-sig"
-    accept_keywords: "~amd64"
-  - atom: "net-libs/gloox"
-    use: "gnutls idn ssl zlib"
-    accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( 18 )/LLVM_COMPAT=( 19 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild manifest
-  # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
-  inner_build_reqs:
-  - app-crypt/minisign
-  inner_build_requires:
-  - <<: *apps-premake-5
-  requires:
-  - <<: *layers-gnome-common
-  #  Required by the editor
-  - <<: *libs-wxGTK
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.27.0-r2"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "enet"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "gloox"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "lobby editor nvtt pch verify-sig"
+#     accept_keywords: "~amd64"
+#   - atom: "net-libs/gloox"
+#     use: "gnutls idn ssl zlib"
+#     accept_keywords: "~amd64"
+#   # prepare:
+#   # - sed -i -e 's/LLVM_COMPAT=( 18 )/LLVM_COMPAT=( 19 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
+#   # - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
+#   # - ebuild /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild manifest
+#   # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
+#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
+#   inner_build_reqs:
+#   - app-crypt/minisign
+#   inner_build_requires:
+#   - <<: *apps-premake-5
+#   requires:
+#   - <<: *layers-gnome-common
+#   #  Required by the editor
+#   - <<: *libs-wxGTK
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 # - &apps-bedrock-server
 #   category: "apps"
