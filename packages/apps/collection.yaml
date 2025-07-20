@@ -10354,8 +10354,10 @@ packages:
     use: "gnutls idn ssl zlib"
     accept_keywords: "~amd64"
   prepare:
-  - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
-  - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( 18 )/LLVM_COMPAT=( 19 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild manifest
+  # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
+  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
   inner_build_reqs:
   - app-crypt/minisign
   inner_build_requires:
