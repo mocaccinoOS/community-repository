@@ -605,6 +605,11 @@ entity "zimg" as libs/zimg << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "zxcvbn-c" as libs/zxcvbn-c << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-libs-zxcvbn-c
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-alacritty
 ..
@@ -976,6 +981,13 @@ entity "flameshot" as apps/flameshot << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
+entity "foldingathome" as apps/foldingathome << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sci-biology-foldingathome
+..
+  <color:#9ACD32><U+2756></color> layers-sys-fs
+  <color:#FF7700><U+1F79B></color> libs-openssl-compat
+  <color:#5DADE2><U+24D4></color> entity-foldingathome
+}
 entity "foliate" as apps/foliate << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-foliate
 ..
@@ -1211,13 +1223,6 @@ entity "kdocker" as apps/kdocker << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-kdocker
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-}
-entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-admin-keepassxc
-  <color:#34495E><U+24DF></color> dev-libs-botan
-  <color:#34495E><U+24DF></color> sec-keys-openpgp-keys-botan
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "kernelshark" as apps/kernelshark << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-libtracecmd
@@ -2369,6 +2374,14 @@ entity "kalgebra" as apps/kalgebra << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#FF7700><U+1F79B></color> libs-analitza
 }
+entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-admin-keepassxc
+  <color:#34495E><U+24DF></color> dev-libs-botan
+  <color:#34495E><U+24DF></color> sec-keys-openpgp-keys-botan
+..
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#FF7700><U+1F79B></color> libs-zxcvbn-c
+}
 entity "kget" as apps/kget << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-apps-kget
 ..
@@ -3137,7 +3150,6 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-liborcus
   <color:#34495E><U+24DF></color> dev-libs-libixion
   <color:#34495E><U+24DF></color> dev-libs-xmlsec
-  <color:#34495E><U+24DF></color> dev-libs-zxcvbn-c
   <color:#34495E><U+24DF></color> games-engines-box2d
   <color:#34495E><U+24DF></color> sci-mathematics-lpsolve
 ..
@@ -3148,6 +3160,7 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#5DADE2><U+24D4></color> entity-libreoffice
   <color:#FF00FF><U+25C9></color> apps-fontforge
   <color:#FF7700><U+1F79B></color> libs-libvisio
+  <color:#FF7700><U+1F79B></color> libs-zxcvbn-c
 }
 entity "lollypop" as apps/lollypop << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-lollypop
@@ -4164,6 +4177,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/wxGTK" --u--> "layers/gnome-common"
 "libs/xsimd" --u--> "layers/system-x"
 "libs/zimg" --u--> "layers/system-x"
+"libs/zxcvbn-c" --u--> "layers/system-x"
 "apps/alacritty" --u--> "layers/X"
 "apps/alligator" --u--> "layers/kde-common"
 "apps/amarok" --u--> "layers/kde-common"
@@ -4235,6 +4249,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/fish" --u--> "layers/system-x"
 "apps/flam3" --u--> "layers/X"
 "apps/flameshot" --u--> "layers/kde-kf5"
+"apps/foldingathome" --u--> "layers/sys-fs"
+"apps/foldingathome" --u--> "libs/openssl-compat"
+"apps/foldingathome" --u--> "entity/foldingathome"
 "apps/foliate" --u--> "layers/gnome"
 "apps/fontforge" --u--> "layers/X"
 "apps/foobillard" --u--> "layers/X"
@@ -4282,7 +4299,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/kcolorchooser" --u--> "layers/kde-common"
 "apps/kdiff3" --u--> "layers/kde-common"
 "apps/kdocker" --u--> "layers/qt"
-"apps/keepassxc" --u--> "layers/kde-kf5"
 "apps/kernelshark" --u--> "layers/qt"
 "apps/kernelshark" --u--> "fonts/freefont"
 "apps/kgpg" --u--> "layers/kde-pim"
@@ -4549,6 +4565,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/isomaster" --u--> "libs/iniparser"
 "apps/kalgebra" --u--> "layers/kde-common"
 "apps/kalgebra" --u--> "libs/analitza"
+"apps/keepassxc" --u--> "layers/kde-kf5"
+"apps/keepassxc" --u--> "libs/zxcvbn-c"
 "apps/kget" --u--> "layers/plasma"
 "apps/kget" --u--> "libs/libktorrent"
 "apps/kid3" --u--> "layers/kde-common"
@@ -4806,6 +4824,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/libreoffice" --u--> "entity/libreoffice"
 "apps/libreoffice" --u--> "apps/fontforge"
 "apps/libreoffice" --u--> "libs/libvisio"
+"apps/libreoffice" --u--> "libs/zxcvbn-c"
 "apps/lollypop" --u--> "layers/gnome-common"
 "apps/lollypop" --u--> "libs/beautifulsoup4"
 "apps/luminance-hdr" --u--> "layers/kde-kf5"

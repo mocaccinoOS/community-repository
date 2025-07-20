@@ -351,6 +351,9 @@ entity "xsimd" as libs/xsimd << (l,#FF7700) >> {
 entity "zimg" as libs/zimg << (l,#FF7700) >> {
 
 }
+entity "zxcvbn-c" as libs/zxcvbn-c << (l,#FF7700) >> {
+
+}
 entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
 
 }
@@ -552,6 +555,9 @@ entity "flam3" as apps/flam3 << (a,#FF00FF) >> {
 entity "flameshot" as apps/flameshot << (a,#FF00FF) >> {
 
 }
+entity "foldingathome" as apps/foldingathome << (a,#FF00FF) >> {
+
+}
 entity "foliate" as apps/foliate << (a,#FF00FF) >> {
 
 }
@@ -685,9 +691,6 @@ entity "kdiff3" as apps/kdiff3 << (a,#FF00FF) >> {
 
 }
 entity "kdocker" as apps/kdocker << (a,#FF00FF) >> {
-
-}
-entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
 
 }
 entity "kernelshark" as apps/kernelshark << (a,#FF00FF) >> {
@@ -1219,6 +1222,9 @@ entity "isomaster" as apps/isomaster << (a,#FF00FF) >> {
 
 }
 entity "kalgebra" as apps/kalgebra << (a,#FF00FF) >> {
+
+}
+entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
 
 }
 entity "kget" as apps/kget << (a,#FF00FF) >> {
@@ -1944,6 +1950,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "libs/nlohmann_json"
 "apps/ghostty" --u--> "libs/oniguruma"
 "apps/bat" --u--> "libs/oniguruma"
+"apps/foldingathome" --u--> "libs/openssl-compat"
 "apps/powerpanel" --u--> "libs/openssl-compat"
 "apps/proton-ge-custom-bin" --u--> "libs/openssl-compat"
 "apps/postgresql" --u--> "libs/ossp-uuid"
@@ -2017,6 +2024,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/krita" --u--> "libs/xsimd"
 "apps/handbrake" --u--> "libs/zimg"
 "apps/mpv" --u--> "libs/zimg"
+"apps/keepassxc" --u--> "libs/zxcvbn-c"
+"apps/libreoffice" --u--> "libs/zxcvbn-c"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
 "apps/plantuml" --u--> "apps/ant"
 "apps/kdevelop" --u--> "apps/astyle"

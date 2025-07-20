@@ -605,6 +605,11 @@ entity "zimg" as libs/zimg << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "zxcvbn-c" as libs/zxcvbn-c << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> dev-libs-zxcvbn-c
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "alacritty" as apps/alacritty << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-terms-alacritty
 ..
@@ -976,6 +981,13 @@ entity "flameshot" as apps/flameshot << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
+entity "foldingathome" as apps/foldingathome << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sci-biology-foldingathome
+..
+  <color:#9ACD32><U+2756></color> layers-sys-fs
+  <color:#FF7700><U+1F79B></color> libs-openssl-compat
+  <color:#5DADE2><U+24D4></color> entity-foldingathome
+}
 entity "foliate" as apps/foliate << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-foliate
 ..
@@ -1211,13 +1223,6 @@ entity "kdocker" as apps/kdocker << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-kdocker
 ..
   <color:#9ACD32><U+2756></color> layers-qt
-}
-entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> app-admin-keepassxc
-  <color:#34495E><U+24DF></color> dev-libs-botan
-  <color:#34495E><U+24DF></color> sec-keys-openpgp-keys-botan
-..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
 }
 entity "kernelshark" as apps/kernelshark << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-libtracecmd
@@ -2369,6 +2374,14 @@ entity "kalgebra" as apps/kalgebra << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-kde-common
   <color:#FF7700><U+1F79B></color> libs-analitza
 }
+entity "keepassxc" as apps/keepassxc << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> app-admin-keepassxc
+  <color:#34495E><U+24DF></color> dev-libs-botan
+  <color:#34495E><U+24DF></color> sec-keys-openpgp-keys-botan
+..
+  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#FF7700><U+1F79B></color> libs-zxcvbn-c
+}
 entity "kget" as apps/kget << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> kde-apps-kget
 ..
@@ -3137,7 +3150,6 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-liborcus
   <color:#34495E><U+24DF></color> dev-libs-libixion
   <color:#34495E><U+24DF></color> dev-libs-xmlsec
-  <color:#34495E><U+24DF></color> dev-libs-zxcvbn-c
   <color:#34495E><U+24DF></color> games-engines-box2d
   <color:#34495E><U+24DF></color> sci-mathematics-lpsolve
 ..
@@ -3148,6 +3160,7 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#5DADE2><U+24D4></color> entity-libreoffice
   <color:#FF00FF><U+25C9></color> apps-fontforge
   <color:#FF7700><U+1F79B></color> libs-libvisio
+  <color:#FF7700><U+1F79B></color> libs-zxcvbn-c
 }
 entity "lollypop" as apps/lollypop << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-lollypop
@@ -4219,6 +4232,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "libs/nlohmann_json"
 "apps/ghostty" --u--> "libs/oniguruma"
 "apps/bat" --u--> "libs/oniguruma"
+"apps/foldingathome" --u--> "libs/openssl-compat"
 "apps/powerpanel" --u--> "libs/openssl-compat"
 "apps/proton-ge-custom-bin" --u--> "libs/openssl-compat"
 "apps/postgresql" --u--> "libs/ossp-uuid"
@@ -4292,6 +4306,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/krita" --u--> "libs/xsimd"
 "apps/handbrake" --u--> "libs/zimg"
 "apps/mpv" --u--> "libs/zimg"
+"apps/keepassxc" --u--> "libs/zxcvbn-c"
+"apps/libreoffice" --u--> "libs/zxcvbn-c"
 "apps/qdevicemonitor" --u--> "apps/android-tools"
 "apps/plantuml" --u--> "apps/ant"
 "apps/kdevelop" --u--> "apps/astyle"
