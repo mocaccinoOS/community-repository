@@ -10353,12 +10353,9 @@ packages:
   - atom: "net-libs/gloox"
     use: "gnutls idn ssl zlib"
     accept_keywords: "~amd64"
-  # In alpha26 bundled spidermonkey-78.6.0 does not build with python 3.12.
-  # PYTHON_COMPAT=( python3_10 )
-  # prepare:
-  # - echo $SHELL || true
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_10 )/PYTHON_COMPAT=( python3_12 )/' /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild
-  # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-0.0.26_alpha.ebuild manifest
+  prepare:
+  - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
+  - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
   inner_build_reqs:
   - app-crypt/minisign
   inner_build_requires:
