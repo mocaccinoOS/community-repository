@@ -876,7 +876,7 @@ packages:
 - &libs-analitza
   category: "libs"
   name: "analitza"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://kde.org/
   license: "GPL-2"
@@ -962,7 +962,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "6.3.5"
+  version: "6.3.6"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1013,7 +1013,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "138.0.7204.157"
+  version: "138.0.7204.168"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1948,7 +1948,7 @@ packages:
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/ktorrent/
   - https://userbase.kde.org/KTorrent
@@ -3003,7 +3003,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "1.0+10"
+  version: "1.0+11"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3324,7 +3324,7 @@ packages:
 
 - category: "apps"
   name: "alligator"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/alligator/
   license: "GPL-2+"
@@ -4046,7 +4046,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+"
@@ -4321,7 +4321,7 @@ packages:
 
 - category: "apps"
   name: "dolphin-plugins-git"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/dolphin_plugins/
   license: "GPL-2"
@@ -4435,6 +4435,31 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "dvblast"
+  version: "3.4"
+  uri:
+  - https://github.com/videolan/dvblast.git
+  - https://github.com/videolan/bitstream.git
+  license: "GPL-3+"
+  description: |
+    DVBlast is a simple and powerful MPEG-2/TS demux and streaming application with several input methods.
+    biTStream is a set of C headers allowing a simpler access to binary structures such as specified by MPEG, DVB, IETF, etc.
+  prepare:
+  - cd /luetbuild && git clone https://github.com/videolan/bitstream.git
+  - cd /luetbuild/bitstream && make
+  - cd /luetbuild && git clone https://github.com/videolan/dvblast.git
+  - cd /luetbuild/dvblast && make
+  setup:
+  - cd /luetbuild/bitstream
+  - make install
+  - cd /luetbuild/dvblast
+  - make install
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-dvdauthor
   category: "apps"
   name: "dvdauthor"
@@ -4533,7 +4558,7 @@ packages:
 
 - category: "apps"
   name: "elisa"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/elisa
   license: "LGPL-3+"
@@ -4835,7 +4860,7 @@ packages:
 
 - category: "apps"
   name: "ffmpegthumbs"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://kde.org/
   license: "GPL-2+"
@@ -4882,7 +4907,7 @@ packages:
 
 - category: "apps"
   name: "filelight"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/filelight/
   - https://utils.kde.org/projects/filelight/
@@ -5537,7 +5562,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "138.0.7204.157"
+  version: "138.0.7204.168"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -5913,7 +5938,7 @@ packages:
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kapptemplate
   license: "GPL-2"
@@ -5960,7 +5985,7 @@ packages:
 
 - category: "apps"
   name: "kcharselect"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kcharselect
   license: "GPL-2"
@@ -6004,7 +6029,7 @@ packages:
 
 - category: "apps"
   name: "kcolorchooser"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kcolorchooser/
   license: "MIT"
@@ -6111,7 +6136,7 @@ packages:
 - &apps-kgpg
   category: "apps"
   name: "kgpg"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kgpg/
   license: "GPL-2"
@@ -6156,7 +6181,7 @@ packages:
 
 - category: "apps"
   name: "kimagemapeditor"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kimagemapeditor/
   license: "GPL-2"
@@ -6176,7 +6201,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6196,7 +6221,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "25.04.2"
+  version: "25.04.3-r1"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6266,7 +6291,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/krfb
   license: "GPL-2"
@@ -6289,7 +6314,7 @@ packages:
 
 - category: "apps"
   name: "krecorder"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/krecorder/
   license: "CC0-1.0 CC-BY-4.0 GPL-3+"
@@ -6311,7 +6336,7 @@ packages:
 
 - category: "apps"
   name: "kruler"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kruler/
   license: "GPL-2+ FDL-1.2"
@@ -6704,7 +6729,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -7751,7 +7776,7 @@ packages:
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "6.3.5"
+  version: "6.3.6"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2"
@@ -8807,7 +8832,7 @@ packages:
 
 - category: "apps"
   name: "sweeper"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/sweeper/
   license: "GPL-3"
@@ -9160,7 +9185,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.102.04606"
+  version: "1.102.24914"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9204,7 +9229,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "6.3.5"
+  version: "6.3.6"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -10745,7 +10770,7 @@ packages:
 - &apps-delve
   category: "apps"
   name: "delve"
-  version: "1.24.2"
+  version: "1.25.1"
   uri:
   - https://github.com/go-delve/delve
   license: "MIT BSD BSD-2 Apache-2.0"
@@ -10940,7 +10965,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "30.1-r2+1"
+  version: "30.1-r3"
   uri:
   - https://www.gnu.org/software/emacs
   - https://savannah.nongnu.org/projects/m17n
@@ -11544,7 +11569,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -11602,7 +11627,7 @@ packages:
 # TODO: gpg
 - category: "apps"
   name: "kget"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kget
   license: "GPL-2"
@@ -11675,7 +11700,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -11696,7 +11721,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -11721,7 +11746,7 @@ packages:
 - &apps-kweather
   category: "apps"
   name: "kweather"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kweather/
   license: "GPL-2+"
@@ -12419,7 +12444,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "120.0.5543.61"
+  version: "120.0.5543.93"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -12625,7 +12650,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "6.3.5"
+  version: "6.3.6"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -13073,7 +13098,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.5.0"
+  version: "2.5.2"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -14057,7 +14082,7 @@ packages:
 
 - category: "apps"
   name: "calibre"
-  version: "7.26.0"
+  version: "8.4.0"
   uri:
   - https://calibre-ebook.com/
   license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
@@ -14140,7 +14165,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -14445,7 +14470,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -14472,7 +14497,7 @@ packages:
 - &apps-kalarm
   category: "apps"
   name: "kalarm"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/kalarm/
   license: "GPL-2+ FDL-1.2+"
@@ -14496,7 +14521,7 @@ packages:
 
 - category: "apps"
   name: "kdegames"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/categories/games/
   - https://pypi.org/project/pysol-cards/
@@ -15330,7 +15355,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "6.3.5"
+  version: "6.3.6"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -15523,7 +15548,7 @@ packages:
 
 - category: "apps"
   name: "skanpage"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/skanpage/
   license: "|| ( GPL-2 GPL-3 ) CC0-1.0"
@@ -15680,7 +15705,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -17529,7 +17554,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -17966,7 +17991,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.4.3"
+  version: "2.4.4"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -18741,7 +18766,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -18788,7 +18813,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "25.04.2"
+  version: "25.04.3"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
