@@ -4437,7 +4437,7 @@ packages:
 
 - category: "apps"
   name: "dvblast"
-  version: "3.4"
+  version: "3.4+1"
   uri:
   - https://github.com/videolan/dvblast.git
   - https://github.com/videolan/bitstream.git
@@ -4448,6 +4448,7 @@ packages:
   prepare:
   - git clone https://github.com/videolan/dvblast.git
   - cd dvblast && git clone https://github.com/videolan/bitstream.git
+  - find . -type f -name "Makefile" -exec sed -i -e 's/\/usr\/local/\/usr/g' {} +
   - cd bitstream && make install && cd .. && make
   setup:
   - cd dvblast && make install
