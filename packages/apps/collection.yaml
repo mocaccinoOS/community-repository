@@ -4446,15 +4446,11 @@ packages:
     DVBlast is a simple and powerful MPEG-2/TS demux and streaming application with several input methods.
     biTStream is a set of C headers allowing a simpler access to binary structures such as specified by MPEG, DVB, IETF, etc.
   prepare:
-  - cd /luetbuild && git clone https://github.com/videolan/bitstream.git
-  - cd /luetbuild/bitstream && make
-  - cd /luetbuild && git clone https://github.com/videolan/dvblast.git
-  - cd /luetbuild/dvblast && make
+  - git clone https://github.com/videolan/dvblast.git
+  - cd dvblast && git clone https://github.com/videolan/bitstream.git
+  - cd bitstream && make install && cd .. && make
   setup:
-  - cd /luetbuild/bitstream
-  - make install
-  - cd /luetbuild/dvblast
-  - make install
+  - cd dvblast && make install
   requires:
   - <<: *layers-sys-fs
   build_requires:
