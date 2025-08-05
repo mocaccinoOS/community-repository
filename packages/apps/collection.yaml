@@ -13203,6 +13203,44 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "strawberry"
+  version: "1.2.7"
+  uri:
+  - https://www.strawberrymusicplayer.org/
+  license: "GPL-3"
+  description: "Modern music player and library organizer based on Clementine and Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/strawberry
+  provides:
+  - category: "media-sound"
+    name: "strawberry"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libmygpo-qt"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libgpod"
+    version: ">=0"
+  - category: "sys-apps"
+    name: "sg3_utils"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/strawberry"
+    use: "cdda chromaprint dbus ipod kde loudness moodbar mtp pulseaudio streaming udisks X # alsa discord"
+  inner_build_reqs:
+  - dev-cpp/gtest
+  optrequires:
+  - <<: *libs-libprojectm
+    skip: true
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-libebur128
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-tesseract
   category: "apps"
   name: "tesseract"
