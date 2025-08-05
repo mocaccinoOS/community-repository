@@ -3673,6 +3673,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-biglybt
+  category: "apps"
+  name: "biglybt"
+  version: "3.7.0.0"
+  uri:
+  - https://www.biglybt.com
+  license: "Apache-2.0"
+  description: "Feature-filled Bittorrent client based on the Azureus open source project"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/biglybt
+  provides:
+  - category: "net-p2p"
+    name: "biglybt"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - category: "apps"
   name: "billardgl"
   version: "1.75-r2+1"
