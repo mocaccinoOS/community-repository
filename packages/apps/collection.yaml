@@ -1945,6 +1945,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libgpod
+  category: "libs"
+  name: "libgpod"
+  version: "0.8.3-r9"
+  uri:
+  - http://www.gtkpod.org/libgpod/
+  license: "LGPL-2"
+  description: "Shared library to access the contents of an iPod"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libgpod
+  provides:
+  - category: "media-libs"
+    name: "libgpod"
+    version: ">=0"
+  - category: "sys-apps"
+    name: "sg3_utils"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libharu
   category: "libs"
   name: "libharu"
@@ -3686,6 +3710,12 @@ packages:
     emerge.packages: >-
       net-p2p/biglybt
   provides:
+  - category: "dev-java"
+    name: "commons-cli"
+    version: ">=0"
+  - category: "dev-java"
+    name: "swt"
+    version: ">=0"
   - category: "net-p2p"
     name: "biglybt"
     version: ">=0"
@@ -10611,12 +10641,6 @@ packages:
   - category: "media-libs"
     name: "libmygpo-qt"
     version: ">=0"
-  - category: "media-libs"
-    name: "libgpod"
-    version: ">=0"
-  - category: "sys-apps"
-    name: "sg3_utils"
-    version: ">=0"
   atoms:
   - atom: "media-sound/clementine"
     use: "cdda dbus ipod moodbar mtp pulseaudio udisks # alsa box dropbox googledrive lastfm projectm seafile skydrive wiimote"
@@ -10628,6 +10652,7 @@ packages:
   requires:
   - <<: *layers-kde-kf5
   - <<: *layers-gnome-common
+  - <<: *libs-libgpod
   build_requires:
   - <<: *buildbase-kde-kf5
   - <<: *buildbase-gnome-common
@@ -13258,12 +13283,6 @@ packages:
   - category: "media-sound"
     name: "strawberry"
     version: ">=0"
-  - category: "media-libs"
-    name: "libgpod"
-    version: ">=0"
-  - category: "sys-apps"
-    name: "sg3_utils"
-    version: ">=0"
   atoms:
   - atom: "media-sound/strawberry"
     use: "cdda chromaprint dbus ipod kde loudness moodbar mtp pulseaudio streaming udisks X # alsa discord"
@@ -13271,6 +13290,7 @@ packages:
   - <<: *layers-kde-common
   - <<: *libs-kdsingleapplication
   - <<: *libs-libebur128
+  - <<: *libs-libgpod
   build_requires:
   - <<: *layers-kde-common
 
