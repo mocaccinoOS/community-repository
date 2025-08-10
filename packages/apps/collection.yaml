@@ -5916,6 +5916,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "inxi"
+  version: "3.3.38.1"
+  uri:
+  - https://codeberg.org/smxi/inxi
+  license: "GPL-3+"
+  description: "The CLI inxi collects and prints hardware and system information"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/inxi
+  provides:
+  - category: "sys-apps"
+    name: "inxi"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "iotop"
   version: "0.6_p20230124+1"
   uri:
