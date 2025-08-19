@@ -1054,7 +1054,7 @@ packages:
 - &def-ruby
   category: "layers"
   name: "ruby"
-  version: "3.3.8+7"
+  version: "3.3.8+8"
   uri:
   - https://www.ruby-lang.org/
   license: "Ruby-BSD BSD-2"
@@ -1189,7 +1189,9 @@ packages:
   prepare:
   - sed -i -e 's/RUBY_TARGETS="ruby31"/RUBY_TARGETS="ruby33"/' /etc/portage/make.conf
   inner_build_reqs:
-  - dev-ruby/kpeg dev-util/ragel dev-util/colm
+  - dev-ruby/kpeg
+  - dev-util/colm
+  - dev-util/ragel
   requires:
   - <<: *layers-system-x
   build_requires:
