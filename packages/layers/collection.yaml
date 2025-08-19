@@ -1054,7 +1054,7 @@ packages:
 - &def-ruby
   category: "layers"
   name: "ruby"
-  version: "3.3.8+8"
+  version: "3.3.8+9"
   uri:
   - https://www.ruby-lang.org/
   license: "Ruby-BSD BSD-2"
@@ -1094,6 +1094,9 @@ packages:
     version: ">=0"
   - category: "dev-ruby"
     name: "json"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "kpeg"
     version: ">=0"
   - category: "dev-ruby"
     name: "logger"
@@ -1189,7 +1192,6 @@ packages:
   prepare:
   - sed -i -e 's/RUBY_TARGETS="ruby31"/RUBY_TARGETS="ruby33"/' /etc/portage/make.conf
   inner_build_reqs:
-  - dev-ruby/kpeg
   - dev-util/colm
   - dev-util/ragel
   requires:
