@@ -1054,7 +1054,7 @@ packages:
 - &def-ruby
   category: "layers"
   name: "ruby"
-  version: "3.3.8+6"
+  version: "3.3.8+7"
   uri:
   - https://www.ruby-lang.org/
   license: "Ruby-BSD BSD-2"
@@ -1123,10 +1123,19 @@ packages:
     name: "power_assert"
     version: ">=0"
   - category: "dev-ruby"
+    name: "pp"
+    version: ">=0"
+  - category: "dev-ruby"
     name: "prime"
     version: ">=0"
   - category: "dev-ruby"
+    name: "prism"
+    version: ">=0"
+  - category: "dev-ruby"
     name: "psych"
+    version: ">=0"
+  - category: "dev-ruby"
+    name: "racc"
     version: ">=0"
   - category: "dev-ruby"
     name: "rake"
@@ -1171,11 +1180,16 @@ packages:
     name: "typeprof"
     version: ">=0"
   - category: "virtual"
+    name: "ruby-ssl"
+    version: ">=0"
+  - category: "virtual"
     name: "rubygems"
     version: ">=0"
   portage_env: "USE=\"-ruby_targets_ruby31 -ruby_targets_ruby32 ruby_targets_ruby33\""
   prepare:
   - sed -i -e 's/RUBY_TARGETS="ruby31"/RUBY_TARGETS="ruby33"/' /etc/portage/make.conf
+  inner_build_reqs:
+  - dev-ruby/kpeg dev-util/ragel dev-util/colm
   requires:
   - <<: *layers-system-x
   build_requires:
