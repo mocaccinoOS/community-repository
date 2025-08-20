@@ -12460,7 +12460,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "0.9-r2+1"
+  version: "0.9_p20250802"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -12488,14 +12488,23 @@ packages:
   - category: "dev-libs"
     name: "mdns"
     version: ">=0"
+  atoms:
+  - atom: "app-misc/openrgb"
+    accept_keywords: "~amd64"
+  - atom: "app-misc/openrgb-plugin-skin"
+    accept_keywords: "~amd64"
+  - atom: "app-misc/openrgb-plugin-effects"
+    accept_keywords: "~amd64"
+  - atom: "app-misc/openrgb-plugin-visualmap"
+    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *libs-cpp-httplib
   - <<: *libs-nlohmann_json
   - <<: *libs-hidapi
   - <<: *libs-mbedtls
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - category: "apps"
   name: "opera"
