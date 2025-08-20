@@ -1,4 +1,4 @@
-# [![Packages](https://labs.mocaccino.org/badge/mocaccino-community.svg "List of packages")](https://labs.mocaccino.org/mocaccino-community) community-repository
+# [Packages](https://packages.mocaccino.org/mocaccino-community-stable/) community-repository
 
 This is the repository containing various apps and libs that can be used with mocaccinoOS.
 
