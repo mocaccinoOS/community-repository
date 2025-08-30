@@ -15610,7 +15610,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.6.4-r1+3"
+  version: "1.7.0-r2"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -15625,14 +15625,15 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-office/scribus"
+    accept_keywords: "~amd64"
     use: "boost examples hunspell minimal pdf templates # osg: dev-games/openscenegraph # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick # scripts tk: needs dev-python/pillow tk flag"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *layers-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-kde-kf5
+  - <<: *buildbase-qt
   - <<: *layerbase-office-common
   requires_final_images: true
 
