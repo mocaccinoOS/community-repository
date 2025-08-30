@@ -3902,32 +3902,25 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.80.122"
+  version: "1.81.137"
   uri:
   - https://brave.com
   license: "MPL-2.0"
-  description: "Brave Web Browser"
+  description: "Web browser that blocks ads and trackers by default"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/brave-bin
   overlays:
-  - add: "brave-overlay"
-    type: "git"
-    url: "https://gitlab.com/jason.oliveira/brave-overlay.git"
+  - enable: "gentoo-zh"
   provides:
-  - category: "dev-libs"
-    name: "libpthread-stubs"
-    version: ">=0"
   - category: "www-client"
     name: "brave-bin"
     version: ">=0"
   atoms:
-  - atom: "dev-libs/libpthread-stubs"
-    accept_keywords: "**"
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
-    use: "keyring"
+    use: "-qt5 -qt6"
   requires:
   - <<: *layers-gnome-common
   build_requires:
