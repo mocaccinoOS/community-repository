@@ -9530,6 +9530,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "woeusb-ng"
+  version: "0.2.12-r1+4"
+  uri:
+  - https://github.com/WoeUSB/WoeUSB-ng
+  license: "GPL-3+"
+  description: "Create a Windows USB stick installer from an iso image (rewrite of WoeUSB)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-boot/woeusb-ng
+  provides:
+  - category: "sys-boot"
+    name: "woeusb-ng"
+    version: ">=0"
+  atoms:
+  - atom: "sys-boot/woeusb-ng"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *apps-grub
+  build_requires:
+  - <<: *apps-grub
+
 - &apps-worker
   category: "apps"
   name: "worker"
