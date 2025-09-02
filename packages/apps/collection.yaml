@@ -5286,6 +5286,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "fzf"
+  version: "0.64.0"
+  uri:
+  - https://github.com/junegunn/fzf
+  license: "MIT BSD-with-disclosure"
+  description: "General-purpose command-line fuzzy finder, written in Golang"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/fzf
+  provides:
+  - category: "app-shells"
+    name: "fzf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "galaxy"
   version: "2.2-r1+1"
   uri:
