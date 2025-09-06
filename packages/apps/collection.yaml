@@ -1013,7 +1013,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "139.0.7258.127"
+  version: "139.0.7258.154+1"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -3902,32 +3902,25 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.80.122"
+  version: "1.81.137"
   uri:
   - https://brave.com
   license: "MPL-2.0"
-  description: "Brave Web Browser"
+  description: "Web browser that blocks ads and trackers by default"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       www-client/brave-bin
   overlays:
-  - add: "brave-overlay"
-    type: "git"
-    url: "https://gitlab.com/jason.oliveira/brave-overlay.git"
+  - enable: "gentoo-zh"
   provides:
-  - category: "dev-libs"
-    name: "libpthread-stubs"
-    version: ">=0"
   - category: "www-client"
     name: "brave-bin"
     version: ">=0"
   atoms:
-  - atom: "dev-libs/libpthread-stubs"
-    accept_keywords: "**"
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
-    use: "keyring"
+    use: "-qt5 -qt6"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -5038,24 +5031,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "flam3"
-  version: "3.1.1-r1"
+  name: "flameshot"
+  version: "13.1.0+2"
   uri:
-  - https://flam3.com/
-  license: "GPL-3"
-  description: "Tools and a library for creating flame fractal images"
+  - https://flameshot.org
+  license: "Apache-2.0 Free-Art-1.3 GPL-3+"
+  description: "Powerful yet simple to use screenshot software"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/flam3
+      media-gfx/flameshot
   provides:
   - category: "media-gfx"
-    name: "flam3"
+    name: "flameshot"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/flameshot"
+    accept_keywords: "~amd64"
+    use: "wayland"
   requires:
-  - <<: *layers-X
+  - <<: *libs-kdsingleapplication
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "flameshot"
@@ -5291,6 +5289,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "fzf"
+  version: "0.64.0+1"
+  uri:
+  - https://github.com/junegunn/fzf
+  license: "MIT BSD-with-disclosure"
+  description: "General-purpose command-line fuzzy finder, written in Golang"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/fzf
+  provides:
+  - category: "app-shells"
+    name: "fzf"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-lang/go
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "galaxy"
@@ -5890,6 +5910,30 @@ packages:
   - category: "media-gfx"
     name: "icoutils"
     version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &apps-igt-gpu-tools
+  category: "apps"
+  name: "igt-gpu-tools"
+  version: "2.1"
+  uri:
+  - https://gitlab.freedesktop.org/drm/igt-gpu-tools
+  license: "MIT"
+  description: "Intel GPU userland tools"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-apps/igt-gpu-tools
+  provides:
+  - category: "x11-apps"
+    name: "igt-gpu-tools"
+    version: ">=0"
+  atoms:
+  - atom: "x11-apps/igt-gpu-tools"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -9513,6 +9557,32 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "woeusb-ng"
+  version: "0.2.12-r1+4"
+  uri:
+  - https://github.com/WoeUSB/WoeUSB-ng
+  license: "GPL-3+"
+  description: "Create a Windows USB stick installer from an iso image (rewrite of WoeUSB)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-boot/woeusb-ng
+  provides:
+  - category: "dev-python"
+    name: "termcolor"
+    version: ">=0"
+  - category: "sys-boot"
+    name: "woeusb-ng"
+    version: ">=0"
+  atoms:
+  - atom: "sys-boot/woeusb-ng"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *apps-grub
+  build_requires:
+  - <<: *apps-grub
+
 - &apps-worker
   category: "apps"
   name: "worker"
@@ -10711,7 +10781,7 @@ packages:
 - &apps-cpu-x
   category: "apps"
   name: "cpu-x"
-  version: "5.3.1+1"
+  version: "5.4.0"
   uri:
   - https://thetumultuousunicornofdarkness.github.io/CPU-X/
   - http://libcpuid.sourceforge.net/
@@ -13604,7 +13674,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.5.3735.58"
+  version: "7.5.3735.64"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -15616,7 +15686,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.6.4-r1+3"
+  version: "1.7.0-r2"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -15631,16 +15701,18 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-office/scribus"
+    accept_keywords: "~amd64"
     use: "boost examples hunspell minimal pdf templates # osg: dev-games/openscenegraph # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick # scripts tk: needs dev-python/pillow tk flag"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *layers-office-common
   - <<: *apps-podofo
   - <<: *libs-libvisio
   build_requires:
-  - <<: *buildbase-kde-kf5
+  - <<: *buildbase-qt
   - <<: *layerbase-office-common
   requires_final_images: true
+
 
 - category: "apps"
   name: "skanpage"
