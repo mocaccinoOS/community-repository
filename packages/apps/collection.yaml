@@ -4907,7 +4907,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:134
+      media-video/ffmpeg-chromium:137
       media-video/ffmpeg-chromium:138
   provides:
   - category: "media-video"
@@ -12873,7 +12873,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.15"
+  version: "10.15+1"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -12895,6 +12895,9 @@ packages:
   - atom: "app-emulation/proton-ge-custom-bin"
     license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
     accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/<media-libs\/libtheora\/media-libs\/libtheora/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
+  - ebuild /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild manifest
   inner_build_reqs:
   - dev-util/mingw64-toolchain
   requires:
@@ -13674,7 +13677,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.5.3735.64"
+  version: "7.5.3735.64+1"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
