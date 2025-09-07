@@ -10161,7 +10161,7 @@ packages:
 - &libs-libmediainfo
   category: "libs"
   name: "libmediainfo"
-  version: "24.11+1"
+  version: "24.11+2"
   uri:
   - https://mediaarea.net/mediainfo/
   license: "BSD-2 ZLIB"
@@ -12881,7 +12881,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =app-emulation/proton-ge-custom-bin-10.15
+      app-emulation/proton-ge-custom-bin
   overlays:
   - enable: "kzd"
   provides:
@@ -12894,9 +12894,9 @@ packages:
   atoms:
   - atom: "app-emulation/proton-ge-custom-bin"
     license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-    accept_keywords: "~amd64 abi_x86_64 # abi_x86_32"
+    accept_keywords: "~amd64"
   prepare:
-  - sed -i -e 's/<media-libs\/libtheora/media-libs\/libtheora/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
+  - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
   - ebuild /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild manifest
   inner_build_reqs:
   - dev-util/mingw64-toolchain
