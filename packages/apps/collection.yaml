@@ -12004,34 +12004,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - &apps-meteo
-#   category: "apps"
-#   name: "meteo"
-#   version: "0.9.9.2"
-#   uri:
-#   - https://gitlab.com/bitseater/meteo
-#   license: "GPL-3+"
-#   description: "Forecast application using OpenWeatherMap API"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       x11-misc/meteo
-#   provides:
-#   - category: "x11-misc"
-#     name: "meteo"
-#     version: ">=0"
-#   atoms:
-#   - atom: "x11-misc/meteo"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - sed -i -e 's/net-libs\/webkit-gtk:4/net-libs\/webkit-gtk:4.1/' /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
-#   - echo -e "\nsrc_prepare() {\n\tdefault\n\tfind $PORTAGE_TMPDIR \( -type d -name .git -prune \) -o -type f -print0 | xargs -0 sed -i 's/webkit2gtk-4.0/webkit2gtk-4.1/g' || die\n}" >> /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild
-#   - ebuild /var/db/repos/gentoo/x11-misc/meteo/meteo-0.9.9.2.ebuild manifest
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
-
 # - &apps-minecraft-server
 #   category: "apps"
 #   name: "minecraft-server"
@@ -12429,7 +12401,7 @@ packages:
 - &apps-okteta
   category: "apps"
   name: "okteta"
-  version: "0.26.22+2"
+  version: "0.26.22+1"
   uri:
   - https://apps.kde.org/okteta/
   - https://utils.kde.org/projects/okteta/
@@ -12446,9 +12418,9 @@ packages:
   inner_build_requires:
   - <<: *apps-designer
   requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-kde-common
+  - <<: *layers-kde-kf5
 
 - &apps-OpenLinkHub
   category: "apps"
@@ -18247,8 +18219,8 @@ packages:
   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
-  inner_build_requires:
-  - <<: *apps-designer
+  # inner_build_requires:
+  # - <<: *apps-designer
   requires:
   - <<: *layers-qt
   - <<: *layers-kde-kf5
