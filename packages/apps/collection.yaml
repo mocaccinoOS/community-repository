@@ -11010,6 +11010,32 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-duf
+  category: "apps"
+  name: "duf"
+  version: "0.8.1"
+  uri:
+  - https://github.com/muesli/duf
+  license: "Apache-2.0"
+  description: "Disk Usage/Free Utility - a better 'df' alternative"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/duf
+  provides:
+  - category: "sys-fs"
+    name: "duf"
+    version: '>=0'
+  atoms:
+  - atom: "sys-fs/duf"
+    accept_keywords: "~amd64"
+  inner_build_requires:
+  - <<: *apps-go
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "easytag"
   version: "2.4.3-r7+2"
