@@ -12503,9 +12503,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# - category: "apps"
+#   name: "openrgb"
+#   version: "0.9_p20250802+1"
+#   uri:
+#   - https://openrgb.org
+#   license: "GPL-2"
+#   description: "Open source RGB lighting control that doesn't depend on manufacturer software"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-misc/openrgb
+#       app-misc/openrgb-plugin-skin
+#       app-misc/openrgb-plugin-effects
+#       app-misc/openrgb-plugin-visualmap
+#   provides:
+#   - category: "app-misc"
+#     name: "openrgb"
+#     version: ">=0"
+#   - category: "app-misc"
+#     name: "openrgb-plugin-skin"
+#     version: ">=0"
+#   - category: "app-misc"
+#     name: "openrgb-plugin-effects"
+#     version: ">=0"
+#   - category: "app-misc"
+#     name: "openrgb-plugin-visualmap"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "mdns"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-misc/openrgb"
+#     accept_keywords: "~amd64"
+#   - atom: "app-misc/openrgb-plugin-skin"
+#     accept_keywords: "~amd64"
+#   - atom: "app-misc/openrgb-plugin-effects"
+#     accept_keywords: "~amd64"
+#   - atom: "app-misc/openrgb-plugin-visualmap"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-cpp-httplib
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-hidapi
+#   - <<: *libs-mbedtls
+#   build_requires:
+#   - <<: *layers-qt
+
 - category: "apps"
   name: "openrgb"
-  version: "0.9_p20250802+1"
+  version: "0.9-r2+5"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -12533,23 +12581,14 @@ packages:
   - category: "dev-libs"
     name: "mdns"
     version: ">=0"
-  atoms:
-  - atom: "app-misc/openrgb"
-    accept_keywords: "~amd64"
-  - atom: "app-misc/openrgb-plugin-skin"
-    accept_keywords: "~amd64"
-  - atom: "app-misc/openrgb-plugin-effects"
-    accept_keywords: "~amd64"
-  - atom: "app-misc/openrgb-plugin-visualmap"
-    accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
   - <<: *libs-cpp-httplib
   - <<: *libs-nlohmann_json
   - <<: *libs-hidapi
   - <<: *libs-mbedtls
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "opera"
