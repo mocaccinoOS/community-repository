@@ -6961,6 +6961,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-mullvadvpn-app
+  category: "apps"
+  name: "mullvadvpn-app"
+  version: "2025.9"
+  uri:
+  - https://github.com/mullvad/mullvadvpn-app
+  - https://mullvad.net/
+  license: "GPL-3"
+  description: "Tool used to manage daemon setup"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-vpn/mullvadvpn-app
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-vpn"
+    name: "mullvadvpn-app"
+    version: ">=0"
+  atoms:
+  - atom: "net-vpn/mullvadvpn-app"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
