@@ -6041,7 +6041,7 @@ packages:
   # password flag needs dev-libs/qtkeychain[qt5]
 - category: "apps"
   name: "kate"
-  version: "25.04.3"
+  version: "25.04.3+1"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -6057,13 +6057,16 @@ packages:
   - category: "kde-apps"
     name: "kate-addons"
     version: ">=0"
-  atoms:
-  - atom: "media-libs/libkate"
-    use: "-wxwidgets"
+  - category: "kde-apps"
+    name: "kate-common"
+    version: ">=0"
+  - category: "kde-apps"
+    name: "kate-lib"
+    version: ">=0"
   requires:
-  - <<: *layers-kde-apps-minimal
+  - <<: *layers-kde-common
   build_requires:
-  - <<: *layers-kde-apps-minimal
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "kcharselect"
