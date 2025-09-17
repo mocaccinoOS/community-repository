@@ -9034,6 +9034,31 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "torbrowser"
+  version: "128.14.0_p14507"
+  uri:
+  - https://www.torproject.org
+  license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
+  description: "Private browsing without tracking, surveillance, or censorship"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-client/torbrowser
+  overlays:
+  - enable: "torbrowser"
+  provides:
+  - category: "www-client"
+    name: "torbrowser"
+    version: ">=0"
+  atoms:
+  - atom: "www-client/torbrowser"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "ttaenc"
   version: "3.4.1-r1"
   uri:
