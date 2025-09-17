@@ -6262,6 +6262,31 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "koi"
+  version: "0.6"
+  uri:
+  - https://github.com/baduhai/Koi
+  license: "LGPL-3"
+  description: "Theme scheduling for the KDE Plasma Desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/koi
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "koi"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/koi"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "kompare"
   version: "25.04.3"
   uri:
