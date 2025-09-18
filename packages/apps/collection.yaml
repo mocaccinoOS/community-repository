@@ -9035,7 +9035,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "128.14.0_p14507"
+  version: "128.14.0_p14507+1"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -9056,7 +9056,10 @@ packages:
   inner_build_reqs:
   - net-libs/nodejs
   - llvm-core/clang:19
-  - dev-lang/rust-bin
+  - llvm-core/lld:19
+  - llvm-core/lld-toolchain-symlinks:19
+  - dev-util/cbindgen
+  - =dev-lang/rust-bin-1.86.0-r1
   requires:
   - <<: *layers-X
   build_requires:
