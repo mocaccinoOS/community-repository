@@ -196,6 +196,32 @@ stubs:
   name: "perl-libs"
   version: ">=0"
 
+- &apps-cdemu
+  category: "apps"
+  name: "cdemu"
+  version: ">=0"
+- &layerbase-cdemu
+  category: "layerbase"
+  name: "cdemu"
+  version: ">=0"
+- &buildbase-cdemu
+  category: "buildbase"
+  name: "cdemu"
+  version: ">=0"
+
+- &apps-cdemu
+  category: "apps"
+  name: "cdemu-lts"
+  version: ">=0"
+- &layerbase-cdemu
+  category: "layerbase"
+  name: "cdemu-lts"
+  version: ">=0"
+- &buildbase-cdemu
+  category: "buildbase"
+  name: "cdemu-lts"
+  version: ">=0"
+
 # - &layers-vtk
 #   category: "layers"
 #   name: "vtk"
@@ -208,6 +234,20 @@ stubs:
 #   category: "buildbase"
 #   name: "vtk"
 #   version: ">=0"
+
+################################################################################################################################################################
+### kernel refs ###
+################################################################################################################################################################
+
+- &kernel-modules-vhba
+  category: "kernel-modules"
+  name: "vhba"
+  version: ">=0"
+  
+- &kernel-modules-vhba-lts
+  category: "kernel-modules"
+  name: "vhba-lts"
+  version: ">=0"
 
 ################################################################################
 ### fonts ###
@@ -352,6 +392,69 @@ packages:
 ################################################################################
 ## layers ###
 ################################################################################
+
+- &def-cdemu
+  category: "apps"
+  name: "cdemu"
+  version: "3.2.5-r1+5"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Command-line tool for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cdemu
+  provides:
+  - category: "app-cdr"
+    name: "cdemu"
+    version: ">=0"
+  - category: "app-cdr"
+    name: "cdemu-daemon"
+    version: ">=0"
+  atoms:
+  - atom: "app-cdr/cdemu"
+    use: "cdemu-daemon"
+  # inner_build_reqs:
+  # - virtual/dist-kernel
+  # - virtual/linux-sources
+  requires:
+  # - <<: *layers-X
+  - <<: *kernel-modules-vhba
+  - <<: *libs-libao
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *kernel-modules-vhba
+
+- <<: *def-cdemu
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+- <<: *def-cdemu
+  category: "layerbase"
+  hidden: true
+
+  
+- &def-cdemu-lts
+  name: "cdemu-lts"
+  requires:
+  # - <<: *layers-X
+  - <<: *kernel-modules-vhba-lts
+  - <<: *libs-libao
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *kernel-modules-vhba-lts
+
+- <<: *def-cdemu-lts
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+- <<: *def-cdemu-lts
+  category: "layerbase"
+  hidden: true
+
 
 # # gtk+ 2 required by dev-db/libiodbc, dev-db/libiodbc required by dev-libs/redland
 - &def-office-common
