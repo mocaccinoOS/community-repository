@@ -209,19 +209,6 @@ stubs:
 #   name: "cdemu"
 #   version: ">=0"
 
-- &apps-cdemu-lts
-  category: "apps"
-  name: "cdemu-lts"
-  version: ">=0"
-- &layerbase-cdemu-lts
-  category: "layerbase"
-  name: "cdemu-lts"
-  version: ">=0"
-# - &buildbase-cdemu-lts
-#   category: "buildbase"
-#   name: "cdemu-lts"
-#   version: ">=0"
-
 # - &layers-vtk
 #   category: "layers"
 #   name: "vtk"
@@ -14432,11 +14419,10 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-
 - &def-cdemu
   category: "apps"
   name: "cdemu"
-  version: "3.2.5-r1+5"
+  version: "3.2.5-r1+6"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -14464,11 +14450,10 @@ packages:
     version: ">=0"
   requires:
   # - <<: *layers-X
-  - <<: *kernel-modules-vhba
   - <<: *libs-libao
   - <<: *libs-libmirage
   build_requires:
-  - <<: *kernel-modules-vhba
+  - <<: *kernel-modules-vhba-lts
 
 - <<: *def-cdemu
   category: "layerbase"
@@ -14478,32 +14463,6 @@ packages:
 #   category: "buildbase"
 #   unpack: true
 #   hidden: true
-
-  
-- &def-cdemu-lts
-  <<: *def-cdemu
-  name: "cdemu-lts"
-  conflicts:
-  - category: "apps"
-    name: "cdemu"
-    version: ">=0"
-  requires:
-  # - <<: *layers-X
-  - <<: *kernel-modules-vhba-lts
-  - <<: *libs-libao
-  - <<: *libs-libmirage
-  build_requires:
-  - <<: *kernel-modules-vhba-lts
-
-- <<: *def-cdemu-lts
-  category: "layerbase"
-  hidden: true
-
-# - <<: *def-cdemu-lts
-#   category: "buildbase"
-#   unpack: true
-#   hidden: true
-
 
 - category: "apps"
   name: "celluloid"
@@ -16788,21 +16747,9 @@ packages:
   # - <<: *layers-X
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba
-  - <<: *buildbase-X
-  - <<: *layerbase-cdemu
-  requires_final_images: true
-
-- &apps-gcdemu-lts
-  <<: *apps-gcdemu
-  name: "gcdemu-lts"
-  requires:
-  # - <<: *layers-X
-  - <<: *apps-cdemu-lts
-  build_requires:
   - <<: *kernel-modules-vhba-lts
   - <<: *buildbase-X
-  - <<: *layerbase-cdemu-lts
+  - <<: *layerbase-cdemu
   requires_final_images: true
   
 - category: "apps"
@@ -17079,20 +17026,8 @@ packages:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba
-  - <<: *layerbase-cdemu
-  - <<: *buildbase-kde-common
-  requires_final_images: true
-
-- &apps-kcdemu-lts
-  <<: *apps-kcdemu
-  name: "kcdemu-lts"
-  requires:
-  - <<: *layers-kde-common
-  - <<: *apps-cdemu-lts
-  build_requires:
   - <<: *kernel-modules-vhba-lts
-  - <<: *layerbase-cdemu-lts
+  - <<: *layerbase-cdemu
   - <<: *buildbase-kde-common
   requires_final_images: true
   
