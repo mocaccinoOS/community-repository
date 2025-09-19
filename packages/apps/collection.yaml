@@ -204,10 +204,23 @@ stubs:
   category: "layerbase"
   name: "cdemu"
   version: ">=0"
-# - &buildbase-cdemu
-#   category: "buildbase"
-#   name: "cdemu"
-#   version: ">=0"
+- &buildbase-cdemu
+  category: "buildbase"
+  name: "cdemu"
+  version: ">=0"
+
+- &apps-cdemu
+  category: "apps"
+  name: "cdemu-lts"
+  version: ">=0"
+- &layerbase-cdemu
+  category: "layerbase"
+  name: "cdemu-lts"
+  version: ">=0"
+- &buildbase-cdemu
+  category: "buildbase"
+  name: "cdemu-lts"
+  version: ">=0"
 
 # - &layers-vtk
 #   category: "layers"
@@ -249,11 +262,6 @@ stubs:
 - &kernel-modules-nvidia-drivers-lts
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
-  version: ">=0"
-
-- &kernel-modules-vhba-lts
-  category: "kernel-modules"
-  name: "vhba-lts"
   version: ">=0"
 
 
@@ -10650,48 +10658,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &def-cdemu
-  category: "apps"
-  name: "cdemu"
-  version: "3.2.5-r1+3"
-  uri:
-  - https://cdemu.sourceforge.io
-  license: "GPL-2+"
-  description: "Command-line tool for controlling cdemu-daemon"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-cdr/cdemu
-  provides:
-  - category: "app-cdr"
-    name: "cdemu"
-    version: ">=0"
-  - category: "app-cdr"
-    name: "cdemu-daemon"
-    version: ">=0"
-  atoms:
-  - atom: "app-cdr/cdemu"
-    use: "cdemu-daemon"
-  # inner_build_reqs:
-  # - virtual/dist-kernel
-  # - virtual/linux-sources
-  requires:
-  # - <<: *layers-X
-  - <<: *kernel-modules-vhba-lts
-  - <<: *libs-libao
-  - <<: *libs-libmirage
-  build_requires:
-  - <<: *kernel-modules-vhba-lts
-
-# - <<: *def-cdemu
-#   category: "buildbase"
-#   unpack: true
-#   hidden: true
-
-- <<: *def-cdemu
-  category: "layerbase"
-  hidden: true
-
 - &apps-cdrdao
   category: "apps"
   name: "cdrdao"
@@ -14455,6 +14421,70 @@ packages:
   - <<: *libs-analitza
   build_requires:
   - <<: *layers-kde-common
+
+
+- &def-cdemu
+  category: "apps"
+  name: "cdemu"
+  version: "3.2.5-r1+5"
+  uri:
+  - https://cdemu.sourceforge.io
+  license: "GPL-2+"
+  description: "Command-line tool for controlling cdemu-daemon"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-cdr/cdemu
+  provides:
+  - category: "app-cdr"
+    name: "cdemu"
+    version: ">=0"
+  - category: "app-cdr"
+    name: "cdemu-daemon"
+    version: ">=0"
+  atoms:
+  - atom: "app-cdr/cdemu"
+    use: "cdemu-daemon"
+  # inner_build_reqs:
+  # - virtual/dist-kernel
+  # - virtual/linux-sources
+  requires:
+  # - <<: *layers-X
+  - <<: *kernel-modules-vhba
+  - <<: *libs-libao
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *kernel-modules-vhba
+
+- <<: *def-cdemu
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+- <<: *def-cdemu
+  category: "layerbase"
+  hidden: true
+
+  
+- &def-cdemu-lts
+  name: "cdemu-lts"
+  requires:
+  # - <<: *layers-X
+  - <<: *kernel-modules-vhba-lts
+  - <<: *libs-libao
+  - <<: *libs-libmirage
+  build_requires:
+  - <<: *kernel-modules-vhba-lts
+
+- <<: *def-cdemu-lts
+  category: "buildbase"
+  unpack: true
+  hidden: true
+
+- <<: *def-cdemu-lts
+  category: "layerbase"
+  hidden: true
+
 
 - category: "apps"
   name: "celluloid"
