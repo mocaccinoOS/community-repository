@@ -15013,7 +15013,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.2-r5+3"
+  version: "21.2-r5+2"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -15031,7 +15031,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/kodi
-      media-plugins/kodi-pvr-iptvsimple
+  #     media-plugins/kodi-pvr-iptvsimple
   provides:
   - category: "dev-libs"
     name: "crossguid"
@@ -15048,17 +15048,17 @@ packages:
   - category: "media-tv"
     name: "kodi"
     version: ">=0"
-  - category: "media-plugins"
-    name: "kodi-pvr-iptvsimple"
-    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "kodi-pvr-iptvsimple"
+  #   version: ">=0"
   atoms:
   - atom: "media-tv/kodi"
     use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients -gbm -gles lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf -wayland # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
-    accept_keywords: "**"
+  #   accept_keywords: "**"
   - atom: "net-libs/shairplay"
     use: "playfair"
-  - atom: "media-plugins/kodi-pvr-iptvsimple"
-    accept_keywords: "**"
+  # - atom: "media-plugins/kodi-pvr-iptvsimple"
+  #   accept_keywords: "**"
   # prepare:
   # - sed -i -e 's/=media-tv\/kodi-.*\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-*.ebuild
   # - ebuild /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-*.ebuild manifest
@@ -16771,7 +16771,7 @@ packages:
 - &apps-gcdemu
   category: "apps"
   name: "gcdemu"
-  version: "3.2.6-r1+3"
+  version: "3.2.6-r1+4"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -16788,11 +16788,23 @@ packages:
   # - <<: *layers-X
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba-lts
+  - <<: *kernel-modules-vhba
   - <<: *buildbase-X
   - <<: *layerbase-cdemu
   requires_final_images: true
 
+- &apps-gcdemu-lts
+  <<: *apps-gcdemu
+  name: "gcdemu-lts"
+  requires:
+  # - <<: *layers-X
+  - <<: *apps-cdemu-lts
+  build_requires:
+  - <<: *kernel-modules-vhba-lts
+  - <<: *buildbase-X
+  - <<: *layerbase-cdemu-lts
+  requires_final_images: true
+  
 - category: "apps"
   name: "goneovim"
   version: "0.6.11+4"
@@ -17050,7 +17062,7 @@ packages:
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
-  version: "0.9+5"
+  version: "0.9+6"
   uri:
   - https://www.linux-apps.com/p/998461/
   license: "GPL-2"
@@ -17067,11 +17079,23 @@ packages:
   - <<: *layers-kde-common
   - <<: *apps-cdemu
   build_requires:
-  - <<: *kernel-modules-vhba-lts
+  - <<: *kernel-modules-vhba
   - <<: *layerbase-cdemu
   - <<: *buildbase-kde-common
   requires_final_images: true
 
+- &apps-kcdemu-lts
+  <<: *apps-kcdemu
+  name: "kcdemu-lts"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-cdemu-lts
+  build_requires:
+  - <<: *kernel-modules-vhba-lts
+  - <<: *layerbase-cdemu-lts
+  - <<: *buildbase-kde-common
+  requires_final_images: true
+  
 - category: "apps"
   name: "kstars"
   version: "3.7.5-r2"
