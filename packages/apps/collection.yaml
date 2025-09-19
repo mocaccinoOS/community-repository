@@ -204,10 +204,10 @@ stubs:
   category: "layerbase"
   name: "cdemu"
   version: ">=0"
-- &buildbase-cdemu
-  category: "buildbase"
-  name: "cdemu"
-  version: ">=0"
+# - &buildbase-cdemu
+#   category: "buildbase"
+#   name: "cdemu"
+#   version: ">=0"
 
 - &apps-cdemu-lts
   category: "apps"
@@ -217,10 +217,10 @@ stubs:
   category: "layerbase"
   name: "cdemu-lts"
   version: ">=0"
-- &buildbase-cdemu-lts
-  category: "buildbase"
-  name: "cdemu-lts"
-  version: ">=0"
+# - &buildbase-cdemu-lts
+#   category: "buildbase"
+#   name: "cdemu-lts"
+#   version: ">=0"
 
 # - &layers-vtk
 #   category: "layers"
@@ -14458,6 +14458,10 @@ packages:
   # inner_build_reqs:
   # - virtual/dist-kernel
   # - virtual/linux-sources
+  conflicts:
+  - category: "apps"
+    name: "cdemu-lts"
+    version: ">=0"
   requires:
   # - <<: *layers-X
   - <<: *kernel-modules-vhba
@@ -14467,18 +14471,22 @@ packages:
   - <<: *kernel-modules-vhba
 
 - <<: *def-cdemu
-  category: "buildbase"
-  unpack: true
-  hidden: true
-
-- <<: *def-cdemu
   category: "layerbase"
   hidden: true
+
+# - <<: *def-cdemu
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
   
 - &def-cdemu-lts
   <<: *def-cdemu
   name: "cdemu-lts"
+  conflicts:
+  - category: "apps"
+    name: "cdemu"
+    version: ">=0"
   requires:
   # - <<: *layers-X
   - <<: *kernel-modules-vhba-lts
@@ -14488,13 +14496,13 @@ packages:
   - <<: *kernel-modules-vhba-lts
 
 - <<: *def-cdemu-lts
-  category: "buildbase"
-  unpack: true
-  hidden: true
-
-- <<: *def-cdemu-lts
   category: "layerbase"
   hidden: true
+
+# - <<: *def-cdemu-lts
+#   category: "buildbase"
+#   unpack: true
+#   hidden: true
 
 
 - category: "apps"
