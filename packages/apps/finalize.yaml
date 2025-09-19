@@ -30,6 +30,6 @@ install:
 - if ! id "openlinkhub" >/dev/null 2>&1; then useradd -r "openlinkhub" --shell=/bin/false; fi
 {{ end }}
 
-{ if and (eq .Values.category "apps") (eq .Values.name "cdemu") }}
+{{ if and (eq .Values.category "apps") (eq .Values.name "cdemu") }}
 - if [[ $(luet search --installed ^kernel/.*\-lts\-) ]]; then luet install -y kernel-modules/vhba-lts ; else luet install -y kernel-modules/vhba ; fi || true
 {{ end }}
