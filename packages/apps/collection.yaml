@@ -8647,6 +8647,32 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "sqlitestudio"
+  version: "3.4.17"
+  uri:
+  - https://sqlitestudio.pl
+  license: "GPL-3"
+  description: "Powerful cross-platform SQLite database manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/sqlitestudio
+  provides:
+    - category: "dev-db"
+      name: "sqlitestudio"
+      version: ">=0"
+  atoms:
+  - atom: "dev-db/sqlitestudio"
+    accept_keywords: "~amd64"
+    use: "cli cups python"
+  inner_build_reqs:
+  - dev-qt/designer
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
+
+- category: "apps"
   name: "stress-ng"
   version: "0.19.04"
   uri:
