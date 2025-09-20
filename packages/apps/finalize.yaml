@@ -31,5 +31,5 @@ install:
 {{ end }}
 
 {{ if and (eq .Values.category "apps") (eq .Values.name "cdemu") }}
-- if [[ $(luet search --installed ^kernel/.*\-lts\-) ]]; then luet install -y kernel-modules/vhba-lts ; else luet install -y kernel-modules/vhba ; fi || true
+- if [[ ! $(luet search --installed kernel-modules/vhba) ]]; then if [[ $(luet search --installed ^kernel/.*\-lts\-) ]]; then luet install -y kernel-modules/vhba-lts || true; else luet install -y kernel-modules/vhba || true; fi; fi
 {{ end }}
