@@ -1439,29 +1439,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-gspell
-  category: "libs"
-  name: "gspell"
-  version: "1.14.0-r1"
-  uri:
-  - https://gitlab.gnome.org/GNOME/gspell
-  license: "LGPL-2.1+"
-  description: "Spell check library for GTK+ applications"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/gspell
-  provides:
-  - category: "app-text"
-    name: "gspell"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-lang/vala dev-build/meson-format-array dev-build/meson
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-gst-plugins-srtp
   category: "libs"
   name: "gst-plugins-srtp"
@@ -3278,6 +3255,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-wxGTK
+  category: "libs"
+  name: "wxGTK"
+  version: "3.2.8.1-r2+2"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/wxGTK
+  provides:
+  - category: "x11-libs"
+    name: "wxGTK"
+    version: ">=0"
+  atoms:
+  - atom: "x11-libs/wxGTK"
+    use: "gstreamer libnotify sdl webkit"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-xsimd
   category: "libs"
@@ -5306,6 +5307,37 @@ packages:
   atoms:
   - atom: "media-video/gaupol"
     use: "spell"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "geeqie"
+  version: "2.5-r2+1"
+  uri:
+  - http://www.geeqie.org
+  license: "GPL-2"
+  description: "A lightweight GTK image viewer forked from GQview"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/geeqie
+  provides:
+  - category: "media-gfx"
+    name: "geeqie"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-Slurp"
+    version: ">=0"
+  - category: "dev-util"
+    name: "xxdi"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/geeqie"
+    use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
+  # inner_build_requires
+  # - <<: *apps-vim
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -10410,31 +10442,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-wxGTK
-  category: "libs"
-  name: "wxGTK"
-  version: "3.2.8.1-r2+1"
-  uri:
-  - https://wxwidgets.org/
-  license: "wxWinLL-3 GPL-2"
-  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/wxGTK
-  provides:
-  - category: "x11-libs"
-    name: "wxGTK"
-    version: ">=0"
-  atoms:
-  - atom: "x11-libs/wxGTK"
-    use: "gstreamer libnotify sdl webkit"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gspell
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
@@ -11232,38 +11239,6 @@ packages:
   - <<: *libs-libebur128
   build_requires:
   - <<: *layers-qt
-
-- category: "apps"
-  name: "geeqie"
-  version: "2.5-r2"
-  uri:
-  - http://www.geeqie.org
-  license: "GPL-2"
-  description: "A lightweight GTK image viewer forked from GQview"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/geeqie
-  provides:
-  - category: "media-gfx"
-    name: "geeqie"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "File-Slurp"
-    version: ">=0"
-  - category: "dev-util"
-    name: "xxdi"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/geeqie"
-    use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
-  # inner_build_requires
-  # - <<: *apps-vim
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gspell
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "gftp"
@@ -15089,7 +15064,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "25.2.5.2"
+  version: "25.2.5.2+1"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -15193,7 +15168,6 @@ packages:
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
   - <<: *apps-fontforge
-  - <<: *libs-gspell
   - <<: *libs-libvisio
   - <<: *libs-zxcvbn-c
   build_requires:
@@ -16993,7 +16967,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4-r3+1"
+  version: "1.4-r3+2"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
@@ -17022,8 +16996,7 @@ packages:
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
   - <<: *libs-fonttools
-  - <<: *libs-gspell
-  - <<: *apps-scour
+    - <<: *apps-scour
   - <<: *libs-libvisio
   build_requires:
   - <<: *layers-gnome-common
