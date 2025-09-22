@@ -693,7 +693,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20250701"
+  version: "20250801"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -967,7 +967,7 @@ packages:
 
 - category: "libs"
   name: "breeze-plymouth"
-  version: "6.3.6"
+  version: "6.4.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1018,7 +1018,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "140.0.7339.127"
+  # version: "140.0.7339.185"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1438,6 +1438,29 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-gspell
+  category: "libs"
+  name: "gspell"
+  version: "1.14.0-r1"
+  uri:
+  - https://gitlab.gnome.org/GNOME/gspell
+  license: "LGPL-2.1+"
+  description: "Spell check library for GTK+ applications"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/gspell
+  provides:
+  - category: "app-text"
+    name: "gspell"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-lang/vala dev-build/meson-format-array dev-build/meson
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-gst-plugins-srtp
   category: "libs"
@@ -3256,30 +3279,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-wxGTK
-  category: "libs"
-  name: "wxGTK"
-  version: "3.2.8.1-r2+1"
-  uri:
-  - https://wxwidgets.org/
-  license: "wxWinLL-3 GPL-2"
-  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/wxGTK
-  provides:
-  - category: "x11-libs"
-    name: "wxGTK"
-    version: ">=0"
-  atoms:
-  - atom: "x11-libs/wxGTK"
-    use: "gstreamer libnotify sdl webkit"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &libs-xsimd
   category: "libs"
   name: "xsimd"
@@ -3907,7 +3906,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.82.166"
+  version: "1.82.170"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4178,32 +4177,6 @@ packages:
   - <<: *layers-kde-kf5
   build_requires:
   - <<: *layers-kde-kf5
-
-- &apps-coquillo
-  category: "apps"
-  name: "coquillo"
-  version: "2.0.1-r1+2"
-  uri:
-  - https://www.linux-apps.com/content/show.php/Coquillo?content=141896
-  license: "LGPL-3"
-  description: "GUI audio tagger based on Qt and taglib"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/coquillo
-  provides:
-  - category: "media-sound"
-    name: "coquillo"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/coquillo"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
-  build_requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
 
 - category: "apps"
   name: "cuetools"
@@ -5339,39 +5312,8 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "geeqie"
-  version: "2.5-r2"
-  uri:
-  - http://www.geeqie.org
-  license: "GPL-2"
-  description: "A lightweight GTK image viewer forked from GQview"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/geeqie
-  provides:
-  - category: "media-gfx"
-    name: "geeqie"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "File-Slurp"
-    version: ">=0"
-  - category: "dev-util"
-    name: "xxdi"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/geeqie"
-    use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
-  # inner_build_requires
-  # - <<: *apps-vim
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
-- category: "apps"
   name: "ghostwriter"
-  version: "25.08.0"
+  version: "25.08.1-r1"
   uri:
   - https://ghostwriter.kde.org/
   license: "GPL-3+"
@@ -5424,7 +5366,7 @@ packages:
 - &apps-gmtp
   category: "apps"
   name: "gmtp"
-  version: "1.3.11-r3+5"
+  version: "1.3.11-r4"
   uri:
   - http://gmtp.sourceforge.net/
   license: "GPL-2+"
@@ -5582,7 +5524,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "140.0.7339.127"
+  version: "140.0.7339.185"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7041,7 +6983,7 @@ packages:
 
 - category: "apps"
   name: "ncdu"
-  version: "1.21"
+  version: "2.9.1"
   uri:
   - https://dev.yorhel.nl/ncdu/
   license: "MIT"
@@ -7888,7 +7830,7 @@ packages:
 
 - category: "apps"
   name: "plasma-sdk"
-  version: "6.3.6"
+  version: "6.4.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2"
@@ -8074,7 +8016,7 @@ packages:
 - &apps-qalculate-gtk
   category: "apps"
   name: "qalculate-gtk"
-  version: "5.5.1"
+  version: "5.7.0"
   uri:
   - https://qalculate.github.io/
   license: "GPL-2+"
@@ -8097,7 +8039,7 @@ packages:
 - &apps-qalculate-qt
   category: "apps"
   name: "qalculate-qt"
-  version: "5.5.1"
+  version: "5.7.0"
   uri:
   - https://github.com/Qalculate/qalculate-qt
   license: "GPL-2+"
@@ -8697,7 +8639,7 @@ packages:
 
 - category: "apps"
   name: "subtitlecomposer"
-  version: "0.8.1_p20250308+2"
+  version: "0.8.2"
   uri:
   - https://subtitlecomposer.kde.org/
   license: "GPL-2"
@@ -9159,7 +9101,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.7+10"
+  version: "5.15.7+11"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9328,7 +9270,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.103.25610"
+  version: "1.104.16282"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -9372,7 +9314,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "6.3.6"
+  version: "6.4.5"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -9915,7 +9857,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "6.5.11.4015"
+  version: "6.6.0.4410"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -10025,7 +9967,7 @@ packages:
 - &libs-build
   category: "libs"
   name: "build"
-  version: "1.2.2_p1-r2"
+  version: "1.3.0"
   uri:
   - https://pypi.org/project/build/
   - https://github.com/pypa/build/
@@ -10468,6 +10410,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-wxGTK
+  category: "libs"
+  name: "wxGTK"
+  version: "3.2.8.1-r2+1"
+  uri:
+  - https://wxwidgets.org/
+  license: "wxWinLL-3 GPL-2"
+  description: "GTK version of wxWidgets, a cross-platform C++ GUI toolkit"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-libs/wxGTK
+  provides:
+  - category: "x11-libs"
+    name: "wxGTK"
+    version: ">=0"
+  atoms:
+  - atom: "x11-libs/wxGTK"
+    use: "gstreamer libnotify sdl webkit"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gspell
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
@@ -10592,7 +10559,7 @@ packages:
 
 - category: "apps"
   name: "cairo-clock"
-  version: "0.3.4-r3+1"
+  version: "0.3.4-r4"
   uri:
   - https://launchpad.net/cairo-clock
   license: "GPL-2"
@@ -10940,27 +10907,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "diff-pdf"
-  version: "0.5.1-r1+1"
-  uri:
-  - https://vslavik.github.io/diff-pdf/
-  license: "GPL-2+ LGPL-2+"
-  description: "A simple tool for visually comparing two PDF files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/diff-pdf
-  provides:
-  - category: "app-text"
-    name: "diff-pdf"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-wxGTK
-  build_requires:
-  - <<: *layers-gnome-common
-
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
@@ -11228,7 +11174,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.23.1"
+  version: "1.24.0"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -11288,6 +11234,38 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "geeqie"
+  version: "2.5-r2"
+  uri:
+  - http://www.geeqie.org
+  license: "GPL-2"
+  description: "A lightweight GTK image viewer forked from GQview"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/geeqie
+  provides:
+  - category: "media-gfx"
+    name: "geeqie"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "File-Slurp"
+    version: ">=0"
+  - category: "dev-util"
+    name: "xxdi"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/geeqie"
+    use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
+  # inner_build_requires
+  # - <<: *apps-vim
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gspell
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "gftp"
   version: "2.9.1b-r1"
   uri:
@@ -11311,7 +11289,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.1.3"
+  version: "1.2.0"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -12639,7 +12617,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "121.0.5600.50"
+  version: "122.0.5643.51"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -12848,7 +12826,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "6.3.6"
+  version: "6.4.5"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -12899,7 +12877,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "17.6"
+  version: "17.6-r1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -13764,7 +13742,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.5.3735.64+1"
+  version: "7.5.3735.66"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -13872,7 +13850,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.14"
+  version: "10.15"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -14537,6 +14515,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "diff-pdf"
+  version: "0.5.1-r1+1"
+  uri:
+  - https://vslavik.github.io/diff-pdf/
+  license: "GPL-2+ LGPL-2+"
+  description: "A simple tool for visually comparing two PDF files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/diff-pdf
+  provides:
+  - category: "app-text"
+    name: "diff-pdf"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-wxGTK
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-dvd-rw-tools
   category: "apps"
   name: "dvd-rw-tools"
@@ -14620,7 +14619,7 @@ packages:
 - &apps-geany
   category: "apps"
   name: "geany"
-  version: "2.0-r1"
+  version: "2.1"
   uri:
   - https://www.geany.org
   license: "GPL-2+ HPND"
@@ -15194,6 +15193,7 @@ packages:
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
   - <<: *apps-fontforge
+  - <<: *libs-gspell
   - <<: *libs-libvisio
   - <<: *libs-zxcvbn-c
   build_requires:
@@ -15652,7 +15652,7 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "6.3.6"
+  version: "6.4.5"
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
@@ -15772,7 +15772,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.70.2"
+  version: "1.70.3"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -15817,7 +15817,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.7.0-r2"
+  version: "1.7.0-r3"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -15843,7 +15843,6 @@ packages:
   - <<: *buildbase-qt
   - <<: *layerbase-office-common
   requires_final_images: true
-
 
 - category: "apps"
   name: "skanpage"
@@ -16867,7 +16866,7 @@ packages:
 
 - category: "apps"
   name: "gradience"
-  version: "0.4.1+3"
+  version: "0.4.1+4"
   uri:
   - https://github.com/GradienceTeam/Gradience
   license: "GPL-2+"
@@ -17023,6 +17022,7 @@ packages:
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
   - <<: *libs-fonttools
+  - <<: *libs-gspell
   - <<: *apps-scour
   - <<: *libs-libvisio
   build_requires:
@@ -17408,7 +17408,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "25.1+1"
+  version: "25.1+2"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -17420,9 +17420,6 @@ packages:
     emerge.packages: >-
       sci-astronomy/stellarium
   provides:
-  - category: "dev-libs"
-    name: "md4c"
-    version: ">=0"
   - category: "sci-astronomy"
     name: "calcmysky"
     version: ">=0"
@@ -19030,7 +19027,7 @@ packages:
 
 - category: "apps"
   name: "displaycal-py3"
-  version: "3.9.16+1"
+  version: "3.9.16+2"
   uri:
   - https://github.com/eoyilmaz/displaycal-py3
   license: "GPL-3"
