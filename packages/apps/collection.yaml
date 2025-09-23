@@ -932,6 +932,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-appdirs
+  category: "libs"
+  name: "appdirs"
+  version: "1.4.4-r3"
+  uri:
+  - https://github.com/ActiveState/appdirs/
+  license: "MIT"
+  description: "Module for determining appropriate platform-specific dirs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/appdirs
+  provides:
+  - category: "dev-python"
+    name: "appdirs"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
@@ -4804,26 +4825,21 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-eselect-emacs
+- &apps-eselect-ctags
   category: "apps"
-  name: "eselect-emacs"
+  name: "eselect-ctags"
   version: "1.19+1"
   uri:
   - https://wiki.gentoo.org/wiki/Project:Emacs
   license: "GPL-2+"
   description: |
-    Manage multiple Emacs versions on one system
     Manages ctags implementations
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-eselect/eselect-emacs
       app-eselect/eselect-ctags
   provides:
   - name: eselect-ctags
-    category: app-eselect
-    version: '>=0'
-  - name: eselect-emacs
     category: app-eselect
     version: '>=0'
   requires:
@@ -4833,7 +4849,7 @@ packages:
 
 - category: "apps"
   name: "ext4magic"
-  version: "0.3.2-r2"
+  version: "0.3.2-r2+1"
   uri:
   - https://sourceforge.net/projects/ext4magic/
   license: "GPL-2"
@@ -10412,7 +10428,7 @@ packages:
 - &libs-twisted
   category: "libs"
   name: "twisted"
-  version: "25.5.0+1"
+  version: "25.5.0+2"
   uri:
   - https://www.twistedmatrix.com/trac/
   - https://github.com/twisted/incremental
@@ -10438,6 +10454,7 @@ packages:
   - dev-python/hatch-fancy-pypi-readme
   requires:
   - <<: *layers-X
+  - <<: *libs-appdirs
   - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-X
@@ -11063,71 +11080,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-emacs
+- &apps-eselect-emacs
   category: "apps"
-  name: "emacs"
-  version: "30.2"
+  name: "eselect-emacs"
+  version: "1.19+1"
   uri:
-  - https://www.gnu.org/software/emacs
-  - https://savannah.nongnu.org/projects/m17n
-  license: "BSD FDL-1.3+ GPL-3+ HPND LGPL-2 LGPL-2.1 MIT PSF-2 unicode W3C"
+  - https://wiki.gentoo.org/wiki/Project:Emacs
+  license: "GPL-2+"
   description: |
-    The extensible, customizable, self-documenting real-time display editor
-    Implements functions designed to lock the standard mailboxes
-    Multilingual Library for Unix/Linux
-    Database for the m17n library
-    Library for handling OpenType fonts (OTF)
+    Manage multiple Emacs versions on one system
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      app-editors/emacs
-      app-emacs/emacs-common
+      app-eselect/eselect-emacs
   provides:
-  - name: "emacs"
-    category: "app-editors"
-    version: ">=0"
-  - name: "emacs-common"
-    category: "app-emacs"
-    version: ">=0"
-  - category: "dev-db"
-    name: "m17n-db"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "m17n-lib"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libotf"
-    version: ">=0"
-  atoms:
-  - atom: "app-emacs/emacs-common"
-    use: "gui # games"
-  - atom: "app-editors/emacs"
-    use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd tree-sitter X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
-  - atom: "dev-libs/libotf"
-    use: "X"
-  - atom: "dev-libs/m17n-lib"
-    use: "X gd libotf libxml2 bidi fontconfig spell xft # anthy"
-  excludes:
-  - ^/usr/bin/ctags$
-  - ^/usr/bin/etags$
-  - ^/usr/bin/ebrowse$
-  - ^/usr/bin/emacs$
-  - ^/usr/bin/emacsclient$
-  - ^/usr/share/man/man1/ctags.1$
-  - ^/usr/share/man/man1/etags.1.bz2$
-  - ^/usr/share/man/man1/ebrowse.1.bz2$
-  - ^/usr/share/man/man1/emacs.1.bz2$
-  - ^/usr/share/man/man1/emacsclient.1.bz2$
+  - name: eselect-emacs
+    category: app-eselect
+    version: '>=0'
   requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-eselect-emacs
-  - <<: *libs-gpm
-  - <<: *libs-tree-sitter
-  - category: "entity"
-    name: "mail"
-    version: ">=0"
+  - <<: *layers-system-x
+  - <<: *apps-eselect-ctags
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-system-x
 
 - &apps-extreme-tuxracer
   category: "apps"
@@ -11264,7 +11238,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.2.0"
+  version: "1.1.3"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -11280,11 +11254,6 @@ packages:
   - category: "x11-terms"
     name: "ghostty-terminfo"
     version: ">=0"
-  atoms:
-  - atom: "x11-terms/ghostty"
-    accept_keywords: "~amd64"
-  - atom: "x11-terms/ghostty-terminfo"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lang/zig:0.13;ACCEPT_KEYWORDS="~amd64"
   requires:
@@ -14534,6 +14503,72 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-emacs
+  category: "apps"
+  name: "emacs"
+  version: "30.2"
+  uri:
+  - https://www.gnu.org/software/emacs
+  - https://savannah.nongnu.org/projects/m17n
+  license: "BSD FDL-1.3+ GPL-3+ HPND LGPL-2 LGPL-2.1 MIT PSF-2 unicode W3C"
+  description: |
+    The extensible, customizable, self-documenting real-time display editor
+    Implements functions designed to lock the standard mailboxes
+    Multilingual Library for Unix/Linux
+    Database for the m17n library
+    Library for handling OpenType fonts (OTF)
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/emacs
+      app-emacs/emacs-common
+  provides:
+  - name: "emacs"
+    category: "app-editors"
+    version: ">=0"
+  - name: "emacs-common"
+    category: "app-emacs"
+    version: ">=0"
+  - category: "dev-db"
+    name: "m17n-db"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "m17n-lib"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libotf"
+    version: ">=0"
+  atoms:
+  - atom: "app-emacs/emacs-common"
+    use: "gui # games"
+  - atom: "app-editors/emacs"
+    use: "gif jpeg png svg tiff webp xpm imagemagick lcms cairo gui gpm gtk xwidgets harfbuzz dynamic-loading json m17n-lib sound sqlite mailutils acl kerberos ssl dbus gfile inotify systemd tree-sitter X xft zlib # games gsettings toolkit-scroll-bars jit threads gmp libxml2"
+  - atom: "dev-libs/libotf"
+    use: "X"
+  - atom: "dev-libs/m17n-lib"
+    use: "X gd libotf libxml2 bidi fontconfig spell xft # anthy"
+  excludes:
+  - ^/usr/bin/ctags$
+  - ^/usr/bin/etags$
+  - ^/usr/bin/ebrowse$
+  - ^/usr/bin/emacs$
+  - ^/usr/bin/emacsclient$
+  - ^/usr/share/man/man1/ctags.1$
+  - ^/usr/share/man/man1/etags.1.bz2$
+  - ^/usr/share/man/man1/ebrowse.1.bz2$
+  - ^/usr/share/man/man1/emacs.1.bz2$
+  - ^/usr/share/man/man1/emacsclient.1.bz2$
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *apps-eselect-emacs
+  - <<: *libs-gpm
+  - <<: *libs-tree-sitter
+  - category: "entity"
+    name: "mail"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-fluidsynth
   category: "apps"
   name: "fluidsynth"
@@ -14597,10 +14632,12 @@ packages:
   version: "2.1"
   uri:
   - https://www.geany.org
-  license: "GPL-2+ HPND"
+  - https://ctags.io/
+  license: "GPL-2+"
   description: |
     GTK+ based fast and lightweight IDE
     A collection of different plugins for Geany
+    Exuberant Ctags creates tags files for code browsing in editors
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14610,11 +14647,18 @@ packages:
   - category: "dev-util"
     name: "geany"
     version: ">=0"
+  - category: "dev-util"
+    name: "geany-plugins"
+    version: ">=0"
+  - category: "dev-util"
+    name: "ctags"
+    version: ">=0"
   atoms:
   - atom: "dev-util/geany-plugins"
     use: "ctags debugger enchant git gpg gtkspell lua nls pretty-printer scope webhelper workbench # markdown (app-text/discount in kde-common)"
   requires:
   - <<: *layers-gnome-common
+  - <<: *apps-eselect-ctags
   - <<: *libs-gtk-spell
   - <<: *libs-libgit2
   build_requires:
@@ -16967,7 +17011,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4-r3+2"
+  version: "1.4-r3+3"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
@@ -16993,6 +17037,7 @@ packages:
     use: "cdr exif imagemagick inkjar jemalloc jpeg openmp postscript readline sourceview spell svg2 visio wpg # dia graphicsmagick X"
   requires:
   - <<: *layers-gnome-common
+  - <<: *libs-appdirs
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
   - <<: *libs-fonttools
@@ -18489,7 +18534,7 @@ packages:
 - &libs-wxpython
   category: "libs"
   name: "wxpython"
-  version: "4.2.3-r2+1"
+  version: "4.2.3-r2+2"
   uri:
   - https://www.wxpython.org/
   - https://github.com/wxWidgets/Phoenix
@@ -18507,6 +18552,7 @@ packages:
   # - atom: "dev-python/wxpython"
   #   use: "webkit"
   inner_build_reqs:
+  - dev-python/appdirs
   - *apps-doxygen-packages
   requires:
   - <<: *layers-gnome-common

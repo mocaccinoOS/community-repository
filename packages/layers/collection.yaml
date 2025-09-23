@@ -242,7 +242,7 @@ packages:
 - &libs-fonttools
   category: "libs"
   name: "fonttools"
-  version: "4.59.0-r1"
+  version: "4.59.0-r1+1"
   uri:
   - https://github.com/fonttools/fonttools/
   license: "BSD"
@@ -253,14 +253,10 @@ packages:
       dev-python/fonttools
   provides:
   - category: "dev-python"
-    name: "appdirs"
-    version: ">=0"
-  - category: "dev-python"
     name: "fonttools"
     version: ">=0"
-  - category: "dev-python"
-    name: "fs"
-    version: ">=0"
+  inner_build_reqs:
+  - dev-python/fs
   requires:
   - <<: *layers-X
   build_requires:
