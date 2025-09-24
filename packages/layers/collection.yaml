@@ -290,6 +290,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-gpgmepp
+  category: "libs"
+  name: "gpgmepp"
+  version: "2.0.0-r1"
+  uri:
+  - https://www.gnupg.org/related_software/gpgme
+  license: "LGPL-2+"
+  description: "GnuPG Made Easy is a library for making GnuPG easier to use (C++ bindings)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/gpgmepp
+  provides:
+  - category: "dev-cpp"
+    name: "gpgmepp"
+    version: ">=0"
+  inner_build_reqs:
+  - app-portage/gemato
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -353,7 +376,7 @@ packages:
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.2+9"
+  version: "1.2+8"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
