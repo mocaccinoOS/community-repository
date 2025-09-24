@@ -48,7 +48,7 @@ do
                             # file_name="$(basename "${i}")"
                             file_name=$(echo ${i} | sed -n -E 's/^\/(.*)/\1/p')
                             package=$(luet search --files $file_name | sed -n -E 's/^> (.*)\-[[:digit:].]+((_p|-r)+[[:digit:]]+){0,}(\+[[:digit:]]+){0,1}/\1/p' | sed ':a;N;$!ba;s/\n/ /g')
-                            if [[ ! -v packages[$package] ]]; then
+                            if [[ $package && ! -v packages[$package] ]]; then
                                 # This is an associative array, so map the vlaue (the package name) by just reading to an empty string.
                                 # Not interested in the values associated with the keys.
                                 packages[$package]=
