@@ -1600,7 +1600,7 @@ packages:
 - &def-kde-pim
   category: "layers"
   name: "kde-pim"
-  version: "25.04.3+8"
+  version: "25.04.3+9"
   uri:
   - https://community.kde.org/KDE_PIM
   license: "GPL-2+ LGPL-2.1+"
@@ -1787,6 +1787,30 @@ packages:
   atoms:
   - atom: "kde-apps/akonadi"
     use: "tools"
+  - atom: "app-office/merkuro"
+    usepkg_exclude: true
+  - atom: "kde-apps/akonadi-calendar"
+    usepkg_exclude: true
+  - atom: "kde-apps/akonadiconsole"
+    usepkg_exclude: true
+  - atom: "kde-apps/kdepim-runtime"
+    usepkg_exclude: true
+  - atom: "kde-apps/konsolekalendar"
+    usepkg_exclude: true
+  - atom: "kde-apps/korganizer"
+    usepkg_exclude: true
+  - atom: "kde-apps/calendarjanitor"
+    usepkg_exclude: true
+  - atom: "kde-apps/calendarsupport"
+    usepkg_exclude: true
+  - atom: "kde-apps/eventviews"
+    usepkg_exclude: true
+  - atom: "kde-apps/incidenceeditor"
+    usepkg_exclude: true
+  - atom: "kde-apps/kdepim-addons"
+    usepkg_exclude: true
+  - atom: "app-office/merkuro"
+    usepkg_exclude: true
   prepare:
   # Remove kalarm from ebuilds, it pulls in vlc, not that
   - sed -i '/kalarm/d' /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild
