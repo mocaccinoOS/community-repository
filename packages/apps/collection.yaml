@@ -2362,6 +2362,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-log4cpp
+  category: "libs"
+  name: "log4cpp"
+  version: "1.1.4"
+  uri:
+  - https://log4cpp.sourceforge.net
+  license: "LGPL-2.1"
+  description: "C++ classes for flexible logging to files, syslog and other destinations"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/log4cpp
+  provides:
+  - category: "dev-libs"
+    name: "log4cpp"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-lrzsz
   category: "libs"
   name: "lrzsz"
