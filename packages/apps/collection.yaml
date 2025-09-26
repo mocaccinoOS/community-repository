@@ -3331,6 +3331,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-zeromq
+  category: "libs"
+  name: "zeromq"
+  version: "4.3.5-r1"
+  uri:
+  - http://czmq.zeromq.org
+  license: "MPL-2.0"
+  description: "High-performance asynchronous messaging library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/zeromq
+  provides:
+  - category: "net-libs"
+    name: "zeromq"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-zimg
   category: "libs"
   name: "zimg"
@@ -10081,6 +10102,28 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-czmq
+  category: "libs"
+  name: "czmq"
+  version: "4.2.1"
+  uri:
+  - http://czmq.zeromq.org
+  license: "MPL-2.0"
+  description: "High-level C Binding for ZeroMQ"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/czmq
+  provides:
+  - category: "net-libs"
+    name: "czmq"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-zeromq
+  build_requires:
+  - <<: *layers-X
+
 - &libs-dssi
   category: "libs"
   name: "dssi"
@@ -13471,7 +13514,8 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
+- &apps-tor
+  category: "apps"
   name: "tor"
   version: "0.4.8.16"
   uri:
@@ -14568,6 +14612,47 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "feather"
+  version: "2.8.1-r1"
+  uri:
+  - https://featherwallet.org
+  license: "GPL-2+"
+  description: "A free, open-source Monero wallet"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/feather
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-libs"
+    name: "polyseed"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "zbar"
+    version: ">=0"
+  - category: "net-p2p"
+    name: "feather"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/polyseed"
+    accept_keywords: "~amd64"
+  - atom: "media-gfx/zbar"
+    use: "v4l"
+  - atom: "net-p2p/feather"
+    accept_keywords: "~amd64"
+    use: "qrcode"
+  inner_build_reqs:
+  - net-libs/czmq
+  - net-vpn/tor
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-czmq
+  - <<: *apps-tor
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-fluidsynth
   category: "apps"
