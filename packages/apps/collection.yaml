@@ -2192,6 +2192,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-rtl-sdr
+  category: "libs"
+  name: "rtl-sdr"
+  version: "2.0.2-r2"
+  uri:
+  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
+  license: "GPL-2+ GPL-3+"
+  description: "Turns your Realtek RTL2832 based DVB dongle into a SDR receiver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/rtl-sdr
+  provides:
+  - category: "net-wireless"
+    name: "rtl-sdr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
