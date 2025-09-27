@@ -14921,6 +14921,57 @@ packages:
   requires_final_images: true
 
 - category: "apps"
+  name: "gnuradio"
+  version: "3.10.12.0"
+  uri:
+  - https://www.gnuradio.org
+  license: "GPL-3"
+  description: "Toolkit that provides signal processing blocks to implement software radios"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/gnuradio
+  provides:
+  - category: "dev-python"
+    name: "click-plugins"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "gnuradio"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "qwt"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/gnuradio"
+    use: "alsa analog audio digital filter qt5 utils"
+  inner_build_reqs:
+  - dev-python/fqdn
+  - dev-python/jsonpointer
+  - dev-python/rfc3986-validator
+  - dev-python/uri-template
+  - dev-python/strict-rfc3339
+  - dev-python/arrow
+  - dev-python/isoduration
+  - dev-python/rfc3339-validator
+  - dev-python/rfc3987
+  - dev-python/pdm-backend
+  - dev-python/rpds-py
+  - dev-python/webcolors
+  - dev-python/referencing
+  - dev-python/jsonschema-specifications
+  - dev-python/jsonschema
+  - dev-libs/log4cpp
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *layers-sci-libs
+  - <<: *libs-jsonschema
+  - <<: *libs-log4cpp
+  build_requires:
+  - <<: *buildbase-kde-kf5
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
+
+- category: "apps"
   name: "helm-synthesizer"
   version: "0.9.0-r2+1"
   uri:
