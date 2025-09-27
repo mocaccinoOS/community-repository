@@ -3248,6 +3248,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-volk
+  category: "libs"
+  name: "volk"
+  version: "3.1.2"
+  uri:
+  - http://libvolk.org
+  license: "GPL-3"
+  description: "Vector optimized library of kernels"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sci-libs/volk
+  provides:
+  - category: "sci-libs"
+    name: "volk"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-websocketpp
   category: "libs"
   name: "websocketpp"
@@ -14932,7 +14953,7 @@ packages:
 
 - category: "apps"
   name: "gnuradio"
-  version: "3.10.12.0+2"
+  version: "3.10.12.0+3"
   uri:
   - https://www.gnuradio.org
   license: "GPL-3"
@@ -14953,9 +14974,6 @@ packages:
     version: ">=0"
   - category: "net-wireless"
     name: "gnuradio"
-    version: ">=0"
-  - category: "sci-libs"
-    name: "volk"
     version: ">=0"
   - category: "x11-libs"
     name: "qwt"
@@ -14980,11 +14998,13 @@ packages:
   - dev-python/jsonschema-specifications
   - dev-python/jsonschema
   - dev-libs/log4cpp
+  - sci-libs/volk
   requires:
   - <<: *layers-kde-kf5
   - <<: *layers-sci-libs
   - <<: *libs-jsonschema
   - <<: *libs-log4cpp
+  - <<: *libs-volk
   build_requires:
   - <<: *buildbase-kde-kf5
   - <<: *buildbase-sci-libs
