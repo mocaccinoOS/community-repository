@@ -493,6 +493,15 @@ stubs:
   version: ">=0"
 
 ################################################################################################################################################################
+### system refs ###
+################################################################################################################################################################
+
+- &system-luet
+  category: "system"
+  name: "luet"
+  version: ">=0"
+
+################################################################################################################################################################
 ### fonts stub ###
 ################################################################################################################################################################
 
@@ -514,26 +523,27 @@ packages:
 ################################################################################################################################################################
 
 - category: "utils"
-  name: "loopup"
-  version: "0.3"
+  name: "system-tools"
+  version: "0.4"
   uri:
   - https://github.com/mocaccinoOS/community-repository
   license: "MIT"
-  description: "Upgrade in a loop while dependency solver errors appear"
+  description: |
+    Luet based tools to:
+    - Upgrade in a loop while dependency solver errors appear
+    - Check for missing deps and recommend packages to (re)install in order to fix them
   labels:
     emerge.jobs: "1"
   setup:
   - |
     wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/loopup.sh -O /usr/bin/loopup.sh; \
-    chmod +x /usr/bin/loopup.sh
+    chmod +x /usr/bin/loopup.sh \
+    wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/libtest-luet.sh -O /usr/bin/libtest-luet.sh; \
+    chmod +x /usr/bin/libtest-luet.sh
   requires:
-  - category: "system"
-    name: "luet"
-    version: ">=0"
+  - <<: *system-luet
   build_requires:
-  - category: "system"
-    name: "luet"
-    version: ">=0"
+  - <<: *system-luet
 
 ################################################################################################################################################################
 ### fonts ###
