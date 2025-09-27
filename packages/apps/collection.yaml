@@ -10407,6 +10407,93 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# here because of gnuradio
+- &libs-jsonschema
+  category: "libs"
+  name: "jsonschema"
+  version: "4.25.1"
+  uri:
+  - https://pypi.org/project/jsonschema
+  license: "MIT"
+  description: |
+    An implementation of JSON Schema validation for Python.
+    Includes referencing, validators, and utilities for working
+    with JSON documents and schema specifications.
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/fqdn
+      dev-python/jsonpointer
+      dev-python/rfc3986-validator
+      dev-python/uri-template
+      dev-python/strict-rfc3339
+      dev-python/arrow
+      dev-python/isoduration
+      dev-python/rfc3339-validator
+      dev-python/rfc3987
+      dev-python/pdm-backend
+      dev-python/rpds-py
+      dev-python/webcolors
+      dev-python/referencing
+      dev-python/jsonschema-specifications
+      dev-python/jsonschema
+  provides:
+  - category: "dev-python"
+    name: "jsonschema"
+    version: ">=0"
+  - category: "dev-python"
+    name: "fqdn"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jsonpointer"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rfc3986-validator"
+    version: ">=0"
+  - category: "dev-python"
+    name: "uri-template"
+    version: ">=0"
+  - category: "dev-python"
+    name: "strict-rfc3339"
+    version: ">=0"
+  - category: "dev-python"
+    name: "arrow"
+    version: ">=0"
+  - category: "dev-python"
+    name: "isoduration"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rfc3339-validator"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rfc3987"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pdm-backend"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rpds-py"
+    version: ">=0"
+  - category: "dev-python"
+    name: "webcolors"
+    version: ">=0"
+  - category: "dev-python"
+    name: "referencing"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jsonschema-specifications"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-util/maturin
+  - dev-python/hatch-fancy-pypi-readme
+  - dev-python/regex
+  - dev-python/tomli-w
+  requires:
+  - <<: *layers-X
+  _ <<: *libs-regex
+  build_requires:
+  - <<: *layers-X
+
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
