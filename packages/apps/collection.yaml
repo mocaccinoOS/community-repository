@@ -6084,6 +6084,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "joplin"
+  version: "3.3.13"
+  uri:
+  - https://joplinapp.org
+  license: "AGPL-3+"
+  description: "Secure note taking and to-do app with synchronization capabilities"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/joplin-desktop
+  provides:
+  - category: "app-office"
+    name: "joplin-desktop"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
