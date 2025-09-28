@@ -3934,6 +3934,29 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "bitwarden-desktop"
+  version: "2025.8.2"
+  uri:
+  - https://bitwarden.com
+  license: "GPL-3"
+  description: "Bitwarden password manager desktop client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/bitwarden-desktop-bin
+  provides:
+  - category: "app-admin"
+    name: "bitwarden-desktop-bin"
+    version: ">=0"
+  atoms:
+  - atom: "app-admin/bitwarden-desktop-bin"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "bleachbit"
   version: "4.6.2+1"
   uri:
