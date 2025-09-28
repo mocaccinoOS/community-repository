@@ -6108,6 +6108,31 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "jitsi-meet"
+  version: "2025.9.1"
+  uri:
+  - https://github.com/jitsi/jitsi-meet-electron
+  license: "Apache-2.0"
+  description: "Desktop application for Jitsi Meet built with Electron"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/jitsi-meet
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-im"
+    name: "jitsi-meet"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/jitsi-meet"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "joe"
   version: "4.6-r2+1"
   uri:
