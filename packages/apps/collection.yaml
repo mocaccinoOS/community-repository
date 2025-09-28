@@ -5146,6 +5146,26 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "focuswriter"
+  version: "1.8.10"
+  uri:
+  - https://gottcode.org/focuswriter
+  license: "GPL-3+ LGPL-3"
+  description: "Fullscreen and distraction-free word processor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/focuswriter
+  provides:
+  - category: "app-editors"
+    name: "focuswriter"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
+- category: "apps"
   name: "foldingathome"
   version: "7.6.21+1"
   uri:
@@ -6085,7 +6105,7 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
-  name: "joplin"
+  name: "joplin-desktop"
   version: "3.3.13"
   uri:
   - https://joplinapp.org
