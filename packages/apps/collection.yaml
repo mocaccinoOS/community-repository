@@ -8031,28 +8031,29 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "pencil"
-  version: "0.7.0"
-  uri:
-  - https://www.pencil2d.org
-  license: "GPL-2"
-  description: "2D animation and drawing program based on Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/pencil
-  provides:
-  - category: "media-gfx"
-    name: "pencil"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/pencil"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
+# 2025-09-28 Joost Ruis: Fails to build
+# - category: "apps"
+#   name: "pencil"
+#   version: "0.7.0"
+#   uri:
+#   - https://www.pencil2d.org
+#   license: "GPL-2"
+#   description: "2D animation and drawing program based on Qt"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/pencil
+#   provides:
+#   - category: "media-gfx"
+#     name: "pencil"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/pencil"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "piper"
