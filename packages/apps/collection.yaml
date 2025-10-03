@@ -2209,7 +2209,7 @@ packages:
     name: "rtl-sdr"
     version: ">=0"
   completion:
-  - echo -e "blacklist rtl2832\nblacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist-rtl-sdr.conf
+  - mkdir -p /etc/modprobe.d && echo -e "blacklist rtl2832\nblacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist-rtl-sdr.conf
   requires:
   - <<: *layers-system-x
   build_requires:
