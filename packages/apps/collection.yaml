@@ -2195,7 +2195,7 @@ packages:
 - &libs-rtl-sdr
   category: "libs"
   name: "rtl-sdr"
-  version: "2.0.2-r2"
+  version: "2.0.2-r2+1"
   uri:
   - https://sdr.osmocom.org/trac/wiki/rtl-sdr
   license: "GPL-2+ GPL-3+"
@@ -2208,6 +2208,8 @@ packages:
   - category: "net-wireless"
     name: "rtl-sdr"
     version: ">=0"
+  completion:
+  - echo -e "blacklist rtl2832\nblacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist-rtl-sdr.conf
   requires:
   - <<: *layers-system-x
   build_requires:
