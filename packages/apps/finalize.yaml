@@ -33,3 +33,7 @@ install:
 {{ if and (eq .Values.category "apps") (eq .Values.name "cdemu") }}
 - if [[ ! $(luet search --installed kernel-modules/vhba) ]]; then if [[ $(luet search --installed ^kernel/.*\-lts\-) ]]; then luet install -y kernel-modules/vhba-lts || true; else luet install -y kernel-modules/vhba || true; fi; fi
 {{ end }}
+
+{{ if and (eq .Values.category "libs") (eq .Values.name "rtl-sdr") }}
+- getent group sdr > /dev/null || sudo groupadd sdr
+{{ end }}
