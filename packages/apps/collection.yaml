@@ -1136,6 +1136,27 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
+- &libs-codec2
+  category: "libs"
+  name: "codec2"
+  version: "1.2.0"
+  uri:
+  - https://freedv.org
+  license: "LGPL-2.1"
+  description: "Low bit rate speech codec"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/codec2
+  provides:
+  - category: "media-libs"
+    name: "codec2"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-colorama
   category: "libs"
   name: "colorama"
