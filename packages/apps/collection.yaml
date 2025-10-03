@@ -2015,6 +2015,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libhackrf
+  category: "libs"
+  name: "libhackrf"
+  version: "2024.02.1-r1"
+  uri:
+  - http://greatscottgadgets.com/hackrf
+  license: "BSD"
+  description: "library for communicating with HackRF SDR platform"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/libhackrf
+  provides:
+  - category: "net-libs"
+    name: "libhackrf"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libharu
   category: "libs"
   name: "libharu"
