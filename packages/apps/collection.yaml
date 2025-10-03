@@ -14088,6 +14088,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "welle-io"
+  version: "2.2"
+  uri:
+  - http://www.welle.io
+  license: "GPL-2"
+  description: "A DAB/DAB+ Software Radio"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/welle-io
+  overlays:
+  - enable: "kripton-overlay"
+  provides:
+  - category: "media-sound"
+    name: "welle-io"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/welle-io"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *libs-rtl-sdr
+  build_requires:
+  - <<: *layers-kde-kf5
+
 - &apps-wxhexeditor
   category: "apps"
   name: "wxhexeditor"
