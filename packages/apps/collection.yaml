@@ -8716,6 +8716,30 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+
+- category: "apps"
+  name: "sdrtrunk"
+  version: "0.5.2-r1"
+  uri:
+  - https://github.com/DSheirer/sdrtrunk
+  license: "GPL-3"
+  description: "Decode, monitor, record and stream trunked mobile and related radio protocols"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/sdrtrunk
+  provides:
+  - category: "net-wireless"
+    name: "sdrtrunk"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/sdrtrunk"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &apps-simple-scan
   category: "apps"
   name: "simple-scan"
