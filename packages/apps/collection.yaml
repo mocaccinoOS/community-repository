@@ -3014,6 +3014,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-rtl-sdr
+  category: "libs"
+  name: "rtl-sdr"
+  version: "2.0.2-r2"
+  uri:
+  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
+  license: "GPL-2+ GPL-3+"
+  description: "Turns your Realtek RTL2832 based DVB dongle into a SDR receiver"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-wireless/rtl-sdr
+  provides:
+  - category: "net-wireless"
+    name: "rtl-sdr"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -14226,16 +14247,14 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.1.2.1-r2+1"
+  version: "2.1.2.1-r2+2"
   uri:
   - https://www.indilib.org/
   - http://libnova.sourceforge.net/
-  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
   license: "metapackage BSD GPL-2 GPL-2+ LGPL-2 LGPL-2+ LGPL-2.1+"
   description: |
     INDI Astronomical Control Protocol library
     Celestial Mechanics and Astronomical Calculation Library
-    Turns your Realtek RTL2832 based DVB dongle into a SDR receiver
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14247,9 +14266,6 @@ packages:
   - category: "sci-libs"
     name: "libnova"
     version: ">=0"
-  - category: "net-wireless"
-    name: "rtl-sdr"
-    version: ">=0"
   atoms:
   - atom: "sci-libs/indilib"
     use: "ogg rtlsdr websocket"
@@ -14258,6 +14274,7 @@ packages:
   - <<: *libs-cfitsio
   - <<: *libs-cpp-httplib
   - <<: *libs-nlohmann_json
+  - <<: *libs-rtl-sdr
   - <<: *libs-websocketpp
   build_requires:
   - <<: *layers-X
