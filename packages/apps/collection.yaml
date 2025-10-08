@@ -3516,6 +3516,30 @@ packages:
 ### dep 0 apps ###
 ################################################################################################################################################################
 
+- &apps-abiword
+  category: "apps"
+  name: "abiword"
+  version: "3.0.6-r1"
+  uri:
+  - http://www.abisource.com
+  license: "GPL-2"
+  description: "Fully featured yet light and fast cross platform word processor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/abiword
+  provides:
+  - category: "app-office"
+    name: "abiword"
+    version: ">=0"
+  - category: "app-text"
+    name: "wv"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - category: "apps"
   name: "alacritty"
   version: "0.15.1"
