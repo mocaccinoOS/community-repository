@@ -538,8 +538,8 @@ PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.up"
 mv "${PACKAGES_INFO_FILE}" "${PACKAGES_INFO_FILE}.prev"
 mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 
-echo > "${PACKAGES_INFO_FILE}"
-echo > "${PACKAGES_UP_FILE}"
+echo -e "${PORTAGE_HASH}\n\n" > "${PACKAGES_INFO_FILE}"
+echo -e "${PORTAGE_HASH}\n\n" > "${PACKAGES_UP_FILE}"
 
 echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${PORTAGE_HASH}) ...\e[0m!\n"
 
