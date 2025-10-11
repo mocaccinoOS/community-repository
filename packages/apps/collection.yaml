@@ -712,7 +712,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20250801"
+  version: "20250901"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -954,7 +954,7 @@ packages:
 - &libs-appdirs
   category: "libs"
   name: "appdirs"
-  version: "1.4.4-r3"
+  version: "1.4.4-r3+1"
   uri:
   - https://github.com/ActiveState/appdirs/
   license: "MIT"
@@ -3522,8 +3522,21 @@ packages:
   version: "3.0.6-r1"
   uri:
   - http://www.abisource.com
-  license: "GPL-2"
-  description: "Fully featured yet light and fast cross platform word processor"
+  - http://wvware.sourceforge.net/
+  - https://sourceforge.net/projects/aiksaurus
+  - https://www.abisource.com/projects/link-grammar/
+  - https://github.com/mcabber/loudmouth
+  - http://helm.cs.unibo.it/mml-widget/
+  - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
+  license: "GPL-2 LGPL-2.1 LGPL-3"
+  description: |
+    Fully featured yet light and fast cross platform word processor
+    Tool for conversion of MSWord doc and rtf files to something readable
+    A thesaurus lib, tool and database
+    A Syntactic English parser
+    Rendering engine for MathML documents
+    Lightweight C Jabber library
+    A Type 1 Font Rasterizer Library for UNIX/X11
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -3535,11 +3548,42 @@ packages:
   - category: "app-text"
     name: "wv"
     version: ">=0"
+  - category: "app-text"
+    name: "aiksaurus"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "link-grammar"
+    version: ">=0"
+  - category: "net-libs"
+    name: "loudmouth"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "gtkmathview"
+    version: ">=0"
+  - category: "media-libs"
+    name: "t1lib"
+    version: ">=0"
+  atoms
+  - atom: "app-office/abiword"
+    use: "calendar collab cups goffice grammar introspection latex map math plugins readline redland spell thesaurus wmf wordperfect # eds"
+  - atom: "dev-libs/link-grammar"
+    use: "aspell hunspell"
+  - atom: "net-libs/loudmouth"
+    use: "asyncns ssl openssl"
+  - atom: "x11-libs/gtkmathview"
+    use: "mathml svg t1lib"
   requires:
   - <<: *layers-gnome-common
+  - <<: *layers-office-common
+  - <<: *fonts-texcm-ttf
+  - <<: *libs-gtk-spell
+  - <<: *libs-asio
+  - <<: *libs-libchamplain
   build_requires:
-  - <<: *layers-gnome-common
-
+  - <<: *buildbase-gnome-common
+  - <<: *layerbase-office-common
+  requires_final_images: true
+  
 - category: "apps"
   name: "alacritty"
   version: "0.15.1"
@@ -9711,7 +9755,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.5.4+1"
+  version: "1.5.4+2"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -16118,7 +16162,7 @@ packages:
 
 - category: "apps"
   name: "onedrive"
-  version: "2.4.25-r1"
+  version: "2.5.7"
   uri:
   - https://abraunegg.github.io
   license: "GPL-3"
@@ -16127,24 +16171,22 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/onedrive
-  #     net-misc/onedrivegui
+      net-misc/onedrivegui
   overlays:
   - enable: "dlang"
   provides:
   - category: "net-misc"
     name: "onedrive"
     version: ">=0"
-  # - category: "net-misc"
-  #   name: "onedrivegui"
-  #   version: ">=0"
+  - category: "net-misc"
+    name: "onedrivegui"
+    version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
-    use: "dlang_single_target_dmd-2_106 libnotify"
+    use: "libnotify"
     accept_keywords: "~amd64"
-  # - atom: "net-misc/onedrivegui"
-  #   accept_keywords: "~amd64"
-  inner_build_reqs:
-  - =dev-lang/dmd-2.106.1:2.106
+  - atom: "net-misc/onedrivegui"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -17836,9 +17878,6 @@ packages:
   - category: "app-text"
     name: "gtkspell"
     version: ">=0"
-  - category: "app-text"
-    name: "enchant"
-    version: ">=0"
   - category: "dev-libs"
     name: "gmime:2.6"
     version: ">=0"
@@ -17877,6 +17916,7 @@ packages:
   - <<: *libs-gtk2
   - <<: *libs-farstream
   - <<: *libs-gst-plugins-v4l2
+  - <<: *libs-gtk-spell
   # - <<: *apps-tk
   build_requires:
   - <<: *layers-gnome-common
