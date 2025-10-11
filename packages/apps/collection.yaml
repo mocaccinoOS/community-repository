@@ -954,7 +954,7 @@ packages:
 - &libs-appdirs
   category: "libs"
   name: "appdirs"
-  version: "1.4.4-r3+1"
+  version: "1.4.4-r3+2"
   uri:
   - https://github.com/ActiveState/appdirs/
   license: "MIT"
@@ -10993,7 +10993,7 @@ packages:
 - &apps-abiword
   category: "apps"
   name: "abiword"
-  version: "3.0.6-r1"
+  version: "3.0.6-r1+1"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -11070,8 +11070,6 @@ packages:
     emerge.jobs: "3"
     emerge.packages: >-
       net-p2p/amule
-  overlays:
-  - enable: "guru"
   provides:
   - category: "net-p2p"
     name: "amule"
@@ -12608,9 +12606,9 @@ packages:
   - atom: "media-video/mkvtoolnix"
     use: "dbus dvd gui nls # pch"
   - atom: "dev-ruby/rake"
-    use: "ruby_targets_ruby32"
+    use: "ruby_targets_ruby33"
   inner_build_reqs:
-  - dev-ruby/rake;USE="ruby_targets_ruby32"
+  - dev-ruby/rake;USE="ruby_targets_ruby33"
   - app-text/po4a
   requires:
   - <<: *layers-qt
@@ -16273,22 +16271,22 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/onedrive::gentoo
-      net-misc/onedrivegui
+    # net-misc/onedrivegui
   overlays:
   - enable: "dlang"
   provides:
   - category: "net-misc"
     name: "onedrive"
     version: ">=0"
-  - category: "net-misc"
-    name: "onedrivegui"
-    version: ">=0"
+  # - category: "net-misc"
+  #   name: "onedrivegui"
+  #   version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
     use: "libnotify"
     accept_keywords: "~amd64"
-  - atom: "net-misc/onedrivegui"
-    accept_keywords: "~amd64"
+  # - atom: "net-misc/onedrivegui"
+  #   accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
