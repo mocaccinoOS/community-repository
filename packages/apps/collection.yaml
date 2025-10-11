@@ -972,6 +972,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-asio
+  category: "libs"
+  name: "asio"
+  version: "1.34.2"
+  uri:
+  - http://asio.sourceforge.net/
+  license: "Boost-1.0"
+  description: "Asynchronous Network Library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/asio
+  provides:
+  - category: "dev-cpp"
+    name: "asio"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
@@ -1843,6 +1864,30 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-libchamplain
+  category: "libs"
+  name: "libchamplain"
+  version: "0.12.21+2"
+  uri:
+  - https://wiki.gnome.org/Projects/libchamplain
+  license: "LGPL-2.1+"
+  description: "Clutter based world map renderer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libchamplain
+  provides:
+  - category: "media-libs"
+    name: "libchamplain"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libchamplain"
+    use: "introspection gtk vala"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &libs-libconfig
   category: "libs"
@@ -3515,74 +3560,6 @@ packages:
 ################################################################################################################################################################
 ### dep 0 apps ###
 ################################################################################################################################################################
-
-- &apps-abiword
-  category: "apps"
-  name: "abiword"
-  version: "3.0.6-r1"
-  uri:
-  - http://www.abisource.com
-  - http://wvware.sourceforge.net/
-  - https://sourceforge.net/projects/aiksaurus
-  - https://www.abisource.com/projects/link-grammar/
-  - https://github.com/mcabber/loudmouth
-  - http://helm.cs.unibo.it/mml-widget/
-  - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
-  license: "GPL-2 LGPL-2.1 LGPL-3"
-  description: |
-    Fully featured yet light and fast cross platform word processor
-    Tool for conversion of MSWord doc and rtf files to something readable
-    A thesaurus lib, tool and database
-    A Syntactic English parser
-    Rendering engine for MathML documents
-    Lightweight C Jabber library
-    A Type 1 Font Rasterizer Library for UNIX/X11
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/abiword
-  provides:
-  - category: "app-office"
-    name: "abiword"
-    version: ">=0"
-  - category: "app-text"
-    name: "wv"
-    version: ">=0"
-  - category: "app-text"
-    name: "aiksaurus"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "link-grammar"
-    version: ">=0"
-  - category: "net-libs"
-    name: "loudmouth"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "gtkmathview"
-    version: ">=0"
-  - category: "media-libs"
-    name: "t1lib"
-    version: ">=0"
-  atoms
-  - atom: "app-office/abiword"
-    use: "calendar collab cups goffice grammar introspection latex map math plugins readline redland spell thesaurus wmf wordperfect # eds"
-  - atom: "dev-libs/link-grammar"
-    use: "aspell hunspell"
-  - atom: "net-libs/loudmouth"
-    use: "asyncns ssl openssl"
-  - atom: "x11-libs/gtkmathview"
-    use: "mathml svg t1lib"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-office-common
-  - <<: *fonts-texcm-ttf
-  - <<: *libs-gtk-spell
-  - <<: *libs-asio
-  - <<: *libs-libchamplain
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *layerbase-office-common
-  requires_final_images: true
   
 - category: "apps"
   name: "alacritty"
@@ -10985,6 +10962,74 @@ packages:
 #   build_requires:
 #   - <<: *layers-gnome-common
 
+- &apps-abiword
+  category: "apps"
+  name: "abiword"
+  version: "3.0.6-r1"
+  uri:
+  - http://www.abisource.com
+  - http://wvware.sourceforge.net/
+  - https://sourceforge.net/projects/aiksaurus
+  - https://www.abisource.com/projects/link-grammar/
+  - https://github.com/mcabber/loudmouth
+  - http://helm.cs.unibo.it/mml-widget/
+  - ftp://metalab.unc.edu/pub/Linux/libs/graphics/
+  license: "GPL-2 LGPL-2.1 LGPL-3"
+  description: |
+    Fully featured yet light and fast cross platform word processor
+    Tool for conversion of MSWord doc and rtf files to something readable
+    A thesaurus lib, tool and database
+    A Syntactic English parser
+    Rendering engine for MathML documents
+    Lightweight C Jabber library
+    A Type 1 Font Rasterizer Library for UNIX/X11
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/abiword
+  provides:
+  - category: "app-office"
+    name: "abiword"
+    version: ">=0"
+  - category: "app-text"
+    name: "wv"
+    version: ">=0"
+  - category: "app-text"
+    name: "aiksaurus"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "link-grammar"
+    version: ">=0"
+  - category: "net-libs"
+    name: "loudmouth"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "gtkmathview"
+    version: ">=0"
+  - category: "media-libs"
+    name: "t1lib"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/abiword"
+    use: "calendar collab cups goffice grammar introspection latex map math plugins readline redland spell thesaurus wmf wordperfect # eds"
+  - atom: "dev-libs/link-grammar"
+    use: "aspell hunspell"
+  - atom: "net-libs/loudmouth"
+    use: "asyncns ssl openssl"
+  - atom: "x11-libs/gtkmathview"
+    use: "mathml svg t1lib"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-office-common
+  - <<: *fonts-texcm-ttf
+  - <<: *libs-gtk-spell
+  - <<: *libs-asio
+  - <<: *libs-libchamplain
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *layerbase-office-common
+  requires_final_images: true
+
 # - &apps-bedrock-server
 #   category: "apps"
 #   name: "bedrock-server"
@@ -12726,7 +12771,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "31.1.2"
+  version: "31.1.2+1"
   uri:
   - https://obsproject.com
   license: "GPL-2 BSD"
@@ -12747,9 +12792,6 @@ packages:
   - category: "media-libs"
     name: "libvpl"
     version: ">=0"
-  - category: "dev-cpp"
-    name: "asio"
-    version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
     use: "alsa browser decklink fdk jack lua mpegts pipewire pulseaudio python qsv speex ssl truetype v4l wayland websocket # nvenc vlc"
@@ -12764,6 +12806,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *apps-luajit
+  - <<: *libs-asio
   - <<: *libs-mbedtls
   - <<: *libs-nlohmann_json
   - <<: *libs-rnnoise
@@ -15096,7 +15139,6 @@ packages:
   version: "25.0"
   uri:
   - https://kornelix.net/fotocx/fotocx.html
-  - https://wiki.gnome.org/Projects/libchamplain
   license: "GPL-3+ LGPL-2.1+"
   description: |
     Program for improving image files made with a digital camera
@@ -15109,15 +15151,10 @@ packages:
   - category: "media-gfx"
     name: "fotocx"
     version: ">=0"
-  - category: "media-libs"
-    name: "libchamplain"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/libchamplain"
-    use: "introspection gtk vala"
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-dcraw
+  - <<: *libs-libchamplain
   build_requires:
   - <<: *layers-gnome-common
 
@@ -16188,9 +16225,9 @@ packages:
   - atom: "net-misc/onedrivegui"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *layers-X
 
 - &apps-openra
   category: "apps"
