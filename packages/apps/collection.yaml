@@ -7226,10 +7226,38 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-mullvad-browser-bin
+  category: "apps"
+  name: "mullvad-browser-bin"
+  version: "14.5.6"
+  uri:
+  - https://github.com/mullvad/mullvad-browser/
+  - https://mullvad.net/
+  license: "MPL-2.0"
+  description: "The Mullvad Browser is developed to minimize tracking and fingerprinting."
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      www-client/mullvad-browser-bin
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "www-client"
+    name: "mullvad-browser-bin"
+    version: ">=0"
+  atoms:
+  - atom: "www-client/mullvad-browser-bin"
+    accept_keywords: "~amd64"
+    use: "X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-mullvadvpn-app
   category: "apps"
   name: "mullvadvpn-app"
-  version: "2025.9"
+  version: "2025.10_beta2"
   uri:
   - https://github.com/mullvad/mullvadvpn-app
   - https://mullvad.net/
@@ -11030,6 +11058,38 @@ packages:
   - <<: *layerbase-office-common
   requires_final_images: true
 
+- &apps-amule
+  category: "apps"
+  name: "amule"
+  version: "2.3.3-r7"
+  uri:
+  - https://www.amule.org/
+  license: "GPL-2+"
+  description: "aMule, the all-platform eMule p2p client"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-p2p/amule
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-p2p"
+    name: "amule"
+    version: ">=0"
+  atoms:
+  - atom: "net-p2p/amule"
+    use: "daemon gui nls remote upnp X # geoip stats"
+  inner_build_reqs:
+  - dev-build/boost-m4
+  requires:
+  - <<: *layers-X
+  - <<: *libs-wxGTK
+  - category: "entity"
+    name: "amule"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
+
 # - &apps-bedrock-server
 #   category: "apps"
 #   name: "bedrock-server"
@@ -12774,10 +12834,12 @@ packages:
   version: "31.1.2+1"
   uri:
   - https://obsproject.com
-  license: "GPL-2 BSD"
+  - https://simd-everywhere.github.io/blog/
+  license: "GPL-2 BSD MIT"
   description: |
     Software for Recording and Streaming Live Video Content
     Recurrent neural network for audio noise reduction
+    Header-only library providing implementations of SIMD instruction sets
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -12791,6 +12853,9 @@ packages:
     version: ">=0"
   - category: "media-libs"
     name: "libvpl"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "simde"
     version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
@@ -16207,7 +16272,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-misc/onedrive
+      net-misc/onedrive::gentoo
       net-misc/onedrivegui
   overlays:
   - enable: "dlang"
