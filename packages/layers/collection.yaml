@@ -285,6 +285,9 @@ packages:
   - category: "x11-themes"
     name: "gtk-engines-adwaita"
     version: ">=0"
+  prepare:
+  - sed -i -e 's/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || die/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || true/' /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild
+  - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
   requires:
   - <<: *layers-X
   build_requires:
