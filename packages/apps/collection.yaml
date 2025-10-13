@@ -5686,6 +5686,29 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "gnome-commander"
+  version: "1.18.1-r1"
+  uri:
+  - https://gcmd.github.io
+  license: "GPL-2"
+  description: "A graphical, full featured, twin-panel file manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gnome-extra/gnome-commander
+  provides:
+  - category: "gnome-commander"
+    name: "gnome-commander"
+    version: ">=0"
+  atoms:
+  - atom: "gnome-extra/gnome-commander"
+    use: "exif pdf samba"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "gnome-maps"
   version: "47.7"
   uri:
