@@ -6351,30 +6351,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-uchmviewer
-  category: "apps"
-  name: "uchmviewer"
-  version: "8.4"
-  uri:
-  - https://www.ulduzsoft.com/kchmviewer/
-  license: "GPL-3+"
-  description: "Feature rich chm file viewer, based on Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/uchmviewer
-  provides:
-  - category: "app-text"
-    name: "uchmviewer"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/uchmviewer"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
 - category: "apps"
   name: "kcolorchooser"
   version: "25.04.3"
@@ -7445,6 +7421,39 @@ packages:
 #   - <<: *layers-gnome-common
 #   build_requires:
 #   - <<: *layers-gnome-common
+
+- &apps-nftables
+  category: "apps"
+  name: "nftables"
+  version: "1.1.5 "
+  uri:
+  - https://netfilter.org/projects/nftables/
+  license: "GPL-2 GPL-2+"
+  description: |
+    Linux kernel firewall, NAT and packet mangling tools
+    Netlink API to the in-kernel nf_tables subsystem
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-firewall/nftables
+  provides:
+  - category: "net-firewall"
+    name: "nftables"
+    version: ">=0"
+  atoms:
+  - atom: "net-firewall/nftables"
+    use: "doc gmp json libedit readline verify-sig xtables"
+  inner_build_reqs:
+  - app-alternatives/lex
+  - app-portage/gemato
+  - app-text/asciidoc
+  - app-text/docbook2X
+  - sec-keys/openpgp-keys-netfilter
+  requires:
+  - <<: *layers-X
+  # due to dev-libs/jansson
+  build_requires:
+  - <<: *layers-X
 
 - &apps-nmap
   category: "apps"
@@ -9179,26 +9188,6 @@ packages:
   - <<: *layers-gnome
 
 - category: "apps"
-  name: "tree"
-  version: "2.2.1"
-  uri:
-  - http://mama.indstate.edu/users/ice/tree
-  license: "GPL-2"
-  description: "Lists directories recursively, and produces an indented listing of files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-text/tree
-  provides:
-  - category: "app-text"
-    name: "tree"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- category: "apps"
   name: "screen"
   version: "4.9.1-r2"
   uri:
@@ -9217,26 +9206,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- category: "apps"
-  name: "tuba"
-  version: "0.9.2-r2"
-  uri:
-  - https://github.com/GeopJr/Tuba
-  license: "GPL-3 CC-BY-SA-4.0"
-  description: "Browse the Fediverse (GTK client)"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      net-misc/tuba
-  provides:
-  - category: "net-misc"
-    name: "tuba"
-    version: ">=0"
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "shortwave"
@@ -9431,6 +9400,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "tree"
+  version: "2.2.1"
+  uri:
+  - http://mama.indstate.edu/users/ice/tree
+  license: "GPL-2"
+  description: "Lists directories recursively, and produces an indented listing of files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-text/tree
+  provides:
+  - category: "app-text"
+    name: "tree"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "ttaenc"
   version: "3.4.1-r1"
   uri:
@@ -9449,6 +9438,26 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "tuba"
+  version: "0.9.2-r2"
+  uri:
+  - https://github.com/GeopJr/Tuba
+  license: "GPL-3 CC-BY-SA-4.0"
+  description: "Browse the Fediverse (GTK client)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/tuba
+  provides:
+  - category: "net-misc"
+    name: "tuba"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-twolame
   category: "apps"
@@ -9473,6 +9482,30 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-uchmviewer
+  category: "apps"
+  name: "uchmviewer"
+  version: "8.4"
+  uri:
+  - https://www.ulduzsoft.com/kchmviewer/
+  license: "GPL-3+"
+  description: "Feature rich chm file viewer, based on Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/uchmviewer
+  provides:
+  - category: "app-text"
+    name: "uchmviewer"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/uchmviewer"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-ufw
   category: "apps"
@@ -9782,100 +9815,6 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
-
-- &apps-waydroid-gapps
-  category: "apps"
-  name: "waydroid-gapps"
-  version: "1.5.4+2"
-  uri:
-  - https://waydro.id
-  - https://sourceforge.net/projects/waydroid/files/images
-  license: "Apache-2.0 GPL-3"
-  description: |
-    Container-based approach to boot a full Android system on Linux systems
-    Manage images for app-containers/waydroid using portage
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-containers/waydroid
-      app-containers/waydroid-images
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "app-containers"
-    name: "waydroid"
-    version: ">=0"
-  - category: "app-containers"
-    name: "waydroid-images"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyclip"
-    version: ">=0"
-  - category: "dev-python"
-    name: "gbinder"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libglibutil"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "gbinder"
-    version: ">=0"
-  - category: "gui-apps"
-    name: "wl-clipboard"
-    version: ">=0"
-  - category: "x11-misc"
-    name: "xclip"
-    version: ">=0"
-  atoms:
-  - &atom1
-    atom: "app-containers/waydroid"
-    # use: "-nftables"
-    accept_keywords: "~amd64"
-    use: "apparmor clipboard"
-  - atom: "app-containers/waydroid-images"
-    accept_keywords: "**"
-    use: "system-gapps -system-vanilla -vendor-halium vendor-mainline"
-  - &atom2
-    atom: "dev-python/pyclip"
-    accept_keywords: "~amd64"
-  - &atom3
-    atom: "dev-python/gbinder"
-    accept_keywords: "~amd64"
-  - &atom4
-    atom: "dev-libs/gbinder"
-    accept_keywords: "~amd64"
-  - &atom5
-    atom: "dev-libs/libglibutil"
-    accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
-  inner_build_reqs:
-  - app-portage/gemato
-  # - virtual/dist-kernel
-  - virtual/linux-sources
-  requires:
-  - <<: *layers-X
-  - <<: *apps-lxc
-  # - <<: *apps-nftables
-  build_requires:
-  - <<: *layers-X
-
-- <<: *apps-waydroid-gapps
-  name: "waydroid-vanilla"
-  atoms:
-  - <<: *atom1
-  - atom: "app-containers/waydroid-images"
-    accept_keywords: "**"
-    use: "-system-gapps system-vanilla -vendor-halium vendor-mainline"
-  - <<: *atom2
-  - <<: *atom3
-  - <<: *atom4
-  - <<: *atom5
 
 - category: "apps"
   name: "weechat"
@@ -14334,6 +14273,99 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-waydroid-gapps
+  category: "apps"
+  name: "waydroid-gapps"
+  version: "1.5.4+4"
+  uri:
+  - https://waydro.id
+  - https://sourceforge.net/projects/waydroid/files/images
+  license: "Apache-2.0 GPL-3"
+  description: |
+    Container-based approach to boot a full Android system on Linux systems
+    Manage images for app-containers/waydroid using portage
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/waydroid
+      app-containers/waydroid-images
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-containers"
+    name: "waydroid"
+    version: ">=0"
+  - category: "app-containers"
+    name: "waydroid-images"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyclip"
+    version: ">=0"
+  - category: "dev-python"
+    name: "gbinder"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libglibutil"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "gbinder"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "wl-clipboard"
+    version: ">=0"
+  - category: "x11-misc"
+    name: "xclip"
+    version: ">=0"
+  atoms:
+  - &atom1
+    atom: "app-containers/waydroid"
+    accept_keywords: "~amd64"
+    use: "apparmor clipboard"
+  - atom: "app-containers/waydroid-images"
+    accept_keywords: "**"
+    use: "system-gapps -system-vanilla -vendor-halium vendor-mainline"
+  - &atom2
+    atom: "dev-python/pyclip"
+    accept_keywords: "~amd64"
+  - &atom3
+    atom: "dev-python/gbinder"
+    accept_keywords: "~amd64"
+  - &atom4
+    atom: "dev-libs/gbinder"
+    accept_keywords: "~amd64"
+  - &atom5
+    atom: "dev-libs/libglibutil"
+    accept_keywords: "~amd64"
+  # prepare:
+  # - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
+  inner_build_reqs:
+  - app-portage/gemato
+  # - virtual/dist-kernel
+  - virtual/linux-sources
+  requires:
+  - <<: *layers-X
+  - <<: *apps-lxc
+  - <<: *apps-nftables
+  build_requires:
+  - <<: *layers-X
+
+- <<: *apps-waydroid-gapps
+  name: "waydroid-vanilla"
+  atoms:
+  - <<: *atom1
+  - atom: "app-containers/waydroid-images"
+    accept_keywords: "**"
+    use: "-system-gapps system-vanilla -vendor-halium vendor-mainline"
+  - <<: *atom2
+  - <<: *atom3
+  - <<: *atom4
+  - <<: *atom5
+
 - category: "apps"
   name: "welle-io"
   version: "2.2"
@@ -14359,32 +14391,6 @@ packages:
   - <<: *libs-rtl-sdr
   build_requires:
   - <<: *layers-kde-kf5
-
-- &apps-wxhexeditor
-  category: "apps"
-  name: "wxhexeditor"
-  version: "0.24-r4+1"
-  uri:
-  - https://github.com/EUA/wxHexEditor
-  license: "GPL-2"
-  description: "A cross-platform hex editor designed specially for large files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-editors/wxhexeditor
-  provides:
-  - category: "app-editors"
-    name: "wxhexeditor"
-    version: ">=0"
-  atoms:
-  - atom: "app-editors/wxhexeditor"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-wxGTK
-  - <<: *libs-mhash
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "wine-staging"
@@ -14472,6 +14478,32 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-perl-libs
   requires_final_images: true
+
+- &apps-wxhexeditor
+  category: "apps"
+  name: "wxhexeditor"
+  version: "0.24-r4+1"
+  uri:
+  - https://github.com/EUA/wxHexEditor
+  license: "GPL-2"
+  description: "A cross-platform hex editor designed specially for large files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-editors/wxhexeditor
+  provides:
+  - category: "app-editors"
+    name: "wxhexeditor"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/wxhexeditor"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-wxGTK
+  - <<: *libs-mhash
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "yamllint"
