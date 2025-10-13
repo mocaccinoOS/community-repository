@@ -9786,7 +9786,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.5.4+3"
+  version: "1.5.4+2"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -9847,13 +9847,13 @@ packages:
   - &atom5
     atom: "dev-libs/libglibutil"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
+  prepare:
+  - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
+  - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
   inner_build_reqs:
   - app-portage/gemato
   # - virtual/dist-kernel
