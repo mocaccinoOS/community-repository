@@ -570,7 +570,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
     # | select(.name == "openrgb" or .name == "cfortran" or .name == "wine-staging" or .name == "terminatorx" or .name == "nnn" or .name == "hedgewars")
     PACKAGES=$(yq r -j ${ROOT_PATH}/community-repository/packages/${COLLECTION}/collection.yaml \
     | jq -r '.packages[] 
-    | select(.labels != null and .labels."emerge.packages" != null) 
+    | select(.labels != null and .labels."emerge.packages" != null and .category != "buildbase" and .category != "layerbase") 
     | .category + "/" + .name 
     + "," + .version 
     + "," + (.labels."emerge.packages" + " " + ( [.provides[] | .category + "/" + .name] | join(" ")) | gsub("\\s+";" ";"g") | split(" ") | unique | sort | join(";")) 
