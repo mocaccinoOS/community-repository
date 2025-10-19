@@ -3174,6 +3174,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-stb
+  category: "libs"
+  name: "stb"
+  version: "20240201-r1"
+  uri:
+  - https://github.com/nothings/stb
+  license: "|| ( MIT Unlicense )"
+  description: "single-file public domain (or MIT licensed) libraries for C/C++"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/stb
+  provides:
+  - category: "dev-libs"
+    name: "stb"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-tbb
   category: "libs"
   name: "tbb"
@@ -3933,6 +3954,9 @@ packages:
       net-p2p/biglybt
   provides:
   - category: "dev-java"
+    name: "bcprov"
+    version: ">=0"
+  - category: "dev-java"
     name: "commons-cli"
     version: ">=0"
   - category: "dev-java"
@@ -4165,6 +4189,7 @@ packages:
   - atom: "www-client/brave-bin"
     license: "MPL-2.0"
     use: "-qt5 -qt6"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -5640,6 +5665,31 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "gitqlient"
+  version: "1.6.3"
+  uri:
+  - https://github.com/francescmm/GitQlient
+  license: "LGPL-2.1"
+  description: "Multi-platform Git client written with Qt"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-vcs/gitqlient
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-vcs"
+    name: "gitqlient"
+    version: ">=0"
+  atoms:
+  - atom: "dev-vcs/gitqlient"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-gmtp
   category: "apps"
@@ -7138,52 +7188,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-mangohud
-  category: "apps"
-  name: "mangohud"
-  version: "0.8.1"
-  uri:
-  - https://github.com/flightlessmango/MangoHud
-  license: "MIT"
-  description: "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more."
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-util/mangohud
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "games-util"
-    name: "mangohud"
-    version: ">=0"
-  - category: "media-libs"
-    name: "imgui"
-    version: ">=0"
-  - category: "media-libs"
-    name: "implot"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "stb"
-    version: ">=0"
-  atoms:
-  - atom: "games-util/mangohud"
-    use: "dbus mangoapp mangohudctl X xnvctrl -wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/imgui"
-    use: "glfw opengl vulkan"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/implot"
-    accept_keywords: "~amd64"
-  optrequires:
-  - <<: *kernel-modules-nvidia-drivers-lts
-  requires:
-  - <<: *layers-X
-  - <<: *libs-glfw
-  - <<: *libs-nlohmann_json
-  - <<: *fonts-lato
-  build_requires:
-  - <<: *kernel-modules-nvidia-drivers-lts
-
 - category: "apps"
   name: "marble"
   version: "25.04.3+2"
@@ -7668,8 +7672,8 @@ packages:
 #   - <<: *layers-X
 
 - category: "apps"
-  name: "nordvpn"
-  version: "3.17.2+1"
+  name: "nordvpn-bin"
+  version: "4.2.0"
   uri:
   - https://nordvpn.com
   license: "NordVPN"
@@ -7677,11 +7681,12 @@ packages:
   labels:
     emerge.jobs: "1"
   prepare:
-  - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_3.20.0_amd64.deb
-  - mkdir nordvpn_3.20.0_amd64
-  - ar x nordvpn_3.20.0_amd64.deb --output=nordvpn_3.20.0_amd64
+  - version=4.2.0
+  - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb
+  - mkdir nordvpn_${version}_amd64
+  - ar x nordvpn_${version}_amd64.deb --output=nordvpn_${version}_amd64
   - mkdir data
-  - tar -xf nordvpn_3.20.0_amd64/data.tar.gz -C data
+  - tar -xf nordvpn_${version}_amd64/data.tar.gz -C data
   setup:
   # /bin + /sbin + /usr/sbin --> /usr/bin
   # /lib  -->  /usr/lib
@@ -7705,6 +7710,32 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *buildbase-X
+
+- category: "apps"
+  name: "nordvpn"
+  version: "4.1.1"
+  uri:
+  - https://nordvpn.com
+  - https://gitlab.com/lahouari.dc/nordvpn
+  license: "NordVPN"
+  description: "NordVPN native client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/nordvpn
+  overlays:
+  - enable: "nordvpn"
+  provides:
+  - category: "net-vpn"
+    name: "nordvpn"
+    version: ">=0"
+  atoms:
+  - atom: "net-vpn/nordvpn"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *gnome-common
 
 # - category: "apps"
 #   name: "notepadqq"
@@ -11214,48 +11245,49 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "cairo-dock"
-  version: "3.4.1+7"
-  uri:
-  - http://www.glx-dock.org
-  license: "GPL-3"
-  description: "Cairo-dock is a fast, responsive, Mac OS X-like dock."
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/cairo-dock
-#       x11-themes/cairo-dock-themes
-#       x11-plugins/cairo-dock-plugins
-  overlays:
-  - enable: "pinkbyte"
-#   - name: "argent-main"
-  provides:
-  - category: "x11-misc"
-    name: "cairo-dock"
-    version: ">=0"
-#   - category: "x11-plugins"
-#     name: "cairo-dock-plugins"
+# missing x11-libs/gtkglext
+# - category: "apps"
+#   name: "cairo-dock"
+#   version: "3.4.1+7"
+#   uri:
+#   - http://www.glx-dock.org
+#   license: "GPL-3"
+#   description: "Cairo-dock is a fast, responsive, Mac OS X-like dock."
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       x11-misc/cairo-dock
+# #       x11-themes/cairo-dock-themes
+# #       x11-plugins/cairo-dock-plugins
+#   overlays:
+#   - enable: "pinkbyte"
+# #   - name: "argent-main"
+#   provides:
+#   - category: "x11-misc"
+#     name: "cairo-dock"
 #     version: ">=0"
-  - category: "x11-libs"
-    name: "gtkglext"
-    version: ">=0"
-  atoms:
-  - atom: "x11-misc/cairo-dock"
-    use: "gtk3"
-    accept_keywords: "~amd64"
-  - atom: "x11-plugins/cairo-dock-plugins"
-    use: "alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
-    accept_keywords: "~amd64"
-  - atom: "x11-themes/cairo-dock-themes"
-    accept_keywords: "~amd64"
-  - atom: "x11-libs/gtkglext"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-gnome-common
+# #   - category: "x11-plugins"
+# #     name: "cairo-dock-plugins"
+# #     version: ">=0"
+#   - category: "x11-libs"
+#     name: "gtkglext"
+#     version: ">=0"
+#   atoms:
+#   - atom: "x11-misc/cairo-dock"
+#     use: "gtk3"
+#     accept_keywords: "~amd64"
+#   - atom: "x11-plugins/cairo-dock-plugins"
+#     use: "alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
+#     accept_keywords: "~amd64"
+#   - atom: "x11-themes/cairo-dock-themes"
+#     accept_keywords: "~amd64"
+#   - atom: "x11-libs/gtkglext"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-gtk2
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-cava
   category: "apps"
@@ -12455,6 +12487,53 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-mangohud
+  category: "apps"
+  name: "mangohud"
+  version: "0.8.1+1"
+  uri:
+  - https://github.com/flightlessmango/MangoHud
+  license: "MIT"
+  description: "A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-util/mangohud
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "games-util"
+    name: "mangohud"
+    version: ">=0"
+  - category: "media-libs"
+    name: "imgui"
+    version: ">=0"
+  - category: "media-libs"
+    name: "implot"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "stb"
+    version: ">=0"
+  atoms:
+  - atom: "games-util/mangohud"
+    use: "dbus mangoapp mangohudctl X xnvctrl -wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/imgui"
+    use: "glfw opengl vulkan"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/implot"
+    accept_keywords: "~amd64"
+  optrequires:
+  - <<: *kernel-modules-nvidia-drivers-lts
+  requires:
+  - <<: *layers-X
+  - <<: *libs-glfw
+  - <<: *libs-nlohmann_json
+  - <<: *libs-stb
+  - <<: *fonts-lato
+  build_requires:
+  - <<: *kernel-modules-nvidia-drivers-lts
+
 - category: "apps"
   name: "mc"
   version: "4.8.33"
@@ -12980,7 +13059,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "1.0_rc2"
+  version: "1.0_rc2+1"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -13014,6 +13093,7 @@ packages:
   - <<: *libs-nlohmann_json
   - <<: *libs-hidapi
   - <<: *libs-mbedtls
+  - <<: *libs-stb
   build_requires:
   - <<: *layers-qt
 
@@ -13852,6 +13932,9 @@ packages:
   provides:
   - category: "media-sound"
     name: "strawberry"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "sparsehash"
     version: ">=0"
   atoms:
   - atom: "media-sound/strawberry"
@@ -17953,7 +18036,6 @@ packages:
       net-im/pidgin
       x11-plugins/pidgin-opensteamworks
       x11-plugins/pidgin-sipe
-      x11-plugins/pidgin-skypeweb
   provides:
   - category: "net-im"
     name: "pidgin"
@@ -17979,9 +18061,6 @@ packages:
   - category: "x11-plugins"
     name: "pidgin-sipe"
     version: ">=0"
-  - category: "x11-plugins"
-    name: "pidgin-skypeweb"
-    version: ">=0"
   atoms:
   - atom: "net-im/pidgin"
     use: "dbus eds gadu gnutls groupwise gstreamer gtk gui idn meanwhile ncurses networkmanager nls perl pie prediction python sasl spell v4l zephyr zeroconf # aqua tcl tk"
@@ -17992,8 +18071,6 @@ packages:
     portage_env: "CFLAGS=\"-Wno-error=incompatible-pointer-types\""
   - atom: "dev-libs/gmime:2.6"
     use: "crypt idn"
-  - atom: "x11-plugins/pidgin-skypeweb"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk2
@@ -18867,7 +18944,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.0.6"
+  version: "3.0.6+1"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
@@ -18878,7 +18955,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      media-gfx/gimp
+      =media-gfx/gimp-3.0.6
     # media-plugins/gimp-lqr
   provides:
   - category: "media-gfx"
@@ -19054,8 +19131,8 @@ packages:
   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
-  # inner_build_requires:
-  # - <<: *apps-designer
+  inner_build_requires:
+  - <<: *apps-designer
   requires:
   - <<: *layers-qt
   - <<: *layers-kde-kf5
