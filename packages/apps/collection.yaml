@@ -9530,7 +9530,7 @@ packages:
     accept_keywords: "~amd64"
   # env: 
   # - LLVM_VERSION=20
-  portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\" LLVM_SLOT=20"
+  portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
   inner_build_reqs:
   - dev-build/autoconf:2.1
   - net-libs/nodejs
@@ -9540,8 +9540,8 @@ packages:
   - dev-util/cbindgen
   - =dev-lang/rust-bin-1.86.0-r1
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( 17 18 19 )/LLVM_COMPAT=( 20 )/' /var/db/repos/gentoo/www-client/torbrowser/torbrowser-*.ebuild
-  - ebuild /var/db/repos/gentoo/www-client/torbrowser/torbrowser-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( 17 18 19 )/LLVM_COMPAT=( 20 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
+  - ebuild /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild manifest
   requires:
   - <<: *layers-X
   build_requires:
