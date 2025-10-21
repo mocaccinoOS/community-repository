@@ -9528,8 +9528,8 @@ packages:
   atoms:
   - atom: "www-client/torbrowser"
     accept_keywords: "~amd64"
+  env: "LLVM_VERSION=18"
   inner_build_reqs:
-  - LLVM_VERSION=18
   - dev-build/autoconf:2.1
   - net-libs/nodejs
   - llvm-core/clang:${LLVM_VERSION}
@@ -19661,7 +19661,7 @@ packages:
 # osl disabled
 - category: "apps"
   name: "blender"
-  version: "4.4.3+3"
+  version: "4.4.3+4"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
@@ -19740,7 +19740,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/blender"
-    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # osl # cuda optix # oneapi # debug headless test"
+    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # # cuda optix # oneapi # debug headless test"
   - atom: "media-gfx/alembic"
     use: "hdf5"
   - atom: "media-libs/embree"
@@ -19755,7 +19755,7 @@ packages:
     use: "glfw opencl opengl openmp ptex tbb # cuda"
     accept_keywords: "~amd64"
   - atom: "media-libs/osl"
-    use: "gui libcxx partio qt6 python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c "
+    use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c "
   - atom: "sci-physics/bullet"
     use: "double-precision"
   portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
