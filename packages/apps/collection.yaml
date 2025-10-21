@@ -9529,14 +9529,14 @@ packages:
   - atom: "www-client/torbrowser"
     accept_keywords: "~amd64"
   inner_build_reqs:
+  - LLVM_VERSION=18
   - dev-build/autoconf:2.1
   - net-libs/nodejs
-  - llvm-core/clang:19
-  - llvm-core/lld:19
-  - llvm-core/lld-toolchain-symlinks:19
+  - llvm-core/clang:${LLVM_VERSION}
+  - llvm-core/lld:${LLVM_VERSION}
+  - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
   - dev-util/cbindgen
   - =dev-lang/rust-bin-1.86.0-r1
-  portage_env: "MAKEOPTS=\"-j5 -l0.9\""
   requires:
   - <<: *layers-X
   build_requires:
