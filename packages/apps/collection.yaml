@@ -9528,16 +9528,19 @@ packages:
   atoms:
   - atom: "www-client/torbrowser"
     accept_keywords: "~amd64"
-  env: 
-  - LLVM_VERSION=18
+  # env: 
+  # - LLVM_VERSION=20
   inner_build_reqs:
   - dev-build/autoconf:2.1
   - net-libs/nodejs
-  - llvm-core/clang:${LLVM_VERSION}
-  - llvm-core/lld:${LLVM_VERSION}
-  - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
+  # - llvm-core/clang:${LLVM_VERSION}
+  # - llvm-core/lld:${LLVM_VERSION}
+  # - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
   - dev-util/cbindgen
   - =dev-lang/rust-bin-1.86.0-r1
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( 17 18 19 )/LLVM_COMPAT=( 20 )/' /var/db/repos/gentoo/www-client/torbrowser/torbrowser-*.ebuild
+  - ebuild /var/db/repos/gentoo/www-client/torbrowser/torbrowser-*.ebuild manifest
   requires:
   - <<: *layers-X
   build_requires:
@@ -19662,7 +19665,7 @@ packages:
 # osl disabled
 - category: "apps"
   name: "blender"
-  version: "4.4.3+4"
+  version: "4.4.3+3"
   uri:
   - https://www.blender.org
   - https://www.alembic.io/
