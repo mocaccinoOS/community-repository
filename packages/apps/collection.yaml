@@ -19764,6 +19764,9 @@ packages:
   - atom: "sci-physics/bullet"
     use: "double-precision"
   portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( {[[:digit:]][[:digit:]]..[[:digit:]][[:digit:]]} )/LLVM_COMPAT=( {18..20} )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
   inner_build_reqs:
   - app-admin/chrpath
   - dev-debug/valgrind
