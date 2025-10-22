@@ -1030,7 +1030,28 @@ packages:
   build_requires:
   - <<: *buildbase-sci-libs
   requires_final_images: true
-
+  
+- &libs-bcprov
+  category: "libs"
+  name: "bcprov"
+  version: "1.80"
+  uri:
+  - https://www.bouncycastle.org/download/bouncy-castle-java/
+  license: "BSD"
+  description: "Java cryptography APIs"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/bcprov
+  provides:
+  - category: "dev-java"
+    name: "bcprov"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+  
 - category: "libs"
   name: "breeze-plymouth"
   version: "6.4.5"
@@ -3941,36 +3962,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &apps-biglybt
-  category: "apps"
-  name: "biglybt"
-  version: "3.9.0.0"
-  uri:
-  - https://www.biglybt.com
-  license: "GPL-2+"
-  description: "Feature-filled Bittorrent client based on the Azureus open source project"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-p2p/biglybt
-  provides:
-  - category: "dev-java"
-    name: "bcprov"
-    version: ">=0"
-  - category: "dev-java"
-    name: "commons-cli"
-    version: ">=0"
-  - category: "dev-java"
-    name: "swt"
-    version: ">=0"
-  - category: "net-p2p"
-    name: "biglybt"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
 
 - category: "apps"
   name: "billardgl"
@@ -8272,32 +8263,6 @@ packages:
   - <<: *buildbase-haskell
   requires_final_images: true
 
-- category: "apps"
-  name: "pdftk"
-  version: "3.3.3_p20231025+1"
-  uri:
-  - https://gitlab.com/pdftk-java/pdftk
-  license: "GPL-2"
-  description: "A port of pdftk into java"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pdftk
-  provides:
-  - category: "app-text"
-    name: "pdftk"
-    version: ">=0"
-  - category: "dev-java"
-    name: "bcprov"
-    version: ">=0"
-  - category: "dev-java"
-    name: "commons-lang"
-    version: ">=0"
-  requires:
-  - <<: *layers-java
-  build_requires:
-  - <<: *layers-java
-
 - &apps-peek
   category: "apps"
   name: "peek"
@@ -11233,6 +11198,34 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
+- &apps-biglybt
+  category: "apps"
+  name: "biglybt"
+  version: "3.9.0.0+1"
+  uri:
+  - https://www.biglybt.com
+  license: "GPL-2+"
+  description: "Feature-filled Bittorrent client based on the Azureus open source project"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/biglybt
+  provides:
+  - category: "dev-java"
+    name: "commons-cli"
+    version: ">=0"
+  - category: "dev-java"
+    name: "swt"
+    version: ">=0"
+  - category: "net-p2p"
+    name: "biglybt"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  - <<: *libs-bcprov
+  build_requires:
+  - <<: *layers-java
+
 - category: "apps"
   name: "cairo-clock"
   version: "0.3.4-r4+1"
@@ -13193,6 +13186,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "pdftk"
+  version: "3.3.3_p20231025+2"
+  uri:
+  - https://gitlab.com/pdftk-java/pdftk
+  license: "GPL-2"
+  description: "A port of pdftk into java"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/pdftk
+  provides:
+  - category: "app-text"
+    name: "pdftk"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-lang"
+    version: ">=0"
+  requires:
+  - <<: *layers-java
+  - <<: *libs-bcprov
+  build_requires:
+  - <<: *layers-java
+
 - &apps-picom
   category: "apps"
   name: "picom"
@@ -15135,7 +15152,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "30.2"
+  version: "30.2+1"
   uri:
   - https://www.gnu.org/software/emacs
   - https://savannah.nongnu.org/projects/m17n
@@ -19663,7 +19680,6 @@ packages:
 ### dep 7 apps ###
 ################################################################################################################################################################
 
-# osl disabled
 - category: "apps"
   name: "blender"
   version: "4.4.3+4"
