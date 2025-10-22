@@ -7664,59 +7664,94 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-- category: "apps"
-  name: "nordvpn"
-  version: "4.1.1"
-  uri:
-  - https://nordvpn.com
-  - https://gitlab.com/lahouari.dc/nordvpn
-  license: "NordVPN"
-  description: "NordVPN native client"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-vpn/nordvpn
-  overlays:
-  - enable: "nordvpn"
-  provides:
-  - category: "net-vpn"
-    name: "nordvpn"
-    version: ">=0"
-  atoms:
-  - atom: "net-vpn/nordvpn"
-    accept_keywords: "~amd64"
-    license: "NordVPN"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "nordvpn"
+#   version: "4.1.1"
+#   uri:
+#   - https://nordvpn.com
+#   - https://gitlab.com/lahouari.dc/nordvpn
+#   license: "NordVPN"
+#   description: "NordVPN native client"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-vpn/nordvpn
+#   overlays:
+#   - enable: "nordvpn"
+#   provides:
+#   - category: "net-vpn"
+#     name: "nordvpn"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-vpn/nordvpn"
+#     accept_keywords: "~amd64"
+#     license: "NordVPN"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-gnome-common
+
+# - category: "apps"
+#   name: "nordvpn-bin"
+#   version: "4.2.0"
+#   uri:
+#   - https://nordvpn.com
+#   license: "NordVPN"
+#   description: "NordVPN native client"
+#   labels:
+#     emerge.jobs: "1"
+#   prepare:
+#   - version=4.2.0
+#   - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb
+#   - mkdir nordvpn_${version}_amd64
+#   - ar x nordvpn_${version}_amd64.deb --output=nordvpn_${version}_amd64
+#   - mkdir data
+#   - tar -xf nordvpn_${version}_amd64/data.tar.gz -C data
+#   setup:
+#   # /bin + /sbin + /usr/sbin --> /usr/bin
+#   # /lib  -->  /usr/lib
+#   # /lib64 --> /usr/lib64
+#   # - |
+#   #   cp -r data/etc /; \
+#   #   cp -r data/usr /; \
+#   #   cp -r data/var /; \
+#   #   ln -s /bin/ip /sbin/ip
+#   # cannot overwrite non-directory '/usr/sbin' with directory 'data/usr/sbin'
+#   - |
+#     cp -a data/etc/. /etc/; \
+#     cp -a data/usr/bin/. /usr/bin/; \
+#     cp -a data/usr/lib/. /usr/lib/; \
+#     cp -a data/usr/sbin/. /usr/bin/; \
+#     cp -a data/usr/share/. /usr/share/; \
+#     cp -a data/var/. /var/
+#   excludes:
+#   - ^/usr/lib/systemd/system/pam_namespace.service
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *buildbase-X
 
 - category: "apps"
-  name: "nordvpn-bin"
-  version: "4.2.0"
+  name: "nordvpn"
+  version: "4.2.0+2"
   uri:
   - https://nordvpn.com
-  license: "NordVPN"
-  description: "NordVPN native client"
+  - https://github.com/NordSecurity/nordvpn-linux
+  license: "GPL-3.0"
+  description: "NordVPN Linux client"
   labels:
     emerge.jobs: "1"
-  prepare:
-  - version=4.2.0
-  - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb
-  - mkdir nordvpn_${version}_amd64
-  - ar x nordvpn_${version}_amd64.deb --output=nordvpn_${version}_amd64
-  - mkdir data
-  - tar -xf nordvpn_${version}_amd64/data.tar.gz -C data
-  setup:
-  # /bin + /sbin + /usr/sbin --> /usr/bin
-  # /lib  -->  /usr/lib
-  # /lib64 --> /usr/lib64
+  ready:
+  - |
+    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+    cd nordvpn-linux && \
+    git fetch --all --tags && \
+    git checkout tags/4.2.0 && \
+    go build -o build
+  # completion:
   # - |
-  #   cp -r data/etc /; \
-  #   cp -r data/usr /; \
-  #   cp -r data/var /; \
-  #   ln -s /bin/ip /sbin/ip
-  # cannot overwrite non-directory '/usr/sbin' with directory 'data/usr/sbin'
+  #   cd Ulauncher && \
+  setup:
   - |
     cp -a data/etc/. /etc/; \
     cp -a data/usr/bin/. /usr/bin/; \
@@ -7726,10 +7761,12 @@ packages:
     cp -a data/var/. /var/
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
+  inner_build_requires:
+  - <<: *apps-go
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *buildbase-X
+  - <<: *layers-X
 
 # - category: "apps"
 #   name: "notepadqq"
