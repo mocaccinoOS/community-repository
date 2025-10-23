@@ -16142,13 +16142,13 @@ packages:
     cd nordvpn-linux && \
     git fetch --all --tags && \
     git checkout tags/4.2.0 && \
-    cp .env.sample .env \
-    export CGO_CPPFLAGS="${CPPFLAGS}" \
-    export CGO_CFLAGS="${CFLAGS}" \
-    export CGO_CXXFLAGS="${CXXFLAGS}" \
-    export CGO_LDFLAGS="${LDFLAGS}" \
-    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw" \
-    mage && mage build:binaries
+    cp .env.sample .env; \
+    export CGO_CPPFLAGS="${CPPFLAGS}"; \
+    export CGO_CFLAGS="${CFLAGS}"; \
+    export CGO_CXXFLAGS="${CXXFLAGS}"; \
+    export CGO_LDFLAGS="${LDFLAGS}"; \
+    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+    mage && mage -v build:binaries
   # completion:
   # - |
   #   cd nordvpn-linux && \
