@@ -8931,65 +8931,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-rust
-  category: "apps"
-  name: "rust"
-  version: "1.89.0"
-  uri:
-  - https://www.rust-lang.org/
-  license: "|| ( MIT Apache-2.0 ) BSD BSD-1 BSD-2 BSD-4"
-  description: "Systems programming language originally developed by Mozilla"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/rust
-  provides:
-  - category: "app-eselect"
-    name: "eselect-rust"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "rust"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "rust-common"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/rust"
-    use: "clippy rust-analyzer rust-src rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
-  inner_build_reqs:
-  - sys-devel/mold
-  - sec-keys/openpgp-keys-rust
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
-- &apps-rustup
-  category: "apps"
-  name: "rustup"
-  version: "1.28.2-r1"
-  uri:
-  - https://rust-lang.github.io/rustup/
-  license: "|| ( Apache-2.0 MIT ) Apache-2.0 BSD CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
-  description: "Rust toolchain installer"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/rustup
-  provides:
-  - category: "dev-util"
-    name: "rustup"
-    version: ">=0"
-  atoms:
-  - atom: "dev-util/rustup"
-    accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *apps-rust  
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
-
 - category: "apps"
   name: "scapy"
   version: "2.6.1+1"
@@ -13802,6 +13743,65 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
+
+- &apps-rust
+  category: "apps"
+  name: "rust"
+  version: "1.89.0"
+  uri:
+  - https://www.rust-lang.org/
+  license: "|| ( MIT Apache-2.0 ) BSD BSD-1 BSD-2 BSD-4"
+  description: "Systems programming language originally developed by Mozilla"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/rust
+  provides:
+  - category: "app-eselect"
+    name: "eselect-rust"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "rust"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "rust-common"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/rust"
+    use: "clippy rust-analyzer rust-src rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
+  inner_build_reqs:
+  - sys-devel/mold
+  - sec-keys/openpgp-keys-rust
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-oniguruma
+  build_requires:
+  - <<: *layers-sys-fs
+
+- &apps-rustup
+  category: "apps"
+  name: "rustup"
+  version: "1.28.2-r1"
+  uri:
+  - https://rust-lang.github.io/rustup/
+  license: "|| ( Apache-2.0 MIT ) Apache-2.0 BSD CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
+  description: "Rust toolchain installer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/rustup
+  provides:
+  - category: "dev-util"
+    name: "rustup"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/rustup"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-rust
+  build_requires:
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "shntool"
