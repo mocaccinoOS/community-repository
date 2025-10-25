@@ -16409,6 +16409,55 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "nordvpn-beta"
+  version: "4.2.0+2"
+  uri:
+  - https://nordvpn.com
+  - https://github.com/NordSecurity/nordvpn-linux
+  license: "GPL-3.0"
+  description: "NordVPN Linux client"
+  labels:
+    emerge.jobs: "1"
+  ready:
+  - |
+    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+    cd nordvpn-linux; \
+    git fetch --all --tags && \
+    git checkout tags/4.2.0 && \
+    git checkout LVPN-9381-current-libxml-dependency-is-missing; \
+    cp .env.sample .env; \
+    export CGO_CPPFLAGS="${CPPFLAGS}"; \
+    export CGO_CFLAGS="${CFLAGS}"; \
+    export CGO_CXXFLAGS="${CXXFLAGS}"; \
+    export CGO_LDFLAGS="${LDFLAGS}"; \
+    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+    mage && mage -v build:binaries
+  # completion:
+  # - |
+  #   cd nordvpn-linux && \
+  setup:
+  - find . || true
+  - |
+    cp -a bin/* /usr/bin/; \
+    cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+    cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+    cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+    cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+    cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+    cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
+  inner_build_reqs:
+  - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
+  inner_build_requires:
+  - <<: *apps-go
+  - <<: *apps-mage
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-openra
   category: "apps"
   name: "openra"
