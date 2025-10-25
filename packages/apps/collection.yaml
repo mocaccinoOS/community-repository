@@ -8955,7 +8955,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-lang/rust"
-    use: "clippy rust-analyzer rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler rust-src +system-llvm wasm"
+    use: "clippy rust-analyzer rust-src rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
   inner_build_reqs:
   - sys-devel/mold
   - sec-keys/openpgp-keys-rust
@@ -16479,7 +16479,7 @@ packages:
 #   labels:
 #     emerge.jobs: "1"
 #   ready:
-#   - /usr/bin/rustup-init-gentoo
+#   - sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
 #   - |
 #     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
 #     cd nordvpn-linux; \
