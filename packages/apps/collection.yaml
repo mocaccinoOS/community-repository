@@ -13744,7 +13744,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-rust
+- &apps-rust-bin
   category: "apps"
   name: "rust"
   version: "1.89.0"
@@ -13755,7 +13755,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-lang/rust
+      dev-lang/rust-bin
   provides:
   - category: "app-eselect"
     name: "eselect-rust"
@@ -13768,15 +13768,14 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-lang/rust"
-    use: "clippy rust-analyzer rust-src rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
+    use: "clippy rust-analyzer rust-src rustfmt verify-sig # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
   inner_build_reqs:
-  - sys-devel/mold
   - sec-keys/openpgp-keys-rust
   requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-system-x
   - <<: *libs-oniguruma
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-system-x
 
 - &apps-rustup
   category: "apps"
@@ -13799,7 +13798,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
-  - <<: *apps-rust
+  - <<: *apps-rust-bin
   build_requires:
   - <<: *layers-sys-fs
 
