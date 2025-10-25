@@ -8931,6 +8931,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-rust
+  category: "apps"
+  name: "rust"
+  version: "1.89.0"
+  uri:
+  - https://www.rust-lang.org/
+  license: "|| ( MIT Apache-2.0 ) BSD BSD-1 BSD-2 BSD-4"
+  description: "Systems programming language originally developed by Mozilla"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-lang/rust
+  provides:
+  - category: "app-eselect"
+    name: "eselect-rust"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "rust"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "rust-common"
+    version: ">=0"
+  atoms:
+  - atom: "dev-lang/rust"
+    use: "clippy rust-analyzer rustfmt # bpf dist miri mrustc-bootstrap nightly parallel-compiler rust-src +system-llvm wasm"
+  inner_build_reqs:
+  - sys-devel/mold
+  - sec-keys/openpgp-keys-rust
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
+- &apps-rustup
+  category: "apps"
+  name: "rustup"
+  version: "1.28.2-r1"
+  uri:
+  - https://rust-lang.github.io/rustup/
+  license: "|| ( Apache-2.0 MIT ) Apache-2.0 BSD CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
+  description: "Rust toolchain installer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/rustup
+  provides:
+  - category: "dev-util"
+    name: "rustup"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/rustup"
+    accept_keywords: "~amd64"
+  inner_build_requires:
+  - <<: *apps-rust  
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "scapy"
   version: "2.6.1+1"
@@ -16409,55 +16468,55 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "nordvpn-beta"
-  version: "4.2.0+2"
-  uri:
-  - https://nordvpn.com
-  - https://github.com/NordSecurity/nordvpn-linux
-  license: "GPL-3.0"
-  description: "NordVPN Linux client"
-  labels:
-    emerge.jobs: "1"
-  ready:
-  - /usr/bin/rustup-init-gentoo
-  - |
-    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
-    cd nordvpn-linux; \
-    git fetch --all --tags && \
-    git checkout tags/4.2.0 && \
-    git checkout LVPN-9381-current-libxml-dependency-is-missing; \
-    cp .env.sample .env; \
-    export CGO_CPPFLAGS="${CPPFLAGS}"; \
-    export CGO_CFLAGS="${CFLAGS}"; \
-    export CGO_CXXFLAGS="${CXXFLAGS}"; \
-    export CGO_LDFLAGS="${LDFLAGS}"; \
-    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-    mage && mage -v build:binaries
-  # completion:
-  # - |
-  #   cd nordvpn-linux && \
-  setup:
-  - find . || true
-  - |
-    cp -a bin/* /usr/bin/; \
-    cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-    cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-    cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-    cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-    cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-    cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
-  excludes:
-  - ^/usr/lib/systemd/system/pam_namespace.service
-  inner_build_reqs:
-  - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
-  inner_build_requires:
-  - <<: *apps-go
-  - <<: *apps-mage
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - category: "apps"
+#   name: "nordvpn-beta"
+#   version: "4.2.0+2"
+#   uri:
+#   - https://nordvpn.com
+#   - https://github.com/NordSecurity/nordvpn-linux
+#   license: "GPL-3.0"
+#   description: "NordVPN Linux client"
+#   labels:
+#     emerge.jobs: "1"
+#   ready:
+#   - /usr/bin/rustup-init-gentoo
+#   - |
+#     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+#     cd nordvpn-linux; \
+#     git fetch --all --tags && \
+#     git checkout tags/4.2.0 && \
+#     git checkout LVPN-9381-current-libxml-dependency-is-missing; \
+#     cp .env.sample .env; \
+#     export CGO_CPPFLAGS="${CPPFLAGS}"; \
+#     export CGO_CFLAGS="${CFLAGS}"; \
+#     export CGO_CXXFLAGS="${CXXFLAGS}"; \
+#     export CGO_LDFLAGS="${LDFLAGS}"; \
+#     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+#     mage && mage -v build:binaries
+#   # completion:
+#   # - |
+#   #   cd nordvpn-linux && \
+#   setup:
+#   - find . || true
+#   - |
+#     cp -a bin/* /usr/bin/; \
+#     cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+#     cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+#     cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+#     cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+#     cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+#     cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+#   excludes:
+#   - ^/usr/lib/systemd/system/pam_namespace.service
+#   inner_build_reqs:
+#   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
+#   inner_build_requires:
+#   - <<: *apps-go
+#   - <<: *apps-mage
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &apps-openra
   category: "apps"
