@@ -242,7 +242,7 @@ packages:
 - &libs-fonttools
   category: "libs"
   name: "fonttools"
-  version: "4.59.0-r1+1"
+  version: "4.60.0+1"
   uri:
   - https://github.com/fonttools/fonttools/
   license: "BSD"
@@ -293,29 +293,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-gpgmepp
-  category: "libs"
-  name: "gpgmepp"
-  version: "2.0.0-r1"
-  uri:
-  - https://www.gnupg.org/related_software/gpgme
-  license: "LGPL-2+"
-  description: "GnuPG Made Easy is a library for making GnuPG easier to use (C++ bindings)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/gpgmepp
-  provides:
-  - category: "dev-cpp"
-    name: "gpgmepp"
-    version: ">=0"
-  inner_build_reqs:
-  - app-portage/gemato
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -338,6 +315,34 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-qgpgme
+  category: "libs"
+  name: "qgpgme"
+  version: "2.0.0-r1+1"
+  uri:
+  - https://www.gnupg.org/related_software/gpgme
+  license: "GPL-2+ LGPL-2+"
+  description: |
+    GnuPG Made Easy is a library for making GnuPG easier to use (Qt bindings)
+    GnuPG Made Easy is a library for making GnuPG easier to use (C++ bindings)
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/qgpgme
+  provides:
+  - category: "dev-libs"
+    name: "qgpgme"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "gpgmepp"
+    version: ">=0"
+  inner_build_reqs:
+  - app-portage/gemato
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &libs-raptor
   category: "libs"
@@ -379,7 +384,7 @@ packages:
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.2+10"
+  version: "1.2+12"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -1604,7 +1609,7 @@ packages:
 - &def-kde-pim
   category: "layers"
   name: "kde-pim"
-  version: "25.04.3+11"
+  version: "25.08.2+1"
   uri:
   - https://community.kde.org/KDE_PIM
   license: "GPL-2+ LGPL-2.1+"
@@ -1625,9 +1630,6 @@ packages:
     version: ">=0"
   - category: "dev-libs"
     name: "libphonenumber"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "qgpgme"
     version: ">=0"
   - category: "kde-apps"
     name: "akonadi"
@@ -1821,7 +1823,7 @@ packages:
   - ebuild "$(ls -v /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild | tail -n 1)" manifest
   requires:
   - <<: *layers-plasma
-  - <<: *libs-gpgmepp
+  - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-plasma
   
