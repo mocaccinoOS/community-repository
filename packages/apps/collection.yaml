@@ -300,15 +300,6 @@ stubs:
   - sed -i -e 's/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || die/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || true/' /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild
   - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
 
-- &libs-gpgmepp
-  category: "libs"
-  name: "gpgmepp"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/gpgmepp
-
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -317,6 +308,15 @@ stubs:
     emerge.jobs: "1"
     emerge.packages: >-
       app-crypt/mhash
+
+- &libs-qgpgme
+  category: "libs"
+  name: "qgpgme"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/qgpgme
 
 - &libs-qtpositioning-geoclue
   category: "dev-qt"
@@ -903,7 +903,7 @@ packages:
 - &libs-analitza
   category: "libs"
   name: "analitza"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://kde.org/
   license: "GPL-2"
@@ -927,7 +927,7 @@ packages:
 - &libs-AOMediaCodecs
   category: "libs"
   name: "AOMediaCodecs"
-  version: "2.1.2+2"
+  version: "2.1.2+4"
   uri:
   - https://github.com/AOMediaCodec/libavif
   license: "BSD-2"
@@ -1297,7 +1297,7 @@ packages:
 - &libs-feedparser
   category: "libs"
   name: "feedparser"
-  version: "6.0.11+2"
+  version: "6.0.12+1"
   uri:
   - https://github.com/kurtmckee/feedparser/
   - https://pypi.org/project/sgmllib3k/
@@ -1807,7 +1807,7 @@ packages:
 - &libs-leptonica
   category: "libs"
   name: "leptonica"
-  version: "1.84.1-r2"
+  version: "1.85.0+1"
   uri:
   - http://www.leptonica.org/
   license: "Apache-2.0"
@@ -2152,7 +2152,7 @@ packages:
 - &libs-libktorrent
   category: "libs"
   name: "libktorrent"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/ktorrent/
   - https://userbase.kde.org/KTorrent
@@ -2921,7 +2921,7 @@ packages:
 - &libs-python-protobuf
   category: "libs"
   name: "python-protobuf"
-  version: "6.31.1"
+  version: "6.32.1-r1+1"
   uri:
   - https://protobuf.dev/
   license: "BSD"
@@ -3044,7 +3044,7 @@ packages:
 - &libs-regex
   category: "libs"
   name: "regex"
-  version: "2025.7.34"
+  version: "2025.9.18+1"
   uri:
   - https://github.com/mrabarnett/mrab-regex/
   license: "Apache-2.0"
@@ -3065,7 +3065,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.4.3"
+  version: "4.4.4+1"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -3272,7 +3272,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "1.0+12"
+  version: "1.0+13+1"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3635,7 +3635,7 @@ packages:
 
 - category: "apps"
   name: "alligator"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/alligator/
   license: "GPL-2+"
@@ -3655,7 +3655,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.3.1"
+  version: "3.3.1-r1+1"
   uri:
   - https://amarok.kde.org/
   license: "GPL-2"
@@ -4130,7 +4130,6 @@ packages:
     version: ">=0"
   inner_build_reqs:
   - dev-lang/rust-bin
-  - virtual/rust
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4374,7 +4373,7 @@ packages:
 
 - category: "apps"
   name: "colord-kde"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://invent.kde.org/graphics/colord-kde
   license: "GPL-2+"
@@ -4623,7 +4622,7 @@ packages:
 
 - category: "apps"
   name: "dolphin-plugins-git"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/dolphin_plugins/
   license: "GPL-2"
@@ -4849,7 +4848,7 @@ packages:
 
 - category: "apps"
   name: "elisa"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/elisa
   license: "LGPL-3+"
@@ -5146,7 +5145,7 @@ packages:
 
 - category: "apps"
   name: "ffmpegthumbs"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://kde.org/
   license: "GPL-2+"
@@ -5193,7 +5192,7 @@ packages:
 
 - category: "apps"
   name: "filelight"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/filelight/
   - https://utils.kde.org/projects/filelight/
@@ -5953,7 +5952,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.25.1"
+  version: "1.25.3+1"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6420,7 +6419,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.4.7"
+  version: "3.4.12+1"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -6441,7 +6440,7 @@ packages:
 - &apps-kapptemplate
   category: "apps"
   name: "kapptemplate"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kapptemplate
   license: "GPL-2"
@@ -6461,7 +6460,7 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "25.04.3+2"
+  version: "25.08.2+2"
   uri:
   - https://apps.kde.org/kate
   license: "GPL-2"
@@ -6484,7 +6483,7 @@ packages:
 
 - category: "apps"
   name: "kcharselect"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kcharselect
   license: "GPL-2"
@@ -6504,7 +6503,7 @@ packages:
 
 - category: "apps"
   name: "kcolorchooser"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kcolorchooser/
   license: "MIT"
@@ -6611,7 +6610,7 @@ packages:
 - &apps-kgpg
   category: "apps"
   name: "kgpg"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kgpg/
   license: "GPL-2"
@@ -6656,7 +6655,7 @@ packages:
 
 - category: "apps"
   name: "kimagemapeditor"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kimagemapeditor/
   license: "GPL-2"
@@ -6701,7 +6700,7 @@ packages:
 
 - category: "apps"
   name: "kompare"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kompare
   license: "GPL-2"
@@ -6721,7 +6720,7 @@ packages:
 
 - category: "apps"
   name: "konqueror"
-  version: "25.04.3-r1"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/konqueror/
   license: "GPL-2"
@@ -6791,7 +6790,7 @@ packages:
 
 - category: "apps"
   name: "krfb"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/krfb
   license: "GPL-2"
@@ -6814,7 +6813,7 @@ packages:
 
 - category: "apps"
   name: "krecorder"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/krecorder/
   license: "CC0-1.0 CC-BY-4.0 GPL-3+"
@@ -6836,7 +6835,7 @@ packages:
 
 - category: "apps"
   name: "kruler"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kruler/
   license: "GPL-2+ FDL-1.2"
@@ -7183,7 +7182,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "25.04.3+2"
+  version: "25.08.2-r1+1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -8643,7 +8642,7 @@ packages:
 
 - category: "apps"
   name: "qt6ct"
-  version: "0.10"
+  version: "0.11+1"
   uri:
   - https://github.com/trialuser02/qt6ct/
   license: "BSD-2"
@@ -9358,7 +9357,7 @@ packages:
 
 - category: "apps"
   name: "sweeper"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/sweeper/
   license: "GPL-3"
@@ -9814,7 +9813,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.104.26450"
+  version: "1.105.16954+1"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -10187,7 +10186,7 @@ packages:
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
-  version: "0.2+7"
+  version: "0.2+9"
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
@@ -10589,7 +10588,7 @@ packages:
 - &libs-libcaca
   category: "libs"
   name: "libcaca"
-  version: "0.99_beta19-r11+3"
+  version: "0.99_beta19-r12+1"
   uri:
   - http://libcaca.zoy.org/
   - https://sourceforge.net/projects/ftgl/
@@ -11071,7 +11070,7 @@ packages:
 - &apps-abiword
   category: "apps"
   name: "abiword"
-  version: "3.0.6-r1+2"
+  version: "3.0.6-r2+1"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -11801,7 +11800,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.24.0"
+  version: "1.25.0+1"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -12054,7 +12053,7 @@ packages:
 - &apps-handbrake
   category: "apps"
   name: "handbrake"
-  version: "1.9.2-r1+1"
+  version: "1.10.2+1"
   uri:
   - https://handbrake.fr/
   license: "GPL-2"
@@ -12167,7 +12166,7 @@ packages:
 - &apps-kalgebra
   category: "apps"
   name: "kalgebra"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kalgebra
   license: "GPL-2+"
@@ -12224,7 +12223,7 @@ packages:
 
 - category: "apps"
   name: "kget"
-  version: "25.04.3+1"
+  version: "25.08.2+4"
   uri:
   - https://apps.kde.org/kget
   license: "GPL-2"
@@ -12243,6 +12242,7 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *libs-libktorrent
+  - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-kde-common
 
@@ -12297,7 +12297,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -12318,7 +12318,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -12343,7 +12343,7 @@ packages:
 - &apps-kweather
   category: "apps"
   name: "kweather"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kweather/
   license: "GPL-2+"
@@ -12628,7 +12628,7 @@ packages:
 
 - category: "apps"
   name: "mkvtoolnix"
-  version: "94.0"
+  version: "95.0+2"
   uri:
   - https://mkvtoolnix.download
   license: "GPL-2"
@@ -12659,7 +12659,7 @@ packages:
 - &apps-mosh
   category: "apps"
   name: "mosh"
-  version: "1.4.0+7"
+  version: "1.4.0-r1+1"
   uri:
   - https://mosh.org
   license: "GPL-3"
@@ -13744,18 +13744,23 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# run as user: /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
 - &apps-rust-bin
   category: "apps"
-  name: "rust"
-  version: "1.89.0"
+  name: "rust-bin"
+  version: "1.89.0+2"
   uri:
   - https://www.rust-lang.org/
-  license: "|| ( MIT Apache-2.0 ) BSD BSD-1 BSD-2 BSD-4"
-  description: "Systems programming language originally developed by Mozilla"
+  - https://rust-lang.github.io/rustup/
+  license: "|| ( MIT Apache-2.0 ) Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
+  description: |
+    Systems programming language originally developed by Mozilla
+    Rust toolchain installer
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-lang/rust-bin
+      dev-util/rustup
   provides:
   - category: "app-eselect"
     name: "eselect-rust"
@@ -13763,44 +13768,20 @@ packages:
   - category: "dev-lang"
     name: "rust"
     version: ">=0"
-  - category: "dev-lang"
-    name: "rust-common"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/rust"
-    use: "clippy rust-analyzer rust-src rustfmt verify-sig # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
-  inner_build_reqs:
-  - sec-keys/openpgp-keys-rust
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-oniguruma
-  build_requires:
-  - <<: *layers-system-x
-
-- &apps-rustup
-  category: "apps"
-  name: "rustup"
-  version: "1.28.2-r1"
-  uri:
-  - https://rust-lang.github.io/rustup/
-  license: "|| ( Apache-2.0 MIT ) Apache-2.0 BSD CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
-  description: "Rust toolchain installer"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/rustup
-  provides:
   - category: "dev-util"
     name: "rustup"
     version: ">=0"
   atoms:
+  - atom: "dev-lang/rust"
+    use: "clippy rust-analyzer rust-src rustfmt verify-sig # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
   - atom: "dev-util/rustup"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-rust
   requires:
-  - <<: *layers-sys-fs
-  - <<: *apps-rust-bin
+  - <<: *layers-system-x
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "shntool"
@@ -14502,7 +14483,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.16"
+  version: "10.17+1"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -14640,7 +14621,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.1.5.1"
+  version: "2.1.6+1"
   uri:
   - https://www.indilib.org/
   - http://libnova.sourceforge.net/
@@ -15070,7 +15051,7 @@ packages:
 - &apps-cantor
   category: "apps"
   name: "cantor"
-  version: "25.04.3+1"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/cantor/
   license: "GPL-2"
@@ -15644,7 +15625,7 @@ packages:
 
 - category: "apps"
   name: "k3b"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/k3b
   license: "GPL-2 FDL-1.2"
@@ -15671,7 +15652,7 @@ packages:
 - &apps-kalarm
   category: "apps"
   name: "kalarm"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/kalarm/
   license: "GPL-2+ FDL-1.2+"
@@ -15695,7 +15676,7 @@ packages:
 
 - category: "apps"
   name: "kdegames"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/categories/games/
   - https://pypi.org/project/pysol-cards/
@@ -16071,7 +16052,7 @@ packages:
   # - <<: *libs-rhino
   # - <<: *apps-postgresql
   - <<: *apps-fontforge
-  - <<: *libs-gpgmepp
+  - <<: *libs-qgpgme
   - <<: *libs-libvisio
   - <<: *libs-zxcvbn-c
   build_requires:
@@ -16467,55 +16448,110 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - category: "apps"
-#   name: "nordvpn-beta"
-#   version: "4.2.0+2"
-#   uri:
-#   - https://nordvpn.com
-#   - https://github.com/NordSecurity/nordvpn-linux
-#   license: "GPL-3.0"
-#   description: "NordVPN Linux client"
-#   labels:
-#     emerge.jobs: "1"
-#   ready:
-#   - sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
-#   - |
-#     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
-#     cd nordvpn-linux; \
-#     git fetch --all --tags && \
-#     git checkout tags/4.2.0 && \
-#     git checkout LVPN-9381-current-libxml-dependency-is-missing; \
-#     cp .env.sample .env; \
-#     export CGO_CPPFLAGS="${CPPFLAGS}"; \
-#     export CGO_CFLAGS="${CFLAGS}"; \
-#     export CGO_CXXFLAGS="${CXXFLAGS}"; \
-#     export CGO_LDFLAGS="${LDFLAGS}"; \
-#     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-#     mage && mage -v build:binaries
-#   # completion:
-#   # - |
-#   #   cd nordvpn-linux && \
-#   setup:
-#   - find . || true
-#   - |
-#     cp -a bin/* /usr/bin/; \
-#     cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-#     cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-#     cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-#     cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-#     cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-#     cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
-#   excludes:
-#   - ^/usr/lib/systemd/system/pam_namespace.service
-#   inner_build_reqs:
-#   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
-#   inner_build_requires:
-#   - <<: *apps-go
-#   - <<: *apps-mage
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+# Targets:
+#   build:binaries             from cmd/* for the host architecture
+#   build:binariesDocker       Builds all binaries using Docker builder
+#   build:data                 for Linux packages
+#   build:deb                  package for the host architecture
+#   build:debDocker            package using Docker builder
+#   build:notices              for third party dependencies
+#   build:noticesDocker        Notices for third party dependencies
+#   build:openvpn              Builds Openvpn binaries for the host architecture
+#   build:openvpnDocker        Openvpn binaries for the host architecture
+#   build:rpm                  package for the host architecture
+#   build:rpmDocker            package using Docker builder
+#   build:rust                 dependencies for the host architecture
+#   build:rustDocker           Builds rust dependencies using Docker builder
+#   build:snap                 package for the host architecture
+#   build:snapDocker           package using Docker builder
+#   buildDocker                image with project root as context
+#   clean                      is used to clean build results.
+#   download                   external dependencies
+#   downloadOpenvpn            Download OpenVPN external dependencies
+#   generate:protobufDocker    Generate Protobuf from protobuf/* definitions using Docker builder
+#   install:binaries           to their respective locations and restart the daemon along the way
+#   install:gosec              source code scanner to ~/go/bin
+#   removeDockerNetwork        using ID returned from CreateDockerNetwork
+#   run:docker                 builds and runs nordvpn app in Docker container
+#   run:dockerFast             builds and runs nordvpn app in Docker container
+#   test:cgoDocker             run cgo tests
+#   test:go                    run unit tests
+#   test:gosec                 run security scan on the host
+#   test:hardening             test ELF binaries
+#   test:lint                  Performs linter check against Go codebase
+#   test:qa                    Run QA tests (arguments: {testGroup} {testPattern})
+#   test:qaDocker              Run QA tests in Docker container (arguments: {testGroup} {testPattern})
+#   test:qaDockerFast          Run QA tests in Docker container, builds the package locally and skips the build if it is already present in the package directory (arguments: {testGroup} {testPattern})
+#   test:qaSnap                Build the snap application and run the QA tests (arguments: {testGroup} {testPattern})
+#   test:qaSnapFast            Run QA tests, without building the application (arguments: {testGroup} {testPattern})
+#   test:qaSnapVM              Build the snap application and run the QA tests in a VM (arguments: {testGroup} {testPattern})
+#   test:qaSnapVMFast          Run QA tests in VM, without building the application (arguments: {testGroup} {testPattern})
+#   view:coverage              for pure Go
+#   view:docs                  for the nordvpn application
+- category: "apps"
+  name: "nordvpn-beta"
+  version: "4.2.0+2"
+  uri:
+  - https://nordvpn.com
+  - https://github.com/NordSecurity/nordvpn-linux
+  license: "GPL-3.0"
+  description: "NordVPN Linux client"
+  labels:
+    emerge.jobs: "1"
+  ready:
+  - |
+    sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
+    /usr/bin/rustup-init-gentoo -s && \
+    export PATH="${HOME}/.cargo/bin:${PATH}"; \
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
+  # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  - |
+    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+    cd nordvpn-linux; \
+    git fetch --all --tags && \
+    git checkout tags/4.2.0 && \
+    git checkout LVPN-9381-current-libxml-dependency-is-missing; \
+    cp .env.sample .env; \
+    find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
+    export CGO_CPPFLAGS="${CPPFLAGS}"; \
+    export CGO_CFLAGS="${CFLAGS}"; \
+    export CGO_CXXFLAGS="${CXXFLAGS}"; \
+    export CGO_LDFLAGS="${LDFLAGS}"; \
+    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+    mage && mage -v build:binaries;
+  # completion:
+  # - |
+  #   cd nordvpn-linux && \
+  setup:
+  - |
+    cd nordvpn-linux; \
+    export PATH="${HOME}/.cargo/bin:${PATH}"; \
+    mkdir -p /usr/lib; \
+    sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
+    sed -i 's/"sudo", //g' magefiles/mage.go; \
+    mage install:binaries;
+  # - find . || true
+  # - |
+  #   cp -a bin/* /usr/bin/; \
+  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
+  inner_build_reqs:
+  - dev-lang/rust-bin
+  - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
+  inner_build_requires:
+  - <<: *apps-go
+  - <<: *apps-mage
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-openra
   category: "apps"
@@ -16740,7 +16776,7 @@ packages:
 
 - category: "apps"
   name: "skanpage"
-  version: "25.04.3-r1"
+  version: "25.08.2+1"
   uri:
   - https://apps.kde.org/skanpage/
   license: "|| ( GPL-2 GPL-3 ) CC0-1.0"
@@ -16897,7 +16933,7 @@ packages:
 
 - category: "apps"
   name: "tokodon"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://invent.kde.org/network/tokodon
   license: "CC-BY-SA-4.0 GPL-2+ GPL-3+ LGPL-2.1+ LGPL-3+ MIT"
@@ -17002,7 +17038,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.5.35-r9"
+  version: "21.5.36-r3+1"
   uri:
   - https://www.xemacs.org/
   - https://siag.nu/neXtaw/
@@ -17107,7 +17143,7 @@ packages:
 - &apps-xscreensaver
   category: "apps"
   name: "xscreensaver"
-  version: "6.12-r1+1"
+  version: "6.12-r2+1"
   uri:
   - https://www.jwz.org/xscreensaver/
   license: "BSD fonts GPL-2 MIT Apache-2.0 IJG ISC"
@@ -17528,7 +17564,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "25.04.2+4"
+  version: "25.08.2+1"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -17949,7 +17985,7 @@ packages:
 
 - category: "apps"
   name: "kstars"
-  version: "3.7.8"
+  version: "3.7.9+1"
   uri:
   - https://apps.kde.org/kstars/
   - https://edu.kde.org/kstars/
@@ -18771,7 +18807,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "25.04.3"
+  version: "25.08.2-r1+1"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -19340,7 +19376,7 @@ packages:
 
 - category: "apps"
   name: "plantuml"
-  version: "1.2025.4"
+  version: "1.2025.7+1"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -19613,7 +19649,7 @@ packages:
 - &apps-hip
   category: "apps"
   name: "hip"
-  version: "6.4.3-r1"
+  version: "7.0.2+1"
   uri:
   - https://github.com/ROCm/clr
   license: "Apache-2.0 MIT"
@@ -19968,7 +20004,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "25.04.3"
+  version: "25.08.2+1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
