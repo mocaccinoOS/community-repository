@@ -16490,7 +16490,7 @@ packages:
 #   view:docs                  for the nordvpn application
 - category: "apps"
   name: "nordvpn-beta"
-  version: "4.2.0+2"
+  version: "4.2.0+3"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -16531,17 +16531,18 @@ packages:
     sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
     sed -i 's/"sudo", //g' magefiles/mage.go; \
     mage install:binaries;
-  # - find . || true
-  # - |
-  #   cp -a bin/* /usr/bin/; \
-  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+  - find . || true
+  - |
+    cp -a bin/* /usr/bin/; \
+    cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+    cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+    cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+    cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+    cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+    cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
+  - ^/root/
   inner_build_reqs:
   - dev-lang/rust-bin
   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
