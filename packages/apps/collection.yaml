@@ -16527,7 +16527,7 @@ packages:
   - |
     cd nordvpn-linux; \
     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-    mkdir -p /usr/lib; \
+    mkdir -p /usr/lib/nordvpn; \
     sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
     sed -i 's/"sudo", //g' magefiles/mage.go; \
     mage install:binaries;
@@ -16797,7 +16797,6 @@ packages:
     use: "ocr"
   requires:
   - <<: *layers-kde-common
-  # - <<: *libs-leptonica
   - <<: *apps-tesseract
   build_requires:
   - <<: *layers-kde-common
@@ -17143,7 +17142,7 @@ packages:
 - &apps-xscreensaver
   category: "apps"
   name: "xscreensaver"
-  version: "6.12-r2+1"
+  version: "6.12-r2+2"
   uri:
   - https://www.jwz.org/xscreensaver/
   license: "BSD fonts GPL-2 MIT Apache-2.0 IJG ISC"
@@ -17153,23 +17152,20 @@ packages:
     emerge.packages: >-
       x11-misc/xscreensaver
   provides:
-  - category: "media-gfx"
-    name: "fbida"
+  - category: "gui-apps"
+    name: "grim"
     version: ">=0"
   - category: "x11-apps"
     name: "appres"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "gdk-pixbuf-xlib"
     version: ">=0"
   - category: "x11-misc"
     name: "xscreensaver"
     version: ">=0"
   atoms:
+  - atom: "gui-apps/grim"
+    use: "jpeg"
   - atom: "x11-misc/xscreensaver"
-    use: "fonts glx jpeg locking offensive perl suid systemd xinerama X # elogind gdm gles logind-idle-hint new-login pam "
-  - atom: "media-gfx/fbida"
-    use: "fbcon ghostscript gif png tiff webp X # curl lirc scanner"
+    use: "fonts glx jpeg locking offensive perl suid systemd xinerama X # elogind gdm gles logind-idle-hint new-login pam"
   inner_build_reqs:
   - app-alternatives/bc
   requires:
