@@ -16519,7 +16519,7 @@ packages:
     export CGO_CXXFLAGS="${CXXFLAGS}"; \
     export CGO_LDFLAGS="${LDFLAGS}"; \
     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-    mage && mage -v build:binaries;
+    mage && mage -v build:binaries build:openvpn build:data;
   # completion:
   # - |
   #   cd nordvpn-linux && \
@@ -16532,14 +16532,14 @@ packages:
     sed -i 's/"sudo", //g' magefiles/mage.go; \
     mage install:binaries;
   - find . || true
-  - |
-    cp -a bin/* /usr/bin/; \
-    cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-    cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-    cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-    cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-    cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-    cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+  # - |
+  #   cp -a bin/amd64/* /usr/bin/; \
+  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
