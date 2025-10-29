@@ -7663,36 +7663,36 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-- category: "apps"
-  name: "nordvpn"
-  version: "4.1.1"
-  uri:
-  - https://nordvpn.com
-  - https://gitlab.com/lahouari.dc/nordvpn
-  license: "NordVPN"
-  description: "NordVPN native client"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-vpn/nordvpn
-  overlays:
-  - enable: "nordvpn"
-  provides:
-  - category: "net-vpn"
-    name: "nordvpn"
-    version: ">=0"
-  atoms:
-  - atom: "net-vpn/nordvpn"
-    accept_keywords: "~amd64"
-    license: "NordVPN"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "nordvpn"
+#   version: "4.1.1"
+#   uri:
+#   - https://nordvpn.com
+#   - https://gitlab.com/lahouari.dc/nordvpn
+#   license: "NordVPN"
+#   description: "NordVPN native client"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-vpn/nordvpn
+#   overlays:
+#   - enable: "nordvpn"
+#   provides:
+#   - category: "net-vpn"
+#     name: "nordvpn"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-vpn/nordvpn"
+#     accept_keywords: "~amd64"
+#     license: "NordVPN"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "nordvpn-bin"
-  version: "4.2.0"
+  version: "4.2.1"
   uri:
   - https://nordvpn.com
   license: "NordVPN"
@@ -7700,7 +7700,7 @@ packages:
   labels:
     emerge.jobs: "1"
   prepare:
-  - version=4.2.0
+  - version=4.2.1
   - wget https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb
   - mkdir nordvpn_${version}_amd64
   - ar x nordvpn_${version}_amd64.deb --output=nordvpn_${version}_amd64
