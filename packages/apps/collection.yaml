@@ -16514,7 +16514,7 @@ packages:
 # 
 - category: "apps"
   name: "nordvpn"
-  version: "4.2.1+1"
+  version: "4.2.1+2"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -16544,7 +16544,7 @@ packages:
     export CGO_CXXFLAGS="${CXXFLAGS}"; \
     export CGO_LDFLAGS="${LDFLAGS}"; \
     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-    mage && mage -v build:binaries build:openvpn build:data;
+    mage && mage -v build:binaries build:openvpn build:data build:notices;
   # completion:
   # - |
   #   cd nordvpn-linux && \
@@ -16576,45 +16576,45 @@ packages:
   #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
   - |
     mkdir -p /etc/init.d; \
-    cp --preserve nordvpn-linux/contrib/initd/nordvpn /etc/init.d/nordvpn; \
+    cp -a nordvpn-linux/contrib/initd/nordvpn /etc/init.d/nordvpn; \
     mkdir -p /usr/bin; \
-    cp --preserve nordvpn-linux/bin/amd64/nordvpn /usr/bin/; \
-    cp --preserve nordvpn-linux/bin/amd64/nordvpnd /usr/bin/; \
+    cp -a nordvpn-linux/bin/amd64/nordvpn /usr/bin/; \
+    cp -a nordvpn-linux/bin/amd64/nordvpnd /usr/bin/; \
     mkdir -p /usr/lib/nordvpn; \
-    cp --preserve nordvpn-linux/bin/deps/lib/current/amd64/libmoosenordvpnapp.so /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/deps/lib/current/amd64/libmooseworker.so /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/deps/lib/current/amd64/libnorddrop.so /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/deps/lib/current/amd64/libquench.so /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/deps/lib/current/amd64/libtelio.so /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/amd64/nordfileshare /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/amd64/norduserd /usr/lib/nordvpn/; \
-    cp --preserve nordvpn-linux/bin/deps/openvpn /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/lib/current/amd64/libmoosenordvpnapp.so /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/lib/current/amd64/libmooseworker.so /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/lib/current/amd64/libnorddrop.so /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/lib/current/amd64/libquench.so /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/lib/current/amd64/libtelio.so /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/amd64/nordfileshare /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/amd64/norduserd /usr/lib/nordvpn/; \
+    cp -a nordvpn-linux/bin/deps/openvpn/2.6.12/amd64/openvpn /usr/lib/nordvpn/; \
     mkdir -p /usr/lib/systemd/system; \
     ln -s /dev/null /usr/lib/systemd/system/nordvpn.service; \
-    cp --preserve nordvpn-linux/contrib/systemd/system/nordvpnd.service /usr/lib/systemd/system/; \
-    cp --preserve nordvpn-linux/contrib/systemd/system/nordvpnd.socket /usr/lib/systemd/system/; \
+    cp -a nordvpn-linux/contrib/systemd/system/nordvpnd.service /usr/lib/systemd/system/; \
+    cp -a nordvpn-linux/contrib/systemd/system/nordvpnd.socket /usr/lib/systemd/system/; \
     mkdir -p /usr/lib/tmpfiles.d; \
-    cp --preserve nordvpn-linux/contrib/systemd/tmpfiles.d/nordvpn.conf /usr/lib/tmpfiles.d/; \
+    cp -a nordvpn-linux/contrib/systemd/tmpfiles.d/nordvpn.conf /usr/lib/tmpfiles.d/; \
     mkdir -p /usr/share/applications; \
-    cp --preserve nordvpn-linux/contrib/desktop/nordvpn.desktop /usr/share/applications/; \
-    cp --preserve nordvpn-linux/contrib/desktop/nordvpn-gui.desktop /usr/share/applications/; \
+    cp -a nordvpn-linux/contrib/desktop/nordvpn.desktop /usr/share/applications/; \
+    cp -a nordvpn-linux/contrib/desktop/nordvpn-gui.desktop /usr/share/applications/; \
     mkdir -p /usr/share/bash-completion/completions; \
-    cp --preserve nordvpn-linux/dist/autocomplete/bash_autocomplete /usr/share/bash-completion/completions/nordvpn; \
+    cp -a nordvpn-linux/dist/autocomplete/bash_autocomplete /usr/share/bash-completion/completions/nordvpn; \
     mkdir -p /usr/share/icons/hicolor/scalable/apps/; \
-    cp --preserve nordvpn-linux/assets/icon.svg /usr/share/icons/hicolor/scalable/apps/nordvpn.svg; \
-    cp --preserve nordvpn-linux/assets/tray-black.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-black.svg; \
-    cp --preserve nordvpn-linux/assets/tray-blue.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-blue.svg; \
-    cp --preserve nordvpn-linux/assets/tray-gray.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-gray.svg; \
-    cp --preserve nordvpn-linux/assets/tray-white.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-white.svg; \
+    cp -a nordvpn-linux/assets/icon.svg /usr/share/icons/hicolor/scalable/apps/nordvpn.svg; \
+    cp -a nordvpn-linux/assets/tray-black.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-black.svg; \
+    cp -a nordvpn-linux/assets/tray-blue.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-blue.svg; \
+    cp -a nordvpn-linux/assets/tray-gray.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-gray.svg; \
+    cp -a nordvpn-linux/assets/tray-white.svg /usr/share/icons/hicolor/scalable/apps/nordvpn-tray-white.svg; \
     mkdir -p /usr/share/licenses/nordvpn; \
-    cp --preserve nordvpn-linux/LICENSE.md /usr/share/licenses/nordvpn/; \
-    cp --preserve nordvpn-linux/THIRD-PARTY-NOTICES.md /usr/share/licenses/nordvpn/; \
+    cp -a nordvpn-linux/LICENSE.md /usr/share/licenses/nordvpn/; \
+    cp -a nordvpn-linux/THIRD-PARTY-NOTICES.md /usr/share/licenses/nordvpn/; \
     mkdir -p /usr/share/man/man1; \
-    cp --preserve nordvpn-linux/dist/nordvpn.1.gz /usr/share/man/man1/; \
+    cp -a nordvpn-linux/dist/nordvpn.1.gz /usr/share/man/man1/; \
     mkdir -p /usr/share/zsh/functions/Completion/Unix; \
-    cp --preserve nordvpn-linux/dist/autocomplete/zsh_autocomplete /usr/share/zsh/functions/Completion/Unix/_nordvpn_auto_complete; \
+    cp -a nordvpn-linux/dist/autocomplete/zsh_autocomplete /usr/share/zsh/functions/Completion/Unix/_nordvpn_auto_complete; \
     mkdir -p /var/lib/nordvpn/; \
-    cp -a --preserve nordvpn-linux/dist/data /var/lib/nordvpn/;
+    cp -a nordvpn-linux/dist/data /var/lib/nordvpn/;
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
