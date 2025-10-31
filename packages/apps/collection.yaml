@@ -16514,7 +16514,7 @@ packages:
 # 
 - category: "apps"
   name: "nordvpn"
-  version: "4.2.1+3"
+  version: "4.2.1+5"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -16522,62 +16522,15 @@ packages:
   description: "NordVPN Linux client"
   labels:
     emerge.jobs: "1"
-  # ready:
-  # - |
-  #   sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
-  #   /usr/bin/rustup-init-gentoo -s && \
-  #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
-  #   if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
-  # # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-  # # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-  # - |
-  #   git clone https://github.com/NordSecurity/nordvpn-linux.git && \
-  #   cd nordvpn-linux; \
-  #   git fetch --all --tags && \
-  #   git checkout tags/4.2.1; \
-  #   cp .env.sample .env && \
-  #   echo 'CI_COMMIT_TAG=4.2.1' > .env; \
-  #   sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
-  #   find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
-  #   export CGO_CPPFLAGS="${CPPFLAGS}"; \
-  #   export CGO_CFLAGS="${CFLAGS}"; \
-  #   export CGO_CXXFLAGS="${CXXFLAGS}"; \
-  #   export CGO_LDFLAGS="${LDFLAGS}"; \
-  #   export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-  #   mage && mage -v build:binaries build:openvpn build:data build:notices;
-  # completion:
-  # - |
-  #   cd nordvpn-linux && \
-  # - |
-  #   cd nordvpn-linux; \
-  #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
-  #   mkdir -p /usr/lib/nordvpn; \
-  #   sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
-  #   sed -i 's/"sudo", //g' magefiles/mage.go; \
-  #   mage install:binaries;
-  # mage install:binaries installs few files only:
-  #   usr
-  #   ├── bin
-  #   │   ├── nordvpn
-  #   │   └── nordvpnd
-  #   └── lib
-  #       └── nordvpn
-  #           ├── nordfileshare
-  #           └── norduserd
-  # - |
-  #   cp -a bin/amd64/* /usr/bin/; \
-  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
-  setup:
+  ready:
   - |
     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
     /usr/bin/rustup-init-gentoo -s && \
     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi; \
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
+  # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  - |
     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
     cd nordvpn-linux; \
     git fetch --all --tags && \
@@ -16592,6 +16545,10 @@ packages:
     export CGO_LDFLAGS="${LDFLAGS}"; \
     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
     mage && mage -v build:binaries build:openvpn build:data build:notices;
+  # completion:
+  # - |
+  #   cd nordvpn-linux && \
+  setup:
   - |
     mkdir -p /etc/init.d; \
     cp -a nordvpn-linux/contrib/initd/nordvpn /etc/init.d/nordvpn; \
@@ -16633,6 +16590,30 @@ packages:
     cp -a nordvpn-linux/dist/autocomplete/zsh_autocomplete /usr/share/zsh/functions/Completion/Unix/_nordvpn_auto_complete; \
     mkdir -p /var/lib/nordvpn/; \
     cp -a nordvpn-linux/dist/data /var/lib/nordvpn/;
+  # - |
+  #   cd nordvpn-linux; \
+  #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
+  #   mkdir -p /usr/lib/nordvpn; \
+  #   sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
+  #   sed -i 's/"sudo", //g' magefiles/mage.go; \
+  #   mage install:binaries;
+  # mage install:binaries installs few files only:
+  #   usr
+  #   ├── bin
+  #   │   ├── nordvpn
+  #   │   └── nordvpnd
+  #   └── lib
+  #       └── nordvpn
+  #           ├── nordfileshare
+  #           └── norduserd
+  # - |
+  #   cp -a bin/amd64/* /usr/bin/; \
+  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
