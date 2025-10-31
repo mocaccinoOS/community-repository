@@ -16514,7 +16514,7 @@ packages:
 # 
 - category: "apps"
   name: "nordvpn"
-  version: "4.2.1+4"
+  version: "4.2.1+3"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -16522,32 +16522,32 @@ packages:
   description: "NordVPN Linux client"
   labels:
     emerge.jobs: "1"
-  # ready:
+  ready:
+  - |
+    sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
+    /usr/bin/rustup-init-gentoo -s && \
+    export PATH="${HOME}/.cargo/bin:${PATH}"; \
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
+  # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  - |
+    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+    cd nordvpn-linux; \
+    git fetch --all --tags && \
+    git checkout tags/4.2.1; \
+    cp .env.sample .env && \
+    echo 'CI_COMMIT_TAG=4.2.1' > .env; \
+    sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
+    find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
+    export CGO_CPPFLAGS="${CPPFLAGS}"; \
+    export CGO_CFLAGS="${CFLAGS}"; \
+    export CGO_CXXFLAGS="${CXXFLAGS}"; \
+    export CGO_LDFLAGS="${LDFLAGS}"; \
+    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+    mage && mage -v build:binaries build:openvpn build:data build:notices;
+  # completion:
   # - |
-  #   sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
-  #   /usr/bin/rustup-init-gentoo -s && \
-  #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
-  #   if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
-  # # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-  # # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-  # - |
-  #   git clone https://github.com/NordSecurity/nordvpn-linux.git && \
-  #   cd nordvpn-linux; \
-  #   git fetch --all --tags && \
-  #   git checkout tags/4.2.1 && \
-  #   cp .env.sample .env; \
-  #   echo 'CI_COMMIT_TAG=4.2.1' > .env; \
-  #   sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
-  #   find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
-  #   export CGO_CPPFLAGS="${CPPFLAGS}"; \
-  #   export CGO_CFLAGS="${CFLAGS}"; \
-  #   export CGO_CXXFLAGS="${CXXFLAGS}"; \
-  #   export CGO_LDFLAGS="${LDFLAGS}"; \
-  #   export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-  #   mage && mage -v build:binaries build:openvpn build:data build:notices;
-  # # completion:
-  # # - |
-  # #   cd nordvpn-linux && \
+  #   cd nordvpn-linux && \
   setup:
   # - |
   #   cd nordvpn-linux; \
@@ -16556,7 +16556,6 @@ packages:
   #   sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
   #   sed -i 's/"sudo", //g' magefiles/mage.go; \
   #   mage install:binaries;
-  # - find . || true
   # mage install:binaries installs few files only:
   #   usr
   #   ├── bin
@@ -16578,13 +16577,12 @@ packages:
     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
     /usr/bin/rustup-init-gentoo -s && \
     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
-  - |
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi; \
     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
     cd nordvpn-linux; \
     git fetch --all --tags && \
-    git checkout tags/4.2.1 && \
-    cp .env.sample .env; \
+    git checkout tags/4.2.1; \
+    cp .env.sample .env && \
     echo 'CI_COMMIT_TAG=4.2.1' > .env; \
     sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
     find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
@@ -16594,12 +16592,6 @@ packages:
     export CGO_LDFLAGS="${LDFLAGS}"; \
     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
     mage && mage -v build:binaries build:openvpn build:data build:notices;
-  - |
-    set -x; \
-    find . -name THIRD-PARTY-NOTICES.md; \
-    find . -name libmoosenordvpnapp.so; \
-    find . -name libmooseworker.so; \
-    find . -name libquench.so;
   - |
     mkdir -p /etc/init.d; \
     cp -a nordvpn-linux/contrib/initd/nordvpn /etc/init.d/nordvpn; \
