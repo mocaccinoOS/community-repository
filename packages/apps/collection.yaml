@@ -16522,7 +16522,8 @@ packages:
   description: "NordVPN Linux client"
   labels:
     emerge.jobs: "1"
-  ready:
+  # ready:
+  setup:
   - |
     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
     /usr/bin/rustup-init-gentoo -s && \
@@ -16548,7 +16549,7 @@ packages:
   # completion:
   # - |
   #   cd nordvpn-linux && \
-  setup:
+  # setup:
   # - |
   #   cd nordvpn-linux; \
   #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
