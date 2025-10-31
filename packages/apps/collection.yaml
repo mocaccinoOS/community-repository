@@ -16512,81 +16512,145 @@ packages:
 #   view:coverage              for pure Go
 #   view:docs                  for the nordvpn application
 # 
-# - category: "apps"
-#   name: "nordvpn-beta"
-#   version: "4.2.0+4"
-#   uri:
-#   - https://nordvpn.com
-#   - https://github.com/NordSecurity/nordvpn-linux
-#   license: "GPL-3.0"
-#   description: "NordVPN Linux client"
-#   labels:
-#     emerge.jobs: "1"
-#   ready:
-#   - |
-#     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
-#     /usr/bin/rustup-init-gentoo -s && \
-#     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-#     if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
-#   # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-#   # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
-#   - |
-#     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
-#     cd nordvpn-linux; \
-#     git fetch --all --tags && \
-#     git checkout tags/4.2.0 && \
-#     git checkout LVPN-9381-current-libxml-dependency-is-missing; \
-#     cp .env.sample .env; \
-#     rm .env; \
-#     find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
-#     export CGO_CPPFLAGS="${CPPFLAGS}"; \
-#     export CGO_CFLAGS="${CFLAGS}"; \
-#     export CGO_CXXFLAGS="${CXXFLAGS}"; \
-#     export CGO_LDFLAGS="${LDFLAGS}"; \
-#     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-#     mage && mage -v build:binaries build:openvpn build:data;
-#   # completion:
-#   # - |
-#   #   cd nordvpn-linux && \
-#   setup:
-#   - |
-#     cd nordvpn-linux; \
-#     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-#     mkdir -p /usr/lib/nordvpn; \
-#     sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
-#     sed -i 's/"sudo", //g' magefiles/mage.go; \
-#     mage install:binaries;
-#   # - find . || true
-#   # mage install:binaries installs few files only:
-#   #   usr
-#   #   ├── bin
-#   #   │   ├── nordvpn
-#   #   │   └── nordvpnd
-#   #   └── lib
-#   #       └── nordvpn
-#   #           ├── nordfileshare
-#   #           └── norduserd
-#   # - |
-#   #   cp -a bin/amd64/* /usr/bin/; \
-#   #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
-#   #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
-#   #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
-#   #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
-#   #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
-#   #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
-#   excludes:
-#   - ^/usr/lib/systemd/system/pam_namespace.service
-#   - ^/root/
-#   inner_build_reqs:
-#   - dev-lang/rust-bin
-#   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
-#   inner_build_requires:
-#   - <<: *apps-go
-#   - <<: *apps-mage
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+- category: "apps"
+  name: "nordvpn"
+  version: "4.2.1"
+  uri:
+  - https://nordvpn.com
+  - https://github.com/NordSecurity/nordvpn-linux
+  license: "GPL-3.0"
+  description: "NordVPN Linux client"
+  labels:
+    emerge.jobs: "1"
+  ready:
+  - |
+    sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
+    /usr/bin/rustup-init-gentoo -s && \
+    export PATH="${HOME}/.cargo/bin:${PATH}"; \
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
+  # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
+  - |
+    git clone https://github.com/NordSecurity/nordvpn-linux.git && \
+    cd nordvpn-linux; \
+    git fetch --all --tags && \
+    git checkout tags/4.2.1 && \
+    cp .env.sample .env; \
+    sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
+    find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
+    export CGO_CPPFLAGS="${CPPFLAGS}"; \
+    export CGO_CFLAGS="${CFLAGS}"; \
+    export CGO_CXXFLAGS="${CXXFLAGS}"; \
+    export CGO_LDFLAGS="${LDFLAGS}"; \
+    export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
+    mage && mage -v build:binaries build:openvpn build:data;
+  # completion:
+  # - |
+  #   cd nordvpn-linux && \
+  setup:
+  - |
+    cd nordvpn-linux; \
+    export PATH="${HOME}/.cargo/bin:${PATH}"; \
+    mkdir -p /usr/lib/nordvpn; \
+    sed -i 's/systemctl := sh.RunCmd("sudo", "systemctl")/systemctl := sh.RunCmd("echo", "systemctl")/g' magefiles/mage.go; \
+    sed -i 's/"sudo", //g' magefiles/mage.go; \
+    mage install:binaries;
+  # - find . || true
+  # mage install:binaries installs few files only:
+  #   usr
+  #   ├── bin
+  #   │   ├── nordvpn
+  #   │   └── nordvpnd
+  #   └── lib
+  #       └── nordvpn
+  #           ├── nordfileshare
+  #           └── norduserd
+  # - |
+  #   cp -a bin/amd64/* /usr/bin/; \
+  #   cp -a contrib/systemd/system/* /usr/lib/systemd/system/; \
+  #   cp -a contrib/systemd/user/* /usr/lib/systemd/user/; \
+  #   cp -a contrib/systemd/tmpfiles.d/* /usr/lib/systemd/tmpfiles.d/; \
+  #   cp -a contrib/desktop/nordvpn.desktop /usr/share/applications/nordvpn.desktop; \
+  #   cp -a LICENSE.md /usr/share/licenses/nordvpn/LICENSE.md; \
+  #   cp -a contrib/rsa/rsa-key-1.pub /var/lib/nordvpn/data/rsa-key-1.pub
+  # -|
+  # ├── etc
+  # │   └── init.d
+  # │       └── nordvpn
+  # ├── usr
+  # │   ├── bin
+  # │   │   ├── nordvpn
+  # │   │   └── nordvpnd
+  # │   ├── lib
+  # │   │   ├── nordvpn
+  # │   │   │   ├── libmoosenordvpnapp.so
+  # │   │   │   ├── libmooseworker.so
+  # │   │   │   ├── libnorddrop.so
+  # │   │   │   ├── libquench.so
+  # │   │   │   ├── libtelio.so
+  # │   │   │   ├── nordfileshare
+  # │   │   │   ├── norduserd
+  # │   │   │   └── openvpn
+  # │   │   ├── systemd
+  # │   │   │   └── system
+  # │   │   │       ├── nordvpn.service -> /dev/null
+  # │   │   │       ├── nordvpnd.service
+  # │   │   │       └── nordvpnd.socket
+  # │   │   └── tmpfiles.d
+  # │   │       └── nordvpn.conf
+  # │   └── share
+  # │       ├── applications
+  # │       │   └── nordvpn.desktop
+  # │       ├── bash-completion
+  # │       │   └── completions
+  # │       │       └── nordvpn
+  # │       ├── doc
+  # │       │   └── nordvpn
+  # │       │       └── changelog.Debian.gz
+  # │       ├── icons
+  # │       │   └── hicolor
+  # │       │       └── scalable
+  # │       │           └── apps
+  # │       │               ├── nordvpn-tray-black.svg
+  # │       │               ├── nordvpn-tray-blue.svg
+  # │       │               ├── nordvpn-tray-gray.svg
+  # │       │               ├── nordvpn-tray-white.svg
+  # │       │               └── nordvpn.svg
+  # │       ├── licenses
+  # │       │   └── nordvpn
+  # │       │       ├── LICENSE.md
+  # │       │       └── THIRD-PARTY-NOTICES.md
+  # │       ├── man
+  # │       │   └── man1
+  # │       │       └── nordvpn.1.gz
+  # │       └── zsh
+  # │           └── functions
+  # │               └── Completion
+  # │                   └── Unix
+  # │                       └── _nordvpn_auto_complete
+  # └── var
+  #     └── lib
+  #         └── nordvpn
+  #             └── data
+  #                 ├── countries.dat
+  #                 ├── cybersec.dat
+  #                 ├── insights.dat
+  #                 ├── ovpn_template.xslt
+  #                 ├── ovpn_xor_template.xslt
+  #                 └── servers.dat
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
+  - ^/root/
+  inner_build_reqs:
+  - dev-lang/rust-bin
+  - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
+  inner_build_requires:
+  - <<: *apps-go
+  - <<: *apps-mage
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-openra
   category: "apps"
