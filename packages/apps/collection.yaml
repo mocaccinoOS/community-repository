@@ -3963,6 +3963,44 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+
+- category: "apps"
+  name: "BeamMP-Launcher"
+  version: "2.7.0"
+  uri:
+  - https://github.com/BeamMP/BeamMP-Launcher
+  - https://docs.beammp.com/game/getting-started/#2b-linux-installation
+  license: "AGPL-3.0 license"
+  description: "Official BeamMP Launcher"
+  labels:
+    emerge.jobs: "1"
+  ready:
+  - |
+    git clone https://github.com/microsoft/vcpkg.git && \
+    cd vcpkg && \
+    git fetch --all --tags && \
+    git checkout tags/2025.10.17; \
+    cd ..; \
+    ./vcpkg/bootstrap-vcpkg.sh; \
+    export VCPKG_ROOT="$(pwd)/vcpkg"; \
+    export PATH=$VCPKG_ROOT:$PATH; \
+    git clone https://github.com/BeamMP/BeamMP-Launcher.git && \
+    cd BeamMP-Launcher && \
+    git fetch --all --tags && \
+    git checkout tags/v2.7.0; \
+    # By not specifying -DCMAKE_BUILD_TYPE=Release you are building a debug version, which is larger in filesize but does not contain the launcher-can-only-connect-to-a-server-once bug \
+    cmake . -B bin -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux; \
+    cmake --build bin --parallel;
+  setup:
+  - |
+    cd BeamMP-Launcher; && \
+    mkdir -p /opt/beammp-launcher; \
+    cp bin/BeamMP-Launcher /opt/beammp-launcher/;
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "apps"
   name: "billardgl"
   version: "1.75-r2+1"
