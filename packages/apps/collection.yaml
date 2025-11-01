@@ -16537,6 +16537,8 @@ packages:
     git checkout tags/4.2.1; \
     cp .env.sample .env && \
     echo 'CI_COMMIT_TAG=4.2.1' >> .env; \
+    echo 'EVENTS_PROD_DOMAIN=http://example.com' >> .env; \
+    echo 'EVENTS_STAGING_DOMAIN=http://example.com' >> .env; \
     sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
     find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
     export CGO_CPPFLAGS="${CPPFLAGS}"; \
@@ -16549,12 +16551,6 @@ packages:
   # - |
   #   cd nordvpn-linux && \
   setup:
-  - |
-    set -x; \
-    find . -name THIRD-PARTY-NOTICES.md; \
-    find . -name libmoosenordvpnapp.so; \
-    find . -name libmooseworker.so; \
-    find . -name libquench.so;
   - |
     mkdir -p /etc/init.d; \
     cp -r --preserve nordvpn-linux/contrib/initd/nordvpn /etc/init.d/nordvpn; \
@@ -16596,6 +16592,12 @@ packages:
     cp -r --preserve nordvpn-linux/dist/autocomplete/zsh_autocomplete /usr/share/zsh/functions/Completion/Unix/_nordvpn_auto_complete; \
     mkdir -p /var/lib/nordvpn/; \
     cp -r --preserve nordvpn-linux/dist/data /var/lib/nordvpn/;
+  - |
+    set -x; \
+    find . -name THIRD-PARTY-NOTICES.md; \
+    find . -name libmoosenordvpnapp.so; \
+    find . -name libmooseworker.so; \
+    find . -name libquench.so;
   # - |
   #   cd nordvpn-linux; \
   #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
