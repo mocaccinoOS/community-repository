@@ -16536,7 +16536,7 @@ packages:
     git fetch --all --tags && \
     git checkout tags/4.2.1; \
     cp .env.sample .env && \
-    echo 'CI_COMMIT_TAG=4.2.1' > .env; \
+    echo 'CI_COMMIT_TAG=4.2.1' >> .env; \
     sed -i "s/FEATURES=.*/FEATURES=telio drop quench moose/" .env; \
     find . -type f -name "*.sh" -exec sed -i 's/-D_FORTIFY_SOURCE=/-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=/g' {} +; \
     export CGO_CPPFLAGS="${CPPFLAGS}"; \
