@@ -3981,7 +3981,7 @@ packages:
     git fetch --all --tags && \
     git checkout tags/2025.10.17; \
     cd ..; \
-    ./vcpkg/bootstrap-vcpkg.sh; \
+    ./vcpkg/bootstrap-vcpkg.sh -disableMetrics; \
     export VCPKG_ROOT="$(pwd)/vcpkg"; \
     export PATH=$VCPKG_ROOT:$PATH; \
     git clone https://github.com/BeamMP/BeamMP-Launcher.git && \
@@ -3993,13 +3993,13 @@ packages:
     cmake --build bin --parallel;
   setup:
   - |
-    cd BeamMP-Launcher; && \
+    cd BeamMP-Launcher; \
     mkdir -p /opt/beammp-launcher; \
     cp bin/BeamMP-Launcher /opt/beammp-launcher/;
   requires:
   - <<: *layers-system-x
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "billardgl"
