@@ -6712,6 +6712,31 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "lego"
+  version: "4.28.0"
+  uri:
+  - https://github.com/go-acme/lego/
+  license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
+  description: "Let's Encrypt/ACME client (like certbot or acme.sh) and library written in Go"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/lego
+  provides:
+  - category: "app-crypt"
+    name: "lego"
+    version: ">=0"
+  atoms:
+  - atom: "app-crypt/lego"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/go
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "koi"
   version: "0.6"
   uri:
