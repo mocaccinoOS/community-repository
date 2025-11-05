@@ -9707,7 +9707,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.15"
+  version: "5.15.15+1"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9751,6 +9751,7 @@ packages:
   inner_build_reqs:
   - dev-python/python-distutils-extra
   - dev-python/meson-python
+  - dev-cpp/taskflow
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -9802,6 +9803,29 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *buildbase-gnome-common
+
+- &apps-usbview
+  category: "apps"
+  name: "usbview"
+  version: "3.1"
+  uri:
+  - http://www.kroah.com/linux-usb/
+  license: "GPL-2"
+  description: "Display the topology of devices on the USB bus"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-admin/usbview
+  provides:
+  - category: "app-admin"
+    name: "usbview"
+    version: ">=0"
+  inner_build_reqs:
+  - virtual/imagemagick-tools;USE="png,svg"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-vcdimager
   category: "apps"
@@ -12796,7 +12820,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# Unstable for KDE/Qt 6
 - category: "apps"
   name: "musescore"
   version: "4.6.3"
@@ -12815,7 +12838,7 @@ packages:
   atoms:
   - atom: "media-sound/musescore"
     accept_keywords: "~amd64"
-    use: "jack video # test"
+    use: "pipewire video websockets"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-tinyxml2
