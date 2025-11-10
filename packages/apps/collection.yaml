@@ -3272,7 +3272,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "1.0+15"
+  version: "1.1"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3281,19 +3281,15 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/tree-sitter
-      =dev-libs/tree-sitter-bash-0.21*
-      =dev-libs/tree-sitter-c-0.23*
-      =dev-libs/tree-sitter-lua-0.3*
-      =dev-libs/tree-sitter-markdown-0.4*
-      =dev-libs/tree-sitter-query-0.5*
-      =dev-libs/tree-sitter-vim-0.5*
-      =dev-libs/tree-sitter-vimdoc-3*
+      dev-libs/tree-sitter-c
+      dev-libs/tree-sitter-lua
+      dev-libs/tree-sitter-markdown
+      dev-libs/tree-sitter-query
+      dev-libs/tree-sitter-vim
+      dev-libs/tree-sitter-vimdoc
   provides:
   - category: "dev-libs"
     name: "tree-sitter"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "tree-sitter-bash"
     version: ">=0"
   - category: "dev-libs"
     name: "tree-sitter-c"
@@ -5272,7 +5268,7 @@ packages:
 
 - category: "apps"
   name: "fish"
-  version: "4.1.2"
+  version: "4.1.2+1"
   uri:
   - http://fishshell.com/
   license: "GPL-2"
@@ -5285,6 +5281,8 @@ packages:
   - category: "app-shells"
     name: "fish"
     version: ">=0"
+  inner_build_reqs:
+  - dev-lang/rust-bin
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -16475,7 +16473,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.11.4-r1"
+  version: "0.11.4-r1+1"
   uri:
   - https://neovim.io
   license: "Apache-2.0 Boost-1.0 vim"
