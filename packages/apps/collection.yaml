@@ -14587,6 +14587,7 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-qt/qtcharts"
     accept_keywords: "~amd64"
+    use: "qml"
   requires:
   - <<: *layers-kde-kf5
   - <<: *libs-rtl-sdr
@@ -19319,23 +19320,24 @@ packages:
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
-  - https://www.alessandrofrancesconi.it/projects/bimp/
   - https://lensfun.github.io
   - https://github.com/bootchk/resynthesizer
+  # - https://www.alessandrofrancesconi.it/projects/bimp/
+  # - https://github.com/carlobaldassi/liblqr
   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
   description: |
     GNU Image Manipulation Program
-    A GIMP plugin to apply a set of manipulations to groups of images
     Library for rectifying and simulating photographic lens distortions
     Suite of GIMP plugins for texture synthesis
+  # A GIMP plugin to apply a set of manipulations to groups of images
   # Content-aware resizing for the GIMP
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       =media-gfx/gimp-3.0.6
-      media-plugins/gimp-plugin-bimp
       media-libs/lensfun
       media-plugins/gimp-resynthesizer
+    # media-plugins/gimp-plugin-bimp
     # media-plugins/gimp-lqr
   provides:
   - category: "media-gfx"
@@ -19348,8 +19350,8 @@ packages:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
     accept_keywords: "~amd64"
-  - atom: "media-plugins/gimp-plugin-bimp"
-    accept_keywords: "~amd64"
+  # - atom: "media-plugins/gimp-plugin-bimp"
+  #   accept_keywords: "~amd64"
   - atom: "media-plugins/gimp-resynthesizer"
     accept_keywords: "~amd64"
   inner_build_reqs:
@@ -19359,6 +19361,7 @@ packages:
   - <<: *layers-gnome-common
   - <<: *libs-cfitsio
   - <<: *libs-libmypaint
+  # - <<: *libs-liblqr
   - <<: *apps-luajit
   - <<: *apps-mypaint-brushes
   build_requires:
