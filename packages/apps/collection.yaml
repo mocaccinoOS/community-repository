@@ -14561,31 +14561,37 @@ packages:
   - <<: *atom4
   - <<: *atom5
 
-# - category: "apps"
-#   name: "welle-io"
-#   version: "2.2+1"
-#   uri:
-#   - http://www.welle.io
-#   license: "GPL-2"
-#   description: "A DAB/DAB+ Software Radio"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/welle-io
-#   overlays:
-#   - enable: "kripton-overlay"
-#   provides:
-#   - category: "media-sound"
-#     name: "welle-io"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/welle-io"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-kde-kf5
-#   - <<: *libs-rtl-sdr
-#   build_requires:
-#   - <<: *layers-kde-kf5
+- category: "apps"
+  name: "welle-io"
+  version: "2.2+2"
+  uri:
+  - http://www.welle.io
+  license: "GPL-2"
+  description: "A DAB/DAB+ Software Radio"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/welle-io
+  overlays:
+  - enable: "kripton-overlay"
+  - enable: "xoores"
+  provides:
+  - category: "dev-qt"
+    name: "qtcharts"
+    version: ">=0"
+  - category: "media-sound"
+    name: "welle-io"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/welle-io"
+    accept_keywords: "~amd64"
+  - atom: "dev-qt/qtcharts"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-kf5
+  - <<: *libs-rtl-sdr
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "wine-staging"
@@ -19309,26 +19315,42 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.0.6+1"
+  version: "3.0.6+2"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
-  license: "GPL-2 GPL-3 LGPL-3"
+  - https://www.alessandrofrancesconi.it/projects/bimp/
+  - https://lensfun.github.io
+  - https://github.com/bootchk/resynthesizer
+  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
   description: |
     GNU Image Manipulation Program
+    A GIMP plugin to apply a set of manipulations to groups of images
+    Library for rectifying and simulating photographic lens distortions
+    Suite of GIMP plugins for texture synthesis
   # Content-aware resizing for the GIMP
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
       =media-gfx/gimp-3.0.6
+      media-plugins/gimp-plugin-bimp
+      media-libs/lensfun
+      media-plugins/gimp-resynthesizer
     # media-plugins/gimp-lqr
   provides:
   - category: "media-gfx"
     name: "gimp"
     version: ">=0"
+  overlays:
+  - enable: "4nykey"
+  - enable: "guru"
   atoms:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+    accept_keywords: "~amd64"
+  - atom: "media-plugins/gimp-plugin-bimp"
+    accept_keywords: "~amd64"
+  - atom: "media-plugins/gimp-resynthesizer"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-libs/gobject-introspection;USE="doctool"
@@ -19772,45 +19794,46 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-# - &apps-gmic
-#   category: "apps"
-#   name: "gmic"
-#   version: "3.4.2-r101"
-#   uri:
-#   - http://gmic.eu/
-#   - https://github.com/GreycLab/gmic
-#   - https://framagit.org/dtschump/gmic
-#   license: "CeCILL-2 GPL-3"
-#   description: "GREYC's Magic Image Converter"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/gmic
-#   overlays:
-#   - enable: "stefantalpalaru"
-#   provides:
-#   - category: "media-gfx"
-#     name: "gmic"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "cimg"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/gmic"
-#     accept_keywords: "~amd64"
-#     use: "bash-completion cli ffmpeg fftw gimp gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
-#   - atom: "media-libs/cimg"
-#     accept_keywords: "~amd64"
-#   optrequires:
-#   - <<: *apps-gimp
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *layers-qt
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-qt
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-gmic
+  category: "apps"
+  name: "gmic"
+  version: "3.3.5-r101"
+  uri:
+  - http://gmic.eu/
+  - https://github.com/GreycLab/gmic
+  - https://framagit.org/dtschump/gmic
+  license: "CeCILL-2 GPL-3"
+  description: "GREYC's Magic Image Converter"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/gmic
+  overlays:
+  - enable: "xira"
+  provides:
+  - category: "media-gfx"
+    name: "gmic"
+    version: ">=0"
+  - category: "media-libs"
+    name: "cimg"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/gmic"
+    accept_keywords: "~amd64"
+    use: "bash-completion -cli ffmpeg fftw gimp3 gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+  - atom: "media-libs/cimg"
+    accept_keywords: "~amd64"
+  optrequires:
+  - <<: *apps-gimp
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  build_requires:
+  - <<: *buildbase-gnome-common
+  # - <<: *buildbase-qt
+  - <<: *buildbase-kde-kf5
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - &apps-hip
   category: "apps"
