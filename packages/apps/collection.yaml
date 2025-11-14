@@ -697,6 +697,29 @@ packages:
     accept_keywords: "~amd64"
 
 - <<: *fonts
+  name: "metric-fonts"
+  version: "0.1"
+  uri:
+  - https://bugs.chromium.org/p/chromium/issues/detail?id=168879
+  - https://bugs.chromium.org/p/chromium/issues/detail?id=280557
+  license: "Apache-2.0 OFL-1.1"
+  description: |
+    caladea: Open licensed serif font metrically compatible with Cambria
+    carlito: Open licensed sans-serif font metrically compatible with Calibri
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/crosextrafonts-caladea
+      media-fonts/crosextrafonts-carlito
+  provides:
+  - category: "media-fonts"
+    name: "crosextrafonts-caladea"
+    version: ">=0"
+  - category: "media-fonts"
+    name: "crosextrafonts-carlito"
+    version: ">=0"
+
+- <<: *fonts
   name: "noto-cjk"
   version: "20190416+1"
   uri:
@@ -3603,7 +3626,7 @@ packages:
 ################################################################################################################################################################
 ### dep 0 apps ###
 ################################################################################################################################################################
-  
+
 - category: "apps"
   name: "alacritty"
   version: "0.15.1"
@@ -6028,6 +6051,30 @@ packages:
   - atom: "www-client/google-chrome"
     license: "google-chrome"
     use: "-qt5"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+  
+- category: "apps"
+  name: "gpu-screen-recorder"
+  version: "0.15.1"
+  uri:
+  - https://git.dec05eba.com/gpu-screen-recorder/about
+  license: "GPL-3"
+  description: "A screen recorder that has minimal impact on system performance"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/gpu-screen-recorder
+  provides:
+  - category: "media-video"
+    name: "gpu-screen-recorder"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/gpu-screen-recorder"
+    use: "filecaps systemd"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -19797,46 +19844,46 @@ packages:
   build_requires:
   - <<: *layers-gnome
 
-- &apps-gmic
-  category: "apps"
-  name: "gmic"
-  version: "3.3.5-r101+1"
-  uri:
-  - http://gmic.eu/
-  - https://github.com/GreycLab/gmic
-  - https://framagit.org/dtschump/gmic
-  license: "CeCILL-2 GPL-3"
-  description: "GREYC's Magic Image Converter"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/gmic
-  overlays:
-  - enable: "xira"
-  provides:
-  - category: "media-gfx"
-    name: "gmic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "cimg"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/gmic"
-    accept_keywords: "~amd64"
-    use: "bash-completion -cli ffmpeg fftw gimp3 gui jpeg opencv openexr openmp png tiff X # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
-  - atom: "media-libs/cimg"
-    accept_keywords: "~amd64"
-  optrequires:
-  - <<: *apps-gimp
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *layers-qt
-  build_requires:
-  - <<: *buildbase-gnome-common
-  # - <<: *buildbase-qt
-  - <<: *buildbase-kde-kf5
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-gmic
+#   category: "apps"
+#   name: "gmic"
+#   version: "3.3.5-r101+1"
+#   uri:
+#   - http://gmic.eu/
+#   - https://github.com/GreycLab/gmic
+#   - https://framagit.org/dtschump/gmic
+#   license: "CeCILL-2 GPL-3"
+#   description: "GREYC's Magic Image Converter"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/gmic
+#   overlays:
+#   - enable: "xira"
+#   provides:
+#   - category: "media-gfx"
+#     name: "gmic"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "cimg"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/gmic"
+#     accept_keywords: "~amd64"
+#     use: "bash-completion -cli ffmpeg fftw gui jpeg opencv openexr openmp png tiff X # gimp3 # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick"
+#   - atom: "media-libs/cimg"
+#     accept_keywords: "~amd64"
+#   # optrequires:
+#   # - <<: *apps-gimp
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   # - <<: *buildbase-qt
+#   - <<: *buildbase-kde-kf5
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - &apps-hip
   category: "apps"
