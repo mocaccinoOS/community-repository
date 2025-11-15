@@ -12057,6 +12057,45 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "freedv"
+  version: "1.6.0"
+  uri:
+  - https://freedv.org/
+  - https://www.hamlib.github.io
+  license: "LGPL-2.1 LGPL-2+ GPL-2+"
+  description: |
+    FreeDV is a Digital Voice mode for HF radio
+    Experimental Neural Net speech coding for FreeDV
+    Ham radio backend rig control libraries
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-radio/freedv
+  overlays:
+  - enable: "qsx"
+  provides:
+  - category: "media-radio"
+    name: "freedv"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lpcnet-freedv"
+    version: ">=0"
+  - category: "media-libs"
+    name: "hamlib"
+    version: ">=0"
+  atoms:
+  - atom: "media-radio/freedv"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/lpcnet-freedv"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-codec2
+  - <<: *libs-libao
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "gftp"
   version: "2.9.1b-r1"
   uri:
