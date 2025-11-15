@@ -3152,6 +3152,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-rtmidi
+  category: "libs"
+  name: "rtmidi"
+  version: "6.0.0"
+  uri:
+  - https://www.music.mcgill.ca/~gary/rtmidi
+  license: "RtMidi"
+  description: "A set of C++ classes that provide a common API for realtime MIDI input/output"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-libs/rtmidi
+  provides:
+  - category: "media-libs"
+    name: "rtmidi"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/rtmidi"
+    license: "RtMidi"
+    use: "alsa jack"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -7354,37 +7379,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "milkytracker"
-  version: "1.05.01+1"
-  uri:
-  - http://milkytracker.org
-  - https://www.music.mcgill.ca/~gary/rtmidi
-  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT RtMidi"
-  description: |
-    FastTracker 2 inspired music tracker
-    A set of C++ classes that provide a common API for realtime MIDI input/output
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-sound/milkytracker
-  provides:
-  - category: "media-sound"
-    name: "milkytracker"
-    version: ">=0"
-  - category: "media-libs"
-    name: "rtmidi"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/milkytracker"
-    use: "alsa jack"
-  - atom: "media-libs/rtmidi"
-    license: "RtMidi"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "minidlna"
@@ -12704,6 +12698,32 @@ packages:
   - <<: *libs-gpm
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "milkytracker"
+  version: "1.05.01+2"
+  uri:
+  - http://milkytracker.org
+  license: "AIFFWriter.m BSD GPL-3 GPL-3+ LGPL-2.1+ MIT"
+  description: |
+    FastTracker 2 inspired music tracker
+    A set of C++ classes that provide a common API for realtime MIDI input/output
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-sound/milkytracker
+  provides:
+  - category: "media-sound"
+    name: "milkytracker"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/milkytracker"
+    use: "alsa jack"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-rtmidi
+  build_requires:
+  - <<: *layers-X
 
 # - &apps-minecraft-server
 #   category: "apps"
