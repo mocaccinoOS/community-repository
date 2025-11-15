@@ -12056,50 +12056,50 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "freedv"
-  version: "1.6.0"
-  uri:
-  - https://freedv.org/
-  - https://www.hamlib.github.io
-  license: "BSD LGPL-2.1 LGPL-2+ GPL-2+"
-  description: |
-    FreeDV is a Digital Voice mode for HF radio
-    Experimental Neural Net speech coding for FreeDV
-    Ham radio backend rig control libraries
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-radio/freedv
-  overlays:
-  - enable: "qsx"
-  provides:
-  - category: "media-radio"
-    name: "freedv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lpcnet-freedv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "hamlib"
-    version: ">=0"
-  atoms:
-  - atom: "media-radio/freedv"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/lpcnet-freedv"
-    accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
-  - sed -i -e 's/WX_GTK_VER="3.0-gtk3"/WX_GTK_VER="3.2-gtk3"/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
-  - ebuild /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild manifest
-  - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild
-  - ebuild /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild manifest
-  requires:
-  - <<: *layers-X
-  - <<: *libs-codec2
-  - <<: *libs-libao
-  build_requires:
-  - <<: *layers-X
+# - category: "apps"
+#   name: "freedv"
+#   version: "1.6.0"
+#   uri:
+#   - https://freedv.org/
+#   - https://www.hamlib.github.io
+#   license: "BSD LGPL-2.1 LGPL-2+ GPL-2+"
+#   description: |
+#     FreeDV is a Digital Voice mode for HF radio
+#     Experimental Neural Net speech coding for FreeDV
+#     Ham radio backend rig control libraries
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-radio/freedv
+#   overlays:
+#   - enable: "qsx"
+#   provides:
+#   - category: "media-radio"
+#     name: "freedv"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lpcnet-freedv"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "hamlib"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-radio/freedv"
+#     accept_keywords: "~amd64"
+#   - atom: "media-libs/lpcnet-freedv"
+#     accept_keywords: "~amd64"
+#   prepare:
+#   - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
+#   - sed -i -e 's/WX_GTK_VER="3.0-gtk3"/WX_GTK_VER="3.2-gtk3"/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
+#   - ebuild /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild manifest
+#   - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild
+#   - ebuild /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild manifest
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-codec2
+#   - <<: *libs-libao
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "gftp"
@@ -19144,6 +19144,36 @@ packages:
   - <<: *libs-rtl-sdr
   build_requires:
   - <<: *apps-gnuradio
+
+- &apps-sdrpp
+  category: "apps"
+  name: "sdrpp"
+  version: "1.2.0_pre20240607"
+  uri:
+  - https://www.sdrpp.org
+  license: "GPL-3"
+  description: "Cross-Platform SDR Software"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/sdrpp
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "net-wireless"
+    name: "sdrpp"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/sdrpp"
+    accept_keywords: "~amd64"
+    use: "rtlsdr"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-rtaudio
+  - <<: *libs-rtl-sdr
+  - <<: *libs-volk
+  build_requires:
+  - <<: *layers-X
 
 - &apps-hedgewars
   category: "apps"
