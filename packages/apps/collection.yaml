@@ -19182,7 +19182,7 @@ packages:
 - &apps-sdrpp
   category: "apps"
   name: "sdrpp"
-  version: "1.2.0_pre20240607"
+  version: "1.2.0_pre20240607+1"
   uri:
   - https://www.sdrpp.org
   license: "GPL-3"
@@ -19200,7 +19200,9 @@ packages:
   atoms:
   - atom: "net-wireless/sdrpp"
     accept_keywords: "~amd64"
-    use: "rtlsdr"
+    use: "portaudio rtlsdr"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-X
   - <<: *libs-glfw 
