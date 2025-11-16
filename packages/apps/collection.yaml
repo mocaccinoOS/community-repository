@@ -3539,6 +3539,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-uhd
+  category: "libs"
+  name: "uhd"
+  version: "4.8.0.0-r3"
+  uri:
+  - hhttps://kb.ettus.com
+  license: "GPL-3"
+  description: "TUniversal Software Radio Peripheral (USRP) Hardware Driver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/uhd
+  provides:
+  - category: "net-wireless"
+    name: "rtl-uhd"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-vdf
   category: "libs"
   name: "vdf"
