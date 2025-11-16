@@ -1206,26 +1206,26 @@ packages:
 #   build_requires:
 #   - <<: *layers-system-x
 
-- &libs-codec2
-  category: "libs"
-  name: "codec2"
-  version: "1.2.0"
-  uri:
-  - https://freedv.org
-  license: "LGPL-2.1"
-  description: "Low bit rate speech codec"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/codec2
-  provides:
-  - category: "media-libs"
-    name: "codec2"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - &libs-codec2
+#   category: "libs"
+#   name: "codec2"
+#   version: "1.2.0"
+#   uri:
+#   - https://freedv.org
+#   license: "LGPL-2.1"
+#   description: "Low bit rate speech codec"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/codec2
+#   provides:
+#   - category: "media-libs"
+#     name: "codec2"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - &libs-colorama
   category: "libs"
@@ -7924,6 +7924,39 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# gentoo version needs gcc 15 or 16
+# - category: "apps"
+#   name: "onedrive"
+#   version: "2.5.7-r1"
+#   uri:
+#   - https://abraunegg.github.io
+#   license: "GPL-3"
+#   description: "Free Client for OneDrive on Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/onedrive
+#       net-misc/onedrivegui
+#   overlays:
+#   - enable: "dlang"
+#   provides:
+#   - category: "net-misc"
+#     name: "onedrive"
+#     version: ">=0"
+#   - category: "net-misc"
+#     name: "onedrivegui"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/onedrive"
+#     use: "libnotify"
+#     accept_keywords: "~amd64"
+#   - atom: "net-misc/onedrivegui"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
+
 - &apps-pandoc
   category: "apps"
   name: "pandoc"
@@ -12095,11 +12128,12 @@ packages:
 #   - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild
 #   - ebuild /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild manifest
 #   requires:
-#   - <<: *layers-X
+#   - <<: *layers-gnome-common
 #   - <<: *libs-codec2
 #   - <<: *libs-libao
+#   - <<: *libs-wxGTK
 #   build_requires:
-#   - <<: *layers-X
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "gftp"
@@ -19167,8 +19201,6 @@ packages:
   - atom: "net-wireless/sdrpp"
     accept_keywords: "~amd64"
     use: "rtlsdr"
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-X
   - <<: *libs-glfw 
