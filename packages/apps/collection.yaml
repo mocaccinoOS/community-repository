@@ -11161,6 +11161,38 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-soapysdr
+  category: "libs"
+  name: "soapysdr"
+  version: "0.8.1-r2"
+  uri:
+  - https://github.com/pothosware/SoapySDR
+  license: "Boost-1.0"
+  description: "Vendor and platform neutral SDR support library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/soapysdr
+  provides:
+  - category: "net-wireless"
+    name: "soapysdr"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "soapyrtlsdr"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "soapyuhd"
+    version: ">=0"   
+  atoms:
+  - atom: "net-wireless/soapysdr"
+    use: "rtlsdr uhd # bladerf hackrf plutosdr"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-rtl-sdr
+  - <<: *libs-uhd
+  build_requires:
+  - <<: *layers-system-x
+
 # may be included in its referring package
 - &libs-tiff-compat
   category: "libs"
