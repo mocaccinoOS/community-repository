@@ -2597,9 +2597,9 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-lttng-ust-2_12
+- &libs-lttng-ust
   category: "libs"
-  name: "lttng-ust-2_12"
+  name: "lttng-ust"
   version: "2.12.9"
   uri:
   - https://lttng.org
@@ -4769,7 +4769,7 @@ packages:
 - &apps-dotnet-common
   category: "apps"
   name: "dotnet-common"
-  version: "0.6+2"
+  version: "0.6+5"
   uri:
   - https://gitlab.gentoo.org/dotnet/eselect-dotnet/
   - https://dotnet.microsoft.com/
@@ -4800,7 +4800,7 @@ packages:
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.11"
+  version: "8.0.8"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -4809,9 +4809,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      ~dev-dotnet/dotnet-runtime-nugets-6.0.32
+      ~dev-dotnet/dotnet-runtime-nugets-6.0.33
       ~dev-dotnet/dotnet-runtime-nugets-7.0.20
-      dev-dotnet/dotnet-runtime-nugets:8.0.7
+      dev-dotnet/dotnet-runtime-nugets:8.0.8
   provides:
   - category: "dev-dotnet"
     name: "dotnet-runtime-nugets"
@@ -11903,7 +11903,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417-r4+5"
+  version: "6.0.417-r5"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11924,14 +11924,14 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
-  - <<: *libs-lttng-ust-2_12
+  - <<: *libs-lttng-ust
   build_requires:
   - <<: *layers-sys-fs
 
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.107+12"
+  version: "8.0.108-r1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11953,7 +11953,7 @@ packages:
   - <<: *layers-sys-fs
   - <<: *apps-dotnet-common
   - <<: *apps-dotnet-runtime-nugets-8
-  - <<: *libs-lttng-ust-2_12
+  - <<: *libs-lttng-ust
   build_requires:
   - <<: *layers-sys-fs
 
@@ -16965,7 +16965,7 @@ packages:
 - &apps-openra
   category: "apps"
   name: "openra"
-  version: "20231010-r2"
+  version: "20250330"
   uri:
   - https://www.openra.net/
   license: "Apache-2.0 vim"
@@ -16981,11 +16981,15 @@ packages:
   atoms:
   - atom: "games-strategy/openra"
     accept_keywords: "~amd64"
+  prepare:
+  - cp -r tree/games-strategy/openra /var/db/repos/openra/games-strategy
+  - ebuild /var/db/repos/gentoo/games-strategy/openra/openra-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
-  - <<: *apps-dotnet-6
+  # - <<: *apps-dotnet-6
+  - <<: *apps-dotnet-8
   build_requires:
   - <<: *layers-X
 
