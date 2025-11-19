@@ -7921,6 +7921,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "numactl"
+  version: "2.0.19"
+  uri:
+  - https://github.com/numactl/numactl
+  license: "GPL-2"
+  description: "Utilities and libraries for NUMA systems"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-process/numactl
+  provides:
+  - category: "sys-process"
+    name: "numactl"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-nx
   category: "apps"
   name: "nx"
@@ -13730,7 +13750,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "18.1"
+  version: "18.1+1"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -13755,6 +13775,7 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
+  - <<: *apps-numactl
   - category: "entity"
     name: "postgres"
     version: ">=0"
@@ -15264,6 +15285,8 @@ packages:
   - atom: "media-sound/dcaenc"
     use: "alsa"
     accept_keywords: "~amd64"
+  - atom: "media-libs/aften"
+    accept_keywords: "~amd64"
   - atom: "media-libs/avidemux-plugins"
     use: "aften amr dcaenc fdk fribidi gui twolame vpx x265 a52 aac alsa debug dts fontconfig jack lame libsamplerate opengl opus oss pulseaudio truetype vdpau vorbis x264 xv xvid mmx"
     accept_keywords: "~amd64"
@@ -15273,13 +15296,11 @@ packages:
   inner_build_reqs:
   - dev-lang/yasm
   requires:
-  # - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
   - <<: *libs-libmp4v2
   - <<: *apps-twolame
   build_requires:
-  # - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt
 
 - category: "apps"
   name: "bat"
@@ -16984,7 +17005,7 @@ packages:
   prepare:
   - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz 
   - cp -r tree/games-strategy/openra /var/db/repos/gentoo/games-strategy
-  - ebuild /var/db/repos/gentoo/games-strategy/openra/openra-*.ebuild manifest
+  - ebuild /var/db/repos/gentoo/games-strategy/openra/openra-*.ebuild digest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
@@ -20155,7 +20176,7 @@ packages:
 - &apps-hip
   category: "apps"
   name: "hip"
-  version: "7.1.0"
+  version: "7.1.0+1"
   uri:
   - https://github.com/ROCm/clr
   license: "Apache-2.0 MIT"
@@ -20186,9 +20207,6 @@ packages:
   - category: "dev-util"
     name: "rocminfo"
     version: ">=0"
-  - category: "sys-process"
-    name: "numactl"
-    version: ">=0"
   - category: "llvm-core"
     name: "lld"
     version: ">=0"
@@ -20217,6 +20235,7 @@ packages:
   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-X
+  - <<: *apps-numactl
   build_requires:
   - <<: *layers-X
 
