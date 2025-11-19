@@ -15289,7 +15289,7 @@ packages:
   - atom: "media-libs/aften"
     accept_keywords: "~amd64"
   - atom: "media-libs/avidemux-plugins"
-    use: "aften amr dcaenc fdk fribidi gui twolame vpx x265 a52 aac alsa debug dts fontconfig jack lame libsamplerate opengl opus oss pulseaudio truetype vdpau vorbis x264 xv xvid mmx"
+    use: "aften amr dcaenc fdk fribidi gui twolame vpx x265 a52 aac alsa debug dts fontconfig jack lame libsamplerate opengl opus oss pulseaudio truetype vaapi vdpau vorbis x264 xv xvid mmx"
     accept_keywords: "~amd64"
   - atom: "media-video/avidemux"
     use: "gui nls opengl sdl vaapi vdpau xv"
@@ -17004,9 +17004,12 @@ packages:
   - atom: "games-strategy/openra"
     accept_keywords: "~amd64"
   prepare:
-  - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz 
-  - cp -r tree/games-strategy/openra /var/db/repos/gentoo/games-strategy
-  - ebuild /var/db/repos/gentoo/games-strategy/openra/openra-*.ebuild digest
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/games-strategy
+  - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
