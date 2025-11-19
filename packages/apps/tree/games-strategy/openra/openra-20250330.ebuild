@@ -68,6 +68,7 @@ BDEPEND="
 
 CHECKREQS_DISK_BUILD="2G"
 PATCHES=(
+	"${FILESDIR}/${PN}-20231010-configure-system-libraries.patch"
 	"${FILESDIR}/${PN}-20231010-makefile.patch"
 	"${FILESDIR}/${PN}-20231010-packaging-functions.patch"
 	"${FILESDIR}/${PN}-20231010-handle-multilib.patch"

@@ -1419,30 +1419,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-freeradius-client
-  category: "apps"
-  name: "freeradius-client"
-  version: "1.1.8"
-  uri:
-  - https://wiki.freeradius.org/project/Radiusclient
-  license: "BSD"
-  description: "FreeRADIUS Client framework"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-dialup/freeradius-client
-  provides:
-  - category: "net-dialup"
-    name: "freeradius-client"
-    version: ">=0"
-  atoms:
-  - atom: "net-dialup/freeradius-client"
-    use: "scp shadow"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-game-music-emu
   category: "libs"
   name: "game-music-emu"
@@ -16644,12 +16620,13 @@ packages:
 - &apps-nagios
   category: "apps"
   name: "nagios"
-  version: "4.5.8"
+  version: "4.5.9"
   uri:
   - https://www.nagios.org/
   - https://www.monitoring-plugins.org/
   - https://github.com/matteocorti/check_lm_sensors
   - https://uriparser.github.io/
+  - https://wiki.freeradius.org/project/Radiusclient
   - https://metacpan.org/release/Monitoring-Plugin
   - https://metacpan.org/release/Crypt-DES
   - https://metacpan.org/release/Crypt-Rijndael
@@ -16661,6 +16638,7 @@ packages:
     Nagios core - monitoring daemon, web GUI, and documentation
     Official plugins for Nagios
     50+ standard plugins for Icinga, Naemon, Nagios, Shinken, Sensu
+    FreeRADIUS Client framework
     Nagios plugin to monitor the values of onboard sensors and disk temperatures
     Strictly RFC 3986 compliant URI parsing library in C
     Modules to streamline Nagios, Icinga, Shinken, etc. plugins
@@ -16707,20 +16685,26 @@ packages:
   - category: "dev-perl"
     name: "Digest-SHA1"
     version: ">=0"
+  - category: "net-dialup"
+    name: "freeradius-client"
+    version: ">=0"
   - category: "virtual"
     name: "perl-Digest"
     version: ">=0"
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
     use: "curl gnutls ipv6 ldap mysql radius samba ssl dns fping snmp ssh # game postgres"
+  - atom: "net-analyzer/nagios"
+    accept_keywords: "~amd64"
   # media-libs/gd needs png flag
   # - atom: "net-analyzer/nagios-core"
   #   use: "apache2 classicui web # lighttpd vim-syntax"
   - atom: "net-analyzer/nagios-plugins"
-    use: "ldap mysql radius samba ssl ipv6 nagios-dns nagios-ping snmp ssh # postgres selinux nagios-game"
-    accept_keywords: "~amd64"
+    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping snmp ssh # radius # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
+  - atom: "net-dialup/freeradius-client"
+    use: "scp shadow"
   - atom: "dev-libs/uriparser"
     use: "-doc -qt5 unicode"
   requires:
@@ -16728,13 +16712,12 @@ packages:
   - <<: *apps-bind-tools
   - <<: *apps-fping
   - <<: *apps-net-snmp
-  - <<: *libs-freeradius-client
   - category: "entity"
     name: "nagios"
     version: ">=0"
   build_requires:
   - <<: *layers-perl-libs
-
+  
 - &apps-neovim
   category: "apps"
   name: "neovim"
@@ -17010,6 +16993,7 @@ packages:
   - mkdir -p /var/db/repos/local/games-strategy
   - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
   - chown -R portage:portage /var/db/repos/local
+  - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
   - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
