@@ -166,11 +166,9 @@ PATCHES=(
 DOCS=( AUTHORS CODE_OF_CONDUCT.md CONTRIBUTING.md README.md )
 
 pkg_setup() {
-	echo "pkg_setup >"
 	check-reqs_pkg_setup
 	dotnet-pkg_pkg_setup
 	lua-single_pkg_setup
-	echo "pkg_setup <"
 }
 
 src_unpack() {
@@ -182,14 +180,11 @@ src_unpack() {
 }
 
 src_compile() {
-	echo "src_compile >"
 	emake VERSION="release-${PV}" version
 	emake RUNTIME=net8
-	echo "src_compile <"
 }
 
 src_install() {
-	echo "src_install >"
 	local openra_home="/usr/lib/${PN}"
 
 	# We compiled to "bin", not standard "dotnet-pkg" path.
@@ -197,14 +192,10 @@ src_install() {
 	cp -r bin "${ED}/usr/share/${P}" || die
 
 	# This is used by "linux-shortcuts" (see below make-install).
-	echo "dotnet-pkg-base_launcherinto"
 	dotnet-pkg-base_launcherinto "${openra_home}"
-	echo "dotnet-pkg-base_dolauncher"
 	dotnet-pkg-base_dolauncher "/usr/share/${P}/OpenRA" OpenRA
-	echo "dotnet-pkg-base_dolauncher"
 	dotnet-pkg-base_dolauncher "/usr/share/${P}/OpenRA.Server" OpenRA.Server
 
-	echo "emake"
 	emake DESTDIR="${ED}" RUNTIME=net8 prefix=/usr bindir=/usr/bin \
 		  install install-linux-shortcuts install-linux-appdata install-man
 
@@ -222,5 +213,4 @@ src_install() {
 	done
 
 	einstalldocs
-	echo "src_install <"
 }

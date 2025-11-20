@@ -16992,7 +16992,7 @@ packages:
 - &apps-openra
   category: "apps"
   name: "openra"
-  version: "20250330+2"
+  version: "20231010-r2+1"
   uri:
   - https://www.openra.net/
   license: "Apache-2.0 vim"
@@ -17000,7 +17000,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      games-strategy/openra::local
+      games-strategy/openra
   provides:
   - category: "games-strategy"
     name: "openra"
@@ -17008,22 +17008,49 @@ packages:
   atoms:
   - atom: "games-strategy/openra"
     accept_keywords: "~amd64"
-  prepare:
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/games-strategy
-  - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
-  - chown -R portage:portage /var/db/repos/local
-  - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
-  - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz
-  - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
-  - <<: *apps-dotnet-8
+  - <<: *apps-dotnet-6
   build_requires:
   - <<: *layers-X
+
+# - &apps-openra
+#   category: "apps"
+#   name: "openra"
+#   version: "20250330+2"
+#   uri:
+#   - https://www.openra.net/
+#   license: "Apache-2.0 vim"
+#   description: "A free RTS engine supporting games like Command & Conquer, Red Alert and Dune2k"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/openra::local
+#   provides:
+#   - category: "games-strategy"
+#     name: "openra"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/openra"
+#     accept_keywords: "~amd64"
+#   prepare:
+#   - emerge -1 app-eselect/eselect-repository
+#   - eselect repository create local
+#   - mkdir -p /var/db/repos/local/games-strategy
+#   - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
+#   - chown -R portage:portage /var/db/repos/local
+#   - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
+#   - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz
+#   - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
+#   inner_build_requires:
+#   - <<: *apps-csharp-gentoodotnetinfo
+#   requires:
+#   - <<: *layers-X
+#   - <<: *apps-dotnet-8
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "plasma-firewall"
