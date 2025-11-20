@@ -9,8 +9,8 @@ DOTNET_PKG_COMPAT=8.0
 NUGETS="
 discordrichpresence@1.2.1.24
 linguini.bundle@0.8.1
-linguini.shared@0.8.1
-linguini.syntax@0.8.1
+linguini.shared@0.8.0
+linguini.syntax@0.8.0
 microsoft.extensions.dependencymodel@6.0.2
 microsoft.netcore.platforms@1.1.0
 microsoft.netcore.platforms@1.1.1
