@@ -14138,6 +14138,27 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "schismtracker"
+  version: "20250208"
+  uri:
+  - http://schismtracker.org/
+  license: "GPL-2 LGPL-2 public-domain"
+  description: "Free implementation of Impulse Tracker, a tool used to create high quality music"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/schismtracker
+  provides:
+  - category: "media-sound"
+    name: "schismtracker"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libutf8proc
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "shntool"
   version: "3.0.10-r3+1"
   uri:
