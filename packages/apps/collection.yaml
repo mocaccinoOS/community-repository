@@ -16994,7 +16994,8 @@ packages:
   - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
   - chown -R portage:portage /var/db/repos/local
   - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
-  - ebuild /var/db/repos/local/games-strategy/openra/openra-20250330.ebuild manifest
+  - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz
+  - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
