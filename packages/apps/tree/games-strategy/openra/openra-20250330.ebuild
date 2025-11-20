@@ -21,7 +21,7 @@ microsoft.win32.registry@5.0.0
 mono.nat@3.0.4
 mp3sharp@1.0.5
 newtonsoft.json@13.0.1
-nuget.commandline@6.12.2
+nuget.commandline@6.12.1
 nvorbis@0.10.5
 openra-eluant@1.0.22
 openra-freetype6@1.0.11
@@ -30,8 +30,8 @@ openra-openal-cs@1.0.22
 openra-sdl2-cs@1.0.42
 pfim@0.11.3
 rix0rrr.beaconlib@1.0.2
-roslynator.analyzers@4.13.0
-roslynator.formatting.analyzers@4.13.0
+roslynator.analyzers@4.2.0
+roslynator.formatting.analyzers@4.2.0
 runtime.any.system.collections@4.3.0
 runtime.any.system.diagnostics.tracing@4.3.0
 runtime.any.system.globalization.calendars@4.3.0
@@ -69,7 +69,7 @@ runtime.unix.system.private.uri@4.3.0
 runtime.unix.system.runtime.extensions@4.3.0
 sharpziplib@1.4.2
 stylecop.analyzers.unstable@1.2.0.435
-stylecop.analyzers@1.2.0-beta.556
+stylecop.analyzers@1.2.0-beta.435
 system.buffers@4.3.0
 system.buffers@4.5.1
 system.collections.concurrent@4.3.0
@@ -110,9 +110,9 @@ system.security.cryptography.x509certificates@4.3.0
 system.security.principal.windows@5.0.0
 system.text.encoding.extensions@4.3.0
 system.text.encoding@4.3.0
-system.text.encodings.web@6.0.0
-system.text.json@6.0.0
-system.threading.channels@9.0.0
+system.text.encodings.web@6.0.1
+system.text.json@6.0.11
+system.threading.channels@6.0.0
 system.threading.tasks@4.3.0
 system.threading@4.3.0
 system.valuetuple@4.5.0
