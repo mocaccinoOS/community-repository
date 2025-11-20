@@ -181,7 +181,7 @@ src_unpack() {
 
 src_compile() {
 	emake VERSION="release-${PV}" version
-	emake RUNTIME=net6
+	emake RUNTIME=net8
 }
 
 src_install() {
@@ -196,7 +196,7 @@ src_install() {
 	dotnet-pkg-base_dolauncher "/usr/share/${P}/OpenRA" OpenRA
 	dotnet-pkg-base_dolauncher "/usr/share/${P}/OpenRA.Server" OpenRA.Server
 
-	emake DESTDIR="${ED}" RUNTIME=net6 prefix=/usr bindir=/usr/bin \
+	emake DESTDIR="${ED}" RUNTIME=net8 prefix=/usr bindir=/usr/bin \
 		  install install-linux-shortcuts install-linux-appdata install-man
 
 	local -a assets=(
