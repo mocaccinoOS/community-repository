@@ -11900,7 +11900,7 @@ packages:
 - &apps-dotnet-6
   category: "apps"
   name: "dotnet-sdk-6"
-  version: "6.0.417-r5"
+  version: "6.0.417-r5+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11914,8 +11914,8 @@ packages:
     name: "dotnet-sdk-bin"
     version: ">=0"
   prepare:
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-6.0.417-r4.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild manifest
   inner_build_reqs:
   - dev-util/patchelf
   requires:
@@ -11928,7 +11928,7 @@ packages:
 - &apps-dotnet-8
   category: "apps"
   name: "dotnet-sdk-8"
-  version: "8.0.108-r1"
+  version: "8.0.108-r1+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -11942,8 +11942,8 @@ packages:
     name: "dotnet-sdk-bin"
     version: ">=0"
   prepare:
-  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-8.0.101-r3.ebuild manifest
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild manifest
   inner_build_reqs:
   - dev-util/patchelf
   requires:
@@ -16979,7 +16979,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      games-strategy/openra
+      games-strategy/openra::local
   provides:
   - category: "games-strategy"
     name: "openra"
@@ -16994,12 +16994,11 @@ packages:
   - cp -r tree/games-strategy/openra /var/db/repos/local/games-strategy
   - chown -R portage:portage /var/db/repos/local
   - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
-  - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
+  - ebuild /var/db/repos/local/games-strategy/openra/openra-20250330.ebuild manifest
   inner_build_requires:
   - <<: *apps-csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
-  # - <<: *apps-dotnet-6
   - <<: *apps-dotnet-8
   build_requires:
   - <<: *layers-X
