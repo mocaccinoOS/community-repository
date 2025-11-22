@@ -262,37 +262,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# https://bugs.gentoo.org/768993
-- &libs-gtk2
-  category: "libs"
-  name: "gtk2"
-  version: "2.24.33-r3+10"
-  uri:
-  - https://www.gtk.org
-  license: "LGPL-2+"
-  description: "Gimp ToolKit +"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-libs/gtk+:2
-  provides:
-  - category: "x11-libs"
-    name: "gtk+"
-    version: ">=0"
-  - category: "x11-themes"
-    name: "gnome-themes-standard"
-    version: ">=0"
-  - category: "x11-themes"
-    name: "gtk-engines-adwaita"
-    version: ">=0"
-  prepare:
-  - sed -i -e 's/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || die/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || true/' /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild
-  - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -380,11 +349,10 @@ packages:
 ## layers ###
 ################################################################################
 
-# # gtk+ 2 required by dev-db/libiodbc, dev-db/libiodbc required by dev-libs/redland
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.2+16"
+  version: "1.2+17"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -523,7 +491,7 @@ packages:
   - atom: "media-libs/libzmf"
     use: "tools"
   - atom: "dev-db/libiodbc"
-    use: "gtk"
+    use: "-gtk"
   - atom: "dev-libs/rasqal"
     use: "crypt gmp mhash pcre xml"
   - atom: "dev-libs/redland"
@@ -536,7 +504,6 @@ packages:
     use: "tools"
   requires:
   - <<: *layers-X
-  - <<: *libs-gtk2
   - <<: *libs-raptor
   - <<: *libs-mhash
   build_requires:
@@ -719,7 +686,7 @@ packages:
     use: "double-precision int64 openmp"
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
-    use: "cairo gtk3 # excel latex qt5 qt6 tk webagg wxwidgets"
+    use: "cairo gtk3 # excel latex qt6 tk webagg wxwidgets"
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf # mpi"
   - atom: "sci-libs/spqr"
