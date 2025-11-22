@@ -380,10 +380,11 @@ packages:
 ## layers ###
 ################################################################################
 
+# # gtk+ 2 required by dev-db/libiodbc, dev-db/libiodbc required by dev-libs/redland
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.2+15"
+  version: "1.2+16"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -522,7 +523,7 @@ packages:
   - atom: "media-libs/libzmf"
     use: "tools"
   - atom: "dev-db/libiodbc"
-    use: "-gtk"
+    use: "gtk"
   - atom: "dev-libs/rasqal"
     use: "crypt gmp mhash pcre xml"
   - atom: "dev-libs/redland"
@@ -535,6 +536,7 @@ packages:
     use: "tools"
   requires:
   - <<: *layers-X
+  - <<: *libs-gtk2
   - <<: *libs-raptor
   - <<: *libs-mhash
   build_requires:
