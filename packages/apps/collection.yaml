@@ -12460,13 +12460,33 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "libiodbc-gui"
+  version: "3.52.15-r1"
+  uri:
+  - https://www.iodbc.org/
+  license: "MIT"
+  description: "ODBC Interface for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/libiodbc
+  provides:
+  - category: "dev-db"
+    name: "libiodbc"
+    version: ">=0"
+  requires:
+  - <<: *layers-office-common
+  - <<: *libs-gtk2
+  build_requires:
+  - <<: *layers-office-common
+
+- category: "apps"
   name: "isomaster"
   version: "1.3.17-r1+1"
   uri:
   - http://littlesvr.ca/isomaster
   license: "MIT"
-  description: |
-    Graphical CD image editor for reading, modifying and writing ISO images
+  description: "Graphical CD image editor for reading, modifying and writing ISO images"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
