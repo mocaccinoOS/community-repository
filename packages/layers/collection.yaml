@@ -233,6 +233,19 @@ stubs:
 ### apps ###
 ################################################################################
 
+- &apps-iodbc
+  category: "apps"
+  name: "libiodbc"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-db/libiodbc
+  atoms:
+  - atom: "dev-db/libiodbc"
+    use: "-gtk"
+
+
 packages:
 
 ################################################################################################################################################################
@@ -338,6 +351,10 @@ packages:
   - <<: *layers-X
 
 ################################################################################################################################################################
+### dep 0 apps ###
+################################################################################################################################################################
+
+################################################################################################################################################################
 ### dep 1 libs ###
 ################################################################################################################################################################
 
@@ -352,7 +369,7 @@ packages:
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "1.2+17"
+  version: "1.2+18"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -367,7 +384,6 @@ packages:
   - https://sourceforge.net/p/libwps/wiki/Home/
   - https://github.com/hunspell/mythes
   - http://clucene.sourceforge.net/
-  - http://www.iodbc.org/
   - https://gitlab.com/mdds/mdds
   - http://librdf.org/rasqal/
   - http://librdf.org/
@@ -413,7 +429,6 @@ packages:
       app-text/libwps
       app-text/mythes
       dev-cpp/clucene
-      dev-db/libiodbc
       dev-util/mdds
       dev-libs/rasqal
       dev-libs/redland
@@ -466,9 +481,6 @@ packages:
   - category: "dev-libs"
     name: "redland"
     version: ">=0"
-  - category: "dev-db"
-    name: "libiodbc"
-    version: ">=0"
   - category: "dev-util"
     name: "mdds"
     version: ">=0"
@@ -490,8 +502,6 @@ packages:
     use: "tools"
   - atom: "media-libs/libzmf"
     use: "tools"
-  - atom: "dev-db/libiodbc"
-    use: "-gtk"
   - atom: "dev-libs/rasqal"
     use: "crypt gmp mhash pcre xml"
   - atom: "dev-libs/redland"
@@ -504,6 +514,7 @@ packages:
     use: "tools"
   requires:
   - <<: *layers-X
+  - <<: *apps-iodbc
   - <<: *libs-raptor
   - <<: *libs-mhash
   build_requires:
