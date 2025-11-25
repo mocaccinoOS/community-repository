@@ -10171,7 +10171,7 @@ packages:
 
 - category: "apps"
   name: "wezterm"
-  version: "20240203.110809-r1+1"
+  version: "20240203.110809-r1+2"
   uri:
   - https://wezfurlong.org/wezterm/
   - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
@@ -10194,6 +10194,9 @@ packages:
   - atom: "x11-terms/wezterm"
     use: "wayland"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - x11-apps/xcursorgen
+  - dev-lang/rust-bin
   requires:
   - <<: *layers-X
   - <<: *fonts-jetbrains-mono
