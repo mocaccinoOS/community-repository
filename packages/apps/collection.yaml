@@ -10171,7 +10171,7 @@ packages:
 
 - category: "apps"
   name: "wezterm"
-  version: "20240203.110809-r1"
+  version: "20240203.110809-r1+1"
   uri:
   - https://wezfurlong.org/wezterm/
   - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
@@ -16394,7 +16394,7 @@ packages:
   - atom: "dev-libs/xmlsec"
     use: "gcrypt gnutls nss openssl"
   prepare:
-  - sed -i -e '/virtual\/jdk\:21/a \n\t\t   virtual\/jdk\:25' /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild
+  - sed -i -e '/virtual\/jdk\:21/a \\t\t   virtual\/jdk\:25' /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild
   - ebuild /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild manifest
   inner_build_reqs:
   - *layers-java-packages
