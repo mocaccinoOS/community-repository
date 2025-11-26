@@ -188,11 +188,6 @@ entity "freeimage" as libs/freeimage << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
-entity "freeradius-client" as apps/freeradius-client << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> net-dialup-freeradius-client
-..
-  <color:#9ACD32><U+2756></color> layers-system-x
-}
 entity "game-music-emu" as libs/game-music-emu << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-game-music-emu
 ..
@@ -228,6 +223,13 @@ entity "gst-plugins-srtp" as libs/gst-plugins-srtp << (l,#FF7700) >> {
 }
 entity "gst-plugins-v4l2" as libs/gst-plugins-v4l2 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-plugins-gst-plugins-v4l2
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "gtk2" as libs/gtk2 << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> x11-libs-gtk+
+  <color:#34495E><U+24DF></color> x11-themes-gnome-themes-standard
+  <color:#34495E><U+24DF></color> x11-themes-gtk-engines-adwaita
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -328,12 +330,6 @@ entity "libgit2" as libs/libgit2 << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> net-libs-llhttp
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
-}
-entity "libglade" as libs/libglade << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> gnome-base-libglade
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-gtk2
 }
 entity "libgpod" as libs/libgpod << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libgpod
@@ -446,7 +442,7 @@ entity "lrzsz" as libs/lrzsz << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
-entity "lttng-ust-2_12" as libs/lttng-ust-2_12 << (l,#FF7700) >> {
+entity "lttng-ust" as libs/lttng-ust << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-util-lttng-ust
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
@@ -1572,6 +1568,11 @@ entity "nrg2iso" as apps/nrg2iso << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "numactl" as apps/numactl << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> sys-process-numactl
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "nx" as apps/nx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-misc-nx
 ..
@@ -2027,6 +2028,14 @@ entity "weechat" as apps/weechat << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "wezterm" as apps/wezterm << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-terms-wezterm
+  <color:#34495E><U+24DF></color> x11-themes-xcursor-themes
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#48D1CC><U+24D5></color> fonts-jetbrains-mono
+  <color:#48D1CC><U+24D5></color> fonts-roboto
+}
 entity "wireshark" as apps/wireshark << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-analyzer-wireshark
 ..
@@ -2167,6 +2176,12 @@ entity "libcaca" as libs/libcaca << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "libglade" as libs/libglade << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> gnome-base-libglade
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-gtk2
+}
 entity "liblrdf" as libs/liblrdf << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-liblrdf
 ..
@@ -2242,6 +2257,15 @@ entity "rubberband" as libs/rubberband << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-vamp-plugin-sdk
 }
+entity "soapysdr" as libs/soapysdr << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> net-wireless-soapysdr
+  <color:#34495E><U+24DF></color> net-wireless-soapyrtlsdr
+  <color:#34495E><U+24DF></color> net-wireless-soapyuhd
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+  <color:#FF7700><U+1F79B></color> libs-rtl-sdr
+  <color:#FF7700><U+1F79B></color> libs-uhd
+}
 entity "tiff-compat" as libs/tiff-compat << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-tiff-compat
   <color:#34495E><U+24DF></color> media-libs-jbigkit
@@ -2300,12 +2324,6 @@ entity "biglybt" as apps/biglybt << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-java
   <color:#FF7700><U+1F79B></color> libs-bcprov
-}
-entity "cairo-clock" as apps/cairo-clock << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> x11-misc-cairo-clock
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-libglade
 }
 entity "cairo-dock" as apps/cairo-dock << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-cairo-dock
@@ -2379,7 +2397,7 @@ entity "dotnet-sdk-6" as apps/dotnet-sdk-6 << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
   <color:#FF00FF><U+25C9></color> apps-dotnet-common
-  <color:#FF7700><U+1F79B></color> libs-lttng-ust-2_12
+  <color:#FF7700><U+1F79B></color> libs-lttng-ust
 }
 entity "dotnet-sdk-8" as apps/dotnet-sdk-8 << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-dotnet-dotnet-sdk-bin
@@ -2387,7 +2405,7 @@ entity "dotnet-sdk-8" as apps/dotnet-sdk-8 << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-sys-fs
   <color:#FF00FF><U+25C9></color> apps-dotnet-common
   <color:#FF00FF><U+25C9></color> apps-dotnet-runtime-nugets-8
-  <color:#FF7700><U+1F79B></color> libs-lttng-ust-2_12
+  <color:#FF7700><U+1F79B></color> libs-lttng-ust
 }
 entity "duf" as apps/duf << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sys-fs-duf
@@ -2505,6 +2523,18 @@ entity "hexchat" as apps/hexchat << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-gtk2
 }
+entity "libiodbc" as apps/libiodbc << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-db-libiodbc
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "libiodbc-gui" as apps/libiodbc-gui << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-db-libiodbc
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-gtk2
+  <color:#FF00FF><U+25C9></color> apps-libiodbc
+}
 entity "isomaster" as apps/isomaster << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-cdr-isomaster
 ..
@@ -2577,12 +2607,6 @@ entity "links" as apps/links << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-AOMediaCodecs
   <color:#FF7700><U+1F79B></color> libs-gpm
-}
-entity "linux-wbfs-manager" as apps/linux-wbfs-manager << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> games-util-linux-wbfs-manager
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-libglade
 }
 entity "mage" as apps/mage << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-build-mage
@@ -2816,6 +2840,7 @@ entity "postgresql" as apps/postgresql << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-sys-fs
   <color:#FF7700><U+1F79B></color> libs-ossp-uuid
+  <color:#FF00FF><U+25C9></color> apps-numactl
   <color:#5DADE2><U+24D4></color> entity-postgres
 }
 entity "powerpanel" as apps/powerpanel << (a,#FF00FF) >> {
@@ -2887,18 +2912,18 @@ entity "remmina" as apps/remmina << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#9ACD32><U+2756></color> layers-qemu
 }
-entity "rotoscope" as apps/rotoscope << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-gfx-rotoscope
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-libglade
-}
 entity "rust-bin" as apps/rust-bin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-eselect-eselect-rust
   <color:#34495E><U+24DF></color> dev-lang-rust
   <color:#34495E><U+24DF></color> dev-util-rustup
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "schismtracker" as apps/schismtracker << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-sound-schismtracker
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libutf8proc
 }
 entity "shntool" as apps/shntool << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-shntool
@@ -2932,7 +2957,7 @@ entity "simplescreenrecorder" as apps/simplescreenrecorder << (a,#FF00FF) >> {
 entity "smplayer" as apps/smplayer << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-video-smplayer
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-mpv
 }
 entity "solaar" as apps/solaar << (a,#FF00FF) >> {
@@ -2980,7 +3005,7 @@ entity "tor" as apps/tor << (a,#FF00FF) >> {
 entity "transmission" as apps/transmission << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-p2p-transmission
 ..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#9ACD32><U+2756></color> layers-X
   <color:#5DADE2><U+24D4></color> entity-transmission
   <color:#FF7700><U+1F79B></color> libs-mbedtls
 }
@@ -3152,7 +3177,7 @@ entity "avidemux" as apps/avidemux << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-libs-aften
   <color:#34495E><U+24DF></color> media-sound-dcaenc
 ..
-  <color:#9ACD32><U+2756></color> layers-kde-kf5
+  <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-libmp4v2
   <color:#FF00FF><U+25C9></color> apps-twolame
 }
@@ -3168,6 +3193,12 @@ entity "brother-dcp1610w-bin-brscan4" as apps/brother-dcp1610w-bin-brscan4 << (a
 ..
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF00FF><U+25C9></color> apps-brother-scan4-bin
+}
+entity "cairo-clock" as apps/cairo-clock << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> x11-misc-cairo-clock
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libglade
 }
 entity "calibre" as apps/calibre << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-calibre
@@ -3274,7 +3305,6 @@ entity "fluidsynth" as apps/fluidsynth << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-cmt-plugins
-  <color:#FF00FF><U+25C9></color> apps-lash
 }
 entity "fotocx" as apps/fotocx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-fotocx
@@ -3459,6 +3489,12 @@ entity "libreoffice" as apps/libreoffice << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-libvisio
   <color:#FF7700><U+1F79B></color> libs-zxcvbn-c
 }
+entity "linux-wbfs-manager" as apps/linux-wbfs-manager << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> games-util-linux-wbfs-manager
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libglade
+}
 entity "lollypop" as apps/lollypop << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-lollypop
 ..
@@ -3526,13 +3562,13 @@ entity "nagios" as apps/nagios << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-perl-Crypt-DES
   <color:#34495E><U+24DF></color> dev-perl-Crypt-Rijndael
   <color:#34495E><U+24DF></color> dev-perl-Digest-SHA1
+  <color:#34495E><U+24DF></color> net-dialup-freeradius-client
   <color:#34495E><U+24DF></color> virtual-perl-Digest
 ..
   <color:#9ACD32><U+2756></color> layers-perl-libs
   <color:#FF00FF><U+25C9></color> apps-bind-tools
   <color:#FF00FF><U+25C9></color> apps-fping
   <color:#FF00FF><U+25C9></color> apps-net-snmp
-  <color:#FF00FF><U+25C9></color> apps-freeradius-client
   <color:#5DADE2><U+24D4></color> entity-nagios
 }
 entity "neovim" as apps/neovim << (a,#FF00FF) >> {
@@ -3613,6 +3649,12 @@ entity "rosegarden" as apps/rosegarden << (a,#FF00FF) >> {
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-liblo
   <color:#FF7700><U+1F79B></color> libs-liblrdf
+}
+entity "rotoscope" as apps/rotoscope << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-gfx-rotoscope
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libglade
 }
 entity "scribus" as apps/scribus << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-office-scribus
@@ -4277,11 +4319,11 @@ entity "hip" as apps/hip << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-hip
   <color:#34495E><U+24DF></color> dev-util-hipcc
   <color:#34495E><U+24DF></color> dev-util-rocminfo
-  <color:#34495E><U+24DF></color> sys-process-numactl
   <color:#34495E><U+24DF></color> llvm-core-lld
   <color:#34495E><U+24DF></color> llvm-core-lld-toolchain-symlinks
 ..
   <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF00FF><U+25C9></color> apps-numactl
 }
 entity "krita" as apps/krita << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-libs-immer
@@ -4418,7 +4460,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/ffmpeg-compat" --u--> "layers/X"
 "libs/fltk" --u--> "layers/X"
 "libs/freeimage" --u--> "layers/X"
-"apps/freeradius-client" --u--> "layers/system-x"
 "libs/game-music-emu" --u--> "layers/system-x"
 "libs/gl2ps" --u--> "layers/latex"
 "libs/glfw" --u--> "layers/X"
@@ -4426,6 +4467,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/gpm" --u--> "layers/system-x"
 "libs/gst-plugins-srtp" --u--> "layers/X"
 "libs/gst-plugins-v4l2" --u--> "layers/X"
+"libs/gtk2" --u--> "layers/X"
 "libs/gtk-spell" --u--> "layers/X"
 "libs/gupnp-igd" --u--> "layers/gnome-common"
 "libs/hidapi" --u--> "layers/system-x"
@@ -4445,8 +4487,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libemf" --u--> "layers/system-x"
 "libs/libgii" --u--> "layers/X"
 "libs/libgit2" --u--> "layers/sys-fs"
-"libs/libglade" --u--> "layers/X"
-"libs/libglade" --u--> "libs/gtk2"
 "libs/libgpod" --u--> "layers/X"
 "libs/libhackrf" --u--> "layers/system-x"
 "libs/libharu" --u--> "layers/system-x"
@@ -4469,7 +4509,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libXaw3d" --u--> "layers/X"
 "libs/log4cpp" --u--> "layers/system-x"
 "libs/lrzsz" --u--> "layers/system-x"
-"libs/lttng-ust-2_12" --u--> "layers/sys-fs"
+"libs/lttng-ust" --u--> "layers/sys-fs"
 "libs/lv2" --u--> "layers/X"
 "libs/mac" --u--> "layers/X"
 "libs/mathjax" --u--> "layers/system-x"
@@ -4692,6 +4732,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nnn" --u--> "layers/system-x"
 "apps/nordvpn-bin" --u--> "layers/X"
 "apps/nrg2iso" --u--> "layers/system-x"
+"apps/numactl" --u--> "layers/system-x"
 "apps/nx" --u--> "layers/X"
 "apps/pandoc" --u--> "layers/haskell"
 "apps/peek" --u--> "layers/gnome-common"
@@ -4768,6 +4809,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/wavemon" --u--> "layers/sys-fs"
 "apps/waypipe" --u--> "layers/X"
 "apps/weechat" --u--> "layers/system-x"
+"apps/wezterm" --u--> "layers/X"
+"apps/wezterm" --u--> "fonts/jetbrains-mono"
+"apps/wezterm" --u--> "fonts/roboto"
 "apps/wireshark" --u--> "layers/qt"
 "apps/wireshark" --u--> "layers/gnome-common"
 "apps/wireshark" --u--> "entity/pcap"
@@ -4804,6 +4848,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libao" --u--> "layers/X"
 "libs/libao" --u--> "libs/nas"
 "libs/libcaca" --u--> "layers/X"
+"libs/libglade" --u--> "layers/X"
+"libs/libglade" --u--> "libs/gtk2"
 "libs/liblrdf" --u--> "layers/X"
 "libs/liblrdf" --u--> "libs/ladspa-sdk"
 "libs/liblrdf" --u--> "libs/raptor"
@@ -4823,6 +4869,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/rubberband" --u--> "layers/X"
 "libs/rubberband" --u--> "libs/ladspa-sdk"
 "libs/rubberband" --u--> "libs/vamp-plugin-sdk"
+"libs/soapysdr" --u--> "layers/system-x"
+"libs/soapysdr" --u--> "libs/rtl-sdr"
+"libs/soapysdr" --u--> "libs/uhd"
 "libs/tiff-compat" --u--> "layers/X"
 "libs/twisted" --u--> "layers/X"
 "libs/twisted" --u--> "libs/appdirs"
@@ -4844,8 +4893,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/amule" --u--> "entity/amule"
 "apps/biglybt" --u--> "layers/java"
 "apps/biglybt" --u--> "libs/bcprov"
-"apps/cairo-clock" --u--> "layers/X"
-"apps/cairo-clock" --u--> "libs/libglade"
 "apps/cairo-dock" --u--> "layers/gnome-common"
 "apps/cairo-dock" --u--> "libs/gtk2"
 "apps/cava" --u--> "layers/X"
@@ -4871,11 +4918,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/docker-tools" --u--> "container/docker"
 "apps/dotnet-sdk-6" --u--> "layers/sys-fs"
 "apps/dotnet-sdk-6" --u--> "apps/dotnet-common"
-"apps/dotnet-sdk-6" --u--> "libs/lttng-ust-2_12"
+"apps/dotnet-sdk-6" --u--> "libs/lttng-ust"
 "apps/dotnet-sdk-8" --u--> "layers/sys-fs"
 "apps/dotnet-sdk-8" --u--> "apps/dotnet-common"
 "apps/dotnet-sdk-8" --u--> "apps/dotnet-runtime-nugets-8"
-"apps/dotnet-sdk-8" --u--> "libs/lttng-ust-2_12"
+"apps/dotnet-sdk-8" --u--> "libs/lttng-ust"
 "apps/duf" --u--> "layers/system-x"
 "apps/easytag" --u--> "layers/gnome-common"
 "apps/easytag" --u--> "libs/id3lib"
@@ -4913,6 +4960,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/hardinfo2" --u--> "apps/luajit"
 "apps/hexchat" --u--> "layers/gnome-common"
 "apps/hexchat" --u--> "libs/gtk2"
+"apps/libiodbc" --u--> "layers/system-x"
+"apps/libiodbc-gui" --u--> "layers/X"
+"apps/libiodbc-gui" --u--> "libs/gtk2"
+"apps/libiodbc-gui" --u--> "apps/libiodbc"
 "apps/isomaster" --u--> "layers/X"
 "apps/isomaster" --u--> "libs/gtk2"
 "apps/isomaster" --u--> "libs/iniparser"
@@ -4938,8 +4989,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/links" --u--> "layers/X"
 "apps/links" --u--> "libs/AOMediaCodecs"
 "apps/links" --u--> "libs/gpm"
-"apps/linux-wbfs-manager" --u--> "layers/X"
-"apps/linux-wbfs-manager" --u--> "libs/libglade"
 "apps/mage" --u--> "layers/system-x"
 "apps/mage" --u--> "apps/go"
 "apps/mangohud" --u--> "layers/X"
@@ -5019,6 +5068,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/poedit" --u--> "libs/wxGTK"
 "apps/postgresql" --u--> "layers/sys-fs"
 "apps/postgresql" --u--> "libs/ossp-uuid"
+"apps/postgresql" --u--> "apps/numactl"
 "apps/postgresql" --u--> "entity/postgres"
 "apps/powerpanel" --u--> "layers/gnome-common"
 "apps/powerpanel" --u--> "libs/openssl-compat"
@@ -5045,9 +5095,9 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/qutebrowser" --u--> "libs/chrome-binary-plugins"
 "apps/remmina" --u--> "layers/gnome-common"
 "apps/remmina" --u--> "layers/qemu"
-"apps/rotoscope" --u--> "layers/X"
-"apps/rotoscope" --u--> "libs/libglade"
 "apps/rust-bin" --u--> "layers/system-x"
+"apps/schismtracker" --u--> "layers/X"
+"apps/schismtracker" --u--> "libs/libutf8proc"
 "apps/shntool" --u--> "layers/X"
 "apps/shntool" --u--> "libs/mac"
 "apps/shutter" --u--> "layers/gnome-common"
@@ -5059,7 +5109,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/sigil" --u--> "libs/mathjax"
 "apps/sigil" --u--> "libs/regex"
 "apps/simplescreenrecorder" --u--> "layers/qt"
-"apps/smplayer" --u--> "layers/kde-kf5"
+"apps/smplayer" --u--> "layers/qt"
 "apps/smplayer" --u--> "apps/mpv"
 "apps/solaar" --u--> "layers/X"
 "apps/solaar" --u--> "libs/typing-extensions"
@@ -5075,7 +5125,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/tor" --u--> "layers/system-x"
 "apps/tor" --u--> "entity/tor"
 "apps/tor" --u--> "libs/sgml-common"
-"apps/transmission" --u--> "layers/gnome-common"
+"apps/transmission" --u--> "layers/X"
 "apps/transmission" --u--> "entity/transmission"
 "apps/transmission" --u--> "libs/mbedtls"
 "apps/upplay" --u--> "layers/qt"
@@ -5129,7 +5179,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/asbru-cm" --u--> "apps/tigervnc"
 "apps/avalonia-ilspy" --u--> "layers/X"
 "apps/avalonia-ilspy" --u--> "apps/dotnet-sdk-8"
-"apps/avidemux" --u--> "layers/kde-kf5"
+"apps/avidemux" --u--> "layers/qt"
 "apps/avidemux" --u--> "libs/libmp4v2"
 "apps/avidemux" --u--> "apps/twolame"
 "apps/bat" --u--> "layers/sys-fs"
@@ -5137,6 +5187,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/bat" --u--> "libs/oniguruma"
 "apps/brother-dcp1610w-bin-brscan4" --u--> "layers/X"
 "apps/brother-dcp1610w-bin-brscan4" --u--> "apps/brother-scan4-bin"
+"apps/cairo-clock" --u--> "layers/X"
+"apps/cairo-clock" --u--> "libs/libglade"
 "apps/calibre" --u--> "layers/qt"
 "apps/calibre" --u--> "apps/usbmuxd"
 "apps/calibre" --u--> "apps/podofo"
@@ -5173,7 +5225,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/fluidsynth" --u--> "layers/X"
 "apps/fluidsynth" --u--> "libs/ladspa-sdk"
 "apps/fluidsynth" --u--> "libs/cmt-plugins"
-"apps/fluidsynth" --u--> "apps/lash"
 "apps/fotocx" --u--> "layers/gnome-common"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/fotocx" --u--> "libs/libchamplain"
@@ -5232,6 +5283,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/libreoffice" --u--> "libs/qgpgme"
 "apps/libreoffice" --u--> "libs/libvisio"
 "apps/libreoffice" --u--> "libs/zxcvbn-c"
+"apps/linux-wbfs-manager" --u--> "layers/X"
+"apps/linux-wbfs-manager" --u--> "libs/libglade"
 "apps/lollypop" --u--> "layers/gnome-common"
 "apps/lollypop" --u--> "libs/beautifulsoup4"
 "apps/luminance-hdr" --u--> "layers/kde-kf5"
@@ -5257,7 +5310,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/nagios" --u--> "apps/bind-tools"
 "apps/nagios" --u--> "apps/fping"
 "apps/nagios" --u--> "apps/net-snmp"
-"apps/nagios" --u--> "apps/freeradius-client"
 "apps/nagios" --u--> "entity/nagios"
 "apps/neovim" --u--> "layers/X"
 "apps/neovim" --u--> "apps/luajit"
@@ -5287,6 +5339,8 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/rosegarden" --u--> "libs/ladspa-sdk"
 "apps/rosegarden" --u--> "libs/liblo"
 "apps/rosegarden" --u--> "libs/liblrdf"
+"apps/rotoscope" --u--> "layers/X"
+"apps/rotoscope" --u--> "libs/libglade"
 "apps/scribus" --u--> "layers/qt"
 "apps/scribus" --u--> "layers/office-common"
 "apps/scribus" --u--> "apps/podofo"
@@ -5580,6 +5634,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/easyeffects" --u--> "apps/rnnoise"
 "apps/easyeffects" --u--> "apps/calf"
 "apps/hip" --u--> "layers/X"
+"apps/hip" --u--> "apps/numactl"
 "apps/krita" --u--> "layers/qt"
 "apps/krita" --u--> "layers/kde-kf5"
 "apps/krita" --u--> "libs/libmypaint"

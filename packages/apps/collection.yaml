@@ -10606,6 +10606,122 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-batik
+  category: "libs"
+  name: "batik"
+  version: "1.18-r2"
+  uri:
+  - https://xmlgraphics.apache.org/batik/
+  - https://commons.apache.org/proper/commons-bcel/
+  - https://commons.apache.org/proper/commons-io/
+  - https://commons.apache.org/proper/commons-lang/
+  - https://commons.apache.org/proper/commons-logging/
+  - http://tcljava.sourceforge.net
+  - https://projects.eclipse.org/projects/ee4j.servlet
+  - https://www2.cs.tum.edu/projects/cup/
+  - https://www.slf4j.org
+  - https://xalan.apache.org/
+  - https://xerces.apache.org/xerces2-j/index.html
+  - https://xerces.apache.org/xml-commons/components/external/
+  - https://xerces.apache.org/xml-commons/components/resolver/
+  - https://xmlgraphics.apache.org/commons/
+  license: "Apache-2.0 BSD EPL-2.0 GPL-2 GPL-2-with-classpath-exception MIT"
+  description: |
+    XML Graphics Batik
+    Apache Commons Bytecode Engineering Library
+    Utility classes, stream implementations, file filters, and much more
+    Commons components to manipulate core java classes
+    Thin adapter allowing configurable bridging to other well known logging systems
+    Jacl is an implementation of Tcl written in Java
+    Javax servlet API
+    CUP Parser Generator for Java
+    The slf4j API
+    Transforming XML documents into HTML, text, or other XML document types
+    Xerces Java XML parser
+    Externally-defined set of standard interfaces, namely DOM, SAX, and JAXP
+    An XML Entity and URI Resolver
+    XML Graphics Commons
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/batik
+  provides:
+  - category: "dev-java"
+    name: "batik"
+    version: ">=0"
+  - category: "dev-java"
+    name: "bcel"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-io"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-lang"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-logging"
+    version: ">=0"
+  - category: "dev-java"
+    name: "jacl"
+    version: ">=0"
+  - category: "dev-java"
+    name: "jakarta-servlet-api"
+    version: ">=0"
+  - category: "dev-java"
+    name: "javacup"
+    version: ">=0"
+  - category: "dev-java"
+    name: "slf4j-api"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xalan"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xalan-serializer"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xerces"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xml-commons-external"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xml-commons-resolver"
+    version: ">=0"
+  - category: "dev-java"
+    name: "xmlgraphics-commons"
+    version: ">=0"
+  atoms:
+  - atom: "dev-java/batik"
+    use: "verify-sig"
+  - atom: "dev-java/bcel"
+    use: "verify-sig"
+  - atom: "dev-java/commons-io"
+    use: "verify-sig"
+  - atom: "dev-java/commons-lang"
+    use: "verify-sig"
+  - atom: "dev-java/commons-logging"
+    use: "verify-sig"
+  - atom: "dev-java/xalan"
+    use: "verify-sig"
+  - atom: "dev-java/xalan-serializer"
+    use: "verify-sig"
+  - atom: "dev-java/xerces"
+    use: "verify-sig"
+  - atom: "dev-java/xmlgraphics-commons"
+    use: "verify-sig"
+  inner_build_reqs:
+  - app-alternatives/gpg
+  - app-portage/gemato
+  - sec-keys/openpgp-keys-apache-xalan-j
+  - sec-keys/openpgp-keys-apache-xmlgraphics-batik
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-rhino
+  - <<: *apps-tk
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
@@ -15733,7 +15849,6 @@ packages:
   - <<: *layers-X
   - <<: *libs-ladspa-sdk
   - <<: *libs-cmt-plugins
-  - <<: *apps-lash
   build_requires:
   - <<: *layers-X
 
