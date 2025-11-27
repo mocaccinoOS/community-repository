@@ -13025,6 +13025,37 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-megaglest
+  category: "apps"
+  name: "megaglest"
+  version: "3.13.0-r5"
+  uri:
+  - https://megaglest.org
+  license: "GPL-3 BitstreamVera"
+  description: "Cross-platform 3D realtime strategy game"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      games-strategy/megaglest
+  provides:
+  - category: "games-strategy"
+    name: "megaglest"
+    version: ">=0"
+  - category: "games-strategy"
+    name: "megaglest-data"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/megaglest"
+    use: "editor model-viewer streflop tools unicode # fribidi wxuniversa"
+    accept_keywords: "~amd64"
+  - atom: "games-strategy/megaglest-data"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-wxGTK
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "milkytracker"
   version: "1.05.01+2"
