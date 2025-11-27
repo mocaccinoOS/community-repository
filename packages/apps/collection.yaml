@@ -10654,7 +10654,7 @@ packages:
 - &libs-batik
   category: "libs"
   name: "batik"
-  version: "1.18-r2"
+  version: "1.18-r2+1"
   uri:
   - https://xmlgraphics.apache.org/batik/
   - https://commons.apache.org/proper/commons-bcel/
@@ -10758,7 +10758,10 @@ packages:
   inner_build_reqs:
   - app-alternatives/gpg
   - app-portage/gemato
+  - sec-keys/openpgp-keys-apache-commons
   - sec-keys/openpgp-keys-apache-xalan-j
+  - sec-keys/openpgp-keys-apache-xerces-j
+  - sec-keys/openpgp-keys-apache-xmlgraphics-commons
   - sec-keys/openpgp-keys-apache-xmlgraphics-batik
   requires:
   - <<: *layers-java
@@ -13016,7 +13019,6 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-libs/xerces-c
-  - net-libs/libircclient
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-sci-libs
