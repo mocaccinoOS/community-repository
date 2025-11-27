@@ -10967,37 +10967,25 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-libcaca
+- &libs-libftgl
   category: "libs"
-  name: "libcaca"
-  version: "0.99_beta19-r12+1"
+  name: "libftgl"
+  version: "2.1.3_rc5-r3"
   uri:
-  - http://libcaca.zoy.org/
-  - https://sourceforge.net/projects/ftgl/
-  license: "GPL-2 ISC LGPL-2.1 MIT WTFPL-2"
-  description: |
-    A library that creates colored ASCII-art graphics
-    Library to use arbitrary fonts in OpenGL applications
+  - https://sourceforge.net/projects/ftgl
+  license: "MIT"
+  description: "library to use arbitrary fonts in OpenGL applications"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libcaca
+      media-libs/ftgl
   provides:
-  - category: "media-libs"
-    name: "libcaca"
-    version: ">=0"
   - category: "media-libs"
     name: "ftgl"
     version: ">=0"
-  atoms:
-  - atom: "media-libs/libcaca"
-    use: "imlib ncurses opengl ruby slang truetype X # mono java"
   requires:
-  # - <<: *layers-java
   - <<: *layers-X
-  # - <<: *apps-mono
   build_requires:
-  # - <<: *layers-java
   - <<: *layers-X
 
 - &libs-libglade
@@ -11432,51 +11420,6 @@ packages:
   - <<: *layers-X
   - <<: *libs-appdirs
   - <<: *libs-typing-extensions
-  build_requires:
-  - <<: *layers-X
-
-- &libs-xine-lib
-  category: "libs"
-  name: "xine-lib"
-  version: "1.2.13-r5+2"
-  uri:
-  - http://xine.sourceforge.net/
-  - https://github.com/devnev/libxdg-basedir
-  - https://www.videolan.org/developers/libdvdcss.html
-  - http://fame.sourceforge.net/
-  license: "GPL-2 MIT"
-  description: |
-    Core libraries for Xine movie player
-    Small library to access XDG Base Directories Specification paths
-    A portable abstraction library for DVD decryption
-    MPEG-1 and MPEG-4 video encoding library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/xine-lib
-  provides:
-  - category: "media-libs"
-    name: "xine-lib"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libxdg-basedir"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libdvdcss"
-    version: ">=0"
-  - category: "media-libs"
-    name: "libfame"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/xine-lib"
-    use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
-  inner_build_reqs:
-  - virtual/imagemagick-tools
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-ffmpeg-compat
-  - <<: *libs-libcaca
-  - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-X
 
@@ -13046,11 +12989,10 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# TODO: libs-ftgl
 - &apps-megaglest
   category: "apps"
   name: "megaglest"
-  version: "3.13.0-r5+1"
+  version: "3.13.0-r5+2"
   uri:
   - https://megaglest.org
   license: "GPL-3 BitstreamVera"
@@ -13074,9 +13016,12 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-libs/xerces-c
+  - net-libs/libircclient
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-sci-libs
+  - <<: *libs-ftgl
+  - <<: *libs-libircclient
   - <<: *libs-wxGTK
   build_requires:
   - <<: *layers-gnome-common
@@ -14723,94 +14668,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "vdr"
-  version: "2.6.9"
-  uri:
-  - http://www.tvdr.de/
-  - http://www.escape-edv.de/endriss/vdr/
-  - https://bitbucket.org/powARman/dvbhddevice
-  - https://projects.vdr-developer.org/projects/plg-pvr350
-  - https://sourceforge.net/projects/xineliboutput/
-  license: "metapackage"
-  description: |
-    Video Disk Recorder - turns a pc into a powerful set top box for DVB
-    VDR Plugin: use various devices for controlling vdr (keyboards, lirc...)
-    VDR Plugin: output device for the 'Full Featured' SD DVB Card
-    VDR Plugin: output device for the 'Full Featured' TechnoTrend S2-6400 DVB Card
-    VDR plugin: show weather for specified place
-    VDR plugin: use a PVR350 as output device
-    VDR Plugin: Xinelib PlugIn
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/vdr
-      media-plugins/vdr-dvbsddevice
-      media-plugins/vdr-dvbhddevice
-      media-plugins/vdr-pvr350
-      media-plugins/vdr-xineliboutput
-    # media-plugins/vdr-weatherng
-    # media-plugins/vdr-remote
-  provides:
-  - category: "media-video"
-    name: "vdr"
-    version: ">=0"
-  - category: "app-eselect"
-    name: "eselect-vdr"
-    version: ">=0"
-  # - category: "media-plugins"
-  #   name: "vdr-remote"
-  #   version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-dvbsddevice"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-dvbhddevice"
-    version: ">=0"
-  # - category: "media-plugins"
-  #   name: "vdr-weatherng"
-  #   version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-pvr350"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-xineliboutput"
-    version: ">=0"
-  - category: "sys-process"
-    name: "wait_on_pid"
-    version: ">=0"
-  - category: "media-tv"
-    name: "gentoo-vdr-scripts"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/vdr"
-    use: "keyboard mainmenuhooks menuorg permashift systemd ttxtsubs # naludump pinplugin verbose"
-  - atom: "media-plugins/vdr-remote"
-    use: "systemd"
-  - atom: "media-plugins/vdr-weatherng"
-    use: "dxr3"
-    license: "GPL-2 stardock-images"
-    accept_keywords: "~amd64"
-  - atom: "media-plugins/vdr-pvr350"
-    accept_keywords: "~amd64"
-  - atom: "media-plugins/vdr-xineliboutput"
-    use: "bluray cec dbus fbcon jpeg nls opengl vdpau vdr X xine xinerama # caps"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - acct-group/vdr
-  - acct-user/vdr
-  excludes:
-  - ^/usr/lib/systemd/system/pam_namespace.service
-  requires:
-  - <<: *layers-X
-  - <<: *libs-xine-lib
-  - <<: *apps-twolame
-  - category: "entity"
-    name: "vdr"
-    version: ">=0"
-  build_requires:
-  - <<: *layers-X
-
 - &apps-visual-regexp
   category: "apps"
   name: "visual-regexp"
@@ -15217,6 +15074,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libcaca
+  category: "libs"
+  name: "libcaca"
+  version: "0.99_beta19-r12+2"
+  uri:
+  - http://libcaca.zoy.org/
+  license: "GPL-2 ISC LGPL-2.1 WTFPL-2"
+  description: |
+    A library that creates colored ASCII-art graphics
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libcaca
+  provides:
+  - category: "media-libs"
+    name: "libcaca"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libcaca"
+    use: "imlib ncurses opengl ruby slang truetype X # mono java"
+  requires:
+  # - <<: *layers-java
+  - <<: *layers-X
+  - <<: *libs-ftgl
+  # - <<: *apps-mono
+  build_requires:
+  # - <<: *layers-java
+  - <<: *layers-X
+
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
@@ -15266,6 +15152,51 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
+
+- &libs-xine-lib
+  category: "libs"
+  name: "xine-lib"
+  version: "1.2.13-r5+2"
+  uri:
+  - http://xine.sourceforge.net/
+  - https://github.com/devnev/libxdg-basedir
+  - https://www.videolan.org/developers/libdvdcss.html
+  - http://fame.sourceforge.net/
+  license: "GPL-2 MIT"
+  description: |
+    Core libraries for Xine movie player
+    Small library to access XDG Base Directories Specification paths
+    A portable abstraction library for DVD decryption
+    MPEG-1 and MPEG-4 video encoding library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/xine-lib
+  provides:
+  - category: "media-libs"
+    name: "xine-lib"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libxdg-basedir"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libdvdcss"
+    version: ">=0"
+  - category: "media-libs"
+    name: "libfame"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/xine-lib"
+    use: "a52 aac aalib alsa altivec bluray css dts dvb dxr3 fbcon flac gtk imagemagick ipv6 jack jpeg libcaca mad mmap mng modplug musepack nfs opengl oss pulseaudio samba sftp sdl speex theora truetype v4l vaapi vcd vdpau vdr vidix vis vorbis vpx wavpack wayland X xinerama xv xvmc nls"
+  inner_build_reqs:
+  - virtual/imagemagick-tools
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-ffmpeg-compat
+  - <<: *libs-libcaca
+  - <<: *apps-vcdimager
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 2 apps ###
@@ -20200,6 +20131,94 @@ packages:
   - <<: *apps-graphviz
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "vdr"
+  version: "2.6.9"
+  uri:
+  - http://www.tvdr.de/
+  - http://www.escape-edv.de/endriss/vdr/
+  - https://bitbucket.org/powARman/dvbhddevice
+  - https://projects.vdr-developer.org/projects/plg-pvr350
+  - https://sourceforge.net/projects/xineliboutput/
+  license: "metapackage"
+  description: |
+    Video Disk Recorder - turns a pc into a powerful set top box for DVB
+    VDR Plugin: use various devices for controlling vdr (keyboards, lirc...)
+    VDR Plugin: output device for the 'Full Featured' SD DVB Card
+    VDR Plugin: output device for the 'Full Featured' TechnoTrend S2-6400 DVB Card
+    VDR plugin: show weather for specified place
+    VDR plugin: use a PVR350 as output device
+    VDR Plugin: Xinelib PlugIn
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/vdr
+      media-plugins/vdr-dvbsddevice
+      media-plugins/vdr-dvbhddevice
+      media-plugins/vdr-pvr350
+      media-plugins/vdr-xineliboutput
+    # media-plugins/vdr-weatherng
+    # media-plugins/vdr-remote
+  provides:
+  - category: "media-video"
+    name: "vdr"
+    version: ">=0"
+  - category: "app-eselect"
+    name: "eselect-vdr"
+    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-remote"
+  #   version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-dvbsddevice"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-dvbhddevice"
+    version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-weatherng"
+  #   version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-pvr350"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-xineliboutput"
+    version: ">=0"
+  - category: "sys-process"
+    name: "wait_on_pid"
+    version: ">=0"
+  - category: "media-tv"
+    name: "gentoo-vdr-scripts"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/vdr"
+    use: "keyboard mainmenuhooks menuorg permashift systemd ttxtsubs # naludump pinplugin verbose"
+  - atom: "media-plugins/vdr-remote"
+    use: "systemd"
+  - atom: "media-plugins/vdr-weatherng"
+    use: "dxr3"
+    license: "GPL-2 stardock-images"
+    accept_keywords: "~amd64"
+  - atom: "media-plugins/vdr-pvr350"
+    accept_keywords: "~amd64"
+  - atom: "media-plugins/vdr-xineliboutput"
+    use: "bluray cec dbus fbcon jpeg nls opengl vdpau vdr X xine xinerama # caps"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - acct-group/vdr
+  - acct-user/vdr
+  excludes:
+  - ^/usr/lib/systemd/system/pam_namespace.service
+  requires:
+  - <<: *layers-X
+  - <<: *libs-xine-lib
+  - <<: *apps-twolame
+  - category: "entity"
+    name: "vdr"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 6 libs ###
