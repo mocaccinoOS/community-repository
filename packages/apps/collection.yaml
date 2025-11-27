@@ -4349,6 +4349,30 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "bzflag"
+  version: "2.4.30-r1"
+  uri:
+  - https://www.bzflag.org
+  license: "LGPL-2.1"
+  description: "3D tank combat simulator game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-action/bzflag
+  provides:
+  - category: "games-action"
+    name: "bzflag"
+    version: ">=0"
+  atoms:
+  - atom: "games-action/bzflag"
+    use: "upnp # dedicated"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "cartridges"
   version: "2.12.1+1"
   uri:
