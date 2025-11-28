@@ -2032,6 +2032,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-enet
+  category: "libs"
+  name: "enet"
+  version: "1.3.18"
+  uri:
+  - http://enet.bespin.org
+  license: "MIT"
+  description: "Relatively thin, simple and robust network communication layer on top of UDP"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/enet
+  provides:
+  - category: "net-libs"
+    name: "enet"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libemf
   category: "libs"
   name: "libemf"
