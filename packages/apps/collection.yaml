@@ -17502,6 +17502,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-sauerbraten
+  category: "apps"
+  name: "sauerbraten"
+  version: "2020.12.29"
+  uri:
+  - http://sauerbraten.org
+  license: "ZLIB freedist"
+  description: "Sauerbraten is a FOSS game engine (Cube 2) with freeware game data (Sauerbraten)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-fps/sauerbraten
+  provides:
+  - category: "games-fps"
+    name: "sauerbraten"
+    version: ">=0"
+  atoms:
+  - atom: "games-fps/sauerbraten"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-enet
+  - <<: *libs-sdl2
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "scribus"
   version: "1.7.1_pre20250929+1"
