@@ -1239,6 +1239,41 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-java-commons
+  category: "apps"
+  name: "java-commons"
+  version: "0.1"
+  uri:
+  - https://commons.apache.org/proper/commons-io/
+  - https://commons.apache.org/proper/commons-lang/
+  license: "Apache-2.0"
+  description: |
+    Utility classes, stream implementations, file filters, and much more
+    Commons components to manipulate core java classes
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/commons-lang
+  provides:
+  - category: "dev-java"
+    name: "commons-io"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-lang"
+    version: ">=0"
+  atoms:
+  - atom: "dev-java/commons-io"
+    use: "verify-sig"
+  - atom: "dev-java/commons-lang"
+    use: "verify-sig"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-apache-commons
+  # - sec-keys/openpgp-keys-ggregory
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-cpp-httplib
   category: "libs"
   name: "cpp-httplib"
@@ -10654,12 +10689,10 @@ packages:
 - &libs-batik
   category: "libs"
   name: "batik"
-  version: "1.18-r2+1"
+  version: "1.18-r2+2"
   uri:
   - https://xmlgraphics.apache.org/batik/
   - https://commons.apache.org/proper/commons-bcel/
-  - https://commons.apache.org/proper/commons-io/
-  - https://commons.apache.org/proper/commons-lang/
   - https://commons.apache.org/proper/commons-logging/
   - http://tcljava.sourceforge.net
   - https://projects.eclipse.org/projects/ee4j.servlet
@@ -10674,8 +10707,6 @@ packages:
   description: |
     XML Graphics Batik
     Apache Commons Bytecode Engineering Library
-    Utility classes, stream implementations, file filters, and much more
-    Commons components to manipulate core java classes
     Thin adapter allowing configurable bridging to other well known logging systems
     Jacl is an implementation of Tcl written in Java
     Javax servlet API
@@ -10696,12 +10727,6 @@ packages:
     version: ">=0"
   - category: "dev-java"
     name: "bcel"
-    version: ">=0"
-  - category: "dev-java"
-    name: "commons-io"
-    version: ">=0"
-  - category: "dev-java"
-    name: "commons-lang"
     version: ">=0"
   - category: "dev-java"
     name: "commons-logging"
@@ -10741,10 +10766,6 @@ packages:
     use: "verify-sig"
   - atom: "dev-java/bcel"
     use: "verify-sig"
-  - atom: "dev-java/commons-io"
-    use: "verify-sig"
-  - atom: "dev-java/commons-lang"
-    use: "verify-sig"
   - atom: "dev-java/commons-logging"
     use: "verify-sig"
   - atom: "dev-java/xalan"
@@ -10765,6 +10786,7 @@ packages:
   - sec-keys/openpgp-keys-apache-xmlgraphics-batik
   requires:
   - <<: *layers-java
+  - <<: *libs-java-commons
   - <<: *apps-rhino
   - <<: *apps-tk
   build_requires:
@@ -13718,7 +13740,7 @@ packages:
 
 - category: "apps"
   name: "pdftk"
-  version: "3.3.3_p20231025+2"
+  version: "3.3.3_p20231025+3"
   uri:
   - https://gitlab.com/pdftk-java/pdftk
   license: "GPL-2"
@@ -13731,12 +13753,10 @@ packages:
   - category: "app-text"
     name: "pdftk"
     version: ">=0"
-  - category: "dev-java"
-    name: "commons-lang"
-    version: ">=0"
   requires:
   - <<: *layers-java
   - <<: *libs-bcprov
+  - <<: *libs-java-commons
   build_requires:
   - <<: *layers-java
 
