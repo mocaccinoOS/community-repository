@@ -19149,32 +19149,34 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "wesnoth"
-  version: "1.18.5"
-  uri:
-  - https://www.wesnoth.org
-  license: "GPL-2+ CC-BY-SA-4.0"
-  description: "Battle for Wesnoth - A fantasy turn-based strategy game"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      games-strategy/wesnoth
-  provides:
-  - category: "games-strategy"
-    name: "wesnoth"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/wesnoth"
-    accept_keywords: "~amd64"
-  requires:
-  - category: "entity"
-    name: "wesnoth"
-    version: ">=0"
-  - <<: *layers-X
-  - <<: *libs-sdl2
-  build_requires:
-  - <<: *layers-X
+# See https://bugs.gentoo.org/955672
+# Need: sed -i 's/Requires: tremor/Requires: vorbisidec/' /usr/lib64/pkgconfig/SDL2_mixer.pc
+# - category: "apps"
+#   name: "wesnoth"
+#   version: "1.18.5"
+#   uri:
+#   - https://www.wesnoth.org
+#   license: "GPL-2+ CC-BY-SA-4.0"
+#   description: "Battle for Wesnoth - A fantasy turn-based strategy game"
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       games-strategy/wesnoth
+#   provides:
+#   - category: "games-strategy"
+#     name: "wesnoth"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/wesnoth"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - category: "entity"
+#     name: "wesnoth"
+#     version: ">=0"
+#   - <<: *layers-X
+#   - <<: *libs-sdl2
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "86Box"
