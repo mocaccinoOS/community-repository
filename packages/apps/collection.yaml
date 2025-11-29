@@ -15117,70 +15117,6 @@ packages:
 ### dep 2 libs ###
 ################################################################################################################################################################
 
-- &libs-fop
-  category: "libs"
-  name: "fop"
-  version: "2.10-r1+1"
-  uri:
-  - https://xmlgraphics.apache.org/fop/
-  - https://www.bouncycastle.org/download/bouncy-castle-java/
-  - https://pdfbox.apache.org/
-  - https://github.com/paul-hammant/qdox
-  - https://wiki.gentoo.org/wiki/No_homepage
-  license: "Apache-2.0 BSD sun-bcla-jai"
-  description: |
-    XML Graphics Format Object Processor All-In-One
-    Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, and certificate generation
-    An open source Java library for parsing font files
-    Java library and utilities for working with PDF documents
-    Parser for extracting class/interface/method definitions
-    JAI is a class library for managing images
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-java/fop
-  provides:
-  - category: "dev-java"
-    name: "fop"
-    version: ">=0"
-  - category: "dev-java"
-    name: "bcpkix"
-    version: ">=0"
-  - category: "dev-java"
-    name: "fontbox"
-    version: ">=0"
-  - category: "dev-java"
-    name: "pdfbox"
-    version: ">=0"
-  - category: "dev-java"
-    name: "qdox"
-    version: ">=0"
-  - category: "dev-java"
-    name: "sun-jai-bin"
-    version: ">=0"
-  atoms:
-  - atom: "dev-java/fop"
-    use: "verify-sig"
-  - atom: "dev-java/fontbox"
-    use: "verify-sig"
-  - atom: "dev-java/pdfbox"
-    use: "verify-sig"
-  - atom: "dev-java/sun-jai-bin"
-    license: "sun-bcla-jai"
-  inner_build_reqs:
-  - app-alternatives/gpg
-  - app-portage/gemato
-  - sec-keys/openpgp-keys-apache-xmlgraphics-fop
-  - sec-keys/openpgp-keys-apache-pdfbox
-  requires:
-  - <<: *layers-java
-  - <<: *apps-java-8
-  - <<: *libs-bcprov
-  - <<: *apps-batik
-  - <<: *apps-ant
-  build_requires:
-  - <<: *layers-java
-
 - &libs-indilib
   category: "libs"
   name: "indilib"
@@ -16005,6 +15941,70 @@ packages:
   - <<: *libs-cmt-plugins
   build_requires:
   - <<: *layers-X
+
+- &apps-fop
+  category: "apps"
+  name: "fop"
+  version: "2.10-r1+1"
+  uri:
+  - https://xmlgraphics.apache.org/fop/
+  - https://www.bouncycastle.org/download/bouncy-castle-java/
+  - https://pdfbox.apache.org/
+  - https://github.com/paul-hammant/qdox
+  - https://wiki.gentoo.org/wiki/No_homepage
+  license: "Apache-2.0 BSD sun-bcla-jai"
+  description: |
+    XML Graphics Format Object Processor All-In-One
+    Java APIs for CMS, PKCS, EAC, TSP, CMP, CRMF, OCSP, and certificate generation
+    An open source Java library for parsing font files
+    Java library and utilities for working with PDF documents
+    Parser for extracting class/interface/method definitions
+    JAI is a class library for managing images
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/fop
+  provides:
+  - category: "dev-java"
+    name: "fop"
+    version: ">=0"
+  - category: "dev-java"
+    name: "bcpkix"
+    version: ">=0"
+  - category: "dev-java"
+    name: "fontbox"
+    version: ">=0"
+  - category: "dev-java"
+    name: "pdfbox"
+    version: ">=0"
+  - category: "dev-java"
+    name: "qdox"
+    version: ">=0"
+  - category: "dev-java"
+    name: "sun-jai-bin"
+    version: ">=0"
+  atoms:
+  - atom: "dev-java/fop"
+    use: "verify-sig"
+  - atom: "dev-java/fontbox"
+    use: "verify-sig"
+  - atom: "dev-java/pdfbox"
+    use: "verify-sig"
+  - atom: "dev-java/sun-jai-bin"
+    license: "sun-bcla-jai"
+  inner_build_reqs:
+  - app-alternatives/gpg
+  - app-portage/gemato
+  - sec-keys/openpgp-keys-apache-xmlgraphics-fop
+  - sec-keys/openpgp-keys-apache-pdfbox
+  requires:
+  - <<: *layers-java
+  - <<: *apps-java-8
+  - <<: *libs-bcprov
+  - <<: *apps-batik
+  - <<: *apps-ant
+  build_requires:
+  - <<: *layers-java
 
 - category: "apps"
   name: "fotocx"
@@ -20332,9 +20332,9 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *layers-java
-  - <<: *libs-fop
   - <<: *apps-ant
   - <<: *apps-batik
+  - <<: *apps-fop
   - <<: *apps-graphviz
   build_requires:
   - <<: *layers-qt
