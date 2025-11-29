@@ -6597,6 +6597,41 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-java-8
+  category: "apps"
+  name: "java-8"
+  version: "8"
+  uri:
+  - https://adoptium.net/
+  license: "GPL-2-with-classpath-exception"
+  description: |
+    Prebuilt Java JRE binaries provided by Eclipse Temurin
+    Prebuilt Java JDK binaries provided by Eclipse Temurin
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+        dev-java/openjdk-jre-bin:8
+        dev-java/openjdk-bin:8
+        virtual/jre:1.8
+        virtual/jdk:1.8
+  provides:
+  - category: "dev-java"
+    name: "openjdk-jre-bin"
+    version: ">=0"
+  - category: "dev-java"
+    name: "openjdk-bin"
+    version: ">=0"
+  - category: "virtual"
+    name: "jre"
+    version: ">=0"
+  - category: "virtual"
+    name: "jdk"
+    version: ">=0"    
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-java
+  
 - category: "apps"
   name: "jitsi-meet"
   version: "2025.10.0"
@@ -15085,7 +15120,7 @@ packages:
 - &libs-fop
   category: "libs"
   name: "fop"
-  version: "2.10-r1"
+  version: "2.10-r1+1"
   uri:
   - https://xmlgraphics.apache.org/fop/
   - https://www.bouncycastle.org/download/bouncy-castle-java/
@@ -15139,6 +15174,7 @@ packages:
   - sec-keys/openpgp-keys-apache-pdfbox
   requires:
   - <<: *layers-java
+  - <<: *apps-java-8
   - <<: *libs-bcprov
   - <<: *apps-batik
   - <<: *apps-ant
@@ -20290,10 +20326,15 @@ packages:
   - category: "media-gfx"
     name: "plantuml"
     version: ">=0"
+  atoms:
+  - atom: "media-gfx/plantuml"
+    use: "ant-task"
   requires:
   - <<: *layers-qt
   - <<: *layers-java
+  - <<: *libs-fop
   - <<: *apps-ant
+  - <<: *apps-batik
   - <<: *apps-graphviz
   build_requires:
   - <<: *layers-qt
