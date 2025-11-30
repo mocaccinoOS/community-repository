@@ -11550,6 +11550,28 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-antimicrox 
+  category: "apps"
+  name: "antimicrox"
+  version: "3.5.1"
+  uri:
+  - https://github.com/AntiMicroX/antimicrox
+  license: "GPL-3+"
+  description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      games-util/antimicrox
+  provides:
+  - category: "games-util"
+    name: "antimicrox"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-sdl2
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-batik
   category: "apps"
   name: "batik"
