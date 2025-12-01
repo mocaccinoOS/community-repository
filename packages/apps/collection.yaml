@@ -9820,6 +9820,26 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "trash-cli"
+  version: "0.24.5.26"
+  uri:
+  - https://github.com/andreafrancia/trash-cli
+  license: "GPL-2"
+  description: "Python scripts to manipulate trash cans via the command line"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/trash-cli
+  provides:
+  - category: "app-misc"
+    name: "trash-cli"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
+- category: "apps"
   name: "tree"
   version: "2.2.1"
   uri:

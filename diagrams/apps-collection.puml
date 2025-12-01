@@ -152,6 +152,12 @@ entity "colorama" as libs/colorama << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
+entity "java-commons" as apps/java-commons << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-java-commons-io
+  <color:#34495E><U+24DF></color> dev-java-commons-lang
+..
+  <color:#9ACD32><U+2756></color> layers-java
+}
 entity "cpp-httplib" as libs/cpp-httplib << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> dev-cpp-cpp-httplib
 ..
@@ -314,6 +320,11 @@ entity "libebur128" as libs/libebur128 << (l,#FF7700) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
+entity "enet" as libs/enet << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> net-libs-enet
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
 entity "libemf" as libs/libemf << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libemf
 ..
@@ -344,6 +355,11 @@ entity "libhackrf" as libs/libhackrf << (l,#FF7700) >> {
 }
 entity "libharu" as libs/libharu << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-libharu
+..
+  <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "libircclient" as libs/libircclient << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
 }
@@ -820,6 +836,11 @@ entity "brother-dcp1610w-bin" as apps/brother-dcp1610w-bin << (a,#FF00FF) >> {
 }
 entity "brother-scan4-bin" as apps/brother-scan4-bin << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-brother-scan4-bin
+..
+  <color:#9ACD32><U+2756></color> layers-X
+}
+entity "bzflag" as apps/bzflag << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> games-action-bzflag
 ..
   <color:#9ACD32><U+2756></color> layers-X
 }
@@ -1300,6 +1321,14 @@ entity "iptraf-ng" as apps/iptraf-ng << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-analyzer-iptraf-ng
 ..
   <color:#9ACD32><U+2756></color> layers-system-x
+}
+entity "java-8" as apps/java-8 << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-java-openjdk-jre-bin
+  <color:#34495E><U+24DF></color> dev-java-openjdk-bin
+  <color:#34495E><U+24DF></color> virtual-jre
+  <color:#34495E><U+24DF></color> virtual-jdk
+..
+  <color:#9ACD32><U+2756></color> layers-X
 }
 entity "jitsi-meet" as apps/jitsi-meet << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> net-im-jitsi-meet
@@ -2170,8 +2199,7 @@ entity "libao" as libs/libao << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-nas
 }
-entity "libcaca" as libs/libcaca << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-libcaca
+entity "libftgl" as libs/libftgl << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-ftgl
 ..
   <color:#9ACD32><U+2756></color> layers-X
@@ -2281,17 +2309,6 @@ entity "twisted" as libs/twisted << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-appdirs
   <color:#FF7700><U+1F79B></color> libs-typing-extensions
 }
-entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
-  <color:#34495E><U+24DF></color> media-libs-xine-lib
-  <color:#34495E><U+24DF></color> dev-libs-libxdg-basedir
-  <color:#34495E><U+24DF></color> media-libs-libdvdcss
-  <color:#34495E><U+24DF></color> media-libs-libfame
-..
-  <color:#9ACD32><U+2756></color> layers-gnome-common
-  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
-  <color:#FF7700><U+1F79B></color> libs-libcaca
-  <color:#FF00FF><U+25C9></color> apps-vcdimager
-}
 entity "abiword" as apps/abiword << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-office-abiword
   <color:#34495E><U+24DF></color> app-text-wv
@@ -2316,6 +2333,26 @@ entity "amule" as apps/amule << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-gnome-common
   <color:#FF7700><U+1F79B></color> libs-wxGTK
   <color:#5DADE2><U+24D4></color> entity-amule
+}
+entity "batik" as apps/batik << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-java-batik
+  <color:#34495E><U+24DF></color> dev-java-bcel
+  <color:#34495E><U+24DF></color> dev-java-commons-logging
+  <color:#34495E><U+24DF></color> dev-java-jacl
+  <color:#34495E><U+24DF></color> dev-java-jakarta-servlet-api
+  <color:#34495E><U+24DF></color> dev-java-javacup
+  <color:#34495E><U+24DF></color> dev-java-slf4j-api
+  <color:#34495E><U+24DF></color> dev-java-xalan
+  <color:#34495E><U+24DF></color> dev-java-xalan-serializer
+  <color:#34495E><U+24DF></color> dev-java-xerces
+  <color:#34495E><U+24DF></color> dev-java-xml-commons-external
+  <color:#34495E><U+24DF></color> dev-java-xml-commons-resolver
+  <color:#34495E><U+24DF></color> dev-java-xmlgraphics-commons
+..
+  <color:#9ACD32><U+2756></color> layers-java
+  <color:#FF00FF><U+25C9></color> apps-java-commons
+  <color:#FF00FF><U+25C9></color> apps-rhino
+  <color:#FF00FF><U+25C9></color> apps-tk
 }
 entity "biglybt" as apps/biglybt << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-java-commons-cli
@@ -2633,6 +2670,16 @@ entity "mc" as apps/mc << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-system-x
   <color:#FF7700><U+1F79B></color> libs-gpm
 }
+entity "megaglest" as apps/megaglest << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> games-strategy-megaglest
+  <color:#34495E><U+24DF></color> games-strategy-megaglest-data
+..
+  <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#9ACD32><U+2756></color> layers-sci-libs
+  <color:#FF7700><U+1F79B></color> libs-libftgl
+  <color:#FF7700><U+1F79B></color> libs-libircclient
+  <color:#FF7700><U+1F79B></color> libs-wxGTK
+}
 entity "milkytracker" as apps/milkytracker << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-milkytracker
 ..
@@ -2789,10 +2836,10 @@ entity "pdfarranger" as apps/pdfarranger << (a,#FF00FF) >> {
 }
 entity "pdftk" as apps/pdftk << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-text-pdftk
-  <color:#34495E><U+24DF></color> dev-java-commons-lang
 ..
   <color:#9ACD32><U+2756></color> layers-java
   <color:#FF7700><U+1F79B></color> libs-bcprov
+  <color:#FF00FF><U+25C9></color> apps-java-commons
 }
 entity "picom" as apps/picom << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> x11-misc-picom
@@ -3016,21 +3063,6 @@ entity "upplay" as apps/upplay << (a,#FF00FF) >> {
 ..
   <color:#9ACD32><U+2756></color> layers-qt
 }
-entity "vdr" as apps/vdr << (a,#FF00FF) >> {
-  <color:#34495E><U+24DF></color> media-video-vdr
-  <color:#34495E><U+24DF></color> app-eselect-eselect-vdr
-  <color:#34495E><U+24DF></color> media-plugins-vdr-dvbsddevice
-  <color:#34495E><U+24DF></color> media-plugins-vdr-dvbhddevice
-  <color:#34495E><U+24DF></color> media-plugins-vdr-pvr350
-  <color:#34495E><U+24DF></color> media-plugins-vdr-xineliboutput
-  <color:#34495E><U+24DF></color> sys-process-wait_on_pid
-  <color:#34495E><U+24DF></color> media-tv-gentoo-vdr-scripts
-..
-  <color:#9ACD32><U+2756></color> layers-X
-  <color:#FF7700><U+1F79B></color> libs-xine-lib
-  <color:#FF00FF><U+25C9></color> apps-twolame
-  <color:#5DADE2><U+24D4></color> entity-vdr
-}
 entity "visual-regexp" as apps/visual-regexp << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> dev-util-visual-regexp
 ..
@@ -3125,6 +3157,12 @@ entity "indilib" as libs/indilib << (l,#FF7700) >> {
   <color:#FF7700><U+1F79B></color> libs-rtl-sdr
   <color:#FF7700><U+1F79B></color> libs-websocketpp
 }
+entity "libcaca" as libs/libcaca << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-libs-libcaca
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libftgl
+}
 entity "openvdb" as libs/openvdb << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-gfx-openvdb
   <color:#34495E><U+24DF></color> dev-cpp-robin-map
@@ -3135,6 +3173,17 @@ entity "openvdb" as libs/openvdb << (l,#FF7700) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF7700><U+1F79B></color> libs-tbb
   <color:#FF7700><U+1F79B></color> libs-glfw
+}
+entity "xine-lib" as libs/xine-lib << (l,#FF7700) >> {
+  <color:#34495E><U+24DF></color> media-libs-xine-lib
+  <color:#34495E><U+24DF></color> dev-libs-libxdg-basedir
+  <color:#34495E><U+24DF></color> media-libs-libdvdcss
+  <color:#34495E><U+24DF></color> media-libs-libfame
+..
+  <color:#9ACD32><U+2756></color> layers-gnome-common
+  <color:#FF7700><U+1F79B></color> libs-ffmpeg-compat
+  <color:#FF7700><U+1F79B></color> libs-libcaca
+  <color:#FF00FF><U+25C9></color> apps-vcdimager
 }
 entity "amsynth" as apps/amsynth << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-sound-amsynth
@@ -3305,6 +3354,20 @@ entity "fluidsynth" as apps/fluidsynth << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-X
   <color:#FF7700><U+1F79B></color> libs-ladspa-sdk
   <color:#FF7700><U+1F79B></color> libs-cmt-plugins
+}
+entity "fop" as apps/fop << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> dev-java-fop
+  <color:#34495E><U+24DF></color> dev-java-bcpkix
+  <color:#34495E><U+24DF></color> dev-java-fontbox
+  <color:#34495E><U+24DF></color> dev-java-pdfbox
+  <color:#34495E><U+24DF></color> dev-java-qdox
+  <color:#34495E><U+24DF></color> dev-java-sun-jai-bin
+..
+  <color:#9ACD32><U+2756></color> layers-java
+  <color:#FF00FF><U+25C9></color> apps-java-8
+  <color:#FF7700><U+1F79B></color> libs-bcprov
+  <color:#FF00FF><U+25C9></color> apps-batik
+  <color:#FF00FF><U+25C9></color> apps-ant
 }
 entity "fotocx" as apps/fotocx << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> media-gfx-fotocx
@@ -4008,6 +4071,14 @@ entity "RcloneBrowser" as apps/RcloneBrowser << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#FF00FF><U+25C9></color> apps-rclone
 }
+entity "sauerbraten" as apps/sauerbraten << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> games-fps-sauerbraten
+..
+  <color:#5DADE2><U+24D4></color> entity-sauerbraten
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-enet
+  <color:#FF7700><U+1F79B></color> libs-sdl2
+}
 entity "stellarium" as apps/stellarium << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> sci-astronomy-calcmysky
   <color:#34495E><U+24DF></color> sci-libs-nlopt
@@ -4175,9 +4246,9 @@ entity "audacity" as apps/audacity << (a,#FF00FF) >> {
 }
 entity "conky" as apps/conky << (a,#FF00FF) >> {
   <color:#34495E><U+24DF></color> app-admin-conky
-  <color:#34495E><U+24DF></color> net-libs-libircclient
 ..
   <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-libircclient
   <color:#FF00FF><U+25C9></color> apps-hddtemp
   null kernel-modules-nvidia-drivers-lts
   <color:#FF00FF><U+25C9></color> apps-apcupsd
@@ -4259,7 +4330,23 @@ entity "plantuml" as apps/plantuml << (a,#FF00FF) >> {
   <color:#9ACD32><U+2756></color> layers-qt
   <color:#9ACD32><U+2756></color> layers-java
   <color:#FF00FF><U+25C9></color> apps-ant
+  <color:#FF00FF><U+25C9></color> apps-fop
   <color:#FF00FF><U+25C9></color> apps-graphviz
+}
+entity "vdr" as apps/vdr << (a,#FF00FF) >> {
+  <color:#34495E><U+24DF></color> media-video-vdr
+  <color:#34495E><U+24DF></color> app-eselect-eselect-vdr
+  <color:#34495E><U+24DF></color> media-plugins-vdr-dvbsddevice
+  <color:#34495E><U+24DF></color> media-plugins-vdr-dvbhddevice
+  <color:#34495E><U+24DF></color> media-plugins-vdr-pvr350
+  <color:#34495E><U+24DF></color> media-plugins-vdr-xineliboutput
+  <color:#34495E><U+24DF></color> sys-process-wait_on_pid
+  <color:#34495E><U+24DF></color> media-tv-gentoo-vdr-scripts
+..
+  <color:#9ACD32><U+2756></color> layers-X
+  <color:#FF7700><U+1F79B></color> libs-xine-lib
+  <color:#FF00FF><U+25C9></color> apps-twolame
+  <color:#5DADE2><U+24D4></color> entity-vdr
 }
 entity "ocio-oiio" as libs/ocio-oiio << (l,#FF7700) >> {
   <color:#34495E><U+24DF></color> media-libs-opencolorio
@@ -4453,6 +4540,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/cfitsio" --u--> "layers/system-x"
 "libs/chrome-binary-plugins" --u--> "layers/X"
 "libs/colorama" --u--> "layers/system-x"
+"apps/java-commons" --u--> "layers/java"
 "libs/cpp-httplib" --u--> "layers/X"
 "libs/css-parser" --u--> "layers/system-x"
 "libs/cssselect" --u--> "layers/system-x"
@@ -4484,12 +4572,14 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/libconfig" --u--> "layers/system-x"
 "libs/libdiscid" --u--> "layers/system-x"
 "libs/libebur128" --u--> "layers/X"
+"libs/enet" --u--> "layers/system-x"
 "libs/libemf" --u--> "layers/system-x"
 "libs/libgii" --u--> "layers/X"
 "libs/libgit2" --u--> "layers/sys-fs"
 "libs/libgpod" --u--> "layers/X"
 "libs/libhackrf" --u--> "layers/system-x"
 "libs/libharu" --u--> "layers/system-x"
+"libs/libircclient" --u--> "layers/system-x"
 "libs/libktorrent" --u--> "layers/kde-common"
 "libs/liblo" --u--> "layers/system-x"
 "libs/liblqr" --u--> "layers/system-x"
@@ -4586,6 +4676,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/brave" --u--> "layers/gnome-common"
 "apps/brother-dcp1610w-bin" --u--> "layers/X"
 "apps/brother-scan4-bin" --u--> "layers/X"
+"apps/bzflag" --u--> "layers/X"
 "apps/cartridges" --u--> "layers/gnome-common"
 "apps/ccd2iso" --u--> "layers/system-x"
 "apps/celestia" --u--> "layers/qt"
@@ -4677,6 +4768,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/inxi" --u--> "layers/sys-fs"
 "apps/iotop" --u--> "layers/system-x"
 "apps/iptraf-ng" --u--> "layers/system-x"
+"apps/java-8" --u--> "layers/X"
 "apps/jitsi-meet" --u--> "layers/X"
 "apps/joe" --u--> "layers/system-x"
 "apps/joplin-desktop" --u--> "layers/gnome-common"
@@ -4847,7 +4939,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/gst-plugins-libnice" --u--> "libs/gupnp-igd"
 "libs/libao" --u--> "layers/X"
 "libs/libao" --u--> "libs/nas"
-"libs/libcaca" --u--> "layers/X"
+"libs/libftgl" --u--> "layers/X"
 "libs/libglade" --u--> "layers/X"
 "libs/libglade" --u--> "libs/gtk2"
 "libs/liblrdf" --u--> "layers/X"
@@ -4876,10 +4968,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/twisted" --u--> "layers/X"
 "libs/twisted" --u--> "libs/appdirs"
 "libs/twisted" --u--> "libs/typing-extensions"
-"libs/xine-lib" --u--> "layers/gnome-common"
-"libs/xine-lib" --u--> "libs/ffmpeg-compat"
-"libs/xine-lib" --u--> "libs/libcaca"
-"libs/xine-lib" --u--> "apps/vcdimager"
 "apps/abiword" --u--> "layers/gnome-common"
 "apps/abiword" --u--> "layers/office-common"
 "apps/abiword" --u--> "fonts/texcm-ttf"
@@ -4891,6 +4979,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/amule" --u--> "layers/gnome-common"
 "apps/amule" --u--> "libs/wxGTK"
 "apps/amule" --u--> "entity/amule"
+"apps/batik" --u--> "layers/java"
+"apps/batik" --u--> "apps/java-commons"
+"apps/batik" --u--> "apps/rhino"
+"apps/batik" --u--> "apps/tk"
 "apps/biglybt" --u--> "layers/java"
 "apps/biglybt" --u--> "libs/bcprov"
 "apps/cairo-dock" --u--> "layers/gnome-common"
@@ -4999,6 +5091,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/mangohud" --u--> "kernel-modules/nvidia-drivers-lts"
 "apps/mc" --u--> "layers/system-x"
 "apps/mc" --u--> "libs/gpm"
+"apps/megaglest" --u--> "layers/gnome-common"
+"apps/megaglest" --u--> "layers/sci-libs"
+"apps/megaglest" --u--> "libs/libftgl"
+"apps/megaglest" --u--> "libs/libircclient"
+"apps/megaglest" --u--> "libs/wxGTK"
 "apps/milkytracker" --u--> "layers/X"
 "apps/milkytracker" --u--> "libs/rtmidi"
 "apps/minicom" --u--> "layers/system-x"
@@ -5053,6 +5150,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/pdfarranger" --u--> "libs/python-deprecated"
 "apps/pdftk" --u--> "layers/java"
 "apps/pdftk" --u--> "libs/bcprov"
+"apps/pdftk" --u--> "apps/java-commons"
 "apps/picom" --u--> "layers/X"
 "apps/picom" --u--> "libs/libconfig"
 "apps/picom" --u--> "libs/uthash"
@@ -5129,10 +5227,6 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/transmission" --u--> "entity/transmission"
 "apps/transmission" --u--> "libs/mbedtls"
 "apps/upplay" --u--> "layers/qt"
-"apps/vdr" --u--> "layers/X"
-"apps/vdr" --u--> "libs/xine-lib"
-"apps/vdr" --u--> "apps/twolame"
-"apps/vdr" --u--> "entity/vdr"
 "apps/visual-regexp" --u--> "layers/X"
 "apps/visual-regexp" --u--> "apps/tk"
 "apps/vivaldi" --u--> "layers/X"
@@ -5164,9 +5258,15 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "libs/indilib" --u--> "libs/nlohmann_json"
 "libs/indilib" --u--> "libs/rtl-sdr"
 "libs/indilib" --u--> "libs/websocketpp"
+"libs/libcaca" --u--> "layers/X"
+"libs/libcaca" --u--> "libs/libftgl"
 "libs/openvdb" --u--> "layers/qt"
 "libs/openvdb" --u--> "libs/tbb"
 "libs/openvdb" --u--> "libs/glfw"
+"libs/xine-lib" --u--> "layers/gnome-common"
+"libs/xine-lib" --u--> "libs/ffmpeg-compat"
+"libs/xine-lib" --u--> "libs/libcaca"
+"libs/xine-lib" --u--> "apps/vcdimager"
 "apps/amsynth" --u--> "layers/X"
 "apps/amsynth" --u--> "libs/dssi"
 "apps/amsynth" --u--> "libs/liblo"
@@ -5225,6 +5325,11 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/fluidsynth" --u--> "layers/X"
 "apps/fluidsynth" --u--> "libs/ladspa-sdk"
 "apps/fluidsynth" --u--> "libs/cmt-plugins"
+"apps/fop" --u--> "layers/java"
+"apps/fop" --u--> "apps/java-8"
+"apps/fop" --u--> "libs/bcprov"
+"apps/fop" --u--> "apps/batik"
+"apps/fop" --u--> "apps/ant"
 "apps/fotocx" --u--> "layers/gnome-common"
 "apps/fotocx" --u--> "apps/dcraw"
 "apps/fotocx" --u--> "libs/libchamplain"
@@ -5491,6 +5596,10 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/qsynth" --u--> "apps/fluidsynth"
 "apps/RcloneBrowser" --u--> "layers/qt"
 "apps/RcloneBrowser" --u--> "apps/rclone"
+"apps/sauerbraten" --u--> "entity/sauerbraten"
+"apps/sauerbraten" --u--> "layers/X"
+"apps/sauerbraten" --u--> "libs/enet"
+"apps/sauerbraten" --u--> "libs/sdl2"
 "apps/stellarium" --u--> "layers/qt"
 "apps/stellarium" --u--> "libs/indilib"
 "apps/stellarium" --u--> "libs/qxlsx"
@@ -5565,6 +5674,7 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/audacity" --u--> "libs/wxGTK"
 "apps/audacity" --u--> "apps/twolame"
 "apps/conky" --u--> "layers/X"
+"apps/conky" --u--> "libs/libircclient"
 "apps/conky" --u--> "apps/hddtemp"
 "apps/conky" --u--> "kernel-modules/nvidia-drivers-lts"
 "apps/conky" --u--> "apps/apcupsd"
@@ -5609,7 +5719,12 @@ entity "umbrello" as apps/umbrello << (a,#FF00FF) >> {
 "apps/plantuml" --u--> "layers/qt"
 "apps/plantuml" --u--> "layers/java"
 "apps/plantuml" --u--> "apps/ant"
+"apps/plantuml" --u--> "apps/fop"
 "apps/plantuml" --u--> "apps/graphviz"
+"apps/vdr" --u--> "layers/X"
+"apps/vdr" --u--> "libs/xine-lib"
+"apps/vdr" --u--> "apps/twolame"
+"apps/vdr" --u--> "entity/vdr"
 "libs/ocio-oiio" --u--> "layers/qt"
 "libs/ocio-oiio" --u--> "libs/openvdb"
 "libs/wxpython" --u--> "layers/gnome-common"
