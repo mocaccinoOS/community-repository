@@ -1,0 +1,61 @@
+From 6c60cc8b1a008f3a86a3d2166340dfc577e2e542 Mon Sep 17 00:00:00 2001
+From: "Victor A. P. Magri" <paludettomag1@llnl.gov>
+Date: Thu, 6 Feb 2025 10:13:10 -0500
+Subject: [PATCH] Fix C23 build
+
+---
+ src/distributed_ls/pilut/struct.h | 29 ++++++++++++++++++-----------
+ 1 file changed, 18 insertions(+), 11 deletions(-)
+
+diff --git a/src/distributed_ls/pilut/struct.h b/src/distributed_ls/pilut/struct.h
+index daec839cb5..270e974236 100644
+--- a/src/distributed_ls/pilut/struct.h
++++ b/src/distributed_ls/pilut/struct.h
+@@ -30,21 +30,28 @@
+  * $Id$
+  */
+ 
+-#ifndef __cplusplus
+-#ifndef true
+-# define true  1
+-# define false 0
+-#endif
+-
++#ifndef __cplusplus  /* In C++, bool is built-in, no need to define it */
++#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 199901L && __STDC_VERSION__ < 202311L
++/* C99 - C11: Use stdbool.h */
++#include <stdbool.h>
++#elif defined(__STDC_VERSION__) && __STDC_VERSION__ < 199901L
++/* Pre-C99: Define bool manually */
+ #ifndef bool
+-# ifdef Boolean
++#ifdef Boolean
+    typedef Boolean bool;
+-# else
++#else
+    typedef unsigned char bool;
+-# endif
+ #endif
+ #endif
+- 
++#ifndef true
++#define true 1
++#endif
++#ifndef false
++#define false 0
++#endif
++#endif
++#endif /* ifndef __cplusplus */
++
+ /*************************************************************************
+ * This data structure holds the data distribution
+ **************************************************************************/
+@@ -142,7 +149,7 @@ typedef struct reducematdef ReduceMatType;
+ 
+ 
+ /*************************************************************************
+-* This data structure stores information about the send in each phase 
++* This data structure stores information about the send in each phase
+ * of parallel hypre_ILUT
+ **************************************************************************/
+ struct comminfodef {

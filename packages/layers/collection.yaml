@@ -244,6 +244,7 @@ stubs:
   atoms:
   - atom: "dev-db/libiodbc"
     use: "-gtk"
+  # gcc 15
   # https://bugs.gentoo.org/944767
   # https://github.com/openlink/iODBC/pull/112/commits
     portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
@@ -699,7 +700,6 @@ packages:
     use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp # mpi"
-    portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
   - atom: "dev-python/matplotlib"
@@ -715,6 +715,11 @@ packages:
     usepkg_exclude: true
   # - atom: "virtual/mpi"
   #   use: "fortran # nullmpi romio cxx threads"
+  prepare:
+  # gcc 15
+  - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
+  - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' hypre-*.ebuild
+  - ebuild /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild manifest
   inner_build_reqs:
   - dev-python/pooch
   - dev-python/meson-python
