@@ -249,7 +249,7 @@ stubs:
     portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   prepare:
   - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
-  - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/flibiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
+  - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild manifest
 
 packages:
