@@ -754,7 +754,6 @@ packages:
 # dev-perl/IO-String                dev-perl/Email-Outlook-Message, layers/latex
 # dev-perl/libxml-perl              shutter
 # dev-perl/Math-Calc-Units          Monitoring-Plugin
-# dev-perl/Module-Install           nagios-plugin-check_lm_sensors
 # dev-perl/Mozilla-CA               layers/latex, apps/net-snmp
 # dev-perl/Net-DBus                 shutter
 # dev-perl/Number-Bytes-Human       shutter
@@ -770,16 +769,12 @@ packages:
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.5+21"
+  version: "0.5+22"
   uri:
-  - https://metacpan.org/release/Archive-Zip
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
   - https://metacpan.org/release/Config-Simple
   - https://metacpan.org/release/Config-Tiny
-  - https://metacpan.org/release/ExtUtils-Config
-  - https://metacpan.org/release/ExtUtils-Helpers
-  - https://metacpan.org/release/ExtUtils-InstallPaths
   - https://metacpan.org/release/File-Copy-Recursive
   - https://metacpan.org/release/File-ReadBackwards
   - https://metacpan.org/release/File-Remove
@@ -788,14 +783,10 @@ packages:
   - https://metacpan.org/release/JSON-MaybeXS
   - https://metacpan.org/release/libxml-perl
   - https://metacpan.org/release/Math-Calc-Units
-  - https://metacpan.org/release/Module-Build-Tiny
-  - https://metacpan.org/release/Module-Install
-  - https://metacpan.org/release/Module-ScanDeps
   - https://metacpan.org/release/Mozilla-CA
   - https://metacpan.org/release/Net-DBus
   - https://metacpan.org/release/Number-Bytes-Human
   - https://metacpan.org/release/Pango
-  - https://metacpan.org/release/PAR-Dist
   - https://metacpan.org/release/Params-Validate
   - https://metacpan.org/release/Proc-ProcessTable
   - https://metacpan.org/release/Proc-Simple
@@ -811,44 +802,32 @@ packages:
   - https://metacpan.org/release/YAML-Syck
   license: "metapackage"
   description: |
-    A wrapper that lets you read Zip archive members as if they were files
-    Capture STDOUT and STDERR from Perl, XS or external programs
+    Warns and dies noisily with stack backtraces
     Automated accessor generation
     Simple configuration file class
     Read/Write .ini style files with as little code as possible
-    Warns and dies noisily with stack backtraces
-    Wrapper for perl's configuration
-    Various portability utilities for module builders
-    Standalone, extensible Perl module installer
-    Build.PL install path logic made easy
-    Read a file backwards by lines
-    Remove files and directories
     uses File::Copy to recursively copy dirs
+    Read a file backwards by lines
+    Remove files and directories    
     Image viewer widget for Gtk3
-    Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
     IO::File interface for in-core strings
+    Use Cpanel::JSON::XS with a fallback to JSON::XS and JSON::PP
     Collection of Perl modules for working with XML
     Human-readable unit-aware calculator
-    Tiny replacement for Module::Build
-    Recursively scan Perl code for dependencies
     Mozilla's CA cert bundle in PEM format (Gentoo stub)
-    Recursively scan Perl code for dependencies
     Perl extension for the DBus message system
     Convert byte count to human readable format
     Layout and render international text
-    Create and manipulate PAR distributions
     Flexible system for validation of method/function call parameters
     Unix process table information
     Launch and control background processes
     Facility for creating read-only scalars, arrays, hashes
     sort lexically, but sort numeral parts numerically
-    A Perl interface to the iconv() codeset conversion function
-    Expand/unexpand tabs per unix expand and line wrapping
     A switch statement for Perl
+    A Perl interface to the iconv() codeset conversion function
     Ordered associative arrays for Perl
-    Client-side interface to the X11 Protocol
     A Perl Module for Tk
-    Perl binding for libxml2
+    Client-side interface to the X11 Protocol
     Process huge XML documents in tree mode
     Fast, lightweight YAML loader and dumper
   labels:
@@ -865,7 +844,6 @@ packages:
       dev-perl/JSON-MaybeXS
       dev-perl/libxml-perl
       dev-perl/Math-Calc-Units
-      dev-perl/Module-Install
       dev-perl/Mozilla-CA
       dev-perl/Net-DBus
       dev-perl/Number-Bytes-Human
@@ -880,15 +858,6 @@ packages:
       dev-perl/XML-LibXML
   provides:
   - category: "dev-perl"
-    name: "Archive-Zip"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "CPAN-Meta-Requirements"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "CPAN-Requirements-Dynamic"
-    version: ">=0"
-  - category: "dev-perl"
     name: "Carp-Always"
     version: ">=0"
   - category: "dev-perl"
@@ -899,15 +868,6 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Config-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-Config"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-Helpers"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "ExtUtils-InstallPaths"
     version: ">=0"
   - category: "dev-perl"
     name: "File-Copy-Recursive"
@@ -934,12 +894,6 @@ packages:
     name: "Math-Calc-Units"
     version: ">=0"
   - category: "dev-perl"
-    name: "Module-Install"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Module-ScanDeps"
-    version: ">=0"
-  - category: "dev-perl"
     name: "Mozilla-CA"
     version: ">=0"
   - category: "dev-perl"
@@ -950,9 +904,6 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Pango"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "PAR-Dist"
     version: ">=0"
   - category: "dev-perl"
     name: "Params-Validate"
@@ -999,15 +950,10 @@ packages:
   - category: "virtual"
     name: "perl-Devel-PPPort"
     version: ">=0"
-  - category: "virtual"
-    name: "perl-Module-CoreList"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-Text-Tabs+Wrap"
-    version: ">=0"
   inner_build_reqs:
   - dev-perl/Alien-Libxml2
   - dev-perl/Module-Build-Tiny
+  - dev-perl/Module-Install
   requires:
   - <<: *layers-X
   build_requires:
