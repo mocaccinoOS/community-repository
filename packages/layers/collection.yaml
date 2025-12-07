@@ -743,7 +743,6 @@ packages:
   hidden: true
 
 
-# dev-perl/AppConfig                Template-Toolkit
 # dev-perl/Carp-Always              shutter
 # dev-perl/Class-Accessor           Monitoring-Plugin
 # dev-perl/Config-Tiny              Monitoring-Plugin
@@ -761,24 +760,18 @@ packages:
 # dev-perl/Number-Bytes-Human       shutter
 # dev-perl/Pango                    shutter
 # dev-perl/Params-Validate          Monitoring-Plugin, layers/latex
-# dev-perl/Path-Tiny                kdegames::freecell-solver
 # dev-perl/Proc-ProcessTable        shutter
 # dev-perl/Proc-Simple              shutter
 # dev-perl/Sort-Naturally           shutter
 # dev-perl/Switch                   apps/x2goserver
-# dev-perl/Template-Toolkit         kdegames::freecell-solver
-# dev-perl/Text-Autoformat          Template-Toolkit
-# dev-perl/Text-Reform              Text-Autoformat
-# dev-perl/Unicode-UTF8             Path-Tiny <- kdegames::freecell-solver
 # dev-perl/X11-Protocol             shutter
 # dev-perl/XML-LibXML               wine-staging <- dev-perl/XML-LibXML-Simple
 # dev-perl/Tk                       net-analyzer/net-snmp
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "0.5+20"
+  version: "0.5+21"
   uri:
-  - https://metacpan.org/release/AppConfig
   - https://metacpan.org/release/Archive-Zip
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
@@ -804,26 +797,20 @@ packages:
   - https://metacpan.org/release/Pango
   - https://metacpan.org/release/PAR-Dist
   - https://metacpan.org/release/Params-Validate
-  - https://metacpan.org/release/Path-Tiny
   - https://metacpan.org/release/Proc-ProcessTable
   - https://metacpan.org/release/Proc-Simple
   - https://metacpan.org/release/Readonly
   - https://metacpan.org/release/Sort-Naturally
   - https://metacpan.org/release/Switch
-  - https://metacpan.org/release/Template-Toolkit
-  - https://metacpan.org/release/Text-Autoformat
-  - https://metacpan.org/release/Text-Reform
   - https://metacpan.org/release/Text-Iconv
   - https://metacpan.org/release/Tie-IxHash
   - https://metacpan.org/release/Tk
-  - https://metacpan.org/release/Unicode-UTF8
   - https://metacpan.org/release/X11-Protocol
   - https://metacpan.org/release/XML-LibXML
   - https://metacpan.org/release/XML-Twig
   - https://metacpan.org/release/YAML-Syck
   license: "metapackage"
   description: |
-    Perl5 module for reading configuration files and parsing command line arguments
     A wrapper that lets you read Zip archive members as if they were files
     Capture STDOUT and STDERR from Perl, XS or external programs
     Automated accessor generation
@@ -855,14 +842,10 @@ packages:
     Launch and control background processes
     Facility for creating read-only scalars, arrays, hashes
     sort lexically, but sort numeral parts numerically
-    The Template Toolkit
-    Manual text wrapping and reformatting
-    Automatic text wrapping and reformatting
     A Perl interface to the iconv() codeset conversion function
     Expand/unexpand tabs per unix expand and line wrapping
     A switch statement for Perl
     Ordered associative arrays for Perl
-    Encoding and decoding of UTF-8 encoding form
     Client-side interface to the X11 Protocol
     A Perl Module for Tk
     Perl binding for libxml2
@@ -871,7 +854,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-perl/AppConfig
       dev-perl/Carp-Always
       dev-perl/Class-Accessor
       dev-perl/Config-Simple
@@ -889,22 +871,14 @@ packages:
       dev-perl/Number-Bytes-Human
       dev-perl/Pango
       dev-perl/Params-Validate
-      dev-perl/Path-Tiny
       dev-perl/Proc-ProcessTable
       dev-perl/Proc-Simple
       dev-perl/Sort-Naturally
       dev-perl/Switch
-      dev-perl/Template-Toolkit
-      dev-perl/Text-Autoformat
-      dev-perl/Text-Reform
       dev-perl/Tk
-      dev-perl/Unicode-UTF8
       dev-perl/X11-Protocol
       dev-perl/XML-LibXML
   provides:
-  - category: "dev-perl"
-    name: "AppConfig"
-    version: ">=0"
   - category: "dev-perl"
     name: "Archive-Zip"
     version: ">=0"
@@ -929,9 +903,6 @@ packages:
   - category: "dev-perl"
     name: "ExtUtils-Config"
     version: ">=0"
-  # - category: "dev-perl"
-  #   name: "ExtUtils-HasCompiler"
-  #   version: ">=0"
   - category: "dev-perl"
     name: "ExtUtils-Helpers"
     version: ">=0"
@@ -987,9 +958,6 @@ packages:
     name: "Params-Validate"
     version: ">=0"
   - category: "dev-perl"
-    name: "Path-Tiny"
-    version: ">=0"
-  - category: "dev-perl"
     name: "Proc-ProcessTable"
     version: ">=0"
   - category: "dev-perl"
@@ -1005,25 +973,13 @@ packages:
     name: "Switch"
     version: ">=0"
   - category: "dev-perl"
-    name: "Template-Toolkit"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-Autoformat"
-    version: ">=0"
-  - category: "dev-perl"
     name: "Text-Iconv"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Text-Reform"
     version: ">=0"
   - category: "dev-perl"
     name: "Tie-IxHash"
     version: ">=0"
   - category: "dev-perl"
     name: "Tk"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Unicode-UTF8"
     version: ">=0"
   - category: "dev-perl"
     name: "X11-Protocol"
