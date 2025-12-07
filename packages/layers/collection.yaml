@@ -699,6 +699,7 @@ packages:
     use: "lapack matrixops modify partition # cuda"
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp # mpi"
+    portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
   - atom: "dev-python/matplotlib"
