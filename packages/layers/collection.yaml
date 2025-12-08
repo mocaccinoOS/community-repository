@@ -940,7 +940,6 @@ packages:
     name: "XML-Twig"
     version: ">=0"
   inner_build_reqs:
-  - dev-perl/Alien-Libxml2
   - dev-perl/Module-Build-Tiny
   - dev-perl/Module-Install
   requires:
@@ -1241,6 +1240,9 @@ packages:
     name: "HTML-Tree"
     version: ">=0"
   - category: "dev-perl"
+    name: "IPC-Run3"
+    version: ">=0"
+  - category: "dev-perl"
     name: "Lingua-Translit"
     version: ">=0"
   - category: "dev-perl"
@@ -1263,9 +1265,6 @@ packages:
     version: ">=0"
   - category: "dev-perl"
     name: "Parse-RecDescent"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Pod-LaTeX"
     version: ">=0"
   - category: "dev-perl"
     name: "Regexp-Common"
@@ -1450,6 +1449,9 @@ packages:
   - category: "media-gfx"
     name: "sam2p"
     version: ">=0"
+  - category: "media-gfx"
+    name: "sam2p"
+    version: ">=0"
   - category: "virtual"
     name: "latex-base"
     version: ">=0"
@@ -1457,16 +1459,13 @@ packages:
     name: "perl-Text-Balanced"
     version: ">=0"
   - category: "virtual"
-    name: "perl-Unicode-Normalize"
-    version: ">=0"
-  - category: "virtual"
-    name: "perl-if"
-    version: ">=0"
-  - category: "virtual"
     name: "texi2dvi"
     version: ">=0"
   # prepare:
   # - export TEXI2DVI_USE_RECORDER=yesmaybe
+  inner_build_reqs:
+  - dev-perl/ExtUtils-LibBuilder
+  - dev-python/latexrestricted
   requires:
   - <<: *layers-perl-libs
   - <<: *layers-ruby
