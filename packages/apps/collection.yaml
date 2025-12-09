@@ -5319,7 +5319,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "140-142"
+  version: "140-142+1"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5327,7 +5327,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:138
+      media-video/ffmpeg-chromium:140
       media-video/ffmpeg-chromium:142
   provides:
   - category: "media-video"
@@ -8045,6 +8045,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# - category: "apps"
+#   name: "onedrive"
+#   version: "2.5.9"
+#   uri:
+#   - https://abraunegg.github.io
+#   license: "GPL-3"
+#   description: "Free Client for OneDrive on Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/onedrive
+#   provides:
+#   - category: "net-misc"
+#     name: "onedrive"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/onedrive"
+#     use: "libnotify"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
+
 - category: "apps"
   name: "onedrive"
   version: "2.5.9"
@@ -8056,7 +8080,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/onedrive
-      net-misc/onedrivegui
+  #     net-misc/onedrivegui
   overlays:
   - enable: "dlang"
   provides:
@@ -8068,15 +8092,17 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
-    use: "libnotify"
+    use: "dmd-2_107 libnotify"
     accept_keywords: "~amd64"
   - atom: "net-misc/onedrivegui"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - =dev-lang/dmd-2.107.0:2.107
   requires:
-  - <<: *layers-X
+  - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-X
-
+  - <<: *layers-gnome-common
+  
 - &apps-pandoc
   category: "apps"
   name: "pandoc"
@@ -12423,7 +12449,7 @@ packages:
     name: "ghostty-terminfo"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/zig:0.13;ACCEPT_KEYWORDS="~amd64"
+  - dev-lang/zig-bin:0.13;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-oniguruma
@@ -13722,7 +13748,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "124.0.5705.65"
+  version: "124.0.5705.65+1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14083,6 +14109,9 @@ packages:
     version: ">=0"
   - category: "app-emulation"
     name: "vkd3d-proton"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libxml2-compat"
     version: ">=0"
   atoms:
   - atom: "app-emulation/proton-ge-custom-bin"
@@ -16641,7 +16670,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "25.2.7.2-r1+2"
+  version: "25.2.7.2-r1+3"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -16698,6 +16727,9 @@ packages:
   - category: "games-engines"
     name: "box2d"
     version: ">=0"
+  - category: "media-libs"
+    name: "zxing-cpp"
+    version: ">=0"
   # - category: "sci-libs"
   #   name: "coinor-mp"
   #   version: ">=0"
@@ -16727,7 +16759,6 @@ packages:
   # - dev-db/postgresql
   - dev-perl/Archive-Zip
   - dev-util/cppunit
-  - media-libs/zxing-cpp
   inner_build_requires:
   - <<: *apps-ant
   requires:
@@ -17063,8 +17094,8 @@ packages:
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
     use: "curl gnutls ipv6 ldap mysql radius samba ssl dns fping snmp ssh # game postgres"
-  - atom: "net-analyzer/nagios"
-    accept_keywords: "~amd64"
+  # - atom: "net-analyzer/nagios"
+  #   accept_keywords: "~amd64"
   # media-libs/gd needs png flag
   # - atom: "net-analyzer/nagios-core"
   #   use: "apache2 classicui web # lighttpd vim-syntax"
@@ -20381,7 +20412,7 @@ packages:
 
 - category: "apps"
   name: "vdr"
-  version: "2.7.7"
+  version: "2.7.7+1"
   uri:
   - http://www.tvdr.de/
   - http://www.escape-edv.de/endriss/vdr/
@@ -20405,8 +20436,8 @@ packages:
       media-plugins/vdr-dvbhddevice
       media-plugins/vdr-pvr350
       media-plugins/vdr-xineliboutput
-    # media-plugins/vdr-weatherng
-    # media-plugins/vdr-remote
+      media-plugins/vdr-weatherng
+      media-plugins/vdr-remote
   provides:
   - category: "media-video"
     name: "vdr"
@@ -20414,18 +20445,18 @@ packages:
   - category: "app-eselect"
     name: "eselect-vdr"
     version: ">=0"
-  # - category: "media-plugins"
-  #   name: "vdr-remote"
-  #   version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-remote"
+    version: ">=0"
   - category: "media-plugins"
     name: "vdr-dvbsddevice"
     version: ">=0"
   - category: "media-plugins"
     name: "vdr-dvbhddevice"
     version: ">=0"
-  # - category: "media-plugins"
-  #   name: "vdr-weatherng"
-  #   version: ">=0"
+  - category: "media-plugins"
+    name: "vdr-weatherng"
+    version: ">=0"
   - category: "media-plugins"
     name: "vdr-pvr350"
     version: ">=0"
@@ -20634,6 +20665,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      =media-libs/lsp-plugins-1.2.3-r1
       media-sound/easyeffects
   provides:
   - category: "media-sound"
