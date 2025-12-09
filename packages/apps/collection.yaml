@@ -8092,7 +8092,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-misc/onedrive"
-    use: "dmd-2_107 libnotify"
+    use: "dlang_single_target_dmd-2_107 libnotify"
     accept_keywords: "~amd64"
   - atom: "net-misc/onedrivegui"
     accept_keywords: "~amd64"
@@ -10011,6 +10011,7 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
+  - dev-python/setuptools_scm_git_archive
   - dev-python/python-distutils-extra
   - dev-python/meson-python
   - dev-cpp/taskflow
@@ -11934,7 +11935,7 @@ packages:
 #   - atom: "dev-python/pluginbase"
 #     accept_keywords: "~amd64"
 #   inner_build_reqs:
-#   - dev-python/setuptools_scm_git_archive
+# #   - dev-python/setuptools_scm_git_archive
 #   requires:
 #   - <<: *layers-sys-fs
 #   - <<: *libs-colorama
@@ -15301,8 +15302,7 @@ packages:
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
   inner_build_reqs:
-  # neeed by dev-python/nanobind
-  - =dev-python/scikit-build-core-0.11.5
+  - dev-python/setuptools_scm_git_archive
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -20436,7 +20436,7 @@ packages:
       media-plugins/vdr-dvbhddevice
       media-plugins/vdr-pvr350
       media-plugins/vdr-xineliboutput
-      media-plugins/vdr-weatherng
+    # media-plugins/vdr-weatherng
     # media-plugins/vdr-remote
   provides:
   - category: "media-video"
@@ -20564,7 +20564,6 @@ packages:
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
   inner_build_reqs:
-  - =dev-python/scikit-build-core-0.11.5
   - *apps-doxygen-packages
   requires:
   - <<: *layers-qt
@@ -20666,7 +20665,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/lsp-plugins
       media-sound/easyeffects
   provides:
   - category: "media-sound"
