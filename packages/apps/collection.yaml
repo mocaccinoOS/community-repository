@@ -15302,7 +15302,7 @@ packages:
     use: "lz4 snappy zlib zstd"
   inner_build_reqs:
   # neeed by dev-python/nanobind
-  - dev-python/scikit-build-core
+  - =dev-python/scikit-build-core-0.11.5
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -17093,14 +17093,14 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
-    use: "curl gnutls ipv6 ldap mysql radius samba ssl dns fping snmp ssh # game postgres"
+    use: "curl gnutls ipv6 ldap mysql samba ssl dns fping snmp ssh # radius https://bugs.gentoo.org/957000 # game postgres"
   # - atom: "net-analyzer/nagios"
   #   accept_keywords: "~amd64"
   # media-libs/gd needs png flag
   # - atom: "net-analyzer/nagios-core"
   #   use: "apache2 classicui web # lighttpd vim-syntax"
   - atom: "net-analyzer/nagios-plugins"
-    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # postgres selinux nagios-game"
+    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping snmp ssh # radius https://bugs.gentoo.org/957000 # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
   - atom: "net-dialup/freeradius-client"
@@ -20437,7 +20437,7 @@ packages:
       media-plugins/vdr-pvr350
       media-plugins/vdr-xineliboutput
       media-plugins/vdr-weatherng
-      media-plugins/vdr-remote
+    # media-plugins/vdr-remote
   provides:
   - category: "media-video"
     name: "vdr"
@@ -20564,6 +20564,7 @@ packages:
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
   inner_build_reqs:
+  - =dev-python/scikit-build-core-0.11.5
   - *apps-doxygen-packages
   requires:
   - <<: *layers-qt
@@ -20665,7 +20666,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-libs/lsp-plugins-1.2.3-r1
+      media-libs/lsp-plugins
       media-sound/easyeffects
   provides:
   - category: "media-sound"
