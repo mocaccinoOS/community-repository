@@ -222,6 +222,10 @@ stubs:
 #   name: "vtk"
 #   version: ">=0"
 
+- &buildbase-gcc-14
+  category: "buildbase"
+  name: "gcc-14"
+  version: ">=0"
 
 ################################################################################################################################################################
 ### kernel refs ###
@@ -9992,6 +9996,9 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
+  atoms:
+  - atom: "dev-cpp/rapidfuzz-cpp"
+    portage_env: "compile_with_gcc14"
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -10011,14 +10018,15 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
-  - dev-python/setuptools
   - dev-python/python-distutils-extra
   - dev-python/meson-python
   - dev-cpp/taskflow
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *layers-gnome-common
+  - <<: *buildbase-gcc-14
+  - <<: *buildbase-gnome-common
+  requires_final_images: true
 
 - category: "apps"
   name: "usb_modeswitch"
@@ -15298,18 +15306,18 @@ packages:
   atoms:
   - atom: "media-gfx/openvdb"
     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+    portage_env: "MAKEOPTS=\"-j5 -l0.8\" compile_with_gcc14"
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  inner_build_reqs:
-  - dev-python/setuptools
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
   - <<: *libs-glfw
   build_requires:
-  - <<: *layers-qt
-
+  - <<: *buildbase-qt
+  - <<: *buildbase-gcc-14
+  requires_final_images: true
+  
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
@@ -20569,8 +20577,10 @@ packages:
   - <<: *layers-qt
   - <<: *libs-openvdb
   build_requires:
-  - <<: *layers-qt
-
+  - <<: *buildbase-qt
+  - <<: *buildbase-gcc-14
+  requires_final_images: true
+  
 # may be included in its referring package
 - &libs-wxpython
   category: "libs"
@@ -20692,6 +20702,9 @@ packages:
   inner_build_reqs:
   - dev-util/itstool
   - dev-util/lv2lint
+  atoms:
+  - atom: "media-libs/lsp-plugins"
+    portage_env: "compile_with_gcc14"
   requires:
   - <<: *layers-gnome
   - <<: *libs-nlohmann_json
@@ -20705,7 +20718,9 @@ packages:
   - <<: *libs-rnnoise
   - <<: *apps-calf
   build_requires:
-  - <<: *layers-gnome
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-gcc-14
+  requires_final_images: true
 
 # - &apps-gmic
 #   category: "apps"
