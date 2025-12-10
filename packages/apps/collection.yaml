@@ -9997,7 +9997,7 @@ packages:
     name: "rapidfuzz-cpp"
     version: ">=0"
   prepare:
-  - echo "dev-cpp/rapidfuzz-cpp compile_with_gcc14" > /etc/portage/package.env/dev-cpp/rapidfuzz-cpp
+  - echo "dev-cpp/rapidfuzz-cpp compile_with_gcc14" > /etc/portage/package.env/rapidfuzz-cpp.env
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -15309,7 +15309,7 @@ packages:
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
   prepare:
-  - echo "dev-python/nanobind compile_with_gcc14" > /etc/portage/package.env/dev-python/nanobind
+  - echo "dev-python/nanobind compile_with_gcc14" > /etc/portage/package.env/nanobind.env
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -20704,7 +20704,7 @@ packages:
   - dev-util/itstool
   - dev-util/lv2lint
   prepare:
-  - echo "media-libs/lsp-plugins compile_with_gcc14" > /etc/portage/package.env/media-libs/lsp-plugins
+  - echo "media-libs/lsp-plugins compile_with_gcc14" > /etc/portage/package.env/lsp-plugins.env
   requires:
   - <<: *layers-gnome
   - <<: *libs-nlohmann_json
