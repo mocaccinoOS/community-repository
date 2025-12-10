@@ -8069,39 +8069,39 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-- category: "apps"
-  name: "onedrive"
-  version: "2.5.9"
-  uri:
-  - https://abraunegg.github.io
-  license: "GPL-3"
-  description: "Free Client for OneDrive on Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/onedrive
-  #     net-misc/onedrivegui
-  overlays:
-  - enable: "dlang"
-  provides:
-  - category: "net-misc"
-    name: "onedrive"
-    version: ">=0"
-  - category: "net-misc"
-    name: "onedrivegui"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/onedrive"
-    use: "dlang_single_target_dmd-2_107 libnotify"
-    accept_keywords: "~amd64"
-  - atom: "net-misc/onedrivegui"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - =dev-lang/dmd-2.107.0:2.107
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "onedrive"
+#   version: "2.5.9"
+#   uri:
+#   - https://abraunegg.github.io
+#   license: "GPL-3"
+#   description: "Free Client for OneDrive on Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/onedrive
+#   #     net-misc/onedrivegui
+#   overlays:
+#   - enable: "dlang"
+#   provides:
+#   - category: "net-misc"
+#     name: "onedrive"
+#     version: ">=0"
+#   - category: "net-misc"
+#     name: "onedrivegui"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/onedrive"
+#     use: "dlang_single_target_dmd-2_107 libnotify"
+#     accept_keywords: "~amd64"
+#   - atom: "net-misc/onedrivegui"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - =dev-lang/dmd-2.107.0:2.107
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
   
 - &apps-pandoc
   category: "apps"
@@ -10011,7 +10011,7 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
-  - dev-python/setuptools_scm_git_archive
+  - dev-python/setuptools
   - dev-python/python-distutils-extra
   - dev-python/meson-python
   - dev-cpp/taskflow
@@ -15302,7 +15302,7 @@ packages:
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
   inner_build_reqs:
-  - dev-python/setuptools_scm_git_archive
+  - dev-python/setuptools
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -20439,14 +20439,11 @@ packages:
     # media-plugins/vdr-weatherng
     # media-plugins/vdr-remote
   provides:
-  - category: "media-video"
-    name: "vdr"
-    version: ">=0"
   - category: "app-eselect"
     name: "eselect-vdr"
     version: ">=0"
-  - category: "media-plugins"
-    name: "vdr-remote"
+  - category: "media-video"
+    name: "vdr"
     version: ">=0"
   - category: "media-plugins"
     name: "vdr-dvbsddevice"
@@ -20455,19 +20452,22 @@ packages:
     name: "vdr-dvbhddevice"
     version: ">=0"
   - category: "media-plugins"
-    name: "vdr-weatherng"
-    version: ">=0"
-  - category: "media-plugins"
     name: "vdr-pvr350"
     version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-remote"
+  #   version: ">=0"
+  # - category: "media-plugins"
+  #   name: "vdr-weatherng"
+  #   version: ">=0"
   - category: "media-plugins"
     name: "vdr-xineliboutput"
     version: ">=0"
-  - category: "sys-process"
-    name: "wait_on_pid"
-    version: ">=0"
   - category: "media-tv"
     name: "gentoo-vdr-scripts"
+    version: ">=0"
+  - category: "sys-process"
+    name: "wait_on_pid"
     version: ">=0"
   atoms:
   - atom: "media-video/vdr"
