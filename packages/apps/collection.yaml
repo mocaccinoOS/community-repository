@@ -9998,11 +9998,11 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-cpp/rapidfuzz-cpp"
-    portage_env_profile: "compile_with_gcc14"
-  - atom: "dev-python/scikit-build-core"
-    portage_env_profile: "compile_with_gcc14"
+    usepkg_exclude: true
+    # portage_env_profile: "compile_with_gcc14"
   - atom: "dev-python/rapidfuzz"
-    portage_env_profile: "compile_with_gcc14"
+    usepkg_exclude: true
+    # portage_env_profile: "compile_with_gcc14"
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -10028,9 +10028,10 @@ packages:
   requires:
   - <<: *layers-gnome-common
   build_requires:
-  - <<: *buildbase-gcc-14
-  - <<: *buildbase-gnome-common
-  requires_final_images: true
+  - <<: *layers-gnome-common
+  # - <<: *buildbase-gcc-14
+  # - <<: *buildbase-gnome-common
+  # requires_final_images: true
 
 - category: "apps"
   name: "usb_modeswitch"
@@ -15313,17 +15314,20 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-    atoms:
   - atom: "dev-python/nanobind"
-    portage_env_profile: "compile_with_gcc14"
+    usepkg_exclude: true
+    # portage_env_profile: "compile_with_gcc14"
+  inner_build_reqs:
+  - dev-python/scikit-build-core
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
   - <<: *libs-glfw
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-gcc-14
-  requires_final_images: true
+  - <<: *layers-qt
+  # - <<: *buildbase-qt
+  # - <<: *buildbase-gcc-14
+  # requires_final_images: true
   
 - &libs-xine-lib
   category: "libs"
@@ -20706,8 +20710,8 @@ packages:
     use: "lv2 vst X # doc jack ladspa"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
-  - atom: "media-libs/lsp-plugins"
-    portage_env_profile: "compile_with_gcc14"
+    usepkg_exclude: true
+    # portage_env_profile: "compile_with_gcc14"
   inner_build_reqs:
   - dev-util/itstool
   - dev-util/lv2lint
@@ -20724,9 +20728,10 @@ packages:
   - <<: *libs-rnnoise
   - <<: *apps-calf
   build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-gcc-14
-  requires_final_images: true
+  - <<: *layers-gnome
+  # - <<: *buildbase-gnome-common
+  # - <<: *buildbase-gcc-14
+  # requires_final_images: true
 
 # - &apps-gmic
 #   category: "apps"
