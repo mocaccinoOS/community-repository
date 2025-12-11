@@ -247,6 +247,12 @@
   echo -e "{{ ( $value | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $atomfilename }}.conf; \
   echo -e "{{ $atom.atom }} {{ $atomfilename }}.conf" >> /etc/portage/package.env/{{ $filename }}.env; \
 {{- end }}
+{{- if portage_env_profile }}
+  echo -e "{{ $atom.atom }} {{ portage_env_profile }}" >> /etc/portage/package.env/{{ $atomfilename }}.env; \
+{{- end }}
+{{- if $atom.portage_env_profile }}
+  echo -e "{{ $atom.atom }} {{ $atom.portage_env_profile }}" >> /etc/portage/package.env/{{ $atomfilename }}.env; \
+{{- end }}
 
 {{- if eq ( mod $count 50 ) 0 }}
   echo;

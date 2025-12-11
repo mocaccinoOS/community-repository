@@ -9996,10 +9996,13 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
-  prepare:
-  - echo "dev-cpp/rapidfuzz-cpp compile_with_gcc14" > /etc/portage/package.env/rapidfuzz-cpp.env
-  - echo "dev-python/scikit-build-core compile_with_gcc14" > /etc/portage/package.env/scikit-build-core.env
-  - echo "dev-python/rapidfuzz compile_with_gcc14" > /etc/portage/package.env/rapidfuzz.env
+  atoms:
+  - atom: "dev-cpp/rapidfuzz-cpp"
+    portage_env_profile: "compile_with_gcc14"
+  - atom: "dev-python/scikit-build-core"
+    portage_env_profile: "compile_with_gcc14"
+  - atom: "dev-python/rapidfuzz"
+    portage_env_profile: "compile_with_gcc14"
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -15310,8 +15313,9 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  prepare:
-  - echo "dev-python/nanobind compile_with_gcc14" > /etc/portage/package.env/nanobind.env
+    atoms:
+  - atom: "dev-python/nanobind"
+    portage_env_profile: "compile_with_gcc14"
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -20702,11 +20706,11 @@ packages:
     use: "lv2 vst X # doc jack ladspa"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
+  - atom: "media-libs/lsp-plugins"
+    portage_env_profile: "compile_with_gcc14"
   inner_build_reqs:
   - dev-util/itstool
   - dev-util/lv2lint
-  prepare:
-  - echo "media-libs/lsp-plugins compile_with_gcc14" > /etc/portage/package.env/lsp-plugins.env
   requires:
   - <<: *layers-gnome
   - <<: *libs-nlohmann_json
