@@ -9997,12 +9997,8 @@ packages:
     name: "rapidfuzz-cpp"
     version: ">=0"
   atoms:
-  - atom: "dev-cpp/rapidfuzz-cpp"
+  - atom: "dev-python/scikit-build-core"
     usepkg_exclude: true
-    # portage_env_profile: "compile_with_gcc14"
-  - atom: "dev-python/rapidfuzz"
-    usepkg_exclude: true
-    # portage_env_profile: "compile_with_gcc14"
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -10022,6 +10018,7 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
+  - dev-python/scikit-build-core
   - dev-python/python-distutils-extra
   - dev-python/meson-python
   - dev-cpp/taskflow
@@ -10029,9 +10026,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-  # - <<: *buildbase-gcc-14
-  # - <<: *buildbase-gnome-common
-  # requires_final_images: true
 
 - category: "apps"
   name: "usb_modeswitch"
@@ -15314,9 +15308,8 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  - atom: "dev-python/nanobind"
+  - atom: "dev-python/scikit-build-core"
     usepkg_exclude: true
-    # portage_env_profile: "compile_with_gcc14"
   inner_build_reqs:
   - dev-python/scikit-build-core
   requires:
@@ -15325,9 +15318,6 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
-  # - <<: *buildbase-qt
-  # - <<: *buildbase-gcc-14
-  # requires_final_images: true
   
 - &libs-xine-lib
   category: "libs"
@@ -20710,9 +20700,10 @@ packages:
     use: "lv2 vst X # doc jack ladspa"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
+  - atom: "dev-python/scikit-build-core"
     usepkg_exclude: true
-    # portage_env_profile: "compile_with_gcc14"
   inner_build_reqs:
+  - dev-python/scikit-build-core
   - dev-util/itstool
   - dev-util/lv2lint
   requires:
@@ -20729,9 +20720,6 @@ packages:
   - <<: *apps-calf
   build_requires:
   - <<: *layers-gnome
-  # - <<: *buildbase-gnome-common
-  # - <<: *buildbase-gcc-14
-  # requires_final_images: true
 
 # - &apps-gmic
 #   category: "apps"
