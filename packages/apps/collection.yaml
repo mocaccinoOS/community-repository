@@ -10010,6 +10010,7 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
+  - dev-python/gpep517
   - dev-python/scikit-build-core
   - dev-python/python-distutils-extra
   - dev-python/meson-python
@@ -10582,7 +10583,7 @@ packages:
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
-  version: "0.2+10"
+  version: "0.3"
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
@@ -15307,6 +15308,7 @@ packages:
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
   inner_build_reqs:
+  - dev-python/gpep517
   - dev-python/scikit-build-core
   requires:
   - <<: *layers-qt
@@ -20695,7 +20697,6 @@ packages:
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
   inner_build_reqs:
-  - dev-python/scikit-build-core
   - dev-util/itstool
   - dev-util/lv2lint
   requires:
