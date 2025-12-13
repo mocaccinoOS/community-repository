@@ -222,11 +222,6 @@ stubs:
 #   name: "vtk"
 #   version: ">=0"
 
-- &buildbase-gcc-14
-  category: "buildbase"
-  name: "gcc-14"
-  version: ">=0"
-
 ################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
@@ -9996,11 +9991,6 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
-  atoms:
-  - atom: "dev-cpp/rapidfuzz-cpp"
-    usepkg_exclude: true
-  - atom: "dev-python/scikit-build-core"
-    usepkg_exclude: true
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -10596,16 +10586,20 @@ packages:
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
-  license: "freedist public-domain"
+  license: "freedist public-domain GPL-2+"
   description: |
     Let it snow on your desktop and windows
     Turns your root window into an aquarium
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      games-misc/xpenguins
       x11-misc/xfishtank
       x11-misc/xsnow
   provides:
+  - category: "games-misc"
+    name: "xpenguins"
+    version: ">=0"
   - category: "x11-misc"
     name: "xfishtank"
     version: ">=0"
@@ -10613,6 +10607,8 @@ packages:
     name: "xsnow"
     version: ">=0"
   atoms:
+  - atom: "games-misc/xpenguins"
+    accept_keywords: "~amd64"
   - atom: "x11-misc/xfishtank"
     license: "public-domain"
   - atom: "x11-misc/xsnow"
@@ -15310,12 +15306,6 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  - atom: "dev-cpp/robin-map"
-    usepkg_exclude: true
-  - atom: "dev-python/scikit-build-core"
-    usepkg_exclude: true
-  - atom: "dev-python/nanobind"
-    usepkg_exclude: true   
   inner_build_reqs:
   - dev-python/scikit-build-core
   requires:
@@ -20584,9 +20574,7 @@ packages:
   - <<: *layers-qt
   - <<: *libs-openvdb
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-gcc-14
-  requires_final_images: true
+  - <<: *layers-qt
   
 # may be included in its referring package
 - &libs-wxpython
@@ -20706,8 +20694,6 @@ packages:
     use: "lv2 vst X # doc jack ladspa"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
-  - atom: "dev-python/scikit-build-core"
-    usepkg_exclude: true
   inner_build_reqs:
   - dev-python/scikit-build-core
   - dev-util/itstool
