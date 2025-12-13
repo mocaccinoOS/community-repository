@@ -9968,7 +9968,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.15+3"
+  version: "5.15.15+4"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9991,6 +9991,11 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/hatchling"
+    usepkg_exclude: true
+  - atom: "dev-python/scikit-build-core"
+    usepkg_exclude: true
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -15307,6 +15312,10 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
+  - atom: "dev-python/hatchling"
+    usepkg_exclude: true
+  - atom: "dev-python/scikit-build-core"
+    usepkg_exclude: true
   inner_build_reqs:
   - dev-python/hatchling
   - dev-python/scikit-build-core
