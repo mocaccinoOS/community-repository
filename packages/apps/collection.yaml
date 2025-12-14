@@ -9991,6 +9991,15 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/wheel"
+    usepkg-exclude: true
+  - atom: "dev-python/levenshtein"
+    usepkg-exclude: true
+  - atom: "dev-python/websocket-client"
+    usepkg-exclude: true
+  - atom: "dev-cpp/rapidfuzz-cpp"
+    usepkg-exclude: true
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -15306,6 +15315,8 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
+  - atom: "dev-python/wheel"
+    usepkg-exclude: true
   inner_build_reqs:
   - dev-python/wheel
   requires:
