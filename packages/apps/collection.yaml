@@ -20691,6 +20691,9 @@ packages:
     use: "lv2 vst X # doc jack ladspa"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
+  prepare:
+  - cp /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-1.2.14.ebuild /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-1.2.15.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-*.ebuild manifest
   inner_build_reqs:
   - dev-util/itstool
   - dev-util/lv2lint

@@ -6,8 +6,8 @@ env:
 {{- else }}
 - JOBS=3
 {{- end }}
-- EMERGE_DEFAULT_OPTS="--getbinpkg --quiet"
-- FEATURES="-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox binpkg-request-signature"
+- EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --getbinpkg --quiet"
+- FEATURES="${FEATURES} -sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox binpkg-request-signature"
 {{- range .Values.env }}
 - {{ . }}
 {{- end }}
