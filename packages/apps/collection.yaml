@@ -9966,67 +9966,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+4"
-  uri:
-  - https://ulauncher.io
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-      dev-python/websocket-client
-  provides:
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/wheel"
-    usepkg-exclude: true
-  - atom: "dev-python/levenshtein"
-    usepkg-exclude: true
-  - atom: "dev-python/websocket-client"
-    usepkg-exclude: true
-  - atom: "dev-cpp/rapidfuzz-cpp"
-    usepkg-exclude: true
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  - dev-python/wheel
-  - dev-python/python-distutils-extra
-  - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "ulauncher"
+#   version: "5.15.15+4"
+#   uri:
+#   - https://ulauncher.io
+#   license: "GPL-3"
+#   description: "Feature rich application Launcher for Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/levenshtein
+#       dev-python/websocket-client
+#   provides:
+#   - category: "net-misc"
+#     name: "ulauncher"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "levenshtein"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "websocket-client"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "rapidfuzz-cpp"
+#     version: ">=0"
+#   ready:
+#   - |
+#     git clone https://github.com/Ulauncher/Ulauncher.git && \
+#     cd Ulauncher && \
+#     git fetch --all --tags && \
+#     git checkout tags/5.15.15 && \
+#     export PYTHONHASHSEED=0 && \
+#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+#     python setup.py build
+#   completion:
+#   - |
+#     cd Ulauncher && \
+#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+#     cd ../build && \
+#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+#     find . -type d -name __pycache__ | xargs rm -rf && \
+#     cp -r usr /
+#   inner_build_reqs:
+#   - dev-python/python-distutils-extra
+#   - dev-python/meson-python
+#   - dev-cpp/taskflow
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "usb_modeswitch"
@@ -15275,56 +15265,52 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-- &libs-openvdb
-  category: "libs"
-  name: "openvdb"
-  version: "12.0.1+6"
-  uri:
-  - https://www.openvdb.org
-  - https://www.blosc.org/
-  - https://log4cplus.sourceforge.io/
-  - https://github.com/log4cplus/log4cplus
-  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
-  description: |
-    Library for the efficient manipulation of volumetric data
-    Blocking, shuffling and lossless compression library
-    C++ port of the Log for Java (log4j) logging library
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/openvdb
-  provides:
-  - category: "media-gfx"
-    name: "openvdb"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "robin-map"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "log4cplus"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nanobind"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/openvdb"
-    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  - atom: "dev-python/wheel"
-    usepkg-exclude: true
-  inner_build_reqs:
-  - dev-python/wheel
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-tbb
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-qt
+# - &libs-openvdb
+#   category: "libs"
+#   name: "openvdb"
+#   version: "12.0.1+6"
+#   uri:
+#   - https://www.openvdb.org
+#   - https://www.blosc.org/
+#   - https://log4cplus.sourceforge.io/
+#   - https://github.com/log4cplus/log4cplus
+#   license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+#   description: |
+#     Library for the efficient manipulation of volumetric data
+#     Blocking, shuffling and lossless compression library
+#     C++ port of the Log for Java (log4j) logging library
+#   labels:
+#     emerge.jobs: "3"
+#     emerge.packages: >-
+#       media-gfx/openvdb
+#   provides:
+#   - category: "media-gfx"
+#     name: "openvdb"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "robin-map"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "c-blosc"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "log4cplus"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "nanobind"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/openvdb"
+#     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
+#     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+#   - atom: "dev-libs/c-blosc"
+#     use: "lz4 snappy zlib zstd"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-tbb
+#   - <<: *libs-glfw
+#   build_requires:
+#   - <<: *layers-qt
   
 - &libs-xine-lib
   category: "libs"
@@ -20573,7 +20559,7 @@ packages:
   - atom: "media-libs/opencolorio"
     use: "opengl python"
   - atom: "media-libs/openimageio"
-    use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt6 raw truetype"
+    use: "dicom ffmpeg gif jpeg2k opencv opengl ptex python qt6 raw truetype # openvdb"
   - atom: "sci-libs/dcmtk"
     license: "OFFIS"
     use: "png ssl tcpd tiff threads xml zlib"
@@ -20583,7 +20569,7 @@ packages:
   - *apps-doxygen-packages
   requires:
   - <<: *layers-qt
-  - <<: *libs-openvdb
+  # - <<: *libs-openvdb
   build_requires:
   - <<: *layers-qt
   
@@ -21047,7 +21033,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/blender"
-    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv openvdb osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # # cuda optix # oneapi # debug headless test"
+    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome hip jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi # debug headless test"
   - atom: "media-gfx/alembic"
     use: "hdf5"
   - atom: "media-libs/embree"
