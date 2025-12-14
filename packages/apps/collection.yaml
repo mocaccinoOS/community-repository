@@ -10010,6 +10010,7 @@ packages:
     find . -type d -name __pycache__ | xargs rm -rf && \
     cp -r usr /
   inner_build_reqs:
+  - dev-python/wheel
   - dev-python/python-distutils-extra
   - dev-python/meson-python
   - dev-cpp/taskflow
@@ -15305,6 +15306,8 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
+  inner_build_reqs:
+  - dev-python/wheel
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -20650,67 +20653,64 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+1"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  prepare:
-  - cp /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-1.2.14.ebuild /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-1.2.15.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/lsp-plugins/lsp-plugins-*.ebuild manifest
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+1"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
