@@ -7527,6 +7527,26 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "mktorrent"
+  version: "1.1_p20210130-r1"
+  uri:
+  - https://github.com/pobrn/mktorrent
+  license: "GPL-2+"
+  description: "Simple command line utility to create BitTorrent metainfo files"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-p2p/mktorrent
+  provides:
+  - category: "net-p2p"
+    name: "mktorrent"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-mono
   category: "apps"
   name: "mono"
@@ -9943,57 +9963,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+4"
-  uri:
-  - https://ulauncher.io
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-      dev-python/websocket-client
-  provides:
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  - dev-python/python-distutils-extra
-  - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "ulauncher"
+#   version: "5.15.15+4"
+#   uri:
+#   - https://ulauncher.io
+#   license: "GPL-3"
+#   description: "Feature rich application Launcher for Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/levenshtein
+#       dev-python/websocket-client
+#   provides:
+#   - category: "net-misc"
+#     name: "ulauncher"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "levenshtein"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "websocket-client"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "rapidfuzz-cpp"
+#     version: ">=0"
+#   ready:
+#   - |
+#     git clone https://github.com/Ulauncher/Ulauncher.git && \
+#     cd Ulauncher && \
+#     git fetch --all --tags && \
+#     git checkout tags/5.15.15 && \
+#     export PYTHONHASHSEED=0 && \
+#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+#     python setup.py build
+#   completion:
+#   - |
+#     cd Ulauncher && \
+#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+#     cd ../build && \
+#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+#     find . -type d -name __pycache__ | xargs rm -rf && \
+#     cp -r usr /
+#   inner_build_reqs:
+#   - dev-python/python-distutils-extra
+#   - dev-python/meson-python
+#   - dev-cpp/taskflow
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "usb_modeswitch"
@@ -15265,52 +15285,52 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-- &libs-openvdb
-  category: "libs"
-  name: "openvdb"
-  version: "12.0.1+7"
-  uri:
-  - https://www.openvdb.org
-  - https://www.blosc.org/
-  - https://log4cplus.sourceforge.io/
-  - https://github.com/log4cplus/log4cplus
-  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
-  description: |
-    Library for the efficient manipulation of volumetric data
-    Blocking, shuffling and lossless compression library
-    C++ port of the Log for Java (log4j) logging library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/openvdb
-  provides:
-  - category: "media-gfx"
-    name: "openvdb"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "robin-map"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "log4cplus"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nanobind"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/openvdb"
-    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-tbb
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-qt
+# - &libs-openvdb
+#   category: "libs"
+#   name: "openvdb"
+#   version: "12.0.1+7"
+#   uri:
+#   - https://www.openvdb.org
+#   - https://www.blosc.org/
+#   - https://log4cplus.sourceforge.io/
+#   - https://github.com/log4cplus/log4cplus
+#   license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+#   description: |
+#     Library for the efficient manipulation of volumetric data
+#     Blocking, shuffling and lossless compression library
+#     C++ port of the Log for Java (log4j) logging library
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/openvdb
+#   provides:
+#   - category: "media-gfx"
+#     name: "openvdb"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "robin-map"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "c-blosc"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "log4cplus"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "nanobind"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/openvdb"
+#     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
+#     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+#   - atom: "dev-libs/c-blosc"
+#     use: "lz4 snappy zlib zstd"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-tbb
+#   - <<: *libs-glfw
+#   build_requires:
+#   - <<: *layers-qt
     
 - &libs-xine-lib
   category: "libs"
