@@ -13519,7 +13519,7 @@ packages:
   atoms:
   - atom: "dev-libs/nwjs"
     accept_keywords: "~amd64"
-    # use: "ffmpeg-chromium sdk"
+    use: "sdk # ffmpeg-chromium"
   requires:
   - <<: *layers-X
   # - <<: *libs-ffmpeg-chromium
@@ -15029,38 +15029,38 @@ packages:
   - <<: *atom4
   - <<: *atom5
 
-- category: "apps"
-  name: "welle-io"
-  version: "2.2+2"
-  uri:
-  - http://www.welle.io
-  license: "GPL-2"
-  description: "A DAB/DAB+ Software Radio"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/welle-io
-  overlays:
-  - enable: "kripton-overlay"
-  - enable: "xoores"
-  provides:
-  - category: "dev-qt"
-    name: "qtcharts"
-    version: ">=0"
-  - category: "media-sound"
-    name: "welle-io"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/welle-io"
-    accept_keywords: "~amd64"
-  - atom: "dev-qt/qtcharts"
-    accept_keywords: "~amd64"
-    use: "qml"
-  requires:
-  - <<: *layers-kde-kf5
-  - <<: *libs-rtl-sdr
-  build_requires:
-  - <<: *layers-kde-kf5
+# - category: "apps"
+#   name: "welle-io"
+#   version: "2.2+2"
+#   uri:
+#   - http://www.welle.io
+#   license: "GPL-2"
+#   description: "A DAB/DAB+ Software Radio"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/welle-io
+#   overlays:
+#   - enable: "kripton-overlay"
+#   - enable: "xoores"
+#   provides:
+#   - category: "dev-qt"
+#     name: "qtcharts"
+#     version: ">=0"
+#   - category: "media-sound"
+#     name: "welle-io"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/welle-io"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-qt/qtcharts"
+#     accept_keywords: "~amd64"
+#     use: "qml"
+#   requires:
+#   - <<: *layers-kde-kf5
+#   - <<: *libs-rtl-sdr
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "wine-staging"
@@ -15264,52 +15264,52 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-- &libs-openvdb
-  category: "libs"
-  name: "openvdb"
-  version: "12.0.1+7"
-  uri:
-  - https://www.openvdb.org
-  - https://www.blosc.org/
-  - https://log4cplus.sourceforge.io/
-  - https://github.com/log4cplus/log4cplus
-  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
-  description: |
-    Library for the efficient manipulation of volumetric data
-    Blocking, shuffling and lossless compression library
-    C++ port of the Log for Java (log4j) logging library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/openvdb
-  provides:
-  - category: "media-gfx"
-    name: "openvdb"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "robin-map"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "log4cplus"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nanobind"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/openvdb"
-    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-tbb
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-qt
+# - &libs-openvdb
+#   category: "libs"
+#   name: "openvdb"
+#   version: "12.0.1+7"
+#   uri:
+#   - https://www.openvdb.org
+#   - https://www.blosc.org/
+#   - https://log4cplus.sourceforge.io/
+#   - https://github.com/log4cplus/log4cplus
+#   license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+#   description: |
+#     Library for the efficient manipulation of volumetric data
+#     Blocking, shuffling and lossless compression library
+#     C++ port of the Log for Java (log4j) logging library
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/openvdb
+#   provides:
+#   - category: "media-gfx"
+#     name: "openvdb"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "robin-map"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "c-blosc"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "log4cplus"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "nanobind"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/openvdb"
+#     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
+#     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+#   - atom: "dev-libs/c-blosc"
+#     use: "lz4 snappy zlib zstd"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-tbb
+#   - <<: *libs-glfw
+#   build_requires:
+#   - <<: *layers-qt
     
 - &libs-xine-lib
   category: "libs"
