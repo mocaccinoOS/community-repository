@@ -15280,7 +15280,7 @@ packages:
     Blocking, shuffling and lossless compression library
     C++ port of the Log for Java (log4j) logging library
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/openvdb
   provides:
@@ -15310,9 +15310,8 @@ packages:
   - <<: *libs-tbb
   - <<: *libs-glfw
   build_requires:
-  - <<: *buildbase-qt
-  requires_final_images: true
-  
+  - <<: *layers-qt
+    
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
