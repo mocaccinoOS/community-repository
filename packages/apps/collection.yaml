@@ -5318,7 +5318,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "140-142+1"
+  version: "140-143"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5328,6 +5328,7 @@ packages:
     emerge.packages: >-
       media-video/ffmpeg-chromium:140
       media-video/ffmpeg-chromium:142
+      media-video/ffmpeg-chromium:143
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -13519,10 +13520,10 @@ packages:
   atoms:
   - atom: "dev-libs/nwjs"
     accept_keywords: "~amd64"
-    use: "sdk # ffmpeg-chromium"
+    use: "sdk ffmpeg-chromium"
   requires:
   - <<: *layers-X
-  # - <<: *apps-ffmpeg-chromium
+  - <<: *apps-ffmpeg-chromium
   build_requires:
   - <<: *layers-X
 
