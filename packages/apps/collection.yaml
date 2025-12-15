@@ -8716,30 +8716,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "popcorntime"
-  version: "0.5.1-r4"
-  uri:
-  - https://github.com/popcorn-official/popcorn-desktop
-  license: "MIT BSD BSD-2 BSD-4 AFL-2.1 Apache-2.0 Ms-PL GPL-2 LGPL-2.1 APSL-2 unRAR OFL CC-BY-SA-3.0 MPL-2.0 android public-domain all-rights-reserved"
-  description: "BitTorrent client that includes an integrated media player"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/popcorntime-bin
-  provides:
-  - category: "media-video"
-    name: "popcorntime-bin"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/popcorntime-bin"
-    license: "unRAR android all-rights-reserved"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "polari"
   version: "46.0+1"
   uri:
@@ -13489,9 +13465,6 @@ packages:
   - category: "virtual"
     name: "perl-Socket"
     version: ">=0"
-  - category: "virtual"
-    name: "perl-Term-ReadLine"
-    version: ">=0"
   atoms:
   - atom: "net-analyzer/net-snmp"
     use: "X bzip2 elf kmem ipv6 lm-sensors mfd-rewrites mysql netlink pcap pci perl python smux ssl tcpd ucd-compat zlib # doc minimal rpm"
@@ -13526,6 +13499,31 @@ packages:
   - <<: *libs-libconfig
   build_requires:
   - <<: *layers-sys-fs
+
+- category: "apps"
+  name: "nwjs"
+  version: "0.5.1-r4"
+  uri:
+  - https://nwjs.io
+  license: "MIT"
+  description: "Framework that lets you call all Node.js modules directly from the DOM"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/nwjs
+  provides:
+  - category: "dev-libs"
+    name: "nwjs"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/nwjs"
+    accept_keywords: "~amd64"
+    # use: "ffmpeg-chromium sdk"
+  requires:
+  - <<: *layers-X
+  # - <<: *libs-ffmpeg-chromium
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "obs-studio"
@@ -15265,52 +15263,52 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-- &libs-openvdb
-  category: "libs"
-  name: "openvdb"
-  version: "12.0.1+7"
-  uri:
-  - https://www.openvdb.org
-  - https://www.blosc.org/
-  - https://log4cplus.sourceforge.io/
-  - https://github.com/log4cplus/log4cplus
-  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
-  description: |
-    Library for the efficient manipulation of volumetric data
-    Blocking, shuffling and lossless compression library
-    C++ port of the Log for Java (log4j) logging library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/openvdb
-  provides:
-  - category: "media-gfx"
-    name: "openvdb"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "robin-map"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "c-blosc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "log4cplus"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nanobind"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/openvdb"
-    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
-  - atom: "dev-libs/c-blosc"
-    use: "lz4 snappy zlib zstd"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-tbb
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-qt
+# - &libs-openvdb
+#   category: "libs"
+#   name: "openvdb"
+#   version: "12.0.1+7"
+#   uri:
+#   - https://www.openvdb.org
+#   - https://www.blosc.org/
+#   - https://log4cplus.sourceforge.io/
+#   - https://github.com/log4cplus/log4cplus
+#   license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+#   description: |
+#     Library for the efficient manipulation of volumetric data
+#     Blocking, shuffling and lossless compression library
+#     C++ port of the Log for Java (log4j) logging library
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/openvdb
+#   provides:
+#   - category: "media-gfx"
+#     name: "openvdb"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "robin-map"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "c-blosc"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "log4cplus"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "nanobind"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/openvdb"
+#     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
+#     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+#   - atom: "dev-libs/c-blosc"
+#     use: "lz4 snappy zlib zstd"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *libs-tbb
+#   - <<: *libs-glfw
+#   build_requires:
+#   - <<: *layers-qt
     
 - &libs-xine-lib
   category: "libs"
@@ -17451,6 +17449,31 @@ packages:
   - <<: *apps-ufw
   build_requires:
   - <<: *layers-kde-common
+
+- category: "apps"
+  name: "popcorntime"
+  version: "0.5.1-r4"
+  uri:
+  - https://github.com/popcorn-official/popcorn-desktop
+  license: "MIT BSD BSD-2 BSD-4 AFL-2.1 Apache-2.0 Ms-PL GPL-2 LGPL-2.1 APSL-2 unRAR OFL CC-BY-SA-3.0 MPL-2.0 android public-domain all-rights-reserved"
+  description: "BitTorrent client that includes an integrated media player"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/popcorntime-bin
+  provides:
+  - category: "media-video"
+    name: "popcorntime-bin"
+    version: ">=0"
+  atoms:
+  - atom: "media-video/popcorntime-bin"
+    license: "unRAR android all-rights-reserved"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-nwjs
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "q4wine"
