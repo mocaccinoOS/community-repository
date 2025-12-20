@@ -17006,36 +17006,38 @@ packages:
   # - <<: *buildbase-kde-apps-minimal
   # requires_final_images: true
 
-- &apps-meshtasticd
-  category: "apps"
-  name: "meshtasticd"
-  version: "2.7.16"
-  uri:
-  - https://meshtastic.org/docs/hardware/devices/linux-native-hardware
-  license: "GPL-3"
-  description: "off-grid, decentralized, mesh network"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/meshtasticd
-  provides:
-  - category: "net-wireless"
-    name: "meshtasticd"
-    version: ">=0"
-  atoms:
-  - atom: "dev-embedded/platformio"
-    accept_keywords: "~amd64"
-  - atom: "net-wireless/meshtasticd"
-    accept_keywords: "~amd64"
-  overlays:
-  - enable: "pentoo"
-  inner_build_reqs:
-  - dev-embedded/platformio
-  requires:
-  - <<: *layers-X
-  - <<: *apps-i2c-tools
-  build_requires:
-  - <<: *layers-X
+# dev-embedded/platformio: needs porting to Python 3.13+
+# See https://bugs.gentoo.org/952290
+# - &apps-meshtasticd
+#   category: "apps"
+#   name: "meshtasticd"
+#   version: "2.7.16"
+#   uri:
+#   - https://meshtastic.org/docs/hardware/devices/linux-native-hardware
+#   license: "GPL-3"
+#   description: "off-grid, decentralized, mesh network"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-wireless/meshtasticd
+#   provides:
+#   - category: "net-wireless"
+#     name: "meshtasticd"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-embedded/platformio"
+#     accept_keywords: "~amd64"
+#   - atom: "net-wireless/meshtasticd"
+#     accept_keywords: "~amd64"
+#   overlays:
+#   - enable: "pentoo"
+#   inner_build_reqs:
+#   - dev-embedded/platformio
+#   requires:
+#   - <<: *layers-X
+#   - <<: *apps-i2c-tools
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "mixxx"
