@@ -20647,7 +20647,7 @@ packages:
   - *apps-doxygen-packages
   prepare:
   - emerge -1 scikit-build-core
-  - emerge -1 dev-python/nanobind || cat /var/tmp/portage/dev-python/nanobind-2.9.2/temp/build.log
+  - EMERGE_DEFAULT_OPTS="" emerge -1 dev-python/nanobind
   requires:
   - <<: *layers-qt
   # - <<: *libs-openvdb
