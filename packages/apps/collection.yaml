@@ -16260,6 +16260,8 @@ packages:
     use: "alsa analog audio digital examples filter grc network qt5 utils"
   - atom: "dev-python/pyqtgraph"
     use: "qt5"
+  prepare:
+  - emerge -1 =dev-build/cmake-3.31.9-r1
   requires:
   - <<: *layers-kde-kf5
   - <<: *layers-sci-libs
@@ -20645,6 +20647,8 @@ packages:
   # - media-libs/opencolorio;USE="-opengl"
   inner_build_reqs:
   - *apps-doxygen-packages
+  prepare:
+  - emerge -1 =dev-build/cmake-3.31.9-r1
   requires:
   - <<: *layers-qt
   # - <<: *libs-openvdb
