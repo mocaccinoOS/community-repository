@@ -20641,13 +20641,15 @@ packages:
   - atom: "sci-libs/dcmtk"
     license: "OFFIS"
     use: "png ssl tcpd tiff threads xml zlib"
+  - atom: "dev-python/nanobind"
+    accept_keywords: "~amd64"
   # preemerge:
   # - media-libs/opencolorio;USE="-opengl"
   inner_build_reqs:
   - *apps-doxygen-packages
   prepare:
   - emerge -1 scikit-build-core
-  - EMERGE_DEFAULT_OPTS="" emerge -1 dev-python/nanobind
+  - EMERGE_DEFAULT_OPTS="" emerge -1 =dev-python/nanobind-2.10.2
   requires:
   - <<: *layers-qt
   # - <<: *libs-openvdb
