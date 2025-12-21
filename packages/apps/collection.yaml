@@ -725,7 +725,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20251001"
+  version: "20251101"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1115,7 +1115,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "143.0.7499.40"
+  version: "143.0.7499.109"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1657,7 +1657,7 @@ packages:
 - &libs-gtk-spell
   category: "libs"
   name: "gtk-spell"
-  version: "0.1+1"
+  version: "0.1+2"
   uri:
   - https://github.com/rrthomas/enchant
   - http://gtkspell.sourceforge.net/
@@ -2109,7 +2109,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.1"
+  version: "1.9.2"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -3135,7 +3135,7 @@ packages:
 - &libs-regex
   category: "libs"
   name: "regex"
-  version: "2025.10.23"
+  version: "2025.11.3"
   uri:
   - https://github.com/mrabarnett/mrab-regex/
   license: "Apache-2.0"
@@ -3562,7 +3562,7 @@ packages:
 - &libs-python-deprecated
   category: "libs"
   name: "python-deprecated"
-  version: "1.2.18-r1"
+  version: "1.3.1"
   uri:
   - https://github.com/laurent-laporte-pro//deprecated/
   - https://github.com/GrahamDumpleton/wrapt/
@@ -3988,7 +3988,7 @@ packages:
 
 - category: "apps"
   name: "atop"
-  version: "2.12.0-r1"
+  version: "2.12.1"
   uri:
   - https://www.atoptool.nl
   license: "GPL-2"
@@ -4335,7 +4335,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.85.111"
+  version: "1.85.117"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5412,7 +5412,7 @@ packages:
 - &apps-firejail
   category: "apps"
   name: "firejail"
-  version: "0.9.74"
+  version: "0.9.76"
   uri:
   - https://firejail.wordpress.com/
   license: "GPL-2"
@@ -5808,7 +5808,7 @@ packages:
 
 - category: "apps"
   name: "ghostwriter"
-  version: "25.08.3"
+  version: "25.12.0"
   uri:
   - https://ghostwriter.kde.org/
   license: "GPL-3+"
@@ -6123,7 +6123,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.25.3+1"
+  version: "1.25.5"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6146,7 +6146,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "143.0.7499.40"
+  version: "143.0.7499.109"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6571,7 +6571,7 @@ packages:
 - &apps-java-8
   category: "apps"
   name: "java-8"
-  version: "8"
+  version: "8+1"
   uri:
   - https://adoptium.net/
   license: "GPL-2-with-classpath-exception"
@@ -6906,7 +6906,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "4.29.0"
+  version: "4.30.1"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -7580,7 +7580,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.2"
+  version: "15.0.3"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -9403,7 +9403,7 @@ packages:
 
 - category: "apps"
   name: "sqlitestudio"
-  version: "3.4.17"
+  version: "4.0.0_pre20251207"
   uri:
   - https://sqlitestudio.pl
   license: "GPL-3"
@@ -9496,7 +9496,7 @@ packages:
 
 - category: "apps"
   name: "supercollider"
-  version: "3.14.1"
+  version: "3.14.1-r1"
   uri:
   - https://supercollider.github.io/
   license: "GPL-3"
@@ -9963,61 +9963,61 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - category: "apps"
-#   name: "ulauncher"
-#   version: "5.15.15+4"
-#   uri:
-#   - https://ulauncher.io
-#   license: "GPL-3"
-#   description: "Feature rich application Launcher for Linux"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/levenshtein
-#       dev-python/websocket-client
-#   provides:
-#   - category: "net-misc"
-#     name: "ulauncher"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "levenshtein"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "websocket-client"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "rapidfuzz-cpp"
-#     version: ">=0"
-#   ready:
-#   - |
-#     git clone https://github.com/Ulauncher/Ulauncher.git && \
-#     cd Ulauncher && \
-#     git fetch --all --tags && \
-#     git checkout tags/5.15.15 && \
-#     export PYTHONHASHSEED=0 && \
-#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-#     python setup.py build
-#   completion:
-#   - |
-#     cd Ulauncher && \
-#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-#     cd ../build && \
-#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-#     find . -type d -name __pycache__ | xargs rm -rf && \
-#     cp -r usr /
-#   inner_build_reqs:
-#   - dev-python/python-distutils-extra
-#   - dev-python/meson-python
-#   - dev-cpp/taskflow
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "ulauncher"
+  version: "5.15.15+4"
+  uri:
+  - https://ulauncher.io
+  license: "GPL-3"
+  description: "Feature rich application Launcher for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/levenshtein
+      dev-python/websocket-client
+  provides:
+  - category: "net-misc"
+    name: "ulauncher"
+    version: ">=0"
+  - category: "dev-python"
+    name: "levenshtein"
+    version: ">=0"
+  - category: "dev-python"
+    name: "websocket-client"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "rapidfuzz-cpp"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/Ulauncher/Ulauncher.git && \
+    cd Ulauncher && \
+    git fetch --all --tags && \
+    git checkout tags/5.15.15 && \
+    export PYTHONHASHSEED=0 && \
+    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+    python setup.py build
+  completion:
+  - |
+    cd Ulauncher && \
+    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+    cd ../build && \
+    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+    find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr /
+  inner_build_reqs:
+  - dev-python/python-distutils-extra
+  - dev-python/meson-python
+  - dev-cpp/taskflow
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "usb_modeswitch"
-  version: "2.6.1-r1"
+  version: "2.6.2"
   uri:
   - https://www.draisberghof.de/usb_modeswitch/
   license: "GPL-2"
@@ -10378,7 +10378,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.6.0"
+  version: "4.6.0-r1"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -12059,7 +12059,7 @@ packages:
 - &apps-dia
   category: "apps"
   name: "dia"
-  version: "0.97.3-r4+1"
+  version: "0.98_pre20250913"
   uri:
   - https://wiki.gnome.org/Apps/Dia
   license: "GPL-2"
@@ -12084,7 +12084,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "0.2+26"
+  version: "0.2+27"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -12490,7 +12490,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "11.6.0+1"
+  version: "11.7.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -13549,7 +13549,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "32.0.2-r1"
+  version: "32.0.4"
   uri:
   - https://obsproject.com
   - https://simd-everywhere.github.io/blog/
@@ -13773,7 +13773,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "124.0.5705.65+1"
+  version: "125.0.5729.21"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14311,7 +14311,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.6.1-r1"
+  version: "3.6.3"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -14611,7 +14611,7 @@ packages:
 
 - category: "apps"
   name: "solaar"
-  version: "1.1.17"
+  version: "1.1.18"
   uri:
   - https://pwr-solaar.github.io/Solaar/
   license: "GPL-2"
@@ -15285,52 +15285,52 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
-# - &libs-openvdb
-#   category: "libs"
-#   name: "openvdb"
-#   version: "12.0.1+7"
-#   uri:
-#   - https://www.openvdb.org
-#   - https://www.blosc.org/
-#   - https://log4cplus.sourceforge.io/
-#   - https://github.com/log4cplus/log4cplus
-#   license: "Apache-2.0 BSD-2 MIT MPL-2.0"
-#   description: |
-#     Library for the efficient manipulation of volumetric data
-#     Blocking, shuffling and lossless compression library
-#     C++ port of the Log for Java (log4j) logging library
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/openvdb
-#   provides:
-#   - category: "media-gfx"
-#     name: "openvdb"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "robin-map"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "c-blosc"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "log4cplus"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "nanobind"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/openvdb"
-#     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
-#     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
-#   - atom: "dev-libs/c-blosc"
-#     use: "lz4 snappy zlib zstd"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-tbb
-#   - <<: *libs-glfw
-#   build_requires:
-#   - <<: *layers-qt
+- &libs-openvdb
+  category: "libs"
+  name: "openvdb"
+  version: "12.0.1+7"
+  uri:
+  - https://www.openvdb.org
+  - https://www.blosc.org/
+  - https://log4cplus.sourceforge.io/
+  - https://github.com/log4cplus/log4cplus
+  license: "Apache-2.0 BSD-2 MIT MPL-2.0"
+  description: |
+    Library for the efficient manipulation of volumetric data
+    Blocking, shuffling and lossless compression library
+    C++ port of the Log for Java (log4j) logging library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/openvdb
+  provides:
+  - category: "media-gfx"
+    name: "openvdb"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "robin-map"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "c-blosc"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "log4cplus"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nanobind"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/openvdb"
+    use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
+    portage_env: "MAKEOPTS=\"-j5 -l0.8\""
+  - atom: "dev-libs/c-blosc"
+    use: "lz4 snappy zlib zstd"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-tbb
+  - <<: *libs-glfw
+  build_requires:
+  - <<: *layers-qt
     
 - &libs-xine-lib
   category: "libs"
@@ -16230,7 +16230,7 @@ packages:
 - &apps-gnuradio
   category: "apps"
   name: "gnuradio"
-  version: "3.10.12.0-r1+4"
+  version: "3.10.12.0-r2"
   uri:
   - https://www.gnuradio.org
   license: "GPL-3"
@@ -16394,7 +16394,7 @@ packages:
 - &apps-kalarm
   category: "apps"
   name: "kalarm"
-  version: "25.08.3"
+  version: "25.08.3-r1"
   uri:
   - https://apps.kde.org/kalarm/
   license: "GPL-2+ FDL-1.2+"
@@ -17041,7 +17041,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.5.3+1"
+  version: "2.5.4"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -17075,7 +17075,7 @@ packages:
 - &apps-nagios
   category: "apps"
   name: "nagios"
-  version: "4.5.9+1"
+  version: "4.5.9+2"
   uri:
   - https://www.nagios.org/
   - https://www.monitoring-plugins.org/
@@ -17116,9 +17116,9 @@ packages:
   - category: "net-analyzer"
     name: "nagios-core"
     version: ">=0"
-  # - category: "net-analyzer"
-  #   name: "nagios-plugins"
-  #   version: ">=0"
+  - category: "net-analyzer"
+    name: "nagios-plugins"
+    version: ">=0"
   - category: "net-analyzer"
     name: "nagios-plugin-check_lm_sensors"
     version: ">=0"
@@ -17149,11 +17149,11 @@ packages:
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
     use: "curl gnutls ipv6 ldap mysql samba ssl dns fping snmp ssh # radius https://bugs.gentoo.org/957000 # game postgres"
-  # - atom: "net-analyzer/nagios"
-  #   accept_keywords: "~amd64"
+  - atom: "net-analyzer/nagios"
+    accept_keywords: "~amd64"
   # media-libs/gd needs png flag
-  # - atom: "net-analyzer/nagios-core"
-  #   use: "apache2 classicui web # lighttpd vim-syntax"
+  - atom: "net-analyzer/nagios-core"
+    use: "apache2 classicui web # lighttpd vim-syntax"
   - atom: "net-analyzer/nagios-plugins"
     use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping snmp ssh # radius https://bugs.gentoo.org/957000 # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
@@ -17702,7 +17702,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.7.1_pre20251119"
+  version: "1.7.1_pre20251210"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -18518,7 +18518,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "25.08.2+2"
+  version: "25.12.0"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -19315,7 +19315,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "25.2"
+  version: "25.3-r1"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -19433,7 +19433,7 @@ packages:
 - &libs-mlt
   category: "libs"
   name: "mlt"
-  version: "7.32.0+1"
+  version: "7.34.1-r1"
   uri:
   - http://www.mltframework.org/
   - http://www.dyne.org/software/frei0r/
@@ -20442,7 +20442,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r5"
+  version: "2.0.1-r7"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -20585,7 +20585,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "11+7"
+  version: "11+8"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
@@ -20637,7 +20637,7 @@ packages:
   - atom: "media-libs/opencolorio"
     use: "opengl python"
   - atom: "media-libs/openimageio"
-    use: "dicom ffmpeg gif jpeg2k opencv opengl ptex python qt6 raw truetype # openvdb"
+    use: "dicom ffmpeg gif jpeg2k opencv opengl openvdb ptex python qt6 raw truetype"
   - atom: "sci-libs/dcmtk"
     license: "OFFIS"
     use: "png ssl tcpd tiff threads xml zlib"
@@ -21231,7 +21231,7 @@ packages:
 
 - category: "apps"
   name: "umbrello"
-  version: "25.11.70_pre20250830+1"
+  version: "25.12.0"
   uri:
   - https://apps.kde.org/umbrello
   license: "GPL-2"
