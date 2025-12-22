@@ -20585,7 +20585,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "11+8"
+  version: "11+9"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
@@ -20648,7 +20648,7 @@ packages:
   inner_build_reqs:
   - *apps-doxygen-packages
   prepare:
-  - emerge -1 scikit-build-core
+  - emerge -1 scikit-build-core dev-python/gpep517
   - echo "dev-python/nanobind ~amd64" > /etc/portage/package.accept_keywords/nanobind
   - SKBUILD_BUILD_VERBOSE=1 CMAKE_BUILD_PARALLEL_LEVEL=1 MAKEOPTS="-j1" EMERGE_DEFAULT_OPTS="--jobs=1" emerge -1 =dev-python/nanobind-2.10.2
   requires:
