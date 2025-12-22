@@ -20649,7 +20649,8 @@ packages:
   - *apps-doxygen-packages
   prepare:
   - emerge -1 scikit-build-core
-  - EMERGE_DEFAULT_OPTS="" emerge -1 =dev-python/nanobind-2.10.2
+  - echo "dev-python/nanobind ~amd64" > /etc/portage/package.accept_keywords/nanobind
+  - SKBUILD_BUILD_VERBOSE=1 CMAKE_BUILD_PARALLEL_LEVEL=1 EMERGE_DEFAULT_OPTS="" emerge -1 =dev-python/nanobind-2.10.2
   requires:
   - <<: *layers-qt
   # - <<: *libs-openvdb
