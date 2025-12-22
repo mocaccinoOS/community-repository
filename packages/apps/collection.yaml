@@ -9998,10 +9998,10 @@ packages:
     # SKBUILD_CMAKE_SYSTEM=1 - Forces scikit-build-core to use system CMake instead of bundled wheel
     # These prevent build-time SIMD/CPU feature detection failures on specific CI nodes
     # without affecting runtime performance of final packages
-    export NPY_DISABLE_CPU_FEATURES=ALL
-    export OPENBLAS_CORETYPE=generic
-    export CMAKE_BUILD_PARALLEL_LEVEL=1
-    export SKBUILD_CMAKE_SYSTEM=1
+    export NPY_DISABLE_CPU_FEATURES=ALL \
+    export OPENBLAS_CORETYPE=generic \
+    export CMAKE_BUILD_PARALLEL_LEVEL=1 \
+    export SKBUILD_CMAKE_SYSTEM=1 \
     # END TEST
 
     git clone https://github.com/Ulauncher/Ulauncher.git && \
