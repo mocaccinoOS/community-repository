@@ -9965,7 +9965,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.15+4"
+  version: "5.15.15+15"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -9988,42 +9988,42 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
-  ready:
-  - |
-    # TEST 
-    # CI-specific workarounds for CPU feature detection issues on heterogeneous build nodes
-    # NPY_DISABLE_CPU_FEATURES=ALL - Disables NumPy's runtime CPU feature detection
-    # OPENBLAS_CORETYPE=generic - Forces OpenBLAS to use generic, non-optimized kernels
-    # CMAKE_BUILD_PARALLEL_LEVEL=1 - Limits CMake build parallelism
-    # SKBUILD_CMAKE_SYSTEM=1 - Forces scikit-build-core to use system CMake instead of bundled wheel
-    # These prevent build-time SIMD/CPU feature detection failures on specific CI nodes
-    # without affecting runtime performance of final packages
-    export NPY_DISABLE_CPU_FEATURES=ALL \
-    export OPENBLAS_CORETYPE=generic \
-    export CMAKE_BUILD_PARALLEL_LEVEL=1 \
-    export SKBUILD_CMAKE_SYSTEM=1 \
-    # END TEST
-
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  - dev-python/python-distutils-extra
-  - dev-python/meson-python
-  - dev-cpp/taskflow
+  # ready:
+  # - |
+  #   # TEST 
+  #   # CI-specific workarounds for CPU feature detection issues on heterogeneous build nodes
+  #   # NPY_DISABLE_CPU_FEATURES=ALL - Disables NumPy's runtime CPU feature detection
+  #   # OPENBLAS_CORETYPE=generic - Forces OpenBLAS to use generic, non-optimized kernels
+  #   # CMAKE_BUILD_PARALLEL_LEVEL=1 - Limits CMake build parallelism
+  #   # SKBUILD_CMAKE_SYSTEM=1 - Forces scikit-build-core to use system CMake instead of bundled wheel
+  #   # These prevent build-time SIMD/CPU feature detection failures on specific CI nodes
+  #   # without affecting runtime performance of final packages
+  #   export NPY_DISABLE_CPU_FEATURES=ALL \
+  #   export OPENBLAS_CORETYPE=generic \
+  #   export CMAKE_BUILD_PARALLEL_LEVEL=1 \
+  #   export SKBUILD_CMAKE_SYSTEM=1 \
+  #   # END TEST
+  # 
+  #   git clone https://github.com/Ulauncher/Ulauncher.git && \
+  #   cd Ulauncher && \
+  #   git fetch --all --tags && \
+  #   git checkout tags/5.15.15 && \
+  #   export PYTHONHASHSEED=0 && \
+  #   find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+  #   sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+  #   python setup.py build
+  # completion:
+  # - |
+  #   cd Ulauncher && \
+  #   env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+  #   cd ../build && \
+  #   rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+  #   find . -type d -name __pycache__ | xargs rm -rf && \
+  #   cp -r usr /
+  # inner_build_reqs:
+  # - dev-python/python-distutils-extra
+  # - dev-python/meson-python
+  # - dev-cpp/taskflow
   requires:
   - <<: *layers-gnome-common
   build_requires:

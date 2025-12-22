@@ -1,0 +1,208 @@
+@startuml
+
+    partition build {
+
+        partition "environment" {
+            :EMERGE_DEFAULT_OPTS += **~--getbinpkg --quiet**
+            FEATURES += **-sandbox -usersandbox -ipc-sandbox -pid-sandbox -network-sandbox binpkg-request-signature**; <<continuous>>
+            -[hidden]->
+            :**labels**:
+              **emerge.jobs**: **<U+27A1>** JOBS (default **3**)
+            ; <<continuous>>
+            -[hidden]->
+            :**env**:
+            - VAR1="<value1>"
+            - VAR2="<value2>"
+            ...; <<continuous>>
+            -[hidden]->
+            :**image**: "<container image name>"; <<continuous>>
+            -[hidden]->
+            :**build requires**:
+            - <dependency 1> 
+            - <dependency 2> 
+            ...; <<continuous>>
+            :**requires_final_images**: <true/false>; <<continuous>>
+            :**unpack**: <true/false>; <<continuous>>
+        }
+        
+        partition "prelude" {
+            partition "map packages with deps" {
+                note right
+                    Provision
+                    all the dependencies
+                    to be built
+                end note
+
+                if (**skip:** <true/**false**>) then (Do not add this item\n and its dependencies\n to the build list)
+                else (Add this item\n and its dependencies\n to the build list)
+                
+                    :Collect the packages of
+                    **outer build requires:**
+                    - <package 1> 
+                    - <package 2> 
+                    ...;
+                    
+                    :Collect the atoms of
+                    **outer build reqs:**
+                    - <atom 1> 
+                    - <atom 2> 
+                    ...;
+                    
+                    #lightblue:Collect the output of
+                    **map packages with deps**
+                    for each package in
+                    **requires:**
+                    - <package 1> 
+                    - <package 2> 
+                    ...; <<output>>
+                    
+                    #lightblue:Collect the output of
+                    **map packages with deps**
+                    for each package in
+                    **optrequires:**
+                    - <package 1> 
+                    - <package 2> 
+                    ...; <<output>>
+
+                    #lightblue:Collect the output of
+                    **map packages with deps**
+                    for each package in
+                    **inner build requires:**
+                    - <package 1> 
+                    - <package 2> 
+                    ...; <<output>>
+                    
+                    :Collect the atoms of
+                    **inner build reqs:**
+                    - <atom 1> 
+                    - <atom 2> 
+                    ...;
+                    
+                    :Collect the atoms of
+                    **preemerge:**
+                    - <atom 1> 
+                    - <atom 2> 
+                    ...;
+                endif
+            }
+
+            partition "prereqs" {
+                note right
+                    Build the provisioned dependencies
+                end note
+                
+                if (**skip:** <true/**false**>) then (Do not build this item\n and its dependencies)
+                else (Build this item\n and its dependencies)
+
+                    #lightblue:**prereqs emerge**
+                    for each package in
+                    **outer build requires**; <<output>>
+
+                    #lightblue:**emerge** each atom in
+                    **outer build reqs**; <<output>>
+
+                    #lightblue:**prereqs emerge**
+                    each package in **requires**; <<output>>
+                    
+                    #lightblue:**prereqs emerge**
+                    each package in **optrequires**; <<output>>
+                    
+                    #lightblue:**prereqs emerge**
+                    each package in **inner build requires**; <<output>>
+                    
+                    :overlays setup;
+                    
+                    :process each **prepare** instruction;
+                    
+                    #lightblue:**emerge** each atom in
+                    **inner build reqs**; <<output>>
+                    
+                    :process each **ready** instruction;
+                endif
+            }
+            
+            partition "cleanup" {
+                note
+                    Internal
+                end note
+            }
+        }
+
+        partition "steps" {
+            note right
+                Build the target package
+            end note
+            
+            #lightblue:**emerge atom**
+            (for each atom) in
+            **labels emerge.packages**; <<output>>
+            
+            :set **includes/excludes**;
+
+        }
+        
+        :configure **subpackages**;
+        
+        :set **package dir** and **includes**;
+        
+        detach;
+        
+        partition "prereqs emerge" {
+            if (**skip:** <true/**false**>) then (Do not build this item\n and its dependencies)
+            else (Build this item\n and its dependencies)
+                
+                #lightblue:Build the **prereqs**
+                for each package; <<output>>
+
+                #lightblue:**emerge atom**
+                for each atom
+                of each package; <<output>>
+                
+            endif
+            
+        }
+
+        detach;
+                    
+        partition "emerge atom" {
+            if (**skip:** <true/**false**>) then (Do not build this item\n and its dependencies)
+            else (Build this item\n and its dependencies)
+            
+                :process each **setup** instruction;
+                
+                #lightblue:**emerge**
+                each atom in
+                **preemerge**; <<output>>
+
+                :process each **setup** instruction;
+                
+                #lightblue:**package setup**
+                for the main package dependencies; <<output>>
+                
+                #lightblue:**emerge**
+                each atom of
+                the main package; <<output>>
+                
+                :**unmerge** each specified atom;
+                
+                :perform **etc update**;
+                
+                :process each **completion** instruction;
+                
+            endif
+        }
+
+        detach;
+        
+        partition "emerge" {
+        
+            :set **usepkg exclude**
+            for the specified atoms;
+            
+            :emerge each atom;
+        }
+        
+        detach;
+    }
+    
+@enduml
