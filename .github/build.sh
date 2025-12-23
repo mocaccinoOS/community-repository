@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sudo -E luet build \
+        --debug \
         --only-target-package \
         --pull-repository quay.io/mocaccino/desktop \
         --pull-repository quay.io/mocaccino/os-commons \

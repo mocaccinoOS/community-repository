@@ -9988,66 +9988,32 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
-  # ready:
-  # - |
-  #   # TEST 
-  #   # CI-specific workarounds for CPU feature detection issues on heterogeneous build nodes
-  #   # NPY_DISABLE_CPU_FEATURES=ALL - Disables NumPy's runtime CPU feature detection
-  #   # OPENBLAS_CORETYPE=generic - Forces OpenBLAS to use generic, non-optimized kernels
-  #   # CMAKE_BUILD_PARALLEL_LEVEL=1 - Limits CMake build parallelism
-  #   # SKBUILD_CMAKE_SYSTEM=1 - Forces scikit-build-core to use system CMake instead of bundled wheel
-  #   # These prevent build-time SIMD/CPU feature detection failures on specific CI nodes
-  #   # without affecting runtime performance of final packages
-  #   export NPY_DISABLE_CPU_FEATURES=ALL \
-  #   export OPENBLAS_CORETYPE=generic \
-  #   export CMAKE_BUILD_PARALLEL_LEVEL=1 \
-  #   export SKBUILD_CMAKE_SYSTEM=1 \
-  #   # END TEST
-  # 
-  #   git clone https://github.com/Ulauncher/Ulauncher.git && \
-  #   cd Ulauncher && \
-  #   git fetch --all --tags && \
-  #   git checkout tags/5.15.15 && \
-  #   export PYTHONHASHSEED=0 && \
-  #   find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-  #   sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-  #   python setup.py build
-  # completion:
-  # - |
-  #   cd Ulauncher && \
-  #   env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-  #   cd ../build && \
-  #   rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-  #   find . -type d -name __pycache__ | xargs rm -rf && \
-  #   cp -r usr /
-  # inner_build_reqs:
-  # - dev-python/python-distutils-extra
-  # - dev-python/meson-python
-  # - dev-cpp/taskflow
+  ready:
+  - |
+    git clone https://github.com/Ulauncher/Ulauncher.git && \
+    cd Ulauncher && \
+    git fetch --all --tags && \
+    git checkout tags/5.15.15 && \
+    export PYTHONHASHSEED=0 && \
+    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+    python setup.py build
+  completion:
+  - |
+    cd Ulauncher && \
+    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+    cd ../build && \
+    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+    find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr /
+  inner_build_reqs:
+  - dev-python/python-distutils-extra
+  - dev-python/meson-python
+  - dev-cpp/taskflow
   requires:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "usb_modeswitch"
-  version: "2.6.2"
-  uri:
-  - https://www.draisberghof.de/usb_modeswitch/
-  license: "GPL-2"
-  description: "Tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-apps/usb_modeswitch
-  provides:
-  - category: "sys-apps"
-    name: "usb_modeswitch"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &apps-usbmuxd
   category: "apps"
@@ -14864,6 +14830,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "usb_modeswitch"
+  version: "2.6.2+1"
+  uri:
+  - https://www.draisberghof.de/usb_modeswitch/
+  license: "GPL-2"
+  description: "Tool for controlling 'flip flop' (multiple devices) USB gear like UMTS sticks"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/usb_modeswitch
+  provides:
+  - category: "sys-apps"
+    name: "usb_modeswitch"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-tk
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-visual-regexp
   category: "apps"
   name: "visual-regexp"
@@ -15321,18 +15308,26 @@ packages:
   - category: "media-gfx"
     name: "openvdb"
     version: ">=0"
+  # - category: "dev-cpp"
+  #   name: "robin-map"
+  #   version: ">=0"
   - category: "dev-libs"
     name: "c-blosc"
     version: ">=0"
   - category: "dev-libs"
     name: "log4cplus"
     version: ">=0"
+  # - category: "dev-python"
+  #   name: "nanobind"
+  #   version: ">=0"
   atoms:
   - atom: "media-gfx/openvdb"
     use: "blosc nanovdb numpy python utils avx sse4_2 # cuda"
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
+  # - atom: "dev-python/nanobind"
+  #   accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *libs-tbb
@@ -17124,9 +17119,9 @@ packages:
   - category: "net-analyzer"
     name: "nagios-core"
     version: ">=0"
-  - category: "net-analyzer"
-    name: "nagios-plugins"
-    version: ">=0"
+  # - category: "net-analyzer"
+  #   name: "nagios-plugins"
+  #   version: ">=0"
   - category: "net-analyzer"
     name: "nagios-plugin-check_lm_sensors"
     version: ">=0"
@@ -17157,11 +17152,11 @@ packages:
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
     use: "curl gnutls ipv6 ldap mysql samba ssl dns fping snmp ssh # radius https://bugs.gentoo.org/957000 # game postgres"
-  - atom: "net-analyzer/nagios"
-    accept_keywords: "~amd64"
-  # media-libs/gd needs png flag
-  - atom: "net-analyzer/nagios-core"
-    use: "apache2 classicui web # lighttpd vim-syntax"
+  # - atom: "net-analyzer/nagios"
+  #   accept_keywords: "~amd64"
+  # # media-libs/gd needs png flag
+  # - atom: "net-analyzer/nagios-core"
+  #   use: "apache2 classicui web # lighttpd vim-syntax"
   - atom: "net-analyzer/nagios-plugins"
     use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping snmp ssh # radius https://bugs.gentoo.org/957000 # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
@@ -20594,6 +20589,7 @@ packages:
   category: "libs"
   name: "ocio-oiio"
   version: "11+9"
+  # - https://github.com/Tessil/robin-map
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
@@ -20604,6 +20600,7 @@ packages:
   - https://dicom.offis.de/dcmtk.php.en
   - https://github.com/zlib-ng/zlib-ng
   license: "metapackage"
+  # C++ fast hash map and hash set using robin hood hashing
   description: |
     Color management framework for visual effects and animation
     A library for reading and writing images
@@ -20651,6 +20648,8 @@ packages:
   # - media-libs/opencolorio;USE="-opengl"
   inner_build_reqs:
   - *apps-doxygen-packages
+  # prepare:
+  # - emerge -1 scikit-build-core
   requires:
   - <<: *layers-qt
   - <<: *libs-openvdb
