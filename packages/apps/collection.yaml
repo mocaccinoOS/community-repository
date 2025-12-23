@@ -16853,32 +16853,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-luminance-hdr
-  category: "apps"
-  name: "luminance-hdr"
-  version: "2.6.1.1-r2+3"
-  uri:
-  - http://qtpfsgui.sourceforge.net
-  license: "GPL-2"
-  description: "Graphical user interface that provides a workflow for HDR imaging"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/luminance-hdr
-  provides:
-  - category: "media-gfx"
-    name: "luminance-hdr"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/luminance-hdr"
-    use: "fits openmp sse2"
-  requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
-  - <<: *libs-cfitsio
-  build_requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-qt
+# - &apps-luminance-hdr
+#   category: "apps"
+#   name: "luminance-hdr"
+#   version: "2.6.1.1-r2+3"
+#   uri:
+#   - http://qtpfsgui.sourceforge.net
+#   license: "GPL-2"
+#   description: "Graphical user interface that provides a workflow for HDR imaging"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/luminance-hdr
+#   provides:
+#   - category: "media-gfx"
+#     name: "luminance-hdr"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/luminance-hdr"
+#     use: "fits openmp sse2"
+#   requires:
+#   - <<: *layers-kde-kf5
+#   # - <<: *layers-qt
+#   - <<: *libs-cfitsio
+#   build_requires:
+#   - <<: *layers-kde-kf5
+#   # - <<: *layers-qt
 
 - category: "apps"
   name: "lutris"
@@ -20247,7 +20247,7 @@ packages:
   # A GIMP plugin to apply a set of manipulations to groups of images
   # Content-aware resizing for the GIMP
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       =media-gfx/gimp-3.0.6
       media-libs/lensfun
@@ -20261,6 +20261,7 @@ packages:
   overlays:
   - enable: "4nykey"
   - enable: "guru"
+  portage_env: "MAKEOPTS=\"-l0.9\""
   atoms:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
@@ -20445,7 +20446,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r7"
+  version: "2.0.1-r4+1"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -20453,7 +20454,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-gfx/mypaint
+      =media-gfx/mypaint-2.0.1-r4
   provides:
   - category: "media-gfx"
     name: "mypaint"
