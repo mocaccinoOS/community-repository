@@ -12714,13 +12714,13 @@ packages:
   - category: "dev-db"
     name: "libiodbc"
     version: ">=0"
-  atoms:
-  - atom: "dev-db/libiodbc"
-    use: "-gtk"
   # gcc 15
   # https://bugs.gentoo.org/944767
   # https://github.com/openlink/iODBC/pull/112/commits
-    portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
+  # portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
+  atoms:
+  - atom: "dev-db/libiodbc"
+    use: "-gtk"
   prepare:
   - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
@@ -20247,7 +20247,7 @@ packages:
   # A GIMP plugin to apply a set of manipulations to groups of images
   # Content-aware resizing for the GIMP
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
     emerge.packages: >-
       =media-gfx/gimp-3.0.6
       media-libs/lensfun
@@ -20261,7 +20261,10 @@ packages:
   overlays:
   - enable: "4nykey"
   - enable: "guru"
-  portage_env: "MAKEOPTS=\"-l0.9\""
+  # gcc 15
+  # https://bugs.gentoo.org/944767
+  # https://github.com/openlink/iODBC/pull/112/commits
+  # portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   atoms:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
@@ -20446,7 +20449,7 @@ packages:
 
 - category: "apps"
   name: "mypaint"
-  version: "2.0.1-r4+1"
+  version: "2.0.1-r7+1"
   uri:
   - http://mypaint.org/
   license: "GPL-2"
@@ -20454,7 +20457,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-gfx/mypaint-2.0.1-r4
+      media-gfx/mypaint
   provides:
   - category: "media-gfx"
     name: "mypaint"
