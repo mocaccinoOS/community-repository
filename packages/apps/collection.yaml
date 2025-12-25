@@ -19793,36 +19793,36 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-gqrx
-  category: "apps"
-  name: "gqrx"
-  version: "2.17.7+1"
-  uri:
-  - https://gqrx.dk
-  license: "GPL-3"
-  description: "Software defined radio receiver powered by GNU Radio and Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/gqrx
-  provides:
-  - category: "net-wireless"
-    name: "gqrx"
-    version: ">=0"
-  - category: "net-wireless"
-    name: "gr-osmosdr"
-    version: ">=0"
-  atoms:
-  - atom: "net-wireless/gqrx"
-    accept_keywords: "~amd64"
-  - atom: "net-wireless/gr-osmosdr"
-    use: "rtlsdr"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *apps-gnuradio
-  - <<: *libs-rtl-sdr
-  build_requires:
-  - <<: *apps-gnuradio
+# - &apps-gqrx
+#   category: "apps"
+#   name: "gqrx"
+#   version: "2.17.7+1"
+#   uri:
+#   - https://gqrx.dk
+#   license: "GPL-3"
+#   description: "Software defined radio receiver powered by GNU Radio and Qt"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-wireless/gqrx
+#   provides:
+#   - category: "net-wireless"
+#     name: "gqrx"
+#     version: ">=0"
+#   - category: "net-wireless"
+#     name: "gr-osmosdr"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-wireless/gqrx"
+#     accept_keywords: "~amd64"
+#   - atom: "net-wireless/gr-osmosdr"
+#     use: "rtlsdr"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *apps-gnuradio
+#   - <<: *libs-rtl-sdr
+#   build_requires:
+#   - <<: *apps-gnuradio
 
 - &apps-sdrpp
   category: "apps"
