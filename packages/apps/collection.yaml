@@ -16264,14 +16264,15 @@ packages:
   - atom: "dev-python/pyqtgraph"
     use: "qt5"
   requires:
-  - <<: *layers-kde-kf5
   - <<: *layers-sci-libs
+  - <<: *layers-kde-kf5
   - <<: *libs-jsonschema
   - <<: *libs-log4cpp
   - <<: *libs-volk
   build_requires:
-  - <<: *layers-kde-kf5
-  # - <<: *layers-sci-libs
+  - <<: *buildbase-sci-libs
+  - <<: *buildbase-kde-kf5
+  requires_final_images: true
 
 - category: "apps"
   name: "goverlay"
