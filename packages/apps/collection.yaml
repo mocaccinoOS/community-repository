@@ -16247,9 +16247,6 @@ packages:
     name: "click-plugins"
     version: ">=0"
   - category: "dev-python"
-    name: "pyqtgraph"
-    version: ">=0"
-  - category: "dev-python"
     name: "pyopengl"
     version: ">=0"
   - category: "net-wireless"
@@ -16260,9 +16257,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-wireless/gnuradio"
-    use: "alsa analog audio digital examples filter grc network qt5 utils"
-  - atom: "dev-python/pyqtgraph"
-    use: "qt5"
+    use: "alsa analog audio digital examples filter grc network utils # qt5"
   requires:
   - <<: *layers-sci-libs
   - <<: *layers-kde-kf5
@@ -16270,9 +16265,7 @@ packages:
   - <<: *libs-log4cpp
   - <<: *libs-volk
   build_requires:
-  - <<: *buildbase-sci-libs
-  - <<: *buildbase-kde-kf5
-  requires_final_images: true
+  - <<: *sci-libs
 
 - category: "apps"
   name: "goverlay"
