@@ -11357,7 +11357,7 @@ packages:
 - &libs-tiff-compat
   category: "libs"
   name: "tiff-compat"
-  version: "4.4.0-r4"
+  version: "4.4.0-r4+1"
   uri:
   - http://libtiff.maptools.org
   - http://www.cl.cam.ac.uk/~mgk25/jbigkit/
@@ -11380,6 +11380,8 @@ packages:
   - atom: "media-libs/tiff-compat"
     use: "cxx jbig jpeg lzma verify-sig webp zlib zstd"
     license: "libtiff"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-evenrouault
   requires:
   - <<: *layers-X
   build_requires:
