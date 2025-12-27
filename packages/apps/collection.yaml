@@ -20225,7 +20225,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.0.6+3"
+  version: "3.0.6+4"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
@@ -20241,7 +20241,7 @@ packages:
   # A GIMP plugin to apply a set of manipulations to groups of images
   # Content-aware resizing for the GIMP
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       =media-gfx/gimp-3.0.6
       media-libs/lensfun
@@ -20442,31 +20442,31 @@ packages:
   # - <<: *layers-kde-common
   - <<: *layers-kde-kf5
 
-# - category: "apps"
-#   name: "mypaint"
-#   version: "2.0.1-r7+1"
-#   uri:
-#   - http://mypaint.org/
-#   license: "GPL-2"
-#   description: "Fast and easy graphics application for digital painters"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/mypaint
-#   provides:
-#   - category: "media-gfx"
-#     name: "mypaint"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/mypaint"
-#     use: "openmp"
-#   requires:
-#   - <<: *layers-X
-#   - <<: *libs-python-protobuf
-#   - <<: *libs-libmypaint
-#   - <<: *apps-mypaint-brushes
-#   build_requires:
-#   - <<: *layers-X
+- category: "apps"
+  name: "mypaint"
+  version: "2.0.1-r7+2"
+  uri:
+  - http://mypaint.org/
+  license: "GPL-2"
+  description: "Fast and easy graphics application for digital painters"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/mypaint
+  provides:
+  - category: "media-gfx"
+    name: "mypaint"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/mypaint"
+    use: "openmp"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-python-protobuf
+  - <<: *libs-libmypaint
+  - <<: *apps-mypaint-brushes
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "plantuml"
