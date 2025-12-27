@@ -529,10 +529,9 @@
 {{- $usepkg_exclude = printf "--usepkg-exclude \"%s\"" $usepkg_exclude }}
 {{- end }}
 
-{{- if ( default .debug false ) }}
-{{- $debug := "--debug" }}
-{{- else }}
 {{- $debug := "" }}
+{{- if ( default .debug false ) }}
+{{- $debug = "--debug" }}
 {{- end }}
 
 {{- $tokens := ( index . 0 ) | splitList ";" }}
