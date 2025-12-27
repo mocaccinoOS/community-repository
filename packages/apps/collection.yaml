@@ -16235,7 +16235,7 @@ packages:
 - &apps-gnuradio
   category: "apps"
   name: "gnuradio"
-  version: "3.10.12.0-r2"
+  version: "3.10.12.0-r2+1"
   uri:
   - https://www.gnuradio.org
   license: "GPL-3"
@@ -16260,6 +16260,7 @@ packages:
   atoms:
   - atom: "net-wireless/gnuradio"
     use: "alsa analog audio digital examples filter grc network utils -qt5"
+  debug: true
   requires:
   - <<: *layers-sci-libs
   - <<: *libs-jsonschema
@@ -20255,6 +20256,7 @@ packages:
   overlays:
   - enable: "4nykey"
   - enable: "guru"
+  debug: true
   atoms:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
@@ -20460,6 +20462,7 @@ packages:
   atoms:
   - atom: "media-gfx/mypaint"
     use: "openmp"
+  debug: true
   requires:
   - <<: *layers-X
   - <<: *libs-python-protobuf

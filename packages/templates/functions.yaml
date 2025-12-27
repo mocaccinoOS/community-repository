@@ -529,11 +529,17 @@
 {{- $usepkg_exclude = printf "--usepkg-exclude \"%s\"" $usepkg_exclude }}
 {{- end }}
 
+{{- if ( default .debug false ) }}
+{{- $debug := "--debug" }}
+{{- else }}
+{{- $debug := "" }}
+{{- end }}
+
 {{- $tokens := ( index . 0 ) | splitList ";" }}
 {{- if eq ( len $tokens ) 1 }}
-- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }}
+- emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }} {{ $debug }}
 {{- else if eq ( len $tokens ) 2 }}
-- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }}
+- {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }} {{ $debug }}
 {{- end }}
 {{/*- rm -rf /etc/portage/gnupg || true;*/}}
 - rm -rf /var/cache/binpkgs/* || true;
