@@ -16260,6 +16260,9 @@ packages:
   atoms:
   - atom: "net-wireless/gnuradio"
     use: "alsa analog audio digital examples filter grc network utils -qt5"
+    portage_env: |
+      CFLAGS="-O2 -march=native"
+      CXXFLAGS="${CFLAGS}"
   debug: true
   requires:
   - <<: *layers-sci-libs
@@ -20223,67 +20226,67 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-gimp
-  category: "apps"
-  name: "gimp"
-  version: "3.0.6+4"
-  uri:
-  - https://www.gimp.org/
-  - http://liquidrescale.wikidot.com/
-  - https://lensfun.github.io
-  - https://github.com/bootchk/resynthesizer
-  # - https://www.alessandrofrancesconi.it/projects/bimp/
-  # - https://github.com/carlobaldassi/liblqr
-  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
-  description: |
-    GNU Image Manipulation Program
-    Library for rectifying and simulating photographic lens distortions
-    Suite of GIMP plugins for texture synthesis
-  # A GIMP plugin to apply a set of manipulations to groups of images
-  # Content-aware resizing for the GIMP
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =media-gfx/gimp-3.0.6
-      media-libs/lensfun
-      media-plugins/gimp-resynthesizer
-    # media-plugins/gimp-plugin-bimp
-    # media-plugins/gimp-lqr
-  provides:
-  - category: "media-gfx"
-    name: "gimp"
-    version: ">=0"
-  overlays:
-  - enable: "4nykey"
-  - enable: "guru"
-  debug: true
-  atoms:
-  - atom: "media-gfx/gimp"
-    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
-  # - atom: "media-plugins/gimp-plugin-bimp"
-  #   accept_keywords: "~amd64"
-  - atom: "media-plugins/gimp-resynthesizer"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-libs/gobject-introspection;USE="doctool"
-  - dev-util/gi-docgen
-  prepare:
-  - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-cfitsio
-  - <<: *libs-libmypaint
-  # - <<: *libs-liblqr
-  - <<: *apps-luajit
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-gimp
+#   category: "apps"
+#   name: "gimp"
+#   version: "3.0.6+4"
+#   uri:
+#   - https://www.gimp.org/
+#   - http://liquidrescale.wikidot.com/
+#   - https://lensfun.github.io
+#   - https://github.com/bootchk/resynthesizer
+#   # - https://www.alessandrofrancesconi.it/projects/bimp/
+#   # - https://github.com/carlobaldassi/liblqr
+#   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
+#   description: |
+#     GNU Image Manipulation Program
+#     Library for rectifying and simulating photographic lens distortions
+#     Suite of GIMP plugins for texture synthesis
+#   # A GIMP plugin to apply a set of manipulations to groups of images
+#   # Content-aware resizing for the GIMP
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       =media-gfx/gimp-3.0.6
+#       media-libs/lensfun
+#       media-plugins/gimp-resynthesizer
+#     # media-plugins/gimp-plugin-bimp
+#     # media-plugins/gimp-lqr
+#   provides:
+#   - category: "media-gfx"
+#     name: "gimp"
+#     version: ">=0"
+#   overlays:
+#   - enable: "4nykey"
+#   - enable: "guru"
+#   debug: true
+#   atoms:
+#   - atom: "media-gfx/gimp"
+#     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+#     accept_keywords: "~amd64"
+#   # - atom: "media-plugins/gimp-plugin-bimp"
+#   #   accept_keywords: "~amd64"
+#   - atom: "media-plugins/gimp-resynthesizer"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - dev-libs/gobject-introspection;USE="doctool"
+#   - dev-util/gi-docgen
+#   prepare:
+#   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
+#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-cfitsio
+#   - <<: *libs-libmypaint
+#   # - <<: *libs-liblqr
+#   - <<: *apps-luajit
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
@@ -20444,32 +20447,32 @@ packages:
   # - <<: *layers-kde-common
   - <<: *layers-kde-kf5
 
-- category: "apps"
-  name: "mypaint"
-  version: "2.0.1-r7+2"
-  uri:
-  - http://mypaint.org/
-  license: "GPL-2"
-  description: "Fast and easy graphics application for digital painters"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/mypaint
-  provides:
-  - category: "media-gfx"
-    name: "mypaint"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/mypaint"
-    use: "openmp"
-  debug: true
-  requires:
-  - <<: *layers-X
-  - <<: *libs-python-protobuf
-  - <<: *libs-libmypaint
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *layers-X
+# - category: "apps"
+#   name: "mypaint"
+#   version: "2.0.1-r7+2"
+#   uri:
+#   - http://mypaint.org/
+#   license: "GPL-2"
+#   description: "Fast and easy graphics application for digital painters"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/mypaint
+#   provides:
+#   - category: "media-gfx"
+#     name: "mypaint"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/mypaint"
+#     use: "openmp"
+#   debug: true
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-python-protobuf
+#   - <<: *libs-libmypaint
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *layers-X
 
 - category: "apps"
   name: "plantuml"
