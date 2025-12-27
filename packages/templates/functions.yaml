@@ -281,6 +281,8 @@
 
 {{- if not ( default .skip false ) }}
 
+{{- $debug := ( default .debug false ) }}
+
 {{- $current_package := printf "%s-%s" .category .name }}
 
 {{- $enqueue := or ( not $previous_package ) ( eq ( get $packages $current_package ) $previous_package ) }}
@@ -312,7 +314,7 @@
 {{- if .outer_build_reqs }}
 {{- range .outer_build_reqs }}
 {{- if . }}
-{{ include "community.emerge" ( list . $atoms ) }}
+{{ include "community.emerge" ( list . $atoms $debug ) }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -369,7 +371,7 @@
 {{- if .inner_build_reqs }}
 {{- range .inner_build_reqs }}
 {{- if . }}
-{{ include "community.emerge" ( list . $atoms ) }}
+{{ include "community.emerge" ( list . $atoms $debug ) }}
 {{- end }}
 {{- end }}
 {{- end }}
@@ -447,6 +449,8 @@
 
 {{- if not ( default .skip false ) }}
 
+{{- $debug := ( default .debug false ) }}
+
 {{- $current_package := printf "%s-%s" .category .name }}
 
 {{- $atoms := .atoms }}
@@ -461,7 +465,7 @@
 
 {{- if .preemerge }}
 {{- range .preemerge }}
-{{- include "community.emerge" ( list . $atoms ) }}
+{{- include "community.emerge" ( list . $atoms $debug ) }}
 {{- end }}
 {{- end }}
 
@@ -477,7 +481,7 @@
 {{- include "community.package_setup" . }}
 {{- end }}
 
-{{- include "community.emerge" ( list ( index .labels "emerge.packages" ) $atoms ) }}
+{{- include "community.emerge" ( list ( index .labels "emerge.packages" ) $atoms $debug ) }}
 
 {{- end }}
 {{- end }}
@@ -514,6 +518,12 @@
 {{- define "community.emerge" }}
 
 {{- $usepkg_exclude := "" }}
+
+{{- $debug := "" }}
+{{- if ( index . 2 ) }}
+{{- $debug = "--debug" }}
+{{- end }}
+
 {{- range ( index . 1 ) }}
 
 {{- $atom := . }}
@@ -527,11 +537,6 @@
 
 {{- if $usepkg_exclude }}
 {{- $usepkg_exclude = printf "--usepkg-exclude \"%s\"" $usepkg_exclude }}
-{{- end }}
-
-{{- $debug := "" }}
-{{- if ( default .debug false ) }}
-{{- $debug = "--debug" }}
 {{- end }}
 
 {{- $tokens := ( index . 0 ) | splitList ";" }}
