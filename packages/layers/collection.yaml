@@ -540,7 +540,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.26+22"
+  version: "0.26+23"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -694,27 +694,81 @@ packages:
   atoms:
   - atom: "dev-libs/xerces-c"
     use: "curl iconv icu threads # cpu_flags_x86_sse2"
+    usepkg_exclude: true
   # - atom: "sci-libs/arpack"
   #   use: "mpi"
   - atom: "sci-libs/cholmod"
     use: "lapack matrixops modify partition # cuda"
+    usepkg_exclude: true
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp # mpi"
+    usepkg_exclude: true
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
+    usepkg_exclude: true
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
     use: "cairo gtk3 # excel latex qt6 tk webagg wxwidgets"
+    usepkg_exclude: true
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf # mpi"
+    usepkg_exclude: true
   - atom: "sci-libs/spqr"
     use: "partition # tbb"
+    usepkg_exclude: true
   - atom: "sci-libs/suitesparse"
     use: "lapack partition # tbb # cuda"
+    usepkg_exclude: true
   - atom: "sci-libs/umfpack"
     usepkg_exclude: true
   # - atom: "virtual/mpi"
   #   use: "fortran # nullmpi romio cxx threads"
+  - atom: "dev-python/contourpy"
+    usepkg_exclude: true
+  - atom: "dev-python/cppy"
+    usepkg_exclude: true
+  - atom: "dev-python/cycler"
+    usepkg_exclude: true
+  - atom: "dev-python/kiwisolver"
+    usepkg_exclude: true
+  - atom: "dev-python/scipy"
+    usepkg_exclude: true
+  - atom: "media-libs/qhull"
+    usepkg_exclude: true
+  - atom: "sci-libs/amd"
+    usepkg_exclude: true
+  - atom: "sci-libs/arpack"
+    usepkg_exclude: true
+  - atom: "sci-libs/btf"
+    usepkg_exclude: true
+  - atom: "sci-libs/camd"
+    usepkg_exclude: true
+  - atom: "sci-libs/cholmod"
+    usepkg_exclude: true
+  - atom: "sci-libs/colamd"
+    usepkg_exclude: true
+  - atom: "sci-libs/cxsparse"
+    usepkg_exclude: true
+  - atom: "sci-libs/gklib"
+    usepkg_exclude: true
+  - atom: "sci-libs/klu"
+    usepkg_exclude: true
+  - atom: "sci-libs/ldl"
+    usepkg_exclude: true
+  - atom: "sci-libs/suitesparseconfig"
+    usepkg_exclude: true
+  - atom: "sci-libs/superlu"
+    usepkg_exclude: true
+  - atom: "virtual/blas"
+    usepkg_exclude: true
+  - dev-python/pooch
+    usepkg_exclude: true
+  - dev-python/pythran
+    usepkg_exclude: true
+  - dev-python/pytest
+    usepkg_exclude: true
+  - virtual/imagemagick-tools
+    usepkg_exclude: true
   prepare:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
