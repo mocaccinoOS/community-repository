@@ -9963,68 +9963,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+15"
-  uri:
-  - https://ulauncher.io
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-      dev-python/websocket-client
-  provides:
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/ulauncher"
-    usepkg_exclude: true
-  - atom: "dev-python/levenshtein"
-    usepkg_exclude: true
-  - atom: "dev-python/websocket-client"
-    usepkg_exclude: true
-  - atom: "dev-cpp/rapidfuzz-cpp"
-    usepkg_exclude: true
-  - atom: "dev-cpp/taskflow"
-    usepkg_exclude: true
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  # - dev-python/python-distutils-extra
-  # - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "ulauncher"
+#   version: "5.15.15+15"
+#   uri:
+#   - https://ulauncher.io
+#   license: "GPL-3"
+#   description: "Feature rich application Launcher for Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/levenshtein
+#       dev-python/websocket-client
+#   provides:
+#   - category: "net-misc"
+#     name: "ulauncher"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "levenshtein"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "websocket-client"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "rapidfuzz-cpp"
+#     version: ">=0"
+#   ready:
+#   - |
+#     git clone https://github.com/Ulauncher/Ulauncher.git && \
+#     cd Ulauncher && \
+#     git fetch --all --tags && \
+#     git checkout tags/5.15.15 && \
+#     export PYTHONHASHSEED=0 && \
+#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+#     python setup.py build
+#   completion:
+#   - |
+#     cd Ulauncher && \
+#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+#     cd ../build && \
+#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+#     find . -type d -name __pycache__ | xargs rm -rf && \
+#     cp -r usr /
+#   inner_build_reqs:
+#   # - dev-python/python-distutils-extra
+#   # - dev-python/meson-python
+#   - dev-cpp/taskflow
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-usbmuxd
   category: "apps"
@@ -11240,47 +11229,6 @@ packages:
   - category: "dev-python"
     name: "jsonschema-specifications"
     version: ">=0"
-  atoms:
-  - atom: "dev-util/maturin"
-    usepkg_exclude: true
-  - atom: "dev-python/hatch-fancy-pypi-readme"
-    usepkg_exclude: true
-  - atom: "dev-python/regex"
-    usepkg_exclude: true
-  - atom: "dev-python/tomli-w"
-    usepkg_exclude: true
-  - atom: "dev-python/rpds-py"
-    usepkg_exclude: true
-  - atom: "dev-python/fqdn"
-    usepkg_exclude: true
-  - atom: "dev-python/jsonpointer"
-    usepkg_exclude: true
-  - atom: "dev-python/rfc3986-validator"
-    usepkg_exclude: true
-  - atom: "dev-python/uri-template"
-    usepkg_exclude: true
-  - atom: "dev-python/strict-rfc3339"
-    usepkg_exclude: true
-  - atom: "dev-python/rfc3987"
-    usepkg_exclude: true
-  - atom: "dev-python/pdm-backend"
-    usepkg_exclude: true
-  - atom: "dev-python/tzdata"
-    usepkg_exclude: true
-  - atom: "dev-python/referencing"
-    usepkg_exclude: true
-  - atom: "dev-python/arrow"
-    usepkg_exclude: true
-  - atom: "dev-python/rfc3339-validator"
-    usepkg_exclude: true
-  - atom: "dev-python/webcolors"
-    usepkg_exclude: true
-  - atom: "dev-python/isoduration"
-    usepkg_exclude: true
-  - atom: "dev-python/jsonschema-specifications"
-    usepkg_exclude: true
-  - atom: "dev-python/jsonschema"
-    usepkg_exclude: true
   inner_build_reqs:
   - dev-util/maturin
   - dev-python/hatch-fancy-pypi-readme
@@ -16312,6 +16260,8 @@ packages:
   atoms:
   - atom: "net-wireless/gnuradio"
     use: "alsa analog audio digital examples filter grc network utils -qt5"
+  inner_build_reqs:
+  - dev-python/numpy
   requires:
   - <<: *layers-sci-libs
   - <<: *libs-jsonschema
@@ -20274,66 +20224,66 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-gimp
-  category: "apps"
-  name: "gimp"
-  version: "3.0.6+5"
-  uri:
-  - https://www.gimp.org/
-  - http://liquidrescale.wikidot.com/
-  - https://lensfun.github.io
-  - https://github.com/bootchk/resynthesizer
-  # - https://www.alessandrofrancesconi.it/projects/bimp/
-  # - https://github.com/carlobaldassi/liblqr
-  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
-  description: |
-    GNU Image Manipulation Program
-    Library for rectifying and simulating photographic lens distortions
-    Suite of GIMP plugins for texture synthesis
-  # A GIMP plugin to apply a set of manipulations to groups of images
-  # Content-aware resizing for the GIMP
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =media-gfx/gimp-3.0.6
-      media-libs/lensfun
-      media-plugins/gimp-resynthesizer
-    # media-plugins/gimp-plugin-bimp
-    # media-plugins/gimp-lqr
-  provides:
-  - category: "media-gfx"
-    name: "gimp"
-    version: ">=0"
-  overlays:
-  - enable: "4nykey"
-  - enable: "guru"
-  atoms:
-  - atom: "media-gfx/gimp"
-    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
-  # - atom: "media-plugins/gimp-plugin-bimp"
-  #   accept_keywords: "~amd64"
-  - atom: "media-plugins/gimp-resynthesizer"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-libs/gobject-introspection;USE="doctool"
-  - dev-util/gi-docgen
-  prepare:
-  - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-cfitsio
-  - <<: *libs-libmypaint
-  # - <<: *libs-liblqr
-  - <<: *apps-luajit
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-gimp
+#   category: "apps"
+#   name: "gimp"
+#   version: "3.0.6+5"
+#   uri:
+#   - https://www.gimp.org/
+#   - http://liquidrescale.wikidot.com/
+#   - https://lensfun.github.io
+#   - https://github.com/bootchk/resynthesizer
+#   # - https://www.alessandrofrancesconi.it/projects/bimp/
+#   # - https://github.com/carlobaldassi/liblqr
+#   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
+#   description: |
+#     GNU Image Manipulation Program
+#     Library for rectifying and simulating photographic lens distortions
+#     Suite of GIMP plugins for texture synthesis
+#   # A GIMP plugin to apply a set of manipulations to groups of images
+#   # Content-aware resizing for the GIMP
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       =media-gfx/gimp-3.0.6
+#       media-libs/lensfun
+#       media-plugins/gimp-resynthesizer
+#     # media-plugins/gimp-plugin-bimp
+#     # media-plugins/gimp-lqr
+#   provides:
+#   - category: "media-gfx"
+#     name: "gimp"
+#     version: ">=0"
+#   overlays:
+#   - enable: "4nykey"
+#   - enable: "guru"
+#   atoms:
+#   - atom: "media-gfx/gimp"
+#     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+#     accept_keywords: "~amd64"
+#   # - atom: "media-plugins/gimp-plugin-bimp"
+#   #   accept_keywords: "~amd64"
+#   - atom: "media-plugins/gimp-resynthesizer"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - dev-libs/gobject-introspection;USE="doctool"
+#   - dev-util/gi-docgen
+#   prepare:
+#   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
+#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-cfitsio
+#   - <<: *libs-libmypaint
+#   # - <<: *libs-liblqr
+#   - <<: *apps-luajit
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
