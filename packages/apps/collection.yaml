@@ -3015,7 +3015,7 @@ packages:
 - &libs-python-protobuf
   category: "libs"
   name: "python-protobuf"
-  version: "6.32.1-r1+1"
+  version: "6.32.1-r1+2"
   uri:
   - https://protobuf.dev/
   license: "BSD"
@@ -7635,7 +7635,7 @@ packages:
 - &apps-mypaint-brushes
   category: "apps"
   name: "mypaint-brushes"
-  version: "2.0.2-r2+2"
+  version: "2.0.2-r2+3"
   uri:
   - https://github.com/mypaint/mypaint-brushes
   license: "CC0-1.0"
@@ -16232,41 +16232,41 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-# - &apps-gnuradio
-#   category: "apps"
-#   name: "gnuradio"
-#   version: "3.10.12.0-r2+1"
-#   uri:
-#   - https://www.gnuradio.org
-#   license: "GPL-3"
-#   description: "Toolkit that provides signal processing blocks to implement software radios"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-wireless/gnuradio
-#   provides:
-#   - category: "dev-python"
-#     name: "click-plugins"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyopengl"
-#     version: ">=0"
-#   - category: "net-wireless"
-#     name: "gnuradio"
-#     version: ">=0"
-#   - category: "x11-libs"
-#     name: "qwt"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-wireless/gnuradio"
-#     use: "alsa analog audio digital examples filter grc network utils -qt5"
-#   requires:
-#   - <<: *layers-sci-libs
-#   - <<: *libs-jsonschema
-#   - <<: *libs-log4cpp
-#   - <<: *libs-volk
-#   build_requires:
-#   - <<: *layers-sci-libs
+- &apps-gnuradio
+  category: "apps"
+  name: "gnuradio"
+  version: "3.10.12.0-r2+1"
+  uri:
+  - https://www.gnuradio.org
+  license: "GPL-3"
+  description: "Toolkit that provides signal processing blocks to implement software radios"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/gnuradio
+  provides:
+  - category: "dev-python"
+    name: "click-plugins"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyopengl"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "gnuradio"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "qwt"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/gnuradio"
+    use: "alsa analog audio digital examples filter grc network utils -qt5"
+  requires:
+  - <<: *layers-sci-libs
+  - <<: *libs-jsonschema
+  - <<: *libs-log4cpp
+  - <<: *libs-volk
+  build_requires:
+  - <<: *layers-sci-libs
 
 - category: "apps"
   name: "goverlay"
@@ -19786,36 +19786,36 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# - &apps-gqrx
-#   category: "apps"
-#   name: "gqrx"
-#   version: "2.17.7+1"
-#   uri:
-#   - https://gqrx.dk
-#   license: "GPL-3"
-#   description: "Software defined radio receiver powered by GNU Radio and Qt"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-wireless/gqrx
-#   provides:
-#   - category: "net-wireless"
-#     name: "gqrx"
-#     version: ">=0"
-#   - category: "net-wireless"
-#     name: "gr-osmosdr"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-wireless/gqrx"
-#     accept_keywords: "~amd64"
-#   - atom: "net-wireless/gr-osmosdr"
-#     use: "rtlsdr"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *apps-gnuradio
-#   - <<: *libs-rtl-sdr
-#   build_requires:
-#   - <<: *apps-gnuradio
+- &apps-gqrx
+  category: "apps"
+  name: "gqrx"
+  version: "2.17.7+1"
+  uri:
+  - https://gqrx.dk
+  license: "GPL-3"
+  description: "Software defined radio receiver powered by GNU Radio and Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/gqrx
+  provides:
+  - category: "net-wireless"
+    name: "gqrx"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "gr-osmosdr"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/gqrx"
+    accept_keywords: "~amd64"
+  - atom: "net-wireless/gr-osmosdr"
+    use: "rtlsdr"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *apps-gnuradio
+  - <<: *libs-rtl-sdr
+  build_requires:
+  - <<: *apps-gnuradio
 
 - &apps-sdrpp
   category: "apps"
@@ -20055,7 +20055,7 @@ packages:
 - &libs-libmypaint
   category: "libs"
   name: "libmypaint"
-  version: "1.6.1-r3+2"
+  version: "1.6.1-r3+3"
   uri:
   - https://github.com/mypaint/libmypaint
   license: "ISC"
@@ -20221,66 +20221,66 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# - &apps-gimp
-#   category: "apps"
-#   name: "gimp"
-#   version: "3.0.6+5"
-#   uri:
-#   - https://www.gimp.org/
-#   - http://liquidrescale.wikidot.com/
-#   - https://lensfun.github.io
-#   - https://github.com/bootchk/resynthesizer
-#   # - https://www.alessandrofrancesconi.it/projects/bimp/
-#   # - https://github.com/carlobaldassi/liblqr
-#   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
-#   description: |
-#     GNU Image Manipulation Program
-#     Library for rectifying and simulating photographic lens distortions
-#     Suite of GIMP plugins for texture synthesis
-#   # A GIMP plugin to apply a set of manipulations to groups of images
-#   # Content-aware resizing for the GIMP
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       =media-gfx/gimp-3.0.6
-#       media-libs/lensfun
-#       media-plugins/gimp-resynthesizer
-#     # media-plugins/gimp-plugin-bimp
-#     # media-plugins/gimp-lqr
-#   provides:
-#   - category: "media-gfx"
-#     name: "gimp"
-#     version: ">=0"
-#   overlays:
-#   - enable: "4nykey"
-#   - enable: "guru"
-#   atoms:
-#   - atom: "media-gfx/gimp"
-#     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-#     accept_keywords: "~amd64"
-#   # - atom: "media-plugins/gimp-plugin-bimp"
-#   #   accept_keywords: "~amd64"
-#   - atom: "media-plugins/gimp-resynthesizer"
-#     accept_keywords: "~amd64"
-#   inner_build_reqs:
-#   - dev-libs/gobject-introspection;USE="doctool"
-#   - dev-util/gi-docgen
-#   prepare:
-#   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-#   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-cfitsio
-#   - <<: *libs-libmypaint
-#   # - <<: *libs-liblqr
-#   - <<: *apps-luajit
-#   - <<: *apps-mypaint-brushes
-#   build_requires:
-#   - <<: *buildbase-gnome-common
-#   - <<: *buildbase-sci-libs
-#   requires_final_images: true
+- &apps-gimp
+  category: "apps"
+  name: "gimp"
+  version: "3.0.6+5"
+  uri:
+  - https://www.gimp.org/
+  - http://liquidrescale.wikidot.com/
+  - https://lensfun.github.io
+  - https://github.com/bootchk/resynthesizer
+  # - https://www.alessandrofrancesconi.it/projects/bimp/
+  # - https://github.com/carlobaldassi/liblqr
+  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
+  description: |
+    GNU Image Manipulation Program
+    Library for rectifying and simulating photographic lens distortions
+    Suite of GIMP plugins for texture synthesis
+  # A GIMP plugin to apply a set of manipulations to groups of images
+  # Content-aware resizing for the GIMP
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =media-gfx/gimp-3.0.6
+      media-libs/lensfun
+      media-plugins/gimp-resynthesizer
+    # media-plugins/gimp-plugin-bimp
+    # media-plugins/gimp-lqr
+  provides:
+  - category: "media-gfx"
+    name: "gimp"
+    version: ">=0"
+  overlays:
+  - enable: "4nykey"
+  - enable: "guru"
+  atoms:
+  - atom: "media-gfx/gimp"
+    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+    accept_keywords: "~amd64"
+  # - atom: "media-plugins/gimp-plugin-bimp"
+  #   accept_keywords: "~amd64"
+  - atom: "media-plugins/gimp-resynthesizer"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-libs/gobject-introspection;USE="doctool"
+  - dev-util/gi-docgen
+  prepare:
+  - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
+  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+  - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-cfitsio
+  - <<: *libs-libmypaint
+  # - <<: *libs-liblqr
+  - <<: *apps-luajit
+  - <<: *apps-mypaint-brushes
+  build_requires:
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
@@ -20465,8 +20465,10 @@ packages:
 #   - <<: *libs-libmypaint
 #   - <<: *apps-mypaint-brushes
 #   build_requires:
-#   - <<: *layers-X
-
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
+# #   - <<: *layers-X
+  
 - category: "apps"
   name: "plantuml"
   version: "1.2025.9+1"
