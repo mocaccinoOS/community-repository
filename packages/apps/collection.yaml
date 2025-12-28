@@ -16232,43 +16232,41 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-- &apps-gnuradio
-  category: "apps"
-  name: "gnuradio"
-  version: "3.10.12.0-r2+1"
-  uri:
-  - https://www.gnuradio.org
-  license: "GPL-3"
-  description: "Toolkit that provides signal processing blocks to implement software radios"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/gnuradio
-  provides:
-  - category: "dev-python"
-    name: "click-plugins"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyopengl"
-    version: ">=0"
-  - category: "net-wireless"
-    name: "gnuradio"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "qwt"
-    version: ">=0"
-  atoms:
-  - atom: "net-wireless/gnuradio"
-    use: "alsa analog audio digital examples filter grc network utils -qt5"
-  inner_build_reqs:
-  - dev-python/numpy
-  requires:
-  - <<: *layers-sci-libs
-  - <<: *libs-jsonschema
-  - <<: *libs-log4cpp
-  - <<: *libs-volk
-  build_requires:
-  - <<: *layers-sci-libs
+# - &apps-gnuradio
+#   category: "apps"
+#   name: "gnuradio"
+#   version: "3.10.12.0-r2+1"
+#   uri:
+#   - https://www.gnuradio.org
+#   license: "GPL-3"
+#   description: "Toolkit that provides signal processing blocks to implement software radios"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-wireless/gnuradio
+#   provides:
+#   - category: "dev-python"
+#     name: "click-plugins"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pyopengl"
+#     version: ">=0"
+#   - category: "net-wireless"
+#     name: "gnuradio"
+#     version: ">=0"
+#   - category: "x11-libs"
+#     name: "qwt"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-wireless/gnuradio"
+#     use: "alsa analog audio digital examples filter grc network utils -qt5"
+#   requires:
+#   - <<: *layers-sci-libs
+#   - <<: *libs-jsonschema
+#   - <<: *libs-log4cpp
+#   - <<: *libs-volk
+#   build_requires:
+#   - <<: *layers-sci-libs
 
 - category: "apps"
   name: "goverlay"
@@ -18876,7 +18874,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4.2"
+  version: "1.4.2+1"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
@@ -18905,7 +18903,7 @@ packages:
   - <<: *libs-appdirs
   - <<: *libs-cachecontrol
   - <<: *libs-cssselect
-  - <<: *libs-fonttools
+  # - <<: *libs-fonttools
   - <<: *apps-scour
   - <<: *libs-libvisio
   build_requires:
@@ -19789,36 +19787,36 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-gqrx
-  category: "apps"
-  name: "gqrx"
-  version: "2.17.7+1"
-  uri:
-  - https://gqrx.dk
-  license: "GPL-3"
-  description: "Software defined radio receiver powered by GNU Radio and Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/gqrx
-  provides:
-  - category: "net-wireless"
-    name: "gqrx"
-    version: ">=0"
-  - category: "net-wireless"
-    name: "gr-osmosdr"
-    version: ">=0"
-  atoms:
-  - atom: "net-wireless/gqrx"
-    accept_keywords: "~amd64"
-  - atom: "net-wireless/gr-osmosdr"
-    use: "rtlsdr"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *apps-gnuradio
-  - <<: *libs-rtl-sdr
-  build_requires:
-  - <<: *apps-gnuradio
+# - &apps-gqrx
+#   category: "apps"
+#   name: "gqrx"
+#   version: "2.17.7+1"
+#   uri:
+#   - https://gqrx.dk
+#   license: "GPL-3"
+#   description: "Software defined radio receiver powered by GNU Radio and Qt"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-wireless/gqrx
+#   provides:
+#   - category: "net-wireless"
+#     name: "gqrx"
+#     version: ">=0"
+#   - category: "net-wireless"
+#     name: "gr-osmosdr"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-wireless/gqrx"
+#     accept_keywords: "~amd64"
+#   - atom: "net-wireless/gr-osmosdr"
+#     use: "rtlsdr"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *apps-gnuradio
+#   - <<: *libs-rtl-sdr
+#   build_requires:
+#   - <<: *apps-gnuradio
 
 - &apps-sdrpp
   category: "apps"
