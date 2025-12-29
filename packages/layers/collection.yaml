@@ -547,7 +547,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.26+24"
+  version: "0.26+25"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -588,29 +588,28 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      dev-libs/xerces-c
+      dev-python/scipy
       dev-python/matplotlib
-# dev-libs/xerces-c
-# dev-python/scipy
-# dev-python/matplotlib
-# media-libs/qhull
-# sci-libs/amd
-# sci-libs/arpack
-# sci-libs/btf
-# sci-libs/camd
-# sci-libs/ccolamd
-# sci-libs/cholmod
-# sci-libs/colamd
-# sci-libs/cxsparse
-# sci-libs/hypre
-# sci-libs/klu
-# sci-libs/ldl
-# sci-libs/metis
-# sci-libs/netcdf
-# sci-libs/spqr
-# sci-libs/suitesparse
-# sci-libs/suitesparseconfig
-# sci-libs/superlu
-# sci-libs/umfpack
+      media-libs/qhull
+      sci-libs/amd
+      sci-libs/arpack
+      sci-libs/btf
+      sci-libs/camd
+      sci-libs/ccolamd
+      sci-libs/cholmod
+      sci-libs/colamd
+      sci-libs/cxsparse
+      sci-libs/hypre
+      sci-libs/klu
+      sci-libs/ldl
+      sci-libs/metis
+      sci-libs/netcdf
+      sci-libs/spqr
+      sci-libs/suitesparse
+      sci-libs/suitesparseconfig
+      sci-libs/superlu
+      sci-libs/umfpack
   provides:
   - category: "dev-libs"
     name: "xerces-c"
@@ -786,6 +785,9 @@ packages:
   - atom: "virtual/imagemagick-tools"
     use: "jpeg"
     usepkg_exclude: true
+  - atom: "dev-python/numpy"
+    use: "lapack"
+    usepkg_exclude: true
   prepare:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
@@ -794,17 +796,17 @@ packages:
   # gcc 15 or meson  
   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  # - cat /var/db/repos/gentoo/dev-python/scipy/scipy-1.16.2-r1.ebuild
   - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
-  # inner_build_reqs:
-  # - dev-python/pooch
-  # - dev-python/pythran
-  # - dev-python/pytest
-  # - virtual/imagemagick-tools;USE="jpeg"
+  inner_build_reqs:
+  - dev-python/numpy
+  - dev-python/pooch
+  - dev-python/pythran
+  - dev-python/pytest
+  - virtual/imagemagick-tools;USE="jpeg"
   requires:
   - <<: *layers-qt
-  # - <<: *fonts-stix-fonts
-  # - <<: *libs-fonttools
+  - <<: *fonts-stix-fonts
+  - <<: *libs-fonttools
   build_requires:
   - <<: *layers-qt
 
