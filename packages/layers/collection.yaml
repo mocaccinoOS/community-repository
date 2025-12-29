@@ -588,29 +588,28 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      dev-libs/xerces-c
       dev-python/scipy
-# dev-libs/xerces-c
-# dev-python/scipy
-# dev-python/matplotlib
-# media-libs/qhull
-# sci-libs/amd
-# sci-libs/arpack
-# sci-libs/btf
-# sci-libs/camd
-# sci-libs/ccolamd
-# sci-libs/cholmod
-# sci-libs/colamd
-# sci-libs/cxsparse
-# sci-libs/hypre
-# sci-libs/klu
-# sci-libs/ldl
-# sci-libs/metis
-# sci-libs/netcdf
-# sci-libs/spqr
-# sci-libs/suitesparse
-# sci-libs/suitesparseconfig
-# sci-libs/superlu
-# sci-libs/umfpack
+      dev-python/matplotlib
+      media-libs/qhull
+      sci-libs/amd
+      sci-libs/arpack
+      sci-libs/btf
+      sci-libs/camd
+      sci-libs/ccolamd
+      sci-libs/cholmod
+      sci-libs/colamd
+      sci-libs/cxsparse
+      sci-libs/hypre
+      sci-libs/klu
+      sci-libs/ldl
+      sci-libs/metis
+      sci-libs/netcdf
+      sci-libs/spqr
+      sci-libs/suitesparse
+      sci-libs/suitesparseconfig
+      sci-libs/superlu
+      sci-libs/umfpack
   provides:
   - category: "dev-libs"
     name: "xerces-c"
@@ -803,22 +802,20 @@ packages:
   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
-  # inner_build_reqs:
-  # - app-alternatives/ninja
-  # - dev-build/meson
-  # - dev-build/meson-format-array
-  # - dev-python/pooch
-  # - dev-python/pythran
-  # - dev-python/pytest
-  # - virtual/imagemagick-tools;USE="jpeg"
+  inner_build_reqs:
+  - app-alternatives/ninja
+  - dev-build/meson
+  - dev-build/meson-format-array
+  - dev-python/pooch
+  - dev-python/pythran
+  - dev-python/pytest
+  - virtual/imagemagick-tools;USE="jpeg"
   requires:
-  - <<: *layers-X
-  # - <<: *layers-qt
-  # - <<: *fonts-stix-fonts
-  # - <<: *libs-fonttools
+  - <<: *layers-qt
+  - <<: *fonts-stix-fonts
+  - <<: *libs-fonttools
   build_requires:
-  - <<: *layers-X
-  # - <<: *layers-qt
+  - <<: *layers-qt
 
 # - <<: *def-sci-libs
 #   category: "layerbase"
