@@ -739,6 +739,7 @@ packages:
   - atom: "dev-python/kiwisolver"
     usepkg_exclude: true
   - atom: "dev-python/scipy"
+    debug: true
     usepkg_exclude: true
   - atom: "media-libs/qhull"
     usepkg_exclude: true
@@ -794,6 +795,11 @@ packages:
   - atom: "dev-build/meson-format-array"
     usepkg_exclude: true
   prepare:
+  - |
+      set -x; \
+      numpy-config --version; \
+      numpy-config --cflags; \
+      numpy-config --pkgconfigdir;
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
   - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild
@@ -803,9 +809,6 @@ packages:
   # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
   inner_build_reqs:
-  - app-alternatives/ninja
-  - dev-build/meson
-  - dev-build/meson-format-array
   - dev-python/pooch
   - dev-python/pythran
   - dev-python/pytest
