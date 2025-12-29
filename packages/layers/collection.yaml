@@ -785,7 +785,11 @@ packages:
   - atom: "virtual/imagemagick-tools"
     usepkg_exclude: true
   prepare:
-  - numpy-config
+  - |
+    set -x; \
+    which numpy-config; \
+    ln -s /sbin/numpy-config /usr/sbin/numpy-config; \
+    which numpy-config;
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
   - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild
