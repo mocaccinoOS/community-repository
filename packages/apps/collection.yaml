@@ -12716,13 +12716,13 @@ packages:
   - category: "dev-db"
     name: "libiodbc"
     version: ">=0"
-  # gcc 15
-  # https://bugs.gentoo.org/944767
-  # https://github.com/openlink/iODBC/pull/112/commits
-  # portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   atoms:
   - atom: "dev-db/libiodbc"
     use: "-gtk"
+  # gcc 15
+  # https://bugs.gentoo.org/944767
+  # https://github.com/openlink/iODBC/pull/112/commits
+    portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
   prepare:
   - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
@@ -20268,7 +20268,7 @@ packages:
 #   prepare:
 #   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
 #   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+# #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
 #   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
 #   requires:
 #   - <<: *layers-gnome-common
