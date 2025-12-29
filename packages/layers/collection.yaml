@@ -787,6 +787,12 @@ packages:
     usepkg_exclude: true
   - atom: "dev-python/meson-python"
     usepkg_exclude: true
+  - atom: "app-alternatives/ninja"
+    usepkg_exclude: true
+  - atom: "dev-build/meson"
+    usepkg_exclude: true
+  - atom: "dev-build/meson-format-array"
+    usepkg_exclude: true
   prepare:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
@@ -794,10 +800,12 @@ packages:
   - ebuild /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild manifest
   # gcc 15 or meson  
   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
+  # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
+  # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
   inner_build_reqs:
-  - dev-python/meson-python
+  - app-alternatives/ninja
+  - dev-build/meson
+  - dev-build/meson-format-array
   - dev-python/pooch
   - dev-python/pythran
   - dev-python/pytest
