@@ -785,8 +785,7 @@ packages:
   - atom: "virtual/imagemagick-tools"
     use: "jpeg"
     usepkg_exclude: true
-  - atom: "dev-python/numpy"
-    use: "lapack"
+  - atom: "dev-python/meson-python"
     usepkg_exclude: true
   prepare:
   # gcc 15
@@ -798,7 +797,7 @@ packages:
   - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
   inner_build_reqs:
-  - dev-python/numpy
+  - dev-python/meson-python
   - dev-python/pooch
   - dev-python/pythran
   - dev-python/pytest
