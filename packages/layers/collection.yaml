@@ -841,14 +841,6 @@ packages:
   - atom: "dev-build/meson-format-array"
     usepkg_exclude: true
   prepare:
-  - |
-      set -x; \
-      echo $(numpy-config --version); \
-      echo $(numpy-config --cflags); \
-      echo $(numpy-config --pkgconfigdir);
-  - |
-      set -x; \
-      echo $(python -c "import numpy; print(numpy.__version__, flush=True)");
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
   - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild
