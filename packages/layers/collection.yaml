@@ -544,10 +544,34 @@ packages:
   unpack: true
 
 
+# dev-python/scipy (currently can't build) depends on:
+# @ buildtime:
+# - dev-python/gast
+# - dev-python/pooch
+# - dev-python/iniconfig
+# - dev-cpp/xsimd
+# - dev-python/pytest
+# - dev-python/beniget
+# - dev-python/pythran
+# @ runtime:
+# - media-libs/qhull
+# 
+# dev-python/matplotlib depends on:
+# @ buildtime:
+# - virtual/imagemagick-tools
+# @ runtime:
+# - media-fonts/stix-fonts
+# - dev-python/fonttools
+# - media-libs/qhull
+# - dev-python/contourpy
+# - dev-python/cycler
+# - dev-python/cppy
+# - dev-python/kiwisolver
+#
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "0.26+25"
+  version: "0.26+26"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -586,10 +610,32 @@ packages:
     Sparse LU factorization library
     Unsymmetric multifrontal sparse LU factorization library
   labels:
-    emerge.jobs: "1"
+    emerge.jobs: "3"
+    # emerge.packages: >-
+    #   dev-libs/xerces-c
+    #   dev-python/scipy
+    #   dev-python/matplotlib
+    #   media-libs/qhull
+    #   sci-libs/amd
+    #   sci-libs/arpack
+    #   sci-libs/btf
+    #   sci-libs/camd
+    #   sci-libs/ccolamd
+    #   sci-libs/cholmod
+    #   sci-libs/colamd
+    #   sci-libs/cxsparse
+    #   sci-libs/hypre
+    #   sci-libs/klu
+    #   sci-libs/ldl
+    #   sci-libs/metis
+    #   sci-libs/netcdf
+    #   sci-libs/spqr
+    #   sci-libs/suitesparse
+    #   sci-libs/suitesparseconfig
+    #   sci-libs/superlu
+    #   sci-libs/umfpack
     emerge.packages: >-
       dev-libs/xerces-c
-      dev-python/scipy
       dev-python/matplotlib
       media-libs/qhull
       sci-libs/amd
@@ -802,7 +848,7 @@ packages:
       echo $(numpy-config --pkgconfigdir);
   - |
       set -x; \
-      echo $(python -c "import numpy; print(numpy.__version__)");
+      echo $(python -c "import numpy; print(numpy.__version__, flush=True)");
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
   - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild
