@@ -63,11 +63,13 @@ jobs:
     needs: [build-set-0, build-set-1]
     if: always()
     runs-on: ubuntu-latest
+    outputs:
+      success-count: ${{ steps.build-results.outputs.SUCCESS_COUNT }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: log
+      - name: build-results
         run: |
           gh run view ${{ github.run_id }} --json jobs | jq .
 
@@ -87,7 +89,7 @@ jobs:
     
   create-repo:
     needs: [build-results, build-set-0, build-set-1]
-    if: needs.build-results.outputs.SUCCESS_COUNT > 0
+    if: needs.build-results.outputs.success-count > 0
     # if: |
     #   always() &&
     #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
