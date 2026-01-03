@@ -64,7 +64,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     outputs:
-      success-count: ${{ steps.build-results.outputs.SUCCESS_COUNT }}
+      success-count: ${{ steps['build-results'].outputs.SUCCESS_COUNT }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
