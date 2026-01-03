@@ -66,8 +66,16 @@ jobs:
     steps:
       - name: log
         run: |
-          echo '${{ toJson(jobs.build-set-0.outputs) }}'
-          echo '${{ toJson(jobs.build-set-1.outputs) }}'
+          SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
+            --jq '[.jobs[] | select(.name | contains("build-set-")) | select(.conclusion=="success")] | length')
+          
+          if [ "$SUCCESS_COUNT" -gt 0 ]; then
+            echo "ANY_PASSED=true" >> $GITHUB_OUTPUT
+            echo "Found $SUCCESS_COUNT successful runs."
+          else
+            echo "ANY_PASSED=false" >> $GITHUB_OUTPUT
+            echo "Found no successful runs."
+          fi
     
   create-repo:
     needs: [build-set-0, build-set-1]
