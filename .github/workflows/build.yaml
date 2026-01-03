@@ -59,17 +59,19 @@ jobs:
       QUAY_ROBOT_USERNAME: ${{ secrets.QUAY_ROBOT_USERNAME }}
       QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
-  build-results:
+  summary:
+    name: Summary
     needs: [build-set-0, build-set-1]
     if: always()
     runs-on: ubuntu-latest
     outputs:
-      success-count: ${{ steps['build-results'].outputs.SUCCESS_COUNT }}
+      success-count: ${{ steps.summary.outputs.SUCCESS_COUNT }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: build-results
+      - name: Summary
+        id: summary
         run: |
           gh run view ${{ github.run_id }} --json jobs | jq .
 
@@ -88,8 +90,8 @@ jobs:
           echo "SUCCESS_COUNT=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
     
   create-repo:
-    needs: [build-results, build-set-0, build-set-1]
-    if: needs['build-results'].outputs['success-count'] > 0
+    needs: [summary, build-set-0, build-set-1]
+    if: needs.summary.outputs.success-count > 0
     # if: |
     #   always() &&
     #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
