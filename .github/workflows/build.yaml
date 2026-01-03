@@ -66,8 +66,8 @@ jobs:
     steps:
       - name: log
         run: |
-          echo '${{ toJson(needs.build-set-0.outputs) }}'
-          echo '${{ toJson(needs.build-set-1.outputs) }}'
+          echo '${{ toJson(build-set-0.outputs) }}'
+          echo '${{ toJson(build-set-1.outputs) }}'
     
   create-repo:
     needs: [build-set-0, build-set-1]
