@@ -91,7 +91,7 @@ jobs:
     
   create-repo:
     needs: [build-set-0, build-set-1, summary]
-    if: needs.summary.outputs.success-count > 0
+    if: always() && needs.summary.outputs.success-count > 0
     # if: |
     #   always() &&
     #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
