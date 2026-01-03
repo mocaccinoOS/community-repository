@@ -59,7 +59,7 @@ jobs:
       QUAY_ROBOT_USERNAME: ${{ secrets.QUAY_ROBOT_USERNAME }}
       QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
-  log:
+  build-results:
     needs: [build-set-0, build-set-1]
     if: always()
     runs-on: ubuntu-latest
@@ -70,23 +70,28 @@ jobs:
       - name: log
         run: |
           gh run view ${{ github.run_id }} --json jobs | jq .
+
+          # echo "SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
+          #   --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')" >> $GITHUB_OUTPUT
+
           SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
             --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
-          
+
           if [ "$SUCCESS_COUNT" -gt 0 ]; then
-            echo "ANY_PASSED=true" >> $GITHUB_OUTPUT
             echo "Found $SUCCESS_COUNT successful runs."
           else
-            echo "ANY_PASSED=false" >> $GITHUB_OUTPUT
             echo "Found no successful runs."
           fi
+
+          echo "SUCCESS_COUNT=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
     
   create-repo:
-    needs: [build-set-0, build-set-1]
-    if: |
-      always() && ((needs.build-set-0.outputs.matrix-sets != '') || (needs.build-set-1.outputs.matrix-sets != ''))
-    # (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
-    # (needs.build-set-1.result == 'success' || needs.build-set-1.result == 'failure' || needs.build-set-1.result == 'skipped') 
+    needs: [build-results, build-set-0, build-set-1]
+    if: needs.build-results.outputs.SUCCESS_COUNT > 0
+    # if: |
+    #   always() &&
+    #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
+    #   (needs.build-set-1.result == 'success' || needs.build-set-1.result == 'failure' || needs.build-set-1.result == 'skipped') 
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
     runs-on: ubuntu-latest
