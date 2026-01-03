@@ -69,6 +69,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: log
         run: |
+          gh run view ${{ github.run_id }} --json jobs | jq .
           SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
             --jq '[.jobs[] | select(.name | contains("build-set-")) | select(.conclusion=="success")] | length')
           
