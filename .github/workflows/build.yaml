@@ -71,7 +71,7 @@ jobs:
         run: |
           gh run view ${{ github.run_id }} --json jobs | jq .
           SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
-            --jq '[.jobs[] | select(.name | contains("build-set-")) | select(.conclusion=="success")] | length')
+            --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
           
           if [ "$SUCCESS_COUNT" -gt 0 ]; then
             echo "ANY_PASSED=true" >> $GITHUB_OUTPUT
