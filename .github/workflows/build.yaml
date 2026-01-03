@@ -59,10 +59,20 @@ jobs:
       QUAY_ROBOT_USERNAME: ${{ secrets.QUAY_ROBOT_USERNAME }}
       QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
+  log:
+    needs: [build-set-0, build-set-1]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: log
+        run: |
+          echo '${{ toJson(needs.build-set-0.outputs) }}'
+          echo '${{ toJson(needs.build-set-1.outputs) }}'
+    
   create-repo:
     needs: [build-set-0, build-set-1]
     if: |
-      always() && ((needs.build-set-0.outputs.map != '') || (needs.build-set-1.outputs.map != ''))
+      always() && ((needs.build-set-0.outputs.matrix-sets != '') || (needs.build-set-1.outputs.matrix-sets != ''))
     # (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
     # (needs.build-set-1.result == 'success' || needs.build-set-1.result == 'failure' || needs.build-set-1.result == 'skipped') 
     env:
