@@ -63,6 +63,8 @@ jobs:
     needs: [build-set-0, build-set-1]
     if: always()
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: log
         run: |
