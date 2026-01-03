@@ -10355,6 +10355,27 @@ packages:
   - <<: *fonts-roboto
   build_requires:
   - <<: *layers-X
+  
+- &apps-wgetpaste
+  category: "apps"
+  name: "wgetpaste"
+  version: "2.34"
+  uri:
+  - https://github.com/zlin/wgetpaste
+  license: "MIT"
+  description: "Command-line interface to various pastebins"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/wgetpaste
+  provides:
+  - category: "app-text"
+    name: "wgetpaste"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - category: "apps"
   name: "wireshark"
