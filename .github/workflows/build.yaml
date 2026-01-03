@@ -88,6 +88,8 @@ jobs:
           fi
 
           echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          
+          echo $GITHUB_OUTPUT
     
   create-repo:
     needs: [build-set-0, build-set-1, summary]
