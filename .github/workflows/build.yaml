@@ -65,7 +65,7 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     outputs:
-      success-count: ${{ steps.summary.outputs.SUCCESS_COUNT }}
+      success-count: ${{ steps.summary.outputs.success-count }}
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
@@ -75,7 +75,7 @@ jobs:
         run: |
           gh run view ${{ github.run_id }} --json jobs | jq .
 
-          # echo "SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
+          # echo "success-count=$(gh run view ${{ github.run_id }} --json jobs \
           #   --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')" >> $GITHUB_OUTPUT
 
           SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
@@ -87,11 +87,11 @@ jobs:
             echo "Found no successful runs."
           fi
 
-          echo "SUCCESS_COUNT=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+          echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
     
   create-repo:
-    needs: [summary, build-set-0, build-set-1]
-    if: needs.summary.outputs.success-count > 0
+    needs: [build-set-0, build-set-1, summary]
+    if: fromJSON(needs.summary.outputs.success-count) > 0
     # if: |
     #   always() &&
     #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
