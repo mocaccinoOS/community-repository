@@ -66,6 +66,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     steps:
+      - uses: actions/checkout@v4
       - name: log
         run: |
           SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
