@@ -59,49 +59,35 @@ jobs:
       QUAY_ROBOT_USERNAME: ${{ secrets.QUAY_ROBOT_USERNAME }}
       QUAY_ROBOT_PASSWORD: ${{ secrets.QUAY_ROBOT_PASSWORD }}
 
-  summary:
-    name: Summary
-    needs: [build-set-0, build-set-1]
-    if: always()
-    runs-on: ubuntu-latest
-    outputs:
-      success-count: ${{ steps.summary.outputs.success-count }}
-    env:
-      GH_TOKEN: ${{ github.token }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Summary
-        id: summary
-        run: |
-          gh run view ${{ github.run_id }} --json jobs | jq .
-
-          # echo "success-count=$(gh run view ${{ github.run_id }} --json jobs \
-          #   --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')" >> $GITHUB_OUTPUT
-
-          SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
-            --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
-
-          if [ "$SUCCESS_COUNT" -gt 0 ]; then
-            echo "Found $SUCCESS_COUNT successful runs."
-          else
-            echo "Found no successful runs."
-          fi
-
-          echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
-    
   create-repo:
     name: Create repo
-    needs: [build-set-0, build-set-1, summary]
-    if: always() && needs.summary.outputs.success-count > 0
-    # if: |
-    #   always() &&
-    #   (needs.build-set-0.result == 'success' || needs.build-set-0.result == 'failure' || needs.build-set-0.result == 'skipped') &&
-    #   (needs.build-set-1.result == 'success' || needs.build-set-1.result == 'failure' || needs.build-set-1.result == 'skipped') 
+    needs: [build-set-0, build-set-1]
+    if: always()
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
+      GH_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Validate
+      run: |
+        # Log jobs status
+        # gh run view ${{ github.run_id }} --json jobs | jq .
+
+        # echo "success-count=$(gh run view ${{ github.run_id }} --json jobs \
+        #   --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')" >> $GITHUB_OUTPUT
+
+        SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
+          --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
+        # echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
+
+        if [ "$SUCCESS_COUNT" -gt 0 ]; then
+          echo "Found $SUCCESS_COUNT successful runs."
+        else
+          echo "::error::Found no successful runs."
+          exit 1
+        fi
+
     - name: Release space from worker ♻
       run: |
         echo "Listing top largest packages"
