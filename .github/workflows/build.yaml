@@ -90,6 +90,7 @@ jobs:
           echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
     
   create-repo:
+    name: Create repo
     needs: [build-set-0, build-set-1, summary]
     if: always() && needs.summary.outputs.success-count > 0
     # if: |
