@@ -4494,31 +4494,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
-  name: "chezmoi"
-  version: "2.65.2"
-  uri:
-  - https://www.chezmoi.io/"
-  license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
-  description: "Manage your dotfiles across multiple machines, securely"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-admin/chezmoi
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "app-admin"
-    name: "chezmoi"
-    version: ">=0"
-  atoms:
-  - atom: "app-admin/chezmoi"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-clamav
   category: "apps"
   name: "clamav"
@@ -11882,6 +11857,32 @@ packages:
   - <<: *libs-libemf
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "chezmoi"
+  version: "2.65.2+1"
+  uri:
+  - https://www.chezmoi.io/"
+  license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
+  description: "Manage your dotfiles across multiple machines, securely"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-admin/chezmoi
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-admin"
+    name: "chezmoi"
+    version: ">=0"
+  atoms:
+  - atom: "app-admin/chezmoi"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-system-x
 
 # - category: "apps"
 #   name: "clementine"
