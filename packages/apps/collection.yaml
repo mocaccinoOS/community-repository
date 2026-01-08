@@ -14454,6 +14454,24 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "starship"
+  version: "1.24.1"
+  uri:
+  - https://starship.rs
+  license: "ISC Apache-2.0 BSD CC0-1.0 ISC MIT MPL-2.0 Unicode-3.0 Unlicense WTFPL-2 ZLIB"
+  description: "The minimal, blazing-fast, and infinitely customizable prompt for any shell!"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-shells/starship
+  provides:
+  - category: "app-shells"
+    name: "starship"
+    version: ">=0"
+  build_requires:
+  - <<: *apps-rust-bin
+
+- category: "apps"
   name: "schismtracker"
   version: "20250208"
   uri:
