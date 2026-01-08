@@ -14126,7 +14126,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.28+1"
+  version: "10.28+2"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -14154,8 +14154,8 @@ packages:
   prepare:
   - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
   - ebuild /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild manifest
-  # inner_build_reqs:
-  # - dev-util/mingw64-toolchain
+  inner_build_reqs:
+  - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-X
   - <<: *libs-ffmpeg-compat
@@ -15008,7 +15008,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.1"
+  version: "1.5.4+5"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
