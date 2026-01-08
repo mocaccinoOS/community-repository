@@ -20675,79 +20675,79 @@ packages:
 #   - <<: *buildbase-sci-libs
 #   requires_final_images: true
 
-# - &apps-hip
-#   category: "apps"
-#   name: "hip"
-#   version: "7.1.0-r1+1"
-#   uri:
-#   - https://github.com/ROCm/clr
-#   license: "Apache-2.0 MIT"
-#   description: "C++ Heterogeneous-Compute Interface for Portability"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-util/hip
-#   provides:
-#   - category: "dev-libs"
-#     name: "rocm-comgr"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocm-core"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocm-device-libs"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocr-runtime"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "roct-thunk-interface"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "hip"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "hipcc"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "rocminfo"
-#     version: ">=0"
-#   - category: "llvm-core"
-#     name: "lld"
-#     version: ">=0"
-#   - category: "llvm-core"
-#     name: "lld-toolchain-symlinks"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-libs/rocm-comgr"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocm-core"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocm-device-libs"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocr-runtime"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/roct-thunk-interface"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/hip"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/hipcc"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/rocminfo"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
-#   inner_build_requires:
-#   - <<: *apps-doxygen
-#   inner_build_reqs:
-#   - app-editors/vim-core
-#   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-numactl
-#   build_requires:
-#   - <<: *layers-qt
+- &apps-hip
+  category: "apps"
+  name: "hip"
+  version: "7.1.0-r1+2"
+  uri:
+  - https://github.com/ROCm/clr
+  license: "Apache-2.0 MIT"
+  description: "C++ Heterogeneous-Compute Interface for Portability"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/hip
+  provides:
+  - category: "dev-libs"
+    name: "rocm-comgr"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocm-core"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocm-device-libs"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocr-runtime"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "roct-thunk-interface"
+    version: ">=0"
+  - category: "dev-util"
+    name: "hip"
+    version: ">=0"
+  - category: "dev-util"
+    name: "hipcc"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocminfo"
+    version: ">=0"
+  - category: "llvm-core"
+    name: "lld"
+    version: ">=0"
+  - category: "llvm-core"
+    name: "lld-toolchain-symlinks"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/rocm-comgr"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocm-core"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocm-device-libs"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocr-runtime"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/roct-thunk-interface"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/hip"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/hipcc"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocminfo"
+    accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+  inner_build_requires:
+  - <<: *apps-doxygen
+  inner_build_reqs:
+  - app-editors/vim-core
+  - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "krita"
@@ -20883,8 +20883,8 @@ packages:
 
 ################################################################################################################################################################
 ### dep 7 apps ###
-################################################################################################################################################################
-
+###############################################################################################################################################################
+# 
 # - category: "apps"
 #   name: "blender"
 #   version: "4.4.3+6"
@@ -20984,8 +20984,8 @@ packages:
 #     use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c "
 #   - atom: "sci-physics/bullet"
 #     use: "double-precision"
-#   # portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
-#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20\""
+#   # portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
 #   prepare:
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
 #   - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
