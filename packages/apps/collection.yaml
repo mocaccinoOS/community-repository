@@ -20738,10 +20738,18 @@ packages:
     accept_keywords: "~amd64"
   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
   prepare:
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
   - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-doxygen
   inner_build_reqs:
