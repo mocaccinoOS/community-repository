@@ -20678,7 +20678,7 @@ packages:
 - &apps-hip
   category: "apps"
   name: "hip"
-  version: "7.1.0-r1+2"
+  version: "7.1.0-r1+3"
   uri:
   - https://github.com/ROCm/clr
   license: "Apache-2.0 MIT"
@@ -20736,9 +20736,12 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-util/rocminfo"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+  portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-doxygen
   inner_build_reqs:
