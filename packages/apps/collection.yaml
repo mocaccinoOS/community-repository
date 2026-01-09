@@ -20979,7 +20979,6 @@ packages:
   atoms:
   - atom: "media-gfx/blender"
     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi hip # debug headless test"
-    usepkg_exclude: true
   - atom: "media-gfx/alembic"
     use: "hdf5"
   - atom: "media-libs/embree"
@@ -20995,7 +20994,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/osl"
     use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-    usepkg_exclude: true
   - atom: "sci-physics/bullet"
     use: "double-precision"
   # portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
@@ -21003,7 +21001,7 @@ packages:
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
   - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
-    - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
   - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
   inner_build_reqs:
   - app-admin/chrpath
