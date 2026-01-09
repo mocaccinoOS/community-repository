@@ -378,7 +378,7 @@ stubs:
       app-containers/docker
 
 - &apps-doxygen-packages >-
-  app-text/doxygen;USE="-llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21" ACCEPT_KEYWORDS="~amd64"
+  app-text/doxygen;USE="-llvm_slot_18 -llvm_slot_19 llvm_slot_20"
 
 - &apps-flatpak
   category: "apps"
@@ -20731,13 +20731,14 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-util/hip"
     accept_keywords: "~amd64"
+    use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
   - atom: "dev-util/hipcc"
     accept_keywords: "~amd64"
   - atom: "dev-util/rocminfo"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+  # prepare:
+  # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+  # - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
   inner_build_requires:
   - <<: *apps-doxygen
   inner_build_reqs:
