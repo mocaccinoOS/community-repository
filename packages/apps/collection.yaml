@@ -15070,6 +15070,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e '/.*gbinder-1.1.1-setuptools.patch.*/d' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
+  - sed -i -e 's/DISTUTILS_ARGS.*/default/' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
   - ebuild /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild manifest
   # - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
