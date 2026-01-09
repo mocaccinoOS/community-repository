@@ -21001,6 +21001,8 @@ packages:
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
   - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
+    - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
   inner_build_reqs:
   - app-admin/chrpath
   - dev-debug/valgrind
