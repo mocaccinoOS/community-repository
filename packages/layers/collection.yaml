@@ -14,6 +14,10 @@ stubs:
   category: "layers"
   name: "sys-fs"
   version: ">=0"
+- &buildbase-sys-fs
+  category: "buildbase"
+  name: "sys-fs"
+  version: ">=0"
 
 - &layers-X
   category: "layers"
@@ -846,6 +850,7 @@ packages:
   - <<: *fonts-stix-fonts
   - <<: *libs-fonttools
   build_requires:
+  - <<: *buildbase-sys-fs
   - <<: *buildbase-qt
   requires_final_images: true
 
