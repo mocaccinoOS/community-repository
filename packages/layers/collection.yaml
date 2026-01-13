@@ -846,7 +846,9 @@ packages:
   - <<: *fonts-stix-fonts
   - <<: *libs-fonttools
   build_requires:
-  - <<: *layers-qt
+  - <<: *buildbase-sys-fs
+  - <<: *buildbase-qt
+  requires_final_images: true
 
 # - <<: *def-sci-libs
 #   category: "layerbase"
