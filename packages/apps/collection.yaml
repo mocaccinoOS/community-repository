@@ -16354,7 +16354,6 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-# # needs scipy
 # - &apps-gnuradio
 #   category: "apps"
 #   name: "gnuradio"
@@ -16390,64 +16389,6 @@ packages:
 #   - <<: *libs-volk
 #   build_requires:
 #   - <<: *layers-sci-libs
-
-# needs scipy
-- &apps-gnuradio
-  category: "apps"
-  name: "gnuradio"
-  version: "3.10.12.0-r2+2"
-  uri:
-  - https://www.gnuradio.org
-  license: "GPL-3"
-  description: "Toolkit that provides signal processing blocks to implement software radios"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/gnuradio
-  provides:
-  - category: "dev-python"
-    name: "click-plugins"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyopengl"
-    version: ">=0"
-  - category: "net-wireless"
-    name: "gnuradio"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "qwt"
-    version: ">=0"
-  atoms:
-  - atom: "net-wireless/gnuradio"
-    use: "alsa analog audio digital examples filter grc network utils -qt5"
-# for scipy
-  - atom: "dev-python/iniconfig"
-    usepkg_exclude: true
-  - atom: "dev-python/scipy"
-    usepkg_exclude: true
-  - atom: "media-libs/qhull"
-    usepkg_exclude: true
-  - atom: "dev-python/pooch"
-    usepkg_exclude: true
-  - atom: "dev-cpp/xsimd"
-    usepkg_exclude: true
-  - atom: "dev-python/gast"
-    usepkg_exclude: true
-  - atom: "dev-python/beniget"
-    usepkg_exclude: true
-  - atom: "dev-python/pythran"
-    usepkg_exclude: true
-  - atom: "dev-python/pytest"
-    usepkg_exclude: true
-  - atom: "virtual/imagemagick-tools"
-    use: "jpeg"
-  requires:
-  - <<: *layers-qt
-  - <<: *libs-jsonschema
-  - <<: *libs-log4cpp
-  - <<: *libs-volk
-  build_requires:
-  - <<: *layers-qt
 
 - category: "apps"
   name: "goverlay"
