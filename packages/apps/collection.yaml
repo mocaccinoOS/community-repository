@@ -3260,6 +3260,75 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# dev-python/scipy depends on:
+# @ buildtime:
+# - dev-python/gast
+# - dev-python/pooch
+# - dev-python/iniconfig
+# - dev-cpp/xsimd
+# - dev-python/pytest
+# - dev-python/beniget
+# - dev-python/pythran
+# @ runtime:
+# - media-libs/qhull
+- category: "libs"
+  name: "scipy"
+  version: "1.16.3"
+  uri:
+  - https://scipy.org/
+  - http://www.qhull.org
+  license: "metapackage"
+  description: |
+    Scientific algorithms library for Python
+    Geometry library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/scipy
+  provides:
+  - category: "dev-python"
+    name: "scipy"
+    version: ">=0"
+  - category: "media-libs"
+    name: "qhull"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/iniconfig"
+    usepkg_exclude: true
+  - atom: "dev-python/scipy"
+    usepkg_exclude: true
+  - atom: "media-libs/qhull"
+    usepkg_exclude: true
+  - atom: "dev-python/pooch"
+    usepkg_exclude: true
+  - atom: "dev-cpp/xsimd"
+    usepkg_exclude: true
+  - atom: "dev-python/gast"
+    usepkg_exclude: true
+  - atom: "dev-python/beniget"
+    usepkg_exclude: true
+  - atom: "dev-python/pythran"
+    usepkg_exclude: true
+  - atom: "dev-python/pytest"
+    usepkg_exclude: true
+  - atom: "virtual/imagemagick-tools"
+    use: "jpeg"
+    usepkg_exclude: true
+  # prepare:
+  # gcc 15 or meson  
+  # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
+  # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
+  # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
+  inner_build_reqs:
+  - dev-python/pooch
+  - dev-python/pythran
+  - dev-python/pytest
+  - virtual/imagemagick-tools;USE="jpeg"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -20072,67 +20141,67 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-gimp
-  category: "apps"
-  name: "gimp"
-  version: "3.0.6+6"
-  uri:
-  - https://www.gimp.org/
-  - http://liquidrescale.wikidot.com/
-  - https://lensfun.github.io
-  - https://github.com/bootchk/resynthesizer
-  # - https://www.alessandrofrancesconi.it/projects/bimp/
-  # - https://github.com/carlobaldassi/liblqr
-  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
-  description: |
-    GNU Image Manipulation Program
-    Library for rectifying and simulating photographic lens distortions
-    Suite of GIMP plugins for texture synthesis
-  # A GIMP plugin to apply a set of manipulations to groups of images
-  # Content-aware resizing for the GIMP
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =media-gfx/gimp-3.0.6
-      media-libs/lensfun
-      media-plugins/gimp-resynthesizer
-    # media-plugins/gimp-plugin-bimp
-    # media-plugins/gimp-lqr
-  provides:
-  - category: "media-gfx"
-    name: "gimp"
-    version: ">=0"
-  overlays:
-  - enable: "4nykey"
-  - enable: "guru"
-  atoms:
-  - atom: "media-gfx/gimp"
-    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
-  # - atom: "media-plugins/gimp-plugin-bimp"
-  #   accept_keywords: "~amd64"
-  - atom: "media-plugins/gimp-resynthesizer"
-    accept_keywords: "~amd64"
-  portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
-  inner_build_reqs:
-  - dev-libs/gobject-introspection;USE="doctool"
-  - dev-util/gi-docgen
-  prepare:
-  - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-cfitsio
-  - <<: *libs-libmypaint
-  # - <<: *libs-liblqr
-  - <<: *apps-luajit
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-gimp
+#   category: "apps"
+#   name: "gimp"
+#   version: "3.0.6+6"
+#   uri:
+#   - https://www.gimp.org/
+#   - http://liquidrescale.wikidot.com/
+#   - https://lensfun.github.io
+#   - https://github.com/bootchk/resynthesizer
+#   # - https://www.alessandrofrancesconi.it/projects/bimp/
+#   # - https://github.com/carlobaldassi/liblqr
+#   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
+#   description: |
+#     GNU Image Manipulation Program
+#     Library for rectifying and simulating photographic lens distortions
+#     Suite of GIMP plugins for texture synthesis
+#   # A GIMP plugin to apply a set of manipulations to groups of images
+#   # Content-aware resizing for the GIMP
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       =media-gfx/gimp-3.0.6
+#       media-libs/lensfun
+#       media-plugins/gimp-resynthesizer
+#     # media-plugins/gimp-plugin-bimp
+#     # media-plugins/gimp-lqr
+#   provides:
+#   - category: "media-gfx"
+#     name: "gimp"
+#     version: ">=0"
+#   overlays:
+#   - enable: "4nykey"
+#   - enable: "guru"
+#   atoms:
+#   - atom: "media-gfx/gimp"
+#     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+#     accept_keywords: "~amd64"
+#   # - atom: "media-plugins/gimp-plugin-bimp"
+#   #   accept_keywords: "~amd64"
+#   - atom: "media-plugins/gimp-resynthesizer"
+#     accept_keywords: "~amd64"
+#   # portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
+#   inner_build_reqs:
+#   - dev-libs/gobject-introspection;USE="doctool"
+#   - dev-util/gi-docgen
+#   prepare:
+#   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
+#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+# #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-cfitsio
+#   - <<: *libs-libmypaint
+#   # - <<: *libs-liblqr
+#   - <<: *apps-luajit
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
