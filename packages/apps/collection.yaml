@@ -3260,74 +3260,74 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# dev-python/scipy depends on:
-# @ buildtime:
-# - dev-python/gast
-# - dev-python/pooch
-# - dev-python/iniconfig
-# - dev-cpp/xsimd
-# - dev-python/pytest
-# - dev-python/beniget
-# - dev-python/pythran
-# @ runtime:
-# - media-libs/qhull
-- category: "libs"
-  name: "scipy"
-  version: "1.16.3"
-  uri:
-  - https://scipy.org/
-  - http://www.qhull.org
-  license: "metapackage"
-  description: |
-    Scientific algorithms library for Python
-    Geometry library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/scipy
-  provides:
-  - category: "dev-python"
-    name: "scipy"
-    version: ">=0"
-  - category: "media-libs"
-    name: "qhull"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/iniconfig"
-    usepkg_exclude: true
-  - atom: "dev-python/scipy"
-    usepkg_exclude: true
-  - atom: "media-libs/qhull"
-    usepkg_exclude: true
-  - atom: "dev-python/pooch"
-    usepkg_exclude: true
-  - atom: "dev-cpp/xsimd"
-    usepkg_exclude: true
-  - atom: "dev-python/gast"
-    usepkg_exclude: true
-  - atom: "dev-python/beniget"
-    usepkg_exclude: true
-  - atom: "dev-python/pythran"
-    usepkg_exclude: true
-  - atom: "dev-python/pytest"
-    usepkg_exclude: true
-  - atom: "virtual/imagemagick-tools"
-    use: "jpeg"
-    usepkg_exclude: true
-  # prepare:
-  # gcc 15 or meson  
-  # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
-  inner_build_reqs:
-  - dev-python/pooch
-  - dev-python/pythran
-  - dev-python/pytest
-  - virtual/imagemagick-tools;USE="jpeg"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
+# # dev-python/scipy depends on:
+# # @ buildtime:
+# # - dev-python/gast
+# # - dev-python/pooch
+# # - dev-python/iniconfig
+# # - dev-cpp/xsimd
+# # - dev-python/pytest
+# # - dev-python/beniget
+# # - dev-python/pythran
+# # @ runtime:
+# # - media-libs/qhull
+# - category: "libs"
+#   name: "scipy"
+#   version: "1.16.3"
+#   uri:
+#   - https://scipy.org/
+#   - http://www.qhull.org
+#   license: "metapackage"
+#   description: |
+#     Scientific algorithms library for Python
+#     Geometry library
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/scipy
+#   provides:
+#   - category: "dev-python"
+#     name: "scipy"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "qhull"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-python/iniconfig"
+#     usepkg_exclude: true
+#   - atom: "dev-python/scipy"
+#     usepkg_exclude: true
+#   - atom: "media-libs/qhull"
+#     usepkg_exclude: true
+#   - atom: "dev-python/pooch"
+#     usepkg_exclude: true
+#   - atom: "dev-cpp/xsimd"
+#     usepkg_exclude: true
+#   - atom: "dev-python/gast"
+#     usepkg_exclude: true
+#   - atom: "dev-python/beniget"
+#     usepkg_exclude: true
+#   - atom: "dev-python/pythran"
+#     usepkg_exclude: true
+#   - atom: "dev-python/pytest"
+#     usepkg_exclude: true
+#   - atom: "virtual/imagemagick-tools"
+#     use: "jpeg"
+#     usepkg_exclude: true
+#   # prepare:
+#   # gcc 15 or meson  
+#   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
+#   # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
+#   # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
+#   inner_build_reqs:
+#   - dev-python/pooch
+#   - dev-python/pythran
+#   - dev-python/pytest
+#   - virtual/imagemagick-tools;USE="jpeg"
+#   requires:
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *layers-qt
 
 - &libs-send2trash
   category: "libs"
@@ -16390,6 +16390,64 @@ packages:
 #   - <<: *libs-volk
 #   build_requires:
 #   - <<: *layers-sci-libs
+
+# needs scipy
+- &apps-gnuradio
+  category: "apps"
+  name: "gnuradio"
+  version: "3.10.12.0-r2+2"
+  uri:
+  - https://www.gnuradio.org
+  license: "GPL-3"
+  description: "Toolkit that provides signal processing blocks to implement software radios"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/gnuradio
+  provides:
+  - category: "dev-python"
+    name: "click-plugins"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyopengl"
+    version: ">=0"
+  - category: "net-wireless"
+    name: "gnuradio"
+    version: ">=0"
+  - category: "x11-libs"
+    name: "qwt"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/gnuradio"
+    use: "alsa analog audio digital examples filter grc network utils -qt5"
+# for scipy
+  - atom: "dev-python/iniconfig"
+    usepkg_exclude: true
+  - atom: "dev-python/scipy"
+    usepkg_exclude: true
+  - atom: "media-libs/qhull"
+    usepkg_exclude: true
+  - atom: "dev-python/pooch"
+    usepkg_exclude: true
+  - atom: "dev-cpp/xsimd"
+    usepkg_exclude: true
+  - atom: "dev-python/gast"
+    usepkg_exclude: true
+  - atom: "dev-python/beniget"
+    usepkg_exclude: true
+  - atom: "dev-python/pythran"
+    usepkg_exclude: true
+  - atom: "dev-python/pytest"
+    usepkg_exclude: true
+  - atom: "virtual/imagemagick-tools"
+    use: "jpeg"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-jsonschema
+  - <<: *libs-log4cpp
+  - <<: *libs-volk
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "goverlay"
