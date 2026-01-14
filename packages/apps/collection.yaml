@@ -7260,35 +7260,35 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
-- &apps-leocad
-  category: "apps"
-  name: "leocad"
-  version: "25.09"
-  uri:
-  - http://www.leocad.org
-  license: "GPL-2"
-  description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/leocad
-  overlays:
-  - enable: "anard"
-  provides:
-  - category: "media-gfx"
-    name: "leocad"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/leocad"
-    accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-  # - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-  # - ebuild /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild manifest
-  requires:
-  - <<: *layers-kde-kf5
-  build_requires:
-  - <<: *layers-kde-kf5
+# - &apps-leocad
+#   category: "apps"
+#   name: "leocad"
+#   version: "25.09"
+#   uri:
+#   - http://www.leocad.org
+#   license: "GPL-2"
+#   description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/leocad
+#   overlays:
+#   - enable: "anard"
+#   provides:
+#   - category: "media-gfx"
+#     name: "leocad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/leocad"
+#     accept_keywords: "~amd64"
+#   # prepare:
+#   # - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+#   # - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+#   # - ebuild /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild manifest
+#   requires:
+#   - <<: *layers-kde-kf5
+#   build_requires:
+#   - <<: *layers-kde-kf5
 
 - &apps-lxc
   category: "apps"
@@ -9978,57 +9978,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+15"
-  uri:
-  - https://ulauncher.io
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-      dev-python/websocket-client
-  provides:
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  # - dev-python/python-distutils-extra
-  # - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "ulauncher"
+#   version: "5.15.15+15"
+#   uri:
+#   - https://ulauncher.io
+#   license: "GPL-3"
+#   description: "Feature rich application Launcher for Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/levenshtein
+#       dev-python/websocket-client
+#   provides:
+#   - category: "net-misc"
+#     name: "ulauncher"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "levenshtein"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "websocket-client"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "rapidfuzz-cpp"
+#     version: ">=0"
+#   ready:
+#   - |
+#     git clone https://github.com/Ulauncher/Ulauncher.git && \
+#     cd Ulauncher && \
+#     git fetch --all --tags && \
+#     git checkout tags/5.15.15 && \
+#     export PYTHONHASHSEED=0 && \
+#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+#     python setup.py build
+#   completion:
+#   - |
+#     cd Ulauncher && \
+#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+#     cd ../build && \
+#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+#     find . -type d -name __pycache__ | xargs rm -rf && \
+#     cp -r usr /
+#   inner_build_reqs:
+#   # - dev-python/python-distutils-extra
+#   # - dev-python/meson-python
+#   - dev-cpp/taskflow
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-usbmuxd
   category: "apps"
@@ -16649,7 +16649,7 @@ packages:
 - &apps-kodi
   category: "apps"
   name: "kodi"
-  version: "21.3"
+  version: "21.3+1"
   uri:
   - https://kodi.tv/
   - https://github.com/graeme-hill/crossguid
@@ -16690,7 +16690,7 @@ packages:
   atoms:
   - atom: "media-tv/kodi"
     use: "airplay alsa bluetooth bluray caps css dav1d dbus eventclients -gbm -gles lcms mariadb nfs optical pulseaudio samba system-ffmpeg udf udev udisks upnp upower vaapi vdpau webserver X xslt zeroconf -wayland # cec gbm gles libusb lirc mysql power-control raspberry-pi test wayland"
-    accept_keywords: "**"
+    # accept_keywords: "**"
   - atom: "net-libs/shairplay"
     use: "playfair"
   - atom: "media-plugins/kodi-pvr-iptvsimple"
@@ -20072,66 +20072,66 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-gimp
-  category: "apps"
-  name: "gimp"
-  version: "3.0.6+6"
-  uri:
-  - https://www.gimp.org/
-  - http://liquidrescale.wikidot.com/
-  - https://lensfun.github.io
-  - https://github.com/bootchk/resynthesizer
-  # - https://www.alessandrofrancesconi.it/projects/bimp/
-  # - https://github.com/carlobaldassi/liblqr
-  license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
-  description: |
-    GNU Image Manipulation Program
-    Library for rectifying and simulating photographic lens distortions
-    Suite of GIMP plugins for texture synthesis
-  # A GIMP plugin to apply a set of manipulations to groups of images
-  # Content-aware resizing for the GIMP
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =media-gfx/gimp-3.0.6
-      media-libs/lensfun
-      media-plugins/gimp-resynthesizer
-    # media-plugins/gimp-plugin-bimp
-    # media-plugins/gimp-lqr
-  provides:
-  - category: "media-gfx"
-    name: "gimp"
-    version: ">=0"
-  overlays:
-  - enable: "4nykey"
-  - enable: "guru"
-  atoms:
-  - atom: "media-gfx/gimp"
-    use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
-  # - atom: "media-plugins/gimp-plugin-bimp"
-  #   accept_keywords: "~amd64"
-  - atom: "media-plugins/gimp-resynthesizer"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-libs/gobject-introspection;USE="doctool"
-  - dev-util/gi-docgen
-  prepare:
-  - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-cfitsio
-  - <<: *libs-libmypaint
-  # - <<: *libs-liblqr
-  - <<: *apps-luajit
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+# - &apps-gimp
+#   category: "apps"
+#   name: "gimp"
+#   version: "3.0.6+6"
+#   uri:
+#   - https://www.gimp.org/
+#   - http://liquidrescale.wikidot.com/
+#   - https://lensfun.github.io
+#   - https://github.com/bootchk/resynthesizer
+#   # - https://www.alessandrofrancesconi.it/projects/bimp/
+#   # - https://github.com/carlobaldassi/liblqr
+#   license: "GPL-2 GPL-2+ GPL-3 LGPL-3 CC-BY-SA-3.0"
+#   description: |
+#     GNU Image Manipulation Program
+#     Library for rectifying and simulating photographic lens distortions
+#     Suite of GIMP plugins for texture synthesis
+#   # A GIMP plugin to apply a set of manipulations to groups of images
+#   # Content-aware resizing for the GIMP
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       =media-gfx/gimp-3.0.6
+#       media-libs/lensfun
+#       media-plugins/gimp-resynthesizer
+#     # media-plugins/gimp-plugin-bimp
+#     # media-plugins/gimp-lqr
+#   provides:
+#   - category: "media-gfx"
+#     name: "gimp"
+#     version: ">=0"
+#   overlays:
+#   - enable: "4nykey"
+#   - enable: "guru"
+#   atoms:
+#   - atom: "media-gfx/gimp"
+#     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
+#     accept_keywords: "~amd64"
+#   # - atom: "media-plugins/gimp-plugin-bimp"
+#   #   accept_keywords: "~amd64"
+#   - atom: "media-plugins/gimp-resynthesizer"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - dev-libs/gobject-introspection;USE="doctool"
+#   - dev-util/gi-docgen
+#   prepare:
+#   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
+#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+# #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
+#   - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-cfitsio
+#   - <<: *libs-libmypaint
+#   # - <<: *libs-liblqr
+#   - <<: *apps-luajit
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *buildbase-gnome-common
+#   - <<: *buildbase-sci-libs
+#   requires_final_images: true
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
@@ -20292,31 +20292,31 @@ packages:
   # - <<: *layers-kde-common
   - <<: *layers-kde-kf5
 
-- category: "apps"
-  name: "mypaint"
-  version: "2.0.1-r7+3"
-  uri:
-  - http://mypaint.org/
-  license: "GPL-2"
-  description: "Fast and easy graphics application for digital painters"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/mypaint
-  provides:
-  - category: "media-gfx"
-    name: "mypaint"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/mypaint"
-    use: "openmp"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-python-protobuf
-  - <<: *libs-libmypaint
-  - <<: *apps-mypaint-brushes
-  build_requires:
-  - <<: *layers-X
+# - category: "apps"
+#   name: "mypaint"
+#   version: "2.0.1-r7+3"
+#   uri:
+#   - http://mypaint.org/
+#   license: "GPL-2"
+#   description: "Fast and easy graphics application for digital painters"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/mypaint
+#   provides:
+#   - category: "media-gfx"
+#     name: "mypaint"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/mypaint"
+#     use: "openmp"
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-python-protobuf
+#   - <<: *libs-libmypaint
+#   - <<: *apps-mypaint-brushes
+#   build_requires:
+#   - <<: *layers-X
   
 - category: "apps"
   name: "plantuml"
@@ -20580,64 +20580,64 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+2"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+2"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
