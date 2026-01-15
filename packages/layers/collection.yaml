@@ -242,7 +242,7 @@ stubs:
   prepare:
   - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild manifest
+  - find /var/db/repos/gentoo/dev-db/libiodbc/ -type f -name "libiodbc-*.ebuild" -exec ebuild {} manifest ;
 
 packages:
 
@@ -340,7 +340,7 @@ packages:
   license: "Apache-2.0 GPL-2 LGPL-2.1"
   description: "Library for manipulation of RDF files in LADSPA plugins"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/raptor
   provides:
@@ -419,7 +419,7 @@ packages:
     C++ Library that parses the file format of Aldus/Adobe PageMaker documents
     Library for parsing Zoner Callisto/Draw documents
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-text/libabw
       app-text/liblangtag
@@ -577,7 +577,7 @@ packages:
     Sparse LU factorization library
     Unsymmetric multifrontal sparse LU factorization library
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/xerces-c
       dev-python/scipy
@@ -791,11 +791,11 @@ packages:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
   - sed -i -e 'x;/./{x;b};x;/^DEPEND="/,/"$/!b;/"$/!b;h;a\\nPATCHES=(\n\t"${FILESDIR}"/hypre-2.32.0-1229.patch\n)\n' /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild
-  - ebuild /var/db/repos/gentoo/sci-libs/hypre/hypre-*.ebuild manifest
+  - find /var/db/repos/gentoo/sci-libs/hypre/ -type f -name "hypre-*.ebuild" -exec ebuild {} manifest ;
   # gcc 15 or meson  
   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
   # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-  # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
+  # - find /var/db/repos/gentoo/dev-python/scipy/ -type f -name "scipy-*.ebuild" -exec ebuild {} manifest ;
   inner_build_reqs:
   - dev-python/pooch
   - dev-python/pythran
@@ -1200,7 +1200,7 @@ packages:
     A complete TeX distribution
     Translate TEX into HTML
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-text/dvipng
       app-text/ps2eps
@@ -1569,7 +1569,7 @@ packages:
   license: "GPL-2+ LGPL-2.1+"
   description: "KDE PIM is a package that contains personal information management tools."
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kdepim-meta
   provides:
@@ -1813,7 +1813,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild manifest
+  - find /var/db/repos/gentoo/dev-lang/ghc/ -type f -name "ghc-*.ebuild" -exec ebuild {} manifest ;
   inner_build_reqs:
   - app-text/docbook-xml-dtd
   - app-text/docbook-xsl-stylesheets

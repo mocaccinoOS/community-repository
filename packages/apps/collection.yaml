@@ -1032,7 +1032,7 @@ packages:
     A dynamic, any to any, pixel format conversion library
     A graph based image processing framework
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/babl
       media-libs/gegl
@@ -1110,7 +1110,7 @@ packages:
   license: "ISC"
   description: "C and Fortran library for manipulating FITS files"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       sci-libs/cfitsio
   provides:
@@ -1177,8 +1177,8 @@ packages:
 #   - atom: "media-libs/simage"
 #     use: "gif jpeg png qt6 sndfile tiff vorbis zlib"
 #   prepare:
-#   - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey\:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild
-#   - ebuild /var/db/repos/gentoo/media-libs/coin/coin-4.0.0.ebuild manifest
+#   - sed -i -e 's/javascript\? \( dev-lang\/spidermonkey\:60 \)/javascript\? \( dev-lang\/spidermonkey\:102 \)/' /var/db/repos/gentoo/media-libs/coin/coin-*.ebuild
+#   - find /var/db/repos/gentoo/media-libs/coin/ -type f -name "coin-*.ebuild" -exec ebuild {} manifest \;
 #   requires:
 #   - <<: *layers-qt
 #   - <<: *layers-gnome-common
@@ -1417,7 +1417,7 @@ packages:
   license: "FLTK LGPL-2"
   description: "C++ user interface toolkit for X and OpenGL"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       x11-libs/fltk
   provides:
@@ -1487,7 +1487,7 @@ packages:
   license: "LGPL-2"
   description: "OpenGL to PostScript printing library"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       x11-libs/gl2ps
   provides:
@@ -1663,7 +1663,8 @@ packages:
     version: ">=0"
   prepare:
   - sed -i -e 's/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || die/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || true/' /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild
-  - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
+  # - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
+  - find /var/db/repos/gentoo/x11-libs/gtk+/ -type f -name "gtk+-2*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-X
   build_requires:
@@ -3111,7 +3112,7 @@ packages:
   license: "MIT"
   description: "Excel file(*.xlsx) reader/writer library using Qt"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/qxlsx
   provides:
@@ -3220,7 +3221,7 @@ packages:
   license: "MIT"
   description: "A set of cross-platform C++ classes for realtime audio I/O"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/rtaudio
   provides:
@@ -3244,7 +3245,7 @@ packages:
   license: "RtMidi"
   description: "A set of C++ classes that provide a common API for realtime MIDI input/output"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/rtmidi
   provides:
@@ -3318,7 +3319,7 @@ packages:
 #   # gcc 15 or meson  
 #   # - sed -i -e "/distutils-r1_src_prepare/a \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
 #   # - sed -i -e "/distutils-r1_src_prepare/i \\\tsed -i -e \"s\/add_project_arguments(.*-std=legacy.*)\/warning('no legacy')\/\" meson.build\n" /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild
-#   # - ebuild /var/db/repos/gentoo/dev-python/scipy/scipy-*.ebuild manifest
+#   # - find /var/db/repos/gentoo/dev-python/scipy/ -type f -name "scipy-*.ebuild" -exec ebuild {} manifest \;
 #   inner_build_reqs:
 #   - dev-python/pooch
 #   - dev-python/pythran
@@ -3880,7 +3881,7 @@ packages:
   license: "GPL-2"
   description: "Advanced audio player based on KDE frameworks"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/amarok
   provides:
@@ -3982,7 +3983,7 @@ packages:
   license: "MIT"
   description: "Artistic Style is a re-indenter and reformatter for C++, C and Java source code"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-util/astyle
   provides:
@@ -4330,7 +4331,7 @@ packages:
   license: "GPL-3"
   description: "Clean junk to free disk space and to maintain privacy"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       sys-apps/bleachbit
   provides:
@@ -4583,7 +4584,7 @@ packages:
   license: "GPL-2+"
   description: "OpenGL 3D space simulator"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       sci-astronomy/celestia
   provides:
@@ -4608,7 +4609,7 @@ packages:
   license: "GPL-2"
   description: "Clam Anti-Virus Scanner"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-antivirus/clamav
   provides:
@@ -4660,7 +4661,7 @@ packages:
   license: "GPL-2+"
   description: "Provides interfaces and session daemon to colord"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-misc/colord-kde
   provides:
@@ -4765,7 +4766,7 @@ packages:
   license: "GPL-3 CC-BY-3.0"
   description: "A virtual lighttable and darkroom for photographers"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/darktable
   provides:
@@ -5151,7 +5152,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild
-  - ebuild /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild manifest
+  - find /var/db/repos/gentoo/sys-apps/edid-fixdim/ -type f -name "edid-fixdim-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5417,7 +5418,7 @@ packages:
   license: "GPL-2"
   description: "A utility to undelete files from an ext3 or ext4 partition"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       sys-fs/extundelete
   provides:
@@ -5511,7 +5512,7 @@ packages:
   license: "GPL-2"
   description: "Visualise disk usage with interactive map of concentric, segmented rings"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/filelight
   provides:
@@ -5632,7 +5633,7 @@ packages:
     license: "FAH-EULA-2014 FAH-special-permission"
   prepare:
   - sed -i -e 's/\/public\/release\/fahclient\/centos-6.7-64bit\/v$(ver_cut 1-2)\//\/v7\/public\/fahclient\/centos-6.7-64bit\/release\//' /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild
-  - ebuild /var/db/repos/gentoo/sci-biology/foldingathome/foldingathome-*.ebuild manifest
+  - find /var/db/repos/gentoo/sci-biology/foldingathome/ -type f -name "foldingathome-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-openssl-compat
@@ -5952,7 +5953,7 @@ packages:
   license: "LGPL-2.1"
   description: "Multi-platform Git client written with Qt"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-vcs/gitqlient
   overlays:
@@ -6792,7 +6793,7 @@ packages:
   license: "GPL-2"
   description: "Shell script to create the necessary framework to develop KDE applications"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kapptemplate
   provides:
@@ -6812,7 +6813,7 @@ packages:
   license: "GPL-2"
   description: "Multi-document editor with network transparency, Plasma integration and more"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kate
   provides:
@@ -6835,7 +6836,7 @@ packages:
   license: "GPL-2"
   description: "KDE character selection utility"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kcharselect
   provides:
@@ -6877,7 +6878,7 @@ packages:
   license: "GPL-2"
   description: "Frontend to diff3 based on KDE Frameworks"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-misc/kdiff3
   provides:
@@ -6982,7 +6983,7 @@ packages:
   license: "GPL-3"
   description: "A GTK4 time tracker for tasks"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-office/khronos
   overlays:
@@ -7167,7 +7168,7 @@ packages:
   license: "GPL-2"
   description: "VNC-compatible server to share Plasma desktops"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/krfb
   provides:
@@ -7190,7 +7191,7 @@ packages:
   license: "CC0-1.0 CC-BY-4.0 GPL-3+"
   description: "Convergent audio recording application for Plasma"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/krecorder
   provides:
@@ -7237,7 +7238,7 @@ packages:
   license: "GPL-2+"
   description: "Advanced twin-panel (commander-style) file-manager with many extras"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-misc/krusader
   provides:
@@ -7314,7 +7315,7 @@ packages:
 #   license: "GPL-2+"
 #   description: "Elegant dock, based on KDE Frameworks"
 #   labels:
-#     emerge.jobs: "3"
+#     emerge.jobs: "1"
 #     emerge.packages: >-
 #       kde-misc/latte-dock
 #   provides:
@@ -7329,35 +7330,35 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
-# - &apps-leocad
-#   category: "apps"
-#   name: "leocad"
-#   version: "25.09"
-#   uri:
-#   - http://www.leocad.org
-#   license: "GPL-2"
-#   description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-gfx/leocad
-#   overlays:
-#   - enable: "anard"
-#   provides:
-#   - category: "media-gfx"
-#     name: "leocad"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/leocad"
-#     accept_keywords: "~amd64"
-#   # prepare:
-#   # - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-#   # - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-#   # - ebuild /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild manifest
-#   requires:
-#   - <<: *layers-kde-kf5
-#   build_requires:
-#   - <<: *layers-kde-kf5
+- &apps-leocad
+  category: "apps"
+  name: "leocad"
+  version: "25.09"
+  uri:
+  - http://www.leocad.org
+  license: "GPL-2"
+  description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/leocad
+  overlays:
+  - enable: "anard"
+  provides:
+  - category: "media-gfx"
+    name: "leocad"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/leocad"
+    accept_keywords: "~amd64"
+  prepare:
+  - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+  - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+  - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
+  requires:
+  - <<: *layers-kde-kf5
+  build_requires:
+  - <<: *layers-kde-kf5
 
 - &apps-lxc
   category: "apps"
@@ -7558,7 +7559,7 @@ packages:
   license: "GPL-2"
   description: "Virtual Globe and World Atlas to learn more about Earth"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/marble
   provides:
@@ -7701,7 +7702,7 @@ packages:
   license: "MPL-2.0"
   description: "The Mullvad Browser is developed to minimize tracking and fingerprinting."
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       www-client/mullvad-browser-bin
   overlays:
@@ -7729,7 +7730,7 @@ packages:
   license: "GPL-3"
   description: "Tool used to manage daemon setup"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-vpn/mullvadvpn-app
   overlays:
@@ -8758,7 +8759,7 @@ packages:
   license: "GPL-2"
   description: "Useful applications for Plasma development"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/plasma-sdk
   provides:
@@ -8851,7 +8852,7 @@ packages:
   license: "LGPL-2.1"
   description: "Qt bindings for libpulse"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/pulseaudio-qt
   provides:
@@ -8963,7 +8964,7 @@ packages:
   license: "GPL-2"
   description: "BitTorrent client in C++ and Qt"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/qbittorrent
   provides:
@@ -8990,7 +8991,7 @@ packages:
   license: "LGPL-3"
   description: "A Qt-based video player, which can play most formats and codecs"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-video/qmplay2
   provides:
@@ -9053,7 +9054,7 @@ packages:
   license: "GPL-3"
   description: "Qt/KDE IRC client supporting a remote daemon for 24/7 connectivity"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-irc/quassel
   provides:
@@ -9178,7 +9179,7 @@ packages:
   license: "GPL-3"
   description: "A powerful cross-platform raw image processing program"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/rawtherapee
   provides:
@@ -9299,7 +9300,7 @@ packages:
   license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
   description: "Simple (yet powerful) news feed reader"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-news/rssguard
   provides:
@@ -9324,7 +9325,7 @@ packages:
   license: "GPL-2"
   description: "A Python interactive packet manipulation program for mastering the network"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-analyzer/scapy
   provides:
@@ -9430,7 +9431,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo-zh/app-backup/snapper-gui/snapper-gui-*.ebuild
-  - ebuild /var/db/repos/gentoo-zh/app-backup/snapper-gui/snapper-gui-*.ebuild manifest
+  - find /var/db/repos/gentoo-zh/app-backup/snapper-gui/ -type f -name "snapper-gui-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -9543,7 +9544,7 @@ packages:
   license: "GPL-2"
   description: "Text-based subtitles editor"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-video/subtitlecomposer
   provides:
@@ -9567,7 +9568,7 @@ packages:
   license: "BSD"
   description: "Full Database Encryption for SQLite"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-db/sqlcipher
   provides:
@@ -9725,7 +9726,7 @@ packages:
   license: "MIT-with-advertising"
   description: "Simple terminal implementation for X"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       x11-terms/st
   provides:
@@ -9748,7 +9749,7 @@ packages:
   license: "GPL-3"
   description: "Privacy settings widget to clean unwanted traces on the system"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/sweeper
   provides:
@@ -9773,7 +9774,7 @@ packages:
   license: "GPL-2+"
   description: "Systemd managment utility"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-admin/systemdgenie
   provides:
@@ -9796,7 +9797,7 @@ packages:
   license: "GPL-2+"
   description: "Checks and undeletes partitions + PhotoRec, signature based recovery tool"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-admin/testdisk
   provides:
@@ -9865,7 +9866,7 @@ packages:
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
   description: "Private browsing without tracking, surveillance, or censorship"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       www-client/torbrowser
   overlays:
@@ -9924,7 +9925,7 @@ packages:
   license: "GPL-2"
   description: "Lists directories recursively, and produces an indented listing of files"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-text/tree
   provides:
@@ -9964,7 +9965,7 @@ packages:
   license: "GPL-3 CC-BY-SA-4.0"
   description: "Browse the Fediverse (GTK client)"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-misc/tuba
   provides:
@@ -10033,7 +10034,7 @@ packages:
   license: "GPL-3"
   description: "A program used to manage a netfilter firewall"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-firewall/ufw
   provides:
@@ -10179,7 +10180,7 @@ packages:
   license: "GPL-2"
   description: "GNU VCDimager"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-video/vcdimager
   inner_build_reqs:
@@ -10294,7 +10295,7 @@ packages:
   license: "GPL-2"
   description: "System settings module for Wacom tablets"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/wacomtablet
   provides:
@@ -10343,7 +10344,7 @@ packages:
   license: "GPL-3"
   description: "Ncurses based monitor for IEEE 802.11 wireless LAN cards"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-wireless/wavemon
   provides:
@@ -10469,7 +10470,7 @@ packages:
   license: "LGPL-3"
   description: "Network protocol analyzer (sniffer)"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-analyzer/wireshark
   provides:
@@ -11024,7 +11025,7 @@ packages:
     GStreamer plugin for ICE (RFC 5245) support
     An implementation of the Interactice Connectivity Establishment standard (ICE)
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-plugins/gst-plugins-libnice
   provides:
@@ -11120,7 +11121,7 @@ packages:
   license: "GPL-2"
   description: "Library for manipulation of RDF files in LADSPA plugins"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/liblrdf
   provides:
@@ -11383,7 +11384,7 @@ packages:
   license: "ZLIB"
   description: "Simple Direct Media Layer"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libsdl3
   provides:
@@ -11471,7 +11472,7 @@ packages:
     Tag Image File Format (TIFF) library (compat package for libtiff.so.5)
     Data compression algorithm for bi-level high-resolution images
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/tiff-compat
   provides:
@@ -11561,9 +11562,9 @@ packages:
 #   # prepare:
 #   # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
 #   # - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
-#   # - ebuild /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild manifest
+#   # - find /var/db/repos/gentoo/dev-lang/spidermonkey/ -type f -name "spidermonkey-*.ebuild" -exec ebuild {} manifest \;
 #   # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
-#   # - ebuild /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild manifest
+#   # - find /var/db/repos/gentoo/games-strategy/0ad/ -type f -name "0ad-*.ebuild" -exec ebuild {} manifest \;
 #   inner_build_reqs:
 #   - app-crypt/minisign
 #   inner_build_requires:
@@ -11656,7 +11657,7 @@ packages:
   license: "GPL-2+"
   description: "aMule, the all-platform eMule p2p client"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/amule
   provides:
@@ -11891,7 +11892,7 @@ packages:
   license: "MIT Unlicense"
   description: "Console-based Audio Visualizer for Alsa"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/cava
   provides:
@@ -11918,7 +11919,7 @@ packages:
   license: "GPL-2+"
   description: "Burn CDs in disk-at-once mode -- with optional GUI frontend"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-cdr/cdrdao
   provides:
@@ -11971,7 +11972,7 @@ packages:
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
   description: "Manage your dotfiles across multiple machines, securely"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-admin/chezmoi
   overlays:
@@ -12148,7 +12149,7 @@ packages:
   license: "GPL-2"
   description: "Diagram/flowchart creation program"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-office/dia
   provides:
@@ -12221,7 +12222,7 @@ packages:
     version: ">=0"
   prepare:
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild manifest
+  - find /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/ -type f -name "dotnet-sdk-bin-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-util/patchelf
   requires:
@@ -12249,7 +12250,7 @@ packages:
     version: ">=0"
   prepare:
   - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild manifest
+  - find /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/ -type f -name "dotnet-sdk-bin-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-util/patchelf
   requires:
@@ -12369,7 +12370,7 @@ packages:
   license: "GPL-2"
   description: "FTP client with lots of useful features and an intuitive interface"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/libfilezilla
       net-ftp/filezilla
@@ -12459,7 +12460,7 @@ packages:
 #     Experimental Neural Net speech coding for FreeDV
 #     Ham radio backend rig control libraries
 #   labels:
-#     emerge.jobs: "3"
+#     emerge.jobs: "1"
 #     emerge.packages: >-
 #       media-radio/freedv
 #   overlays:
@@ -12482,9 +12483,9 @@ packages:
 #   prepare:
 #   - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
 #   - sed -i -e 's/WX_GTK_VER="3.0-gtk3"/WX_GTK_VER="3.2-gtk3"/' /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild
-#   - ebuild /var/db/repos/qsx/media-radio/freedv/freedv-*.ebuild manifest
+#   - find /var/db/repos/qsx/media-radio/freedv/ -type f -name "freedv-*.ebuild" -exec ebuild {} manifest \;
 #   - sed -i -e 's/EAPI=7/EAPI=8/' /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild
-#   - ebuild /var/db/repos/qsx/media-libs/lpcnet-freedv/lpcnet-freedv-*.ebuild manifest
+#   - find /var/db/repos/qsx/media-libs/lpcnet-freedv/ -type f -name "lpcnet-freedv-*.ebuild" -exec ebuild {} manifest \;
 #   requires:
 #   - <<: *layers-gnome-common
 #   - <<: *libs-codec2
@@ -12827,7 +12828,7 @@ packages:
   prepare:
   - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild manifest
+  - find /var/db/repos/gentoo/dev-db/libiodbc/ -type f -name "libiodbc-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -12934,7 +12935,7 @@ packages:
   license: "GPL-2"
   description: "Advanced download manager by KDE"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kget
   provides:
@@ -12984,7 +12985,7 @@ packages:
   license: "GPL-2"
   description: "Powerful batch file renamer"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-misc/krename
   provides:
@@ -13008,7 +13009,7 @@ packages:
   license: "GPL-2"
   description: "Powerful BitTorrent client based on KDE Frameworks"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/ktorrent
   provides:
@@ -13029,7 +13030,7 @@ packages:
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
   description: "Sound editor built on KDE Frameworks 5 that can edit many types of audio files"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/kwave
   provides:
@@ -13236,7 +13237,7 @@ packages:
   license: "GPL-3 BitstreamVera"
   description: "Cross-platform 3D realtime strategy game"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       games-strategy/megaglest
   provides:
@@ -13273,7 +13274,7 @@ packages:
     FastTracker 2 inspired music tracker
     A set of C++ classes that provide a common API for realtime MIDI input/output
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/milkytracker
   provides:
@@ -13431,7 +13432,7 @@ packages:
   license: "LGPL-2.1+ GPL-2+ BSD ISC"
   description: "Media player based on MPlayer and mplayer2"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-video/mpv
   provides:
@@ -13719,7 +13720,7 @@ packages:
   license: "GPL-2 FDL-1.2"
   description: "Hex editor by KDE"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-editors/okteta
   provides:
@@ -13918,7 +13919,7 @@ packages:
   license: "GPL-2+"
   description: "A PC emulator that specializes in running old operating systems and software"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-emulation/pcem
   provides:
@@ -13949,7 +13950,7 @@ packages:
     Losslessly convert raster images to PDF
     Python library to work with pdf files based on qpdf
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-text/pdfarranger
       media-gfx/img2pdf
@@ -14226,7 +14227,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
-  - ebuild /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild manifest
+  - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-util/mingw64-toolchain
   requires:
@@ -14717,7 +14718,7 @@ packages:
   license: "GPL-2"
   description: "Linux Device Manager for Logitech Unifying Receivers and Paired Devices"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-misc/solaar
   provides:
@@ -14840,7 +14841,7 @@ packages:
   prepare:
   - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  - ebuild /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild manifest
+  - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
@@ -15030,7 +15031,7 @@ packages:
   license: "GPL-2"
   description: "A virtual MIDI keyboard for X"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/vkeybd
   provides:
@@ -15144,13 +15145,13 @@ packages:
   prepare:
   - sed -i -e '/.*gbinder-1.1.1-setuptools.patch.*/d' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
   - sed -i -e 's/DISTUTILS_ARGS.*/default/' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
-  - ebuild /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild manifest
+  - find /var/db/repos/guru/dev-python/gbinder/ -type f -name "gbinder-*.ebuild" -exec ebuild {} manifest \;
   # - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
   # # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - ebuild /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild manifest
+  # - find /var/db/repos/guru/app-containers/waydroid/ -type f -name "waydroid-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-portage/gemato
   # - virtual/dist-kernel
@@ -15231,7 +15232,7 @@ packages:
     D3D12 to Vulkan translation library
     Manage active wine version
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-emulation/wine-staging
       app-emulation/wine-desktop-common
@@ -15277,7 +15278,7 @@ packages:
     use: "gui"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild
-  - ebuild /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild manifest
+  - find /var/db/repos/gentoo/app-emulation/protontricks/ -type f -name "protontricks-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - acct-group/rtkit
   - acct-user/rtkit
@@ -15515,7 +15516,7 @@ packages:
   license: "GPL-2"
   description: "Virtual analogue synthesizer"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/amsynth
   provides:
@@ -15972,7 +15973,7 @@ packages:
   license: "Artistic GPL-1+"
   description: "A graphical front-end for ClamAV"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-antivirus/clamtk
   provides:
@@ -16021,7 +16022,7 @@ packages:
   license: "GPL-2"
   description: "A set of tools for DVD+RW/-RW drives"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-cdr/dvd+rw-tools
   provides:
@@ -16429,7 +16430,7 @@ packages:
   license: "GPL-3+"
   description: "Open source polyphonic software synthesizer with lots of modulation"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/helm
   provides:
@@ -16486,7 +16487,7 @@ packages:
   license: "GPL-2 FDL-1.2"
   description: "Full-featured burning and ripping application based on KDE Frameworks"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/k3b
   provides:
@@ -16759,7 +16760,7 @@ packages:
   #   accept_keywords: "**"
   # prepare:
   # - sed -i -e 's/=media-tv\/kodi-.*\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-*.ebuild
-  # - ebuild /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-*.ebuild manifest
+  # - find /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/ -type f -name "kodi-pvr-iptvsimple-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - *layers-java-packages
   requires:
@@ -16781,7 +16782,7 @@ packages:
   license: "GPL-2 LGPL-2.1-with-linking-exception"
   description: "Feature rich visual programming environment emulating Delphi"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-lang/lazarus
   provides:
@@ -16885,7 +16886,7 @@ packages:
     use: "gcrypt gnutls nss openssl"
   # prepare:
   # - sed -i -e '/virtual\/jdk\:21/a \\t\t   virtual\/jdk\:25' /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild
-  # - ebuild /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild manifest
+  # - find /var/db/repos/gentoo/app-office/libreoffice/ -type f -name "libreoffice-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - *layers-java-packages
   # - dev-java/bsh
@@ -16950,7 +16951,7 @@ packages:
   license: "GPL-3+"
   description: "Modern music player for GNOME"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/lollypop
   provides:
@@ -16998,7 +16999,7 @@ packages:
   license: "GPL-3+ CC0-1.0"
   description: "An open source gaming platform for GNU/Linux"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-python/moddb
       dev-python/pypresence
@@ -17160,7 +17161,7 @@ packages:
   license: "GPL-2"
   description: "Advanced Digital DJ tool based on Qt"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/mixxx
   provides:
@@ -17592,7 +17593,7 @@ packages:
 #   - chown -R portage:portage /var/db/repos/local
 #   - cp -r tree/games-strategy/openra/files /var/tmp/portage/games-strategy/openra-20250330
 #   - wget --directory-prefix=/var/cache/distfiles/ https://github.com/OpenRA/OpenRA/archive/refs/tags/release-20250330.tar.gz
-#   - ebuild /var/db/repos/local/games-strategy/openra/openra-*.ebuild manifest
+#   - find /var/db/repos/local/games-strategy/openra/ -type f -name "openra-*.ebuild" -exec ebuild {} manifest \;
 #   inner_build_requires:
 #   - <<: *apps-csharp-gentoodotnetinfo
 #   requires:
@@ -17605,7 +17606,7 @@ packages:
   name: "plasma-firewall"
   version: "6.5.4"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-plasma/plasma-firewall
   provides:
@@ -17717,7 +17718,7 @@ packages:
   license: "GPL-2"
   description: "audio library tagger, manager, and player for GTK+"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/quodlibet
   provides:
@@ -17735,7 +17736,7 @@ packages:
     use: "dbus gstreamer udev"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-sound/quodlibet/quodlibet-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-sound/quodlibet/quodlibet-*.ebuild manifest
+  - find /var/db/repos/gentoo/media-sound/quodlibet/ -type f -name "quodlibet-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-util/intltool
   requires:
@@ -17821,7 +17822,7 @@ packages:
   license: "GPL-2"
   description: "Desktop publishing (DTP) and layout program"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-office/scribus
   provides:
@@ -17908,7 +17909,7 @@ packages:
     Realtime audio synthesizer allowing you to 'scratch' on sampled audio data
     The MAD audio player
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/madplay
       media-sound/terminatorx
@@ -18162,7 +18163,7 @@ packages:
   license: "GPL-2+ LGPL-2.1+"
   description: "X(cross)platform Music Multiplexing System, next generation of the XMMS player"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/xmms2
   provides:
@@ -18230,7 +18231,7 @@ packages:
   license: "GPL-2"
   description: "Software synthesizer based on ZynAddSubFX"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/yoshimi
   provides:
@@ -18256,7 +18257,7 @@ packages:
   license: "GPL-2"
   description: "Software synthesizer capable of making a countless number of instruments"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/zynaddsubfx
   provides:
@@ -18292,7 +18293,7 @@ packages:
   license: "LGPL-2.1+"
   description: "Audio/video conferencing framework specifically designed for instant messengers"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-libs/farstream
   provides:
@@ -18330,7 +18331,7 @@ packages:
     A library for handling the decoding of various sound file formats
     Library that allows you to use TrueType fonts in SDL applications
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl-gfx
       media-libs/sdl-image
@@ -18394,7 +18395,7 @@ packages:
     Simple Direct Media Layer Network Support Library
     Library that allows you to use TrueType fonts in SDL applications
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/sdl2-gfx
       media-libs/sdl2-image
@@ -18446,7 +18447,7 @@ packages:
   license: "GPL-3+"
   description: "Graphical program used to map keyboard buttons and mouse controls to a gamepad"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       games-util/antimicrox
   provides:
@@ -18556,7 +18557,7 @@ packages:
   license: "GPL-2"
   description: "KDE Office Suite"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-office/calligra
   provides:
@@ -18589,7 +18590,7 @@ packages:
 #   license: "GPL-2"
 #   description: "Project management application"
 #   labels:
-#     emerge.jobs: "3"
+#     emerge.jobs: "1"
 #     emerge.packages: >-
 #       app-office/calligraplan
 #   provides:
@@ -18652,12 +18653,6 @@ packages:
   - category: "media-sound"
     name: "flacon"
     version: ">=0"
-  # atoms:
-  # - atom: "media-sound/flacon"
-  #   accept_keywords: "amd64"
-  # prepare:
-  # - mv /var/db/repos/gentoo/media-sound/flacon/flacon-11.4.0.ebuild /var/db/repos/gentoo/media-sound/flacon/flacon-12.0.0.ebuild
-  # - ebuild /var/db/repos/gentoo/media-sound/flacon/flacon-12.0.0.ebuild manifest
   requires:
   - <<: *layers-qt
   - <<: *apps-mediainfo
@@ -18829,7 +18824,7 @@ packages:
   - dev-util/blueprint-compiler
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{11..12}/PYTHON_COMPAT=( python3_{11..13}/' /var/db/repos/guru/gui-apps/gradience/gradience-*.ebuild
-  - ebuild /var/db/repos/guru/gui-apps/gradience/gradience-*.ebuild manifest
+  - find /var/db/repos/guru/gui-apps/gradience/ -type f -name "gradience-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-build
@@ -18861,7 +18856,7 @@ packages:
     Image Blending with Multiresolution Splines
     Fast approximate nearest neighbor searches in high dimensional spaces
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/hugin
   provides:
@@ -18983,7 +18978,7 @@ packages:
     3D data visualization library for the Qt5 framework
     Astronomical World Coordinate System transformations library
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       sci-astronomy/kstars
   provides:
@@ -19016,7 +19011,7 @@ packages:
   license: "GPL-2+ FDL-1.2"
   description: "Todo management and time tracker"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-office/ktimetracker
   provides:
@@ -19270,7 +19265,7 @@ packages:
   license: "GPL-2"
   description: "Qt application to control FluidSynth"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-sound/qsynth
   provides:
@@ -19391,7 +19386,7 @@ packages:
 #   license: "GPL-2+ CC-BY-SA-4.0"
 #   description: "Battle for Wesnoth - A fantasy turn-based strategy game"
 #   labels:
-#     emerge.jobs: "3"
+#     emerge.jobs: "1"
 #     emerge.packages: >-
 #       games-strategy/wesnoth
 #   provides:
@@ -19423,7 +19418,7 @@ packages:
     Accuracy-focused XAudio reimplementation for open platforms
     Cross platform serial port access library
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       app-emulation/86Box
   provides:
@@ -19474,7 +19469,7 @@ packages:
     A minimalistic plugin API for video effects
     Library for handling uncompressed audio and video data
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-libs/mlt
   provides:
@@ -19512,7 +19507,7 @@ packages:
   license: "LGPL-2.1"
   description: "Python bindings for SDL multimedia library"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-python/pygame
   provides:
@@ -19600,7 +19595,7 @@ packages:
     Digital photo management application
     Multimedia playback framework based on Qt + FFmpeg
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/digikam
   provides:
@@ -19648,7 +19643,7 @@ packages:
     C++ library for postscript stream output
     GNU Triangulated Surface Library
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/graphviz
   provides:
@@ -19767,7 +19762,7 @@ packages:
   license: "GPL-2 Apache-2.0 FDL-1.3"
   description: "A turn-based strategy, artillery, action and comedy game"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       games-strategy/hedgewars
   provides:
@@ -20081,7 +20076,7 @@ packages:
   license: "GPL-2"
   description: "BitTorrent client with a client/server model"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/deluge
   provides:
@@ -20126,7 +20121,7 @@ packages:
     use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21 # doc"
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/app-text/doxygen/doxygen-*.ebuild
-  - ebuild /var/db/repos/gentoo/app-text/doxygen/doxygen-*.ebuild manifest
+  - find /var/db/repos/gentoo/app-text/doxygen/ -type f -name "doxygen-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-kde-common
   - <<: *development-gcc
@@ -20188,7 +20183,7 @@ packages:
   - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
 #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  - ebuild /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild manifest
+  - find /var/db/repos/guru/media-plugins/gimp-resynthesizer/ -type f -name "gimp-resynthesizer-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-cfitsio
@@ -20582,7 +20577,7 @@ packages:
   license: "wxWinLL-3"
   description: "A blending of the wxWindows C++ class library with Python"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-python/wxpython
   provides:
@@ -20813,17 +20808,17 @@ packages:
 #   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
 #   prepare:
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
+#   - find /var/db/repos/gentoo/dev-libs/rocm-comgr/ -type f -name "rocm-comgr-*.ebuild" -exec ebuild {} manifest \;
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
+#   - find /var/db/repos/gentoo/dev-libs/rocm-device-libs/ -type f -name "rocm-device-libs-*.ebuild" -exec ebuild {} manifest \;  
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
+#   - find /var/db/repos/gentoo/dev-libs/rocr-runtime/ -type f -name "rocr-runtime-*.ebuild" -exec ebuild {} manifest \;  
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
+#   - find /var/db/repos/gentoo/dev-libs/roct-thunk-interface/ -type f -name "roct-thunk-interface-*.ebuild" -exec ebuild {} manifest \;
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+#   - find /var/db/repos/gentoo/dev-util/hip/ -type f -name "hip-*.ebuild" -exec ebuild {} manifest \;
 #   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
+#   - find /var/db/repos/gentoo/dev-util/hipcc/ -type f -name "hipcc-*.ebuild" -exec ebuild {} manifest \;
 #   inner_build_requires:
 #   - <<: *apps-doxygen
 #   inner_build_reqs:
@@ -20844,7 +20839,7 @@ packages:
   license: "metapackage"
   description: "Free digital painting application. Digital Painting, Creative Freedom!"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/krita
   provides:
@@ -20944,7 +20939,7 @@ packages:
   license: "GPL-2"
   description: "Graphical scanning frontend"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/xsane
   provides:
@@ -20971,125 +20966,125 @@ packages:
 ### dep 7 apps ###
 ###############################################################################################################################################################
 
-# incompatible with llvm 21
-- category: "apps"
-  name: "blender"
-  version: "4.4.3+7"
-  uri:
-  - https://www.blender.org
-  - https://www.alembic.io/
-  - https://github.com/embree/embree
-  - http://www.openimagedenoise.org/
-  - http://www.opencollada.org/
-  - https://graphics.pixar.com/opensubdiv/docs/intro.html
-  - http://opensource.imageworks.com/?p
-  - http://partio.us/
-  - https://github.com/indygreg/python-zstandard/
-  - https://pypi.org/project/zstandard/
-  license: "Apache-2.0 BL BSD GPL-3 MIT"
-  description: |
-    3D Creation/Animation/Publishing System
-    Open framework for storing and sharing scene data
-    Collection of high-performance ray tracing kernels
-    Intel(R) Open Image Denoise library
-    Stream based read/write library for COLLADA files
-    An Open-Source subdivision surface library
-    Advanced shading language for production GI renderers
-    Library for particle IO and manipulation
-    Zstandard Bindings for Python
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      media-gfx/blender
-  provides:
-  - category: "media-gfx"
-    name: "blender"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "alembic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "embree"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "gflags"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "glog"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "ispc"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "miniz"
-    version: ">=0"
-  - category: "dev-python"
-    name: "zstandard"
-    version: ">=0"
-  - category: "media-libs"
-    name: "oidn"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opencollada"
-    version: ">=0"
-  - category: "media-libs"
-    name: "openpgl"
-    version: ">=0"
-  - category: "media-libs"
-    name: "opensubdiv"
-    version: ">=0"
-  - category: "media-libs"
-    name: "osl"
-    version: ">=0"
-  - category: "media-libs"
-    name: "partio"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "renderdoc"
-    version: ">=0"
-  - category: "sci-physics"
-    name: "bullet"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/blender"
-    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi hip # debug headless test"
-  - atom: "media-gfx/alembic"
-    use: "hdf5"
-  - atom: "media-libs/embree"
-    use: "compact-polys ispc raymask ssp tbb # tutorial"
-  # - atom: "dev-lang/ispc"
-  #   # use: "# gpu openmp"
-  - atom: "media-libs/oidn"
-    use: "openimageio # hip # cuda"
-  - atom: "media-libs/openpgl"
-    use: "cpu_flags_x86_avx2"
-  - atom: "media-libs/opensubdiv"
-    use: "glfw opencl opengl openmp ptex tbb # cuda"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/osl"
-    use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-  - atom: "sci-physics/bullet"
-    use: "double-precision"
-  portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  # portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
-  inner_build_reqs:
-  - app-admin/chrpath
-  - dev-debug/valgrind
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-spacenavd
-  - <<: *libs-libspnav
-  - <<: *libs-lib3ds
-  - <<: *libs-libharu
-  - <<: *libs-ocio-oiio
-  # - <<: *apps-hip
-  build_requires:
-  - <<: *layers-qt
+# # incompatible with llvm 21
+# - category: "apps"
+#   name: "blender"
+#   version: "4.4.3+7"
+#   uri:
+#   - https://www.blender.org
+#   - https://www.alembic.io/
+#   - https://github.com/embree/embree
+#   - http://www.openimagedenoise.org/
+#   - http://www.opencollada.org/
+#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
+#   - http://opensource.imageworks.com/?p
+#   - http://partio.us/
+#   - https://github.com/indygreg/python-zstandard/
+#   - https://pypi.org/project/zstandard/
+#   license: "Apache-2.0 BL BSD GPL-3 MIT"
+#   description: |
+#     3D Creation/Animation/Publishing System
+#     Open framework for storing and sharing scene data
+#     Collection of high-performance ray tracing kernels
+#     Intel(R) Open Image Denoise library
+#     Stream based read/write library for COLLADA files
+#     An Open-Source subdivision surface library
+#     Advanced shading language for production GI renderers
+#     Library for particle IO and manipulation
+#     Zstandard Bindings for Python
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/blender
+#   provides:
+#   - category: "media-gfx"
+#     name: "blender"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "alembic"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "embree"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "gflags"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "glog"
+#     version: ">=0"
+#   - category: "dev-lang"
+#     name: "ispc"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "miniz"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "zstandard"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "oidn"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opencollada"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "openpgl"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "opensubdiv"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "osl"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "partio"
+#     version: ">=0"
+#   - category: "media-gfx"
+#     name: "renderdoc"
+#     version: ">=0"
+#   - category: "sci-physics"
+#     name: "bullet"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/blender"
+#     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi hip # debug headless test"
+#   - atom: "media-gfx/alembic"
+#     use: "hdf5"
+#   - atom: "media-libs/embree"
+#     use: "compact-polys ispc raymask ssp tbb # tutorial"
+#   # - atom: "dev-lang/ispc"
+#   #   # use: "# gpu openmp"
+#   - atom: "media-libs/oidn"
+#     use: "openimageio # hip # cuda"
+#   - atom: "media-libs/openpgl"
+#     use: "cpu_flags_x86_avx2"
+#   - atom: "media-libs/opensubdiv"
+#     use: "glfw opencl opengl openmp ptex tbb # cuda"
+#     accept_keywords: "~amd64"
+#   - atom: "media-libs/osl"
+#     use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+#   - atom: "sci-physics/bullet"
+#     use: "double-precision"
+#   portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+#   # portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+#   prepare:
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
+#   - find /var/db/repos/gentoo/media-gfx/blender/ -type f -name "blender-*.ebuild" -exec ebuild {} manifest \;
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+#   - find /var/db/repos/gentoo/media-libs/osl/ -type f -name "osl-*.ebuild" -exec ebuild {} manifest \;
+#   inner_build_reqs:
+#   - app-admin/chrpath
+#   - dev-debug/valgrind
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-spacenavd
+#   - <<: *libs-libspnav
+#   - <<: *libs-lib3ds
+#   - <<: *libs-libharu
+#   - <<: *libs-ocio-oiio
+#   # - <<: *apps-hip
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "displaycal-py3"
@@ -21111,7 +21106,7 @@ packages:
     accept_keywords: "~amd64"
   prepare:
   - sed -i -e 's/PYTHON_COMPAT=( python3_{9..12}/PYTHON_COMPAT=( python3_{9..13}/' /var/db/repos/gentoo/media-gfx/displaycal-py3/displaycal-py3-*.ebuild
-  - ebuild /var/db/repos/gentoo/media-gfx/displaycal-py3/displaycal-py3-*.ebuild manifest
+  - find /var/db/repos/gentoo/media-gfx/displaycal-py3/ -type f -name "displaycal-py3-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
@@ -21134,7 +21129,7 @@ packages:
   license: "GPL-2 LGPL-2"
   description: "Integrated Development Environment, supporting KF6/Qt, C/C++ and much more"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       dev-util/kdevelop
       dev-util/kdevelop-php
@@ -21181,7 +21176,7 @@ packages:
   license: "GPL-2"
   description: "KDE UML Modeller"
   labels:
-    emerge.jobs: "3"
+    emerge.jobs: "1"
     emerge.packages: >-
       kde-apps/umbrello
   provides:
