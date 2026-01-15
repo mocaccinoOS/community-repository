@@ -10047,57 +10047,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+15"
-  uri:
-  - https://ulauncher.io
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-      dev-python/websocket-client
-  provides:
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  # - dev-python/python-distutils-extra
-  # - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
+# - category: "apps"
+#   name: "ulauncher"
+#   version: "5.15.15+15"
+#   uri:
+#   - https://ulauncher.io
+#   license: "GPL-3"
+#   description: "Feature rich application Launcher for Linux"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/levenshtein
+#       dev-python/websocket-client
+#   provides:
+#   - category: "net-misc"
+#     name: "ulauncher"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "levenshtein"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "websocket-client"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "rapidfuzz-cpp"
+#     version: ">=0"
+#   ready:
+#   - |
+#     git clone https://github.com/Ulauncher/Ulauncher.git && \
+#     cd Ulauncher && \
+#     git fetch --all --tags && \
+#     git checkout tags/5.15.15 && \
+#     export PYTHONHASHSEED=0 && \
+#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+#     python setup.py build
+#   completion:
+#   - |
+#     cd Ulauncher && \
+#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+#     cd ../build && \
+#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+#     find . -type d -name __pycache__ | xargs rm -rf && \
+#     cp -r usr /
+#   inner_build_reqs:
+#   - dev-python/python-distutils-extra
+#   # - dev-python/meson-python
+#   - dev-cpp/taskflow
+#   requires:
+#   - <<: *layers-gnome-common
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-usbmuxd
   category: "apps"
@@ -16370,14 +16370,8 @@ packages:
   - category: "dev-python"
     name: "click-plugins"
     version: ">=0"
-  - category: "dev-python"
-    name: "pyopengl"
-    version: ">=0"
   - category: "net-wireless"
     name: "gnuradio"
-    version: ">=0"
-  - category: "x11-libs"
-    name: "qwt"
     version: ">=0"
   atoms:
   - atom: "net-wireless/gnuradio"
@@ -20170,6 +20164,12 @@ packages:
   - category: "media-gfx"
     name: "gimp"
     version: ">=0"
+  - category: "media-libs"
+    name: "lensfun"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "gimp-resynthesizer"
+    version: ">=0"
   overlays:
   - enable: "4nykey"
   - enable: "guru"
@@ -20648,64 +20648,64 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+2"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+2"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
@@ -20748,92 +20748,92 @@ packages:
 #   - <<: *buildbase-sci-libs
 #   requires_final_images: true
 
-# incompatible with llvm 21
-# - &apps-hip
-#   category: "apps"
-#   name: "hip"
-#   version: "7.1.0-r1+3"
-#   uri:
-#   - https://github.com/ROCm/clr
-#   license: "Apache-2.0 MIT"
-#   description: "C++ Heterogeneous-Compute Interface for Portability"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-util/hip
-#   provides:
-#   - category: "dev-libs"
-#     name: "rocm-comgr"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocm-core"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocm-device-libs"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "rocr-runtime"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "roct-thunk-interface"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "hip"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "hipcc"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "rocminfo"
-#     version: ">=0"
-#   - category: "llvm-core"
-#     name: "lld"
-#     version: ">=0"
-#   - category: "llvm-core"
-#     name: "lld-toolchain-symlinks"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-libs/rocm-comgr"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocm-core"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocm-device-libs"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/rocr-runtime"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-libs/roct-thunk-interface"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/hip"
-#     accept_keywords: "~amd64"
-#     use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
-#   - atom: "dev-util/hipcc"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-util/rocminfo"
-#     accept_keywords: "~amd64"
-#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-#   prepare:
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
-#   - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
-#   inner_build_requires:
-#   - <<: *apps-doxygen
-#   inner_build_reqs:
-#   - app-editors/vim-core
-#   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-numactl
-#   build_requires:
-#   - <<: *layers-qt
+incompatible with llvm 21
+- &apps-hip
+  category: "apps"
+  name: "hip"
+  version: "7.1.0-r1+4"
+  uri:
+  - https://github.com/ROCm/clr
+  license: "Apache-2.0 MIT"
+  description: "C++ Heterogeneous-Compute Interface for Portability"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/hip
+  provides:
+  - category: "dev-libs"
+    name: "rocm-comgr"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocm-core"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocm-device-libs"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "rocr-runtime"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "roct-thunk-interface"
+    version: ">=0"
+  - category: "dev-util"
+    name: "hip"
+    version: ">=0"
+  - category: "dev-util"
+    name: "hipcc"
+    version: ">=0"
+  - category: "dev-util"
+    name: "rocminfo"
+    version: ">=0"
+  - category: "llvm-core"
+    name: "lld"
+    version: ">=0"
+  - category: "llvm-core"
+    name: "lld-toolchain-symlinks"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/rocm-comgr"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocm-core"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocm-device-libs"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/rocr-runtime"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/roct-thunk-interface"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/hip"
+    accept_keywords: "~amd64"
+    use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
+  - atom: "dev-util/hipcc"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/rocminfo"
+    accept_keywords: "~amd64"
+  portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
+  - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
+  inner_build_requires:
+  - <<: *apps-doxygen
+  inner_build_reqs:
+  - app-editors/vim-core
+  - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-numactl
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "krita"
