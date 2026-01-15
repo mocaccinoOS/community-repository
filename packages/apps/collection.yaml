@@ -10047,57 +10047,57 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# - category: "apps"
-#   name: "ulauncher"
-#   version: "5.15.15+15"
-#   uri:
-#   - https://ulauncher.io
-#   license: "GPL-3"
-#   description: "Feature rich application Launcher for Linux"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/levenshtein
-#       dev-python/websocket-client
-#   provides:
-#   - category: "net-misc"
-#     name: "ulauncher"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "levenshtein"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "websocket-client"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "rapidfuzz-cpp"
-#     version: ">=0"
-#   ready:
-#   - |
-#     git clone https://github.com/Ulauncher/Ulauncher.git && \
-#     cd Ulauncher && \
-#     git fetch --all --tags && \
-#     git checkout tags/5.15.15 && \
-#     export PYTHONHASHSEED=0 && \
-#     find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-#     sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-#     python setup.py build
-#   completion:
-#   - |
-#     cd Ulauncher && \
-#     env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-#     cd ../build && \
-#     rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-#     find . -type d -name __pycache__ | xargs rm -rf && \
-#     cp -r usr /
-#   inner_build_reqs:
-#   - dev-python/python-distutils-extra
-#   # - dev-python/meson-python
-#   - dev-cpp/taskflow
-#   requires:
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "ulauncher"
+  version: "5.15.15+15"
+  uri:
+  - https://ulauncher.io
+  license: "GPL-3"
+  description: "Feature rich application Launcher for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/levenshtein
+      dev-python/websocket-client
+  provides:
+  - category: "net-misc"
+    name: "ulauncher"
+    version: ">=0"
+  - category: "dev-python"
+    name: "levenshtein"
+    version: ">=0"
+  - category: "dev-python"
+    name: "websocket-client"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "rapidfuzz-cpp"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/Ulauncher/Ulauncher.git && \
+    cd Ulauncher && \
+    git fetch --all --tags && \
+    git checkout tags/5.15.15 && \
+    export PYTHONHASHSEED=0 && \
+    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+    python setup.py build
+  completion:
+  - |
+    cd Ulauncher && \
+    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+    cd ../build && \
+    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+    find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr /
+  inner_build_reqs:
+  - dev-python/python-distutils-extra
+  - dev-python/meson-python
+  - dev-cpp/taskflow
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-usbmuxd
   category: "apps"
@@ -20748,92 +20748,92 @@ packages:
 #   - <<: *buildbase-sci-libs
 #   requires_final_images: true
 
-# incompatible with llvm 21
-- &apps-hip
-  category: "apps"
-  name: "hip"
-  version: "7.1.0-r1+4"
-  uri:
-  - https://github.com/ROCm/clr
-  license: "Apache-2.0 MIT"
-  description: "C++ Heterogeneous-Compute Interface for Portability"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/hip
-  provides:
-  - category: "dev-libs"
-    name: "rocm-comgr"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocm-core"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocm-device-libs"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocr-runtime"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "roct-thunk-interface"
-    version: ">=0"
-  - category: "dev-util"
-    name: "hip"
-    version: ">=0"
-  - category: "dev-util"
-    name: "hipcc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocminfo"
-    version: ">=0"
-  - category: "llvm-core"
-    name: "lld"
-    version: ">=0"
-  - category: "llvm-core"
-    name: "lld-toolchain-symlinks"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/rocm-comgr"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocm-core"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocm-device-libs"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocr-runtime"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/roct-thunk-interface"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/hip"
-    accept_keywords: "~amd64"
-    use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
-  - atom: "dev-util/hipcc"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocminfo"
-    accept_keywords: "~amd64"
-  portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
-  - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
-  inner_build_requires:
-  - <<: *apps-doxygen
-  inner_build_reqs:
-  - app-editors/vim-core
-  - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-numactl
-  build_requires:
-  - <<: *layers-qt
+# # incompatible with llvm 21
+# - &apps-hip
+#   category: "apps"
+#   name: "hip"
+#   version: "7.1.0-r1+3"
+#   uri:
+#   - https://github.com/ROCm/clr
+#   license: "Apache-2.0 MIT"
+#   description: "C++ Heterogeneous-Compute Interface for Portability"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-util/hip
+#   provides:
+#   - category: "dev-libs"
+#     name: "rocm-comgr"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocm-core"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocm-device-libs"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocr-runtime"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "roct-thunk-interface"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "hip"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "hipcc"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "rocminfo"
+#     version: ">=0"
+#   - category: "llvm-core"
+#     name: "lld"
+#     version: ">=0"
+#   - category: "llvm-core"
+#     name: "lld-toolchain-symlinks"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-libs/rocm-comgr"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocm-core"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocm-device-libs"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocr-runtime"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/roct-thunk-interface"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-util/hip"
+#     accept_keywords: "~amd64"
+#     use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
+#   - atom: "dev-util/hipcc"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-util/rocminfo"
+#     accept_keywords: "~amd64"
+#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+#   prepare:
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild manifest
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild manifest  
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild manifest  
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild manifest
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild manifest
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
+#   - ebuild /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild manifest
+#   inner_build_requires:
+#   - <<: *apps-doxygen
+#   inner_build_reqs:
+#   - app-editors/vim-core
+#   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-numactl
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "krita"
@@ -20972,124 +20972,124 @@ packages:
 ###############################################################################################################################################################
 
 # incompatible with llvm 21
-# - category: "apps"
-#   name: "blender"
-#   version: "4.4.3+6"
-#   uri:
-#   - https://www.blender.org
-#   - https://www.alembic.io/
-#   - https://github.com/embree/embree
-#   - http://www.openimagedenoise.org/
-#   - http://www.opencollada.org/
-#   - https://graphics.pixar.com/opensubdiv/docs/intro.html
-#   - http://opensource.imageworks.com/?p
-#   - http://partio.us/
-#   - https://github.com/indygreg/python-zstandard/
-#   - https://pypi.org/project/zstandard/
-#   license: "Apache-2.0 BL BSD GPL-3 MIT"
-#   description: |
-#     3D Creation/Animation/Publishing System
-#     Open framework for storing and sharing scene data
-#     Collection of high-performance ray tracing kernels
-#     Intel(R) Open Image Denoise library
-#     Stream based read/write library for COLLADA files
-#     An Open-Source subdivision surface library
-#     Advanced shading language for production GI renderers
-#     Library for particle IO and manipulation
-#     Zstandard Bindings for Python
-#   labels:
-#     emerge.jobs: "3"
-#     emerge.packages: >-
-#       media-gfx/blender
-#   provides:
-#   - category: "media-gfx"
-#     name: "blender"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "alembic"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "embree"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "gflags"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "glog"
-#     version: ">=0"
-#   - category: "dev-lang"
-#     name: "ispc"
-#     version: ">=0"
-#   - category: "dev-libs"
-#     name: "miniz"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "zstandard"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "oidn"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opencollada"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "openpgl"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "opensubdiv"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "osl"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "partio"
-#     version: ">=0"
-#   - category: "media-gfx"
-#     name: "renderdoc"
-#     version: ">=0"
-#   - category: "sci-physics"
-#     name: "bullet"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-gfx/blender"
-#     use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi hip # debug headless test"
-#   - atom: "media-gfx/alembic"
-#     use: "hdf5"
-#   - atom: "media-libs/embree"
-#     use: "compact-polys ispc raymask ssp tbb # tutorial"
-#   # - atom: "dev-lang/ispc"
-#   #   # use: "# gpu openmp"
-#   - atom: "media-libs/oidn"
-#     use: "openimageio # hip # cuda"
-#   - atom: "media-libs/openpgl"
-#     use: "cpu_flags_x86_avx2"
-#   - atom: "media-libs/opensubdiv"
-#     use: "glfw opencl opengl openmp ptex tbb # cuda"
-#     accept_keywords: "~amd64"
-#   - atom: "media-libs/osl"
-#     use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
-#   - atom: "sci-physics/bullet"
-#     use: "double-precision"
-#   # portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-#   prepare:
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
-#   - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
-#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
-#   - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
-#   inner_build_reqs:
-#   - app-admin/chrpath
-#   - dev-debug/valgrind
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *apps-spacenavd
-#   - <<: *libs-libspnav
-#   - <<: *libs-lib3ds
-#   - <<: *libs-libharu
-#   - <<: *libs-ocio-oiio
-#   # - <<: *apps-hip
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "blender"
+  version: "4.4.3+7"
+  uri:
+  - https://www.blender.org
+  - https://www.alembic.io/
+  - https://github.com/embree/embree
+  - http://www.openimagedenoise.org/
+  - http://www.opencollada.org/
+  - https://graphics.pixar.com/opensubdiv/docs/intro.html
+  - http://opensource.imageworks.com/?p
+  - http://partio.us/
+  - https://github.com/indygreg/python-zstandard/
+  - https://pypi.org/project/zstandard/
+  license: "Apache-2.0 BL BSD GPL-3 MIT"
+  description: |
+    3D Creation/Animation/Publishing System
+    Open framework for storing and sharing scene data
+    Collection of high-performance ray tracing kernels
+    Intel(R) Open Image Denoise library
+    Stream based read/write library for COLLADA files
+    An Open-Source subdivision surface library
+    Advanced shading language for production GI renderers
+    Library for particle IO and manipulation
+    Zstandard Bindings for Python
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      media-gfx/blender
+  provides:
+  - category: "media-gfx"
+    name: "blender"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "alembic"
+    version: ">=0"
+  - category: "media-libs"
+    name: "embree"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "gflags"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "glog"
+    version: ">=0"
+  - category: "dev-lang"
+    name: "ispc"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "miniz"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zstandard"
+    version: ">=0"
+  - category: "media-libs"
+    name: "oidn"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opencollada"
+    version: ">=0"
+  - category: "media-libs"
+    name: "openpgl"
+    version: ">=0"
+  - category: "media-libs"
+    name: "opensubdiv"
+    version: ">=0"
+  - category: "media-libs"
+    name: "osl"
+    version: ">=0"
+  - category: "media-libs"
+    name: "partio"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "renderdoc"
+    version: ">=0"
+  - category: "sci-physics"
+    name: "bullet"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/blender"
+    use: "alembic bullet collada color-management cycles cycles-bin-kernels dds -doc embree experimental ffmpeg fftw fluid gmp gnome jack jemalloc jpeg2k man nanovdb ndof nls oidn openal openexr openimageio openmp openpgl opensubdiv osl otf pdf potrace pugixml pulseaudio renderdoc sdl sndfile tbb tiff valgrind vulkan wayland webp X # openvdb # cuda optix # oneapi hip # debug headless test"
+  - atom: "media-gfx/alembic"
+    use: "hdf5"
+  - atom: "media-libs/embree"
+    use: "compact-polys ispc raymask ssp tbb # tutorial"
+  # - atom: "dev-lang/ispc"
+  #   # use: "# gpu openmp"
+  - atom: "media-libs/oidn"
+    use: "openimageio # hip # cuda"
+  - atom: "media-libs/openpgl"
+    use: "cpu_flags_x86_avx2"
+  - atom: "media-libs/opensubdiv"
+    use: "glfw opencl opengl openmp ptex tbb # cuda"
+    accept_keywords: "~amd64"
+  - atom: "media-libs/osl"
+    use: "gui libcxx partio python # nofma optix # sse2 sse3 ssse3 sse4_1 sse4_2 avx avx2 avx512f f16c"
+  - atom: "sci-physics/bullet"
+    use: "double-precision"
+  # portage_env: "MAKEOPTS=\"-l0.9\" USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  prepare:
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild manifest
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+  - ebuild /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild manifest
+  inner_build_reqs:
+  - app-admin/chrpath
+  - dev-debug/valgrind
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-spacenavd
+  - <<: *libs-libspnav
+  - <<: *libs-lib3ds
+  - <<: *libs-libharu
+  - <<: *libs-ocio-oiio
+  # - <<: *apps-hip
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "displaycal-py3"
