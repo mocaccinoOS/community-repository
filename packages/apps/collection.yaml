@@ -20376,13 +20376,13 @@ packages:
     version: ">=0"
   completion:
   - |
-      grep -q "CLASSPATH=" usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> usr/share/plantuml/package.env; \
-      ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' usr/share/ant/package.env); \
-      BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' usr/share/batik/package.env); \
-      FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' usr/share/fop/package.env); \
-      sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" usr/share/plantuml/package.env; \
-      grep -q "DEPEND=" usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> usr/share/plantuml/package.env; \
-      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1:ant:batik:fop\"|" usr/share/plantuml/package.env;
+      grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+      ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+      BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+      FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+      sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+      grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1:ant:batik:fop\"|" /usr/share/plantuml/package.env;
   requires:
   - <<: *layers-qt
   - <<: *layers-java
