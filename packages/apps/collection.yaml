@@ -1024,7 +1024,7 @@ packages:
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
-  version: "0.1+4"
+  version: "26.1"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -1059,7 +1059,7 @@ packages:
 - &libs-bcprov
   category: "libs"
   name: "bcprov"
-  version: "1.82"
+  version: "1.83"
   uri:
   - https://www.bouncycastle.org/download/bouncy-castle-java/
   license: "BSD"
@@ -4420,7 +4420,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.85.120"
+  version: "1.86.139"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4863,6 +4863,28 @@ packages:
   - <<: *layers-kde-kf5
   build_requires:
   - <<: *layers-kde-kf5
+
+- category: "apps"
+  name: "dfu-util"
+  version: "0.11"
+  uri:
+  - https://dfu-util.sourceforge.net/
+  license: "GPL-2+"
+  description: "implements the Host (PC) side of the USB DFU (Device Firmware Upgrade) protocol"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-mobilephone/dfu-util
+  provides:
+  - category: "app-mobilephone"
+    name: "dfu-util"
+    version: ">=0"
+  inner_build_reqs:
+  - virtual/libusb:1"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-diffpdf
   category: "apps"
@@ -5433,7 +5455,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "141-143"
+  version: "142-143"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5441,7 +5463,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:141
       media-video/ffmpeg-chromium:142
       media-video/ffmpeg-chromium:143
   provides:
@@ -7022,7 +7043,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "4.30.1"
+  version: "4.31.0"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -7696,7 +7717,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.3"
+  version: "15.0.4"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -7890,7 +7911,7 @@ packages:
 - &apps-nftables
   category: "apps"
   name: "nftables"
-  version: "1.1.5"
+  version: "1.1.6"
   uri:
   - https://netfilter.org/projects/nftables/
   license: "GPL-2 GPL-2+"
@@ -9231,7 +9252,7 @@ packages:
 - &apps-rhino
   category: "apps"
   name: "rhino"
-  version: "1.8.0"
+  version: "1.8.1"
   uri:
   - https://github.com/mozilla/rhino
   license: "MPL-1.1 GPL-2"
@@ -9252,7 +9273,7 @@ packages:
 - &apps-rofi
   category: "apps"
   name: "rofi"
-  version: "1.7.9.1"
+  version: "2.0.0"
   uri:
   - https://github.com/davatorium/rofi
   license: "MIT"
@@ -9838,7 +9859,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.6.0_p15003+1"
+  version: "140.7.0_p15004"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -10175,7 +10196,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.6.1"
+  version: "1.6.3-r1"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -10442,7 +10463,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.6.0-r1"
+  version: "4.6.2-r2"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -10850,7 +10871,7 @@ packages:
 - &libs-beautifulsoup4
   category: "libs"
   name: "beautifulsoup4"
-  version: "4.14.2"
+  version: "4.14.3"
   uri:
   - https://www.crummy.com/software/BeautifulSoup/bs4/
   - https://github.com/facelessuser/soupsieve/
@@ -11944,7 +11965,7 @@ packages:
 
 - category: "apps"
   name: "chezmoi"
-  version: "2.69.1"
+  version: "2.69.3"
   uri:
   - https://www.chezmoi.io/"
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
@@ -12552,7 +12573,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "11.7.0"
+  version: "11.8.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -13138,7 +13159,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.8.1+1"
+  version: "0.8.2"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -13403,7 +13424,7 @@ packages:
 - &apps-mpv
   category: "apps"
   name: "mpv"
-  version: "0.40.0-r3+1"
+  version: "0.41.0"
   uri:
   - https://mpv.io/
   - https://github.com/mpv-player/mpv
@@ -13834,7 +13855,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "125.0.5729.49"
+  version: "126.0.5750.43"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -15188,7 +15209,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "10.20"
+  version: "11.0"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -15301,7 +15322,7 @@ packages:
 
 - category: "apps"
   name: "yamllint"
-  version: "1.36.2"
+  version: "1.37.1"
   uri:
   - https://pypi.org/project/yamllint/
   license: "GPL-3"
@@ -21111,7 +21132,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "25.08.3+1"
+  version: "25.08.3-r1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
