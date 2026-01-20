@@ -10193,7 +10193,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-vesktop
+- &apps-Error: number of operands mismatch for `mov'
   category: "apps"
   name: "vesktop"
   version: "1.6.3-r1"
@@ -10214,8 +10214,8 @@ packages:
   atoms:
   - atom: "net-im/vesktop-bin"
     accept_keywords: "~amd64"
-  # inner_build_requires:
-  # - <<: *apps-nodejs
+  inner_build_requires:
+  - <<: *apps-nodejs
   requires:
   - <<: *layers-X
   build_requires:
@@ -13185,13 +13185,18 @@ packages:
     version: ">=0"
   atoms:
   - atom: "games-util/mangohud"
-    use: "dbus mangoapp mangohudctl X xnvctrl -wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
+    use: "dbus mangoapp mangohudctl X xnvctrl wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
     accept_keywords: "~amd64"
   - atom: "media-libs/imgui"
     use: "glfw opengl vulkan"
     accept_keywords: "~amd64"
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
+  prepare:
+  - cp -r tree/games-util/mangohud /var/db/repos/guru/games-util
+  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/mangohud-0.8.2.patch\n)\n' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
+#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/src/gl/inject_egl.cpp' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
+  - find /var/db/repos/guru/games-util/mangohud/ -type f -name "mangohud-*.ebuild" -exec ebuild {} manifest \+
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
