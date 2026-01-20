@@ -5471,7 +5471,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-video/ffmpeg-chromium"
-    use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmxext # nvenc"
+    use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 # nvenc"
   requires:
   - <<: *layers-X
   build_requires:
@@ -11392,7 +11392,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-libs/libsdl3"
-    use: "X alsa dbus ibus io-uring jack kms opengl oss pipewire pulseaudio sndio udev usb vulkan wayland cpu_flags_ppc_altivec cpu_flags_x86_avx cpu_flags_x86_avx2cpu_flags_x86_avx512f cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 # aqua doc"
+    use: "X alsa dbus ibus io-uring jack kms opengl oss pipewire pulseaudio sndio udev usb vulkan wayland cpu_flags_x86_3dnow cpu_flags_x86_3dnowext cpu_flags_x86_aes cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_fma3 cpu_flags_x86_fma4 cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse3 cpu_flags_x86_sse4_1 cpu_flags_x86_sse4_2 cpu_flags_x86_ssse3 cpu_flags_x86_xop # aqua doc"
   optrequires:
   - <<: *apps-sndio
   requires:
