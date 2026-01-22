@@ -545,8 +545,8 @@
 {{- else if eq ( len $tokens ) 2 }}
 - {{ ( index $tokens 1 ) }} emerge -1 -j ${JOBS} "{{ ( index $tokens 0 ) | replace " " "\" \"" }}" {{ $usepkg_exclude }} {{ $debug }}
 {{- end }}
-{{/*- rm -rf /etc/portage/gnupg || true;*/}}
-- rm -rf /var/cache/binpkgs/* || true;
+{{/*- rm -rf /etc/portage/gnupg || true*/}}
+- rm -rf /var/cache/binpkgs/* || true
 - etc-update -q --automode -5
 
 {{- end }}
@@ -769,7 +769,7 @@ includes:
 
   {{- $command := "" }}
   {{- range ( get ( ( printf "list:\n %s" . ) | fromYaml ) "list" ) }}
-    {{- $command = printf "%s\n%s; \\" $command ( trimAll "; \n" . ) }}
+    {{- $command = printf "%s\n%s; \\" $command ( trimAll " \n" . ) }}
   {{- end }}
   {{- $command = printf "%s\necho;" $command | trimPrefix "\n" }}
 
