@@ -253,7 +253,7 @@ packages:
 - &libs-fonttools
   category: "libs"
   name: "fonttools"
-  version: "4.61.1"
+  version: "4.61.1+1"
   uri:
   - https://github.com/fonttools/fonttools/
   license: "BSD"
@@ -266,13 +266,6 @@ packages:
   - category: "dev-python"
     name: "fonttools"
     version: ">=0"
-  atoms:
-  - atom: "dev-python/appdirs"
-    usepkg_exclude: true
-  - atom: "dev-python/fs"
-    usepkg_exclude: true
-  - atom: "dev-python/fonttools"
-    usepkg_exclude: true
   inner_build_reqs:
   - dev-python/fs
   requires:
@@ -374,7 +367,7 @@ packages:
 - &def-office-common
   category: "layers"
   name: "office-common"
-  version: "26.1+2"
+  version: "26.01+5"
   uri:
   - https://wiki.documentfoundation.org/DLP/Libraries/libabw
   - https://bitbucket.org/tagoh/liblangtag/wiki/Home
@@ -692,101 +685,101 @@ packages:
   atoms:
   - atom: "dev-libs/xerces-c"
     use: "curl iconv icu threads # cpu_flags_x86_sse2"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   # - atom: "sci-libs/arpack"
   #   use: "mpi"
   - atom: "sci-libs/cholmod"
     use: "lapack matrixops modify partition # cuda"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "sci-libs/hypre"
     use: "int64 fortran openmp # mpi"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "sci-libs/metis"
     use: "double-precision int64 openmp"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "dev-python/matplotlib"
     license: "BitstreamVera BSD matplotlib MIT OFL-1.1"
     use: "cairo gtk3 # excel latex qt6 tk webagg wxwidgets"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "sci-libs/netcdf"
     use: "dap tools hdf5 szip # hdf # mpi"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "sci-libs/spqr"
     use: "partition # tbb"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
   - atom: "sci-libs/suitesparse"
     use: "lapack partition # tbb # cuda"
-    usepkg_exclude: true
-  - atom: "sci-libs/umfpack"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/umfpack"
+  #   usepkg_exclude: true
   # - atom: "virtual/mpi"
   #   use: "fortran # nullmpi romio cxx threads"
-  - atom: "dev-python/contourpy"
-    usepkg_exclude: true
-  - atom: "dev-python/cppy"
-    usepkg_exclude: true
-  - atom: "dev-python/cycler"
-    usepkg_exclude: true
-  - atom: "dev-python/iniconfig"
-    usepkg_exclude: true
-  - atom: "dev-python/kiwisolver"
-    usepkg_exclude: true
-  - atom: "dev-python/scipy"
-    debug: true
-    usepkg_exclude: true
-  - atom: "media-libs/qhull"
-    usepkg_exclude: true
-  - atom: "sci-libs/amd"
-    usepkg_exclude: true
-  - atom: "sci-libs/arpack"
-    usepkg_exclude: true
-  - atom: "sci-libs/btf"
-    usepkg_exclude: true
-  - atom: "sci-libs/camd"
-    usepkg_exclude: true
-  - atom: "sci-libs/ccolamd"
-    usepkg_exclude: true
-  - atom: "sci-libs/cholmod"
-    usepkg_exclude: true
-  - atom: "sci-libs/colamd"
-    usepkg_exclude: true
-  - atom: "sci-libs/cxsparse"
-    usepkg_exclude: true
-  - atom: "sci-libs/gklib"
-    usepkg_exclude: true
-  - atom: "sci-libs/klu"
-    usepkg_exclude: true
-  - atom: "sci-libs/ldl"
-    usepkg_exclude: true
-  - atom: "sci-libs/suitesparseconfig"
-    usepkg_exclude: true
-  - atom: "sci-libs/superlu"
-    usepkg_exclude: true
-  - atom: "virtual/blas"
-    usepkg_exclude: true
-  - atom: "dev-python/pooch"
-    usepkg_exclude: true
-  - atom: "dev-cpp/xsimd"
-    usepkg_exclude: true
-  - atom: "dev-python/gast"
-    usepkg_exclude: true
-  - atom: "dev-python/beniget"
-    usepkg_exclude: true
-  - atom: "dev-python/pythran"
-    usepkg_exclude: true
-  - atom: "dev-python/pytest"
-    usepkg_exclude: true
+  # - atom: "dev-python/contourpy"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/cppy"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/cycler"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/iniconfig"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/kiwisolver"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/scipy"
+  #   debug: true
+  #   usepkg_exclude: true
+  # - atom: "media-libs/qhull"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/amd"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/arpack"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/btf"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/camd"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/ccolamd"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/cholmod"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/colamd"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/cxsparse"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/gklib"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/klu"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/ldl"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/suitesparseconfig"
+  #   usepkg_exclude: true
+  # - atom: "sci-libs/superlu"
+  #   usepkg_exclude: true
+  # - atom: "virtual/blas"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/pooch"
+  #   usepkg_exclude: true
+  # - atom: "dev-cpp/xsimd"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/gast"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/beniget"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/pythran"
+  #   usepkg_exclude: true
+  # - atom: "dev-python/pytest"
+  #   usepkg_exclude: true
   - atom: "virtual/imagemagick-tools"
     use: "jpeg"
-    usepkg_exclude: true
-  - atom: "dev-python/meson-python"
-    usepkg_exclude: true
-  - atom: "app-alternatives/ninja"
-    usepkg_exclude: true
-  - atom: "dev-build/meson"
-    usepkg_exclude: true
-  - atom: "dev-build/meson-format-array"
-    usepkg_exclude: true
+  #   usepkg_exclude: true
+  # - atom: "dev-python/meson-python"
+  #   usepkg_exclude: true
+  # - atom: "app-alternatives/ninja"
+  #   usepkg_exclude: true
+  # - atom: "dev-build/meson"
+  #   usepkg_exclude: true
+  # - atom: "dev-build/meson-format-array"
+  #   usepkg_exclude: true
   prepare:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
@@ -1747,30 +1740,30 @@ packages:
   atoms:
   - atom: "kde-apps/akonadi"
     use: "tools"
-  - atom: "app-office/merkuro"
-    usepkg_exclude: true
-  - atom: "kde-apps/akonadi-calendar"
-    usepkg_exclude: true
-  - atom: "kde-apps/akonadiconsole"
-    usepkg_exclude: true
-  - atom: "kde-apps/kdepim-runtime"
-    usepkg_exclude: true
-  - atom: "kde-apps/konsolekalendar"
-    usepkg_exclude: true
-  - atom: "kde-apps/korganizer"
-    usepkg_exclude: true
-  - atom: "kde-apps/calendarjanitor"
-    usepkg_exclude: true
-  - atom: "kde-apps/calendarsupport"
-    usepkg_exclude: true
-  - atom: "kde-apps/eventviews"
-    usepkg_exclude: true
-  - atom: "kde-apps/incidenceeditor"
-    usepkg_exclude: true
-  - atom: "kde-apps/kdepim-addons"
-    usepkg_exclude: true
-  - atom: "app-office/merkuro"
-    usepkg_exclude: true
+  # - atom: "app-office/merkuro"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/akonadi-calendar"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/akonadiconsole"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/kdepim-runtime"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/konsolekalendar"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/korganizer"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/calendarjanitor"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/calendarsupport"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/eventviews"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/incidenceeditor"
+  #   usepkg_exclude: true
+  # - atom: "kde-apps/kdepim-addons"
+  #   usepkg_exclude: true
+  # - atom: "app-office/merkuro"
+  #   usepkg_exclude: true
   prepare:
   # Remove kalarm from ebuilds, it pulls in vlc, not that
   - sed -i '/kalarm/d' /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild
