@@ -762,7 +762,7 @@ packages:
 - &def-perl-libs
   category: "layers"
   name: "perl-libs"
-  version: "26.1+2"
+  version: "26.01+5"
   uri:
   - https://metacpan.org/release/Carp-Always
   - https://metacpan.org/release/Class-Accessor
@@ -951,7 +951,7 @@ packages:
 - &def-ruby
   category: "layers"
   name: "ruby"
-  version: "3.3.10-r1+1"
+  version: "3.3.10-r1+2"
   uri:
   - https://www.ruby-lang.org/
   license: "Ruby-BSD BSD-2"
@@ -1481,7 +1481,7 @@ packages:
 - &def-kde-pim
   category: "layers"
   name: "kde-pim"
-  version: "25.08.3+1"
+  version: "25.08.3+2"
   uri:
   - https://community.kde.org/KDE_PIM
   license: "GPL-2+ LGPL-2.1+"
@@ -1665,30 +1665,6 @@ packages:
   atoms:
   - atom: "kde-apps/akonadi"
     use: "tools"
-  # - atom: "app-office/merkuro"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/akonadi-calendar"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/akonadiconsole"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/kdepim-runtime"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/konsolekalendar"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/korganizer"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/calendarjanitor"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/calendarsupport"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/eventviews"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/incidenceeditor"
-  #   usepkg_exclude: true
-  # - atom: "kde-apps/kdepim-addons"
-  #   usepkg_exclude: true
-  # - atom: "app-office/merkuro"
-  #   usepkg_exclude: true
   prepare:
   # Remove kalarm from ebuilds, it pulls in vlc, not that
   - sed -i '/kalarm/d' /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild
