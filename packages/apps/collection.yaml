@@ -213,6 +213,11 @@ stubs:
 #   name: "cdemu"
 #   version: ">=0"
 
+- &apps-nodejs
+  category: "apps"
+  name: "nodejs"
+  version: ">=0"
+
 ################################################################################################################################################################
 ### kernel refs ###
 ################################################################################################################################################################
@@ -4554,40 +4559,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-clapper
-  category: "apps"
-  name: "clapper"
-  version: "0.8.0"
-  uri:
-  - https://github.com/Rafostar/clapper
-  license: "GPL-3"
-  description: "A GNOME media player built using GJS with GTK4 toolkit and powered by GStreamer with OpenGL rendering."
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/clapper
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "media-video"
-    name: "clapper"
-    version: ">=0"
-  # conflicts with the vlc package
-  - category: "net-libs"
-    name: "libmicrodns"
-    version: ">=0"
-  atoms:
-  - atom: "media-video/clapper"
-    use: "discoverer egl gles2 gstreamer gtk gui introspection mpris rawimporter server vala wayland X # doc"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-util/blueprint-compiler
-  # - dev-lang/rust
-  requires:
-  - <<: *layers-gnome-common
-  build_requires:
-  - <<: *layers-gnome-common
-
 - category: "apps"
   name: "cmatrix"
   version: "2.0-r6"
@@ -5898,6 +5869,28 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "gemini-cli"
+  version: "0.25.0+3"
+  uri:
+  - https://github.com/google-gemini/gemini-cli
+  license: "Apache-2.0"
+  description: "Gemini CLI - a command-line AI workflow tool by Google"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/gemini-cli
+  overlays:
+  - enable: "gentoo-zh"
+  provides:
+  - category: "dev-util"
+    name: "gemini-cli"
+    version: ">=0"
+  requires:
+  - <<: *apps-nodejs
+  build_requires:
+  - <<: *apps-nodejs
 
 - category: "apps"
   name: "ghostwriter"
@@ -13504,35 +13497,6 @@ packages:
   build_requires:
   # - <<: *layers-qt
   - <<: *layers-perl-libs
-
-- category: "apps"
-  name: "newsflash"
-  version: "3.3.5"
-  uri:
-  - https://gitlab.com/news-flash/news_flash_gtk
-  license: "GPL-3 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD GPL-3+ ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense"
-  description: "Feed Reader written in GTK"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-news/newsflash
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-news"
-    name: "news-flash"
-    version: ">=0"
-  atoms:
-  - atom: "net-news/newsflash"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-util/blueprint-compiler
-  # - dev-lang/rust
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-clapper
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "nwipe"
