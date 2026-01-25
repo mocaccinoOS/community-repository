@@ -531,7 +531,7 @@ packages:
 - &def-sci-libs
   category: "layers"
   name: "sci-libs"
-  version: "26.01+6"
+  version: "26.01+7"
   uri:
   - https://xerces.apache.org/xerces-c/
   - https://matplotlib.org/
@@ -705,6 +705,8 @@ packages:
     use: "lapack partition # tbb # cuda"
   - atom: "virtual/imagemagick-tools"
     use: "jpeg"
+  - atom: "sci-libs/umfpack"
+    usepkg_exclude: true
   prepare:
   # gcc 15
   - cp -r tree/sci-libs/hypre /var/db/repos/gentoo/sci-libs
