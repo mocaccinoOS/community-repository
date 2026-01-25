@@ -4572,6 +4572,10 @@ packages:
   - category: "media-video"
     name: "clapper"
     version: ">=0"
+  # conflicts with the vlc package
+  - category: "net-libs"
+    name: "libmicrodns"
+    version: ">=0"
   atoms:
   - atom: "media-video/clapper"
     use: "discoverer egl gles2 gstreamer gtk gui introspection mpris rawimporter server vala wayland X # doc"
@@ -8618,28 +8622,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- category: "apps"
-  name: "pencil"
-  version: "0.7.0"
-  uri:
-  - https://www.pencil2d.org
-  license: "GPL-2"
-  description: "2D animation and drawing program based on Qt"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/pencil
-  provides:
-  - category: "media-gfx"
-    name: "pencil"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/pencil"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
+# 2025-09-28 Joost Ruis: Fails to build
+# 2025-01-25 Mihai Dobrescu: Still fails to build
+# - category: "apps"
+#   name: "pencil"
+#   version: "0.7.0"
+#   uri:
+#   - https://www.pencil2d.org
+#   license: "GPL-2"
+#   description: "2D animation and drawing program based on Qt"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/pencil
+#   provides:
+#   - category: "media-gfx"
+#     name: "pencil"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/pencil"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "piper"
@@ -13509,7 +13515,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-news/news-flash
+      net-news/newsflash
   overlays:
   - enable: "guru"
   provides:
@@ -13517,7 +13523,7 @@ packages:
     name: "news-flash"
     version: ">=0"
   atoms:
-  - atom: "net-news/news-flash"
+  - atom: "net-news/newsflash"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/blueprint-compiler
@@ -20604,64 +20610,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+2"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# build fails
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+2"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
