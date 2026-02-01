@@ -957,6 +957,28 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "libs"
+  name: "aurorae"
+  version: "6.5.5"
+  uri:
+  - https://invent.kde.org/plasma/aurorae
+  license: "GPL-2+ MIT"
+  description: "Themeable window decoration for KWin"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/aurorae
+  provides:
+  - category: "kde-plasma"
+    name: "aurorae"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
 - &libs-svt-av1
   category: "libs"
   name: "svt-av1"
@@ -1024,7 +1046,7 @@ packages:
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
-  version: "26.01+5"
+  version: "26.02"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -1078,8 +1100,28 @@ packages:
   - <<: *layers-java
   
 - category: "libs"
+  name: "breeze-grub"
+  version: "6.5.5"
+  uri:
+  - https://kde.org/plasma-desktop
+  license: "GPL-3+"
+  description: "Breeze theme for GRUB"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/breeze-grub
+  provides:
+  - category: "kde-plasma"
+    name: "breeze-grub"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "libs"
   name: "breeze-plymouth"
-  version: "6.5.4"
+  version: "6.5.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2+ GPL-3+"
@@ -1129,7 +1171,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "144.0.7559.96"
+  version: "144.0.7559.109"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1854,7 +1896,7 @@ packages:
 - &libs-kdsingleapplication
   category: "libs"
   name: "kdsingleapplication"
-  version: "1.1.0-r1"
+  version: "1.2.0"
   uri:
   - https://github.com/KDAB/KDSingleApplication
   license: "BSD MIT"
@@ -2978,6 +3020,28 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "libs"
+  name: "oxygen-sounds"
+  version: "6.5.5"
+  uri:
+  - https://invent.kde.org/plasma/oxygen-sounds
+  license: "GPL-2+"
+  description: "Oxygen sound theme for the Plasma desktop"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/oxygen-sounds
+  provides:
+  - category: "kde-plasma"
+    name: "oxygen-sounds
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+# 
 - &libs-physfs
   category: "libs"
   name: "physfs"
@@ -3192,7 +3256,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.4.6"
+  version: "4.4.7"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -4371,7 +4435,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.86.142"
+  version: "1.86.146"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4998,6 +5062,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- category: "apps"
+  name: "drkonqi"
+  version: "6.5.5"
+  uri:
+  - https://kde.org/plasma-desktop
+  license: "GPL-2"
+  description: "Plasma crash handler, gives the user feedback if a program crashed"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/drkonqi
+  provides:
+  - category: "kde-plasma"
+    name: "drkonqi"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
 
 - &apps-dtach
   category: "apps"
@@ -6257,7 +6343,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "144.0.7559.96"
+  version: "144.0.7559.109"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6280,7 +6366,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "5.11.5"
+  version: "5.12.2"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -6760,7 +6846,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.5.7"
+  version: "3.5.9"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -7155,6 +7241,28 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "krdp"
+  version: "6.5.5"
+  uri:
+  - https://kde.org/plasma-desktop
+  license: "GPL-2"
+  description: "Library and examples for creating an RDP server"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/krdp
+  provides:
+  - category: "kde-plasma"
+    name: "krdp"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
   name: "krfb"
   version: "25.08.3"
   uri:
@@ -7244,7 +7352,9 @@ packages:
     version: ">=0"
   inner_build_reqs:
   - kde-apps/libkexiv2
+  # should be in layers/kde-common, but it is in layers/plasma
   - kde-plasma/kde-cli-tools-common
+  # should be in layers/kde-common, but it is in layers/plasma
   - kde-plasma/kdesu-gui
   requires:
   - <<: *layers-kde-common
@@ -8694,8 +8804,33 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "plasma-keyboard"
+  version: "6.5.91"
+  uri:
+  - https://kde.org/plasma-desktop
+  license: "|| ( GPL-2 GPL-3 ) LGPL-2.1 LGPL-3"
+  description: "Virtual keyboard based on Qt Virtual Keyboard"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/plasma-keyboard
+  provides:
+  - category: "kde-plasma"
+    name: "plasma-keyboard"
+    version: ">=0"
+  atoms:
+  - atom: "kde-plasma/plasma-keyboard"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "plasma-sdk"
-  version: "6.5.4"
+  version: "6.5.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "GPL-2"
@@ -8708,6 +8843,28 @@ packages:
   - category: "kde-plasma"
     name: "plasma-sdk"
     version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
+  name: "plasma-thunderbolt"
+  version: "6.5.5"
+  uri:
+  - https://invent.kde.org/plasma/plasma-thunderbolt
+  license: "|| ( GPL-2 GPL-3+ )"
+  description: "Plasma integration for controlling Thunderbolt devices"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/plasma-thunderbolt
+  provides:
+  - category: "kde-plasma"
+    name: "plasma-thunderbolt"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
   build_requires:
@@ -9457,7 +9614,7 @@ packages:
 
 - category: "apps"
   name: "stress-ng"
-  version: "0.19.06"
+  version: "0.20.00"
   uri:
   - https://github.com/ColinIanKing/stress-ng
   license: "GPL-2+"
@@ -10228,7 +10385,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "6.5.4"
+  version: "6.5.5-r1"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -10324,7 +10481,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.7.2+1"
+  version: "4.7.2-r1"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -13798,7 +13955,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "126.0.5750.43"
+  version: "126.0.5750.59"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14029,7 +14186,7 @@ packages:
 
 - category: "apps"
   name: "plymouth-kcm"
-  version: "6.5.4"
+  version: "6.5.5"
   uri:
   - https://invent.kde.org/plasma/plymouth-kcm
   license: "GPL-2+"
@@ -14237,7 +14394,7 @@ packages:
 - &apps-qdevicemonitor
   category: "apps"
   name: "qdevicemonitor"
-  version: "1.0.1-r3"
+  version: "1.0.1-r4"
   uri:
   - https://github.com/alopatindev/qdevicemonitor
   license: "GPL-3"
@@ -14795,7 +14952,7 @@ packages:
 - &apps-tor
   category: "apps"
   name: "tor"
-  version: "0.4.8.21"
+  version: "0.4.8.22"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -14857,7 +15014,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.9.8"
+  version: "1.9.9"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -16452,7 +16609,7 @@ packages:
 - &apps-kalarm
   category: "apps"
   name: "kalarm"
-  version: "25.08.3-r1"
+  version: "25.12.1-r2"
   uri:
   - https://apps.kde.org/kalarm/
   license: "GPL-2+ FDL-1.2+"
@@ -16819,7 +16976,7 @@ packages:
   atoms:
   # needs firebird: firebird
   # needs java: scripting-beanshell scripting-javascript
-  # needs layers-plasma: kde-plasma/kde-cli-tools
+  # needs layers-plasma: kde-plasma/kde-cli-tools which should be in layers/kde-common, but it is in layers/plasma
   # no release in a long time: wiki-publisher
   # not packageable: odk
   # kde
@@ -17548,7 +17705,11 @@ packages:
 
 - category: "apps"
   name: "plasma-firewall"
-  version: "6.5.4"
+  version: "6.5.5"
+  uri:
+  - https://invent.kde.org/network/plasma-firewall
+  license: "GPL-2+"
+  description: "Plasma frontend for Firewalld or UFW"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
