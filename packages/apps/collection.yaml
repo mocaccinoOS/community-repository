@@ -5878,6 +5878,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-freerdp-server
+  category: "apps"
+  name: "freerdp-server"
+  version: "3.14.1"
+  uri:
+  - https://www.freerdp.com/
+  license: "Apache-2.0"
+  description: "Free implementation of the Remote Desktop Protocol"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-misc/freerdp
+  provides:
+  - category: "net-misc"
+    name: "freerdp"
+    version: ">=0"
+  atoms:
+  - atom: "net-misc/freerdp"
+    use: "server"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "fzf"
   version: "0.67.0"
@@ -7239,28 +7263,6 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
-
-- category: "apps"
-  name: "krdp"
-  version: "6.5.5"
-  uri:
-  - https://kde.org/plasma-desktop
-  license: "GPL-2"
-  description: "Library and examples for creating an RDP server"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-plasma/krdp
-  provides:
-  - category: "kde-plasma"
-    name: "krdp"
-    version: ">=0"
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
 
 - category: "apps"
   name: "krfb"
@@ -13070,6 +13072,29 @@ packages:
   - <<: *libs-libmp4v2
   build_requires:
   - <<: *layers-kde-common
+
+- category: "apps"
+  name: "krdp"
+  version: "6.5.5"
+  uri:
+  - https://kde.org/plasma-desktop
+  license: "GPL-2"
+  description: "Library and examples for creating an RDP server"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-plasma/krdp
+  provides:
+  - category: "kde-plasma"
+    name: "krdp"
+    version: ">=0"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-plasma
+  - <<: *apps-freerdp-server
+  build_requires:
+  - <<: *layers-plasma
 
 - category: "apps"
   name: "krename"
