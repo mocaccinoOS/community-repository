@@ -10272,34 +10272,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-vesktop
-  category: "apps"
-  name: "vesktop"
-  version: "1.6.3-r1"
-  uri:
-  - https://github.com/Vencord/Vesktop
-  license: "GPL-3"
-  description: "Vesktop gives you the performance of web Discord and the comfort of Discord Desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/vesktop-bin
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-im"
-    name: "vesktop-bin"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/vesktop-bin"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - net-libs/nodejs
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "video-trimmer"
   version: "0.8.0+18"
