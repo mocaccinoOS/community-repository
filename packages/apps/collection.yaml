@@ -12104,41 +12104,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-sys-fs
 
-- &apps-cpu-x
-  category: "apps"
-  name: "cpu-x"
-  version: "5.4.0"
-  uri:
-  - https://thetumultuousunicornofdarkness.github.io/CPU-X/
-  - http://libcpuid.sourceforge.net/
-  license: "GPL-3 BSD-2"
-  description: |
-    A Free software that gathers information on CPU, motherboard and more
-    A small C library for x86 (and x86_64) CPU detection and feature extraction
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/libcpuid
-      sys-apps/cpu-x
-  provides:
-  - category: "sys-apps"
-    name: "cpu-x"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libcpuid"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/libcpuid"
-    accept_keywords: "~amd64"
-  - atom: "sys-apps/cpu-x"
-    use: "cpu gpu gui ncurses nls opencl pci vulkan"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-glfw
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "cutecom"
   version: "0.60.0_rc1-r1"
