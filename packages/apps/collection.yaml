@@ -7942,39 +7942,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-nftables
-  category: "apps"
-  name: "nftables"
-  version: "1.1.6"
-  uri:
-  - https://netfilter.org/projects/nftables/
-  license: "GPL-2 GPL-2+"
-  description: |
-    Linux kernel firewall, NAT and packet mangling tools
-    Netlink API to the in-kernel nf_tables subsystem
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-firewall/nftables
-  provides:
-  - category: "net-firewall"
-    name: "nftables"
-    version: ">=0"
-  atoms:
-  - atom: "net-firewall/nftables"
-    use: "doc gmp json readline verify-sig xtables # libedit"
-  inner_build_reqs:
-  - app-alternatives/lex
-  - app-portage/gemato
-  - app-text/asciidoc
-  - app-text/docbook2X
-  - sec-keys/openpgp-keys-netfilter
-  requires:
-  - <<: *layers-X
-  # due to dev-libs/jansson
-  build_requires:
-  - <<: *layers-X
-
 - &apps-nmap
   category: "apps"
   name: "nmap"
@@ -9939,7 +9906,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.7.0_p15004"
+  version: "140.7.0_p15005"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -10713,7 +10680,7 @@ packages:
 - &apps-xscreensavers
   category: "apps"
   name: "xscreensavers"
-  version: "0.3"
+  version: "26.02"
   uri:
   - https://jim.rees.org/computers/xfishtank.html
   - https://www.ratrabbit.nl/ratrabbit/xsnow/
@@ -10745,13 +10712,13 @@ packages:
   - atom: "x11-misc/xsnow"
     license: "freedist"
     accept_keywords: "~amd64"
-  prepare:
-  # echo "x11-misc/xsnow freedist" >> /etc/portage/package.license/x11-misc-xsnow.license
-  - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - sed -i -e 's/\${P}/\${PN}-\${PV}~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - sed -i -e 's/SRC_URI="\(.*\)"/SRC_URI="\1"\nS="\${WORKDIR}\/\${PN}-\${PV}~pre02"\n/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild manifest
-  # emerge x11-misc/xsnow
+  # prepare:
+  # # echo "x11-misc/xsnow freedist" >> /etc/portage/package.license/x11-misc-xsnow.license
+  # - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  # - sed -i -e 's/\${P}/\${PN}-\${PV}~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  # - sed -i -e 's/SRC_URI="\(.*\)"/SRC_URI="\1"\nS="\${WORKDIR}\/\${PN}-\${PV}~pre02"\n/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
+  # - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild manifest
+  # # emerge x11-misc/xsnow
   inner_build_reqs:
   - x11-misc/imake
   requires:
@@ -11932,7 +11899,7 @@ packages:
 - &apps-cava
   category: "apps"
   name: "cava"
-  version: "0.10.6"
+  version: "0.10.7"
   uri:
   - http://cdrdao.sourceforge.net
   license: "MIT Unlicense"
@@ -12103,6 +12070,41 @@ packages:
 #   - <<: *libs-colorama
 #   build_requires:
 #   - <<: *layers-sys-fs
+
+- &apps-cpu-x
+  category: "apps"
+  name: "cpu-x"
+  version: "5.4.0"
+  uri:
+  - https://thetumultuousunicornofdarkness.github.io/CPU-X/
+  - http://libcpuid.sourceforge.net/
+  license: "GPL-3 BSD-2"
+  description: |
+    A Free software that gathers information on CPU, motherboard and more
+    A small C library for x86 (and x86_64) CPU detection and feature extraction
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libcpuid
+      sys-apps/cpu-x
+  provides:
+  - category: "sys-apps"
+    name: "cpu-x"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libcpuid"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/libcpuid"
+    accept_keywords: "~amd64"
+  - atom: "sys-apps/cpu-x"
+    use: "cpu gpu gui ncurses nls opencl pci vulkan"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-glfw
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "cutecom"
@@ -12585,7 +12587,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "11.8.0"
+  version: "11.9.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -13194,7 +13196,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.8.2"
+  version: "0.8.2-r1"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -13227,11 +13229,11 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
-  prepare:
-  - cp -r tree/games-util/mangohud /var/db/repos/guru/games-util
-  - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/mangohud-0.8.2.patch\n)\n' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
-#   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/src/gl/inject_egl.cpp' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
-  - find /var/db/repos/guru/games-util/mangohud/ -type f -name "mangohud-*.ebuild" -exec ebuild {} manifest \;
+#   prepare:
+#   - cp -r tree/games-util/mangohud /var/db/repos/guru/games-util
+#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/mangohud-0.8.2.patch\n)\n' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
+# #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/src/gl/inject_egl.cpp' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
+#   - find /var/db/repos/guru/games-util/mangohud/ -type f -name "mangohud-*.ebuild" -exec ebuild {} manifest \;
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
@@ -14569,7 +14571,7 @@ packages:
 
 - category: "apps"
   name: "starship"
-  version: "1.24.1"
+  version: "1.24.2"
   uri:
   - https://starship.rs
   license: "ISC Apache-2.0 BSD CC0-1.0 ISC MIT MPL-2.0 Unicode-3.0 Unlicense WTFPL-2 ZLIB"
@@ -15185,12 +15187,6 @@ packages:
   - sed -i -e '/.*gbinder-1.1.1-setuptools.patch.*/d' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
   - sed -i -e 's/DISTUTILS_ARGS.*/default/' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
   - find /var/db/repos/guru/dev-python/gbinder/ -type f -name "gbinder-*.ebuild" -exec ebuild {} manifest \;
-  # - sed -i -e 's/USE_NFTABLES=1/USE_NFTABLES=0/' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - sed -i -e '/net-firewall\/nftables/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~NFT_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~NF_/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # # - sed -i -e '/~ANDROID_BINDERFS/d' /var/db/repos/guru/app-containers/waydroid/waydroid-*.ebuild
-  # - find /var/db/repos/guru/app-containers/waydroid/ -type f -name "waydroid-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-portage/gemato
   # - virtual/dist-kernel
@@ -15198,7 +15194,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-lxc
-  - <<: *apps-nftables
   build_requires:
   - <<: *layers-X
 
@@ -15213,39 +15208,6 @@ packages:
   - <<: *atom3
   - <<: *atom4
   - <<: *atom5
-
-# - category: "apps"
-#   name: "welle-io"
-#   version: "2.2+2"
-#   uri:
-#   - http://www.welle.io
-#   license: "GPL-2"
-#   description: "A DAB/DAB+ Software Radio"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/welle-io
-#   overlays:
-#   - enable: "kripton-overlay"
-#   - enable: "xoores"
-#   provides:
-#   - category: "dev-qt"
-#     name: "qtcharts"
-#     version: ">=0"
-#   - category: "media-sound"
-#     name: "welle-io"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/welle-io"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-qt/qtcharts"
-#     accept_keywords: "~amd64"
-#     use: "qml"
-#   requires:
-#   - <<: *layers-kde-kf5
-#   - <<: *libs-rtl-sdr
-#   build_requires:
-#   - <<: *layers-kde-kf5
 
 - category: "apps"
   name: "wine-staging"
@@ -15983,7 +15945,7 @@ packages:
 
 - category: "apps"
   name: "celluloid"
-  version: "0.26+3"
+  version: "0.29"
   uri:
   - https://celluloid-player.github.io
   license: "GPL-3+"
