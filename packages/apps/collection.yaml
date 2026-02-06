@@ -10712,13 +10712,6 @@ packages:
   - atom: "x11-misc/xsnow"
     license: "freedist"
     accept_keywords: "~amd64"
-  # prepare:
-  # # echo "x11-misc/xsnow freedist" >> /etc/portage/package.license/x11-misc-xsnow.license
-  # - cp /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.1.ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  # - sed -i -e 's/\${P}/\${PN}-\${PV}~pre02/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  # - sed -i -e 's/SRC_URI="\(.*\)"/SRC_URI="\1"\nS="\${WORKDIR}\/\${PN}-\${PV}~pre02"\n/' /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild
-  # - ebuild /var/db/repos/gentoo/x11-misc/xsnow/xsnow-3.8.5.ebuild manifest
-  # # emerge x11-misc/xsnow
   inner_build_reqs:
   - x11-misc/imake
   requires:
@@ -13217,9 +13210,6 @@ packages:
   - category: "media-libs"
     name: "implot"
     version: ">=0"
-  - category: "dev-libs"
-    name: "stb"
-    version: ">=0"
   atoms:
   - atom: "games-util/mangohud"
     use: "dbus mangoapp mangohudctl X xnvctrl wayland video_cards_nvidia video_cards_amdgpu -abi_x86_32 # mangoplot"
@@ -13229,11 +13219,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
-#   prepare:
-#   - cp -r tree/games-util/mangohud /var/db/repos/guru/games-util
-#   - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/mangohud-0.8.2.patch\n)\n' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
-# #   - sed -i -e '/src_configure() {/a \\tcat "${S}"\/src/gl/inject_egl.cpp' /var/db/repos/guru/games-util/mangohud/mangohud-*.ebuild
-#   - find /var/db/repos/guru/games-util/mangohud/ -type f -name "mangohud-*.ebuild" -exec ebuild {} manifest \;
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
