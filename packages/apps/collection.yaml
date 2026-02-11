@@ -46,11 +46,11 @@ stubs:
   name: "qt"
   version: ">=0"
 
-- &layers-kde-kf5
+- &layers-qt5
   category: "layers"
   name: "kde-kf5"
   version: ">=0"
-- &buildbase-kde-kf5
+- &buildbase-qt5
   category: "buildbase"
   name: "kde-kf5"
   version: ">=0"
@@ -4687,7 +4687,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# QT only, moved to overlays, there is 2.0.0-beta1
+# QT only, moved to overlays, 2.0.0-beta1 migrating to QT6
 - category: "apps"
   name: "cool-retro-term"
   version: "1.2.0+1"
@@ -4707,9 +4707,9 @@ packages:
   - atom: "x11-terms/cool-retro-term"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "cuetools"
@@ -4834,7 +4834,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# QT only
 - &apps-designer
   category: "apps"
   name: "designer"
@@ -4855,9 +4854,9 @@ packages:
   - atom: "dev-qt/designer"
     use: "declarative"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "dfu-util"
@@ -5598,10 +5597,12 @@ packages:
     version: ">=0"
   inner_build_reqs:
   - dev-lang/rust-bin
+  - dev-python/sphinx
   requires:
   - <<: *layers-system-x
   build_requires:
-  - <<: *layers-system-x
+  # for media-libs/tiff
+  - <<: *layers-X
 
 - category: "apps"
   name: "flameshot"
@@ -7390,7 +7391,7 @@ packages:
 #   build_requires:
 #   - <<: *layers-plasma
 
-# QT only, moving to QT6
+# QT only, migrating to QT6
 - &apps-leocad
   category: "apps"
   name: "leocad"
@@ -7418,9 +7419,9 @@ packages:
   - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
   - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - &apps-lxc
   category: "apps"
@@ -9029,7 +9030,6 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# QT only
 - category: "apps"
   name: "quassel"
   version: "0.14.0-r8"
@@ -9049,12 +9049,12 @@ packages:
   - atom: "net-irc/quassel"
     use: "gui"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - category: "entity"
     name: "quassel"
     version: ">=0"
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - &apps-qhexedit2
   category: "apps"
@@ -9471,7 +9471,6 @@ packages:
 #   build_requires:
 #   - <<: *layers-X
 
-# QT only
 - category: "apps"
   name: "sqlitestudio"
   version: "4.0.0_pre20251207+1"
@@ -11963,11 +11962,11 @@ packages:
 #   - <<: *libs-libprojectm
 #     skip: true
 #   requires:
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 #   - <<: *layers-gnome-common
 #   - <<: *libs-libgpod
 #   build_requires:
-#   - <<: *buildbase-kde-kf5
+#   - <<: *buildbase-qt5
 #   - <<: *buildbase-gnome-common
 #   requires_final_images: true
 
@@ -12836,7 +12835,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# QT only
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
@@ -12868,10 +12866,10 @@ packages:
   - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
   - dev-python/sphinx
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - <<: *libs-zxcvbn-c
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "kget"
@@ -14234,7 +14232,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# QT only
+# QT only, needs dev-qt/qtscript, migrating to QT6
 # - category: "apps"
 #   name: "qcad"
 #   version: "3.27.8.4+3"
@@ -14258,9 +14256,9 @@ packages:
 #   inner_build_reqs:
 #   - dev-qt/designer
 #   requires:
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 #   build_requires:
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 
 - &apps-qdevicemonitor
   category: "apps"
@@ -16375,7 +16373,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# QT only
 - category: "apps"
   name: "hplip"
   version: "3.25.8"
@@ -16406,11 +16403,11 @@ packages:
     accept_keywords: "~amd64"
     license: "hplip-plugin"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - <<: *libs-reportlab
   - <<: *apps-net-snmp
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "k3b"
@@ -16917,11 +16914,11 @@ packages:
 #   - atom: "media-gfx/luminance-hdr"
 #     use: "fits openmp sse2"
 #   requires:
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 #   # - <<: *layers-qt
 #   - <<: *libs-cfitsio
 #   build_requires:
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 #   # - <<: *layers-qt
 
 - category: "apps"
@@ -17019,7 +17016,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-# QT only
 - &apps-megasync
   category: "apps"
   name: "megasync"
@@ -17045,11 +17041,11 @@ packages:
     accept_keywords: "~amd64"
     license: "MEGA"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - <<: *libs-freeimage
   - <<: *libs-libmediainfo
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   # - <<: *buildbase-gnome
   # - <<: *buildbase-kde-apps-minimal
   # requires_final_images: true
@@ -17964,7 +17960,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-# QT only
 - category: "apps"
   name: "x2goclient"
   version: "4.1.2.3"
@@ -17984,10 +17979,10 @@ packages:
   - atom: "net-misc/x2goclient"
     use: "ldap"
   requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - <<: *apps-nx
   build_requires:
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "x2goserver"
@@ -19723,13 +19718,13 @@ packages:
 #   - dev-lang/fpc
 #   requires:
 #   # - <<: *layers-qt
-#   - <<: *layers-kde-kf5
+#   - <<: *layers-qt5
 #   - <<: *libs-physfs
 #   - <<: *libs-sdl2
 #   - <<: *fonts-wqy-zenhei
 #   build_requires:
 #   # - <<: *buildbase-qt
-#   - <<: *buildbase-kde-kf5
+#   - <<: *buildbase-qt5
 #   - <<: *buildbase-ghc
 #   requires_final_images: true
 - &apps-hedgewars
@@ -19869,7 +19864,7 @@ packages:
   - app-text/asciidoc
   requires:
   - <<: *layers-X
-  # - <<: *layers-kde-kf5
+  # - <<: *layers-qt5
   - category: "entity"
     name: "uucp"
     version: ">=0"
@@ -19881,7 +19876,7 @@ packages:
   - <<: *apps-net-snmp
   build_requires:
   # - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - &apps-warmux
   category: "apps"
@@ -20321,7 +20316,7 @@ packages:
   - <<: *apps-designer
   requires:
   - <<: *layers-qt
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
   - <<: *apps-fluidsynth
   - <<: *apps-lash
   - <<: *libs-dssi
@@ -20333,7 +20328,7 @@ packages:
   - <<: *libs-rubberband
   build_requires:
   # - <<: *layers-kde-common
-  - <<: *layers-kde-kf5
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "mypaint"
@@ -20729,7 +20724,7 @@ packages:
 #   build_requires:
 #   - <<: *buildbase-gnome-common
 #   # - <<: *buildbase-qt
-#   - <<: *buildbase-kde-kf5
+#   - <<: *buildbase-qt5
 #   - <<: *buildbase-sci-libs
 #   requires_final_images: true
 
