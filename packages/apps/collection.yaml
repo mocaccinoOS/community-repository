@@ -20817,7 +20817,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "6.0.0_beta1-r1"
+  version: "6.0.0_beta1-r1+1"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -20840,7 +20840,6 @@ packages:
   - category: "dev-libs"
     name: "zug"
     version: ">=0"
-  # KDE 5
   - category: "kde-apps"
     name: "libkdcraw"
     version: ">=0"
@@ -20850,6 +20849,8 @@ packages:
   atoms:
   - atom: "media-gfx/krita"
     use: "color-management fftw gif gsl heif jpegxl media mypaint-brush-engine openexr pdf qtmedia raw vc webp"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/quazip"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
