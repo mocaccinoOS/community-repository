@@ -1499,7 +1499,7 @@ packages:
 - &def-hyprland
   category: "layers"
   name: "hyprland"
-  version: "0.53.3-r2+3"
+  version: "0.53.3-r2+4"
   uri:
   - https://github.com/hyprwm/Hyprland
   license: "MIT"
@@ -1507,9 +1507,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-cpp/tomlplusplus::gentoo dev-libs/hyprgraphics::hyproverlay dev-libs/hyprlang::hyproverlay dev-libs/libliftoff::gentoo dev-util/hyprwayland-scanner::hyproverlay gui-apps/clipman::guru gui-apps/hyprpaper::hyproverlay gui-libs/aquamarine::hyproverlay gui-libs/hyprcursor::hyproverlay gui-libs/hyprland-guiutils::hyproverlay gui-libs/hyprtoolkit::hyproverlay gui-libs/hyprutils::hyproverlay gui-libs/hyprwire::hyproverlay gui-wm/hyprland::hyproverlay media-libs/libspng
+      dev-cpp/tomlplusplus::gentoo dev-libs/hyprgraphics::hyproverlay dev-libs/hyprlang::hyproverlay dev-libs/libliftoff::gentoo dev-util/hyprwayland-scanner::hyproverlay gui-apps/hyprpaper::hyproverlay gui-libs/aquamarine::hyproverlay gui-libs/hyprcursor::hyproverlay gui-libs/hyprland-guiutils::hyproverlay gui-libs/hyprtoolkit::hyproverlay gui-libs/hyprutils::hyproverlay gui-libs/hyprwire::hyproverlay gui-wm/hyprland::hyproverlay media-libs/libspng
   overlays:
-  - enable: "guru"
   - enable: "hyproverlay"
   provides:
   - name: glaze
@@ -1593,6 +1592,8 @@ packages:
   - atom: "gui-wm/hyprland"
     accept_keywords: "~amd64"
     use: "-qtutils"
+  inner_build_reqs:
+  - dev-cpp/glaze
   requires:
   - <<: *layers-X
   - <<: *libs-iniparser
