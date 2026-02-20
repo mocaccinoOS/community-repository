@@ -269,6 +269,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-iniparser
+  category: "libs"
+  name: "iniparser"
+  version: "4.2.6"
+  uri:
+  - https://github.com/ndevilla/iniparser
+  license: "GPL-2"
+  description: "A free stand-alone ini file parsing library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/iniparser
+  provides:
+  - category: "dev-libs"
+    name: "iniparser"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+  
 - &libs-mhash
   category: "libs"
   name: "mhash"

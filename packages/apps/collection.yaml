@@ -283,6 +283,15 @@ stubs:
     emerge.packages: >-
       dev-python/fonttools
 
+- &libs-iniparser
+  category: "libs"
+  name: "iniparser"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/iniparser
+
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -1804,27 +1813,6 @@ packages:
   provides:
   - category: "media-libs"
     name: "id3lib"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-iniparser
-  category: "libs"
-  name: "iniparser"
-  version: "4.2.6"
-  uri:
-  - https://github.com/ndevilla/iniparser
-  license: "GPL-2"
-  description: "A free stand-alone ini file parsing library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/iniparser
-  provides:
-  - category: "dev-libs"
-    name: "iniparser"
     version: ">=0"
   requires:
   - <<: *layers-system-x
