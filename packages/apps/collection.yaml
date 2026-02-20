@@ -1730,7 +1730,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-libs/gupnp-igd:0
+      net-libs/gupnp-igd
   provides:
   - category: "net-libs"
     name: "gupnp"
@@ -2815,9 +2815,9 @@ packages:
     use: "havege threads zlib"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-motif
   category: "libs"
@@ -10995,7 +10995,7 @@ packages:
 - &libs-gst-plugins-libnice
   category: "libs"
   name: "gst-plugins-libnice"
-  version: "0.1.22+2"
+  version: "0.1.22+3"
   uri:
   - https://nice.freedesktop.org/wiki/
   license: "MPL-1.1 LGPL-2.1"
@@ -12110,10 +12110,10 @@ packages:
   - atom: "dev-go/delve"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *apps-go
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-dia
   category: "apps"
@@ -14223,11 +14223,11 @@ packages:
   - atom: "app-emulation/proton-ge-custom-bin"
     license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
-  - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
-  inner_build_reqs:
-  - dev-util/mingw64-toolchain
+  # prepare:
+  # - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
+  # - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
+  # inner_build_reqs:
+  # - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-X
   - <<: *libs-ffmpeg-compat
@@ -14523,9 +14523,9 @@ packages:
   inner_build_reqs:
   - sec-keys/openpgp-keys-rust
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "starship"
@@ -15810,6 +15810,15 @@ packages:
   atoms:
   - atom: "app-text/calibre"
     use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
+  env: 
+  - LLVM_VERSION=21
+  - USE="-llvm_slot_19 -llvm_slot_20 llvm_slot_21"
+  # portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  # - GCC_VERSION=15
+  # - CC=gcc-${GCC_VERSION}
+  # - CXX=g++-${GCC_VERSION}
+  # - HOSTCC=gcc-${GCC_VERSION}
+  # - HOSTCXX=g++-${GCC_VERSION}
   inner_build_reqs:
   - dev-lang/rapydscript-ng
   - dev-python/PyQt-builder
@@ -20657,65 +20666,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# build fails
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+3"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# # build fails
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+3"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
