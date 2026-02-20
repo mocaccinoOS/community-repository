@@ -15812,7 +15812,10 @@ packages:
   atoms:
   - atom: "app-text/calibre"
     use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
-  portage_env: "CC=gcc-15 CXX=g++-15 HOSTCC=gcc-15 HOSTCXX=g++-15"
+    portage_env_profile: "compiler-clang-makeopts-10"
+  # - LLVM_VERSION=21
+  # - USE="-llvm_slot_19 -llvm_slot_20 llvm_slot_21"
+  # # portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
   inner_build_reqs:
   - dev-lang/rapydscript-ng
   - dev-python/PyQt-builder
