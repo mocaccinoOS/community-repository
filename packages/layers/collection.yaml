@@ -1470,6 +1470,108 @@ packages:
 #   unpack: true
 #   hidden: true
 
+- &def-hyprland
+  category: "layers"
+  name: "hyprland"
+  version: "0.53.3-r2+3"
+  uri:
+  - https://github.com/hyprwm/Hyprland
+  license: "MIT"
+  description: "A dymanic tiling Wayland compositor that doesn't sacrifice on its looks."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tomlplusplus::gentoo dev-libs/hyprgraphics::hyproverlay dev-libs/hyprlang::hyproverlay dev-libs/libliftoff::gentoo dev-util/hyprwayland-scanner::hyproverlay gui-apps/clipman::guru gui-apps/hyprpaper::hyproverlay gui-libs/aquamarine::hyproverlay gui-libs/hyprcursor::hyproverlay gui-libs/hyprland-guiutils::hyproverlay gui-libs/hyprtoolkit::hyproverlay gui-libs/hyprutils::hyproverlay gui-libs/hyprwire::hyproverlay gui-wm/hyprland::hyproverlay media-libs/libspng
+  overlays:
+  - enable: "guru"
+  - enable: "hyproverlay"
+  provides:
+  - name: glaze
+    category: dev-cpp
+    version: '>=0'
+  - name: tomlplusplus
+    category: dev-cpp
+    version: '>=0'
+  - name: hyprgraphics
+    category: dev-libs
+    version: '>=0'
+  - name: hyprlang
+    category: dev-libs
+    version: '>=0'
+  - name: hyprland-protocols
+    category: dev-libs
+    version: '>=0'
+  - name: libliftoff
+    category: dev-libs
+    version: '>=0'
+  - name: hyprwayland-scanner
+    category: dev-util
+    version: '>=0'
+  - name: clipman
+    category: gui-apps
+    version: '>=0'
+  - name: hyprpaper
+    category: gui-apps
+    version: '>=0'
+  - name: aquamarine
+    category: gui-libs
+    version: '>=0'
+  - name: hyprcursor
+    category: gui-libs
+    version: '>=0'
+  - name: hyprland-guiutils
+    category: gui-libs
+    version: '>=0'
+  - name: hyprtoolkit
+    category: gui-libs
+    version: '>=0'
+  - name: hyprutils
+    category: gui-libs
+    version: '>=0'
+  - name: hyprwire
+    category: gui-libs
+    version: '>=0'
+  - name: hyprland
+    category: gui-wm
+    version: '>=0'
+  - name: libspng
+    category: media-libs
+    version: '>=0'
+  atoms:
+  - atom: "dev-cpp/glaze"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/hyprgraphics"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/hyprlang"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/hyprland-protocols"
+    accept_keywords: "~amd64"
+  - atom: "dev-util/hyprwayland-scanner"
+    accept_keywords: "~amd64"
+  - atom: "gui-apps/clipman"
+    accept_keywords: "~amd64"
+  - atom: "gui-apps/hyprpaper"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/aquamarine"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/hyprcursor"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/hyprland-guiutils"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/hyprutils"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/hyprtoolkit"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/hyprwire"
+    accept_keywords: "~amd64"
+  - atom: "gui-wm/hyprland"
+    accept_keywords: "~amd64"
+    use: "-qtutils"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-iniparser
+  build_requires:
+  - <<: *layers-X
 
 - &def-kde-pim
   category: "layers"
