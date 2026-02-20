@@ -9636,6 +9636,10 @@ packages:
   atoms:
   - atom: "app-backup/timeshift"
     accept_keywords: "~amd64"
+  - atom: "x11-libs/xapp"
+    use: "introspection vala"
+  inner_build_reqs:
+  - x11-libs/xapp
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -15811,14 +15815,14 @@ packages:
   - atom: "app-text/calibre"
     use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
   env: 
-  - LLVM_VERSION=21
-  - USE="-llvm_slot_19 -llvm_slot_20 llvm_slot_21"
-  # portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  # - GCC_VERSION=15
-  # - CC=gcc-${GCC_VERSION}
-  # - CXX=g++-${GCC_VERSION}
-  # - HOSTCC=gcc-${GCC_VERSION}
-  # - HOSTCXX=g++-${GCC_VERSION}
+  # - LLVM_VERSION=21
+  # - USE="-llvm_slot_19 -llvm_slot_20 llvm_slot_21"
+  # # portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+  - GCC_VERSION=15
+  - CC=gcc-${GCC_VERSION}
+  - CXX=g++-${GCC_VERSION}
+  - HOSTCC=gcc-${GCC_VERSION}
+  - HOSTCXX=g++-${GCC_VERSION}
   inner_build_reqs:
   - dev-lang/rapydscript-ng
   - dev-python/PyQt-builder
