@@ -9618,7 +9618,7 @@ packages:
 - &apps-timeshift
   category: "apps"
   name: "timeshift"
-  version: "25.12.4"
+  version: "25.12.4+1"
   uri:
   - https://github.com/linuxmint/timeshift
   license: "LGPL-3"
@@ -9636,10 +9636,8 @@ packages:
   atoms:
   - atom: "app-backup/timeshift"
     accept_keywords: "~amd64"
-  - atom: "x11-libs/xapp"
-    use: "introspection vala"
   inner_build_reqs:
-  - x11-libs/xapp
+  - x11-libs/xapp;USE="introspection vala"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -15814,15 +15812,7 @@ packages:
   atoms:
   - atom: "app-text/calibre"
     use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
-  env: 
-  # - LLVM_VERSION=21
-  # - USE="-llvm_slot_19 -llvm_slot_20 llvm_slot_21"
-  # # portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  - GCC_VERSION=15
-  - CC=gcc-${GCC_VERSION}
-  - CXX=g++-${GCC_VERSION}
-  - HOSTCC=gcc-${GCC_VERSION}
-  - HOSTCXX=g++-${GCC_VERSION}
+  portage_env: "CC=gcc-15 CXX=g++-15 HOSTCC=gcc-15 HOSTCXX=g++-15"
   inner_build_reqs:
   - dev-lang/rapydscript-ng
   - dev-python/PyQt-builder
