@@ -9766,7 +9766,7 @@ packages:
 
 - category: "apps"
   name: "testdisk"
-  version: "7.2"
+  version: "7.2+1"
   uri:
   - https://www.cgsecurity.org/wiki/TestDisk
   license: "GPL-2+"
@@ -9779,10 +9779,21 @@ packages:
   - category: "app-admin"
     name: "testdisk"
     version: ">=0"
+  - category: "app-forensics"
+    name: "libewf"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "progsreiserfs"
+    version: ">=0"
+  atoms:
+  - atom: "app-admin/testdisk"
+    use: "gui jpeg ntfs reiserfs sudo zlib # ewf static"
   requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-kde-kf5
 
 - &apps-tk
   category: "apps"
