@@ -1500,7 +1500,7 @@ packages:
 - &def-hyprland
   category: "layers"
   name: "hyprland"
-  version: "0.53.3-r2+7"
+  version: "0.53.3-r2+8"
   uri:
   - https://github.com/hyprwm/Hyprland
   license: "MIT"
@@ -1525,9 +1525,6 @@ packages:
   overlays:
   - enable: "hyproverlay"
   provides:
-  - name: glaze
-    category: dev-cpp
-    version: ">=0"
   - name: tomlplusplus
     category: dev-cpp
     version: ">=0"
@@ -1574,8 +1571,6 @@ packages:
     category: media-libs
     version: ">=0"
   atoms:
-  - atom: "dev-cpp/glaze"
-    accept_keywords: "~amd64"
   - atom: "dev-libs/hyprgraphics"
     accept_keywords: "~amd64"
   - atom: "dev-libs/hyprlang"
@@ -1603,6 +1598,7 @@ packages:
     use: "-qtutils"
   inner_build_reqs:
   - app-misc/jq
+  - <dev-cpp/glaze-7.0.0::hyproverlay;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-X
   - <<: *libs-iniparser
