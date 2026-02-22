@@ -1496,11 +1496,10 @@ packages:
 #   unpack: true
 #   hidden: true
 
-
 - &def-hyprland
   category: "layers"
   name: "hyprland"
-  version: "0.53.3-r2+8"
+  version: "0.53.3-r2+9"
   uri:
   - https://github.com/hyprwm/Hyprland
   license: "MIT"
@@ -1513,6 +1512,7 @@ packages:
       dev-libs/hyprlang::hyproverlay
       dev-libs/libliftoff::gentoo
       dev-util/hyprwayland-scanner::hyproverlay
+      gui-apps/hypridle::hyproverlay 
       gui-apps/hyprpaper::hyproverlay
       gui-libs/aquamarine::hyproverlay
       gui-libs/hyprcursor::hyproverlay
@@ -1542,6 +1542,9 @@ packages:
     version: ">=0"
   - name: hyprwayland-scanner
     category: dev-util
+    version: ">=0"
+  - name: hypridle
+    category: gui-apps
     version: ">=0"
   - name: hyprpaper
     category: gui-apps
@@ -1578,6 +1581,8 @@ packages:
   - atom: "dev-libs/hyprland-protocols"
     accept_keywords: "~amd64"
   - atom: "dev-util/hyprwayland-scanner"
+    accept_keywords: "~amd64"
+  - atom: "gui-apps/hypridle"
     accept_keywords: "~amd64"
   - atom: "gui-apps/hyprpaper"
     accept_keywords: "~amd64"
