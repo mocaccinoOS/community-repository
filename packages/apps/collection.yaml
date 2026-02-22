@@ -10553,6 +10553,26 @@ packages:
   build_requires:
   - <<: *apps-grub
 
+- category: "apps"
+  name: "wofi"
+  version: "1.4.1"
+  uri:
+  - https://gitlab.freedesktop.org/mstoeckl/waypipe
+  license: "GPL-3"
+  description: "Wofi is a launcher/menu program for wlroots based wayland compositors like sway"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/wofi
+  provides:
+  - category: "gui-apps"
+    name: "wofi"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-worker
   category: "apps"
   name: "worker"
