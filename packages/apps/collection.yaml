@@ -2472,7 +2472,7 @@ packages:
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
-  version: "3.0.1+1"
+  version: "3.0.1+2"
   uri:
   - https://www.sfml-dev.org/
   license: "ZLIB"
@@ -2480,7 +2480,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libsfml
+      media-libs/libsfml:0/3.0
       media-libs/libsfml:0/2.6
   provides:
   - category: "media-libs"
@@ -12745,7 +12745,7 @@ packages:
 - &apps-gopls
   category: "apps"
   name: "gopls"
-  version: "0.21.0"
+  version: "0.20.0"
   uri:
   - https://github.com/golang/tools/blob/master/gopls/README.md
   license: "BSD"
@@ -20577,7 +20577,7 @@ packages:
   
 - category: "apps"
   name: "plantuml"
-  version: "1.2026.1+1"
+  version: "1.2026.1+2"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -20591,20 +20591,20 @@ packages:
     name: "plantuml"
     version: ">=0"
   completion:
-  # - |
-  #     grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
-  #     ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
-  #     BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
-  #     FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
-  #     sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
-  #     grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
-  #     if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-  #     sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
-  - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=":batik:fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
+  - |
+      grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+      ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+      BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+      FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+      sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+      grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+      if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
+      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
+  # - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=":batik:fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-qt
   - <<: *layers-java
