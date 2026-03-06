@@ -2472,7 +2472,7 @@ packages:
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
-  version: "3.0.1"
+  version: "3.0.1+1"
   uri:
   - https://www.sfml-dev.org/
   license: "ZLIB"
@@ -2481,6 +2481,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-libs/libsfml
+      media-libs/libsfml:0/2.6
   provides:
   - category: "media-libs"
     name: "libsfml"
@@ -12416,7 +12417,7 @@ packages:
 - &apps-extreme-tuxracer
   category: "apps"
   name: "extreme-tuxracer"
-  version: "0.8.4+2"
+  version: "0.8.4+3"
   uri:
   - https://sourceforge.net/p/extremetuxracer/wiki/Home/
   license: "GPL-2+"
@@ -14235,34 +14236,32 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-poedit
-  category: "apps"
-  name: "poedit"
-  version: "3.8.2"
-  uri:
-  - https://poedit.net
-  license: "Apache-2.0 LGPL-3 MIT"
-  description: "GUI gettext translations editor"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-i18n/poedit
-  provides:
-  - category: "app-i18n"
-    name: "poedit"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "lucene++"
-    version: ">=0"
-  atoms:
-  - atom: "app-i18n/poedit"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *libs-gtk-spell
-  - <<: *libs-wxGTK
-  build_requires:
-  - <<: *layers-gnome-common
+# https://bugs.gentoo.org/970903
+# - &apps-poedit
+#   category: "apps"
+#   name: "poedit"
+#   version: "3.8.2"
+#   uri:
+#   - https://poedit.net
+#   license: "Apache-2.0 LGPL-3 MIT"
+#   description: "GUI gettext translations editor"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-i18n/poedit
+#   provides:
+#   - category: "app-i18n"
+#     name: "poedit"
+#     version: ">=0"
+#   - category: "dev-cpp"
+#     name: "lucene++"
+#     version: ">=0"
+#   requires:
+#   - <<: *layers-gnome-common
+#   - <<: *libs-gtk-spell
+#   - <<: *libs-wxGTK
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-postgresql
   category: "apps"
@@ -20853,64 +20852,64 @@ packages:
   - <<: *layers-qt
 
 # # build fails
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+4"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+4"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
