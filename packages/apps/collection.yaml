@@ -2472,7 +2472,7 @@ packages:
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
-  version: "2.6.2"
+  version: "3.0.1"
   uri:
   - https://www.sfml-dev.org/
   license: "ZLIB"
@@ -2480,7 +2480,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-libs/libsfml:0/2.6
+      media-libs/libsfml
   provides:
   - category: "media-libs"
     name: "libsfml"
@@ -5504,7 +5504,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "143-144"
+  version: "143-144-145"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5514,6 +5514,7 @@ packages:
     emerge.packages: >-
       media-video/ffmpeg-chromium:143
       media-video/ffmpeg-chromium:144
+      media-video/ffmpeg-chromium:145
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -6893,29 +6894,6 @@ packages:
   provides:
   - category: "kde-apps"
     name: "kapptemplate"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
-- category: "apps"
-  name: "kate"
-  version: "25.12.2"
-  uri:
-  - https://apps.kde.org/kate
-  license: "GPL-2"
-  description: "Multi-document editor with network transparency, Plasma integration and more"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/kate
-  provides:
-  - category: "kde-apps"
-    name: "kate"
-    version: ">=0"
-  - category: "kde-apps"
-    name: "kate-addons"
     version: ">=0"
   requires:
   - <<: *layers-kde-common
@@ -9340,30 +9318,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- category: "apps"
-  name: "rssguard"
-  version: "5.0.0"
-  uri:
-  - https://github.com/martinrotter/rssguard
-  license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
-  description: "Simple (yet powerful) news feed reader"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-news/rssguard
-  provides:
-  - category: "net-news"
-    name: "rssguard"
-    version: ">=0"
-  atoms:
-  - atom: "net-news/rssguard"
-    use: "sqlite -libmpv -mysql qt6 -qtmultimedia -webengine"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
 
 - category: "apps"
   name: "scapy"
@@ -12462,7 +12416,7 @@ packages:
 - &apps-extreme-tuxracer
   category: "apps"
   name: "extreme-tuxracer"
-  version: "0.8.4+1"
+  version: "0.8.4+2"
   uri:
   - https://sourceforge.net/p/extremetuxracer/wiki/Home/
   license: "GPL-2+"
@@ -12812,7 +12766,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.2.2"
+  version: "2.2.2+1"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -12850,6 +12804,9 @@ packages:
   provides:
   - category: "media-video"
     name: "handbrake"
+    version: ">=0"
+  - category: "sec-keys"
+    name: "openpgp-keys-handbrake"
     version: ">=0"
   atoms:
   - atom: "media-video/handbrake"
@@ -13010,6 +12967,30 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *libs-analitza
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
+  name: "kate"
+  version: "25.12.2+1"
+  uri:
+  - https://apps.kde.org/kate
+  license: "GPL-2"
+  description: "Multi-document editor with network transparency, Plasma integration and more"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kate
+  provides:
+  - category: "kde-apps"
+    name: "kate"
+    version: ">=0"
+  - category: "kde-apps"
+    name: "kate-addons"
+    version: ">=0"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-kde-common
 
@@ -13748,7 +13729,7 @@ packages:
 - &apps-nwjs
   category: "apps"
   name: "nwjs"
-  version: "0.108.0"
+  version: "0.108.0+1"
   uri:
   - https://nwjs.io
   license: "MIT"
@@ -14257,7 +14238,7 @@ packages:
 - &apps-poedit
   category: "apps"
   name: "poedit"
-  version: "3.5.2-r1+2"
+  version: "3.8.2"
   uri:
   - https://poedit.net
   license: "Apache-2.0 LGPL-3 MIT"
@@ -14273,6 +14254,9 @@ packages:
   - category: "dev-cpp"
     name: "lucene++"
     version: ">=0"
+  atoms:
+  - atom: "app-i18n/poedit"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtk-spell
@@ -14634,6 +14618,31 @@ packages:
   # - <<: *buildbase-kde-common
   - <<: *buildbase-qemu
   requires_final_images: true
+
+- category: "apps"
+  name: "rssguard"
+  version: "5.0.0+1"
+  uri:
+  - https://github.com/martinrotter/rssguard
+  license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
+  description: "Simple (yet powerful) news feed reader"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-news/rssguard
+  provides:
+  - category: "net-news"
+    name: "rssguard"
+    version: ">=0"
+  atoms:
+  - atom: "net-news/rssguard"
+    use: "sqlite -libmpv -mysql qt6 -qtmultimedia -webengine"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-go
+  build_requires:
+  - <<: *layers-qt
 
 # run as user: /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
 - &apps-rust-bin
@@ -15554,8 +15563,8 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  - atom: "dev-python/nanobind"
-    accept_keywords: "~amd64"
+  # - atom: "dev-python/nanobind"
+  #   accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-python/scikit-build-core
   requires:
@@ -16271,8 +16280,7 @@ packages:
     accept_keywords: "~amd64"
     use: "qrcode"
   inner_build_reqs:
-  - net-libs/czmq
-  - net-vpn/tor
+  - dev-util/bc-ur;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-qt
   - <<: *libs-czmq
@@ -16496,7 +16504,7 @@ packages:
 - &apps-gnuradio
   category: "apps"
   name: "gnuradio"
-  version: "3.10.12.0-r2+3"
+  version: "3.10.12.0-r2+4"
   uri:
   - https://www.gnuradio.org
   license: "GPL-3"
@@ -19978,7 +19986,7 @@ packages:
 
 - category: "apps"
   name: "kdenlive"
-  version: "25.12.2"
+  version: "25.12.2+1"
   uri:
   - https://kdenlive.org/en/
   license: "GPL-3"
@@ -19991,6 +19999,9 @@ packages:
   - category: "kde-apps"
     name: "kdenlive"
     version: ">=0"
+  - category: "gui-libs"
+    name: "kddockwidgets"
+    version: ">=0"
   - category: "media-libs"
     name: "opentimelineio"
     version: ">=0"
@@ -20000,6 +20011,7 @@ packages:
   requires:
   - <<: *layers-kde-common
   - <<: *libs-mlt
+  - <<: *libs-nlohmann_json
   - <<: *apps-mediainfo
   build_requires:
   - <<: *layers-kde-common
@@ -20566,7 +20578,7 @@ packages:
   
 - category: "apps"
   name: "plantuml"
-  version: "1.2026.1"
+  version: "1.2026.1+1"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -20580,15 +20592,20 @@ packages:
     name: "plantuml"
     version: ">=0"
   completion:
-  - |
-      grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
-      ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
-      BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
-      FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
-      sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
-      grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
-      if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
+  # - |
+  #     grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+  #     ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+  #     BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+  #     FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+  #     sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+  #     grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+  #     if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
+  #     sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
+  - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=":batik:fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-qt
   - <<: *layers-java
@@ -20836,64 +20853,64 @@ packages:
   - <<: *layers-qt
 
 # # build fails
-# - &apps-easyeffects
-#   category: "apps"
-#   name: "easyeffects"
-#   version: "7.2.5+3"
-#   uri:
-#   - https://github.com/wwmm/easyeffects
-#   - https://lsp-plug.in
-#   - https://www.zamaudio.com/
-#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
-#   description: |
-#     Limiter, auto volume and many other plugins for PipeWire applications
-#     Linux Studio Plugins
-#     LV2 port of the MDA plugins by Paul Kellett
-#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/easyeffects
-#   provides:
-#   - category: "media-sound"
-#     name: "easyeffects"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "lsp-plugins"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "zita-convolver"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "mda-lv2"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "zam-plugins"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/easyeffects"
-#     use: "calf doc mda-lv2 zamaudio"
-#   - atom: "media-libs/lsp-plugins"
-#     use: "lv2 vst X # doc jack ladspa"
-#   - atom: "media-plugins/zam-plugins"
-#     use: "jack opengl"
-#   inner_build_reqs:
-#   - dev-util/itstool
-#   - dev-util/lv2lint
-#   requires:
-#   - <<: *layers-gnome
-#   - <<: *libs-nlohmann_json
-#   - <<: *libs-tbb
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-liblo
-#   - <<: *libs-libbs2b
-#   - <<: *libs-libebur128
-#   - <<: *libs-libsoundtouch
-#   - <<: *libs-lilv
-#   - <<: *libs-rnnoise
-#   - <<: *apps-calf
-#   build_requires:
-#   - <<: *layers-gnome
+- &apps-easyeffects
+  category: "apps"
+  name: "easyeffects"
+  version: "7.2.5+4"
+  uri:
+  - https://github.com/wwmm/easyeffects
+  - https://lsp-plug.in
+  - https://www.zamaudio.com/
+  license: "GPL-3 LGPL-3 GPL-2+ MIT"
+  description: |
+    Limiter, auto volume and many other plugins for PipeWire applications
+    Linux Studio Plugins
+    LV2 port of the MDA plugins by Paul Kellett
+    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easyeffects
+  provides:
+  - category: "media-sound"
+    name: "easyeffects"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lsp-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "zita-convolver"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "mda-lv2"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "zam-plugins"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/easyeffects"
+    use: "calf doc mda-lv2 zamaudio"
+  - atom: "media-libs/lsp-plugins"
+    use: "lv2 vst X # doc jack ladspa"
+  - atom: "media-plugins/zam-plugins"
+    use: "jack opengl"
+  inner_build_reqs:
+  - dev-util/itstool
+  - dev-util/lv2lint
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tbb
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-libbs2b
+  - <<: *libs-libebur128
+  - <<: *libs-libsoundtouch
+  - <<: *libs-lilv
+  - <<: *libs-rnnoise
+  - <<: *apps-calf
+  build_requires:
+  - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
