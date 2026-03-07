@@ -318,6 +318,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-nlohmann_json
+  category: "libs"
+  name: "nlohmann_json"
+  version: "3.12.0-r1"
+  uri:
+  - https://github.com/nlohmann/json
+  license: "MIT"
+  description: "C++ class library of cryptographic schemes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/nlohmann_json
+  provides:
+  - category: "dev-cpp"
+    name: "nlohmann_json"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-qgpgme
   category: "libs"
   name: "qgpgme"
@@ -1849,7 +1870,7 @@ packages:
 - &def-wayfire
   category: "layers"
   name: "wayfire"
-  version: "0.10.1+12"
+  version: "0.10.1+13"
   uri:
     - https://github.com/WayfireWM/wayfire
   license: "MIT"
@@ -1895,6 +1916,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-wlroots
+  - <<: *libs-nlohmann_json
   - <<: *libs-yyjson
   build_requires:
   - <<: *layers-wlroots

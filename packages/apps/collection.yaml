@@ -301,6 +301,15 @@ stubs:
     emerge.packages: >-
       app-crypt/mhash
 
+- &libs-nlohmann_json
+  category: "libs"
+  name: "nlohmann_json"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/nlohmann_json
+
 - &libs-qgpgme
   category: "libs"
   name: "qgpgme"
@@ -2901,27 +2910,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-nlohmann_json
-  category: "libs"
-  name: "nlohmann_json"
-  version: "3.12.0-r1"
-  uri:
-  - https://github.com/nlohmann/json
-  license: "MIT"
-  description: "C++ class library of cryptographic schemes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/nlohmann_json
-  provides:
-  - category: "dev-cpp"
-    name: "nlohmann_json"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-oniguruma
   category: "libs"
