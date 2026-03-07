@@ -195,6 +195,11 @@ stubs:
   category: "buildbase"
   name: "perl-libs"
   version: ">=0"
+  
+- &layers-wlroots
+  category: "layers"
+  name: "wlroots"
+  version: ">=0"
 
 ################################################################################
 ### fonts ###
@@ -364,6 +369,27 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+  
+- &libs-yyjson
+  category: "apps"
+  name: "yyjson"
+  version: "0.12.0"
+  uri:
+  - https://github.com/ibireme/yyjson
+  license: "MIT"
+  description: "Fast JSON library in C"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/yyjson
+  provides:
+  - category: "dev-libs"
+    name: "yyjson"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 ################################################################################################################################################################
 ### dep 0 apps ###
@@ -1819,6 +1845,64 @@ packages:
   build_requires:
   - <<: *layers-plasma
   
+
+- &def-wayfire
+  category: "layers"
+  name: "wayfire"
+  version: "0.10.1+11"
+  uri:
+    - https://github.com/WayfireWM/wayfire
+  license: "MIT"
+  description: "Compiz like 3D wayland compositor"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-libs/yyjson
+      gui-apps/grim
+      gui-apps/gtkgreet
+      gui-apps/wayland-logout
+      gui-apps/wcm
+      gui-apps/wf-shell
+      gui-libs/wf-config
+      gui-wm/wayfire
+  provides:
+  - category: "dev-libs"
+    name: "yyjson"
+    version: '>=0'
+  - category: "gui-apps"
+    name: grim
+    version: '>=0'
+  - category: "gui-apps"
+    name: "gtkgreet"
+    version: '>=0'
+  - category: "gui-apps"
+    name: "wayland-logout"
+    version: '>=0'
+  - category: "gui-apps"
+    name: "wcm"
+    version: '>=0'
+  - category: "gui-apps"
+    name: "wf-shell"
+    version: '>=0'
+  - category: "gui-libs"
+    name: "wf-config"
+    version: '>=0'
+  - category: "gui-wm"
+    name: "wayfire"
+    version: '>=0'
+  atoms:
+  - atom: "gui-apps/gtkgreet"
+    accept_keywords: "~amd64"
+  - atom: "gui-libs/greetd"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/spdlog"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  - <<: *libs-yyjson
+  build_requires:
+  - <<: *layers-wlroots
+
 
 - &def-ghc
   category: "layers"
