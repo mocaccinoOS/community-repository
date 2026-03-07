@@ -416,6 +416,35 @@ packages:
 ### dep 0 apps ###
 ################################################################################################################################################################
 
+- &apps-grim
+  category: "apps"
+  name: "grim"
+  version: "1.5.0"
+  uri:
+  - https://gitlab.freedesktop.org/emersion/grim
+  license: "MIT"
+  description: "Grab images from a Wayland compositor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/grim
+  provides:
+  - category: "gui-apps"
+    name: "grim"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/grim"
+    use: "jpeg verify-sig"
+  inner_build_reqs:
+  # - app-alternatives/gpg
+  # - app-portage/gemato
+  - app-text/scdoc
+  - sec-keys/openpgp-keys-emersion
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep 1 libs ###
 ################################################################################################################################################################
@@ -1870,7 +1899,7 @@ packages:
 - &def-wayfire
   category: "layers"
   name: "wayfire"
-  version: "0.10.1+13"
+  version: "0.10.1+14"
   uri:
     - https://github.com/WayfireWM/wayfire
   license: "MIT"
@@ -1887,26 +1916,23 @@ packages:
       gui-wm/wayfire
   provides:
   - category: "gui-apps"
-    name: grim
-    version: '>=0'
-  - category: "gui-apps"
     name: "gtkgreet"
-    version: '>=0'
+    version: ">=0"
   - category: "gui-apps"
     name: "wayland-logout"
-    version: '>=0'
+    version: ">=0"
   - category: "gui-apps"
     name: "wcm"
-    version: '>=0'
+    version: ">=0"
   - category: "gui-apps"
     name: "wf-shell"
-    version: '>=0'
+    version: ">=0"
   - category: "gui-libs"
     name: "wf-config"
-    version: '>=0'
+    version: ">=0"
   - category: "gui-wm"
     name: "wayfire"
-    version: '>=0'
+    version: ">=0"
   atoms:
   - atom: "gui-apps/gtkgreet"
     accept_keywords: "~amd64"
@@ -1916,6 +1942,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-wlroots
+  - <<: *apps-grim
   - <<: *libs-nlohmann_json
   - <<: *libs-yyjson
   build_requires:
