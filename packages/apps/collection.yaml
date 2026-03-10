@@ -6576,6 +6576,32 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "hashcat"
+  version: "7.1.2-r1"
+  uri:
+  - https://github.com/hashcat/hashcat
+  license: "MIT"
+  description: "World's fastest and most advanced password recovery utility"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/hashcat
+  provides:
+  - category: "app-crypt"
+    name: "hashcat"
+    version: ">=0"
+  atoms:
+  - atom: "app-crypt/hashcat"
+    use: "brain"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/rust-bin
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-hddtemp
   category: "apps"
   name: "hddtemp"
