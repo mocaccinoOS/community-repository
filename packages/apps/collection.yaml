@@ -4946,6 +4946,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-dia
+  category: "apps"
+  name: "dia"
+  version: "0.98_pre20250913+1"
+  uri:
+  - https://wiki.gnome.org/Apps/Dia
+  license: "GPL-2"
+  description: "Diagram/flowchart creation program"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-office/dia
+  provides:
+  - category: "app-office"
+    name: "dia"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/dia"
+    use: "gnome-print"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-diffpdf
   category: "apps"
   name: "diffpdf"
@@ -6947,6 +6971,8 @@ packages:
   atoms:
   - atom: "app-crypt/johntheripper-jumbo"
     use: "kerberos opencl openmp pcap cpu_flags_x86_avx512bw cpu_flags_x86_avx512f cpu_flags_x86_avx2 cpu_flags_x86_xop cpu_flags_x86_avx cpu_flags_x86_sse4_2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 cpu_flags_x86_sse2 # mpi custom-cflags"
+    accept_keywords: "~amd64"
+  - atom: "dev-perl/Compress-Raw-Lzma"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
@@ -11664,7 +11690,7 @@ packages:
 - &apps-abiword
   category: "apps"
   name: "abiword"
-  version: "3.0.7+1"
+  version: "3.0.7+2"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -11724,7 +11750,6 @@ packages:
   - <<: *layers-office-common
   - <<: *fonts-texcm-ttf
   - <<: *libs-asio
-  - <<: *libs-gtk2
   - <<: *libs-gtk-spell
   - <<: *libs-libchamplain
   - <<: *libs-raptor
@@ -12251,31 +12276,6 @@ packages:
   - <<: *apps-go
   build_requires:
   - <<: *layers-sys-fs
-
-- &apps-dia
-  category: "apps"
-  name: "dia"
-  version: "0.98_pre20250913"
-  uri:
-  - https://wiki.gnome.org/Apps/Dia
-  license: "GPL-2"
-  description: "Diagram/flowchart creation program"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-office/dia
-  provides:
-  - category: "app-office"
-    name: "dia"
-    version: ">=0"
-  atoms:
-  - atom: "app-office/dia"
-    use: "gnome-print"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-gtk2
-  build_requires:
-  - <<: *layers-X
 
 - &apps-docker-tools
   category: "apps"
