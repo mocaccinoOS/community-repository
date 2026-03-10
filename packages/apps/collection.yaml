@@ -3939,9 +3939,12 @@ packages:
     emerge.packages: >-
       dev-util/android-studio
   provides:
-    - category: "dev-util"
-      name: "android-studio"
-      version: ">=0"
+  - category: "dev-util"
+    name: "android-studio"
+    version: ">=0"
+  - category: "sys-libs"
+    name: "ncurses-compat"
+    version: ">=0"
   atoms:
   - atom: "dev-util/android-studio"
     license: "android"
@@ -6888,6 +6891,71 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "johntheripper"
+  version: "1.9.0"
+  uri:
+  - https://github.com/magnumripper/JohnTheRipper
+  license: "GPL-2"
+  description: "fast password cracker"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/johntheripper
+  provides:
+  - category: "app-crypt"
+    name: "johntheripper"
+    version: ">=0"
+  atoms:
+  - atom: "app-crypt/johntheripper"
+    use: "openmp verify-sig cpu_flags_x86_mmx cpu_flags_x86_sse2 cpu_flags_x86_avx cpu_flags_x86_avx2 cpu_flags_x86_avx512f cpu_flags_x86_xop # custom-cflags"
+  inner_build_reqs:
+  - app-alternatives/gpg
+  - app-portage/gemato
+  - sec-keys/openpgp-keys-openwall
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "johntheripper-jumbo"
+  version: "1.9.0_p20250703"
+  uri:
+  - http://www.openwall.com/john/
+  license: "GPL-2"
+  description: "Fast password cracker, community enhanced version"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/johntheripper-jumbo
+  provides:
+  - category: "app-crypt"
+    name: "johntheripper"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Compress-Raw-Lzma"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-GOST"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-MD2"
+    version: ">=0"
+  - category: "dev-perl"
+    name: "Digest-SHA3"
+    version: ">=0"
+  atoms:
+  - atom: "app-crypt/johntheripper-jumbo"
+    use: "kerberos mpi opencl openmp pcap cpu_flags_x86_avx512bw cpu_flags_x86_avx512f cpu_flags_x86_avx2 cpu_flags_x86_xop cpu_flags_x86_avx cpu_flags_x86_sse4_2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 cpu_flags_x86_sse2 # custom-cflags"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - virtual/mpi
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "joplin-desktop"
   version: "3.6.2"
   uri:
@@ -7119,31 +7187,6 @@ packages:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
-
-- category: "apps"
-  name: "lego"
-  version: "4.32.0"
-  uri:
-  - https://github.com/go-acme/lego/
-  license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
-  description: "Let's Encrypt/ACME client (like certbot or acme.sh) and library written in Go"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-crypt/lego
-  provides:
-  - category: "app-crypt"
-    name: "lego"
-    version: ">=0"
-  atoms:
-  - atom: "app-crypt/lego"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/go
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "kitty"
@@ -7461,6 +7504,31 @@ packages:
 #   - <<: *layers-plasma
 #   build_requires:
 #   - <<: *layers-plasma
+
+- category: "apps"
+  name: "lego"
+  version: "4.32.0"
+  uri:
+  - https://github.com/go-acme/lego/
+  license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
+  description: "Let's Encrypt/ACME client (like certbot or acme.sh) and library written in Go"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-crypt/lego
+  provides:
+  - category: "app-crypt"
+    name: "lego"
+    version: ">=0"
+  atoms:
+  - atom: "app-crypt/lego"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/go
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 # QT only, migrating to QT6
 - &apps-leocad
