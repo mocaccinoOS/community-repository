@@ -6913,9 +6913,9 @@ packages:
   - app-portage/gemato
   - sec-keys/openpgp-keys-openwall
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "johntheripper-jumbo"
@@ -6946,10 +6946,8 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-crypt/johntheripper-jumbo"
-    use: "kerberos mpi opencl openmp pcap cpu_flags_x86_avx512bw cpu_flags_x86_avx512f cpu_flags_x86_avx2 cpu_flags_x86_xop cpu_flags_x86_avx cpu_flags_x86_sse4_2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 cpu_flags_x86_sse2 # custom-cflags"
+    use: "kerberos opencl openmp pcap cpu_flags_x86_avx512bw cpu_flags_x86_avx512f cpu_flags_x86_avx2 cpu_flags_x86_xop cpu_flags_x86_avx cpu_flags_x86_sse4_2 cpu_flags_x86_sse4_1 cpu_flags_x86_ssse3 cpu_flags_x86_sse2 # mpi custom-cflags"
     accept_keywords: "~amd64"
-  inner_build_reqs:
-  - virtual/mpi
   requires:
   - <<: *layers-X
   build_requires:
