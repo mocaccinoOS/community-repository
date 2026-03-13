@@ -14302,31 +14302,31 @@ packages:
   - <<: *layers-kde-common
 
 # https://bugs.gentoo.org/970903
-# - &apps-poedit
-#   category: "apps"
-#   name: "poedit"
-#   version: "3.8.2"
-#   uri:
-#   - https://poedit.net
-#   license: "Apache-2.0 LGPL-3 MIT"
-#   description: "GUI gettext translations editor"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       app-i18n/poedit
-#   provides:
-#   - category: "app-i18n"
-#     name: "poedit"
-#     version: ">=0"
-#   - category: "dev-cpp"
-#     name: "lucene++"
-#     version: ">=0"
-#   requires:
-#   - <<: *layers-gnome-common
-#   - <<: *libs-gtk-spell
-#   - <<: *libs-wxGTK
-#   build_requires:
-#   - <<: *layers-gnome-common
+- &apps-poedit
+  category: "apps"
+  name: "poedit"
+  version: "3.8.2"
+  uri:
+  - https://poedit.net
+  license: "Apache-2.0 LGPL-3 MIT"
+  description: "GUI gettext translations editor"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-i18n/poedit
+  provides:
+  - category: "app-i18n"
+    name: "poedit"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "lucene++"
+    version: ">=0"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-gtk-spell
+  - <<: *libs-wxGTK
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-postgresql
   category: "apps"
