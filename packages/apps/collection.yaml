@@ -15117,7 +15117,7 @@ packages:
     use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
   prepare:
   - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  - sed -i -e 's/<x11-libs\/fltk-1.4:1=/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  - sed -i -e 's/<x11-libs\/fltk-1.4:1/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
   - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
