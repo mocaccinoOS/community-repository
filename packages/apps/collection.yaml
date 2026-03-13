@@ -1715,7 +1715,6 @@ packages:
     version: ">=0"
   prepare:
   - sed -i -e 's/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || die/rm "${ED}"\/usr\/share\/man\/man1\/gtk-builder-convert\.\* || true/' /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild
-  # - ebuild /var/db/repos/gentoo/x11-libs/gtk+/gtk+-2*.ebuild manifest
   - find /var/db/repos/gentoo/x11-libs/gtk+/ -type f -name "gtk+-2*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-X
@@ -20970,64 +20969,64 @@ packages:
   - <<: *layers-qt
 
 # build fails
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+4"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+4"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
@@ -21071,91 +21070,91 @@ packages:
 #   requires_final_images: true
 
 # incompatible with llvm 21
-- &apps-hip
-  category: "apps"
-  name: "hip"
-  version: "7.2.0-r1"
-  uri:
-  - https://github.com/ROCm/clr
-  license: "Apache-2.0 MIT"
-  description: "C++ Heterogeneous-Compute Interface for Portability"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-util/hip
-  provides:
-  - category: "dev-libs"
-    name: "rocm-comgr"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocm-core"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocm-device-libs"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "rocr-runtime"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "roct-thunk-interface"
-    version: ">=0"
-  - category: "dev-util"
-    name: "hip"
-    version: ">=0"
-  - category: "dev-util"
-    name: "hipcc"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rocminfo"
-    version: ">=0"
-  - category: "llvm-core"
-    name: "lld"
-    version: ">=0"
-  - category: "llvm-core"
-    name: "lld-toolchain-symlinks"
-    version: ">=0"
-  atoms:
-  - atom: "dev-libs/rocm-comgr"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocm-core"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocm-device-libs"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/rocr-runtime"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/roct-thunk-interface"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/hip"
-    accept_keywords: "~amd64"
-    use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
-  - atom: "dev-util/hipcc"
-    accept_keywords: "~amd64"
-  - atom: "dev-util/rocminfo"
-    accept_keywords: "~amd64"
-  portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/rocm-comgr/ -type f -name "rocm-comgr-*.ebuild" -exec ebuild {} manifest \;
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/rocm-device-libs/ -type f -name "rocm-device-libs-*.ebuild" -exec ebuild {} manifest \;  
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/rocr-runtime/ -type f -name "rocr-runtime-*.ebuild" -exec ebuild {} manifest \;  
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/roct-thunk-interface/ -type f -name "roct-thunk-interface-*.ebuild" -exec ebuild {} manifest \;
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
-  - find /var/db/repos/gentoo/dev-util/hip/ -type f -name "hip-*.ebuild" -exec ebuild {} manifest \;
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
-  - find /var/db/repos/gentoo/dev-util/hipcc/ -type f -name "hipcc-*.ebuild" -exec ebuild {} manifest \;
-  inner_build_requires:
-  - <<: *apps-doxygen
-  inner_build_reqs:
-  - app-editors/vim-core
-  - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-numactl
-  build_requires:
-  - <<: *layers-qt
+# - &apps-hip
+#   category: "apps"
+#   name: "hip"
+#   version: "7.2.0-r1"
+#   uri:
+#   - https://github.com/ROCm/clr
+#   license: "Apache-2.0 MIT"
+#   description: "C++ Heterogeneous-Compute Interface for Portability"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-util/hip
+#   provides:
+#   - category: "dev-libs"
+#     name: "rocm-comgr"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocm-core"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocm-device-libs"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "rocr-runtime"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "roct-thunk-interface"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "hip"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "hipcc"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "rocminfo"
+#     version: ">=0"
+#   - category: "llvm-core"
+#     name: "lld"
+#     version: ">=0"
+#   - category: "llvm-core"
+#     name: "lld-toolchain-symlinks"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-libs/rocm-comgr"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocm-core"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocm-device-libs"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/rocr-runtime"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/roct-thunk-interface"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-util/hip"
+#     accept_keywords: "~amd64"
+#     use: "hip numa opencl video_cards_amdgpu # video_cards_nvidiav"
+#   - atom: "dev-util/hipcc"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-util/rocminfo"
+#     accept_keywords: "~amd64"
+#   portage_env: "USE=\"-llvm_slot_17 -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
+#   prepare:
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-comgr/rocm-comgr-*.ebuild
+#   - find /var/db/repos/gentoo/dev-libs/rocm-comgr/ -type f -name "rocm-comgr-*.ebuild" -exec ebuild {} manifest \;
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocm-device-libs/rocm-device-libs-*.ebuild
+#   - find /var/db/repos/gentoo/dev-libs/rocm-device-libs/ -type f -name "rocm-device-libs-*.ebuild" -exec ebuild {} manifest \;  
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/rocr-runtime/rocr-runtime-*.ebuild
+#   - find /var/db/repos/gentoo/dev-libs/rocr-runtime/ -type f -name "rocr-runtime-*.ebuild" -exec ebuild {} manifest \;  
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-libs/roct-thunk-interface/roct-thunk-interface-*.ebuild
+#   - find /var/db/repos/gentoo/dev-libs/roct-thunk-interface/ -type f -name "roct-thunk-interface-*.ebuild" -exec ebuild {} manifest \;
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hip/hip-*.ebuild
+#   - find /var/db/repos/gentoo/dev-util/hip/ -type f -name "hip-*.ebuild" -exec ebuild {} manifest \;
+#   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-util/hipcc/hipcc-*.ebuild
+#   - find /var/db/repos/gentoo/dev-util/hipcc/ -type f -name "hipcc-*.ebuild" -exec ebuild {} manifest \;
+#   inner_build_requires:
+#   - <<: *apps-doxygen
+#   inner_build_reqs:
+#   - app-editors/vim-core
+#   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-numactl
+#   build_requires:
+#   - <<: *layers-qt
 
 - category: "apps"
   name: "krita"
