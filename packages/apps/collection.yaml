@@ -731,6 +731,29 @@ packages:
     name: "crosextrafonts-carlito"
     version: ">=0"
 
+- &fonts-montserrat
+  <<: *fonts
+  name: "montserrat"
+  version: "8.000"
+  uri:
+  - https://www.latofonts.com/
+  license: "OFL-1.1"
+  description: "A typeface inspired by the Montserrat neighborhood of Buenos Aires"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/montserrat
+  overlays:
+  - enable: "4nykey"
+  provides:
+  - category: "media-fonts"
+    name: "montserrat"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/montserrat"
+    use: "X font_types_otf font_types_ttf autohint binary # variable"
+    accept_keywords: "~amd64"
+
 - <<: *fonts
   name: "noto-cjk"
   version: "20190416+1"
@@ -20482,7 +20505,6 @@ packages:
   atoms:
   - atom: "media-gfx/gimp"
     use: "aalib alsa aqua doc fits gnome heif avascript jpeg2k jpegxl luajit mng openexr openmp postscript udev unwind vala vector-icons webp wmf X xpm # lua wayland # cpu_flags_ppc_altivec cpu_flags_x86_mmx cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
   # - atom: "media-plugins/gimp-plugin-bimp"
   #   accept_keywords: "~amd64"
   - atom: "media-plugins/gimp-resynthesizer"
