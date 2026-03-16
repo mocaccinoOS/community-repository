@@ -112,8 +112,8 @@ jobs:
     - name: Build packages 🔧
       run: |
         export LUET_NOLOCK=true
-        # sudo -E luet install -y repository/mocaccino-desktop
-        sudo -E luet install -y repository/mocaccino-desktop-stable
+        sudo -E luet install -y repository/mocaccino-desktop
+        # sudo -E luet install -y repository/mocaccino-desktop-stable
         sudo -E luet install -y repository/mocaccino-os-commons
         sudo -E luet install -y repository/mocaccino-extra-stable
         export PATH=$PATH:/usr/local/go/bin
@@ -124,7 +124,7 @@ jobs:
         sudo -E ./.github/build
         ls -liah $PWD/build
         sudo chmod -R 777 $PWD/build
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       if: success() || failure()
       with:
         name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip

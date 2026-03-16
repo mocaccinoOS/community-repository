@@ -20,7 +20,7 @@ jobs:
       - name: Check packages for upgrade availability
         run: |
           ./scripts/up.sh
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: success() || failure()
         with:
           name: packages_reports.zip
