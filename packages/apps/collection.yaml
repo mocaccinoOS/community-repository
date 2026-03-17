@@ -2624,6 +2624,32 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libsixel
+  category: "libs"
+  name: "libsixel"
+  version: "1.10.5"
+  uri:
+  - https://github.com/libsixel/libsixel
+  license: "MIT public-domain"
+  description: "A lightweight, fast implementation of DEC SIXEL graphics codec"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/libsixel
+  provides:
+  - category: "media-libs"
+    name: "libsixel"
+    version: ">=0"
+  atoms:
+  - atom: "media-libs/libsixel"
+    use: "curl gd gtk jpeg png python"
+  inner_build_reqs:
+  - dev-build/meson-format-array dev-build/meson
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-libsoundtouch
   category: "libs"
   name: "libsoundtouch"
