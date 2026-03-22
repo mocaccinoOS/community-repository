@@ -1081,7 +1081,7 @@ packages:
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
-  version: "26.03+1"
+  version: "26.03+2"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -14439,7 +14439,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.33"
+  version: "10.33+1"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -14467,8 +14467,8 @@ packages:
   # prepare:
   # - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
   # - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
-  # inner_build_reqs:
-  # - dev-util/mingw64-toolchain
+  inner_build_reqs:
+  - dev-util/mingw64-toolchain
   requires:
   - <<: *layers-X
   - <<: *libs-ffmpeg-compat
