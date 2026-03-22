@@ -7828,7 +7828,7 @@ packages:
 
 - category: "apps"
   name: "mandelbulber"
-  version: "2.33"
+  version: "2.33+1"
   uri:
   - https://www.mandelbulber.com
   license: "CC-BY-4.0 GPL-3"
@@ -7844,8 +7844,6 @@ packages:
   atoms:
   - atom: "media-gfx/mandelbulber"
     accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-qt/designer
   requires:
   - <<: *layers-qt
   build_requires:
@@ -14504,34 +14502,36 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# QT only, needs dev-qt/qtscript, migrating to QT6
-- category: "apps"
-  name: "qcad"
-  version: "3.27.8.4+4"
-  uri:
-  - http://www.qcad.org
-  license: "GPL-3"
-  description: "Open Source 2D CAD"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/qcad
-  overlays:
-  - enable: "booboo"
-  - enable: "Miezhiko"
-  provides:
-  - category: "media-gfx"
-    name: "qcad"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/qcad"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-qt/designer
-  requires:
-  - <<: *layers-qt5
-  build_requires:
-  - <<: *layers-qt5
+# # QT5 only, migrating to QT6, needs:
+# # - dev-qt/qtscript
+# # - dev-qt/designer masked
+# - category: "apps"
+#   name: "qcad"
+#   version: "3.27.8.4+4"
+#   uri:
+#   - http://www.qcad.org
+#   license: "GPL-3"
+#   description: "Open Source 2D CAD"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/qcad
+#   overlays:
+#   - enable: "booboo"
+#   - enable: "Miezhiko"
+#   provides:
+#   - category: "media-gfx"
+#     name: "qcad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/qcad"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - dev-qt/designer
+#   requires:
+#   - <<: *layers-qt5
+#   build_requires:
+#   - <<: *layers-qt5
 
 - &apps-qdevicemonitor
   category: "apps"
