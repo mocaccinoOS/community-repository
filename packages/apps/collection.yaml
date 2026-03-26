@@ -4453,6 +4453,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "blueman"
+  version: "2.4.6"
+  uri:
+  - https://github.com/blueman-project/blueman/
+  license: "GPL-3+ GPL-2"
+  description: "Simple and intuitive GTK+ Bluetooth Manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/blueman
+  provides:
+  - category: "net-wireless"
+    name: "blueman"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/blueman"
+    use: "network nls policykit pulseaudio"
+  inner_build_reqs:
+  - dev-python/python-dbusmock
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-bottom
   category: "apps"
   name: "bottom"
