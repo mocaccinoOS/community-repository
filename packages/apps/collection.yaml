@@ -9900,6 +9900,24 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- category: "apps"
+  name: "the_silver_searcher"
+  version: "2.2.0_p20201217-r4"
+  uri:
+  - https://github.com/ggreer/the_silver_searcher
+  license: "Apache-2.0"
+  description: "A code-searching tool similar to ack, but faster"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-apps/the_silver_searcher
+  provides:
+  - category: "sys-apps"
+    name: "the_silver_searcher"
+    version: ">=0"
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-timeshift
   category: "apps"
   name: "timeshift"
