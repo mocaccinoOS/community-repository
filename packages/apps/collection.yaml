@@ -10815,6 +10815,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "xclip"
+  version: "0.13"
+  uri:
+  - https://github.com/astrand/xclip
+  license: "GPL-2"
+  description: "Copy data from standard input to X clipboard"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      x11-misc/xclip
+  provides:
+  - category: "x11-misc"
+    name: "xclip"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-xli
   category: "apps"
   name: "xli"
