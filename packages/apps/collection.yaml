@@ -16926,6 +16926,34 @@ packages:
   - <<: *apps-mangohud
   build_requires:
   - <<: *layers-qt
+  
+- &apps-helix
+  category: "apps"
+  name: "helix"
+  version: "25.07.1"
+  uri:
+  - https://helix-editor.com/
+  license: "MPL-2.0 Apache-2.0 BSD Boost-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
+  description: A post-modern text editor
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-editors/helix
+  provides:
+  - category: "app-editors"
+    name: "helix"
+    version: ">=0"
+  atoms:
+  - atom: "app-editors/helix"
+    use: "+grammar"
+  inner_build_reqs:
+  - dev-lang/rust-bin:1.77.1
+  requires:
+  - <<: *apps-luajit
+  - <<: *libs-libutf8proc
+  - <<: *libs-tree-sitter
+  build_requires:
+  - <<: *buildbase-X
 
 - category: "apps"
   name: "helm-synthesizer"
