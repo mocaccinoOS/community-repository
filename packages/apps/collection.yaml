@@ -9945,6 +9945,26 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "toilet"
+  version: "0.3-r1"
+  uri:
+  - http://caca.zoy.org/wiki/toilet
+  license: "WTFPL-2"
+  description: "The Other Implementations letters. Figlet replacement"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/toilet
+  provides:
+  - category: "app-misc"
+    name: "toilet"
+    version: ">=0"
+  requires:
+  - <<: *libs-libcaca
+  build_requires:
+  - <<: *libs-libcaca
+
+- category: "apps"
   name: "tophat"
   version: "9999+1"
   uri:
