@@ -9216,26 +9216,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "pulseaudio-qt"
-  version: "1.8.1"
-  uri:
-  - https://invent.kde.org/libraries/pulseaudio-qt
-  license: "LGPL-2.1"
-  description: "Qt bindings for libpulse"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/pulseaudio-qt
-  provides:
-  - category: "media-libs"
-    name: "pulseaudio-qt"
-    version: ">=0"
-  requires:
-  - <<: *layers-kde-common
-  build_requires:
-  - <<: *layers-kde-common
-
-- category: "apps"
   name: "putty"
   version: "0.81"
   uri:
@@ -15282,6 +15262,9 @@ packages:
   provides:
   - category: "net-misc"
     name: "tigervnc"
+    version: ">=0"
+  - category: "net-misc"
+    name: "tigervnc-xorg-module"
     version: ">=0"
   atoms:
   - atom: "net-misc/tigervnc"
