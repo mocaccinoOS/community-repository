@@ -457,6 +457,15 @@ stubs:
 #   preemerge:
 #   - app-emulation/spice;USE="-smartcard"
 
+- &libs-udis86
+  category: "libs"
+  name: "udis86"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/udis86
+
 - &apps-vim
   category: "apps"
   name: "vim"
@@ -1206,7 +1215,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "146.0.7680.80"
+  version: "146.0.7680.164"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -4559,7 +4568,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.88.134"
+  version: "1.88.136"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5006,7 +5015,7 @@ packages:
 
 - category: "apps"
   name: "deno-bin"
-  version: "2.6.3"
+  version: "2.6.10-r1"
   uri:
   - https://deno.com/
   license: "MIT Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC MIT MPL-2.0 openssl Unicode-3.0 Unicode-DFS-2016 ZLIB"
@@ -5576,7 +5585,7 @@ packages:
 
 - category: "apps"
   name: "epson-inkjet-printer-escpr"
-  version: "1.8.6"
+  version: "1.8.8"
   uri:
   - https://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
   license: "GPL-2"
@@ -5683,7 +5692,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "144-145"
+  version: "145-146"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5691,8 +5700,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:144
       media-video/ffmpeg-chromium:145
+      media-video/ffmpeg-chromium:146
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -6050,7 +6059,7 @@ packages:
 - &apps-freerdp-server
   category: "apps"
   name: "freerdp-server"
-  version: "3.24.0"
+  version: "3.24.2"
   uri:
   - https://www.freerdp.com/
   license: "Apache-2.0"
@@ -6173,7 +6182,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.34.0"
+  version: "0.35.2"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6513,7 +6522,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.25.5-r1"
+  version: "1.25.8"
   uri:
   - https://go.dev
   license: "BSD"
@@ -6536,7 +6545,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "146.0.7680.80"
+  version: "146.0.7680.164"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7683,7 +7692,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "4.32.0"
+  version: "4.33.0"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -7706,7 +7715,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# QT only, migrating to QT6
 - &apps-leocad
   category: "apps"
   name: "leocad"
@@ -7877,7 +7885,7 @@ packages:
 - &apps-ly
   category: "apps"
   name: "ly"
-  version: "1.2.0"
+  version: "1.3.2"
   uri:
   - https://github.com/nullgemm/ly
   license: "WTFPL-2"
@@ -8069,7 +8077,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.7-r1"
+  version: "15.0.8"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -8501,7 +8509,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.3.2"
+  version: "1.3.3"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9208,7 +9216,7 @@ packages:
 
 - category: "apps"
   name: "pulseaudio-qt"
-  version: "1.7.0"
+  version: "1.8.1"
   uri:
   - https://invent.kde.org/libraries/pulseaudio-qt
   license: "LGPL-2.1"
@@ -9884,8 +9892,10 @@ packages:
   - category: "sys-apps"
     name: "the_silver_searcher"
     version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "tophat"
@@ -10102,7 +10112,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.8.0_p15007"
+  version: "140.9.0_p15008"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -10730,7 +10740,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.6.3"
+  version: "4.6.4"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -12262,7 +12272,7 @@ packages:
 
 - category: "apps"
   name: "chezmoi"
-  version: "2.69.3"
+  version: "2.70.0"
   uri:
   - https://www.chezmoi.io/"
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
@@ -13928,7 +13938,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.39"
+  version: "0.40"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -14206,7 +14216,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "128.0.5807.66"
+  version: "129.0.5823.28"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -14550,7 +14560,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.33+1"
+  version: "10.34"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -15258,7 +15268,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.16.0"
+  version: "1.16.2"
   uri:
   - https://tigervnc.org
   license: "GPL-2 metapackage"
@@ -15275,10 +15285,10 @@ packages:
   atoms:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
-  prepare:
-  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  - sed -i -e 's/<x11-libs\/fltk-1.4:1/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
+  # prepare:
+  # - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  # - sed -i -e 's/<x11-libs\/fltk-1.4:1/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  # - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
@@ -15436,7 +15446,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.8.3925.76"
+  version: "7.9.3970.39"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -15487,7 +15497,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.6.1"
+  version: "4.6.1-r1"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -15607,7 +15617,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.4"
+  version: "11.5"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -15712,8 +15722,9 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
-  - <<: *libs-wxGTK
   - <<: *libs-mhash
+  - <<: *libs-udis86
+  - <<: *libs-wxGTK
   build_requires:
   - <<: *layers-gnome-common
 
@@ -16664,7 +16675,7 @@ packages:
 
 - category: "apps"
   name: "fotocx"
-  version: "25.0+1"
+  version: "26.2-r1"
   uri:
   - https://kornelix.net/fotocx/fotocx.html
   license: "GPL-3+ LGPL-2.1+"
@@ -18663,7 +18674,7 @@ packages:
 - &apps-xmms2
   category: "apps"
   name: "xmms2"
-  version: "0.9.6+2"
+  version: "0.9.7"
   uri:
   - https://github.com/XMMS2
   license: "GPL-2+ LGPL-2.1+"
@@ -21424,7 +21435,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "6.0.0_beta3-r1"
+  version: "6.0.0"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
