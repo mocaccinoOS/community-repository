@@ -390,7 +390,7 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-  
+
 - &libs-yyjson
   category: "libs"
   name: "yyjson"
@@ -406,6 +406,27 @@ packages:
   provides:
   - category: "dev-libs"
     name: "yyjson"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-udis86
+  category: "libs"
+  name: "udis86"
+  version: "1.7.2-r1"
+  uri:
+  - https://udis86.sourceforge.net/
+  license: "BSD"
+  description: "Disassembler library for the x86/-64 architecture sets"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/udis86
+  provides:
+  - category: "dev-libs"
+    name: "udis86"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1573,7 +1594,7 @@ packages:
 - &def-hyprland
   category: "layers"
   name: "hyprland"
-  version: "0.54.2"
+  version: "0.54.2+1"
   uri:
   - https://github.com/hyprwm/Hyprland
   license: "MIT"
@@ -1692,6 +1713,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-iniparser
+  - <<: *libs-udis86
   build_requires:
   - <<: *layers-X
 
