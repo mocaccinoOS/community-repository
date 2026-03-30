@@ -5583,9 +5583,10 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+# Fetch restricted due to impossibility to download automatically the source packages
 - category: "apps"
   name: "epson-inkjet-printer-escpr"
-  version: "1.8.8"
+  version: "1.8.6"
   uri:
   - https://download.ebz.epson.net/dsc/search/01/search/?OSC=LX
   license: "GPL-2"
@@ -12293,9 +12294,9 @@ packages:
   inner_build_requires:
   - <<: *apps-go
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 # - category: "apps"
 #   name: "clementine"
@@ -15268,7 +15269,7 @@ packages:
 - &apps-tigervnc
   category: "apps"
   name: "tigervnc"
-  version: "1.16.2"
+  version: "1.16.2+1"
   uri:
   - https://tigervnc.org
   license: "GPL-2 metapackage"
@@ -15285,10 +15286,10 @@ packages:
   atoms:
   - atom: "net-misc/tigervnc"
     use: "dri3 drm server viewer opengl xinerama # java gnutls nls"
-  # prepare:
-  # - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  # - sed -i -e 's/<x11-libs\/fltk-1.4:1/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
-  # - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
+  prepare:
+  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/if \(maximize\)\/if \(::maximize\)\/" vncviewer\/DesktopWindow.cxx\n\tsed -i -e "s\/FL_MINOR_VERSION != 3\/FL_MINOR_VERSION != 4\/" CMakeLists.txt || die\n' -e '}' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  - sed -i -e 's/<x11-libs\/fltk-1.4:1/x11-libs\/fltk/' /var/db/repos/gentoo/net-misc/tigervnc/tigervnc-*.ebuild
+  - find /var/db/repos/gentoo/net-misc/tigervnc/ -type f -name "tigervnc-*.ebuild" -exec ebuild {} manifest \;
   excludes:
   - ^/usr/lib/systemd/system/pam_namespace.service
   requires:
@@ -21458,8 +21459,8 @@ packages:
   - category: "dev-libs"
     name: "zug"
     version: ">=0"
-  - category: "kde-apps"
-    name: "libkdcraw"
+  # - category: "kde-apps"
+  #   name: "libkdcraw"
     version: ">=0"
   - category: "media-gfx"
     name: "krita"
