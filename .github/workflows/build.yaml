@@ -146,6 +146,8 @@ jobs:
 
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v8
+      with:
+        merge-multiple: false
     - name: Merge artifacts 🔧
       run: |
         # if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi 
