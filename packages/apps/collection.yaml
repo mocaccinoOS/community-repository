@@ -10095,7 +10095,7 @@ packages:
   atoms:
   - atom: "www-client/torbrowser"
     accept_keywords: "~amd64"
-  env: 
+  env:
   - LLVM_VERSION=21
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
   inner_build_reqs:
@@ -11806,7 +11806,7 @@ packages:
 
 - category: "apps"
   name: "0ad"
-  version: "0.28.0-r1"
+  version: "0.27.0-r2"
   uri:
   - https://play0ad.com/
   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
@@ -11832,14 +11832,12 @@ packages:
   - atom: "net-libs/gloox"
     use: "gnutls idn ssl zlib"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
-  # - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12} )/PYTHON_COMPAT=( python3_{10..13} )/' /var/db/repos/gentoo/dev-lang/spidermonkey/spidermonkey-*.ebuild
-  # - find /var/db/repos/gentoo/dev-lang/spidermonkey/ -type f -name "spidermonkey-*.ebuild" -exec ebuild {} manifest \;
-  # - sed -i -e 's/dev-lang\/spidermonkey:115/dev-lang\/spidermonkey:128/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
-  # - find /var/db/repos/gentoo/games-strategy/0ad/ -type f -name "0ad-*.ebuild" -exec ebuild {} manifest \;
+  env:
+  - USE="lua_targets_lua5-3"
   inner_build_reqs:
-  - app-crypt/minisign dev-util/premake:5
+  - app-crypt/minisign
+  - dev-lua/luasocket
+  - dev-util/premake:5
   requires:
   - <<: *layers-gnome-common
   #  Required by the editor
@@ -19164,42 +19162,6 @@ packages:
   - <<: *layerbase-cdemu
   requires_final_images: true
 
-# - category: "apps"
-#   name: "goneovim"
-#   version: "0.6.11+4"
-#   uri:
-#   - https://github.com/akiyosi/goneovim
-#   license: "MIT"
-#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
-#   labels:
-#     emerge.jobs: "1"
-#   prepare:
-#   - |
-#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v0.6.11.tar.gz && \
-#     wget https://github.com/akiyosi/goneovim/releases/download/v0.6.11/goneovim-v0.6.11-linux.tar.bz2 && \
-#     mkdir data && \
-#     tar -C data -xf goneovim-v0.6.11-linux.tar.bz2 --strip-components=1 && \
-#     tar -C data -xf v0.6.11.tar.gz --strip-components=1 goneovim-0.6.11/cmd
-#   setup:
-#   - |
-#     mkdir -p -m 755 /usr/share/pixmaps && \
-#     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-#     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
-#     cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-#     cp data/goneovim /usr/bin && \
-#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-#     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-#   requires:
-#   - <<: *layers-X
-#   - <<: *apps-neovim
-#     skip: true
-#   - <<: *libs-tiff-compat
-#     skip: true
-#   build_requires:
-#   - <<: *layers-X
-
 - category: "apps"
   name: "goneovim"
   version: "0.6.17"
@@ -19209,49 +19171,88 @@ packages:
   description: "A Neovim GUI written in Go, using a Qt binding for Go"
   labels:
     emerge.jobs: "1"
-  # atoms:
-  # - atom: "dev-qt/qtremoteobjects"
-  #   accept_keywords: "~amd64"
-  # prepare:
-  # # - emaint sync
-  # # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
-  # # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
-  # # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
-  # - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
-  # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
-  ready:
+  prepare:
   - |
-    git clone https://github.com/akiyosi/goneovim && \
-    export QT_QMAKE_DIR=/usr/lib64/qt6/bin && \
-    cd goneovim && \
-    git fetch --all --tags && \
-    git checkout tags/v0.6.17 && \
-    make qt_bindings && \
-    make deps && \
-    make app
+    version=0.6.17; \
+    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v$version.tar.gz && \
+    wget https://github.com/akiyosi/goneovim/releases/download/v$version/goneovim-v$version-linux.tar.bz2 && \
+    mkdir data && \
+    tar -C data -xf goneovim-v$version-linux.tar.bz2 --strip-components=1 && \
+    tar -C data -xf v$version.tar.gz --strip-components=1 goneovim-$version/cmd
   setup:
   - |
     mkdir -p -m 755 /usr/share/pixmaps && \
-    cd goneovim && \
-    cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+    cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+    cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
+    cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    find -name goneovim && \
-    cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+    cp data/goneovim /usr/bin && \
     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  # inner_build_reqs:
-  # - dev-qt/qtremoteobjects::okh
-  inner_build_requires:
-  - <<: *apps-go
-  # - <<: *apps-designer
+    cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
   requires:
-  - <<: *layers-qt
+  - <<: *layers-X
   - <<: *apps-neovim
     skip: true
+  - <<: *libs-tiff-compat
+    skip: true
   build_requires:
-  - <<: *buildbase-qt
+  - <<: *layers-X
+
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.11"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   overlays:
+#   - enable: "okh"
+#   # atoms:
+#   # - atom: "dev-qt/qtremoteobjects"
+#   #   accept_keywords: "~amd64"
+#   prepare:
+#   # - emaint sync
+#   # - sed -i -e 's/qtcore-${PV}/qtcore-5.15.14/' /var/db/repos/okh/dev-qt/v/qtremoteobjects-5.15.5.ebuild
+#   # - sed -i -e 's/qtnetwork-${PV}/qtnetwork-5.15.14/' /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild
+#   # - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild manifest
+#   - mv /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.5.ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild
+#   - ebuild /var/db/repos/okh/dev-qt/qtremoteobjects/qtremoteobjects-5.15.14.ebuild manifest
+#   ready:
+#   - |
+#     git clone https://github.com/akiyosi/goneovim && \
+#     export QT_QMAKE_DIR=/usr/lib64/qt6/bin && \
+#     cd goneovim && \
+#     git fetch --all --tags && \
+#     git checkout tags/v0.6.10 && \
+#     make qt_bindings && \
+#     make deps && \
+#     make app
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cd goneovim && \
+#     cp cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+#     find -name goneovim && \
+#     cp cmd/goneovim/deploy/linux/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   inner_build_reqs:
+#   - dev-qt/qtremoteobjects::okh
+#   inner_build_requires:
+#   - <<: *apps-go
+#   - <<: *apps-designer
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *apps-neovim
+#     skip: true
+#   build_requires:
+#   - <<: *buildbase-qt
 
 - category: "apps"
   name: "gradience"
