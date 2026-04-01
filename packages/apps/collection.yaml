@@ -11806,7 +11806,7 @@ packages:
 
 - category: "apps"
   name: "0ad"
-  version: "0.27.0-r2"
+  version: "0.27.0-r2+1"
   uri:
   - https://play0ad.com/
   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
@@ -11818,9 +11818,6 @@ packages:
   provides:
   - category: "games-strategy"
     name: "0ad"
-    version: ">=0"
-  - category: "net-libs"
-    name: "enet"
     version: ">=0"
   - category: "net-libs"
     name: "gloox"
@@ -11842,6 +11839,7 @@ packages:
   - <<: *layers-gnome-common
   #  Required by the editor
   - <<: *libs-wxGTK
+  - <<: *libs-enet
   build_requires:
   - <<: *layers-gnome-common
 
@@ -17700,7 +17698,7 @@ packages:
   # - atom: "net-analyzer/nagios-core"
   #   use: "apache2 classicui web # lighttpd vim-syntax"
   - atom: "net-analyzer/nagios-plugins"
-    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # postgres selinux nagios-game"
+    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # radius https://bugs.gentoo.org/957000 # postgres selinux nagios-game"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
   - atom: "net-dialup/freeradius-client"
