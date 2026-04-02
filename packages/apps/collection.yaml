@@ -747,22 +747,6 @@ packages:
     use: "X font_types_otf font_types_ttf autohint binary # variable"
     accept_keywords: "~amd64"
 
-- <<: *fonts
-  name: "noto-cjk"
-  version: "20190416+1"
-  uri:
-  - https://github.com/googlefonts/noto-cjk
-  license: "OFL-1.1"
-  description: "Google's CJK font family"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-fonts/noto-cjk
-  provides:
-  - category: "media-fonts"
-    name: "noto-cjk"
-    version: ">=0"
-
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
@@ -952,7 +936,7 @@ packages:
   - category: "media-fonts"
     name: "symbols-nerd-font"
     version: ">=0"
-    
+
 - <<: *fonts
   name: "vlgothic"
   version: "20230918+1"
@@ -20927,7 +20911,7 @@ packages:
   
 - category: "apps"
   name: "plantuml"
-  version: "1.2026.1+5"
+  version: "1.2026.1+6"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -20947,7 +20931,7 @@ packages:
   - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
   - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
   - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=" batik fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=":batik:fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
   - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
   # completion:
   # - |
