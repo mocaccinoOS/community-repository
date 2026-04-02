@@ -20911,7 +20911,7 @@ packages:
   
 - category: "apps"
   name: "plantuml"
-  version: "1.2026.1+7"
+  version: "1.2026.1+8"
   uri:
   - https://plantuml.com
   license: "GPL-3"
@@ -20927,24 +20927,24 @@ packages:
   atoms:
   - atom: "media-gfx/plantuml"
     use: "pdf"
-  prepare:
-  - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  # - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=" batik fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  # - sed -i -e 's/JAVA_GENTOO_CLASSPATH+="ant"/JAVA_GENTOO_CLASSPATH+=" ant"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - sed -i -e '/src_install()/{:a; n; /^}$/!ba; s//\n\tjava-pkg_register-dependency ant,batik,fop\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-  - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
-  # completion:
-  # - |
-  #     grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
-  #     ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
-  #     BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
-  #     FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
-  #     sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
-  #     grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
-  #     if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-  #     sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
+  # prepare:
+  # - sed -i -e 's/IUSE="ant-task"/IUSE="ant-task pdf"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/DEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/RDEPEND="/{:a; n; /^"$/!ba; s//\tpdf? (\n\t\t>=dev-java\/batik-1.18-r2:0\n\t\t>=dev-java\/fop-2.10-r2:0\n\t)\n\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # # - sed -i -e '/src_prepare()/{:a; n; /^}$/!ba; s//\n\tif use pdf; then\n\t\tJAVA_GENTOO_CLASSPATH+=" batik fop"\n\tfi\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # # - sed -i -e 's/JAVA_GENTOO_CLASSPATH+="ant"/JAVA_GENTOO_CLASSPATH+=" ant"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - sed -i -e '/src_install()/{:a; n; /^}$/!ba; s//\n\tjava-pkg_register-dependency ant,batik,fop\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+  # - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
+  completion:
+  - |
+      grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+      ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+      BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+      FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+      sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+      grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+      if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
+      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
   requires:
   - <<: *layers-qt
   - <<: *layers-java
