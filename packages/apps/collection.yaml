@@ -952,6 +952,31 @@ packages:
   - category: "media-fonts"
     name: "symbols-nerd-font"
     version: ">=0"
+    
+- <<: *fonts
+  name: "vlgothic"
+  version: "20230918"
+  uri:
+  - http://vlgothic.dicey.org/
+  license: "vlgothic mplus-fonts BSD-2"
+  description: "Japanese TrueType font from Vine Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/vlgothic
+  provides:
+  - category: "media-fonts"
+    name: "vlgothic"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/vlgothic"
+    use: "X"
+    license: "vlgothic mplus-fonts"
+  prepare:
+  - |
+    cp /var/db/repos/gentoo/media-fonts/vlgothic/vlgothic-20200720.ebuild /var/db/repos/gentoo/media-fonts/vlgothic/vlgothic-20230918.ebuild && \
+    ebuild /var/db/repos/gentoo/media-fonts/vlgothic/vlgothic-20230918.ebuild manifest
+
 
 ################################################################################################################################################################
 ### sound fonts ###
@@ -10472,10 +10497,10 @@ packages:
   - category: "app-editors"
     name: "vscodium"
     version: ">=0"
-  prepare:
-  - |
-    mv /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.2.24313.ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild && \
-    ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild manifest
+  # prepare:
+  # - |
+  #   mv /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.2.24313.ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild && \
+  #   ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -17660,20 +17685,14 @@ packages:
     name: "nagios-core"
     version: ">=0"
   - category: "net-analyzer"
-    name: "nagios-plugins"
+    name: "nagios-plugin-check_lm_sensors"
     version: ">=0"
   - category: "net-analyzer"
-    name: "nagios-plugin-check_lm_sensors"
+    name: "nagios-plugins"
     version: ">=0"
   # - category: "dev-libs"
   #   name: "uriparser"
   #   version: ">=0"
-  - category: "dev-perl"
-    name: "Monitoring-Plugin"
-    version: ">=0"
-  - category: "dev-perl"
-    name: "Net-SNMP"
-    version: ">=0"
   - category: "dev-perl"
     name: "Crypt-DES"
     version: ">=0"
@@ -17683,22 +17702,28 @@ packages:
   - category: "dev-perl"
     name: "Digest-SHA1"
     version: ">=0"
-  - category: "net-dialup"
-    name: "freeradius-client"
+  - category: "dev-perl"
+    name: "Monitoring-Plugin"
     version: ">=0"
+  - category: "dev-perl"
+    name: "Net-SNMP"
+    version: ">=0"
+  # - category: "net-dialup"
+  #   name: "freeradius-client"
+  #   version: ">=0"
   - category: "virtual"
     name: "perl-Digest"
     version: ">=0"
   atoms:
   - atom: "net-analyzer/monitoring-plugins"
     use: "curl gnutls ipv6 ldap mysql radius samba ssl dns fping snmp ssh # game postgres"
-  # - atom: "net-analyzer/nagios"
-  #   accept_keywords: "~amd64"
   # # media-libs/gd needs png flag
   # - atom: "net-analyzer/nagios-core"
   #   use: "apache2 classicui web # lighttpd vim-syntax"
+  #
+  # ~amd64 due to radius bug solved
   - atom: "net-analyzer/nagios-plugins"
-    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # https://bugs.gentoo.org/957000 # postgres selinux nagios-game"
+    use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # postgres selinux nagios-game"
     accept_keywords: "~amd64"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
