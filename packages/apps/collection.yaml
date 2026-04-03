@@ -937,33 +937,6 @@ packages:
     name: "symbols-nerd-font"
     version: ">=0"
 
-- <<: *fonts
-  name: "vlgothic"
-  version: "20230918+1"
-  uri:
-  - http://vlgothic.dicey.org/
-  license: "vlgothic mplus-fonts BSD-2 BSD-3-Clause"
-  description: "Japanese TrueType font from Vine Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-fonts/vlgothic::local
-  provides:
-  - category: "media-fonts"
-    name: "vlgothic"
-    version: ">=0"
-  atoms:
-  - atom: "media-fonts/vlgothic"
-    use: "X"
-    license: "vlgothic mplus-fonts"
-  prepare:
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/media-fonts/vlgothic
-  - cp /var/db/repos/gentoo/media-fonts/vlgothic/vlgothic-20200720.ebuild /var/db/repos/local/media-fonts/vlgothic/vlgothic-20230918.ebuild
-  - sed -i -e 's/SRC_URI=".*"/SRC_URI="https:\/\/github.com\/daisukesuzuki\/${PN}\/releases\/download\/${PV}\/${PN}-${PV}.tar.xz"/' /var/db/repos/local/media-fonts/vlgothic/vlgothic-20230918.ebuild
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/media-fonts/vlgothic/vlgothic-20230918.ebuild manifest
 
 ################################################################################################################################################################
 ### sound fonts ###
