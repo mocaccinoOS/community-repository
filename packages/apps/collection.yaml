@@ -12678,7 +12678,7 @@ packages:
 
 - category: "apps"
   name: "fooyin"
-  version: "0.10.2"
+  version: "0.10.2+1"
   uri:
   - https://www.fooyin.org
   license: "GPL-3"
@@ -12697,11 +12697,11 @@ packages:
   - atom: "media-sound/fooyin"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
   - <<: *libs-kdsingleapplication
   - <<: *libs-libebur128
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-kde-common
 
 # - category: "apps"
 #   name: "freedv"
@@ -16781,26 +16781,21 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/qt6pas
-      games-util/goverlay-bin
+      games-util/goverlay
   overlays:
   - enable: "guru"
   provides:
-  - category: "dev-libs"
-    name: "qt6pas"
-    version: ">=0"
   - category: "games-util"
     name: "goverlay"
     version: ">=0"
   atoms:
-  - atom: "games-util/goverlay-bin"
-    use: "opengl vulkan"
-    unmask: true
-    accept_keywords: "**"
-  - atom: "dev-libs/qt6pas"
+  - atom: "games-util/goverlay"
     accept_keywords: "~amd64"
-  # inner_build_reqs:
+  # - atom: "dev-libs/qt6pas"
+  #   accept_keywords: "~amd64"
+  inner_build_reqs:
   # - dev-lang/fpc
-  # - dev-lang/lazarus
+  - dev-lang/lazarus;USE="qt6"
   requires:
   - <<: *layers-qt
   - <<: *apps-mangohud
