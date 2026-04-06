@@ -16780,7 +16780,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-libs/qt6pas
       games-util/goverlay
   overlays:
   - enable: "guru"
@@ -16791,11 +16790,8 @@ packages:
   atoms:
   - atom: "games-util/goverlay"
     accept_keywords: "~amd64"
-  # - atom: "dev-libs/qt6pas"
-  #   accept_keywords: "~amd64"
   inner_build_reqs:
-  # - dev-lang/fpc
-  - dev-lang/lazarus;USE="qt6"
+  - dev-lang/lazarus;USE="-gui -gtk -gtk2 qt6"
   requires:
   - <<: *layers-qt
   - <<: *apps-mangohud
