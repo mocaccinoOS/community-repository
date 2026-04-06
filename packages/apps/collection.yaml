@@ -5021,7 +5021,7 @@ packages:
     name: "designer"
     version: ">=0"
   atoms:
-  - atom: "dev-qt/designer"
+  - atom: "dev-qt/designer:5"
     use: "declarative"
     unmask: true
   requires:
@@ -20679,11 +20679,6 @@ packages:
   inner_build_reqs:
   - dev-libs/gobject-introspection;USE="doctool"
   - dev-util/gi-docgen
-  # prepare:
-  # - cp -r tree/media-plugins/gimp-resynthesizer /var/db/repos/guru/media-plugins
-  # - sed -i -e '/src_configure()/i PATCHES=(\n\t"${FILESDIR}"\/gimp-resynthesizer-3.0.patch\n)\n' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  # # - sed -i -e '/src_configure() {/a \\tcat "${S}"\/lib/refinerThreaded.h' /var/db/repos/guru/media-plugins/gimp-resynthesizer/gimp-resynthesizer-*.ebuild
-  # - find /var/db/repos/guru/media-plugins/gimp-resynthesizer/ -type f -name "gimp-resynthesizer-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-cfitsio
