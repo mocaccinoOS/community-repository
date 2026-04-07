@@ -245,9 +245,6 @@ stubs:
   category: "kernel-modules"
   name: "nvidia-drivers-lts"
   version: ">=0"
-  atoms:
-  - atom: "x11-drivers/nvidia-drivers"
-    license: "NVIDIA-2025"
 
 - &kernel-modules-vhba
   category: "kernel-modules"
@@ -13508,6 +13505,7 @@ packages:
   - <<: *fonts-lato
   build_requires:
   - <<: *kernel-modules-nvidia-drivers-lts
+  requires_final_images: true
 
 - category: "apps"
   name: "mc"
@@ -13650,7 +13648,7 @@ packages:
 - &apps-mirage2iso
   category: "apps"
   name: "mirage2iso"
-  version: "0.4.2-r1+2"
+  version: "0.4.2-r1+3"
   uri:
   - https://github.com/mgorny/mirage2iso/
   license: "BSD"
@@ -16261,7 +16259,7 @@ packages:
 - &def-cdemu
   category: "apps"
   name: "cdemu"
-  version: "3.2.5-r1+6"
+  version: "3.2.5-r1+7"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -16798,7 +16796,6 @@ packages:
   - dev-lang/lazarus;USE="gui -gtk -gtk2 qt6"
   requires:
   - <<: *layers-qt
-  - <<: *kernel-modules-nvidia-drivers-lts
   - <<: *apps-mangohud
   build_requires:
   - <<: *layers-qt
