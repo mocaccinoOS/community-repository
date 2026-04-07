@@ -13495,6 +13495,8 @@ packages:
     accept_keywords: "~amd64"
   - atom: "media-libs/implot"
     accept_keywords: "~amd64"
+  env:
+  - ACCEPT_LICENSE="$ACCEPT_LICENSE NVIDIA-2025"
   optrequires:
   - <<: *kernel-modules-nvidia-drivers-lts
   requires:
@@ -13505,7 +13507,6 @@ packages:
   - <<: *fonts-lato
   build_requires:
   - <<: *kernel-modules-nvidia-drivers-lts
-  requires_final_images: true
 
 - category: "apps"
   name: "mc"

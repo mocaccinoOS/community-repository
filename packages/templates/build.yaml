@@ -40,7 +40,7 @@ prelude:
 
 {{/* debug */}}
 {{/* depends on which comes first out of the below debug functions, only the first one will be executed */}}
-{{/*- if eq .Values.name "kaffeine-tde" }}
+{{/*- if eq .Values.name "blender" }}
   {{- template "community.dump" ( include "community.merge_shell_commands" ( include "community.prereqs" ( list .Values $packages "" ) ) ) }}
   {{- template "community.dumpList" ( include "community.prereqs" ( list .Values $packages "" ) ) }}
   {{- include "community.dumpJson" ( get ( ( printf "debug:\n %s" ( include "community.prereqs" ( list .Values $packages "" ) ) ) | fromYaml ) "debug" ) }}
@@ -81,7 +81,7 @@ steps:
 {{- include "community.subpackages" .Values }}
 
 {{/* debug */}}
-{{/*- if eq .Values.name "fonttools" }}
+{{/*- if eq .Values.name "blender" }}
 {{- include "community.dump" ( printf "debug:\n%s\nend debug" ( .Values | toYaml ) ) }}
 {{- include "community.dump" ( printf "debug:\n%s\nend debug" ( include "community.subpackages" .Values ) ) }}
 {{- end */}}
