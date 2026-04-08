@@ -80,15 +80,19 @@ jobs:
         SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
           --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
         # echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
-        
+
         FAILURE_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
           --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="failure")] | length')
         # echo "failed-count=$FAILURE_COUNT" >> $GITHUB_OUTPUT
 
+        CANCELLED_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
+          --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="cancelled")] | length')
+        # echo "failed-count=$CANCELLED_COUNT" >> $GITHUB_OUTPUT
+
         if [ "$SUCCESS_COUNT" -gt 0 ]; then
           echo "Found $SUCCESS_COUNT successful runs."
-        elif [ "$SUCCESS_COUNT" -eq 0 -a "$FAILURE_COUNT" -eq 0 ]; then
-          echo "Found no successful runs and no failed runs."
+        elif [ "$SUCCESS_COUNT" -eq 0 -a "$FAILURE_COUNT" -eq 0 -a "$CANCELLED_COUNT" -eq 0 ]; then
+          echo "Found no successful runs, no failed runs and no cancelled runs."
         else
           echo "::error::Found no successful runs."
           exit 1
