@@ -3149,9 +3149,9 @@ packages:
     name: "protobuf"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-qscintilla
   category: "libs"
@@ -10300,6 +10300,9 @@ packages:
   - category: "dev-cpp"
     name: "rapidfuzz-cpp"
     version: ">=0"
+  - category: "dev-python"
+    name: "rapidfuzz"
+    version: ">=0"
   ready:
   - |
     git clone https://github.com/Ulauncher/Ulauncher.git && \
@@ -13199,7 +13202,7 @@ packages:
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
-  version: "2.7.11-r2"
+  version: "2.8.0_pre260316-r1"
   uri:
   - https://keepassxc.org/
   license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
@@ -13208,11 +13211,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/keepassxc
-  atoms:
-  - atom: "app-admin/keepassxc"
-    use: "autotype browser keeshare network yubikey X"
-  - atom: "dev-libs/botan"
-    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
   provides:
   - category: "app-admin"
     name: "keepassxc"
@@ -13223,14 +13221,20 @@ packages:
   - category: "sec-keys"
     name: "openpgp-keys-botan"
     version: ">=0"
+  atoms:
+  - atom: "app-admin/keepassxc"
+    use: "autotype browser keeshare keyring network ssh-agent X"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/botan"
+    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
   inner_build_reqs:
   - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
   - dev-python/sphinx
   requires:
-  - <<: *layers-qt5
+  - <<: *layers-qt
   - <<: *libs-zxcvbn-c
   build_requires:
-  - <<: *layers-qt5
+  - <<: *layers-qt
 
 - category: "apps"
   name: "kget"
