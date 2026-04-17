@@ -13227,6 +13227,10 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-libs/botan"
     use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
+  prepare:
+  # temporary to the next cycle
+  - sed -i -e "s/#\s*KEYWORDS=/KEYWORDS=/" /var/db/repos/gentoo/app-admin/keepassxc/keepassxc-*.ebuild
+  - find /var/db/repos/gentoo/app-admin/keepassxc/ -type f -name "keepassxc-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
   - dev-python/sphinx
