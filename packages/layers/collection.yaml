@@ -245,18 +245,11 @@ stubs:
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
   - find /var/db/repos/gentoo/dev-db/libiodbc/ -type f -name "libiodbc-*.ebuild" -exec ebuild {} manifest \;
 
-- &apps-mpv-libmpv
+- &apps-mpv
   category: "apps"
   name: "mpv"
   version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-video/mpv
-  atoms:
-  - atom: "media-video/mpv"
-    use: "libmpv"
-
+  
 
 packages:
 
@@ -321,10 +314,10 @@ packages:
     emerge.packages: >-
       kde-apps/kmime
   provides:
-   - category: "kde-apps"
+  - category: "kde-apps"
     name: "kmime"
     version: ">=0"
- requires:
+  requires:
   - <<: *layers-kde-common
   build_requires:
   - <<: *layers-kde-common
@@ -1935,10 +1928,12 @@ packages:
   atoms:
   - atom: "kde-apps/akonadi"
     use: "tools"
+  inner_build_reqs:
+  - media-video/mpv;USE="libmpv"
   requires:
   - <<: *layers-plasma
   - <<: *apps-kmime
-  - <<: *apps-mpv-libmpv
+  - <<: *apps-mpv
   - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-plasma
