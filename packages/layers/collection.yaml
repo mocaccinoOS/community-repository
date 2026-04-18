@@ -245,6 +245,19 @@ stubs:
   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
   - find /var/db/repos/gentoo/dev-db/libiodbc/ -type f -name "libiodbc-*.ebuild" -exec ebuild {} manifest \;
 
+- &apps-mpv-libmpv
+  category: "apps"
+  name: "mpv"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-video/mpv
+  atoms:
+  - atom: "media-video/mpv"
+    use: "libmpv"
+
+
 packages:
 
 ################################################################################################################################################################
@@ -295,6 +308,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
   
+- &apps-kmime
+  category: "libs"
+  name: "kmime"
+  version: "25.12.3"
+  uri:
+  - https://apps.kde.org/
+  license: "GPL-2+"
+  description: "Libary for handling mail messages and newsgroup articles"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kmime
+  provides:
+   - category: "kde-apps"
+    name: "kmime"
+    version: ">=0"
+ requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -1717,7 +1751,7 @@ packages:
 - &def-kde-pim
   category: "layers"
   name: "kde-pim"
-  version: "25.12.3"
+  version: "25.12.3+1"
   uri:
   - https://community.kde.org/KDE_PIM
   license: "GPL-2+ LGPL-2.1+"
@@ -1791,6 +1825,9 @@ packages:
     name: "kaddressbook"
     version: ">=0"
   - category: "kde-apps"
+    name: "kalarm"
+    version: ">=0"
+  - category: "kde-apps"
     name: "kcalutils"
     version: ">=0"
   - category: "kde-apps"
@@ -1828,9 +1865,6 @@ packages:
     version: ">=0"
   - category: "kde-apps"
     name: "kmbox"
-    version: ">=0"
-  - category: "kde-apps"
-    name: "kmime"
     version: ">=0"
   - category: "kde-apps"
     name: "konsolekalendar"
@@ -1901,12 +1935,10 @@ packages:
   atoms:
   - atom: "kde-apps/akonadi"
     use: "tools"
-  prepare:
-  # Remove kalarm from ebuilds, it pulls in vlc, not that
-  - sed -i '/kalarm/d' /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild
-  - ebuild "$(ls -v /var/db/repos/gentoo/kde-apps/kdepim-meta/*.ebuild | tail -n 1)" manifest
   requires:
   - <<: *layers-plasma
+  - <<: *apps-kmime
+  - <<: *apps-mpv-libmpv
   - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-plasma

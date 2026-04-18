@@ -428,18 +428,14 @@ stubs:
   name: "grub"
   version: ">=0"
 
-# - &apps-spice-gtk
-#   category: "apps"
-#   name: "spice-gtk"
-#   version: ">=0"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-misc/spice-gtk
-#   prepare:
-#   - wget https://raw.githubusercontent.com/mocaccinoOS/desktop/master/packages/apps/qemu/package.use/01-qemu.use -O /etc/portage/package.use/01-qemu.use
-#   preemerge:
-#   - app-emulation/spice;USE="-smartcard"
+- &apps-kmime
+  category: "libs"
+  name: "kmime"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kmime
 
 - &libs-udis86
   category: "libs"
@@ -13560,7 +13556,7 @@ packages:
 - &apps-markdown
   category: "apps"
   name: "marknote"
-  version: "1.5.2"
+  version: "1.5.2+1"
   uri:
   - https://apps.kde.org/marknote/
   license: "GPL-2+"
@@ -13581,7 +13577,7 @@ packages:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
-  - <<: *libs-oxygen-icons
+  - <<: *apps-kmime
   build_requires:
   - <<: *layers-kde-common
 
@@ -17012,31 +17008,6 @@ packages:
   - <<: *apps-vcdimager
   build_requires:
   - <<: *layers-kde-common
-
-- &apps-kalarm
-  category: "apps"
-  name: "kalarm"
-  version: "25.12.3"
-  uri:
-  - https://apps.kde.org/kalarm/
-  license: "GPL-2+ FDL-1.2+"
-  description: "Application to manage alarms and other timer based alerts for the desktop"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/kalarm
-  provides:
-  - category: "kde-apps"
-    name: "kalarm"
-    version: ">=0"
-  atoms:
-  - atom: "kde-apps/kalarm"
-    use: "mpv pim handbook X # speech"
-  requires:
-  - <<: *layers-kde-pim
-  - <<: *apps-mpv
-  build_requires:
-  - <<: *layers-kde-pim
 
 - category: "apps"
   name: "kdegames"
