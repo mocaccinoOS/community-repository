@@ -292,6 +292,15 @@ stubs:
     emerge.packages: >-
       dev-libs/iniparser
 
+- &libs-kmime
+  category: "libs"
+  name: "kmime"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/kmime
+
 - &libs-mhash
   category: "libs"
   name: "mhash"
@@ -427,15 +436,6 @@ stubs:
   category: "apps"
   name: "grub"
   version: ">=0"
-
-- &apps-kmime
-  category: "libs"
-  name: "kmime"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/kmime
 
 - &libs-udis86
   category: "libs"
@@ -13577,7 +13577,7 @@ packages:
   - kde-frameworks/extra-cmake-modules
   requires:
   - <<: *layers-kde-common
-  - <<: *apps-kmime
+  - <<: *libs-kmime
   build_requires:
   - <<: *layers-kde-common
 
