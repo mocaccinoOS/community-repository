@@ -6899,6 +6899,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "impala"
+  version: "0.2.4"
+  uri:
+  - https://github.com/pythops/impala
+  license: "GPL-3 LGPL-2.1 MIT MPL-2.0 Unicode-DFS-2016 ZLIB || ( Apache-2.0 Boost-1.0 )"
+  description: "TUI for managing wifi"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/impala
+  overlays:
+  - enable: "lamdness"
+  provides:
+  - category: "net-wireless"
+    name: "impala"
+    version: ">=0"
+  atoms:
+  - atom: "net-wireless/impala"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-imwheel
   category: "apps"
   name: "imwheel"
