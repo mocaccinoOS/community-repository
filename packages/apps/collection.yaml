@@ -3882,17 +3882,17 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.10"
+  version: "8.12.5"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
-  description: "Password Manager"
+  description: "Password manager and secure wallet"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/1password
   overlays:
-  - enable: "gentoo-zh"
+  - enable: "ngg"
   provides:
   - category: "app-admin"
     name: "1password"
@@ -3900,12 +3900,14 @@ packages:
   atoms:
   - atom: "app-admin/1password"
     license: "app-admin/1password all-rights-reserved"
+    use: "policykit cli"
+  - atom: "app-admin/op-cli-bin"
+    license: "app-admin/op-cli-bin all-rights-reserved"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - acct-group/1password
   requires:
   - <<: *layers-X
-  - category: "entity"
-    name: "onepassword"
-    version: ">=0"
   build_requires:
   - <<: *layers-X
 
