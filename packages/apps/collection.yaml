@@ -4736,6 +4736,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "cfg-update"
+  version: "1.8.11"
+  uri:
+  - https://github.com/rich0/cfg-update
+  license: 'GPL-2'
+  description: "Easy to use GUI & CLI alternative for etc-update"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-portage/cfg-update
+  provides:
+  - category: "app-portage"
+    name: "cfg-update"
+    version: ">=0"
+  atoms:
+  - atom: "app-portage/cfg-update"
+    use: "X"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-chafa
   category: "apps"
   name: "chafa"
