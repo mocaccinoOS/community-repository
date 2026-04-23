@@ -18171,6 +18171,30 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "nushell"
+  version: "0.111.0"
+  uri:
+  - https://www.nushell.sh
+  license: "MIT 0BSD Apache-2.0 BSD Boost-1.0 CC-PD CC0-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
+  description: "A new type of shell, written in Rust"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-shells/nushell
+  provides:
+  - category: "app-shells"
+    name: "nushell"
+    version: ">=0"
+  atoms:
+  - atom: "app-shells/nushell"
+    accept_keywords: "~amd64"
+    use: "X mcp plugins system-clipboard"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+
 - &apps-openra
   category: "apps"
   name: "openra"
