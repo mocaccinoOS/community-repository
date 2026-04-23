@@ -3882,17 +3882,19 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.5"
+  version: "8.12.12"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
-  description: "Password manager and secure wallet"
+  description: "Password manager"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/1password
   overlays:
-  - enable: "ngg"
+  # Overlay recommended by 1password site
+  # https://support.1password.com/install-linux/#gentoo-or-nixos
+  - enable: "jaredallard"
   provides:
   - category: "app-admin"
     name: "1password"
