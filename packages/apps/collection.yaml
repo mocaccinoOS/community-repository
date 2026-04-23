@@ -3125,6 +3125,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-python-dotenv
+  category: "libs"
+  name: "python-dotenv"
+  version: "1.2.2"
+  uri:
+  - https://github.com/theskumar/python-dotenv/
+  license: "BSD"
+  description: "PyYAML-based module to produce pretty and readable YAML-serialized data"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/python-dotenv
+  provides:
+  - category: "dev-python"
+    name: "python-dotenv"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-python-msgpack
   category: "libs"
   name: "python-msgpack"
@@ -3169,6 +3190,27 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-python-pyaml
+  category: "libs"
+  name: "python-pyaml"
+  version: "26.2.1"
+  uri:
+  - https://github.com/mk-fg/pretty-yaml/
+  license: "WTFPL-2"
+  description: "PyYAML-based module to produce pretty and readable YAML-serialized data"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyaml
+  provides:
+  - category: "dev-python"
+    name: "pyaml"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-qscintilla
   category: "libs"
@@ -9238,6 +9280,32 @@ packages:
   - <<: *libs-apparmor
   build_requires:
   - <<: *layers-sys-fs
+
+- category: "apps"
+  name: "podman-compose"
+  version: "1.5.0"
+  uri:
+  - https://github.com/containers/podman-compose
+  license: 'GPL-2'
+  description: "A script to run docker-compose.yml using Podman"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/podman-compose
+  provides:
+  - category: "app-containers"
+    name: "podman-compose"
+    version: ">=0"
+  atoms:
+  - atom: "app-containers/podman-compose"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-python-pyaml
+  - <<: *libs-python-dotenv
+  - <<: *apps-podman
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-podofo
   category: "apps"
