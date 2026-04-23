@@ -8234,6 +8234,31 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "nethack"
+  version: "3.6.7"
+  uri:
+  - https://www.nethack.org/
+  license: "nethack"
+  description: "The ultimate old-school single player dungeon exploration game"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      games-roguelike/nethack
+  provides:
+  - category: "games-roguelike"
+    name: "nethack"
+    version: ">=0"
+  atoms:
+  - atom: "games-roguelike/nethack"
+    license: "nethack"
+    use: "X"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *buildbase-X
+
+- category: "apps"
   name: "nethogs"
   version: "0.8.8"
   uri:
