@@ -9200,6 +9200,45 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-podman
+  category: "apps"
+  name: "podman"
+  version: "5.8.1"
+  uri:
+  - https://github.com/containers/podman/
+  license: "Apache-2.0 BSD BSD-2 CC-BY-SA-4.0 ISC MIT MPL-2.0"
+  description: "A tool for managing OCI containers and pods with Docker-compatible CLI"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-containers/podman
+  provides:
+  - category: "app-containers"
+    name: "podman"
+    version: ">=0"
+  - category: "app-containers"
+    name: "catatonit"
+    version: ">=0"
+  - category: "app-containers"
+    name: "conmon"
+    version: ">=0"
+  - category: "app-containers"
+    name: "containers-common"
+    version: ">=0"
+  atoms:
+  - atom: "app-containers/podman"
+    use: "apparmor seccomp systemd"
+  inner_build_requires:
+  - <<: *apps-go
+  inner_build_reqs:
+  - dev-go/go-md2man
+  - dev-lang/python
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-apparmor
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-podofo
   category: "apps"
   name: "podofo"
