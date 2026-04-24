@@ -4507,7 +4507,7 @@ packages:
 - &apps-bottom
   category: "apps"
   name: "bottom"
-  version: "0.12.3+1"
+  version: "0.12.3+2"
   uri:
   - https://github.com/ClementTsang/bottom
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 MIT MPL-2.0 Unlicense ZLIB"
@@ -4520,8 +4520,9 @@ packages:
   - category: "sys-process"
     name: "bottom"
     version: ">=0"
-  # inner_build_reqs:
-  # - dev-lang/rust-bin
+  inner_build_reqs:
+  - dev-lang/rust-bin
+  # needs  =dev-lang/rust-bin-1.93.1
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5809,7 +5810,6 @@ packages:
     name: "fish"
     version: ">=0"
   inner_build_reqs:
-  # - dev-lang/rust-bin
   - dev-python/sphinx
   requires:
   - <<: *layers-system-x
@@ -6717,8 +6717,6 @@ packages:
   - atom: "app-crypt/hashcat"
     use: "brain"
     accept_keywords: "~amd64"
-  # inner_build_reqs:
-  # - dev-lang/rust-bin
   requires:
   - <<: *layers-X
   build_requires:
@@ -9608,8 +9606,6 @@ packages:
   - atom: "net-misc/rustdesk"
     use: "wayland hwaccel"
     accept_keywords: "~amd64"
-  # inner_build_reqs:
-  # - dev-lang/rust-bin
   # Should be layers/X, but x11-misc/xdotool is in gnome-common
   requires:
   - <<: *layers-gnome-common
@@ -10130,7 +10126,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.9.1_p15009+1"
+  version: "140.9.1_p15009"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -10704,7 +10700,7 @@ packages:
 
 - category: "apps"
   name: "wezterm"
-  version: "20240203.110809-r2+1"
+  version: "20240203.110809-r2+2"
   uri:
   - https://wezfurlong.org/wezterm/
   - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
@@ -10729,7 +10725,7 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - x11-apps/xcursorgen
-  # - dev-lang/rust-bin:1.77.1
+  - dev-lang/rust-bin:1.77.1
   requires:
   - <<: *layers-X
   - <<: *fonts-jetbrains-mono
@@ -16928,7 +16924,7 @@ packages:
 - &apps-helix
   category: "apps"
   name: "helix"
-  version: "25.07.1+1"
+  version: "25.07.1+2"
   uri:
   - https://helix-editor.com/
   license: "MPL-2.0 Apache-2.0 BSD Boost-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
@@ -16943,9 +16939,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-editors/helix"
-    use: "+grammar"
-  # inner_build_reqs:
-  # - dev-lang/rust-bin:1.77.1
+    use: "grammar"
   requires:
   - <<: *apps-luajit
   - <<: *libs-libutf8proc
@@ -17923,7 +17917,7 @@ packages:
 # 
 - category: "apps"
   name: "nordvpn"
-  version: "4.2.1+11"
+  version: "4.6.0"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -17943,9 +17937,9 @@ packages:
     git clone https://github.com/NordSecurity/nordvpn-linux.git && \
     cd nordvpn-linux; \
     git fetch --all --tags && \
-    git checkout tags/4.2.1; \
+    git checkout tags/4.6.0; \
     cp .env.sample .env && \
-    echo 'CI_COMMIT_TAG=4.2.1' >> .env; \
+    echo 'CI_COMMIT_TAG=4.6.0' >> .env; \
     # quench moose are internal/not accessible \
     # echo 'EVENTS_PROD_DOMAIN=http://example.com' >> .env; \
     # echo 'EVENTS_STAGING_DOMAIN=http://example.com' >> .env; \
@@ -18035,7 +18029,7 @@ packages:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
   inner_build_reqs:
-  # - dev-lang/rust-bin
+  - dev-lang/rust-bin
   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
   - dev-go/go-licenses;ACCEPT_KEYWORDS="~amd64"
   inner_build_requires:
@@ -19646,7 +19640,6 @@ packages:
   - <<: *layers-X
   - <<: *apps-neovim
     skip: true
-  # - <<: *apps-rust-bin
   build_requires:
   - <<: *buildbase-X
 
