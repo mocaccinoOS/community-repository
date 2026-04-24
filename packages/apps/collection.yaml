@@ -842,6 +842,26 @@ packages:
   - atom: "media-fonts/stix-fonts"
     use: "X"
 
+- &fonts-terminus
+  <<: *fonts
+  name: "terminus"
+  version: "4.49.1-r2"
+  uri:
+  - https://terminus-font.sourceforge.net/
+  license: "OFL-1.1 GPL-2"
+  description: "A clean fixed font for the console and X11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/terminus-font
+  provides:
+  - category: "media-fonts"
+    name: "terminus-font"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/terminus-font"
+    use: "X otf pcf-8bit pcf-unicode psf"
+
 - &fonts-texcm-ttf
   <<: *fonts
   name: "texcm-ttf"
