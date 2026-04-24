@@ -4319,12 +4319,12 @@ packages:
     git checkout tags/v2.7.0; \
     # By not specifying -DCMAKE_BUILD_TYPE=Release you are building a debug version, which is larger in filesize but does not contain the launcher-can-only-connect-to-a-server-once bug \
     cmake . -B bin -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake -DVCPKG_TARGET_TRIPLET=x64-linux; \
-    cmake --build bin --parallel;
+    cmake --build bin --parallel
   setup:
   - |
     cd BeamMP-Launcher; \
     mkdir -p /opt/beammp-launcher; \
-    cp bin/BeamMP-Launcher /opt/beammp-launcher/;
+    cp bin/BeamMP-Launcher /opt/beammp-launcher/
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -4520,9 +4520,8 @@ packages:
   - category: "sys-process"
     name: "bottom"
     version: ">=0"
-  inner_build_reqs:
-  - dev-lang/rust-bin
-  # needs  =dev-lang/rust-bin-1.93.1
+  # inner_build_reqs:
+  # - dev-lang/rust-bin
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -8325,33 +8324,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-# - category: "apps"
-#   name: "nordvpn"
-#   version: "4.1.1"
-#   uri:
-#   - https://nordvpn.com
-#   - https://gitlab.com/lahouari.dc/nordvpn
-#   license: "NordVPN"
-#   description: "NordVPN native client"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-vpn/nordvpn
-#   overlays:
-#   - enable: "nordvpn"
-#   provides:
-#   - category: "net-vpn"
-#     name: "nordvpn"
-#     version: ">=0"
-#   atoms:
-#   - atom: "net-vpn/nordvpn"
-#     accept_keywords: "~amd64"
-#     license: "NordVPN"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "nordvpn-bin"
@@ -17950,7 +17922,7 @@ packages:
     export CGO_CXXFLAGS="${CXXFLAGS}"; \
     export CGO_LDFLAGS="${LDFLAGS}"; \
     export GOFLAGS="-trimpath -ldflags=-linkmode=external -mod=readonly -modcacherw"; \
-    mage && mage -v build:binaries build:openvpn build:data build:notices;
+    mage && mage -v build:binaries build:openvpn build:data build:notices
   # completion:
   # - |
   #   cd nordvpn-linux && \
@@ -17995,12 +17967,12 @@ packages:
     mkdir -p /usr/share/zsh/functions/Completion/Unix; \
     cp -L --preserve nordvpn-linux/dist/autocomplete/zsh_autocomplete /usr/share/zsh/functions/Completion/Unix/_nordvpn_auto_complete; \
     mkdir -p /var/lib/nordvpn/; \
-    cp -r -L --preserve nordvpn-linux/dist/data /var/lib/nordvpn/;
+    cp -r -L --preserve nordvpn-linux/dist/data /var/lib/nordvpn/
   - |
     set -x; \
     find . -name libmoosenordvpnapp.so; \
     find . -name libmooseworker.so; \
-    find . -name libquench.so;
+    find . -name libquench.so
   # - |
   #   cd nordvpn-linux; \
   #   export PATH="${HOME}/.cargo/bin:${PATH}"; \
