@@ -17902,7 +17902,7 @@ packages:
     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
     /usr/bin/rustup-init-gentoo -s && \
     export PATH="${HOME}/.cargo/bin:${PATH}"; \
-    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi;
+    if [ ! -f /usr/bin/x86_64-linux-gnu-gcc ]; then ln -s /usr/bin/x86_64-pc-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc; fi
   # find . -type f -name "*.sh" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
   # find . -type f -name "Dockerfile" -exec sed -i 's/x86_64-linux-gnu/x86_64-pc-linux-gnu/g' {} +; \
   - |
@@ -20968,7 +20968,7 @@ packages:
       sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
       grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
       if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env;
+      sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env
   requires:
   - <<: *layers-qt
   - <<: *layers-java
