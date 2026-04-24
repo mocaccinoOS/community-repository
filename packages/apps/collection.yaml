@@ -4507,7 +4507,7 @@ packages:
 - &apps-bottom
   category: "apps"
   name: "bottom"
-  version: "0.12.3"
+  version: "0.12.3+1"
   uri:
   - https://github.com/ClementTsang/bottom
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 MIT MPL-2.0 Unlicense ZLIB"
@@ -4520,8 +4520,8 @@ packages:
   - category: "sys-process"
     name: "bottom"
     version: ">=0"
-  inner_build_reqs:
-  - dev-lang/rust-bin
+  # inner_build_reqs:
+  # - dev-lang/rust-bin
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -5795,7 +5795,7 @@ packages:
 
 - category: "apps"
   name: "fish"
-  version: "4.5.0-r2"
+  version: "4.5.0-r2+1"
   uri:
   - http://fishshell.com/
   license: "GPL-2"
@@ -5809,7 +5809,7 @@ packages:
     name: "fish"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/rust-bin
+  # - dev-lang/rust-bin
   - dev-python/sphinx
   requires:
   - <<: *layers-system-x
@@ -6697,7 +6697,7 @@ packages:
 
 - category: "apps"
   name: "hashcat"
-  version: "7.1.2-r1+1"
+  version: "7.1.2-r1+2"
   uri:
   - https://github.com/hashcat/hashcat
   license: "MIT"
@@ -6717,8 +6717,8 @@ packages:
   - atom: "app-crypt/hashcat"
     use: "brain"
     accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/rust-bin
+  # inner_build_reqs:
+  # - dev-lang/rust-bin
   requires:
   - <<: *layers-X
   build_requires:
@@ -9589,7 +9589,7 @@ packages:
 
 - category: "apps"
   name: "rustdesk"
-  version: "1.4.6"
+  version: "1.4.6+1"
   uri:
   - https://rustdesk.com/
   license: "AGPL-3 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 CDLA-Permissive-2.0 GPL-3+ IJG ISC MIT MIT-0 MPL-2.0 Unicode-DFS-2016 Unlicense WTFPL-2 ZLIB"
@@ -9608,8 +9608,8 @@ packages:
   - atom: "net-misc/rustdesk"
     use: "wayland hwaccel"
     accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/rust-bin
+  # inner_build_reqs:
+  # - dev-lang/rust-bin
   # Should be layers/X, but x11-misc/xdotool is in gnome-common
   requires:
   - <<: *layers-gnome-common
@@ -10130,7 +10130,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.9.1_p15009"
+  version: "140.9.1_p15009+1"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -10153,7 +10153,7 @@ packages:
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
   inner_build_reqs:
   - dev-build/autoconf:2.1
-  - =dev-lang/rust-bin-1.86.0-r1
+  # - =dev-lang/rust-bin-1.86.0-r1
   # - llvm-core/clang:${LLVM_VERSION}
   - llvm-core/lld:${LLVM_VERSION}
   - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
@@ -10704,7 +10704,7 @@ packages:
 
 - category: "apps"
   name: "wezterm"
-  version: "20240203.110809-r2"
+  version: "20240203.110809-r2+1"
   uri:
   - https://wezfurlong.org/wezterm/
   - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
@@ -10729,7 +10729,7 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - x11-apps/xcursorgen
-  - dev-lang/rust-bin:1.77.1
+  # - dev-lang/rust-bin:1.77.1
   requires:
   - <<: *layers-X
   - <<: *fonts-jetbrains-mono
@@ -14976,44 +14976,44 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# run as user: /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
-- &apps-rust-bin
-  category: "apps"
-  name: "rust-bin"
-  version: "1.93.1"
-  uri:
-  - https://www.rust-lang.org/
-  - https://rust-lang.github.io/rustup/
-  license: "|| ( MIT Apache-2.0 ) Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
-  description: |
-    Systems programming language originally developed by Mozilla
-    Rust toolchain installer
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-lang/rust-bin
-      dev-util/rustup
-  provides:
-  - category: "app-eselect"
-    name: "eselect-rust"
-    version: ">=0"
-  - category: "dev-lang"
-    name: "rust"
-    version: ">=0"
-  - category: "dev-util"
-    name: "rustup"
-    version: ">=0"
-  atoms:
-  - atom: "dev-lang/rust"
-    use: "clippy rust-analyzer rust-src rustfmt verify-sig # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
-  - atom: "dev-util/rustup"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - sec-keys/openpgp-keys-rust
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
+# # run as user: /usr/bin/rustup-init-gentoo && /usr/bin/rustup-init-gentoo -s
+# - &apps-rust-bin
+#   category: "apps"
+#   name: "rust-bin"
+#   version: "1.93.1"
+#   uri:
+#   - https://www.rust-lang.org/
+#   - https://rust-lang.github.io/rustup/
+#   license: "|| ( MIT Apache-2.0 ) Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CDLA-Permissive-2.0 ISC MIT openssl Unicode-3.0 ZLIB"
+#   description: |
+#     Systems programming language originally developed by Mozilla
+#     Rust toolchain installer
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-lang/rust-bin
+#       dev-util/rustup
+#   provides:
+#   - category: "app-eselect"
+#     name: "eselect-rust"
+#     version: ">=0"
+#   - category: "dev-lang"
+#     name: "rust"
+#     version: ">=0"
+#   - category: "dev-util"
+#     name: "rustup"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-lang/rust"
+#     use: "clippy rust-analyzer rust-src rustfmt verify-sig # bpf dist miri mrustc-bootstrap nightly parallel-compiler +system-llvm wasm"
+#   - atom: "dev-util/rustup"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - sec-keys/openpgp-keys-rust
+#   requires:
+#   - <<: *layers-sys-fs
+#   build_requires:
+#   - <<: *layers-sys-fs
 
 - category: "apps"
   name: "snapper-gui"
@@ -15049,7 +15049,7 @@ packages:
 
 - category: "apps"
   name: "starship"
-  version: "1.24.2"
+  version: "1.24.2+1"
   uri:
   - https://starship.rs
   license: "ISC Apache-2.0 BSD CC0-1.0 ISC MIT MPL-2.0 Unicode-3.0 Unlicense WTFPL-2 ZLIB"
@@ -15062,8 +15062,10 @@ packages:
   - category: "app-shells"
     name: "starship"
     version: ">=0"
+  requires:
+  - <<: *apps-sys-fs
   build_requires:
-  - <<: *apps-rust-bin
+  - <<: *apps-sys-fs
 
 - category: "apps"
   name: "schismtracker"
@@ -16926,7 +16928,7 @@ packages:
 - &apps-helix
   category: "apps"
   name: "helix"
-  version: "25.07.1"
+  version: "25.07.1+1"
   uri:
   - https://helix-editor.com/
   license: "MPL-2.0 Apache-2.0 BSD Boost-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
@@ -16942,8 +16944,8 @@ packages:
   atoms:
   - atom: "app-editors/helix"
     use: "+grammar"
-  inner_build_reqs:
-  - dev-lang/rust-bin:1.77.1
+  # inner_build_reqs:
+  # - dev-lang/rust-bin:1.77.1
   requires:
   - <<: *apps-luajit
   - <<: *libs-libutf8proc
@@ -17921,7 +17923,7 @@ packages:
 # 
 - category: "apps"
   name: "nordvpn"
-  version: "4.2.1+10"
+  version: "4.2.1+11"
   uri:
   - https://nordvpn.com
   - https://github.com/NordSecurity/nordvpn-linux
@@ -18033,7 +18035,7 @@ packages:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
   inner_build_reqs:
-  - dev-lang/rust-bin
+  # - dev-lang/rust-bin
   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
   - dev-go/go-licenses;ACCEPT_KEYWORDS="~amd64"
   inner_build_requires:
@@ -19619,7 +19621,7 @@ packages:
 
 - category: "apps"
   name: "neovide"
-  version: "0.15.2"
+  version: "0.15.2+1"
   uri:
   - https://github.com/neovide/neovide
   license: "MIT Apache-2.0 BSD-2 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0 Unicode-3.0 ZLIB "
@@ -19644,9 +19646,9 @@ packages:
   - <<: *layers-X
   - <<: *apps-neovim
     skip: true
+  - <<: *apps-rust-bin
   build_requires:
   - <<: *buildbase-X
-  - <<: *apps-rust-bin
 
 - category: "apps"
   name: "nomacs"
