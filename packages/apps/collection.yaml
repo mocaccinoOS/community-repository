@@ -842,6 +842,26 @@ packages:
   - atom: "media-fonts/stix-fonts"
     use: "X"
 
+- &fonts-terminus
+  <<: *fonts
+  name: "terminus"
+  version: "4.49.1-r2"
+  uri:
+  - https://terminus-font.sourceforge.net/
+  license: "OFL-1.1 GPL-2"
+  description: "A clean fixed font for the console and X11"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-fonts/terminus-font
+  provides:
+  - category: "media-fonts"
+    name: "terminus-font"
+    version: ">=0"
+  atoms:
+  - atom: "media-fonts/terminus-font"
+    use: "X otf pcf-8bit pcf-unicode psf"
+
 - &fonts-texcm-ttf
   <<: *fonts
   name: "texcm-ttf"
@@ -3125,6 +3145,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-python-dotenv
+  category: "libs"
+  name: "python-dotenv"
+  version: "1.2.2"
+  uri:
+  - https://github.com/theskumar/python-dotenv/
+  license: "BSD"
+  description: "PyYAML-based module to produce pretty and readable YAML-serialized data"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/python-dotenv
+  provides:
+  - category: "dev-python"
+    name: "python-dotenv"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-python-msgpack
   category: "libs"
   name: "python-msgpack"
@@ -3169,6 +3210,27 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-python-pyaml
+  category: "libs"
+  name: "python-pyaml"
+  version: "26.2.1"
+  uri:
+  - https://github.com/mk-fg/pretty-yaml/
+  license: "WTFPL-2"
+  description: "PyYAML-based module to produce pretty and readable YAML-serialized data"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyaml
+  provides:
+  - category: "dev-python"
+    name: "pyaml"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-qscintilla
   category: "libs"
@@ -3882,17 +3944,19 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.5"
+  version: "8.12.12"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
-  description: "Password manager and secure wallet"
+  description: "Password manager"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       app-admin/1password
   overlays:
-  - enable: "ngg"
+  # Overlay recommended by 1password site
+  # https://support.1password.com/install-linux/#gentoo-or-nixos
+  - enable: "jaredallard"
   provides:
   - category: "app-admin"
     name: "1password"
@@ -4003,7 +4067,7 @@ packages:
 
 - category: "apps"
   name: "android-studio"
-  version: "2025.3.3.7"
+  version: "2025.3.4.6"
   uri:
   - https://developer.android.com/studio
   license: "Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5 EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT MPL-1.1 MPL-2.0 NPL-1.1 OFL-1.1 ZLIB"
@@ -4554,7 +4618,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.89.137"
+  version: "1.89.141"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4733,6 +4797,30 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "cfg-update"
+  version: "1.8.11"
+  uri:
+  - https://github.com/rich0/cfg-update
+  license: 'GPL-2'
+  description: "Easy to use GUI & CLI alternative for etc-update"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-portage/cfg-update
+  provides:
+  - category: "app-portage"
+    name: "cfg-update"
+    version: ">=0"
+  atoms:
+  - atom: "app-portage/cfg-update"
+    use: "X"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-chafa
   category: "apps"
@@ -4918,7 +5006,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "5.2.0+3"
+  version: "5.4.1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -6071,7 +6159,7 @@ packages:
 
 - category: "apps"
   name: "fzf"
-  version: "0.67.0"
+  version: "0.70.0"
   uri:
   - https://github.com/junegunn/fzf
   license: "MIT BSD-with-disclosure"
@@ -6171,7 +6259,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.38.2"
+  version: "0.39.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6554,7 +6642,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "5.12.5+1"
+  version: "5.13.0"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -7701,7 +7789,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "4.33.0"
+  version: "4.35.1"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -8208,6 +8296,31 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "nethack"
+  version: "3.6.7"
+  uri:
+  - https://www.nethack.org/
+  license: "nethack"
+  description: "The ultimate old-school single player dungeon exploration game"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      games-roguelike/nethack
+  provides:
+  - category: "games-roguelike"
+    name: "nethack"
+    version: ">=0"
+  atoms:
+  - atom: "games-roguelike/nethack"
+    license: "nethack"
+    use: "X"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "nethogs"
   version: "0.8.8"
   uri:
@@ -8492,7 +8605,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.4.11"
+  version: "1.14.21"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9148,6 +9261,70 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-podman
+  category: "apps"
+  name: "podman"
+  version: "5.8.1"
+  uri:
+  - https://github.com/containers/podman/
+  license: "Apache-2.0 BSD BSD-2 CC-BY-SA-4.0 ISC MIT MPL-2.0"
+  description: "A tool for managing OCI containers and pods with Docker-compatible CLI"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-containers/podman
+  provides:
+  - category: "app-containers"
+    name: "podman"
+    version: ">=0"
+  - category: "app-containers"
+    name: "catatonit"
+    version: ">=0"
+  - category: "app-containers"
+    name: "conmon"
+    version: ">=0"
+  - category: "app-containers"
+    name: "containers-common"
+    version: ">=0"
+  atoms:
+  - atom: "app-containers/podman"
+    use: "apparmor seccomp systemd"
+  inner_build_requires:
+  - <<: *apps-go
+  inner_build_reqs:
+  - dev-go/go-md2man
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-apparmor
+  build_requires:
+  - <<: *layers-sys-fs
+
+- category: "apps"
+  name: "podman-compose"
+  version: "1.5.0"
+  uri:
+  - https://github.com/containers/podman-compose
+  license: 'GPL-2'
+  description: "A script to run docker-compose.yml using Podman"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-containers/podman-compose
+  provides:
+  - category: "app-containers"
+    name: "podman-compose"
+    version: ">=0"
+  atoms:
+  - atom: "app-containers/podman-compose"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-python-pyaml
+  - <<: *libs-python-dotenv
+  - <<: *apps-podman
+  build_requires:
+  - <<: *layers-system-x
 
 - &apps-podofo
   category: "apps"
@@ -10098,7 +10275,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.9.1_p15009"
+  version: "140.10.0_p15010"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -18002,12 +18179,36 @@ packages:
   - ^/usr/lib/systemd/system/pam_namespace.service
   - ^/root/
   inner_build_reqs:
-  - dev-lang/rust-bin
+  # - dev-lang/rust-bin
   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
   - dev-go/go-licenses;ACCEPT_KEYWORDS="~amd64"
   inner_build_requires:
   - <<: *apps-go
   - <<: *apps-mage
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "nushell"
+  version: "0.111.0"
+  uri:
+  - https://www.nushell.sh
+  license: "MIT 0BSD Apache-2.0 BSD Boost-1.0 CC-PD CC0-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
+  description: "A new type of shell, written in Rust"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-shells/nushell
+  provides:
+  - category: "app-shells"
+    name: "nushell"
+    version: ">=0"
+  atoms:
+  - atom: "app-shells/nushell"
+    accept_keywords: "~amd64"
+    use: "X mcp plugins system-clipboard"
   requires:
   - <<: *layers-X
   build_requires:
