@@ -3214,7 +3214,7 @@ packages:
 - &libs-python-pyaml
   category: "libs"
   name: "python-pyaml"
-  version: "26.2.1"
+  version: "26.2.1+1"
   uri:
   - https://github.com/mk-fg/pretty-yaml/
   license: "WTFPL-2"
@@ -3228,9 +3228,9 @@ packages:
     name: "pyaml"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-qscintilla
   category: "libs"
@@ -3562,6 +3562,28 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+  
+- &libs-TermReadKey
+  category: "libs"
+  name: "TermReadKey"
+  version: "2.380.0-r1"
+  uri:
+  - https://metacpan.org/release/TermReadKey
+  license: "|| ( Artistic GPL-1+ )"
+  description: |
+    Change terminal modes, and perform non-blocking reads
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-perl/TermReadKey
+  provides:
+  - category: "dev-perl"
+    name: "TermReadKey"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-tinyxml2
   category: "libs"
@@ -3961,17 +3983,23 @@ packages:
   - category: "app-admin"
     name: "1password"
     version: ">=0"
+  - category: "app-admin"
+    name: "op-cli-bin"
+    version: ">=0"
   atoms:
   - atom: "app-admin/1password"
-    license: "app-admin/1password all-rights-reserved"
+    license: "all-rights-reserved"
     use: "policykit cli"
   - atom: "app-admin/op-cli-bin"
-    license: "app-admin/op-cli-bin all-rights-reserved"
+    license: "all-rights-reserved"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - acct-group/1password
   requires:
   - <<: *layers-X
+  # - category: "entity"
+  #   name: "1password"
+  #   version: ">=0"
   build_requires:
   - <<: *layers-X
 
@@ -4797,30 +4825,6 @@ packages:
   - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
-
-- category: "apps"
-  name: "cfg-update"
-  version: "1.8.11"
-  uri:
-  - https://github.com/rich0/cfg-update
-  license: 'GPL-2'
-  description: "Easy to use GUI & CLI alternative for etc-update"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-portage/cfg-update
-  provides:
-  - category: "app-portage"
-    name: "cfg-update"
-    version: ">=0"
-  atoms:
-  - atom: "app-portage/cfg-update"
-    use: "X"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - &apps-chafa
   category: "apps"
@@ -6175,9 +6179,9 @@ packages:
   inner_build_reqs:
   - dev-lang/go
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "galaxy"
@@ -8297,7 +8301,7 @@ packages:
 
 - category: "apps"
   name: "nethack"
-  version: "3.6.7"
+  version: "3.6.7+1"
   uri:
   - https://www.nethack.org/
   license: "nethack"
@@ -8315,8 +8319,13 @@ packages:
     license: "nethack"
     use: "X"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - acct-group/gamestat
   requires:
   - <<: *layers-X
+  - category: "entity"
+    name: "gamestat"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
@@ -9276,7 +9285,7 @@ packages:
       app-containers/podman
   provides:
   - category: "app-containers"
-    name: "podman"
+    name: "aardvark-dnst"
     version: ">=0"
   - category: "app-containers"
     name: "catatonit"
@@ -9286,6 +9295,30 @@ packages:
     version: ">=0"
   - category: "app-containers"
     name: "containers-common"
+    version: ">=0"
+  - category: "app-containers"
+    name: "containers-imaget"
+    version: ">=0"
+  - category: "app-containers"
+    name: "crunt"
+    version: ">=0"
+  - category: "app-containers"
+    name: "netavarkt"
+    version: ">=0"
+  - category: "app-containers"
+    name: "podman"
+    version: ">=0"
+  - category: "app-containers"
+    name: "containers-shortnamest"
+    version: ">=0"
+  - category: "app-containers"
+    name: "containers-storaget"
+    version: ">=0"
+  - category: "net-misc"
+    name: passtt"
+    version: ">=0"
+  - category: "sys-fs"
+    name: "fuse-overlayfst"
     version: ">=0"
   atoms:
   - atom: "app-containers/podman"
@@ -10298,7 +10331,6 @@ packages:
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 llvm_slot_21\""
   inner_build_reqs:
   - dev-build/autoconf:2.1
-  # - =dev-lang/rust-bin-1.86.0-r1
   # - llvm-core/clang:${LLVM_VERSION}
   - llvm-core/lld:${LLVM_VERSION}
   - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
@@ -12402,6 +12434,34 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "cfg-update"
+  version: "1.8.11+1"
+  uri:
+  - https://github.com/rich0/cfg-update
+  license: 'GPL-2'
+  description: "Easy to use GUI & CLI alternative for etc-update"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-portage/cfg-update
+  provides:
+  - category: "app-portage"
+    name: "cfg-update"
+    version: ">=0"
+  - category: "x11-misc"
+    name: "sux"
+    version: ">=0"
+  atoms:
+  - atom: "app-portage/cfg-update"
+    use: "X"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-TermReadKey
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "chemtool"
   version: "1.6.14-r1+3"
   uri:
@@ -14109,9 +14169,6 @@ packages:
   - category: "dev-perl"
     name: "Mail-Sender"
     version: ">=0"
-  - category: "dev-perl"
-    name: "TermReadKey"
-    version: ">=0"
   - category: "virtual"
     name: "perl-Socket"
     version: ">=0"
@@ -14122,6 +14179,7 @@ packages:
   # - *apps-doxygen-packages
   requires:
   - <<: *layers-perl-libs
+  - <<: *libs-TermReadKey
   build_requires:
   # - <<: *layers-qt
   - <<: *layers-perl-libs
