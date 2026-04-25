@@ -3966,7 +3966,7 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.12"
+  version: "8.12.12+1"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
@@ -3995,11 +3995,15 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - acct-group/1password
+  - acct-group/onepassword
   requires:
   - <<: *layers-X
   # - category: "entity"
   #   name: "1password"
   #   version: ">=0"
+  - category: "entity"
+    name: "onepassword"
+    version: ">=0"
   build_requires:
   - <<: *layers-X
 
@@ -14150,7 +14154,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.5.2+1"
+  version: "5.9.5.2+2"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
