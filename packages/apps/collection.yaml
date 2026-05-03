@@ -10147,6 +10147,29 @@ packages:
   - <<: *layers-sys-fs
 
 - category: "apps"
+  name: "timewarrior"
+  version: "1.9.1"
+  uri:
+  - https://timewarrior.net/
+  license: "MIT"
+  description: "Tracks your time from the command line, and generates reports"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/timew
+  provides:
+  - category: "app-misc"
+    name: "timew"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/timew"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *buildbase-sys-fs
+
+- category: "apps"
   name: "tophat"
   version: "9999+1"
   uri:
