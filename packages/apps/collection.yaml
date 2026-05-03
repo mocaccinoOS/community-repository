@@ -10082,6 +10082,26 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "taskwarrior"
+  version: "3.4.2"
+  uri:
+  - https://taskwarrior.org/
+  license: "MIT Apache-2.0 BSD ISC MIT MPL-2.0 openssl Unicode-3.0 ZLIB"
+  description: "Command-line todo list manager"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/task
+  provides:
+  - category: "app-misc"
+    name: "task"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *buildbase-sys-fs
+
 - &apps-tcsh
   category: "apps"
   name: "tcsh"
