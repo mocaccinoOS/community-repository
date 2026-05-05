@@ -4180,6 +4180,26 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- category: "apps"
+  name: "asciinema"
+  version: "3.2.0"
+  uri:
+  - https://asciinema.org/
+  license: "GPL-3+ Apache-2.0 BSD Boost-1.0 ISC MIT Unicode-3.0"
+  description: "Command line recorder for asciinema.org service"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/asciinema
+  provides:
+  - category: "app-misc"
+    name: "asciinema"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *buildbase-sys-fs
+
 - &apps-astyle
   category: "apps"
   name: "astyle"
