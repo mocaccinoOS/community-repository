@@ -9731,6 +9731,30 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "retroarch"
+  version: "1.22.2"
+  uri:
+  - https://www.retroarch.com
+  license: "GPL-3"
+  description: "RetroArch is a frontend for emulators, game engines and media players"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-emulation/RetroArch
+  provides:
+  - category: "games-emulation"
+    name: "RetroArch"
+    version: ">=0"
+  atoms:
+  - atom: "games-emulation/RetroArch"
+    accept_keywords: "~amd64"
+    use: "7zip X alsa egl ffmpeg network opengl ozone pipewire pulseaudio rgui threads truetype udev vulkan wayland xinerama zlib"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-rhino
   category: "apps"
   name: "rhino"
