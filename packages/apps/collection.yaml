@@ -9733,7 +9733,7 @@ packages:
 
 - category: "apps"
   name: "retroarch"
-  version: "1.22.2"
+  version: 1.22.2+1
   uri:
   - https://www.retroarch.com
   license: "GPL-3"
@@ -9741,14 +9741,19 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      games-emulation/RetroArch
+      games-emulation/libretro-info games-emulation/RetroArch
   overlays:
   - enable: "guru"
   provides:
   - category: "games-emulation"
+    name: "libretro-info"
+    version: ">=0"
+  - category: "games-emulation"
     name: "RetroArch"
     version: ">=0"
   atoms:
+  - atom: "games-emulation/libretro-info"
+    accept_keywords: "~amd64"
   - atom: "games-emulation/RetroArch"
     accept_keywords: "~amd64"
     use: "7zip X alsa egl ffmpeg network opengl ozone pipewire pulseaudio rgui threads truetype udev vulkan wayland xinerama zlib"
