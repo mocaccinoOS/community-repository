@@ -16059,6 +16059,31 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+  - category: "apps"
+  name: "zsnes"
+  version: "2.1.0"
+  uri:
+  - https://github.com/xyproto/zsnes
+  license: "GPL-2"
+  description: "Fork of the classic Super Nintendo emulator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-emulation/zsnes
+  provides:
+  - category: "games-emulation"
+    name: "zsnes"
+    version: ">=0"
+  atoms:
+  - atom: "games-emulation/zsnes"
+    accept_keywords: "~amd64"
+    use: "X alsa dbus opengl pipewire pulseaudio udev usb vulkan wayland"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libsdl3
+  build_requires:
+  - <<: *layers-X
+
 ################################################################################################################################################################
 ### dep 2 libs ###
 ################################################################################################################################################################
