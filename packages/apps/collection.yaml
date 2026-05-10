@@ -3807,12 +3807,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-quazip
+  category: "libs"
+  name: "quazip"
+  version: "1.5"
+  uri:
+  - https://stachenov.github.io/quazip
+  license: "LGPL-2.1-with-linking-exception"
+  description: "Simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/quazip
+  provides:
+  - category: "dev-libs"
+    name: "quazip"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-uhd
   category: "libs"
   name: "uhd"
   version: "4.9.0.1"
   uri:
-  - hhttps://kb.ettus.com
+  - https://kb.ettus.com
   license: "GPL-3"
   description: "TUniversal Software Radio Peripheral (USRP) Hardware Driver"
   labels:
@@ -4991,6 +5012,32 @@ packages:
   - <<: *layers-qt5
   build_requires:
   - <<: *layers-qt5
+
+- category: "apps"
+  name: "corectrl"
+  version: "1.5.2"
+  uri:
+  - https://gitlab.com/corectrl/corectrl
+  license: "MIT"
+  description: "CoreCtrl is a Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles. It aims to be flexible, comfortable and accessible to regular users."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-misc/corectrl
+  overlays:
+  - enable: "farmboy0"
+  provides:
+  - category: "kde-misc"
+    name: "corectrl"
+    version: ">=0"
+  atoms:
+  - atom: "kde-misc/corectrl"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-quazip
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "cuetools"
@@ -21840,7 +21887,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "6.0.1"
+  version: "6.0.1+1"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
@@ -21858,9 +21905,6 @@ packages:
     name: "lager"
     version: ">=0"
   - category: "dev-libs"
-    name: "quazip"
-    version: ">=0"
-  - category: "dev-libs"
     name: "zug"
     version: ">=0"
   # - category: "kde-apps"
@@ -21873,8 +21917,6 @@ packages:
   - atom: "media-gfx/krita"
     use: "color-management fftw gif gsl heif jpegxl media mypaint-brush-engine openexr pdf qtmedia raw vc webp"
     accept_keywords: "~amd64"
-  - atom: "dev-libs/quazip"
-    accept_keywords: "~amd64"
   requires:
   # - <<: *layers-kde-common
   # needs kde-apps/libkdcraw
@@ -21882,6 +21924,7 @@ packages:
   - <<: *libs-libmypaint
   - <<: *libs-mlt
   - <<: *libs-ocio-oiio
+  - <<: *libs-quazip
   - <<: *libs-xsimd
   build_requires:
   #- <<: *layers-kde-common
