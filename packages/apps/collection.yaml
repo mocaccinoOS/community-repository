@@ -1122,7 +1122,31 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
-  
+
+- &libs-botan
+  category: "libs"
+  name: "botan"
+  version: "3.11.1"
+  uri:
+  - https://botan.randombit.net
+  license: "BSD-2"
+  description: "C++ crypto library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/botan
+  provides:
+  - category: "dev-libs"
+    name: "botan"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/botan"
+    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - category: "libs"
   name: "breeze-grub"
   version: "6.6.4"
@@ -13615,7 +13639,7 @@ packages:
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
-  version: "2.8.0_pre260316-r1"
+  version: "2.8.0_pre260316-r1+1"
   uri:
   - https://keepassxc.org/
   license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
@@ -13629,9 +13653,6 @@ packages:
     name: "keepassxc"
     version: ">=0"
   - category: "dev-libs"
-    name: "botan"
-    version: ">=0"
-  - category: "dev-libs"
     name: "zxcvbn"
     version: ">=0"
   - category: "sec-keys"
@@ -13641,13 +13662,12 @@ packages:
   - atom: "app-admin/keepassxc"
     use: "autotype browser keeshare keyring network ssh-agent X"
     accept_keywords: "~amd64"
-  - atom: "dev-libs/botan"
-    use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
   inner_build_reqs:
   - dev-ruby/asciidoctor;USE="ruby_targets_ruby33"
   - dev-python/sphinx
   requires:
   - <<: *layers-qt
+  - <<: *libs-botan
   - <<: *libs-zxcvbn-c
   build_requires:
   - <<: *layers-qt
