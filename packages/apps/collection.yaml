@@ -5035,32 +5035,32 @@ packages:
   build_requires:
   - <<: *layers-qt5
 
-# Must unbundle botan from keepassxc for this
-# - category: "apps"
-#   name: "corectrl"
-#   version: "1.5.2+2"
-#   uri:
-#   - https://gitlab.com/corectrl/corectrl
-#   license: "MIT"
-#   description: "CoreCtrl is a Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles. It aims to be flexible, comfortable and accessible to regular users."
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       kde-misc/corectrl
-#   overlays:
-#   - enable: "mocaccino-overlay"
-#   provides:
-#   - category: "kde-misc"
-#     name: "corectrl"
-#     version: ">=0"
-#   atoms:
-#   - atom: "kde-misc/corectrl"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-kde-common
-#   - <<: *libs-quazip
-#   build_requires:
-#   - <<: *layers-kde-common
+- category: "apps"
+  name: "corectrl"
+  version: "1.5.2+3"
+  uri:
+  - https://gitlab.com/corectrl/corectrl
+  license: "MIT"
+  description: "CoreCtrl is a Free and Open Source GNU/Linux application that allows you to control with ease your computer hardware using application profiles. It aims to be flexible, comfortable and accessible to regular users."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-misc/corectrl
+  overlays:
+  - enable: "mocaccino-overlay"
+  provides:
+  - category: "kde-misc"
+    name: "corectrl"
+    version: ">=0"
+  atoms:
+  - atom: "kde-misc/corectrl"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-kde-common
+  - <<: *libs-botan
+  - <<: *libs-quazip
+  build_requires:
+  - <<: *layers-kde-common
 
 - category: "apps"
   name: "cuetools"
