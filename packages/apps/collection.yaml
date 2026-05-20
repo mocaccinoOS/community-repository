@@ -1222,7 +1222,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "147.0.7727.137"
+  version: "148.0.7778.167"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1502,7 +1502,7 @@ packages:
 - &libs-fltk
   category: "libs"
   name: "fltk"
-  version: "1.4.4-r1"
+  version: "1.4.5"
   uri:
   - https://www.fltk.org/
   license: "FLTK LGPL-2"
@@ -2694,7 +2694,7 @@ packages:
 - &libs-libutf8proc
   category: "libs"
   name: "libutf8proc"
-  version: "2.10.0+1"
+  version: "2.11.3"
   uri:
   - https://github.com/JuliaStrings/utf8proc
   license: "MIT"
@@ -2828,7 +2828,7 @@ packages:
 - &libs-lv2
   category: "libs"
   name: "lv2"
-  version: "1.18.10-r1+1"
+  version: "1.18.10-r2"
   uri:
   - https://lv2plug.in/
   license: "MIT"
@@ -3278,7 +3278,7 @@ packages:
 - &libs-qtpy
   category: "libs"
   name: "qtpy"
-  version: "2.4.3-r2"
+  version: "2.4.3-r3"
   uri:
   - https://github.com/spyder-ide/qtpy/
   # - https://wiki.qt.io/PySide6
@@ -3631,7 +3631,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "26.02"
+  version: "26.05"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -4713,7 +4713,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.90.121"
+  version: "1.90.122"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4993,7 +4993,7 @@ packages:
 - &apps-converseen
   category: "apps"
   name: "converseen"
-  version: "0.12.2.4"
+  version: "0.15.2.2"
   uri:
   - https://converseen.fasterland.net/
   license: "GPL-3+"
@@ -5037,7 +5037,7 @@ packages:
 
 - category: "apps"
   name: "corectrl"
-  version: "1.5.2+3"
+  version: "1.5.2-r2"
   uri:
   - https://gitlab.com/corectrl/corectrl
   license: "MIT"
@@ -5396,10 +5396,32 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-dotnet-runtime-nugets-7
+  category: "apps"
+  name: "dotnet-runtime-nugets-7"
+  version: "7.0.20"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      ~dev-dotnet/dotnet-runtime-nugets-7.0.20
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "7.0.20"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-dotnet-runtime-nugets-8
   category: "apps"
   name: "dotnet-runtime-nugets-8"
-  version: "8.0.8"
+  version: "8.0.8+1"
   uri:
   - https://dotnet.microsoft.com/
   license: "MIT"
@@ -5409,7 +5431,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       ~dev-dotnet/dotnet-runtime-nugets-6.0.33
-      ~dev-dotnet/dotnet-runtime-nugets-7.0.20
       dev-dotnet/dotnet-runtime-nugets:8.0.8
   provides:
   - category: "dev-dotnet"
@@ -5417,6 +5438,33 @@ packages:
     version: "8.0.11"
   requires:
   - <<: *layers-sys-fs
+  - <<: *apps-dotnet-runtime-nugets-7
+  build_requires:
+  - <<: *layers-sys-fs
+
+- &apps-dotnet-runtime-nugets-10
+  category: "apps"
+  name: "dotnet-runtime-nugets-10"
+  version: "10.0.3"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: |
+    .NET runtime nugets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      ~dev-dotnet/dotnet-runtime-nugets-6.0.36
+      ~dev-dotnet/dotnet-runtime-nugets-8.0.24
+      ~dev-dotnet/dotnet-runtime-nugets-9.0.13
+      dev-dotnet/dotnet-runtime-nugets:10.0.3
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-runtime-nugets"
+    version: "10.0.3"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-dotnet-runtime-nugets-7
   build_requires:
   - <<: *layers-sys-fs
 
@@ -6257,7 +6305,7 @@ packages:
 
 - category: "apps"
   name: "fzf"
-  version: "0.fzf.0"
+  version: "0.71.0"
   uri:
   - https://github.com/junegunn/fzf
   license: "MIT BSD-with-disclosure"
@@ -6357,7 +6405,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.41.1"
+  version: "0.42.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6717,7 +6765,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "147.0.7727.137"
+  version: "148.0.7778.167"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -6740,7 +6788,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "5.13.3"
+  version: "5.13.6"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -7227,7 +7275,7 @@ packages:
   
 - category: "apps"
   name: "jitsi-meet"
-  version: "2026.4.0"
+  version: "2026.5.0"
   uri:
   - https://github.com/jitsi/jitsi-meet-electron
   license: "Apache-2.0"
@@ -7885,7 +7933,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "5.0.0"
+  version: "5.0.4"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -8708,7 +8756,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.14.48"
+  version: "1.15.5"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9273,7 +9321,7 @@ packages:
 
 - category: "apps"
   name: "plasma-keyboard"
-  version: "6.6.4"
+  version: "6.6.5"
   uri:
   - https://kde.org/plasma-desktop
   license: "|| ( GPL-2 GPL-3 ) LGPL-2.1 LGPL-3"
@@ -10085,7 +10133,7 @@ packages:
 
 - category: "apps"
   name: "stress-ng"
-  version: "0.21.00"
+  version: "0.21.01"
   uri:
   - https://github.com/ColinIanKing/stress-ng
   license: "GPL-2+"
@@ -10475,7 +10523,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.10.2_p15012"
+  version: "140.11.0_p15014"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -12982,6 +13030,35 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &apps-dotnet-10
+  category: "apps"
+  name: "dotnet-sdk-8"
+  version: "10.0.103"
+  uri:
+  - https://dotnet.microsoft.com/
+  license: "MIT"
+  description: ".NET is a free, cross-platform, open-source developer platform"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-dotnet/dotnet-sdk-bin:10.0.103
+  provides:
+  - category: "dev-dotnet"
+    name: "dotnet-sdk-bin"
+    version: ">=0"
+  prepare:
+  - sed -i -e "s/eselect dotnet update ifunset/echo 'eselect dotnet update ifunset' disabled/" /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/dotnet-sdk-bin-*.ebuild
+  - find /var/db/repos/gentoo/dev-dotnet/dotnet-sdk-bin/ -type f -name "dotnet-sdk-bin-*.ebuild" -exec ebuild {} manifest \;
+  inner_build_reqs:
+  - dev-util/patchelf
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-dotnet-common
+  - <<: *apps-dotnet-runtime-nugets-10
+  - <<: *libs-lttng-ust
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-duf
   category: "apps"
   name: "duf"
@@ -14648,7 +14725,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "130.0.5847.12"
+  version: "131.0.5877.55"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -15938,7 +16015,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.9.3970.50"
+  version: "7.9.3970.67"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
