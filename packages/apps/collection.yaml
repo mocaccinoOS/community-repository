@@ -13800,6 +13800,32 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "krdc"
+  version: "25.12.3"
+  uri:
+  - https://apps.kde.org/krdc/
+  license: "GPL-2"
+  description: "Remote desktop connection (RDP and VNC) client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/krdc
+  provides:
+  - category: "kde-apps"
+    name: "krdc"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/kid3"
+    use: "ssh handbook rdp vnc wayland"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  - <<: *apps-freerdp-server
+  build_requires:
+  - <<: *layers-kde-common
+
+- category: "apps"
   name: "krdp"
   version: "6.5.5"
   uri:
