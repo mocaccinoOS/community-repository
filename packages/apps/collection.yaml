@@ -1070,7 +1070,7 @@ packages:
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
-  version: "26.04+1"
+  version: "26.05"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -1518,7 +1518,7 @@ packages:
   atoms:
   - atom: "x11-libs/fltk"
     license: "FLTK LGPL-2"
-    use: "cairo examples games opengl threads xft xinerama"
+    use: "cairo examples games opengl threads xft xinerama" # +X +cairo +dbus doc examples opengl static-libs test wayland
   requires:
   - <<: *layers-X
   build_requires:
@@ -1527,7 +1527,7 @@ packages:
 - &libs-freeimage
   category: "libs"
   name: "freeimage"
-  version: "3.18.0-r11+1"
+  version: "3.18.0-r11+2"
   uri:
   - https://freeimage.sourceforge.io/
   license: "GPL-2 FIPL-1.0"
@@ -4638,31 +4638,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- category: "apps"
-  name: "blueman"
-  version: "2.4.6"
-  uri:
-  - https://github.com/blueman-project/blueman/
-  license: "GPL-3+ GPL-2"
-  description: "Simple and intuitive GTK+ Bluetooth Manager"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/blueman
-  provides:
-  - category: "net-wireless"
-    name: "blueman"
-    version: ">=0"
-  atoms:
-  - atom: "net-wireless/blueman"
-    use: "network nls policykit pulseaudio"
-  inner_build_reqs:
-  - dev-python/python-dbusmock
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &apps-bottom
   category: "apps"
   name: "bottom"
@@ -4713,7 +4688,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.90.122"
+  version: "1.90.124"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5187,7 +5162,7 @@ packages:
 
 - category: "apps"
   name: "deno-bin"
-  version: "2.6.10-r1"
+  version: "2.7.14"
   uri:
   - https://deno.com/
   license: "MIT Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC MIT MPL-2.0 openssl Unicode-3.0 Unicode-DFS-2016 ZLIB"
@@ -5916,7 +5891,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "146-147"
+  version: "145-148"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -5924,8 +5899,9 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:146
+      media-video/ffmpeg-chromium:145
       media-video/ffmpeg-chromium:147
+      media-video/ffmpeg-chromium:148
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -6374,7 +6350,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.6.1-r1"
+  version: "2.6.1-r1+1"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -6405,7 +6381,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.42.0"
+  version: "0.43.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6519,7 +6495,7 @@ packages:
 
 - category: "apps"
   name: "gnome-commander"
-  version: "1.18.4"
+  version: "1.18.4+1"
   uri:
   - https://gcmd.github.io
   license: "GPL-2"
@@ -7385,7 +7361,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.6.6"
+  version: "3.6.8"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -8321,7 +8297,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.12"
+  version: "15.0.14"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -8443,7 +8419,7 @@ packages:
 
 - category: "apps"
   name: "nethack"
-  version: "5.0.0"
+  version: "5.0.0-r1"
   uri:
   - https://www.nethack.org/
   license: "nethack"
@@ -8756,7 +8732,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.15.5"
+  version: "1.15.10"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9816,7 +9792,7 @@ packages:
 
 - category: "apps"
   name: "rawtherapee"
-  version: "5.12-r1"
+  version: "5.12-r1+1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -10711,7 +10687,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  # version: "5.15.15+16"
+  version: "5.15.15+16"
   uri:
   - https://ulauncher.io
   license: "GPL-3"
@@ -14751,7 +14727,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "131.0.5877.55"
+  version: "131.0.5877.97"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -16041,7 +16017,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "7.9.3970.67"
+  version: "8.0.4033.28"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -18137,7 +18113,7 @@ packages:
 - &apps-megasync
   category: "apps"
   name: "megasync"
-  version: "6.1.1.0-r1+1"
+  version: "6.1.1.0-r1+2"
   uri:
   - https://mega.io
   - https://github.com/meganz/MEGAsync
@@ -20193,7 +20169,7 @@ packages:
 
 - category: "apps"
   name: "nomacs"
-  version: "3.21.1+1"
+  version: "3.21.1+2"
   uri:
   - https://nomacs.org
   license: "GPL-3+"
@@ -21267,7 +21243,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.0.8-r2"
+  version: "3.2.4"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
@@ -21649,7 +21625,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "26.05"
+  version: "26.05+1"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
