@@ -6350,7 +6350,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.6.1-r1+1"
+  version: "2.6.1-r1+2"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -6363,14 +6363,13 @@ packages:
   - category: "media-gfx"
     name: "geeqie"
     version: ">=0"
-  - category: "dev-util"
-    name: "xxd"
-    version: ">=0"
   atoms:
   - atom: "media-gfx/geeqie"
     use: "djvu exif ffmpegthumbnailer heif jpeg jpeg2k jpegxl lcms lua lua_single_target_lua5-4 pdf raw spell tiff webp xmp zip # map"
-  # inner_build_requires
+  inner_build_requires
   # - <<: *apps-vim
+  - dev-util/xxd
+  # - dev-util/xxdi
   requires:
   - <<: *layers-gnome-common
   build_requires:
