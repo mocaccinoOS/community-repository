@@ -5,7 +5,32 @@
 #     exit 1
 # fi
 
-function levenshtein {
+log_debug() {
+    if [[ $DEBUG == "debug" ]]; then
+        echo -e "$DEBUG:" > /dev/tty
+        echo -e "$DEBUG:" >> "${DEBUG_FILE}"
+            
+        local arg
+        for arg in "$@"; do
+            echo -e "  ${arg}" > /dev/tty
+            echo -e "  ${arg}" >> "${DEBUG_FILE}"
+        done
+    fi
+}
+
+output() {
+    log_debug $content
+    
+    local target_files="$1"
+    local content="$2"
+    local file
+
+    for file in $target_files; do
+        echo -e "$content" >> "$file"
+    done
+}
+
+function levenshtein() {
     if [ "$#" -ne "2" ]; then
         echo "Usage: $0 word1 word2" >&2
     elif [ "${#1}" -lt "${#2}" ]; then
@@ -37,7 +62,7 @@ function levenshtein {
     fi
 }
 
-function getCategoryPackageVersion() {
+function getCategoryPackageVersion_0() {
 
     declare -A CPV
     
@@ -60,7 +85,7 @@ function getCategoryPackageVersion() {
     #         (
     #             r([[:digit:]]+)                 # version, revision
     #         )?
-    #     )?
+    # )?
     # )?
     # $/
     
@@ -69,7 +94,7 @@ function getCategoryPackageVersion() {
     SLOT_REGEX='((([[:digit:]]+)(\.([[:digit:]]+))*)(-(.*))?)'
     
     MATCH=
-    
+
     if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}-${VERSION_REGEX}:${SLOT_REGEX}$ ]] ; then
         MATCH="C/N-V:S"
         # echo ${MATCH} > /dev/tty
@@ -91,7 +116,7 @@ function getCategoryPackageVersion() {
     fi
 
     if [[ ! -z "${MATCH}" ]] ; then
-    
+
         if [[ "${MATCH}" == *"C/N"* ]] ; then
             CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
             CPV[CATEGORY]="${BASH_REMATCH[3]}"
@@ -124,8 +149,8 @@ function getCategoryPackageVersion() {
                 *)
                     CPV[VERSION_PATCH_TYPE_PRIORITY]=5
                     ;;
-            esac
-            
+        esac
+
             CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[13]}"
             CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[16]}"
         fi
@@ -133,7 +158,7 @@ function getCategoryPackageVersion() {
         if [[ "${MATCH}" == *":S"* ]] ; then
             if [[ "${MATCH}" == *"-V"* ]] ; then
                 CPV[SLOT]="${BASH_REMATCH[17]}"
-                CPV[SLOT_DOTS]="${BASH_REMATCH[18]}"
+        CPV[SLOT_DOTS]="${BASH_REMATCH[18]}"
                 CPV[SLOT_SUFFIX]="${BASH_REMATCH[22]}"
             else
                 CPV[SLOT]="${BASH_REMATCH[5]}"
@@ -143,25 +168,82 @@ function getCategoryPackageVersion() {
         fi
     fi
 
-    if [[ $2 == "debug" ]] ; then
-        echo "$1" > /dev/tty
-        echo "${BASH_REMATCH[@]}" > /dev/tty
-        
-        echo "Version specifier: ${CPV[VERSION_SPECIFIER]}" > /dev/tty
-        echo "Category: ${CPV[CATEGORY]}" > /dev/tty
-        echo "Name: ${CPV[NAME]}" > /dev/tty
-        echo "Version: ${CPV[VERSION]}" > /dev/tty
-        echo "Version, dots: ${CPV[VERSION_DOTS]}" > /dev/tty
-        echo "Version, letter: ${CPV[VERSION_LETTER]}" > /dev/tty
-        echo "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}" > /dev/tty
-        echo "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}" > /dev/tty
-        echo "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}" > /dev/tty
-        echo "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}" > /dev/tty
-        echo "Slot: ${CPV[SLOT]}" > /dev/tty
-        echo "Slot, dots: ${CPV[SLOT_DOTS]}" > /dev/tty
-        echo "Slot, suffix: ${CPV[SLOT_SUFFIX]}" > /dev/tty
-        echo "" > /dev/tty
+    log_debug \
+        "0: Getting package version of '$1'"\
+        "Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
+        "Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
+        "Version specifier: ${CPV[VERSION_SPECIFIER]}"\
+        "Category: ${CPV[CATEGORY]}"\
+        "Name: ${CPV[NAME]}"\
+        "Version: ${CPV[VERSION]}"\
+        "Version, dots: ${CPV[VERSION_DOTS]}"\
+        "Version, letter: ${CPV[VERSION_LETTER]}"\
+        "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}"\
+        "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}"\
+        "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
+        "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
+        "Slot: ${CPV[SLOT]}"\
+        "Slot, dots: ${CPV[SLOT_DOTS]}"\
+        "Slot, suffix: ${CPV[SLOT_SUFFIX]}\n"
+    
+    declare -p CPV
+}
+
+function getCategoryPackageVersion() {
+
+    local atom="$1"
+    
+    # Structural Regex: Isolates base name/version components natively in POSIX ERE
+    local ATOM_REGEX='^(>=|<=|<|>|=|||~|!|!!)?(([a-zA-Z0-9+][a-zA-Z0-9._+-]*)/)?([a-zA-Z0-9+][a-zA-Z0-9_+]*(-[a-zA-Z+][a-zA-Z0-9_+]*)*)(-(([0-9]+(\.[0-9]+)*)([a-z])?(_(alpha|beta|pre|rc|p)([0-9]*))?(-r([0-9]+))?))?(:([a-zA-Z0-9+][a-zA-Z0-9._+-]*?))?(\.([a-zA-Z0-9._+-]+))?(([a-zA-Z0-9_+-]+))?(::([a-zA-Z0-9+][a-zA-Z0-9._+-]*))?(\[(.*)\])?$'
+
+    declare -A CPV
+
+    if [[ $atom =~ $ATOM_REGEX ]]; then
+        CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
+        CPV[CATEGORY]="${BASH_REMATCH[3]}"
+        CPV[NAME]="${BASH_REMATCH[4]}"
+        CPV[VERSION]="${BASH_REMATCH[7]}"
+        CPV[VERSION_DOTS]="${BASH_REMATCH[8]}"
+        CPV[VERSION_LETTER]="${BASH_REMATCH[10]}"
+        CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[12]}"
+        CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[13]}"
+        CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[15]}"
+        CPV[SLOT]="${BASH_REMATCH[17]}"
+        CPV[SLOT_DOTS]="${BASH_REMATCH[19]}"
+        CPV[SLOT_SUFFIX]="${BASH_REMATCH[21]}"
+        CPV[REPOSITORY]="${BASH_REMATCH[23]}"
+        CPV[USE_FLAGS]="${BASH_REMATCH[25]}"
+
+        case "${CPV[VERSION_PATCH_TYPE]}" in
+            alpha) CPV[VERSION_PATCH_TYPE_PRIORITY]=1 ;;
+            beta)  CPV[VERSION_PATCH_TYPE_PRIORITY]=2 ;;
+            pre)   CPV[VERSION_PATCH_TYPE_PRIORITY]=3 ;;
+            rc)    CPV[VERSION_PATCH_TYPE_PRIORITY]=4 ;;
+            p)     CPV[VERSION_PATCH_TYPE_PRIORITY]=5 ;;
+            *)     CPV[VERSION_PATCH_TYPE_PRIORITY]="" ;;
+        esac
     fi
+
+    # --- Your Exact Debug Block ---
+    log_debug \
+        "Parsing atom: '$atom'"\
+        "Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
+        "Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
+        "Version specifier: ${CPV[VERSION_SPECIFIER]}"\
+        "Category: ${CPV[CATEGORY]}"\
+        "Name: ${CPV[NAME]}"\
+        "Version: ${CPV[VERSION]}"\
+        "Version, dots: ${CPV[VERSION_DOTS]}"\
+        "Version, letter: ${CPV[VERSION_LETTER]}"\
+        "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}"\
+        "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}"\
+        "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
+        "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
+        "Slot: ${CPV[SLOT]}"\
+        "Slot, dots: ${CPV[SLOT_DOTS]}"\
+        "Slot, suffix: ${CPV[SLOT_SUFFIX]}"\
+        "Repository Overlay: ${CPV[REPOSITORY]}"\
+        "USE Flags: ${CPV[USE_FLAGS]}\n"
     
     declare -p CPV
 }
@@ -218,7 +300,7 @@ function compareVersions() {
     fi
     
     # no logic based on version specifier, for now    
-    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS, SLOT_SUFFIX)
+    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS, SLOT_SUFFIX REPOSITORY USE_FLAGS)
     
     declare -i RESULT=0
 
@@ -313,6 +395,7 @@ function getLatestVersion() {
     local ATOM_CATEGORY=$6
     local ATOM_NAME=$7
     local ATOM_SLOT=$8
+    local ATOM_OVERLAY=$9
 
     local ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
 
@@ -347,15 +430,15 @@ function getLatestVersion() {
             break;
         fi
     done
-            
+    
     # Get Gentoo web/repo atom version
-    if [ "${#OVERLAYS[@]}" -gt 0 ] ; then
+    if [[ "${#OVERLAYS[@]}" -gt 0 && "${ATOM_OVERLAY}" != "gentoo" ]] ; then
         local BASE_URL="https://gpo.zugaina.org"
     
         local FLAVOR=$([[ "${ATOM_FLAVOR}" == "${STABLE}" ]] && echo "${STABLE}" || echo "${TESTING}")
 
         # one overlay only, currently
-        OVERLAY="${OVERLAYS[0]}"
+        OVERLAY="${ATOM_OVERLAY:-${OVERLAYS[0]}}"
 
         local ATOM_FLAVOR_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
         local ATOM_FLAVOR_EBUILD_HREF=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "string((//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/following::a[contains(@class, 'lgw')]/@href)[1])" - 2>/dev/null)
@@ -520,6 +603,8 @@ function ensurePortageTree() {
     fi
 }
 
+# Run: ./up.sh debug
+DEBUG="$1"
 
 ROOT_PATH="${ROOT_PATH:-../..}"
 
@@ -532,32 +617,32 @@ ensurePortageTree "${REFRESH_TREE}" "${PORTAGE_TREE_PATH}"
 PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
 mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
 
+DEBUG_FILE="debug.log"
+[[ $DEBUG == "debug" ]] && > "$DEBUG_FILE"
+
 PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.info"
 PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.up"
+ALL_FILES="${PACKAGES_INFO_FILE} ${PACKAGES_UP_FILE}"
 
 mv "${PACKAGES_INFO_FILE}" "${PACKAGES_INFO_FILE}.prev"
 mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 
-echo -e "${PORTAGE_HASH}\n\n" > "${PACKAGES_INFO_FILE}"
-echo -e "${PORTAGE_HASH}\n\n" > "${PACKAGES_UP_FILE}"
+> "${PACKAGES_INFO_FILE}"
+> "${PACKAGES_UP_FILE}"
+
+output "${ALL_FILES}" "\nPortage hash: ${PORTAGE_HASH}\n"
 
 echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${PORTAGE_HASH}) ...\e[0m!\n"
 
 COLLECTIONS=("layers" "apps")
 
 for COLLECTION in ${COLLECTIONS[@]}; do
-
-    #COLLECTION="${COLLECTION:-apps}"
     
-    #PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.info"
-    #PACKAGES_UP_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.${COLLECTION}.up"
-    
-    echo -e "====================\nCOLLECTION: ${COLLECTION}\n====================\n" >> "${PACKAGES_INFO_FILE}"    
-    echo -e "====================\nCOLLECTION: ${COLLECTION}\n====================\n" >> "${PACKAGES_UP_FILE}"
+    output "${ALL_FILES}" "====================\nCOLLECTION: ${COLLECTION}\n====================\n"
     
     IS_WEB_URL_REGEX="(https?|ftp)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]"
     
-    DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug"
+    DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug.log"
     
     # Remove debug file
     if [[ -f "${DEBUG_FILE}" ]] ; then
@@ -579,7 +664,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
     + "," + if (.overlays != null) then [(.overlays[] | ( .enable // .add ))] | join(";") else "" end')
     
     # echo $PACKAGES > packages.list
-    
+
     for PKG in ${PACKAGES} ; do
     
         # PACKAGE=(${PKG//,/ }) # will collapse empty values
@@ -617,8 +702,9 @@ for COLLECTION in ${COLLECTIONS[@]}; do
             ATOM_CATEGORY="${CPV_ATOM[CATEGORY]}"
             ATOM_NAME="${CPV_ATOM[NAME]}"
             ATOM_SLOT="${CPV_ATOM[SLOT]}"
+            ATOM_OVERLAY="${CPV_ATOM[REPOSITORY]}"
     
-            tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}")
+            tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}" "${ATOM_OVERLAY}")
             # echo "$tmp" > /dev/tty
             eval "${tmp/VERINFO=/EBUILD_INFO=}"
             # echo "${EBUILD_INFO[@]}" > /dev/tty
@@ -675,10 +761,12 @@ for COLLECTION in ${COLLECTIONS[@]}; do
         fi
         
         for LINE in "${LINES[@]}" ; do
-            echo -e "${LINE}" | tee -a $FILES > /dev/null
+            #echo -e "${LINE}" | tee -a $FILES > /dev/null
+            output "${FILES}" "${LINE}"
         done
         
-        echo -e "" | tee -a $FILES > /dev/null
+        #echo -e "" | tee -a $FILES > /dev/null
+        output "${FILES}" ""
     done
 
 done
