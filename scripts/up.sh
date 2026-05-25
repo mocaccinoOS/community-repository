@@ -62,138 +62,10 @@ function levenshtein() {
     fi
 }
 
-function getCategoryPackageVersion_0() {
-
-    declare -A CPV
-    
-    # /^
-    # ([<>]?=?)                                   # version specifier
-    # (([^\/]+)\/)?                               # category
-    # ([^[:space:]]+)                             # package name
-    # -                                           # separator
-    # (
-    #     ([[:digit:]]+)*                         # version, major 
-    #     (\.([[:digit:]]+))*                     # version, minor
-    #     ([a-z])?                                # version, letter
-    #     (
-    #         _                                   # separator
-    #         (alpha|beta|pre|rc|p)               # version, release type
-    #         [[:digit:]]*                        # version, patchlevel
-    #     )*
-    #     (
-    #         -                                   # separator
-    #         (
-    #             r([[:digit:]]+)                 # version, revision
-    #         )?
-    # )?
-    # )?
-    # $/
-    
-    CATEGORY_PACKAGE_REGEX='([<>]?=?)(([^\/]+)\/)?([^[:space:]:]+)'
-    VERSION_REGEX='((([[:digit:]]+)(\.([[:digit:]]+))*)([a-z])?(_(alpha|beta|pre|rc|p)([[:digit:]]*))*(-(r([[:digit:]]+)))?)'
-    SLOT_REGEX='((([[:digit:]]+)(\.([[:digit:]]+))*)(-(.*))?)'
-    
-    MATCH=
-
-    if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}-${VERSION_REGEX}:${SLOT_REGEX}$ ]] ; then
-        MATCH="C/N-V:S"
-        # echo ${MATCH} > /dev/tty
-    else
-        if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}:${SLOT_REGEX}$ ]] ; then
-            MATCH="C/N:S"
-            # echo ${MATCH} > /dev/tty
-        else
-            if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}-${VERSION_REGEX}$ ]] ; then
-                MATCH="C/N-V"
-                # echo ${MATCH} > /dev/tty
-            else
-                if [[ "$1" =~ ^${CATEGORY_PACKAGE_REGEX}$ ]] ; then
-                    MATCH="C/N"
-                    # echo ${MATCH} > /dev/tty
-                fi
-            fi
-        fi
-    fi
-
-    if [[ ! -z "${MATCH}" ]] ; then
-
-        if [[ "${MATCH}" == *"C/N"* ]] ; then
-            CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
-            CPV[CATEGORY]="${BASH_REMATCH[3]}"
-            CPV[NAME]="${BASH_REMATCH[4]}"
-        fi
-
-        if [[ "${MATCH}" == *"-V"* ]] ; then
-            CPV[VERSION]="${BASH_REMATCH[5]}"
-            CPV[VERSION_DOTS]="${BASH_REMATCH[6]}"
-            CPV[VERSION_LETTER]="${BASH_REMATCH[10]}"
-        
-            CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[12]}"
-            
-            case "${BASH_REMATCH[12]}" in
-                "alpha")
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=0
-                    ;;
-                "beta")
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=1
-                    ;;
-                "pre")
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=2
-                    ;;
-                "rc")
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=3
-                    ;;
-                "p")
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=4
-                    ;;
-                *)
-                    CPV[VERSION_PATCH_TYPE_PRIORITY]=5
-                    ;;
-        esac
-
-            CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[13]}"
-            CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[16]}"
-        fi
-        
-        if [[ "${MATCH}" == *":S"* ]] ; then
-            if [[ "${MATCH}" == *"-V"* ]] ; then
-                CPV[SLOT]="${BASH_REMATCH[17]}"
-        CPV[SLOT_DOTS]="${BASH_REMATCH[18]}"
-                CPV[SLOT_SUFFIX]="${BASH_REMATCH[22]}"
-            else
-                CPV[SLOT]="${BASH_REMATCH[5]}"
-                CPV[SLOT_DOTS]="${BASH_REMATCH[6]}"
-                CPV[SLOT_SUFFIX]="${BASH_REMATCH[10]}"
-            fi
-        fi
-    fi
-
-    log_debug \
-        "0: Getting package version of '$1'"\
-        "Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
-        "Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
-        "Version specifier: ${CPV[VERSION_SPECIFIER]}"\
-        "Category: ${CPV[CATEGORY]}"\
-        "Name: ${CPV[NAME]}"\
-        "Version: ${CPV[VERSION]}"\
-        "Version, dots: ${CPV[VERSION_DOTS]}"\
-        "Version, letter: ${CPV[VERSION_LETTER]}"\
-        "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}"\
-        "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}"\
-        "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
-        "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
-        "Slot: ${CPV[SLOT]}"\
-        "Slot, dots: ${CPV[SLOT_DOTS]}"\
-        "Slot, suffix: ${CPV[SLOT_SUFFIX]}\n"
-    
-    declare -p CPV
-}
-
 function getCategoryPackageVersion() {
 
     local atom="$1"
-    
-    # Structural Regex: Isolates base name/version components natively in POSIX ERE
+
     local ATOM_REGEX='^(>=|<=|<|>|=|||~|!|!!)?(([a-zA-Z0-9+][a-zA-Z0-9._+-]*)/)?([a-zA-Z0-9+][a-zA-Z0-9_+]*(-[a-zA-Z+][a-zA-Z0-9_+]*)*)(-(([0-9]+(\.[0-9]+)*)([a-z])?(_(alpha|beta|pre|rc|p)([0-9]*))?(-r([0-9]+))?))?(:([a-zA-Z0-9+][a-zA-Z0-9._+-]*?))?(\.([a-zA-Z0-9._+-]+))?(([a-zA-Z0-9_+-]+))?(::([a-zA-Z0-9+][a-zA-Z0-9._+-]*))?(\[(.*)\])?$'
 
     declare -A CPV
@@ -224,7 +96,6 @@ function getCategoryPackageVersion() {
         esac
     fi
 
-    # --- Your Exact Debug Block ---
     log_debug \
         "Parsing atom: '$atom'"\
         "Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
