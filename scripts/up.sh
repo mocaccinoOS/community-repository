@@ -165,7 +165,7 @@ function getCategoryPackageVersion() {
             CPV[VERSION_DOTS]="${ATOM_VERSION}"
         fi
     else
-        log_msg "ERROR: Structural validation failed for ${ATOM}."
+        log_debug "ERROR: Structural validation failed for ${ATOM}."
     fi
 
     log_debug \
