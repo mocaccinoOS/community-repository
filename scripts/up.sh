@@ -71,7 +71,7 @@ function getCategoryPackageVersion() {
 
     declare -A CPV
 
-    log_msg "$REGULAR_FILE" ">>> Analyzing package requirement: ${ATOM}"
+    log_debug "Processing atom: ${ATOM}"
 
     if [[ $ATOM =~ $ATOM_REGEX ]]; then
         CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
@@ -162,7 +162,6 @@ function getCategoryPackageVersion() {
                 ATOM_VERSION="${ATOM_VERSION%[a-z]}"
             fi
 
-            # D. Remaining chunk is pure dot-version structure
             CPV[VERSION_DOTS]="${ATOM_VERSION}"
         fi
     else
