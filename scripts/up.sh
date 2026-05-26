@@ -6,23 +6,24 @@
 # fi
 
 log_debug() {
-    if [[ $DEBUG == "debug" ]]; then
+    if [[ $DEBUG == "debug" && -n "$1" ]]; then
         echo -e "$DEBUG:" > /dev/tty
         echo -e "$DEBUG:" >> "${DEBUG_FILE}"
             
-        local arg
-        for arg in "$@"; do
-            echo -e "  ${arg}" > /dev/tty
-            echo -e "  ${arg}" >> "${DEBUG_FILE}"
+        local content
+        for content in "$@"; do
+            echo -e "  ${content}" > /dev/tty
+            echo -e "  ${content}" >> "${DEBUG_FILE}"
         done
     fi
 }
 
 output() {
-    log_debug $content
-    
     local target_files="$1"
     local content="$2"
+
+    log_debug $content
+
     local file
 
     for file in $target_files; do
@@ -64,57 +65,129 @@ function levenshtein() {
 
 function getCategoryPackageVersion() {
 
-    local atom="$1"
+    local ATOM="$1"
 
-    local ATOM_REGEX='^(>=|<=|<|>|=|||~|!|!!)?(([a-zA-Z0-9+][a-zA-Z0-9._+-]*)/)?([a-zA-Z0-9+][a-zA-Z0-9_+]*(-[a-zA-Z+][a-zA-Z0-9_+]*)*)(-(([0-9]+(\.[0-9]+)*)([a-z])?(_(alpha|beta|pre|rc|p)([0-9]*))?(-r([0-9]+))?))?(:([a-zA-Z0-9+][a-zA-Z0-9._+-]*?))?(\.([a-zA-Z0-9._+-]+))?(([a-zA-Z0-9_+-]+))?(::([a-zA-Z0-9+][a-zA-Z0-9._+-]*))?(\[(.*)\])?$'
+    local ATOM_REGEX='^([><=~!|*]+)?(([a-zA-Z0-9+][a-zA-Z0-9._+-]*)/)?([a-zA-Z0-9+][a-zA-Z0-9_+]*(-[a-zA-Z+][a-zA-Z0-9_+]*)*)(-([0-9][a-zA-Z0-9._+-]*))?(:([a-zA-Z0-9+][a-zA-Z0-9._+-]*))?(\.([a-zA-Z0-9._+-]+))?(([a-zA-Z0-9_+-]+))?(::([a-zA-Z0-9+][a-zA-Z0-9._+-]*))?(\[(.*)\])?$'
 
     declare -A CPV
 
-    if [[ $atom =~ $ATOM_REGEX ]]; then
+    log_msg "$REGULAR_FILE" ">>> Analyzing package requirement: ${ATOM}"
+
+    if [[ $ATOM =~ $ATOM_REGEX ]]; then
         CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
         CPV[CATEGORY]="${BASH_REMATCH[3]}"
         CPV[NAME]="${BASH_REMATCH[4]}"
         CPV[VERSION]="${BASH_REMATCH[7]}"
-        CPV[VERSION_DOTS]="${BASH_REMATCH[8]}"
-        CPV[VERSION_LETTER]="${BASH_REMATCH[10]}"
-        CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[12]}"
-        CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[13]}"
-        CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[15]}"
-        CPV[SLOT]="${BASH_REMATCH[17]}"
-        CPV[SLOT_DOTS]="${BASH_REMATCH[19]}"
-        CPV[SLOT_SUFFIX]="${BASH_REMATCH[21]}"
-        CPV[REPOSITORY]="${BASH_REMATCH[23]}"
-        CPV[USE_FLAGS]="${BASH_REMATCH[25]}"
+        
+        # Isolate trailing layout blocks
+        local REMAINDER="${ATOM#*"${CPV[NAME]}"}"
+        [[ -n "${CPV[VERSION]}" ]] && REMAINDER="${REMAINDER#-"${CPV[VERSION]}"}"
+        
+        CPV[USE_FLAGS]=""
+        if [[ "${REMAINDER}" =~ \[([^]]+)\]$ ]]; then
+            CPV[USE_FLAGS]="${BASH_REMATCH[1]}"
+            REMAINDER="${REMAINDER%\[*}"
+        fi
+        
+        CPV[REPOSITORY]=""
+        if [[ "${REMAINDER}" =~ ::([a-zA-Z0-9+][a-zA-Z0-9._+-]*) ]]; then
+            CPV[REPOSITORY]="${BASH_REMATCH[1]}"
+            REMAINDER="${REMAINDER%%::*}"
+        fi
+        
+        CPV[SLOT]=""
+        CPV[SLOT_DOTS]=""
+        CPV[SLOT_SUFFIX]=""
+        if [[ "${REMAINDER}" =~ :([a-zA-Z0-9+_\.-]+) ]]; then
+            local ATOM_SLOT="${BASH_REMATCH[1]}"
+            
+            # Isolate text suffix from the end (e.g., "slot" from "2.35slot")
+            if [[ "${ATOM_SLOT}" =~ ([a-zA-Z_-]+)$ ]]; then
+                CPV[SLOT_SUFFIX]="${BASH_REMATCH[1]}"
+                ATOM_SLOT="${ATOM_SLOT%"${CPV[SLOT_SUFFIX]}"}"
+            fi
+            
+            # Split remainder on dot to separate major slot and slot dots
+            if [[ "${ATOM_SLOT}" == *.* ]]; then
+                CPV[SLOT]="${ATOM_SLOT%.*}"
+                CPV[SLOT_DOTS]="${ATOM_SLOT#*.}"
+            else
+                CPV[SLOT]="${ATOM_SLOT}"
+            fi
+        fi
 
-        case "${CPV[VERSION_PATCH_TYPE]}" in
-            alpha) CPV[VERSION_PATCH_TYPE_PRIORITY]=1 ;;
-            beta)  CPV[VERSION_PATCH_TYPE_PRIORITY]=2 ;;
-            pre)   CPV[VERSION_PATCH_TYPE_PRIORITY]=3 ;;
-            rc)    CPV[VERSION_PATCH_TYPE_PRIORITY]=4 ;;
-            p)     CPV[VERSION_PATCH_TYPE_PRIORITY]=5 ;;
-            *)     CPV[VERSION_PATCH_TYPE_PRIORITY]="" ;;
-        esac
+        CPV[VERSION_DOTS]=""
+        CPV[VERSION_LETTER]=""
+        CPV[VERSION_PATCH_TYPE]=""
+        CPV[VERSION_PATCH_LEVEL]=""
+        CPV[VERSION_REVISION_NUMBER]=""
+        CPV[VERSION_PATCH_TYPE_PRIORITY]=""
+
+        # Split version string from right to left
+        if [[ -n "${CPV[VERSION]}" ]]; then
+            local ATOM_VERSION="${CPV[VERSION]}"
+
+            # Extract revision numbers (-rX)
+            if [[ "${ATOM_VERSION}" =~ -r([0-9]+)$ ]]; then
+                CPV[VERSION_REVISION_NUMBER]="${BASH_REMATCH[1]}"
+                ATOM_VERSION="${ATOM_VERSION%-r*}"
+            fi
+
+            # Handle multi-suffix elements (e.g., _alpha1_pre20250509)
+            if [[ "${ATOM_VERSION}" =~ _(alpha|beta|pre|rc|p)([0-9]*)$ ]]; then
+                CPV[VERSION_PATCH_TYPE]="${BASH_REMATCH[1]}"
+                CPV[VERSION_PATCH_LEVEL]="${BASH_REMATCH[2]}"
+                
+                local SUFFIX_TOKEN="${BASH_REMATCH[0]}"
+                ATOM_VERSION="${ATOM_VERSION%"$SUFFIX_TOKEN"*}"
+            fi
+
+            # Clear out any remaining nested prefix components (like _alpha1)
+            if [[ "$ATOM_VERSION" =~ _(alpha|beta|pre|rc|p)([0-9]*)$ ]]; then
+                local NESTED_TOKEN="${BASH_REMATCH[0]}"
+                ATOM_VERSION="${ATOM_VERSION%"$NESTED_TOKEN"*}"
+            fi
+
+            case "${CPV[VERSION_PATCH_TYPE]}" in
+                alpha) CPV[VERSION_PATCH_TYPE_PRIORITY]=1 ;;
+                beta)  CPV[VERSION_PATCH_TYPE_PRIORITY]=2 ;;
+                pre)   CPV[VERSION_PATCH_TYPE_PRIORITY]=3 ;;
+                rc)    CPV[VERSION_PATCH_TYPE_PRIORITY]=4 ;;
+                p)     CPV[VERSION_PATCH_TYPE_PRIORITY]=5 ;;
+            esac
+
+            # Extract alpha suffix letter
+            if [[ "$ATOM_VERSION" =~ ([a-z])$ ]]; then
+                CPV[VERSION_LETTER]="${BASH_REMATCH[1]}"
+                ATOM_VERSION="${ATOM_VERSION%[a-z]}"
+            fi
+
+            # D. Remaining chunk is pure dot-version structure
+            CPV[VERSION_DOTS]="${ATOM_VERSION}"
+        fi
+    else
+        log_msg "ERROR: Structural validation failed for ${ATOM}."
     fi
 
     log_debug \
-        "Parsing atom: '$atom'"\
-        "Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
-        "Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
-        "Version specifier: ${CPV[VERSION_SPECIFIER]}"\
-        "Category: ${CPV[CATEGORY]}"\
-        "Name: ${CPV[NAME]}"\
-        "Version: ${CPV[VERSION]}"\
-        "Version, dots: ${CPV[VERSION_DOTS]}"\
-        "Version, letter: ${CPV[VERSION_LETTER]}"\
-        "Version, patch type: ${CPV[VERSION_PATCH_TYPE]}"\
-        "Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}"\
-        "Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
-        "Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
-        "Slot: ${CPV[SLOT]}"\
-        "Slot, dots: ${CPV[SLOT_DOTS]}"\
-        "Slot, suffix: ${CPV[SLOT_SUFFIX]}"\
-        "Repository Overlay: ${CPV[REPOSITORY]}"\
-        "USE Flags: ${CPV[USE_FLAGS]}\n"
+        "Parsing atom: '${ATOM}'"\
+        "  Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
+        "  Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
+        "  Version specifier: ${CPV[VERSION_SPECIFIER]}"\
+        "  Category: ${CPV[CATEGORY]}"\
+        "  Name: ${CPV[NAME]}"\
+        "  Version: ${CPV[VERSION]}"\
+        "  Version, dots: ${CPV[VERSION_DOTS]}"\
+        "  Version, letter: ${CPV[VERSION_LETTER]}"\
+        "  Version, patch type: ${CPV[VERSION_PATCH_TYPE]}"\
+        "  Version, patch type priority: ${CPV[VERSION_PATCH_TYPE_PRIORITY]}"\
+        "  Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
+        "  Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
+        "  Slot: ${CPV[SLOT]}"\
+        "  Slot, dots: ${CPV[SLOT_DOTS]}"\
+        "  Slot, suffix: ${CPV[SLOT_SUFFIX]}"\
+        "  Repository Overlay: ${CPV[REPOSITORY]}"\
+        "  USE Flags: ${CPV[USE_FLAGS]}\n"
     
     declare -p CPV
 }
@@ -154,7 +227,12 @@ function compareVersions() {
     # $1 < $2 --> -1
     # $1 == $2 --> 0
     # $1 > $2 --> 1
-    
+        
+    log_debug \
+        "Comparing versions: "\
+        "  $1 "\
+        "  $2"
+
     local tmp=$(getCategoryPackageVersion "$1")
     # echo "$tmp" > /dev/tty
     eval "${tmp/CPV=/CPV1=}"
@@ -254,12 +332,60 @@ function getPythonCompatFromFile() {
     echo "${PYTHON_COMPAT}"
 }
 
+download_overlay() {
+    local OVERLAY_NAME="${1:-}"
+    local OVERLAYS_PATH="${2:-}"
+    local COMMIT_HASH="${3:-}"
+
+    # Validate mandatory arguments
+    if [ -z "${OVERLAY_NAME}" ] || [ -z "${OVERLAYS_PATH}" ]; then
+        echo "Usage: download_overlay <overlay_name> <overlays_path> [commit_hash]"
+        return 1
+    fi
+
+    OVERLAY_PATH="${OVERLAYS_PATH}/${OVERLAY_NAME}"
+    if [[ ! -d "${OVERLAY_PATH}" ]] ; then    
+        log_debug "Fetching URL for overlay: '${OVERLAY_NAME}'..."
+
+        # Fetch official list and parse the Git URL
+        local REPO_URL
+        REPO_URL=$(curl -s https://api.gentoo.org/overlays/repositories.xml | \
+            grep -A 10 "<name>${OVERLAY_NAME}</name>" | \
+            grep -m 1 '<source type="git">' | \
+            sed -e 's/<source type="git">//' -e 's/<\/source>//' -e 's/^[ \t]*//')
+        # REPO_URLrepo_url=$(curl -s "https://gentoo.org" | \
+        # tr -d '\n\r' | \
+        # sed 's/<repository/\n<repository/g' | \
+        # grep -E "<name>${OVERLAY_NAME}</name>" | \
+        # grep -m 1 -oE '<source type="git">[^<]+' | \
+        # sed 's/<source type="git">//')
+
+        if [ -z "$REPO_URL" ]; then
+            log_debug "Error: Overlay '${OVERLAY_NAME}' not found in the official Gentoo list."
+        else
+            log_debug \
+                "Found URL: ${REPO_URL}"\
+                "Downloading repository into: ${OVERLAY_PATH}..."
+            
+            if [ -n "${COMMIT_HASH}" ]; then
+                log_debug "Targeting specific commit: ${COMMIT_HASH}"
+                git clone --depth 1 "${REPO_URL}" "${OVERLAY_PATH}" --revision="${COMMIT_HASH}"
+                
+            else
+                git clone --depth 1 "${REPO_URL}" "${OVERLAY_PATH}"
+            fi
+            
+            # read -p "Press <Enter> to continue..."
+
+            log_debug "Success! Repository ready at ${OVERLAY_PATH}"
+        fi
+    fi
+}
+
 function getLatestVersion() {
 
-    local USE_PACKAGES_GENTOO_ORG=${USE_PACKAGES_GENTOO_ORG:-false}
-    
     local ROOT_PATH=$1
-    local PORTAGE_TREE_PATH=$2
+    local OVERLAYS_PATH=$2
     local OVERLAYS=($3)
     local PACKAGE=$4
     local ATOMS_FLAVORS=($5)
@@ -303,115 +429,79 @@ function getLatestVersion() {
     done
     
     # Get Gentoo web/repo atom version
-    if [[ "${#OVERLAYS[@]}" -gt 0 && "${ATOM_OVERLAY}" != "gentoo" ]] ; then
-        local BASE_URL="https://gpo.zugaina.org"
+    ALL_OVERLAYS=("${ATOM_OVERLAY:-gentoo}")
+    if [[ "${#OVERLAYS[@]}" -gt 0 ]] ; then
+        ALL_OVERLAYS=("${ALL_OVERLAYS[@]}" "${OVERLAYS[@]}")
+    fi
+
+    log_debug "Look into overlays: ${ALL_OVERLAYS[*]}"
+
+    local BASE_URL="https://gpo.zugaina.org"
+
+    for OVERLAY in ${ALL_OVERLAYS[@]} ; do
+        log_debug "Looking for ${ATOM} in ${OVERLAY} overlay"
     
-        local FLAVOR=$([[ "${ATOM_FLAVOR}" == "${STABLE}" ]] && echo "${STABLE}" || echo "${TESTING}")
-
-        # one overlay only, currently
-        OVERLAY="${ATOM_OVERLAY:-${OVERLAYS[0]}}"
-
-        local ATOM_FLAVOR_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
-        local ATOM_FLAVOR_EBUILD_HREF=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "string((//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${FLAVOR}')]/following::a[contains(@class, 'lgw')]/@href)[1])" - 2>/dev/null)
-        
-        # check for newer version that is stable
-        local LATEST_STABLE_EBUILD=
-        if [[ "${ATOM_FLAVOR}" == "${TESTING}" ]] ; then
-            LATEST_STABLE_EBUILD=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "(//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${TESTING}')]/preceding::div[1]/b/text())[1]" - 2>/dev/null)
-            LATEST_STABLE_EBUILD_HREF=$(curl --silent "${BASE_URL}/${ATOM}" | xmllint --html --xpath "string((//div[contains(@id,'${OVERLAY}')]//div[contains(text(), '${TESTING}')]/preceding::a[contains(@class, 'lgw')]/@href)[1])" - 2>/dev/null)
-        fi
-        
-        local EBUILD="${ATOM_FLAVOR_EBUILD}"
-        local EBUILD_HREF="${ATOM_FLAVOR_EBUILD_HREF}"
-        if [[ ! -z "${LATEST_STABLE_EBUILD}" && "${LATEST_STABLE_EBUILD}" != "${ATOM_FLAVOR_EBUILD}" ]] ; then
-            local COMPARISON_RESULT=$(compareVersions "${ATOM_CATEGORY}/${LATEST_STABLE_EBUILD}" "${ATOM_CATEGORY}/${ATOM_FLAVOR_EBUILD}")
-            
-            if [[ ((${COMPARISON_RESULT} == 1)) ]] ; then
-                EBUILD="${LATEST_STABLE_EBUILD}"
-                EBUILD_HREF="${LATEST_STABLE_EBUILD_HREF}"
-            fi
-        fi
-        
-        local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
-        # echo "$tmp" > /dev/tty
-        eval "${tmp/CPV=/EBUILD_CPV=}"
-        # echo "${EBUILD_CPV[@]}" > /dev/tty
-
-        VER="${EBUILD_CPV[VERSION]}"
-        # echo "VER: ${VER}" > /dev/tty
-        EFN="${BASE_URL}/${EBUILD_HREF}"
-        # echo "EFN: ${EFN}" > /dev/tty
-    else
-        if [[ ${USE_PACKAGES_GENTOO_ORG} == true ]] ; then
-            # to do: peek newer stable version if exists
-            local FLAVOR_CLASS=$([[ "${ATOM_FLAVOR}" == "${STABLE}" ]] && echo "stable" || echo "testing")
-
-            # Use https://packages.gentoo.org
-            VER=$(curl --silent "https://packages.gentoo.org/packages/${ATOM}" | xmllint --html --xpath "(//*[contains(@class,'kk-versions')]//td[contains(@class,'kk-keyword-${FLAVOR_CLASS}')]/preceding::td[1]//a[contains(@class,'kk-ebuild-link')]/text())[1]" - 2>/dev/null)
+        if [[ "${OVERLAY}" == "gentoo" ]] ; then
+            download_overlay "${OVERLAY}" "${OVERLAYS_PATH}" "${GENTOO_COMMIT_HASH}"
         else
-            shopt -s globstar extglob nullglob
-            local EBUILDS=(${PORTAGE_TREE_PATH}/${ATOM}/*.ebuild)
-            EBUILDS=( "${EBUILDS[@]##*/}" )      # strip off directory names
-            EBUILDS=( "${EBUILDS[@]%.ebuild}" )  # strip off extensions
+            download_overlay "${OVERLAY}" "${OVERLAYS_PATH}"
+        fi    
+    
+        local OVERLAY_PATH="${OVERLAYS_PATH}/${OVERLAY}"
+    
+        shopt -s globstar extglob nullglob
+        local EBUILDS=(${OVERLAY_PATH}/${ATOM}/*.ebuild)
+        EBUILDS=( "${EBUILDS[@]##*/}" )      # strip off directory names
+        EBUILDS=( "${EBUILDS[@]%.ebuild}" )  # strip off extensions
 
-            if [ ${#EBUILDS[@]} -gt 0 ] ; then
-                # echo "Unsorted: ${EBUILDS[@]}" > /dev/tty
+        if [ ${#EBUILDS[@]} -gt 0 ] ; then
+            log_debug \
+                "Unsorted ebuilds:"\
+                "${EBUILDS[@]}"
 
-                # local FLAVORS=()
-                # for EBUILD in "${EBUILDS}"; do
-                #     FLAVORS+=($(getFlavorFromFile "${PORTAGE_TREE_PATH}/${ATOM}/${EBUILD}" "${TESTING}" "${STABLE}"))
-                # done
-                
-                for ((i=0; i <= $((${#EBUILDS[@]} - 2)); ++i)) ; do
-                    for ((j=((i + 1)); j <= ((${#EBUILDS[@]} - 1)); ++j))
-                    do
-                        local EBUILD1="${EBUILDS[i]}"
-                        local EBUILD2="${EBUILDS[j]}"
-                        local COMPARISON_RESULT=$(compareVersions "${ATOM_CATEGORY}/${EBUILD1}" "${ATOM_CATEGORY}/${EBUILD2}")
-                        # echo "Comparison result for ${EBUILD1} and ${EBUILD2}: ${COMPARISON_RESULT}" > /dev/tty
-                        
-                        if [[ ((${COMPARISON_RESULT} == -1)) ]]
-                        then
-                            # echo "Switch: $i <-> $j (${EBUILD1} <-> ${EBUILD2})" > /dev/tty
-                            local tmp=${EBUILDS[i]}
-                            EBUILDS[i]=${EBUILDS[j]}
-                            EBUILDS[j]=$tmp
-                        fi
-                    done
-                done
-                
-                # echo "Sorted: ${EBUILDS[@]}" > /dev/tty
+            # local FLAVORS=()
+            # for EBUILD in "${EBUILDS}"; do
+            #     FLAVORS+=($(getFlavorFromFile "${OVERLAY_PATH}/${ATOM}/${EBUILD}" "${TESTING}" "${STABLE}"))
+            # done
             
-                # Search for the preferred version
-                # That is the first stable version or the first version of the same flavor
-                for EBUILD in "${EBUILDS[@]}"; do
-                    local EBUILD_FLAVOR=$(getFlavorFromFile "${PORTAGE_TREE_PATH}/${ATOM}/${EBUILD}.ebuild" "${TESTING}" "${STABLE}")
-                    local EBUILD_SLOT=$(getSlotFromFile "${PORTAGE_TREE_PATH}/${ATOM}/${EBUILD}.ebuild")
+            for ((i=0; i <= $((${#EBUILDS[@]} - 2)); ++i)) ; do
+                for ((j=((i + 1)); j <= ((${#EBUILDS[@]} - 1)); ++j))
+                do
+                    local EBUILD1="${EBUILDS[i]}"
+                    local EBUILD2="${EBUILDS[j]}"
+            
+                    local COMPARISON_RESULT=$(compareVersions "${ATOM_CATEGORY}/${EBUILD1}" "${ATOM_CATEGORY}/${EBUILD2}")
+                    # echo "Comparison result for ${EBUILD1} and ${EBUILD2}: ${COMPARISON_RESULT}" > /dev/tty
                     
-                    # echo "${EBUILD} flavor: ${EBUILD_FLAVOR}" > /dev/tty
-                    # echo "${ATOM} flavor: ${ATOM_FLAVOR}" > /dev/tty
-                    # echo "${EBUILD} slot: ${EBUILD_SLOT}" > /dev/tty
-                    # echo "${ATOM} slot: ${ATOM_SLOT}" > /dev/tty
-
-                    if [[ (( -z "${ATOM_SLOT}" ) || ( ! -z "${ATOM_SLOT}" && "${EBUILD_SLOT}" == "${ATOM_SLOT}"))
-                       && ("${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}") ]] ; then
-                        local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
-                        # echo "${tmp}" > /dev/tty
-                        eval "${tmp/CPV=/EBUILD_CPV=}"
-                        # echo "${EBUILD_CPV[@]}" > /dev/tty
-        
-                        VER="${EBUILD_CPV[VERSION]}"
-                        # echo "VER: ${VER}" > /dev/tty
-                        EFN="${EBUILD}"
-                        # echo "EFN: ${EFN}" > /dev/tty
-                        
-                        break;
+                    if [[ ((${COMPARISON_RESULT} == -1)) ]]
+                    then
+                        # echo "Switch: $i <-> $j (${EBUILD1} <-> ${EBUILD2})" > /dev/tty
+                        local tmp=${EBUILDS[i]}
+                        EBUILDS[i]=${EBUILDS[j]}
+                        EBUILDS[j]=$tmp
                     fi
                 done
+            done
+            
+            log_debug \
+                "Sorted ebuilds:"\
+                "${EBUILDS[@]}"
+        
+            # Search for the preferred version
+            # That is the first stable version or the first version of the same flavor
+            for EBUILD in "${EBUILDS[@]}"; do
+                local EBUILD_FLAVOR=$(getFlavorFromFile "${OVERLAY_PATH}/${ATOM}/${EBUILD}.ebuild" "${TESTING}" "${STABLE}")
+                local EBUILD_SLOT=$(getSlotFromFile "${OVERLAY_PATH}/${ATOM}/${EBUILD}.ebuild")
                 
-                # If the searched flavor was not found, peek the first available version
-                if [[ -z "${VER}" ]] ; then
-                    local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/"${EBUILDS[0]}"")
+                # echo "${EBUILD} flavor: ${EBUILD_FLAVOR}" > /dev/tty
+                # echo "${ATOM} flavor: ${ATOM_FLAVOR}" > /dev/tty
+                # echo "${EBUILD} slot: ${EBUILD_SLOT}" > /dev/tty
+                # echo "${ATOM} slot: ${ATOM_SLOT}" > /dev/tty
+
+                if [[ (( -z "${ATOM_SLOT}" ) || ( ! -z "${ATOM_SLOT}" && "${EBUILD_SLOT}" == "${ATOM_SLOT}"))
+                    && ("${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}") ]] ; then
+
+                    local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
                     # echo "${tmp}" > /dev/tty
                     eval "${tmp/CPV=/EBUILD_CPV=}"
                     # echo "${EBUILD_CPV[@]}" > /dev/tty
@@ -420,10 +510,27 @@ function getLatestVersion() {
                     # echo "VER: ${VER}" > /dev/tty
                     EFN="${EBUILD}"
                     # echo "EFN: ${EFN}" > /dev/tty
+                    
+                    break
                 fi
+            done
+            
+            # If the searched flavor was not found, pick the first available version
+            if [[ -z "${VER}" ]] ; then
+                local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/"${EBUILDS[0]}"")
+                # echo "${tmp}" > /dev/tty
+                eval "${tmp/CPV=/EBUILD_CPV=}"
+                # echo "${EBUILD_CPV[@]}" > /dev/tty
+
+                VER="${EBUILD_CPV[VERSION]}"
+                # echo "VER: ${VER}" > /dev/tty
+                EFN="${EBUILD}"
+                # echo "EFN: ${EFN}" > /dev/tty
             fi
+            
+            break
         fi
-    fi
+    done
 
     # echo "VER: ${VER}" > /dev/tty
     # echo "" > /dev/tty
@@ -433,45 +540,12 @@ function getLatestVersion() {
     VERINFO[VERSION]="${VER}"
     VERINFO[EBUILD_FILE_NAME]="${EFN}"
     
+    log_debug \
+        "Atom ${ATOM}"\
+        "Atom version: ${VER}"\
+        "Atom ebuild: ${EFN}"
+    
     declare -p VERINFO
-}
-
-function ensurePortageTree() {
-
-    local REFRESH_TREE=$1
-    local PORTAGE_TREE_PATH=$2
-    
-    if [[ -d "${PORTAGE_TREE_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
-        rm -r "${PORTAGE_TREE_PATH}"
-    fi
-    
-    if [[ ! -d "${PORTAGE_TREE_PATH}" ]] ; then
-        #PORTAGE_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
-        PORTAGE_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
-    
-        if [[ -z "${PORTAGE_HASH}" ]] ; then
-            echo -e "\e\033[0;31;1mTree hash could not be retrieved.\e[0m"
-            
-            exit 1
-        else
-            echo -e "\n\e\033[0;32;1mDownloading https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz ...\e[0m"
-            
-            # --remote-name
-            curl --silent --location --remote-header-name https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz -o tree.tar.gz
-        
-            echo -e "\e\033[0;32;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz downloaded.\e[0m"
-        
-            mkdir -p "${PORTAGE_TREE_PATH}"
-            if tar xf ./tree.tar.gz -C "${PORTAGE_TREE_PATH}" --strip-components=1 ; then
-                rm ./tree.tar.gz
-            else
-                echo -e "\e\033[0;31;1mhttps://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz could not be downloaded.\e[0m"
-                # cat "https://github.com/gentoo/gentoo/archive/${PORTAGE_HASH}.tar.gz"
-            
-                exit 1
-            fi
-        fi
-    fi
 }
 
 # Run: ./up.sh debug
@@ -480,15 +554,27 @@ DEBUG="$1"
 ROOT_PATH="${ROOT_PATH:-../..}"
 
 REFRESH_TREE="${REFRESH_TREE:-true}"
-PORTAGE_TREE_PATH="${PORTAGE_TREE_PATH:-${ROOT_PATH}/portage/tree}"
+OVERLAYS_PATH="${OVERLAYS_PATH:-${ROOT_PATH}/overlays}"
 
-# Ensure Gentoo overlay tree
-ensurePortageTree "${REFRESH_TREE}" "${PORTAGE_TREE_PATH}"
+#GENTOO_COMMIT_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+GENTOO_COMMIT_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+
+if [[ -z "${GENTOO_COMMIT_HASH}" ]] ; then
+    echo -e "\e\033[0;31;1mTree hash could not be retrieved.\e[0m"
+    
+    exit 1
+fi
+
+if [[ -d "${OVERLAYS_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
+    rm -f -r "${OVERLAYS_PATH}"
+fi
+
+mkdir -p "${OVERLAYS_PATH}"
 
 PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
 mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
 
-DEBUG_FILE="debug.log"
+DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug.log"
 [[ $DEBUG == "debug" ]] && > "$DEBUG_FILE"
 
 PACKAGES_INFO_FILE="${PACKAGES_REPORT_FILES_PATH}/packages.info"
@@ -501,9 +587,9 @@ mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 > "${PACKAGES_INFO_FILE}"
 > "${PACKAGES_UP_FILE}"
 
-output "${ALL_FILES}" "\nPortage hash: ${PORTAGE_HASH}\n"
+output "${ALL_FILES}" "\nPortage hash: ${GENTOO_COMMIT_HASH}\n"
 
-echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${PORTAGE_HASH}) ...\e[0m!\n"
+echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${GENTOO_COMMIT_HASH}) ...\e[0m!\n"
 
 COLLECTIONS=("layers" "apps")
 
@@ -517,7 +603,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
     
     # Remove debug file
     if [[ -f "${DEBUG_FILE}" ]] ; then
-        rm "${DEBUG_FILE}"
+        rm -f "${DEBUG_FILE}"
     fi
     
     # Parse mOS community repo
@@ -538,6 +624,10 @@ for COLLECTION in ${COLLECTIONS[@]}; do
 
     for PKG in ${PACKAGES} ; do
     
+        log_debug \
+            "Package info:"\
+            "  $PKG"
+    
         # PACKAGE=(${PKG//,/ }) # will collapse empty values
         IFS=',' read -r -a PACKAGE <<< "$PKG"
     
@@ -553,18 +643,18 @@ for COLLECTION in ${COLLECTIONS[@]}; do
         
         LINES=()
     
-        # REVBUMP_CHAR="${REVBUMP_CHAR:-+}"
-    
         CLOSEST_LEV=
         CLOSEST_ATOM=
         CLOSEST_ATOM_VER=
     
         PACKAGE_NAME=$( echo -e "${PACKAGE_CATEGORY_NAME}" | sed -e 's/\(.*\)\/\(.*\)/\2/' )
-    
+
         for ATOM in ${ATOMS} ; do
     
             echo -e "${ATOM}"
     
+            log_debug "Processing atom: ${ATOM}"
+            
             tmp=$(getCategoryPackageVersion "${ATOM}")
             # echo "$tmp" > /dev/tty
             eval "${tmp/CPV=/CPV_ATOM=}"
@@ -575,7 +665,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
             ATOM_SLOT="${CPV_ATOM[SLOT]}"
             ATOM_OVERLAY="${CPV_ATOM[REPOSITORY]}"
     
-            tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${PORTAGE_TREE_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}" "${ATOM_OVERLAY}")
+            tmp=$(getLatestVersion "${ROOT_PATH}/packages/${COLLECTION}" "${OVERLAYS_PATH}" "${OVERLAYS}" "${PACKAGE_CATEGORY_NAME}" "${ATOMS_FLAVORS}" "${ATOM_CATEGORY}" "${ATOM_NAME}" "${ATOM_SLOT}" "${ATOM_OVERLAY}")
             # echo "$tmp" > /dev/tty
             eval "${tmp/VERINFO=/EBUILD_INFO=}"
             # echo "${EBUILD_INFO[@]}" > /dev/tty
@@ -586,7 +676,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
             if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
                 PYTHON_COMPAT=$(getPythonCompatFromFile "${EBUILD}")
             else
-                PYTHON_COMPAT=$(getPythonCompatFromFile "${PORTAGE_TREE_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
+                PYTHON_COMPAT=$(getPythonCompatFromFile "${OVERLAYS_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
             fi
             # echo "${EBUILD} python compat: ${PYTHON_COMPAT}" > /dev/tty
     
@@ -599,15 +689,34 @@ for COLLECTION in ${COLLECTIONS[@]}; do
     
             LINES+=("portage atom: ${MATCHED_ATOM} ${VER}")
             
-            LEV=$(levenshtein "${ATOM_NAME}" "${PACKAGE_NAME}");
+            LEV=$(levenshtein "${ATOM_NAME}" "${PACKAGE_NAME}")
             
             if [[ -z "${CLOSEST_LEV}" || $CLOSEST_LEV -gt $LEV ]] ; then
                 CLOSEST_LEV=$LEV
                 CLOSEST_ATOM="${MATCHED_ATOM}"
                 CLOSEST_ATOM_VER=$MATCHED_ATOM_VER
             fi
+
+            if [[ $ATOM_NAME == "gimp" ]] ; then
+                log_debug \
+                    "Atom: $ATOM"\
+                    "Package: $PACKAGE_NAME"\
+                    "Category: $ATOM_CATEGORY"\
+                    "Name: $ATOM_NAME"\
+                    "Slot: $ATOM_SLOT"\
+                    "Overlay: $ATOM_OVERLAY"\
+                    "Version: $VER"\
+                    "Ebuild: $EBUILD"\
+                    "Python: $PYTHON_COMPAT"\
+                    "Matched atom: $MATCHED_ATOM"\
+                    "Matched atom version: $MATCHED_ATOM_VER"\
+                    "Levenshtein value: $LEV"\
+                    "Closest atom: $CLOSEST_ATOM"\
+                    "Closest atom version: $CLOSEST_ATOM_VER"\
+                    "Closest Levenshtein value: $CLOSEST_LEV"
+            fi
         done
-    
+
         UPGRADE=
         FILES="${PACKAGES_INFO_FILE}"
         if [[ -z ${CLOSEST_ATOM_VER} ]] ; then
