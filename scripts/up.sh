@@ -374,6 +374,8 @@ function download_overlay() {
                 git clone --depth 1 "${REPO_URL}" "${OVERLAY_PATH}"
             fi
             
+            [[ -n "${OVERLAY_PATH}" && -d "${OVERLAY_PATH}" ]] && rm -rf "${OVERLAY_PATH}"/.git*
+            
             # read -p "Press <Enter> to continue..."
 
             log_debug "Success! Repository ready at ${OVERLAY_PATH}"
@@ -555,7 +557,7 @@ function getLatestVersion() {
     VERINFO[OVERLAY]="${OL}"
     
     log_debug \
-        "The latest version of ${ATOM} found in ${OL} is ${VER} (${EFN})"
+        "The latest version of ${ATOM} found in ${OL} is ${VER} (${EFN})"\
         "  Atom ${ATOM}"\
         "  Atom version: ${VER}"\
         "  Atom ebuild: ${EFN}"\
@@ -567,20 +569,21 @@ function getLatestVersion() {
 # Run: ./up.sh debug
 DEBUG="$1"
 
+REFRESH_OVERLAYS="${REFRESH_OVERLAYS:-true}"
+
 ROOT_PATH="${ROOT_PATH:-../..}"
 
 OVERLAYS_PATH="${OVERLAYS_PATH:-${ROOT_PATH}/overlays}"
 
-if [[ -d "${OVERLAYS_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
+if [[ -d "${OVERLAYS_PATH}" && ${REFRESH_OVERLAYS} == "true" ]] ; then
     rm -f -r "${OVERLAYS_PATH}"
 fi
 
 mkdir -p "${OVERLAYS_PATH}"
 
-REFRESH_TREE="${REFRESH_TREE:-true}"
-
+# Get the Gentoo tree hash used by mOS
 GENTOO_COMMIT_HASH=
-if [[ ${REFRESH_TREE} == "true" ]] ; then
+if [[ ${REFRESH_OVERLAYS} == "true" ]] ; then
     #GENTOO_COMMIT_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
     GENTOO_COMMIT_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
 else
@@ -612,7 +615,6 @@ mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 > "${PACKAGES_UP_FILE}"
 
 output "${ALL_FILES}" "\nPortage hash: ${GENTOO_COMMIT_HASH}\n"
-
 
 COLLECTIONS=("layers" "apps")
 
