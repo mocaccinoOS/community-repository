@@ -9517,6 +9517,33 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-ppsspp
+  category: "apps"
+  name: "ppsspp"
+  version: "1.20.3"
+  uri:
+  - https://www.ppsspp.org/
+  - https://github.com/hrydgard/ppsspp/
+  license: "Apache-2.0 BSD BSD-2 GPL-2 JSON MIT"
+  description: "A fast and portable PSP emulator written in C++"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: "games-emulation/ppsspp"
+  provides:
+  - category: "games-emulation"
+    name: "ppsspp"
+    version: ">=0"
+  atoms:
+  - atom: "games-emulation/ppsspp"
+    use: "discord wayland"
+  requires:
+  - *layers-X
+  - *libs-sdl2
+  - *libs-glew
+  - *libs-ffmpeg-compat
+  build_requires:
+  - *layers-X
+
 - category: "apps"
   name: "putty"
   version: "0.81"
