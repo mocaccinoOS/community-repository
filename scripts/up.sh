@@ -320,13 +320,8 @@ function getSlotFromFile() {
 
 function getPythonCompatFromFile() {
     local EBUILD=$1
-    local PYTHON_COMPAT=
-    
-    if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
-        PYTHON_COMPAT=$(curl --silent "${EBUILD}" | sed -En 's/PYTHON_COMPAT=(.*)/\1/p' - 2>/dev/null)
-    else    
-        PYTHON_COMPAT=$(sed -En 's/PYTHON_COMPAT=(.*)/\1/p' "${EBUILD}" 2>/dev/null)
-    fi
+
+    PYTHON_COMPAT=$(sed -En 's/PYTHON_COMPAT=(.*)/\1/p' "${EBUILD}" 2>/dev/null)
 
     echo "${PYTHON_COMPAT}"
 }
@@ -343,6 +338,7 @@ download_overlay() {
     fi
 
     OVERLAY_PATH="${OVERLAYS_PATH}/${OVERLAY_NAME}"
+    
     if [[ ! -d "${OVERLAY_PATH}" ]] ; then    
         log_debug "Fetching URL for overlay: '${OVERLAY_NAME}'..."
 
@@ -397,6 +393,7 @@ function getLatestVersion() {
 
     local VER=
     local EFN=
+    local OL=
     
     # Get mOS repo atom flavor (stable/testing)
     local ATOM_FLAVORS_FILE=${ROOT_PATH}/package.accept_keywords/${PACKAGE//\//-}.accept_keywords
@@ -439,6 +436,8 @@ function getLatestVersion() {
 
     for OVERLAY in ${ALL_OVERLAYS[@]} ; do
         log_debug "Looking for ${ATOM} in ${OVERLAY} overlay"
+        
+        OL="${OVERLAY}"
     
         if [[ "${OVERLAY}" == "gentoo" ]] ; then
             download_overlay "${OVERLAY}" "${OVERLAYS_PATH}" "${GENTOO_COMMIT_HASH}"
@@ -538,11 +537,13 @@ function getLatestVersion() {
     
     VERINFO[VERSION]="${VER}"
     VERINFO[EBUILD_FILE_NAME]="${EFN}"
+    VERINFO[OVERLAY]="${OL}"
     
     log_debug \
         "Atom ${ATOM}"\
         "Atom version: ${VER}"\
-        "Atom ebuild: ${EFN}"
+        "Atom ebuild: ${EFN}"\
+        "Atom overlay: ${OL}"
     
     declare -p VERINFO
 }
@@ -595,8 +596,6 @@ COLLECTIONS=("layers" "apps")
 for COLLECTION in ${COLLECTIONS[@]}; do
     
     output "${ALL_FILES}" "====================\nCOLLECTION: ${COLLECTION}\n====================\n"
-    
-    IS_WEB_URL_REGEX="(https?|ftp)://[-[:alnum:]\+&@#/%?=~_|!:,.;]*[-[:alnum:]\+&@#/%=~_|]"
     
     DEBUG_FILE="${PACKAGES_REPORT_FILES_PATH}/debug.log"
     
@@ -671,13 +670,16 @@ for COLLECTION in ${COLLECTIONS[@]}; do
             
             VER="${EBUILD_INFO[VERSION]}"
             EBUILD="${EBUILD_INFO[EBUILD_FILE_NAME]}"
-    
-            if [[ "${EBUILD}" =~ ${IS_WEB_URL_REGEX} ]] ; then
-                PYTHON_COMPAT=$(getPythonCompatFromFile "${EBUILD}")
-            else
-                PYTHON_COMPAT=$(getPythonCompatFromFile "${OVERLAYS_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild")
-            fi
-            # echo "${EBUILD} python compat: ${PYTHON_COMPAT}" > /dev/tty
+            OVERLAY="${EBUILD_INFO[OVERLAY]}"
+            
+            ATOM_OVERLAY_PATH="${OVERLAYS_PATH}/${OVERLAY}"
+            
+            EBUILD_PATH="${ATOM_OVERLAY_PATH}/${ATOM_CATEGORY}/${ATOM_NAME}/${EBUILD}.ebuild"
+            PYTHON_COMPAT=$(getPythonCompatFromFile ${EBUILD_PATH})
+
+            log_debug \
+                "Ebuild: ${EBUILD_PATH}"\
+                "Python: ${PYTHON_COMPAT}"
     
             MATCHED_ATOM="\U1FBC4"
             MATCHED_ATOM_VER="\U1FBC4"
@@ -736,7 +738,7 @@ for COLLECTION in ${COLLECTIONS[@]}; do
         
         LINES=("package: ${PACKAGE_CATEGORY_NAME}\npackage version: ${PACKAGE_VERSION}${UPGRADE}\natoms: ${ATOMS}\natom version: ${ATOM_VERSION}\natoms flavors: ${ATOMS_FLAVORS_FORMATTED}\noverlays: ${OVERLAYS}" "${LINES[@]}")
         if [[ ! -z "${PYTHON_COMPAT}" ]] ; then
-            LINES+=("python compat: ${PYTHON_COMPAT}")
+            LINES+=("python: ${PYTHON_COMPAT}")
         fi
         
         for LINE in "${LINES[@]}" ; do
