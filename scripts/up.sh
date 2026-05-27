@@ -71,7 +71,7 @@ function getCategoryPackageVersion() {
 
     declare -A CPV
 
-    log_debug "Processing atom: ${ATOM}"
+    log_debug "Parsing the atom: ${ATOM}"
 
     if [[ $ATOM =~ $ATOM_REGEX ]]; then
         CPV[VERSION_SPECIFIER]="${BASH_REMATCH[1]}"
@@ -96,10 +96,13 @@ function getCategoryPackageVersion() {
         fi
         
         CPV[SLOT]=""
-        CPV[SLOT_DOTS]=""
+        CPV[SLOT_MAJOR_DOTS]=""
+        CPV[SLOT_MINOR_DOTS]=""
         CPV[SLOT_SUFFIX]=""
         if [[ "${REMAINDER}" =~ :([a-zA-Z0-9+_\.-]+) ]]; then
             local ATOM_SLOT="${BASH_REMATCH[1]}"
+            
+            CPV[SLOT]="${ATOM_SLOT}"
             
             # Isolate text suffix from the end (e.g., "slot" from "2.35slot")
             if [[ "${ATOM_SLOT}" =~ ([a-zA-Z_-]+)$ ]]; then
@@ -109,10 +112,10 @@ function getCategoryPackageVersion() {
             
             # Split remainder on dot to separate major slot and slot dots
             if [[ "${ATOM_SLOT}" == *.* ]]; then
-                CPV[SLOT]="${ATOM_SLOT%.*}"
-                CPV[SLOT_DOTS]="${ATOM_SLOT#*.}"
+                CPV[SLOT_MAJOR_DOTS]="${ATOM_SLOT%.*}"
+                CPV[SLOT_MINOR_DOTS]="${ATOM_SLOT#*.}"
             else
-                CPV[SLOT]="${ATOM_SLOT}"
+                CPV[SLOT_MAJOR_DOTS]="${ATOM_SLOT}"
             fi
         fi
 
@@ -169,7 +172,7 @@ function getCategoryPackageVersion() {
     fi
 
     log_debug \
-        "Parsing atom: '${ATOM}'"\
+        "Atom parsed: ${ATOM}"\
         "  Matched: $(IFS=,; printf "%s" "${BASH_REMATCH[*]}")"\
         "  Matched: $(IFS=,; printf "%s" "${CPV[*]}")"\
         "  Version specifier: ${CPV[VERSION_SPECIFIER]}"\
@@ -183,7 +186,8 @@ function getCategoryPackageVersion() {
         "  Version, patch level: ${CPV[VERSION_PATCH_LEVEL]}"\
         "  Version, revision number: ${CPV[VERSION_REVISION_NUMBER]}"\
         "  Slot: ${CPV[SLOT]}"\
-        "  Slot, dots: ${CPV[SLOT_DOTS]}"\
+        "  Slot, major dots: ${CPV[SLOT_MAJOR_DOTS]}"\
+        "  Slot, minor dots: ${CPV[SLOT_MINOR_DOTS]}"\
         "  Slot, suffix: ${CPV[SLOT_SUFFIX]}"\
         "  Repository Overlay: ${CPV[REPOSITORY]}"\
         "  USE Flags: ${CPV[USE_FLAGS]}\n"
@@ -248,7 +252,7 @@ function compareVersions() {
     fi
     
     # no logic based on version specifier, for now    
-    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT_DOTS, SLOT_SUFFIX REPOSITORY USE_FLAGS)
+    KEYS=(VERSION_DOTS VERSION_LETTER VERSION_PATCH_TYPE_PRIORITY VERSION_PATCH_LEVEL VERSION_REVISION_NUMBER SLOT SLOT_MAJOR_DOTS SLOT_MINOR_DOTS, SLOT_SUFFIX REPOSITORY USE_FLAGS)
     
     declare -i RESULT=0
 
@@ -326,7 +330,7 @@ function getPythonCompatFromFile() {
     echo "${PYTHON_COMPAT}"
 }
 
-download_overlay() {
+function download_overlay() {
     local OVERLAY_NAME="${1:-}"
     local OVERLAYS_PATH="${2:-}"
     local COMMIT_HASH="${3:-}"
@@ -391,6 +395,8 @@ function getLatestVersion() {
 
     local ATOM="${ATOM_CATEGORY}/${ATOM_NAME}"
 
+    log_debug "Getting the latest version of ${ATOM}"
+    
     local VER=
     local EFN=
     local OL=
@@ -455,7 +461,7 @@ function getLatestVersion() {
         if [ ${#EBUILDS[@]} -gt 0 ] ; then
             log_debug \
                 "Unsorted ebuilds:"\
-                "${EBUILDS[@]}"
+                "${EBUILDS[@]/#/  }"
 
             # local FLAVORS=()
             # for EBUILD in "${EBUILDS}"; do
@@ -483,22 +489,29 @@ function getLatestVersion() {
             
             log_debug \
                 "Sorted ebuilds:"\
-                "${EBUILDS[@]}"
+                "${EBUILDS[@]/#/  }"
         
+            log_debug \
+                "Search for the preferred version"\
+                "That is the first stable version or the first version of the same flavor"
+            
             # Search for the preferred version
             # That is the first stable version or the first version of the same flavor
             for EBUILD in "${EBUILDS[@]}"; do
                 local EBUILD_FLAVOR=$(getFlavorFromFile "${OVERLAY_PATH}/${ATOM}/${EBUILD}.ebuild" "${TESTING}" "${STABLE}")
                 local EBUILD_SLOT=$(getSlotFromFile "${OVERLAY_PATH}/${ATOM}/${EBUILD}.ebuild")
                 
-                # echo "${EBUILD} flavor: ${EBUILD_FLAVOR}" > /dev/tty
-                # echo "${ATOM} flavor: ${ATOM_FLAVOR}" > /dev/tty
-                # echo "${EBUILD} slot: ${EBUILD_SLOT}" > /dev/tty
-                # echo "${ATOM} slot: ${ATOM_SLOT}" > /dev/tty
+                log_debug \
+                    "  Ebuild flavor: ${EBUILD_FLAVOR}"\
+                    "  Atom flavor: ${ATOM_FLAVOR}"\
+                    "  Ebuild slot: ${EBUILD_SLOT}"\
+                    "  Atom slot: ${ATOM_SLOT}"
 
                 if [[ (( -z "${ATOM_SLOT}" ) || ( ! -z "${ATOM_SLOT}" && "${EBUILD_SLOT}" == "${ATOM_SLOT}"))
                     && ("${EBUILD_FLAVOR}" == "${STABLE}" || "${ATOM_FLAVOR}" == "${EBUILD_FLAVOR}") ]] ; then
 
+                    log_debug "Analyze ${ATOM_CATEGORY}/${EBUILD}"
+                    
                     local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/${EBUILD}")
                     # echo "${tmp}" > /dev/tty
                     eval "${tmp/CPV=/EBUILD_CPV=}"
@@ -515,6 +528,8 @@ function getLatestVersion() {
             
             # If the searched flavor was not found, pick the first available version
             if [[ -z "${VER}" ]] ; then
+                log_debug "The searched flavor was not found, pick the first available version"
+            
                 local tmp=$(getCategoryPackageVersion "${ATOM_CATEGORY}/"${EBUILDS[0]}"")
                 # echo "${tmp}" > /dev/tty
                 eval "${tmp/CPV=/EBUILD_CPV=}"
@@ -540,10 +555,11 @@ function getLatestVersion() {
     VERINFO[OVERLAY]="${OL}"
     
     log_debug \
-        "Atom ${ATOM}"\
-        "Atom version: ${VER}"\
-        "Atom ebuild: ${EFN}"\
-        "Atom overlay: ${OL}"
+        "The latest version of ${ATOM} found in ${OL} is ${VER} (${EFN})"
+        "  Atom ${ATOM}"\
+        "  Atom version: ${VER}"\
+        "  Atom ebuild: ${EFN}"\
+        "  Atom overlay: ${OL}"
     
     declare -p VERINFO
 }
@@ -553,23 +569,31 @@ DEBUG="$1"
 
 ROOT_PATH="${ROOT_PATH:-../..}"
 
-REFRESH_TREE="${REFRESH_TREE:-true}"
 OVERLAYS_PATH="${OVERLAYS_PATH:-${ROOT_PATH}/overlays}"
-
-#GENTOO_COMMIT_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
-GENTOO_COMMIT_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
-
-if [[ -z "${GENTOO_COMMIT_HASH}" ]] ; then
-    echo -e "\e\033[0;31;1mTree hash could not be retrieved.\e[0m"
-    
-    exit 1
-fi
 
 if [[ -d "${OVERLAYS_PATH}" && ${REFRESH_TREE} == "true" ]] ; then
     rm -f -r "${OVERLAYS_PATH}"
 fi
 
 mkdir -p "${OVERLAYS_PATH}"
+
+REFRESH_TREE="${REFRESH_TREE:-true}"
+
+GENTOO_COMMIT_HASH=
+if [[ ${REFRESH_TREE} == "true" ]] ; then
+    #GENTOO_COMMIT_HASH=$(curl --silent --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+    GENTOO_COMMIT_HASH=$(curl --location https://github.com/mocaccinoOS/desktop/raw/master/packages/images/portage/definition.yaml | yq r -j - | jq -r '.labels."git.hash"' - 2>/dev/null)
+else
+    GENTOO_COMMIT_HASH=$(git -C "${OVERLAYS_PATH}/gentoo" rev-parse HEAD 2>/dev/null)
+fi
+
+if [[ -z "${GENTOO_COMMIT_HASH}" ]] ; then
+    echo -e "\e\033[0;31;1mTree hash could not be retrieved.\e[0m"
+    
+    exit 1
+else
+    echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${GENTOO_COMMIT_HASH}) ...\e[0m!\n"
+fi
 
 PACKAGES_REPORT_FILES_PATH="${PACKAGES_REPORT_FILES_PATH:-${ROOT_PATH}/reports}"
 mkdir -p "${PACKAGES_REPORT_FILES_PATH}"
@@ -589,7 +613,6 @@ mv "${PACKAGES_UP_FILE}" "${PACKAGES_UP_FILE}.prev"
 
 output "${ALL_FILES}" "\nPortage hash: ${GENTOO_COMMIT_HASH}\n"
 
-echo -e "\n\e\033[0;32;1mLooking for upgradable packages (${GENTOO_COMMIT_HASH}) ...\e[0m!\n"
 
 COLLECTIONS=("layers" "apps")
 
