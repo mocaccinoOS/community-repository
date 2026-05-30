@@ -11534,33 +11534,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "zoom"
-  version: "7.0.0.1666-r1+1"
-  uri:
-  - https://zoom.us
-  license: "all-rights-reserved"
-  description: "Video conferencing and web conferencing service"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-im/zoom
-  provides:
-  - category: "net-im"
-    name: "zoom"
-    version: ">=0"
-  atoms:
-  - atom: "net-im/zoom"
-    license: "all-rights-reserved"
-    use: "opencl pulseaudio wayland zoom-symlink"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-util/bbe
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
-
-- category: "apps"
   name: "zsh"
   version: "5.9-r6+1"
   uri:
@@ -13562,7 +13535,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo2"
-  version: "2.2.16+1"
+  version: "2.2.16+2"
   uri:
   - https://hardinfo2.org
   license: "GPL-2+ GPL-3+ LGPL-2.1+"
@@ -16372,6 +16345,34 @@ packages:
   - <<: *layers-sys-fs
   build_requires:
   - <<: *layers-sys-fs
+
+- category: "apps"
+  name: "zoom"
+  version: "7.0.0.1666-r1+2"
+  uri:
+  - https://zoom.us
+  license: "all-rights-reserved"
+  description: "Video conferencing and web conferencing service"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-im/zoom
+  provides:
+  - category: "net-im"
+    name: "zoom"
+    version: ">=0"
+  atoms:
+  - atom: "net-im/zoom"
+    license: "all-rights-reserved"
+    use: "opencl pulseaudio wayland zoom-symlink"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-util/bbe
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-quazip
+  build_requires:
+  - <<: *layers-qt
 
   - category: "apps"
   name: "zsnes"
