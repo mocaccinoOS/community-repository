@@ -3413,9 +3413,9 @@ packages:
     name: "rnnoise"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-rtaudio
   category: "libs"
@@ -3631,7 +3631,7 @@ packages:
 - &libs-tree-sitter
   category: "libs"
   name: "tree-sitter"
-  version: "26.05+2"
+  version: "26.05+3"
   uri:
   - https://github.com/tree-sitter/tree-sitter
   license: "MIT"
@@ -3641,7 +3641,7 @@ packages:
     emerge.packages: >-
       =dev-libs/tree-sitter-0.25*
       dev-libs/tree-sitter-c
-      dev-libs/tree-sitter-lua
+      =dev-libs/tree-sitter-lua-0.4*
       dev-libs/tree-sitter-markdown
       =dev-libs/tree-sitter-query-0.6.2
       dev-libs/tree-sitter-vim
@@ -3935,9 +3935,9 @@ packages:
     name: "xsimd"
     version: ">=0"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-zeromq
   category: "libs"
@@ -7958,8 +7958,33 @@ packages:
   - <<: *layers-qt5
 
 - category: "apps"
+  name: "libpff"
+  version: "libpff-20211114"
+  uri:
+  - https://github.com/libyal/libpff
+  license: "LGPL-3"
+  description: "Library and tools to access the Personal/Offline Folder File (PFF/OFF) format"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-forensics/libpff
+  overlays:
+  - enable: "pentoo"
+  provides:
+  - category: "app-forensics"
+    name: "libpff"
+    version: ">=0"
+  atoms:
+  - atom: "app-forensics/libpff"
+    use: "nls unicode python threads"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
   name: "libpst"
-  version: "0.6.76-r101"
+  version: "0.6.76_p20250122"
   uri:
   - https://www.five-ten-sg.com/libpst/
   - https://github.com/pst-format/libpst
@@ -7970,7 +7995,7 @@ packages:
     emerge.packages: >-
       net-mail/libpst
   overlays:
-  - enable: "pkalin"
+  - enable: "pentoo"
   provides:
   - category: "net-mail"
     name: "libpst"
@@ -7978,7 +8003,6 @@ packages:
   atoms:
   - atom: "net-mail/libpst"
     use: "dii doc python"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - *apps-doxygen-packages
   requires:
@@ -9548,7 +9572,7 @@ packages:
 
 - category: "apps"
   name: "putty"
-  version: "0.83"
+  version: "0.83+1"
   uri:
   - https://www.chiark.greenend.org.uk/~sgtatham/putty/
   license: "MIT"
@@ -9565,7 +9589,7 @@ packages:
   - atom: "net-misc/putty"
     use: "doc gtk gssapi"
   inner_build_reqs:
-  - app-doc/halibut
+  - app-text/halibut
   requires:
   - <<: *layers-X
   build_requires:
@@ -10971,7 +10995,7 @@ packages:
 
 - category: "apps"
   name: "warp"
-  version: "1.0.0"
+  version: "0.9.2+1"
   uri:
   - https://gitlab.gnome.org/World/warp
   license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 EUPL-1.2 GPL-3 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
@@ -11511,7 +11535,7 @@ packages:
 
 - category: "apps"
   name: "zoom"
-  version: "7.0.0.1666-r1"
+  version: "7.0.0.1666-r1+1"
   uri:
   - https://zoom.us
   license: "all-rights-reserved"
@@ -11521,23 +11545,20 @@ packages:
     emerge.packages: >-
       net-im/zoom
   provides:
-  - category: "dev-qt"
-    name: "qtdiag"
-    version: ">=0"
   - category: "net-im"
     name: "zoom"
     version: ">=0"
   atoms:
   - atom: "net-im/zoom"
-    license: "net-im/zoom all-rights-reserved"
-    use: "-bundled-qt"
+    license: "all-rights-reserved"
+    use: "opencl pulseaudio wayland zoom-symlink"
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/bbe
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-qt
 
 - category: "apps"
   name: "zsh"
@@ -12967,10 +12988,10 @@ packages:
   inner_build_requires:
   - <<: *apps-go
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *apps-docker
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-dotnet-6
   category: "apps"
@@ -13541,7 +13562,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo2"
-  version: "2.2.16"
+  version: "2.2.16+1"
   uri:
   - https://hardinfo2.org
   license: "GPL-2+ GPL-3+ LGPL-2.1+"
@@ -13577,6 +13598,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
+  - <<: *apps-flatpak
   - <<: *apps-luajit
   build_requires:
   - <<: *layers-X
@@ -14538,17 +14560,26 @@ packages:
     emerge.packages: >-
       media-video/obs-studio
   provides:
-  - category: "media-video"
-    name: "obs-studio"
+  - category: "dev-libs"
+    name: "cJSON"
     version: ">=0"
   - category: "dev-libs"
     name: "qr-code-generator"
     version: ">=0"
+  - category: "dev-libs"
+    name: "simde"
+    version: ">=0"
   - category: "media-libs"
     name: "libvpl"
     version: ">=0"
-  - category: "dev-libs"
-    name: "simde"
+  - category: "media-video"
+    name: "obs-studio"
+    version: ">=0"
+  - category: "net-libs"
+    name: "librist"
+    version: ">=0"
+  - category: "net-libs"
+    name: "srt"
     version: ">=0"
   atoms:
   - atom: "media-video/obs-studio"
@@ -18341,7 +18372,7 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.11.7"
+  version: "0.11.7+1"
   uri:
   - https://neovim.io
   license: "Apache-2.0 Boost-1.0 vim"
@@ -19550,9 +19581,6 @@ packages:
     version: ">=0"
   - category: "media-libs"
     name: "ampache_browser"
-    version: ">=0"
-  - category: "media-libs"
-    name: "bio2jack"
     version: ">=0"
   - category: "media-libs"
     name: "libopenmpt"
@@ -21419,7 +21447,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.5.0"
+  version: "2.5.0+1"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
@@ -21438,6 +21466,9 @@ packages:
   - category: "dev-tex"
     name: "culmus-latex"
     version: ">=0"
+  - category: "app-office"
+    name: "lyx"
+    version: ">=0"
   - category: "app-text"
     name: "unrtf"
     version: ">=0"
@@ -21449,6 +21480,8 @@ packages:
     use: "aspell dia enchant gnumeric html hunspell monolithic-build cups latex nls rtf svg X l10n_he # rcs dot"
   - atom: "media-fonts/culmus"
     use: "fancy"
+  inner_build_reqs:
+  - app-alternatives/bc
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
