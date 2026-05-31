@@ -6641,7 +6641,7 @@ packages:
 - &apps-gnome-firmware
   category: "apps"
   name: "gnome-firmware"
-  version: "49.0"
+  version: "49.0+1"
   uri:
   - https://gitlab.gnome.org/World/gnome-firmware
   license: "GPL-2+"
@@ -6658,7 +6658,7 @@ packages:
   - atom: "gnome-extra/gnome-firmware"
     use: "systemd # elogind man"
   inner_build_reqs:
-  - sys-apps/flatpak sys-apps/fwupd;USE="introspection curl"
+  - sys-apps/fwupd
   requires:
   - <<: *layers-gnome-common
   # needs sys-apps/fwupd
@@ -13569,8 +13569,11 @@ packages:
   - atom: "app-admin/hardinfo2"
     use: "vulkan"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - sys-apps/fwupd
   requires:
   - <<: *layers-X
+  # needs sys-apps/fwupd
   - <<: *apps-flatpak
   - <<: *apps-luajit
   build_requires:
