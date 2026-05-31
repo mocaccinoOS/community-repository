@@ -7977,6 +7977,14 @@ packages:
   atoms:
   - atom: "app-forensics/libpff"
     use: "nls unicode python threads"
+  prepare:
+  # dev-libs/libcerror
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/dev-libs
+  - cp -r /var/db/repos/pentoo/dev-libs/libcerror/libcerror-20240413.ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild
+  - chown -R portage:portage /var/db/repos/local
+  - ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild manifest
   requires:
   - <<: *layers-system-x
   build_requires:
