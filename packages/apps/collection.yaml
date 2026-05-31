@@ -13510,7 +13510,7 @@ packages:
 
 - category: "apps"
   name: "guvcview"
-  version: "2.2.2"
+  version: "2.2.2+1"
   uri:
   - http://guvcview.sourceforge.net
   license: "GPL-3"
@@ -13518,7 +13518,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-video/guvcview-2.2.1
+      =media-video/guvcview
   provides:
   - category: "media-video"
     name: "guvcview"
@@ -18297,7 +18297,7 @@ packages:
 - &apps-nagios
   category: "apps"
   name: "nagios"
-  version: "4.5.8"
+  version: "4.5.8+1"
   uri:
   - https://www.nagios.org/
   - https://www.monitoring-plugins.org/
@@ -18947,7 +18947,7 @@ packages:
 
 - category: "apps"
   name: "sqlitebrowser"
-  version: "3.13.1_p20250502-r2"
+  version: "3.13.1_p20250502-r2+1"
   uri:
   - https://sqlitebrowser.org/
   - https://www.qcustomplot.com/
@@ -19182,7 +19182,7 @@ packages:
 - &apps-xemacs
   category: "apps"
   name: "xemacs"
-  version: "21.5.36-r6"
+  version: "21.5.36-r6+1"
   uri:
   - https://www.xemacs.org/
   - https://siag.nu/neXtaw/
@@ -21880,65 +21880,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# # build fails
-# - &apps-easyeffects
-#   category: "apps"
-#   name: "easyeffects"
-#   version: "7.2.5+5"
-#   uri:
-#   - https://github.com/wwmm/easyeffects
-#   - https://lsp-plug.in
-#   - https://www.zamaudio.com/
-#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
-#   description: |
-#     Limiter, auto volume and many other plugins for PipeWire applications
-#     Linux Studio Plugins
-#     LV2 port of the MDA plugins by Paul Kellett
-#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/easyeffects
-#   provides:
-#   - category: "media-sound"
-#     name: "easyeffects"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "lsp-plugins"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "zita-convolver"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "mda-lv2"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "zam-plugins"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/easyeffects"
-#     use: "calf doc mda-lv2 zamaudio"
-#   - atom: "media-libs/lsp-plugins"
-#     use: "lv2 vst X # doc jack ladspa"
-#   - atom: "media-plugins/zam-plugins"
-#     use: "jack opengl"
-#   inner_build_reqs:
-#   - dev-util/itstool
-#   - dev-util/lv2lint
-#   requires:
-#   - <<: *layers-gnome
-#   - <<: *libs-nlohmann_json
-#   - <<: *libs-tbb
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-liblo
-#   - <<: *libs-libbs2b
-#   - <<: *libs-libebur128
-#   - <<: *libs-libsoundtouch
-#   - <<: *libs-lilv
-#   - <<: *libs-rnnoise
-#   - <<: *apps-calf
-#   build_requires:
-#   - <<: *layers-gnome
+# build fails
+- &apps-easyeffects
+  category: "apps"
+  name: "easyeffects"
+  version: "7.2.5+6"
+  uri:
+  - https://github.com/wwmm/easyeffects
+  - https://lsp-plug.in
+  - https://www.zamaudio.com/
+  license: "GPL-3 LGPL-3 GPL-2+ MIT"
+  description: |
+    Limiter, auto volume and many other plugins for PipeWire applications
+    Linux Studio Plugins
+    LV2 port of the MDA plugins by Paul Kellett
+    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easyeffects
+  provides:
+  - category: "media-sound"
+    name: "easyeffects"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lsp-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "zita-convolver"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "mda-lv2"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "zam-plugins"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/easyeffects"
+    use: "calf doc mda-lv2 zamaudio"
+  - atom: "media-libs/lsp-plugins"
+    use: "lv2 vst X # doc jack ladspa"
+  - atom: "media-plugins/zam-plugins"
+    use: "jack opengl"
+  inner_build_reqs:
+  - dev-util/itstool
+  - dev-util/lv2lint
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tbb
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-libbs2b
+  - <<: *libs-libebur128
+  - <<: *libs-libsoundtouch
+  - <<: *libs-lilv
+  - <<: *libs-rnnoise
+  - <<: *apps-calf
+  build_requires:
+  - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
