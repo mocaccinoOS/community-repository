@@ -2099,6 +2099,27 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &libs-cJSON
+  category: "libs"
+  name: "cJSON"
+  version: "1.7.19"
+  uri:
+  - https://github.com/DaveGamble/cJSON
+  license: "MIT"
+  description: "Ultralightweight JSON parser in ANSI C"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/cJSON
+  provides:
+  - category: "dev-libs"
+    name: "cJSON"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libconfig
   category: "libs"
   name: "libconfig"
@@ -7957,38 +7978,38 @@ packages:
   build_requires:
   - <<: *layers-qt5
 
-- category: "apps"
-  name: "libpff"
-  version: "20211114"
-  uri:
-  - https://github.com/libyal/libpff
-  license: "LGPL-3"
-  description: "Library and tools to access the Personal/Offline Folder File (PFF/OFF) format"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-forensics/libpff
-  overlays:
-  - enable: "pentoo"
-  provides:
-  - category: "app-forensics"
-    name: "libpff"
-    version: ">=0"
-  atoms:
-  - atom: "app-forensics/libpff"
-    use: "nls unicode python threads"
-  prepare:
-  # dev-libs/libcerror
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/dev-libs/libcerror
-  - cp -r /var/db/repos/pentoo/dev-libs/libcerror/libcerror-20240413.ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild manifest
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
+# - category: "apps"
+#   name: "libpff"
+#   version: "20211114"
+#   uri:
+#   - https://github.com/libyal/libpff
+#   license: "LGPL-3"
+#   description: "Library and tools to access the Personal/Offline Folder File (PFF/OFF) format"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-forensics/libpff
+#   overlays:
+#   - enable: "pentoo"
+#   provides:
+#   - category: "app-forensics"
+#     name: "libpff"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-forensics/libpff"
+#     use: "nls unicode python threads"
+#   prepare:
+#   # # dev-libs/libcerror
+#   # - emerge -1 app-eselect/eselect-repository
+#   # - eselect repository create local
+#   # - mkdir -p /var/db/repos/local/dev-libs/libcerror
+#   # - cp -r /var/db/repos/pentoo/dev-libs/libcerror/libcerror-20240413.ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild
+#   # - chown -R portage:portage /var/db/repos/local
+#   # - ebuild /var/db/repos/local/dev-libs/libcerror/libcerror-20260527.ebuild manifest
+#   requires:
+#   - <<: *layers-system-x
+#   build_requires:
+#   - <<: *layers-system-x
 
 - category: "apps"
   name: "libpst"
@@ -13543,7 +13564,7 @@ packages:
 
 - category: "apps"
   name: "hardinfo2"
-  version: "2.2.16+3"
+  version: "2.2.16+4"
   uri:
   - https://hardinfo2.org
   license: "GPL-2+ GPL-3+ LGPL-2.1+"
@@ -13560,9 +13581,6 @@ packages:
     version: ">=0"
   - category: "app-benchmark"
     name: "sysbench"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "cJSON"
     version: ">=0"
   - category: "dev-libs"
     name: "concurrencykit"
@@ -13584,6 +13602,7 @@ packages:
   # needs sys-apps/fwupd
   - <<: *apps-flatpak
   - <<: *apps-luajit
+  - <<: *libs-cJSON
   build_requires:
   - <<: *layers-X
 
@@ -14530,7 +14549,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "32.1.0-r1"
+  version: "32.1.0-r1+1"
   uri:
   - https://obsproject.com
   - https://simd-everywhere.github.io/blog/
@@ -14544,9 +14563,6 @@ packages:
     emerge.packages: >-
       media-video/obs-studio
   provides:
-  - category: "dev-libs"
-    name: "cJSON"
-    version: ">=0"
   - category: "dev-libs"
     name: "qr-code-generator"
     version: ">=0"
@@ -14580,6 +14596,7 @@ packages:
   - <<: *layers-qt
   - <<: *apps-luajit
   - <<: *libs-asio
+  - <<: *libs-cJSON
   - <<: *libs-mbedtls
   - <<: *libs-nlohmann_json
   - <<: *libs-rnnoise
