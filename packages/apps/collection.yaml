@@ -11333,7 +11333,8 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
+- &apps-xclip
+  category: "apps"
   name: "xclip"
   version: "0.13"
   uri:
@@ -16155,7 +16156,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.2"
+  version: "1.6.2+1"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -16226,6 +16227,7 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *apps-lxc
+  - <<: *apps-xclip
   build_requires:
   - <<: *layers-X
 
