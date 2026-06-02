@@ -9840,6 +9840,29 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- category: "apps"
+  name: "qt-creator"
+  version: "19.0.0"
+  uri:
+  - https://www.qt.io/product/development-tools
+  license: "GPL-3"
+  description: "Lightweight IDE for C++/QML development centering around Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-qt/qt-creator
+  provides:
+  - category: "dev-qt"
+    name: "qt-creator"
+    version: ">=0"
+  atoms:
+  - atom: "dev-qt/qt-creator"
+    use: "clang designer help plugin-dev qmldesigner serialterminal tracing webengine doc keyring svg"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
+
 - &apps-qview
   category: "apps"
   name: "qview"
@@ -16156,7 +16179,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.2+1"
+  version: "1.6.2"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
