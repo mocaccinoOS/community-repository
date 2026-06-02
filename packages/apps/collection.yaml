@@ -9840,6 +9840,57 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# Some plugins (if used) may need optional extra dependencies/USE.
+# This list provides associations with Gentoo's packages (if exists)
+# ordered as in Qt Creator's Help -> About Plugins (not exhaustive).
+# dev-qt/qt-docs:6 with USE="examples qch" is notably recommended, or
+# else the example tab will be empty alongside missing documentation.
+# Build Systems:
+# - CMakeProjectManager (dev-build/cmake)
+# - MesonProjectManager (dev-build/meson)
+# - QbsProjectManager (dev-util/qbs)
+# C++:
+# - Beautifier (dev-util/astyle and/or dev-util/uncrustify)
+# - ClangCodeModel (USE=clang, dev-util/clazy to understand Qt semantics)
+# - ClangFormat (USE=clang)
+# Code Analyzer:
+# - ClangTools (USE=clang)
+# - Cppcheck (dev-util/cppcheck)
+# - CtfVisualizer (USE=tracing)
+# - PerfProfiler (USE=tracing)
+# - Valgrind (dev-debug/valgrind)
+# Core:
+# - Help (USE=help + dev-qt/qt-docs:6 with USE="examples qch")
+# Device Support:
+# - Android (virtual/jdk, will also want the unpackaged Qt for Android)
+# Other Languages:
+# - Nim (dev-lang/nim)
+# - Python (dev-lang/python)
+# Qt Creator:
+# - Designer (USE=designer)
+# Qt Quick:
+# - Insight (USE=qmldesigner)
+# - QmlDesigner (USE=qmldesigner)
+# - QmlProfiler (USE=tracing)
+# Utilities:
+# - AppStatisticsMonitor (USE=tracing)
+# - Autotest (dev-cpp/catch, dev-cpp/gtest, or dev-libs/boost if used)
+# - Conan (dev-util/conan)
+# - Docker (app-containers/docker)
+# - Haskell (dev-lang/ghc)
+# - ScreenRecorder (media-video/ffmpeg)
+# - SerialTerminal (USE=serialterminal)
+# - SilverSearcher (sys-apps/the_silver_searcher)
+# - StudioWelcome (USE=qmldesigner)
+# Version Control:
+# - CVS (dev-vcs/cvs)
+# - Fossil (dev-vcs/fossil)
+# - Git (dev-vcs/git)
+# - Mercurial (dev-vcs/mercurial)
+# - Subversion (dev-vcs/subversion)
+# (Note: Above message is only printed the first time package is
+# installed. Please look at /usr/share/doc/qt-creator-19.0.0/README.gentoo*
+# for future reference)
 - category: "apps"
   name: "qt-creator"
   version: "19.0.0"
@@ -13742,10 +13793,10 @@ packages:
 
 - category: "apps"
   name: "kate"
-  version: "25.12.3"
+  version: "25.12.3+1"
   uri:
   - https://apps.kde.org/kate
-  license: "GPL-2"
+  license: "GPL-2 LGPL-2 LGPL-2+ MIT"
   description: "Multi-document editor with network transparency, Plasma integration and more"
   labels:
     emerge.jobs: "1"
@@ -13758,6 +13809,10 @@ packages:
   - category: "kde-apps"
     name: "kate-addons"
     version: ">=0"
+  atoms:
+  - atom: "kde-apps/kate-addons"
+    use: "filebrowser lspclient projects snippets sql"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-qgpgme
