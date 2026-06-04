@@ -5156,6 +5156,32 @@ packages:
   - <<: *layers-system-x
 
 - category: "apps"
+  name: "czkawka"
+  version: "11.0.1"
+  uri:
+    - https://github.com/qarmin/czkawka
+  license: "MIT"
+  description: "App to find duplicates, empty folders and similar images"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-gfx/czkawka
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "media-gfx"
+    name: "czkawka"
+    version: ">=0"
+  atoms:
+  - atom: "media-gfx/czkawka"
+    use: "avif gui gtk heif krokiet raw"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "darktable"
   version: "5.4.1"
   uri:
