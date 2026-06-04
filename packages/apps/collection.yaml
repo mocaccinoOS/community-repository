@@ -1345,40 +1345,26 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-java-commons
-  category: "apps"
-  name: "java-commons"
-  version: "26.03"
+- &libs-cJSON
+  category: "libs"
+  name: "cJSON"
+  version: "1.7.19"
   uri:
-  - https://commons.apache.org/proper/commons-io/
-  - https://commons.apache.org/proper/commons-lang/
-  license: "Apache-2.0"
-  description: |
-    Utility classes, stream implementations, file filters, and much more
-    Commons components to manipulate core java classes
+  - https://github.com/DaveGamble/cJSON
+  license: "MIT"
+  description: "Ultralightweight JSON parser in ANSI C"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-java/commons-io:1
-      dev-java/commons-lang:3.6
+      dev-libs/cJSON
   provides:
-  - category: "dev-java"
-    name: "commons-io"
+  - category: "dev-libs"
+    name: "cJSON"
     version: ">=0"
-  - category: "dev-java"
-    name: "commons-lang"
-    version: ">=0"
-  atoms:
-  - atom: "dev-java/commons-io"
-    use: "verify-sig"
-  - atom: "dev-java/commons-lang"
-    use: "verify-sig"
-  inner_build_reqs:
-  - sec-keys/openpgp-keys-apache-commons
   requires:
-  - <<: *layers-java
+  - <<: *layers-system-x
   build_requires:
-  - <<: *layers-java
+  - <<: *layers-system-x
 
 - &libs-cpp-httplib
   category: "libs"
@@ -1440,6 +1426,27 @@ packages:
   provides:
   - category: "dev-python"
     name: "cssselect"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-enet
+  category: "libs"
+  name: "enet"
+  version: "1.3.18+1"
+  uri:
+  - http://enet.bespin.org
+  license: "MIT"
+  description: "Relatively thin, simple and robust network communication layer on top of UDP"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-libs/enet
+  provides:
+  - category: "net-libs"
+    name: "enet"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -1946,6 +1953,41 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &libs-java-commons
+  category: "apps"
+  name: "java-commons"
+  version: "26.03"
+  uri:
+  - https://commons.apache.org/proper/commons-io/
+  - https://commons.apache.org/proper/commons-lang/
+  license: "Apache-2.0"
+  description: |
+    Utility classes, stream implementations, file filters, and much more
+    Commons components to manipulate core java classes
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-java/commons-io:1
+      dev-java/commons-lang:3.6
+  provides:
+  - category: "dev-java"
+    name: "commons-io"
+    version: ">=0"
+  - category: "dev-java"
+    name: "commons-lang"
+    version: ">=0"
+  atoms:
+  - atom: "dev-java/commons-io"
+    use: "verify-sig"
+  - atom: "dev-java/commons-lang"
+    use: "verify-sig"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-apache-commons
+  requires:
+  - <<: *layers-java
+  build_requires:
+  - <<: *layers-java
+
 - &libs-kdsingleapplication
   category: "libs"
   name: "kdsingleapplication"
@@ -2099,27 +2141,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-cJSON
-  category: "libs"
-  name: "cJSON"
-  version: "1.7.19"
-  uri:
-  - https://github.com/DaveGamble/cJSON
-  license: "MIT"
-  description: "Ultralightweight JSON parser in ANSI C"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/cJSON
-  provides:
-  - category: "dev-libs"
-    name: "cJSON"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-libconfig
   category: "libs"
   name: "libconfig"
@@ -2182,27 +2203,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-enet
-  category: "libs"
-  name: "enet"
-  version: "1.3.18+1"
-  uri:
-  - http://enet.bespin.org
-  license: "MIT"
-  description: "Relatively thin, simple and robust network communication layer on top of UDP"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/enet
-  provides:
-  - category: "net-libs"
-    name: "enet"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-libemf
   category: "libs"
@@ -2529,50 +2529,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-munt-mt32emu
-  category: "libs"
-  name: "munt-mt32emu"
-  version: "2.7.0"
-  uri:
-  - https://github.com/munt/munt
-  license: "LGPL-2.1"
-  description: "Library for emulating the Roland MT-32, CM-32L, CM-64 and LAPC-I"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/munt-mt32emu
-  provides:
-  - category: "media-libs"
-    name: "munt-mt32emu"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-rtl-sdr
-  category: "libs"
-  name: "rtl-sdr"
-  version: "2.0.2-r3"
-  uri:
-  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
-  license: "GPL-2+ GPL-3+"
-  description: "Turns your Realtek RTL2832 based DVB dongle into a SDR receiver"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-wireless/rtl-sdr
-  provides:
-  - category: "net-wireless"
-    name: "rtl-sdr"
-    version: ">=0"
-  completion:
-  - mkdir -p /etc/modprobe.d && echo -e "blacklist rtl2832\nblacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist-rtl-sdr.conf
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-libsfml
   category: "libs"
@@ -2985,6 +2941,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-munt-mt32emu
+  category: "libs"
+  name: "munt-mt32emu"
+  version: "2.7.0"
+  uri:
+  - https://github.com/munt/munt
+  license: "LGPL-2.1"
+  description: "Library for emulating the Roland MT-32, CM-32L, CM-64 and LAPC-I"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/munt-mt32emu
+  provides:
+  - category: "media-libs"
+    name: "munt-mt32emu"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-mxml
   category: "libs"
   name: "mxml"
@@ -3187,6 +3164,33 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-pyqt5
+  category: "libs"
+  name: "pyqt5"
+  version: "5.15.11-r1"
+  uri:
+  - https://www.riverbankcomputing.com/software/pyqt/
+  license: "GPL-3"
+  description: "Python bindings for the Qt framework"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyqt5
+  overlays:
+  - enable: "Miezhiko"
+  provides:
+  - category: "dev-python"
+    name: "pyqt5"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/pyqt5"
+    use: "dbus declarative gui help multimedia network webchannel webkit webengine websockets widgets printsupport sql xmlpatterns"
+    unmask: true
+  requires:
+  - <<: *layers-qt5
+  build_requires:
+  - <<: *layers-qt5
 
 - &libs-python-dotenv
   category: "libs"
@@ -3461,6 +3465,29 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-rtl-sdr
+  category: "libs"
+  name: "rtl-sdr"
+  version: "2.0.2-r3"
+  uri:
+  - https://sdr.osmocom.org/trac/wiki/rtl-sdr
+  license: "GPL-2+ GPL-3+"
+  description: "Turns your Realtek RTL2832 based DVB dongle into a SDR receiver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/rtl-sdr
+  provides:
+  - category: "net-wireless"
+    name: "rtl-sdr"
+    version: ">=0"
+  completion:
+  - mkdir -p /etc/modprobe.d && echo -e "blacklist rtl2832\nblacklist dvb_usb_rtl28xxu" > /etc/modprobe.d/blacklist-rtl-sdr.conf
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-rtmidi
   category: "libs"
