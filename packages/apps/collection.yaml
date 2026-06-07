@@ -9477,6 +9477,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/pencil
+    appstream.id: "org.pencil2d.Pencil2D"
   provides:
   - category: "media-gfx"
     name: "pencil"
@@ -9734,6 +9735,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-irc/polari
+    appstream.id: "org.gnome.Polari"
   provides:
   - category: "net-irc"
     name: "polari"
@@ -9805,6 +9807,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-calculators/qalculate-gtk
+    appstream.id: "io.github.Qalculate.qalculate-gtk"
   provides:
   - category: "sci-calculators"
     name: "qalculate-gtk"
@@ -9828,6 +9831,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       sci-calculators/qalculate-qt
+    appstream.id: "io.github.Qalculate.qalculate-qt"
   provides:
   - category: "sci-calculators"
     name: "qalculate-qt"
@@ -9848,6 +9852,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-p2p/qbittorrent
+    appstream.id: "org.qbittorrent.qBittorrent"
   provides:
   - category: "net-p2p"
     name: "qbittorrent"
@@ -9875,6 +9880,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/qmplay2
+    appstream.id: "io.github.zaps166.QMPlay2"
   provides:
   - category: "media-video"
     name: "qmplay2"
@@ -9898,6 +9904,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-irc/quassel
+    appstream.id: "org.quassel-irc.QuasselClient"
   provides:
   - category: "net-irc"
     name: "quassel"
@@ -9950,6 +9957,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/qjackctl
+    appstream.id: "org.rncbc.qjackctl"
   provides:
   - category: "media-sound"
     name: "qjackctl"
@@ -10048,6 +10056,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-qt/qt-creator
+    appstream.id: "org.qt-project.qtcreator"
   provides:
   - category: "dev-qt"
     name: "qt-creator"
@@ -10097,6 +10106,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/rawtherapee
+    appstream.id: "com.rawtherapee.RawTherapee"
   provides:
   - category: "media-libs"
     name: "libiptcdata"
@@ -10150,6 +10160,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       games-emulation/libretro-info games-emulation/RetroArch
+    appstream.id: "org.libretro.RetroArch"
   overlays:
   - enable: "guru"
   provides:
@@ -10223,6 +10234,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/rustdesk
+    appstream.id: "com.rustdesk.RustDesk"
   overlays:
   - enable: "gentoo-zh"
   provides:
@@ -10293,6 +10305,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-gfx/simple-scan
+    appstream.id: "org.gnome.SimpleScan"
   provides:
   - category: "media-gfx"
     name: "simple-scan"
@@ -10390,6 +10403,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-db/sqlitestudio
+    appstream.id: "com.sqlitestudio.SQLiteStudio"
   provides:
     - category: "dev-db"
       name: "sqlitestudio"
@@ -10437,6 +10451,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/subtitlecomposer
+    appstream.id: "org.kde.subtitlecomposer"
   provides:
   - category: "media-video"
     name: "subtitlecomposer"
@@ -10630,18 +10645,30 @@ packages:
 
 - category: "apps"
   name: "shortwave"
-  version: "4.0.1"
+  version: "5.1.0"
   uri:
   - https://gitlab.gnome.org/World/Shortwave.git
   license: "GPL-3"
-  description: "Listen to internet radio"
+  description: "An internet radio player"
   labels:
     emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/shortwave
+    appstream.id: "de.haeckerfelix.Shortwave"
+  provides:
+  - category: "media-sound"
+    name: "shortwave"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/shortwave"
+    accept_keywords: "~amd64"
+  overlays:
+  - enable: "guru"
   prepare:
-  - git clone https://gitlab.gnome.org/World/Shortwave.git
-  - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
+  # - git clone https://gitlab.gnome.org/World/Shortwave.git
+  # - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
   setup:
-  - cd Shortwave && ninja -C build install
+  # - cd Shortwave && ninja -C build install
   requires:
   - <<: *layers-gnome-common
   build_requires:
