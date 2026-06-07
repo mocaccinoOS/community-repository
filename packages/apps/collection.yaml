@@ -10643,32 +10643,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+# guru version requires media-plugins/gst-plugins-meta +vorbis and thus +ogg
 - category: "apps"
   name: "shortwave"
-  version: "5.1.0"
+  version: "4.0.1"
   uri:
   - https://gitlab.gnome.org/World/Shortwave.git
   license: "GPL-3"
   description: "An internet radio player"
   labels:
     emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/shortwave
+  #   emerge.packages: >-
+  #     media-sound/shortwave
     appstream.id: "de.haeckerfelix.Shortwave"
-  provides:
-  - category: "media-sound"
-    name: "shortwave"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/shortwave"
-    accept_keywords: "~amd64"
-  overlays:
-  - enable: "guru"
+  # provides:
+  # - category: "media-sound"
+  #   name: "shortwave"
+  #   version: ">=0"
+  # atoms:
+  # - atom: "media-sound/shortwave"
+  #   accept_keywords: "~amd64"
+  # overlays:
+  # - enable: "guru"
   prepare:
-  # - git clone https://gitlab.gnome.org/World/Shortwave.git
-  # - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
+  - git clone https://gitlab.gnome.org/World/Shortwave.git
+  - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
   setup:
-  # - cd Shortwave && ninja -C build install
+  - cd Shortwave && ninja -C build install
   requires:
   - <<: *layers-gnome-common
   build_requires:
