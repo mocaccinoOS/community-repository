@@ -4804,6 +4804,32 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-brightnessctl
+  category: "apps"
+  name: "brightnessctl"
+  version: "0.5.1"
+  uri:
+  - https://github.com/Hummer12007/brightnessctl
+  license: "MIT"
+  description: "This program allows you read and control device brightness."
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/brightnessctl
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-misc"
+    name: "brightnessctl"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/brightnessctl"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-brother-dcp1610w-bin
   category: "apps"
   name: "brother-dcp1610w-bin"
@@ -8318,7 +8344,7 @@ packages:
 - &apps-ly
   category: "apps"
   name: "ly"
-  version: "1.4.1"
+  version: "1.4.1+1"
   uri:
   - https://github.com/nullgemm/ly
   license: "WTFPL-2"
@@ -8336,12 +8362,11 @@ packages:
   atoms:
   - atom: "x11-misc/ly"
     accept_keywords: "~amd64"
-  - atom: "app-misc/brightnessctl"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lang/zig-bin;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-X
+  - <<: *apps-brightnessctl
   build_requires:
   - <<: *layers-X
 
