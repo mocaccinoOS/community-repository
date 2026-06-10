@@ -21690,7 +21690,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.16.1"
+  version: "1.16.1+1"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
@@ -21703,12 +21703,9 @@ packages:
   - category: "app-text"
     name: "doxygen"
     version: ">=0"
-  - category: "dev-libs"
-    name: "xapian"
-    version: ">=0"
   atoms:
   - atom: "app-text/doxygen"
-    use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21 # doc"
+    use: "clang dot gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21 # doc doxysearch"
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/app-text/doxygen/doxygen-*.ebuild
   - find /var/db/repos/gentoo/app-text/doxygen/ -type f -name "doxygen-*.ebuild" -exec ebuild {} manifest \;
