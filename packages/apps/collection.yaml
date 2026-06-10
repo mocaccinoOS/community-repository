@@ -93,6 +93,11 @@ stubs:
   name: "trinity"
   version: ">=0"
 
+- &layers-wlroots
+  category: "layers"
+  name: "wlroots"
+  version: ">=0"
+
 - &layers-java
   category: "layers"
   name: "java"
@@ -16497,7 +16502,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.2"
+  version: "1.6.2+1"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -16531,9 +16536,6 @@ packages:
   - category: "dev-libs"
     name: "gbinder"
     version: ">=0"
-  - category: "gui-apps"
-    name: "wl-clipboard"
-    version: ">=0"
   - category: "x11-misc"
     name: "xclip"
     version: ">=0"
@@ -16566,11 +16568,11 @@ packages:
   # - virtual/dist-kernel
   - virtual/linux-sources
   requires:
-  - <<: *layers-X
+  - <<: *layers-wlroots
   - <<: *apps-lxc
   - <<: *apps-xclip
   build_requires:
-  - <<: *layers-X
+  - <<: *layers-wlroots
 
 - <<: *apps-waydroid-gapps
   name: "waydroid-vanilla"
