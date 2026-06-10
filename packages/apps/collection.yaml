@@ -12442,11 +12442,11 @@ packages:
   - atom: "net-wireless/soapysdr"
     use: "rtlsdr uhd # bladerf hackrf plutosdr"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *libs-rtl-sdr
   - <<: *libs-uhd
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 # may be included in its referring package
 - &libs-tiff-compat
@@ -20415,6 +20415,7 @@ packages:
     use: "-password # opencv"
   - atom: "sci-astronomy/wcslib"
     use: "fits # fortran pgplot"
+  portage_env: "MAKEOPTS=\"-l0.9\""
   requires:
   - <<: *layers-kde-common
   - <<: *libs-indilib
