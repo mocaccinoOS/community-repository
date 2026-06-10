@@ -14803,7 +14803,7 @@ packages:
 - &apps-noctalia
   category: "apps"
   name: "noctalia"
-  version: "4.7.7"
+  version: "4.7.7-r1"
   uri:
   - https://noctalia.dev
   license: "MIT"
@@ -14811,9 +14811,10 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      gui-apps/noctalia gui-apps/noctalia-qs
+      gui-apps/noctalia::mocaccino-overlay gui-apps/noctalia-qs
   overlays:
   - enable: "guru"
+  - enable: "mocaccino-overlay"
   provides:
   - name: cli11
     category: dev-cpp
