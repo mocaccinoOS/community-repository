@@ -14795,6 +14795,39 @@ packages:
   # - <<: *layers-qt
   - <<: *layers-perl-libs
 
+- &apps-noctalia
+  category: "apps"
+  name: "noctalia"
+  version: "4.7.7"
+  uri:
+  - https://noctalia.dev
+  license: "MIT"
+  description: "A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/noctalia gui-apps/noctalia-qs
+  overlays:
+  - enable: "guru"
+  provides:
+  - name: noctalia
+    category: gui-apps
+    version: '>=0'
+  - name: noctalia-qs
+    category: gui-apps
+    version: '>=0'
+  atoms:
+  - atom: "gui-apps/noctalia"
+    accept_keywords: "~amd64"
+  - atom: "gui-apps/noctalia-qs"
+    accept_keywords: "~amd64"
+    use: "-crash-handler"
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-brightnessctl
+  build_requires:
+  - <<: *layers-qt
+
 - category: "apps"
   name: "nwipe"
   version: "0.41"
