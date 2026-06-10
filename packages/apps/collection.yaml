@@ -8341,35 +8341,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-ly
-  category: "apps"
-  name: "ly"
-  version: "1.4.1+1"
-  uri:
-  - https://github.com/nullgemm/ly
-  license: "WTFPL-2"
-  description: "Ly - a TUI display manager"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-misc/ly
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "x11-misc"
-    name: "ly"
-    version: ">=0"
-  atoms:
-  - atom: "x11-misc/ly"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - dev-lang/zig-bin;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-X
-  - <<: *apps-brightnessctl
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "mandelbulber"
   version: "2.33+1"
@@ -14319,6 +14290,35 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-gpm
+  build_requires:
+  - <<: *layers-X
+
+- &apps-ly
+  category: "apps"
+  name: "ly"
+  version: "1.4.1+1"
+  uri:
+  - https://github.com/nullgemm/ly
+  license: "WTFPL-2"
+  description: "Ly - a TUI display manager"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      x11-misc/ly
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "x11-misc"
+    name: "ly"
+    version: ">=0"
+  atoms:
+  - atom: "x11-misc/ly"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-lang/zig-bin;ACCEPT_KEYWORDS="~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *apps-brightnessctl
   build_requires:
   - <<: *layers-X
 
