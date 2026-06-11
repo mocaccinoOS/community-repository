@@ -16579,9 +16579,6 @@ packages:
   - category: "dev-libs"
     name: "gbinder"
     version: ">=0"
-  # - category: "x11-misc"
-  #   name: "xclip"
-  #   version: ">=0"
   atoms:
   - &atom1
     atom: "app-containers/waydroid"
@@ -16603,18 +16600,12 @@ packages:
   - &atom5
     atom: "dev-libs/libglibutil"
     accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e '/.*gbinder-1.1.1-setuptools.patch.*/d' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
-  # - sed -i -e 's/DISTUTILS_ARGS.*/default/' /var/db/repos/guru/dev-python/gbinder/gbinder-*.ebuild
-  # - find /var/db/repos/guru/dev-python/gbinder/ -type f -name "gbinder-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-portage/gemato
-  # - virtual/dist-kernel
   - virtual/linux-sources
   requires:
   - <<: *layers-wlroots
   - <<: *apps-lxc
-  # - <<: *apps-xclip
   build_requires:
   - <<: *layers-wlroots
 
