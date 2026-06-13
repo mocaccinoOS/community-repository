@@ -1220,9 +1220,9 @@ packages:
   inner_build_reqs:
   - dev-lang/cfortran
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-chrome-binary-plugins
   category: "libs"
@@ -4627,18 +4627,18 @@ packages:
   - <<: *layers-X
 
 # to be replaced by the net-dns/bind soon
-- &apps-bind-tools
+- &apps-bind
   category: "apps"
-  name: "bind-tools"
-  version: "9.18.0-r1+1"
+  name: "bind"
+  version: "9.20.23"
   uri:
-  - https://www.isc.org/software/bind
+  - https://www.isc.org/bind/
   license: "MPL-2.0"
-  description: "bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
+  description: "Berkeley Internet Name Domain - Name Server"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      net-dns/bind-tools
+      net-dns/bind
   provides:
   - category: "net-dns"
     name: "bind-tools"
@@ -16313,7 +16313,7 @@ packages:
 
 - category: "apps"
   name: "systemd-pilot"
-  version: "3.0+7"
+  version: "3.0+8"
   uri:
   - https://github.com/mfat/systemd-pilot
   license: "GPL-3+"
@@ -16324,15 +16324,21 @@ packages:
       sys-apps/systemd-pilot
   provides:
   - category: "dev-python"
+    name: "jaraco-classes"
+    version: ">=0"
+  - category: "dev-python"
     name: "keyring"
     version: ">=0"
   - category: "dev-python"
     name: "paramiko"
     version: ">=0"
   - category: "dev-python"
-    name: pynacl
+    name: "pynacl"
     version: ">=0"
-  - category: s"ys-apps"
+  - category: "dev-python"
+    name: "secretstorage"
+    version: ">=0"
+  - category: "sys-apps"
     name: "systemd-pilot"
     version: ">=0"
   atoms:
@@ -17902,7 +17908,7 @@ packages:
 - &apps-gnome-nettool
   category: "apps"
   name: "gnome-nettool"
-  version: "42.0-r1"
+  version: "42.0-r1+1"
   uri:
   - https://gitlab.gnome.org/GNOME/gnome-nettool
   license: "GPL-2"
@@ -17919,7 +17925,7 @@ packages:
   - app-text/yelp-tools
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-bind-tools
+  - <<: *apps-bind
   - <<: *apps-netkit-fingerd
   - <<: *apps-nmap
   build_requires:
@@ -18794,7 +18800,7 @@ packages:
 - &apps-nagios
   category: "apps"
   name: "nagios"
-  version: "4.5.12"
+  version: "4.5.12+1"
   uri:
   - https://www.nagios.org/
   - https://www.monitoring-plugins.org/
@@ -18884,7 +18890,7 @@ packages:
     use: "-doc -qt5 unicode"
   requires:
   - <<: *layers-perl-libs
-  - <<: *apps-bind-tools
+  - <<: *apps-bind
   - <<: *apps-fping
   - <<: *apps-net-snmp
   - category: "entity"
@@ -18957,7 +18963,7 @@ packages:
 - &apps-nmapsi
   category: "apps"
   name: "nmapsi"
-  version: "0.5_alpha2_p20240407-r1"
+  version: "0.5_alpha2_p20240407-r1+1"
   uri:
   - https://github.com/nmapsi4/nmapsi4
   license: "GPL-2"
@@ -18975,7 +18981,7 @@ packages:
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
-  - <<: *apps-bind-tools
+  - <<: *apps-bind
   - <<: *apps-nmap
   build_requires:
   - <<: *layers-qt
