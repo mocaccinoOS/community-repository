@@ -1201,7 +1201,7 @@ packages:
 - &libs-cfitsio
   category: "libs"
   name: "cfitsio"
-  version: "4.6.3+1"
+  version: "4.6.4"
   uri:
   - https://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html
   license: "ISC"
@@ -1993,6 +1993,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &libs-jeepney
+  category: "libs"
+  name: "jeepney"
+  version: "0.9.0"
+  uri:
+  - https://gitlab.com/takluyver/jeepney/
+  license: "MIT"
+  description: "Low-level, pure Python DBus protocol wrapper"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/jeepney
+  provides:
+  - category: "dev-python"
+    name: "jeepney"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-kdsingleapplication
   category: "libs"
   name: "kdsingleapplication"
@@ -2266,7 +2287,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.2"
+  version: "1.9.3"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -4260,7 +4281,7 @@ packages:
 - &apps-android-tools
   category: "apps"
   name: "android-tools"
-  version: "35.0.2+3"
+  version: "35.0.2+4"
   uri:
   - https://github.com/nmeum/android-tools/
   license: "Apache-2.0 BSD-2"
@@ -4785,7 +4806,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.91.168"
+  version: "1.91.171"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -4836,6 +4857,27 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &apps-brlaser
+  category: "apps"
+  name: "brlaser"
+  version: "6.2.8"
+  uri:
+  - Brother laser printer driver
+  license: "GPL-2+"
+  description: "Brother laser printer driver"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-print/brlaser
+  provides:
+  - category: "net-print"
+    name: "brlaser"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-brother-dcp1610w-bin
   category: "apps"
@@ -6054,7 +6096,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "145-148"
+  version: "145-148+1"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6546,7 +6588,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.45.2"
+  version: "0.45.3"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -7199,7 +7241,7 @@ packages:
 - &apps-i2c-tools
   category: "apps"
   name: "i2c-tools"
-  version: "4.3-r2+2"
+  version: "4.4"
   uri:
   - https://www.kernel.org/pub/software/utils/i2c-tools
   license: "GPL-2"
@@ -8104,7 +8146,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "5.1.0"
+  version: "5.2.2"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -8383,7 +8425,7 @@ packages:
 
 - category: "apps"
   name: "marble"
-  version: "26.04.1"
+  version: "26.04.1+1"
   uri:
   - https://marble.kde.org
   license: "GPL-2"
@@ -8966,7 +9008,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.16.2"
+  version: "1.17.4"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -11132,7 +11174,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.26.0"
+  version: "3.26.0_p1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -11773,6 +11815,32 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+# - &apps-xwayland-satellite
+#   category: "apps"
+#   name: "xwayland-satellite"
+#   version: "0.8.1"
+#   uri:
+#   - https://github.com/Supreeeme/xwayland-satellite
+#   license: "Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-DFS-2016 ZLIB"
+#   description: "Xwayland outside your Wayland"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       gui-apps/xwayland-satellite
+#   overlays:
+#   - enable: "guru"
+#   provides:
+#   - category: "gui-apps"
+#     name: "xwayland-satellite"
+#     version: ">=0"
+#   atoms:
+#   - atom: "gui-apps/xwayland-satellite"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &apps-xwininfo
   category: "apps"
@@ -13487,7 +13555,7 @@ packages:
 
 - category: "apps"
   name: "foot"
-  version: "1.26.1"
+  version: "1.27.0"
   uri:
   - https://codeberg.org/dnkl/foot
   license: "MIT"
@@ -13769,7 +13837,7 @@ packages:
 - &apps-gopls
   category: "apps"
   name: "gopls"
-  version: "0.21.0"
+  version: "0.21.1"
   uri:
   - https://github.com/golang/tools/blob/master/gopls/README.md
   license: "BSD"
@@ -14652,7 +14720,7 @@ packages:
 - &apps-mosh
   category: "apps"
   name: "mosh"
-  version: "1.4.0-r2"
+  version: "1.4.0-r2+1"
   uri:
   - https://mosh.org
   license: "GPL-3"
@@ -16243,6 +16311,42 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+- category: "apps"
+  name: "systemd-pilot"
+  version: "3.0+7"
+  uri:
+  - https://github.com/mfat/systemd-pilot
+  license: "GPL-3+"
+  description: "Desktop application for managing systemd services"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/systemd-pilot
+  provides:
+  - category: "dev-python"
+    name: "keyring"
+    version: ">=0"
+  - category: "dev-python"
+    name: "paramiko"
+    version: ">=0"
+  - category: "dev-python"
+    name: pynacl
+    version: ">=0"
+  - category: s"ys-apps"
+    name: "systemd-pilot"
+    version: ">=0"
+  atoms:
+  - atom: "sys-apps/systemd-pilot"
+    accept_keywords: "~amd64"
+    use: "fzf image libnotify pulseaudio sixel streaming"
+  overlays:
+  - enable: "mocaccino-overlay"
+  requires:
+  - <<: *layers-gnome-common
+  - <<: *libs-jeepney
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-tesseract
   category: "apps"
   name: "tesseract"
@@ -16314,7 +16418,7 @@ packages:
 - &apps-tor
   category: "apps"
   name: "tor"
-  version: "0.4.9.8"
+  version: "0.4.9.9"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -16604,10 +16708,10 @@ packages:
   - app-portage/gemato
   - virtual/linux-sources
   requires:
-  - <<: *layers-wlroots
+  - <<: *layers-X
   - <<: *apps-lxc
   build_requires:
-  - <<: *layers-wlroots
+  - <<: *layers-X
 
 - <<: *apps-waydroid-gapps
   name: "waydroid-vanilla"
@@ -17289,9 +17393,6 @@ packages:
     name: "jaconv"
     version: ">=0"
   - category: "dev-python"
-    name: "jeepney"
-    version: ">=0"
-  - category: "dev-python"
     name: "lxml-html-clean"
     version: ">=0"
   - category: "dev-python"
@@ -17330,6 +17431,7 @@ packages:
   - <<: *libs-css-parser
   - <<: *libs-feedparser
   - <<: *libs-fonttools
+  - <<: *libs-jeepney
   - <<: *libs-markdown
   - <<: *libs-mathjax
   - <<: *libs-python-msgpack
@@ -17800,7 +17902,7 @@ packages:
 - &apps-gnome-nettool
   category: "apps"
   name: "gnome-nettool"
-  version: "42.0+2"
+  version: "42.0-r1"
   uri:
   - https://gitlab.gnome.org/GNOME/gnome-nettool
   license: "GPL-2"
@@ -18657,7 +18759,7 @@ packages:
 
 - category: "apps"
   name: "mixxx"
-  version: "2.5.6"
+  version: "2.5.6+1"
   uri:
   - https://www.mixxx.org
   license: "GPL-2"
@@ -19248,7 +19350,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.73.2-r1"
+  version: "1.74.1"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -21771,15 +21873,12 @@ packages:
   atoms:
   - atom: "app-text/doxygen"
     use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21 # doc"
-  prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/app-text/doxygen/doxygen-*.ebuild
-  - find /var/db/repos/gentoo/app-text/doxygen/ -type f -name "doxygen-*.ebuild" -exec ebuild {} manifest \;
   requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
   - <<: *development-gcc
   - <<: *apps-graphviz
   build_requires:
-  - <<: *layers-plasma
+  - <<: *layers-kde-common
 
 - &apps-gimp
   category: "apps"
