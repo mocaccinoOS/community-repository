@@ -11816,31 +11816,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-xwayland-satellite
-#   category: "apps"
-#   name: "xwayland-satellite"
-#   version: "0.8.1"
-#   uri:
-#   - https://github.com/Supreeeme/xwayland-satellite
-#   license: "Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-DFS-2016 ZLIB"
-#   description: "Xwayland outside your Wayland"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       gui-apps/xwayland-satellite
-#   overlays:
-#   - enable: "guru"
-#   provides:
-#   - category: "gui-apps"
-#     name: "xwayland-satellite"
-#     version: ">=0"
-#   atoms:
-#   - atom: "gui-apps/xwayland-satellite"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - <<: *layers-X
-#   build_requires:
-#   - <<: *layers-X
+- &apps-xwayland-satellite
+  category: "apps"
+  name: "xwayland-satellite"
+  version: "0.8.1"
+  uri:
+  - https://github.com/Supreeeme/xwayland-satellite
+  license: "Apache-2.0 BSD ISC MIT MPL-2.0 Unicode-DFS-2016 ZLIB"
+  description: "Xwayland outside your Wayland"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/xwayland-satellite
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "xwayland-satellite"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/xwayland-satellite"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-xwininfo
   category: "apps"
@@ -14903,7 +14903,7 @@ packages:
 - &apps-noctalia
   category: "apps"
   name: "noctalia"
-  version: "4.7.7-r1"
+  version: "4.7.7-r1+1"
   uri:
   - https://noctalia.dev
   license: "MIT"
