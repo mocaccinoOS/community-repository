@@ -13097,7 +13097,7 @@ packages:
   name: "chezmoi"
   version: "2.70.2"
   uri:
-  - https://www.chezmoi.io/"
+  - https://www.chezmoi.io/
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
   description: "Manage your dotfiles across multiple machines, securely"
   labels:
@@ -13833,6 +13833,33 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- category: "apps"
+  name: "google-antigravity"
+  version: "2.0.10"
+  uri:
+  - https://antigravity.google/
+  license: "all-rights-reserved"
+  description: "Google Antigravity 2.0, a dedicated platform to work with agents"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/google-antigravity
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-util"
+    name: "google-antigravity"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/google-antigravity"
+    use: "verify-sig"
+    license: "all-rights-reserved"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &apps-gopls
   category: "apps"
