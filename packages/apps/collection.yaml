@@ -13861,6 +13861,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- category: "apps"
+  name: "google-antigravity-cli"
+  version: "1.0.4"
+  uri:
+  - https://antigravity.google/
+  license: "all-rights-reserved"
+  description: "Command-line interface for Google's Antigravity agentic development platform"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/google-antigravity-cli 
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "dev-util"
+    name: "google-antigravity-cli"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/google-antigravity-cli"
+    use: "verify-sig"
+    license: "all-rights-reserved"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &apps-gopls
   category: "apps"
   name: "gopls"
