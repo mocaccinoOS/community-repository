@@ -4629,7 +4629,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.23+1"
+  version: "9.20.23+2"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4645,6 +4645,8 @@ packages:
   atoms:
   - atom: "net-dns/bind"
     use: "caps dlz doc gssapi idn xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux verify-sig"
+  inner_build_reqs:
+  - dev-python/sphinx
   requires:
   - <<: *layers-sys-fs
   - category: "entity"
