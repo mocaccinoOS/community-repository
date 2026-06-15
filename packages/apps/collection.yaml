@@ -4626,11 +4626,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# to be replaced by the net-dns/bind soon
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.23"
+  version: "9.20.23+1"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4641,26 +4640,18 @@ packages:
       net-dns/bind
   provides:
   - category: "net-dns"
-    name: "bind-tools"
-    version: ">=0"
-  - category: "net-dns"
     name: "bind"
     version: ">=0"
   atoms:
-  - atom: "net-dns/bind-tools"
-    use: "caps doc gssapi idn readline xml # libedit"
   - atom: "net-dns/bind"
     use: "caps dlz doc gssapi idn xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux verify-sig"
-  inner_build_reqs:
-  - dev-python/sphinx
   requires:
   - <<: *layers-sys-fs
   - category: "entity"
     name: "named"
     version: ">=0"
   build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "bin2iso"
@@ -14969,15 +14960,15 @@ packages:
   - enable: "guru"
   - enable: "mocaccino-overlay"
   provides:
-  - name: cli11
-    category: dev-cpp
-    version: '>=0'
-  - name: noctalia
-    category: gui-apps
-    version: '>=0'
-  - name: noctalia-qs
-    category: gui-apps
-    version: '>=0'
+  - category: "dev-cpp"
+    name: "cli11"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "noctalia"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "noctalia-qs"
+    version: ">=0"
   atoms:
   - atom: "gui-apps/noctalia"
     accept_keywords: "~amd64"
