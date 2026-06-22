@@ -845,7 +845,7 @@ packages:
 - &fonts-terminus
   <<: *fonts
   name: "terminus"
-  version: "4.49.1-r2"
+  version: "4.49.1-r3"
   uri:
   - https://terminus-font.sourceforge.net/
   license: "OFL-1.1 GPL-2"
@@ -1227,7 +1227,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "148.0.7778.215"
+  version: "149.0.7827.155"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2287,7 +2287,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.3"
+  version: "1.9.4"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -3296,7 +3296,7 @@ packages:
 - &libs-python-protobuf
   category: "libs"
   name: "python-protobuf"
-  version: "7.34.1"
+  version: "7.34.2"
   uri:
   - https://protobuf.dev/
   license: "BSD"
@@ -3437,7 +3437,7 @@ packages:
 - &libs-regex
   category: "libs"
   name: "regex"
-  version: "2026.4.4"
+  version: "2026.5.9"
   uri:
   - https://github.com/mrabarnett/mrab-regex/
   license: "Apache-2.0"
@@ -3458,7 +3458,7 @@ packages:
 - &libs-reportlab
   category: "libs"
   name: "reportlab"
-  version: "4.5.0"
+  version: "4.5.1"
   uri:
   - https://www.reportlab.com/
   license: "BSD"
@@ -4113,7 +4113,7 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.22"
+  version: "8.12.24"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
@@ -4204,7 +4204,7 @@ packages:
 
 - category: "apps"
   name: "amarok"
-  version: "3.3.2-r1"
+  version: "3.3.3"
   uri:
   - https://amarok.kde.org/
   license: "GPL-2"
@@ -4252,7 +4252,7 @@ packages:
 
 - category: "apps"
   name: "android-studio"
-  version: "2026.1.1.8"
+  version: "2026.1.1.10"
   uri:
   - https://developer.android.com/studio
   license: "Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5 EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT MPL-1.1 MPL-2.0 NPL-1.1 OFL-1.1 ZLIB"
@@ -4800,7 +4800,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.91.171"
+  version: "1.91.175"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5083,6 +5083,39 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-X
+
+- &apps-cmake
+  category: "apps"
+  name: "cmake"
+  version: "4.3.4"
+  uri:
+  - https://cmake.org/
+  - https://github.com/google/cppdap
+  license: "Apache-2.0 BSD"
+  description: |
+    Cross platform Make
+    C++ library for the Debug Adapter Protocol
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-build/cmake
+  provides:
+  - category: "dev-build"
+    name: "cmake"
+    version: ">=0"
+  - category: "dev-cpp"
+    name: "cppdap"
+    version: ">=0"
+  atoms:
+  - atom: "dev-build/cmake"
+    use: "dap doc gui ncurses verify-sig"
+  inner_build_reqs:
+  - dev-python/sphinx
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-nlohmann_json
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "cmatrix"
@@ -6532,7 +6565,7 @@ packages:
 - &apps-gaupol
   category: "apps"
   name: "gaupol"
-  version: "1.15-r2"
+  version: "1.16"
   uri:
   - https://otsaloma.io/gaupol/
   license: "GPL-2+"
@@ -6582,7 +6615,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.45.3"
+  version: "0.47.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6698,7 +6731,7 @@ packages:
 
 - category: "apps"
   name: "gnome-commander"
-  version: "1.18.4+1"
+  version: "1.18.6"
   uri:
   - https://gcmd.github.io
   license: "GPL-2"
@@ -6948,7 +6981,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "148.0.7778.215"
+  version: "149.0.7827.155"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7574,7 +7607,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.6.8"
+  version: "3.7.1"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -8593,7 +8626,7 @@ packages:
 - &apps-mullvadvpn-app
   category: "apps"
   name: "mullvadvpn-app"
-  version: "2026.2"
+  version: "2026.3"
   uri:
   - https://github.com/mullvad/mullvadvpn-app
   - https://mullvad.net/
@@ -9002,7 +9035,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.17.4"
+  version: "1.17.9"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9569,7 +9602,7 @@ packages:
 
 - category: "apps"
   name: "plasma-keyboard"
-  version: "6.6.5"
+  version: "6.7.0"
   uri:
   - https://kde.org/plasma-desktop
   license: "|| ( GPL-2 GPL-3 ) LGPL-2.1 LGPL-3"
@@ -9847,7 +9880,7 @@ packages:
 - &apps-qalculate-gtk
   category: "apps"
   name: "qalculate-gtk"
-  version: "5.8.2"
+  version: "5.10.0"
   uri:
   - https://qalculate.github.io/
   license: "GPL-2+"
@@ -9871,7 +9904,7 @@ packages:
 - &apps-qalculate-qt
   category: "apps"
   name: "qalculate-qt"
-  version: "5.8.2"
+  version: "5.10.0"
   uri:
   - https://github.com/Qalculate/qalculate-qt
   license: "GPL-2+"
@@ -9944,7 +9977,7 @@ packages:
 
 - category: "apps"
   name: "quassel"
-  version: "0.14.0-r8"
+  version: "0.14.50_pre20260525"
   uri:
   - https://quassel-irc.org
   license: "GPL-3"
@@ -10469,7 +10502,7 @@ packages:
 
 - category: "apps"
   name: "stress-ng"
-  version: "0.21.01"
+  version: "0.21.03"
   uri:
   - https://github.com/ColinIanKing/stress-ng
   license: "GPL-2+"
@@ -10873,7 +10906,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.11.0_p15015"
+  version: "140.12.0_p15016"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -11168,7 +11201,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.26.0_p1"
+  version: "3.27.0_p1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -11449,7 +11482,7 @@ packages:
 
 - category: "apps"
   name: "wezterm"
-  version: "20240203.110809-r2+2"
+  version: "20260616.002039"
   uri:
   - https://wezfurlong.org/wezterm/
   - https://gitlab.freedesktop.org/xorg/data/xcursor-themes
@@ -11507,7 +11540,7 @@ packages:
 
 - category: "apps"
   name: "wireshark"
-  version: "4.6.5-r1"
+  version: "4.6.6"
   uri:
   - https://www.wireshark.org
   license: "LGPL-3"
@@ -12569,7 +12602,7 @@ packages:
 - &libs-twisted
   category: "libs"
   name: "twisted"
-  version: "25.5.0-r1"
+  version: "26.4.0"
   uri:
   - https://www.twistedmatrix.com/trac/
   - https://github.com/twisted/incremental
@@ -13736,7 +13769,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "12.2.0"
+  version: "12.2.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -13830,7 +13863,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.0.10"
+  version: "2.1.4"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -13857,7 +13890,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.0.4"
+  version: "1.0.9"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14823,7 +14856,7 @@ packages:
 
 - category: "apps"
   name: "musescore"
-  version: "4.6.5+1"
+  version: "4.7.3"
   uri:
   - https://musescore.org/
   license: "GPL-2"
@@ -15271,7 +15304,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "132.0.5905.11"
+  version: "132.0.5905.73"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -16331,7 +16364,7 @@ packages:
 
 - category: "apps"
   name: "strawberry"
-  version: "1.2.18"
+  version: "1.2.19"
   uri:
   - https://www.strawberrymusicplayer.org/
   license: "GPL-3"
@@ -16618,7 +16651,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "8.0.4033.35"
+  version: "8.0.4033.50"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -16670,7 +16703,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.6.1-r1"
+  version: "4.7.0"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -16780,7 +16813,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.10"
+  version: "11.11"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -19403,7 +19436,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.74.1"
+  version: "1.74.2"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -19844,7 +19877,7 @@ packages:
 - &apps-xscreensaver
   category: "apps"
   name: "xscreensaver"
-  version: "6.12-r2+3"
+  version: "6.14"
   uri:
   - https://www.jwz.org/xscreensaver/
   license: "BSD fonts GPL-2 MIT Apache-2.0 IJG ISC"
@@ -20120,7 +20153,7 @@ packages:
 - &apps-antimicrox 
   category: "apps"
   name: "antimicrox"
-  version: "3.5.1+1"
+  version: "3.6.0"
   uri:
   - https://github.com/AntiMicroX/antimicrox
   license: "GPL-3+"
@@ -20794,7 +20827,7 @@ packages:
 
 - category: "apps"
   name: "neovide"
-  version: "0.15.2+1"
+  version: "0.16.2"
   uri:
   - https://github.com/neovide/neovide
   license: "MIT Apache-2.0 BSD-2 BSD Boost-1.0 CC0-1.0 ISC LGPL-3 MIT MPL-2.0 Unicode-3.0 ZLIB "
@@ -20984,7 +21017,7 @@ packages:
 - &apps-ppsspp
   category: "apps"
   name: "ppsspp"
-  version: "1.20.3"
+  version: "1.20.4-r1"
   uri:
   - https://www.ppsspp.org/
   - https://github.com/hrydgard/ppsspp/
@@ -21094,7 +21127,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "25.4"
+  version: "26.1"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -21162,7 +21195,7 @@ packages:
 
 - category: "apps"
   name: "86Box"
-  version: "5.3+2"
+  version: "6.0"
   uri:
   - https://github.com/86Box/86Box
   - https://fna-xna.github.io/
@@ -22469,65 +22502,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# # build fails
-# - &apps-easyeffects
-#   category: "apps"
-#   name: "easyeffects"
-#   version: "7.2.5+6"
-#   uri:
-#   - https://github.com/wwmm/easyeffects
-#   - https://lsp-plug.in
-#   - https://www.zamaudio.com/
-#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
-#   description: |
-#     Limiter, auto volume and many other plugins for PipeWire applications
-#     Linux Studio Plugins
-#     LV2 port of the MDA plugins by Paul Kellett
-#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/easyeffects
-#   provides:
-#   - category: "media-sound"
-#     name: "easyeffects"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "lsp-plugins"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "zita-convolver"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "mda-lv2"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "zam-plugins"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/easyeffects"
-#     use: "calf doc mda-lv2 zamaudio"
-#   - atom: "media-libs/lsp-plugins"
-#     use: "lv2 vst X # doc jack ladspa"
-#   - atom: "media-plugins/zam-plugins"
-#     use: "jack opengl"
-#   inner_build_reqs:
-#   - dev-util/itstool
-#   - dev-util/lv2lint
-#   requires:
-#   - <<: *layers-gnome
-#   - <<: *libs-nlohmann_json
-#   - <<: *libs-tbb
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-liblo
-#   - <<: *libs-libbs2b
-#   - <<: *libs-libebur128
-#   - <<: *libs-libsoundtouch
-#   - <<: *libs-lilv
-#   - <<: *libs-rnnoise
-#   - <<: *apps-calf
-#   build_requires:
-#   - <<: *layers-gnome
+# build fails
+- &apps-easyeffects
+  category: "apps"
+  name: "easyeffects"
+  version: "7.2.5+7"
+  uri:
+  - https://github.com/wwmm/easyeffects
+  - https://lsp-plug.in
+  - https://www.zamaudio.com/
+  license: "GPL-3 LGPL-3 GPL-2+ MIT"
+  description: |
+    Limiter, auto volume and many other plugins for PipeWire applications
+    Linux Studio Plugins
+    LV2 port of the MDA plugins by Paul Kellett
+    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easyeffects
+  provides:
+  - category: "media-sound"
+    name: "easyeffects"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lsp-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "zita-convolver"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "mda-lv2"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "zam-plugins"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/easyeffects"
+    use: "calf doc mda-lv2 zamaudio"
+  - atom: "media-libs/lsp-plugins"
+    use: "lv2 vst X # doc jack ladspa"
+  - atom: "media-plugins/zam-plugins"
+    use: "jack opengl"
+  inner_build_reqs:
+  - dev-util/itstool
+  - dev-util/lv2lint
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tbb
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-libbs2b
+  - <<: *libs-libebur128
+  - <<: *libs-libsoundtouch
+  - <<: *libs-lilv
+  - <<: *libs-rnnoise
+  - <<: *apps-calf
+  build_requires:
+  - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"

@@ -636,8 +636,10 @@ excludes:
 {{/**/}}
   {{- if ne $category "layerbase" }}
 - ^/usr/include
+    {{- if ne $values.name "cmake" }}
 - ^/usr/lib/cmake
 - ^/usr/lib64/cmake
+    {{- end }}
   {{- end }}
 {{/**/}}
 - ^/usr/portage
