@@ -256,6 +256,18 @@ stubs:
   name: "vhba-lts"
   version: ">=0"
 
+################################################################################
+### devel refs ###
+################################################################################
+
+- &devel-cmake
+  category: "devel"
+  name: "cmake"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-build/cmake
 
 ################################################################################
 ### fonts refs ###
@@ -5084,10 +5096,10 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &apps-cmake
+- &apps-cmake-gui
   category: "apps"
-  name: "cmake"
-  version: "4.3.4+1"
+  name: "cmake-gui"
+  version: "4.3.3"
   uri:
   - https://cmake.org/
   - https://github.com/google/cppdap
@@ -5114,6 +5126,7 @@ packages:
   - sec-keys/openpgp-keys-bradking
   requires:
   - <<: *layers-qt
+  - <<: *devel-cmake
   - <<: *libs-nlohmann_json
   build_requires:
   - <<: *layers-qt
