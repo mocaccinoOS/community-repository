@@ -5087,7 +5087,7 @@ packages:
 - &apps-cmake
   category: "apps"
   name: "cmake"
-  version: "4.3.4"
+  version: "4.3.4+1"
   uri:
   - https://cmake.org/
   - https://github.com/google/cppdap
@@ -5111,6 +5111,7 @@ packages:
     use: "dap doc gui ncurses verify-sig"
   inner_build_reqs:
   - dev-python/sphinx
+  - sec-keys/openpgp-keys-bradking
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
@@ -9993,6 +9994,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-irc/quassel"
+    accept_keywords: "~amd64"
     use: "gui"
   requires:
   - <<: *layers-qt5
@@ -11407,6 +11409,8 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+# dev-libs/date not used if C++ library supports chrono
+# what C++ library?
 - &apps-waybar
   category: "apps"
   name: "waybar"
@@ -16703,7 +16707,7 @@ packages:
 
 - category: "apps"
   name: "warzone2100"
-  version: "4.7.0"
+  version: "4.7.0+1"
   uri:
   - https://wz2100.net
   license: "GPL-2+ CC-BY-SA-3.0 public-domain GPL-3"
@@ -16726,8 +16730,10 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - app-text/asciidoc
+  - dev-libs/date
   requires:
   - <<: *layers-X
+  - <<: *libs-libsdl3
   - <<: *libs-physfs
   build_requires:
   - <<: *layers-X
@@ -22502,65 +22508,65 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# build fails
-- &apps-easyeffects
-  category: "apps"
-  name: "easyeffects"
-  version: "7.2.5+7"
-  uri:
-  - https://github.com/wwmm/easyeffects
-  - https://lsp-plug.in
-  - https://www.zamaudio.com/
-  license: "GPL-3 LGPL-3 GPL-2+ MIT"
-  description: |
-    Limiter, auto volume and many other plugins for PipeWire applications
-    Linux Studio Plugins
-    LV2 port of the MDA plugins by Paul Kellett
-    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-sound/easyeffects
-  provides:
-  - category: "media-sound"
-    name: "easyeffects"
-    version: ">=0"
-  - category: "media-libs"
-    name: "lsp-plugins"
-    version: ">=0"
-  - category: "media-libs"
-    name: "zita-convolver"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "mda-lv2"
-    version: ">=0"
-  - category: "media-plugins"
-    name: "zam-plugins"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/easyeffects"
-    use: "calf doc mda-lv2 zamaudio"
-  - atom: "media-libs/lsp-plugins"
-    use: "lv2 vst X # doc jack ladspa"
-  - atom: "media-plugins/zam-plugins"
-    use: "jack opengl"
-  inner_build_reqs:
-  - dev-util/itstool
-  - dev-util/lv2lint
-  requires:
-  - <<: *layers-gnome
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tbb
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-libbs2b
-  - <<: *libs-libebur128
-  - <<: *libs-libsoundtouch
-  - <<: *libs-lilv
-  - <<: *libs-rnnoise
-  - <<: *apps-calf
-  build_requires:
-  - <<: *layers-gnome
+# # build fails
+# - &apps-easyeffects
+#   category: "apps"
+#   name: "easyeffects"
+#   version: "7.2.5+7"
+#   uri:
+#   - https://github.com/wwmm/easyeffects
+#   - https://lsp-plug.in
+#   - https://www.zamaudio.com/
+#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
+#   description: |
+#     Limiter, auto volume and many other plugins for PipeWire applications
+#     Linux Studio Plugins
+#     LV2 port of the MDA plugins by Paul Kellett
+#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-sound/easyeffects
+#   provides:
+#   - category: "media-sound"
+#     name: "easyeffects"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "lsp-plugins"
+#     version: ">=0"
+#   - category: "media-libs"
+#     name: "zita-convolver"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "mda-lv2"
+#     version: ">=0"
+#   - category: "media-plugins"
+#     name: "zam-plugins"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/easyeffects"
+#     use: "calf doc mda-lv2 zamaudio"
+#   - atom: "media-libs/lsp-plugins"
+#     use: "lv2 vst X # doc jack ladspa"
+#   - atom: "media-plugins/zam-plugins"
+#     use: "jack opengl"
+#   inner_build_reqs:
+#   - dev-util/itstool
+#   - dev-util/lv2lint
+#   requires:
+#   - <<: *layers-gnome
+#   - <<: *libs-nlohmann_json
+#   - <<: *libs-tbb
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-libbs2b
+#   - <<: *libs-libebur128
+#   - <<: *libs-libsoundtouch
+#   - <<: *libs-lilv
+#   - <<: *libs-rnnoise
+#   - <<: *apps-calf
+#   build_requires:
+#   - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
