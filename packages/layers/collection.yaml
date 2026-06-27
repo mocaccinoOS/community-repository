@@ -1939,7 +1939,7 @@ packages:
     accept_keywords: "~amd64"
   portage_env: "MAKEOPTS=\"-l0.45\""
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 21 )/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
   - find /var/db/repos/gentoo/dev-lang/ghc/ -type f -name "ghc-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-text/docbook-xml-dtd
