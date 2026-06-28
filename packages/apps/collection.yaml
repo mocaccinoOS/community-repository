@@ -422,7 +422,7 @@ stubs:
       app-containers/docker
 
 - &apps-doxygen-packages >-
-  app-text/doxygen;USE="-llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21" ACCEPT_KEYWORDS="~amd64"
+  app-text/doxygen;USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22"
 
 - &apps-flatpak
   category: "apps"
@@ -2071,7 +2071,7 @@ packages:
 - &libs-leptonica
   category: "libs"
   name: "leptonica"
-  version: "1.85.0+1"
+  version: "1.87.0"
   uri:
   - http://www.leptonica.org/
   license: "Apache-2.0"
@@ -4812,7 +4812,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.91.175"
+  version: "1.91.178"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5045,7 +5045,7 @@ packages:
 - &apps-chafa
   category: "apps"
   name: "chafa"
-  version: "1.18.1"
+  version: "1.18.2"
   uri:
   - https://hpjansson.org/chafa/
   license: "LGPL-3+"
@@ -5099,7 +5099,7 @@ packages:
 - &apps-cmake-gui
   category: "apps"
   name: "cmake-gui"
-  version: "4.3.3"
+  version: "4.3.3-r1"
   uri:
   - https://cmake.org/
   - https://github.com/google/cppdap
@@ -7019,7 +7019,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "5.13.6"
+  version: "5.13.9"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -8140,7 +8140,7 @@ packages:
 - &apps-kvantum
   category: "apps"
   name: "kvantum"
-  version: "1.1.6"
+  version: "1.1.8"
   uri:
   - https://github.com/tsujan/Kvantum
   license: "GPL-3"
@@ -8306,7 +8306,7 @@ packages:
 - &apps-lxc
   category: "apps"
   name: "lxc"
-  version: "6.0.5"
+  version: "7.0.0"
   uri:
   - https://linuxcontainers.org/
   - https://github.com/lxc/lxc
@@ -9049,7 +9049,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.17.9"
+  version: "1.17.11"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9074,8 +9074,8 @@ packages:
   
 - &apps-pandoc
   category: "apps"
-  name: "pandoc"
-  version: "3+11"
+  name: "pandoc-cli"
+  version: "3.10"
   uri:
   - https://pandoc.org
   license: "GPL-2+"
@@ -9083,11 +9083,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-       app-text/pandoc
+       app-text/pandoc-cli
   provides:
-  - category: "app-text"
-    name: "pandoc"
-    version: ">=0"
   - category: "app-text"
     name: "pandoc-cli"
     version: ">=0"
@@ -9095,16 +9092,10 @@ packages:
     name: "alex"
     version: ">=0"
   - category: "dev-haskell"
-    name: "attoparsec-iso8601"
+    name: "asciidoc"
     version: ">=0"
   - category: "dev-haskell"
     name: "base-unicode-symbols"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "base16-bytestring"
-    version: ">=0"
-  - category: "dev-haskell"
-    name: "base64"
     version: ">=0"
   - category: "dev-haskell"
     name: "boring"
@@ -9131,7 +9122,7 @@ packages:
     name: "dec"
     version: ">=0"
   - category: "dev-haskell"
-    name: "digits"
+    name: "djot"
     version: ">=0"
   - category: "dev-haskell"
     name: "doclayout"
@@ -9141,6 +9132,9 @@ packages:
     version: ">=0"
   - category: "dev-haskell"
     name: "emojis"
+    version: ">=0"
+  - category: "dev-haskell"
+    name: "generics-sop"
     version: ">=0"
   - category: "dev-haskell"
     name: "gridtables"
@@ -9248,9 +9242,6 @@ packages:
     name: "pandoc-types"
     version: ">=0"
   - category: "dev-haskell"
-    name: "parsec"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "regex-base"
     version: ">=0"
   - category: "dev-haskell"
@@ -9284,13 +9275,16 @@ packages:
     name: "skylighting-format-latex"
     version: ">=0"
   - category: "dev-haskell"
+    name: "skylighting-format-typst"
+    version: ">=0"
+  - category: "dev-haskell"
     name: "some"
     version: ">=0"
   - category: "dev-haskell"
     name: "sop-core"
     version: ">=0"
   - category: "dev-haskell"
-    name: "string-conversions"
+    name: "stm"
     version: ">=0"
   - category: "dev-haskell"
     name: "texmath"
@@ -9335,29 +9329,20 @@ packages:
     name: "uniplate"
     version: ">=0"
   - category: "dev-haskell"
-    name: "utf8-string"
-    version: ">=0"
-  - category: "dev-haskell"
     name: "wai-app-static"
     version: ">=0"
   - category: "dev-haskell"
     name: "wai-cors"
     version: ">=0"
   atoms:
-  - atom: "app-text/pandoc"
-    accept_keywords: "~amd64"
   - atom: "app-text/pandoc-cli"
     accept_keywords: "~amd64"
-    use: "lua server"
+    use: "lua repl server"
   - atom: "dev-haskell/alex"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/attoparsec-iso8601"
+  - atom: "dev-haskell/asciidoc"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/base-unicode-symbols"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/base16-bytestring"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/base64"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/boring"
     accept_keywords: "~amd64"
@@ -9377,13 +9362,15 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/dec"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/digits"
+  - atom: "dev-haskell/djot"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/doclayout"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/doctemplates"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/emojis"
+    accept_keywords: "~amd64"
+  - atom: "dev-haskell/generics-sop"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/gridtables"
     accept_keywords: "~amd64"
@@ -9455,8 +9442,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/pandoc-types"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/parsec"
-    accept_keywords: "~amd64"
   - atom: "dev-haskell/regex-base"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/regex-tdfa"
@@ -9479,19 +9464,18 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-haskell/skylighting-format-latex"
     accept_keywords: "~amd64"
+  - atom: "dev-haskell/skylighting-format-typst"
+    accept_keywords: "~amd64"
   - atom: "dev-haskell/some"
     accept_keywords: "~amd64"
     use: "newtype-unsafe"
   - atom: "dev-haskell/sop-core"
     accept_keywords: "~amd64"
-  - atom: "dev-haskell/string-conversions"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/tasty-lua"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/temporary"
+  - atom: "dev-haskell/stm"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/texmath"
     accept_keywords: "~amd64"
+    use: "server executable"
   - atom: "dev-haskell/text-conversions"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/text-icu"
@@ -9518,8 +9502,6 @@ packages:
   - atom: "dev-haskell/unicode-transforms"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/uniplate"
-    accept_keywords: "~amd64"
-  - atom: "dev-haskell/utf8-string"
     accept_keywords: "~amd64"
   - atom: "dev-haskell/wai-app-static"
     accept_keywords: "~amd64"
@@ -9616,7 +9598,7 @@ packages:
 
 - category: "apps"
   name: "plasma-keyboard"
-  version: "6.7.0"
+  version: "6.7.1"
   uri:
   - https://kde.org/plasma-desktop
   license: "|| ( GPL-2 GPL-3 ) LGPL-2.1 LGPL-3"
@@ -10323,7 +10305,7 @@ packages:
 
 - category: "apps"
   name: "rustdesk"
-  version: "1.4.7"
+  version: "1.4.8"
   uri:
   - https://rustdesk.com/
   license: "AGPL-3 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 CDLA-Permissive-2.0 GPL-3+ IJG ISC MIT MIT-0 MPL-2.0 Unicode-DFS-2016 Unlicense WTFPL-2 ZLIB"
@@ -10823,7 +10805,7 @@ packages:
 
 - category: "apps"
   name: "systemdgenie"
-  version: "0.100.0_pre20241202"
+  version: "0.100.0_pre20260624"
   uri:
   - https://invent.kde.org/system/systemdgenie
   license: "GPL-2+"
@@ -11216,7 +11198,7 @@ packages:
 - &apps-valgrind
   category: "apps"
   name: "valgrind"
-  version: "3.27.0_p1"
+  version: "3.27.1"
   uri:
   - https://www.valgrind.org
   license: "GPL-2"
@@ -12502,7 +12484,7 @@ packages:
 - &libs-libsdl3
   category: "libs"
   name: "libsdl3"
-  version: "3.4.8"
+  version: "3.4.10"
   uri:
   - https://www.libsdl.org/
   license: "ZLIB"
@@ -13634,7 +13616,7 @@ packages:
 
 - category: "apps"
   name: "fooyin"
-  version: "0.10.8"
+  version: "0.11.1"
   uri:
   - https://www.fooyin.org
   license: "GPL-3"
@@ -13880,7 +13862,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.1.4"
+  version: "2.2.1"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -13907,7 +13889,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.0.9"
+  version: "1.0.12"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -15669,7 +15651,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "10.34"
+  version: "11.1"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -16024,7 +16006,7 @@ packages:
 
 - category: "apps"
   name: "rssguard"
-  version: "5.1.2"
+  version: "5.2.0"
   uri:
   - https://github.com/martinrotter/rssguard
   license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
@@ -16584,7 +16566,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.9.10"
+  version: "1.9.11"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -16995,7 +16977,7 @@ packages:
 
 - category: "apps"
   name: "zsnes"
-  version: "2.1.0+1"
+  version: "2.1.1"
   uri:
   - https://github.com/xyproto/zsnes
   license: "GPL-2"
@@ -21563,47 +21545,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-# - &apps-hedgewars
-#   category: "apps"
-#   name: "hedgewars"
-#   version: "1.0.2-r1+1"
-#   uri:
-#   - https://www.hedgewars.org/
-#   license: "GPL-2 Apache-2.0 FDL-1.3"
-#   description: "A turn-based strategy, artillery, action and comedy game"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-strategy/hedgewars
-#   overlays:
-#   - enable: "guru"
-#   provides:
-#   - category: "games-strategy"
-#     name: "hedgewars"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-strategy/hedgewars"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-haskell/parsec"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-haskell/mtl"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-haskell/text"
-#     accept_keywords: "~amd64"
-#   inner_build_reqs:
-#   - dev-haskell/parsec
-#   - dev-lang/fpc
-#   requires:
-#   # - <<: *layers-qt
-#   - <<: *layers-qt5
-#   - <<: *libs-physfs
-#   - <<: *libs-sdl2
-#   - <<: *fonts-wqy-zenhei
-#   build_requires:
-#   # - <<: *buildbase-qt
-#   - <<: *buildbase-qt5
-#   - <<: *buildbase-ghc
-#   requires_final_images: true
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
@@ -22998,7 +22939,7 @@ packages:
 - &apps-kdevelop
   category: "apps"
   name: "kdevelop"
-  version: "26.04.1"
+  version: "26.04.1+1"
   uri:
   - https://kdevelop.org
   license: "GPL-2 LGPL-2"
@@ -23026,7 +22967,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-util/kdevelop"
-    use: "gdbui hex plasma qmake # reviewboard subversion -llvm_slot_15 -llvm_slot_16 -llvm_slot_17 -llvm_slot_18 -llvm_slot_19 llvm_slot_20"
+    use: "gdbui hex plasma qmake # reviewboard subversion"
   requires:
   - <<: *layers-kde-common
   # - <<: *apps-okteta
