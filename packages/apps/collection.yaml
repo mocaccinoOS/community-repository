@@ -11305,14 +11305,35 @@ packages:
   - category: "app-editors"
     name: "vscodium"
     version: ">=0"
-  # prepare:
-  # - |
-  #   mv /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.2.24313.ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild && \
-  #   ebuild /var/db/repos/gentoo/app-editors/vscodium/vscodium-1.95.3.24321.ebuild manifest
   requires:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "vulkan-tools-cube"
+  version: "1.4.341.0"
+  uri:
+  - https://github.com/KhronosGroup/Vulkan-Tools
+  license: "Apache-2.0"
+  description: "Official Vulkan Tools and Utilities for Windows, Linux, Android, and MacOS"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/vulkan-tools
+  provides:
+  - category: "app-editors"
+    name: "vulkan-tools"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/vulkan-tools"
+    use: "cube"
+  inner_build_reqs:
+  - dev-util/glslang
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "w_scan"
