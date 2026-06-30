@@ -5370,6 +5370,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-ddrescue
+  category: "apps"
+  name: "ddrescue"
+  version: "1.30"
+  uri:
+  - https://www.gnu.org/software/ddrescue/ddrescue.html
+  license: "GPL-2+"
+  description: "Copy data from one file or block device to another with read-error recovery"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-fs/ddrescue
+  provides:
+  - category: "sys-fs"
+    name: "ddrescue"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - category: "apps"
   name: "deadbeef"
   version: "1.10.2"
