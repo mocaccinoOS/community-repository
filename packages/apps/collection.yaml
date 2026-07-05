@@ -3181,6 +3181,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-pkg-resources
+  category: "libs"
+  name: "pkg-resources"
+  version: "81.0.0"
+  uri:
+  - https://github.com/pypa/setuptools/
+  license: "MIT"
+  description: |
+    pkg_resources package split from old setuptools
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pkg-resources
+  provides:
+  - category: "dev-python"
+    name: "pkg-resources"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+      
 - &libs-pyproject-hooks
   category: "libs"
   name: "pyproject-hooks"
@@ -21917,7 +21939,7 @@ packages:
 
 - category: "apps"
   name: "deluge"
-  version: "2.2.0-r2+2"
+  version: "2.2.0-r2+3"
   uri:
   - https://deluge-torrent.org/
   license: "GPL-2"
@@ -21926,7 +21948,6 @@ packages:
     appstream.id: "org.deluge_torrent.deluge"
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/pkg-resources
       net-p2p/deluge
   provides:
   - category: "net-p2p"
@@ -21943,6 +21964,7 @@ packages:
     name: "deluge"
     version: ">=0"
   - <<: *libs-twisted
+  - <<: *libs-pkg-resources
   build_requires:
   - <<: *layers-X
 
