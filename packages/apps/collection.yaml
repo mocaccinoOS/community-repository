@@ -10980,7 +10980,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.12.0_p15017"
+  version: "140.12.0_p15017+2"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -11000,6 +11000,7 @@ packages:
     accept_keywords: "~amd64"
   env:
   - LLVM_VERSION=22
+  - MAKEOPTS="-l0.9"
   portage_env: "USE=\"-llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
