@@ -11002,8 +11002,8 @@ packages:
   - LLVM_VERSION=22
   portage_env: "USE=\"-llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/www-client/torbrowser/torbrowser-*.ebuild
-  - find /var/db/repos/gentoo/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
+  - find /var/db/repos/torbrowser/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-build/autoconf:2.1
   # - llvm-core/clang:${LLVM_VERSION}
@@ -21728,7 +21728,7 @@ packages:
 - &apps-nut
   category: "apps"
   name: "nut"
-  version: "2.8.4+3"
+  version: "2.8.4+2"
   uri:
   - https://www.networkupstools.org
   - https://www.gnu.org/software/freeipmi/
@@ -21758,17 +21758,14 @@ packages:
     use: "without-root nagios"
   - atom: "sys-power/nut"
     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
-  prepare:
-  - cp -r tree/dev-libs/libgpiod /var/db/repos/gentoo/dev-libs
-  - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libgpiod-2.2.3-fix-configure-bashisms.patch\n&/; }' /var/db/repos/gentoo/dev-libs/libgpiod/libgpiod-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/libgpiod/ -type f -name "libgpiod-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
   - virtual/libusb:0
   - app-text/asciidoc
   requires:
-  - <<: *layers-qt
+  - <<: *layers-X
+  # - <<: *layers-qt5
   - category: "entity"
     name: "uucp"
     version: ">=0"
@@ -21779,7 +21776,64 @@ packages:
   - <<: *apps-nagios
   - <<: *apps-net-snmp
   build_requires:
-  - <<: *layers-qt
+  # - <<: *layers-qt
+  - <<: *layers-qt5
+
+# - &apps-nut
+#   category: "apps"
+#   name: "nut"
+#   version: "2.8.4+3"
+#   uri:
+#   - https://www.networkupstools.org
+#   - https://www.gnu.org/software/freeipmi/
+#   license: "GPL-2 GPL-3"
+#   description: |
+#     Network-UPS Tools
+#     Provides Remote-Console and System Management Software as per IPMI v1.5/2.0
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       sys-power/nut
+#   provides:
+#   - category: "sys-power"
+#     name: "nut"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libgpiod"
+#     version: ">=0"
+#   - category: "dev-libs"
+#     name: "libmodbus"
+#     version: ">=0"
+#   - category: "sys-libs"
+#     name: "freeipmi"
+#     version: ">=0"
+#   atoms:
+#   - atom: "sys-libs/freeipmi"
+#     use: "without-root nagios"
+#   - atom: "sys-power/nut"
+#     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
+#   prepare:
+#   - cp -r tree/dev-libs/libgpiod /var/db/repos/gentoo/dev-libs
+#   - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libgpiod-2.2.3-fix-configure-bashisms.patch\n&/; }' /var/db/repos/gentoo/dev-libs/libgpiod/libgpiod-*.ebuild
+#   - find /var/db/repos/gentoo/dev-libs/libgpiod/ -type f -name "libgpiod-*.ebuild" -exec ebuild {} manifest \;
+#   inner_build_reqs:
+#   - acct-group/nut
+#   - acct-user/nut
+#   - virtual/libusb:0
+#   - app-text/asciidoc
+#   requires:
+#   - <<: *layers-qt
+#   - category: "entity"
+#     name: "uucp"
+#     version: ">=0"
+#   - category: "entity"
+#     name: "nut"
+#     version: ">=0"
+#   - <<: *apps-i2c-tools
+#   - <<: *apps-nagios
+#   - <<: *apps-net-snmp
+#   build_requires:
+#   - <<: *layers-qt
 
 - &apps-warmux
   category: "apps"
