@@ -10359,6 +10359,27 @@ packages:
   build_requires:
   - <<: *layers-java
 
+- &apps-ripgrep
+  category: "apps"
+  name: "ripgrep"
+  version: "15.1.0"
+  uri:
+  - https://github.com/BurntSushi/ripgrep
+  license: "Apache-2.0 BSD MIT Unicode-3.0"
+  description: "Search tool that combines the usability of ag with the raw speed of grep"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/ripgrep
+  provides:
+  - category: "sys-apps"
+    name: "ripgrep"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &apps-rofi
   category: "apps"
   name: "rofi"
