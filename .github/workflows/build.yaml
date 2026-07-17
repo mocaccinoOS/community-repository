@@ -66,6 +66,7 @@ jobs:
     env:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       GH_TOKEN: ${{ github.token }}
+      EVENT_NAME: ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v6
@@ -89,6 +90,8 @@ jobs:
           --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="cancelled")] | length')
         # echo "failed-count=$CANCELLED_COUNT" >> $GITHUB_OUTPUT
 
+        if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+          echo "Started manually."
         if [ "$SUCCESS_COUNT" -gt 0 ]; then
           echo "Found $SUCCESS_COUNT successful runs."
         elif [ "$SUCCESS_COUNT" -eq 0 -a "$FAILURE_COUNT" -eq 0 -a "$CANCELLED_COUNT" -eq 0 ]; then
