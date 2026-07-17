@@ -364,18 +364,6 @@ stubs:
   - atom: "media-libs/raptor"
     use: "curl json unicode"
 
-- &libs-tllist
-  category: "dev-libs"
-  name: "tllist"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/tllist
-  atoms:
-  - atom: "dev-libs/tllist"
-    accept_keywords: "~amd64"
-
 - &libs-yyjson
   category: "libs"
   name: "yyjson"
@@ -393,24 +381,6 @@ stubs:
   category: "apps"
   name: "chromium"
   version: ">=0"
-
-- &apps-csharp-gentoodotnetinfo
-  category: "dev-util"
-  name: "csharp-gentoodotnetinfo"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-dotnet/csharp-gentoodotnetinfo
-  atoms:
-  - atom: "dev-dotnet/csharp-gentoodotnetinfo"
-    accept_keywords: "~amd64"
-  - atom: "virtual/dotnet-sdk"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 - &apps-docker
   category: "container"
@@ -1066,7 +1036,7 @@ packages:
 - &libs-asio
   category: "libs"
   name: "asio"
-  version: "1.36.0"
+  version: "1.36.0+1"
   uri:
   - http://asio.sourceforge.net/
   license: "Boost-1.0"
@@ -1074,7 +1044,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =dev-cpp/asio-1.30.2
+      dev-cpp/asio
   provides:
   - category: "dev-cpp"
     name: "asio"
@@ -1109,10 +1079,8 @@ packages:
   atoms:
   - atom: "media-libs/babl"
     use: "introspection lcms vala"
-    accept_keywords: "~amd64"
   - atom: "media-libs/gegl"
     use: "cairo ffmpeg introspection lcms lensfun openexr pdf raw sdl svg tiff umfpack vala v4l webp"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sci-libs
   build_requires:
@@ -2482,7 +2450,7 @@ packages:
 - &libs-libmirage
   category: "libs"
   name: "libmirage"
-  version: "3.3.2-r1"
+  version: "3.3.2-r1+1"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -3003,7 +2971,7 @@ packages:
 - &libs-mxml
   category: "libs"
   name: "mxml"
-  version: "3.3.1-r1+2"
+  version: "4.0.4"
   uri:
   - https://github.com/michaelrsweet/mxml
   license: "Mini-XML"
@@ -3012,6 +2980,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-libs/mxml:0
+      dev-libs/mxml:4
   provides:
   - category: "dev-libs"
     name: "mxml"
@@ -3898,6 +3867,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# unstable for python 3.14
 - &libs-volk
   category: "libs"
   name: "volk"
@@ -4331,14 +4301,12 @@ packages:
   - category: "dev-util"
     name: "android-tools"
     version: ">=0"
-    accept_keywords: "~amd64"
   - category: "dev-util"
     name: "android-udev-rules"
     version: ">=0"
   atoms:
   - atom: "dev-util/android-tools"
     use: "python udev"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lang/go
   - virtual/libusb:0
@@ -4737,6 +4705,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# unstable for python 3.14
 - category: "apps"
   name: "bleachbit"
   version: "6.0.0"
@@ -4783,7 +4752,6 @@ packages:
   atoms:
   - atom: "app-editors/bluefish"
     use: "spell nls python # gucharmap"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -5094,6 +5062,7 @@ packages:
   build_requires:
   - <<: *layers-X
 
+# unstable for python 3.14
 - &apps-clamav
   category: "apps"
   name: "clamav"
@@ -5113,6 +5082,7 @@ packages:
   atoms:
   - atom: "app-antivirus/clamav"
     use: "clamonacc clamapp systemd"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - acct-group/clamav
   - acct-user/clamav
@@ -5605,9 +5575,6 @@ packages:
   - category: "app-containers"
     name: "distrobox"
     version: ">=0"
-  atoms:
-  - atom: "app-containers/distrobox"
-    accept_keywords: "~amd64"
   requires:
   - <<: *apps-docker
   build_requires:
@@ -5902,9 +5869,6 @@ packages:
     use: "vbe-mode"
   - atom: "sys-apps/edid-fixdim"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/sys-apps/edid-fixdim/edid-fixdim-*.ebuild
-  - find /var/db/repos/gentoo/sys-apps/edid-fixdim/ -type f -name "edid-fixdim-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -6277,6 +6241,7 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
+# unstable for python 3.14
 - &apps-firejail
   category: "apps"
   name: "firejail"
@@ -6343,7 +6308,6 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/flameshot"
-    accept_keywords: "~amd64"
     use: "wayland"
   requires:
   - <<: *libs-kdsingleapplication
@@ -7164,9 +7128,6 @@ packages:
   - category: "app-misc"
     name: "gtk-sunlight"
     version: ">=0"
-  atoms:
-  - atom: "app-misc/gtk-sunlight"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -7836,6 +7797,10 @@ packages:
     accept_keywords: "~amd64"
   - atom: "dev-util/kernelshark"
     accept_keywords: "~amd64"
+  prepare:
+  # push python 3.14
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..13}/PYTHON_COMPAT=( python3_{11..14}/' /var/db/repos/gentoo/dev-util/trace-cmd/trace-cmd-*.ebuild
+  - find /var/db/repos/gentoo/dev-util/trace-cmd/ -type f -name "trace-cmd-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-text/asciidoc
   requires:
@@ -8027,9 +7992,6 @@ packages:
   - category: "media-video"
     name: "kooha"
     version: ">=0"
-  atoms:
-  - atom: "media-video/kooha"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -8238,6 +8200,29 @@ packages:
 #   - <<: *layers-plasma
 
 - category: "apps"
+  name: "latte-dock-ng"
+  version: "1.2.24"
+  uri:
+  - https://github.com/ruizhi-lab/latte-dock-ng
+  license: "GPL-2+ GPL-3+ LGPL-2+ || ( LGPL-2.1 LGPL-3 )"
+  description: "Wayland-first Latte Dock NG for Plasma 6.5+"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-misc/latte-dock-ng
+  provides:
+  - category: "kde-misc"
+    name: "latte-dock"
+    version: ">=0"
+  atoms:
+  - atom: "kde-misc/latte-dock-ng"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
   name: "lego"
   version: "5.2.2"
   uri:
@@ -8386,6 +8371,8 @@ packages:
   - app-text/docbook2X
   - dev-build/meson-format-array dev-build/meson
   - sec-keys/openpgp-keys-linuxcontainers
+  - acct-group/lxc
+  - acct-user/lxc
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-apparmor
@@ -9146,9 +9133,6 @@ packages:
   - category: "dev-util"
     name: "opencode-bin"
     version: ">=0"
-  atoms:
-  - atom: "dev-util/opencode-bin"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -9693,9 +9677,6 @@ packages:
   - category: "kde-plasma"
     name: "plasma-keyboard"
     version: ">=0"
-  atoms:
-  - atom: "kde-plasma/plasma-keyboard"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
@@ -9836,10 +9817,10 @@ packages:
 
 - category: "apps"
   name: "podman-compose"
-  version: "1.6.0+1"
+  version: "1.6.0+2"
   uri:
   - https://github.com/containers/podman-compose
-  license: 'GPL-2'
+  license: "GPL-2"
   description: "A script to run docker-compose.yml using Podman"
   labels:
     emerge.jobs: "1"
@@ -9853,12 +9834,12 @@ packages:
   - atom: "app-containers/podman-compose"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   - <<: *libs-python-pyaml
   - <<: *libs-python-dotenv
   - <<: *apps-podman
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &apps-podofo
   category: "apps"
@@ -10019,8 +10000,9 @@ packages:
     version: ">=0"
   atoms:
   - atom: "net-p2p/qbittorrent"
-    use: "qt6"
-    accept_keywords: "~amd64"
+    use: "dbus gui verify-sig # webui"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-qbittorrent
   requires:
   - <<: *layers-qt
   - category: "entity"
@@ -10226,6 +10208,12 @@ packages:
   - category: "dev-qt"
     name: "qt-creator"
     version: ">=0"
+  - category: "dev-qt"
+    name: "qthttpserver"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qttasktree"
+    version: ">=0"
   atoms:
   - atom: "dev-qt/qt-creator"
     use: "clang designer help plugin-dev qmldesigner serialterminal tracing webengine keyring svg # doc"
@@ -10261,6 +10249,7 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+# unstable for python 3.14
 - category: "apps"
   name: "rawtherapee"
   version: "5.12-r1+2"
@@ -10317,7 +10306,7 @@ packages:
 
 - category: "apps"
   name: "retroarch"
-  version: 1.22.2+2
+  version: "1.22.2+2"
   uri:
   - https://www.retroarch.com
   license: "GPL-3"
@@ -10600,6 +10589,7 @@ packages:
     accept_keywords: "~amd64"
     use: "cli cups python"
   prepare:
+  # push python 3.14
   - sed -i -e 's/PYTHON_COMPAT=( python3_{11..13}/PYTHON_COMPAT=( python3_{11..14}/' /var/db/repos/gentoo/dev-db/sqlitestudio/sqlitestudio-*.ebuild
   - find /var/db/repos/gentoo/dev-db/sqlitestudio/ -type f -name "sqlitestudio-*.ebuild" -exec ebuild {} manifest \;
   requires:
@@ -10622,9 +10612,6 @@ packages:
   - category: "app-benchmarks"
     name: "stress-ng"
     version: ">=0"
-  atoms:
-  - atom: "app-benchmarks/stress-ng"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -11032,6 +11019,7 @@ packages:
   - atom: "www-client/torbrowser"
     accept_keywords: "~amd64"
   env:
+  # LLVM_VERSION=22 not supported
   - LLVM_VERSION=21
   portage_env: "USE=\"-llvm_slot_20 llvm_slot_21 -llvm_slot_22\""
   # prepare:
@@ -11596,7 +11584,7 @@ packages:
 
 - category: "apps"
   name: "weechat"
-  version: "4.7.2-r1+2"
+  version: "4.7.2-r1+3"
   uri:
   - https://weechat.org/
   license: "GPL-3"
@@ -11613,9 +11601,9 @@ packages:
   - atom: "net-irc/weechat"
     use: "-spell"
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "wezterm"
@@ -11697,6 +11685,7 @@ packages:
   inner_build_reqs:
   # in layers/gnome-common
   - virtual/freedesktop-icon-theme
+  - acct-group/pcap
   requires:
   - <<: *layers-qt
   - <<: *layers-gnome-common
@@ -11724,9 +11713,6 @@ packages:
   - category: "sys-boot"
     name: "woeusb-ng"
     version: ">=0"
-  atoms:
-  - atom: "sys-boot/woeusb-ng"
-    accept_keywords: "~amd64"
   requires:
   - <<: *apps-grub
   build_requires:
@@ -11796,9 +11782,6 @@ packages:
   - category: "x11-misc"
     name: "xaos"
     version: ">=0"
-  atoms:
-  - atom: "x11-misc/xaos"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - *apps-doxygen-packages
   - media-gfx/graphviz
@@ -11951,7 +11934,6 @@ packages:
     license: "public-domain"
   - atom: "x11-misc/xsnow"
     license: "freedist"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - x11-misc/imake
   requires:
@@ -12817,7 +12799,7 @@ packages:
 - &apps-abiword
   category: "apps"
   name: "abiword"
-  version: "3.0.7-r3"
+  version: "3.0.7-r3+1"
   uri:
   - http://www.abisource.com
   - http://wvware.sourceforge.net/
@@ -12873,11 +12855,12 @@ packages:
     use: "mathml svg t1lib"
   - atom: "media-libs/t1lib"
     use: "X"
+  inner_build_requires:
+  - <<: *libs-asio
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-office-common
   - <<: *fonts-texcm-ttf
-  - <<: *libs-asio
   - <<: *libs-gtk2
   - <<: *libs-gtk-spell
   - <<: *libs-libchamplain
@@ -13098,7 +13081,6 @@ packages:
   - atom: "app-misc/broot"
     license: "MPL-2.0"
     use: "X"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-libgit2
@@ -13134,7 +13116,6 @@ packages:
   atoms:
   - atom: "x11-misc/cairo-dock"
     use: "gtk3"
-    accept_keywords: "~amd64"
   - atom: "x11-plugins/cairo-dock-plugins"
     use: "alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
     accept_keywords: "~amd64"
@@ -13223,7 +13204,6 @@ packages:
   atoms:
   - atom: "app-portage/cfg-update"
     use: "X"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   - <<: *libs-TermReadKey
@@ -13455,9 +13435,6 @@ packages:
   - category: "dev-go"
     name: "delve"
     version: ">=0"
-  atoms:
-  - atom: "dev-go/delve"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-go
@@ -13737,15 +13714,10 @@ packages:
     - category: "media-libs"
       name: "fcft"
       version: ">=0"
-  atoms:
-  - atom: "gui-apps/foot"
-    accept_keywords: "~amd64"
-  - atom: "media-libs/fcft"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - app-text/scdoc
-  inner_build_requires:
-  - <<: *libs-tllist
+  inner_build_reqs:
+  - dev-libs/tllist
   requires:
   - <<: *layers-X
   - <<: *libs-libutf8proc
@@ -13867,7 +13839,7 @@ packages:
     name: "ghostty-terminfo"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/zig-bin:0.13;ACCEPT_KEYWORDS="~amd64"
+  - dev-lang/zig-bin:0.13
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-oniguruma
@@ -14163,7 +14135,6 @@ packages:
   atoms:
   - atom: "app-admin/hardinfo2"
     use: "vulkan"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - sys-apps/fwupd
   requires:
@@ -14309,7 +14280,6 @@ packages:
   atoms:
   - atom: "kde-apps/kate-addons"
     use: "filebrowser lspclient projects snippets sql"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-qgpgme
@@ -14501,7 +14471,7 @@ packages:
 
 - category: "apps"
   name: "kwave"
-  version: "kwave"
+  version: "26.04.3"
   uri:
   - https://apps.kde.org/kwave
   license: "CC-BY-SA-3.0 CC0-1.0 GPL-2+ LGPL-2+ FDL-1.2"
@@ -14574,6 +14544,7 @@ packages:
   - atom: "media-sound/lash"
     use: "alsa gtk python"
   prepare:
+  # push python 3.14
   - sed -i -e 's/PYTHON_COMPAT=( python3_{11..13}/PYTHON_COMPAT=( python3_{11..14}/' /var/db/repos/gentoo/media-sound/lash/lash-*.ebuild
   - find /var/db/repos/gentoo/media-sound/lash/ -type f -name "lash-*.ebuild" -exec ebuild {} manifest \;
   requires:
@@ -15012,7 +14983,6 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-sound/musescore"
-    accept_keywords: "~amd64"
     use: "pipewire video websockets"
   requires:
   - <<: *layers-kde-common
@@ -15209,7 +15179,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "32.1.2+1"
+  version: "32.1.2+2"
   uri:
   - https://obsproject.com
   - https://simd-everywhere.github.io/blog/
@@ -15223,6 +15193,7 @@ packages:
     emerge.packages: >-
       media-video/obs-studio
   provides:
+  dev-cpp/websocketpp
   - category: "dev-libs"
     name: "qr-code-generator"
     version: ">=0"
@@ -15244,8 +15215,6 @@ packages:
   atoms:
   - atom: "media-video/obs-studio"
     use: "alsa browser decklink fdk jack lua mpegts pipewire pulseaudio python qsv speex ssl truetype v4l wayland websocket # nvenc vlc"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/qr-code-generator"
     accept_keywords: "~amd64"
   - atom: "media-libs/libvpl"
     use: "dri drm examples experimental test tools vaapi wayland X"
@@ -15532,9 +15501,6 @@ packages:
   - category: "dev-python"
     name: "pikepdf"
     version: ">=0"
-  atoms:
-  - atom: "app-text/pdfarranger"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-python/setuptools_scm_git_archive
   requires:
@@ -16075,7 +16041,6 @@ packages:
   atoms:
   - atom: "net-misc/remmina"
     use: "appindicator crypt cups examples keyring gvnc nls spice ssh rdp vnc webkit # kwallet wayland X zeroconf"
-    accept_keywords: "~amd64"
   # inner_build_reqs:
   # - kde-frameworks/kwallet
   # inner_build_requires:
@@ -16138,7 +16103,6 @@ packages:
   atoms:
   - atom: "net-news/rssguard"
     use: "sqlite -libmpv -mysql qt6 -qtmultimedia -webengine"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *apps-go
@@ -16207,9 +16171,6 @@ packages:
   atoms:
   - atom: "app-backup/snapper-gui"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo-zh/app-backup/snapper-gui/snapper-gui-*.ebuild
-  - find /var/db/repos/gentoo-zh/app-backup/snapper-gui/ -type f -name "snapper-gui-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-gtksourceview-x11
@@ -16313,7 +16274,7 @@ packages:
 
 - category: "apps"
   name: "sigil"
-  version: "2.7.6+1"
+  version: "2.7.6+2"
   uri:
   - https://sigil-ebook.com/
   license: "GPL-3+ Apache-2.0"
@@ -16417,9 +16378,6 @@ packages:
   - category: "app-misc"
     name: "solaar"
     version: ">=0"
-  atoms:
-  - atom: "app-misc/solaar"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   - <<: *libs-typing-extensions
@@ -16460,6 +16418,8 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-sound/spotify-player
+  overlays:
+  - enable: "mocaccino-overlay"
   provides:
   - category: "media-sound"
     name: "spotify-player"
@@ -16468,8 +16428,6 @@ packages:
   - atom: "media-sound/spotify-player"
     accept_keywords: "~amd64"
     use: "fzf image libnotify pulseaudio sixel streaming"
-  overlays:
-  - enable: "mocaccino-overlay"
   requires:
   - <<: *layers-X
   - <<: *libs-libsixel
@@ -16542,8 +16500,9 @@ packages:
     accept_keywords: "~amd64"
     use: "fzf image libnotify pulseaudio sixel streaming"
   prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{11,12,13}/PYTHON_COMPAT=( python3_{11,12,13,14}/' /var/db/repos/gentoo/sys-apps/systemd-pilot/systemd-pilot-*.ebuild
-  - find /var/db/repos/gentoo/sys-apps/systemd-pilot/ -type f -name "systemd-pilot-*.ebuild" -exec ebuild {} manifest \;
+  # push python 3.14
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{11,12,13}/PYTHON_COMPAT=( python3_{11,12,13,14}/' /var/db/repos/mocaccino-overlay/sys-apps/systemd-pilot/systemd-pilot-*.ebuild
+  - find /var/db/repos/mocaccino-overlay/sys-apps/systemd-pilot/ -type f -name "systemd-pilot-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-jeepney
@@ -16573,8 +16532,6 @@ packages:
   atoms:
   - atom: "app-text/tesseract"
     use: "float32 jpeg opencl openmp png tiff training webp"
-  - atom: "app-text/tessdata_best"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - app-text/asciidoc
   requires:
@@ -16642,6 +16599,8 @@ packages:
     version: '>=0'
   inner_build_reqs:
   - app-text/asciidoc
+  - acct-group/tor
+  - acct-user/tor
   requires:
   - <<: *layers-sys-fs
   - category: "entity"
@@ -16854,7 +16813,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.2+3"
+  version: "1.6.2+5"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -16997,9 +16956,6 @@ packages:
     use: "gui # rar"
   - atom: "app-emulation/protontricks"
     use: "gui"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/app-emulation/protontricks/protontricks-*.ebuild
-  - find /var/db/repos/gentoo/app-emulation/protontricks/ -type f -name "protontricks-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - acct-group/rtkit
   - acct-user/rtkit
@@ -17227,8 +17183,6 @@ packages:
     portage_env: "MAKEOPTS=\"-j5 -l0.8\""
   - atom: "dev-libs/c-blosc"
     use: "lz4 snappy zlib zstd"
-  # - atom: "dev-python/nanobind"
-  #   accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-python/scikit-build-core
   requires:
@@ -17425,11 +17379,8 @@ packages:
   - category: "dev-dotnet"
     name: "avalonia-ilspy"
     version: ">=0"
-  atoms:
-  - atom: "dev-dotnet/avalonia-ilspy"
-    accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *apps-csharp-gentoodotnetinfo
+  inner_build_reqs:
+  - dev-dotnet/csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
   - <<: *apps-dotnet-8
@@ -17511,9 +17462,6 @@ packages:
   - category: "sys-apps"
     name: "bat"
     version: ">=0"
-  atoms:
-  - atom: "sys-apps/bat"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-libgit2
@@ -18166,7 +18114,7 @@ packages:
 - &apps-gnuradio
   category: "apps"
   name: "gnuradio"
-  version: "3.10.12.0-r3"
+  version: "3.10.12.0-r3+1"
   uri:
   - https://www.gnuradio.org
   license: "GPL-3"
@@ -18300,7 +18248,6 @@ packages:
     use: "fax hpcups hpijs snmp # kde libnotify libusb0 minimal parport policykit static-ppds X # scanner: needs kde-misc/skanlite from layers/kde-apps-minimal"
   - atom: "net-print/hplip-plugin"
     use: "orblite"
-    accept_keywords: "~amd64"
     license: "hplip-plugin"
   requires:
   - <<: *layers-qt
@@ -18562,8 +18509,8 @@ packages:
   #   accept_keywords: "**"
   - atom: "net-libs/shairplay"
     use: "playfair"
-  # - atom: "media-plugins/kodi-pvr-iptvsimple"
-  #   accept_keywords: "**"
+  - atom: "media-plugins/kodi-pvr-iptvsimple"
+    accept_keywords: "**"
   # prepare:
   # - sed -i -e 's/=media-tv\/kodi-.*\*/media-tv\/kodi/' /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/kodi-pvr-iptvsimple-*.ebuild
   # - find /var/db/repos/gentoo/media-plugins/kodi-pvr-iptvsimple/ -type f -name "kodi-pvr-iptvsimple-*.ebuild" -exec ebuild {} manifest \;
@@ -18670,9 +18617,9 @@ packages:
   - category: "games-engines"
     name: "box2d"
     version: ">=0"
-  - category: "media-libs"
-    name: "zxing-cpp"
-    version: ">=0"
+  # - category: "media-libs"
+  #   name: "zxing-cpp"
+  #   version: ">=0"
   # - category: "sci-libs"
   #   name: "coinor-mp"
   #   version: ">=0"
@@ -18691,9 +18638,6 @@ packages:
     use: "accessibility base bluetooth -branding clang coinmp cups dbus eds googledrive gstreamer gtk java ldap mariadb nlpsolver pdfimport vulkan"
   - atom: "dev-libs/xmlsec"
     use: "gcrypt gnutls nss openssl"
-  # prepare:
-  # - sed -i -e '/virtual\/jdk\:21/a \\t\t   virtual\/jdk\:25' /var/db/repos/gentoo/app-office/libreoffice/libreoffice-*.ebuild
-  # - find /var/db/repos/gentoo/app-office/libreoffice/ -type f -name "libreoffice-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - *layers-java-packages
   # - dev-java/bsh
@@ -18931,38 +18875,36 @@ packages:
   # - <<: *buildbase-plasma
   # requires_final_images: true
 
-# dev-embedded/platformio: needs porting to Python 3.13+
-# See https://bugs.gentoo.org/952290
-# - &apps-meshtasticd
-#   category: "apps"
-#   name: "meshtasticd"
-#   version: "2.7.16"
-#   uri:
-#   - https://meshtastic.org/docs/hardware/devices/linux-native-hardware
-#   license: "GPL-3"
-#   description: "off-grid, decentralized, mesh network"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       net-wireless/meshtasticd
-#   provides:
-#   - category: "net-wireless"
-#     name: "meshtasticd"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-embedded/platformio"
-#     accept_keywords: "~amd64"
-#   - atom: "net-wireless/meshtasticd"
-#     accept_keywords: "~amd64"
-#   overlays:
-#   - enable: "pentoo"
-#   inner_build_reqs:
-#   - dev-embedded/platformio
-#   requires:
-#   - <<: *layers-X
-#   - <<: *apps-i2c-tools
-#   build_requires:
-#   - <<: *layers-X
+- &apps-meshtasticd
+  category: "apps"
+  name: "meshtasticd"
+  version: "2.7.16+1"
+  uri:
+  - https://meshtastic.org/docs/hardware/devices/linux-native-hardware
+  license: "GPL-3"
+  description: "off-grid, decentralized, mesh network"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-wireless/meshtasticd
+  provides:
+  - category: "net-wireless"
+    name: "meshtasticd"
+    version: ">=0"
+  atoms:
+  - atom: "dev-embedded/platformio"
+    accept_keywords: "~amd64"
+  - atom: "net-wireless/meshtasticd"
+    accept_keywords: "~amd64"
+  overlays:
+  - enable: "pentoo"
+  inner_build_reqs:
+  - dev-embedded/platformio
+  requires:
+  - <<: *layers-X
+  - <<: *apps-i2c-tools
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "mixxx"
@@ -18986,7 +18928,6 @@ packages:
   atoms:
   - atom: "media-sound/mixxx"
     use: "ffmpeg mp3 opus"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-cpp/ms-gsl
   requires:
@@ -19082,13 +19023,12 @@ packages:
   # ~amd64 due to radius bug solved
   - atom: "net-analyzer/nagios-plugins"
     use: "ldap nls mysql samba ssl ipv6 nagios-dns nagios-ping radius snmp ssh # postgres selinux nagios-game"
-    accept_keywords: "~amd64"
   - atom: "net-analyzer/nagios-plugin-check_lm_sensors"
     accept_keywords: "~amd64"
   - atom: "net-dialup/freeradius-client"
     use: "scp shadow"
   - atom: "dev-libs/uriparser"
-    use: "-doc -qt5 unicode"
+    use: "-doc -qt6 unicode"
   requires:
   - <<: *layers-perl-libs
   - <<: *apps-bind
@@ -19371,7 +19311,6 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-shells/nushell"
-    accept_keywords: "~amd64"
     use: "X mcp plugins system-clipboard"
   requires:
   - <<: *layers-X
@@ -19398,8 +19337,8 @@ packages:
   atoms:
   - atom: "games-strategy/openra"
     accept_keywords: "~amd64"
-  inner_build_requires:
-  - <<: *apps-csharp-gentoodotnetinfo
+  inner_build_reqs:
+  - dev-dotnet/csharp-gentoodotnetinfo
   requires:
   - <<: *layers-X
   - <<: *apps-dotnet-6
@@ -19542,9 +19481,6 @@ packages:
   atoms:
   - atom: "media-sound/quodlibet"
     use: "dbus gstreamer udev"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{10..12}/PYTHON_COMPAT=( python3_{10..13}/' /var/db/repos/gentoo/media-sound/quodlibet/quodlibet-*.ebuild
-  - find /var/db/repos/gentoo/media-sound/quodlibet/ -type f -name "quodlibet-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - dev-util/intltool
   requires:
@@ -19641,7 +19577,6 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-office/scribus"
-    accept_keywords: "~amd64"
     use: "boost examples hunspell minimal pdf templates # osg: dev-games/openscenegraph # graphicsmagick: media-gfx/imagemagick is soft blocking media-gfx/graphicsmagick # scripts tk: needs dev-python/pillow tk flag"
   requires:
   - <<: *layers-qt
@@ -20044,11 +19979,11 @@ packages:
   - category: "app-misc"
     name: "yazi"
     version: ">=0"
+  overlays:
+  - enable: "guru"
   atoms:
   - atom: "app-misc/yazi"
     accept_keywords: "~amd64"
-  overlays:
-  - enable: "guru"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-oniguruma
@@ -20084,7 +20019,7 @@ packages:
 
 - category: "apps"
   name: "zynaddsubfx"
-  version: "3.0.6-r8"
+  version: "3.0.6-r8+1"
   uri:
   - http://zynaddsubfx.sourceforge.net/
   license: "GPL-2"
@@ -20371,7 +20306,6 @@ packages:
   atoms:
   - atom: "media-plugins/calf"
     use: "gui jack lash lv2 # experimental cpu_flags_x86_sse"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   - <<: *libs-gtk2
@@ -20626,15 +20560,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       gui-apps/gradience
-  atoms:
-  - atom: "gui-apps/gradience"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/material-color-utilities"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/svglib"
-    accept_keywords: "~amd64"
-  overlays:
-  - enable: "guru"
   provides:
   - category: "gui-apps"
     name: "gradience"
@@ -20660,11 +20585,17 @@ packages:
   - category: "dev-python"
     name: "yapsy"
     version: ">=0"
+  overlays:
+  - enable: "guru"
+  atoms:
+  - atom: "gui-apps/gradience"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/material-color-utilities"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/svglib"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/blueprint-compiler
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..12}/PYTHON_COMPAT=( python3_{11..13}/' /var/db/repos/guru/gui-apps/gradience/gradience-*.ebuild
-  - find /var/db/repos/guru/gui-apps/gradience/ -type f -name "gradience-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-build
@@ -20727,7 +20658,6 @@ packages:
     use: "suitesparse"
   - atom: "media-libs/vigra"
     use: "fftw hdf5 jpeg openexr png python tiff valgrind zlib # mpi"
-    accept_keywords: "~amd64"
   - atom: "media-gfx/hugin"
     use: "lapack sift python raw"
   requires:
@@ -20895,7 +20825,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "sci-libs/matio"
     use: "hdf5 sparse # doc examples"
-    accept_keywords: "~amd64"
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
@@ -21200,15 +21129,15 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       net-misc/RcloneBrowser
+  provides:
+  - category: "net-misc"
+    name: "RcloneBrowser"
+    version: ">=0"
   overlays:
   - enable: "menelkir"
   atoms:
   - atom: "net-misc/RcloneBrowser"
     accept_keywords: "~amd64"
-  provides:
-  - category: "net-misc"
-    name: "RcloneBrowser"
-    version: ">=0"
   requires:
   - <<: *layers-qt
   - <<: *apps-rclone
@@ -21275,8 +21204,6 @@ packages:
     use: "deep-sky media nls telescope # stars (huge data) # gps webengine"
   - atom: "sci-astronomy/calcmysky"
     use: "-qt5 qt6"
-  - atom: "sci-libs/nlopt"
-    accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
   - <<: *libs-indilib
@@ -21285,34 +21212,32 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# See https://bugs.gentoo.org/955672
-# Need: sed -i 's/Requires: tremor/Requires: vorbisidec/' /usr/lib64/pkgconfig/SDL2_mixer.pc
-# - category: "apps"
-#   name: "wesnoth"
-#   version: "1.18.5"
-#   uri:
-#   - https://www.wesnoth.org
-#   license: "GPL-2+ CC-BY-SA-4.0"
-#   description: "Battle for Wesnoth - A fantasy turn-based strategy game"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-strategy/wesnoth
-#   provides:
-#   - category: "games-strategy"
-#     name: "wesnoth"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-strategy/wesnoth"
-#     accept_keywords: "~amd64"
-#   requires:
-#   - category: "entity"
-#     name: "wesnoth"
-#     version: ">=0"
-#   - <<: *layers-X
-#   - <<: *libs-sdl2
-#   build_requires:
-#   - <<: *layers-X
+- category: "apps"
+  name: "wesnoth"
+  version: "1.18.5"
+  uri:
+  - https://www.wesnoth.org
+  license: "GPL-2+ CC-BY-SA-4.0"
+  description: "Battle for Wesnoth - A fantasy turn-based strategy game"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/wesnoth
+  provides:
+  - category: "games-strategy"
+    name: "wesnoth"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/wesnoth"
+    accept_keywords: "~amd64"
+  requires:
+  - category: "entity"
+    name: "wesnoth"
+    version: ">=0"
+  - <<: *layers-X
+  - <<: *libs-sdl2
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "86Box"
@@ -21627,7 +21552,6 @@ packages:
     accept_keywords: "~amd64"
   - atom: "net-wireless/gr-osmosdr"
     use: "rtlsdr"
-    accept_keywords: "~amd64"
   requires:
   - <<: *apps-gnuradio
   - <<: *libs-rtl-sdr
@@ -21802,6 +21726,8 @@ packages:
     use: "without-root nagios"
   - atom: "sys-power/nut"
     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
+  - atom: "dev-libs/libgpiod"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
@@ -22065,6 +21991,9 @@ packages:
   atoms:
   - atom: "net-p2p/deluge"
     use: "console webinterface gui libnotify sound"
+  inner_build_reqs:
+  - acct-group/deluge
+  - acct-user/deluge
   optrequires:
   - <<: *libs-pygame
   requires:
@@ -22095,7 +22024,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "app-text/doxygen"
-    use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 llvm_slot_21 # doc"
+    use: "clang dot doxysearch gui -llvm_slot_18 -llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22 # doc"
   requires:
   - <<: *layers-kde-common
   - <<: *development-gcc
@@ -22304,7 +22233,6 @@ packages:
   atoms:
   - atom: "media-sound/museseq"
     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-    accept_keywords: "~amd64"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
@@ -22639,64 +22567,64 @@ packages:
   - <<: *layers-qt
 
 # # build fails
-# - &apps-easyeffects
-#   category: "apps"
-#   name: "easyeffects"
-#   version: "7.2.5+7"
-#   uri:
-#   - https://github.com/wwmm/easyeffects
-#   - https://lsp-plug.in
-#   - https://www.zamaudio.com/
-#   license: "GPL-3 LGPL-3 GPL-2+ MIT"
-#   description: |
-#     Limiter, auto volume and many other plugins for PipeWire applications
-#     Linux Studio Plugins
-#     LV2 port of the MDA plugins by Paul Kellett
-#     Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       media-sound/easyeffects
-#   provides:
-#   - category: "media-sound"
-#     name: "easyeffects"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "lsp-plugins"
-#     version: ">=0"
-#   - category: "media-libs"
-#     name: "zita-convolver"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "mda-lv2"
-#     version: ">=0"
-#   - category: "media-plugins"
-#     name: "zam-plugins"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/easyeffects"
-#     use: "calf doc mda-lv2 zamaudio"
-#   - atom: "media-libs/lsp-plugins"
-#     use: "lv2 vst X # doc jack ladspa"
-#   - atom: "media-plugins/zam-plugins"
-#     use: "jack opengl"
-#   inner_build_reqs:
-#   - dev-util/itstool
-#   - dev-util/lv2lint
-#   requires:
-#   - <<: *layers-gnome
-#   - <<: *libs-nlohmann_json
-#   - <<: *libs-tbb
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-liblo
-#   - <<: *libs-libbs2b
-#   - <<: *libs-libebur128
-#   - <<: *libs-libsoundtouch
-#   - <<: *libs-lilv
-#   - <<: *libs-rnnoise
-#   - <<: *apps-calf
-#   build_requires:
-#   - <<: *layers-gnome
+- &apps-easyeffects
+  category: "apps"
+  name: "easyeffects"
+  version: "7.2.5+8"
+  uri:
+  - https://github.com/wwmm/easyeffects
+  - https://lsp-plug.in
+  - https://www.zamaudio.com/
+  license: "GPL-3 LGPL-3 GPL-2+ MIT"
+  description: |
+    Limiter, auto volume and many other plugins for PipeWire applications
+    Linux Studio Plugins
+    LV2 port of the MDA plugins by Paul Kellett
+    Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-sound/easyeffects
+  provides:
+  - category: "media-sound"
+    name: "easyeffects"
+    version: ">=0"
+  - category: "media-libs"
+    name: "lsp-plugins"
+    version: ">=0"
+  - category: "media-libs"
+    name: "zita-convolver"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "mda-lv2"
+    version: ">=0"
+  - category: "media-plugins"
+    name: "zam-plugins"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/easyeffects"
+    use: "calf doc mda-lv2 zamaudio"
+  - atom: "media-libs/lsp-plugins"
+    use: "lv2 vst X # doc jack ladspa"
+  - atom: "media-plugins/zam-plugins"
+    use: "jack opengl"
+  inner_build_reqs:
+  - dev-util/itstool
+  - dev-util/lv2lint
+  requires:
+  - <<: *layers-gnome
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tbb
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-libbs2b
+  - <<: *libs-libebur128
+  - <<: *libs-libsoundtouch
+  - <<: *libs-lilv
+  - <<: *libs-rnnoise
+  - <<: *apps-calf
+  build_requires:
+  - <<: *layers-gnome
 
 # - &apps-gmic
 #   category: "apps"
@@ -23096,9 +23024,6 @@ packages:
   atoms:
   - atom: "media-gfx/displaycal-py3"
     accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{9..12}/PYTHON_COMPAT=( python3_{9..13}/' /var/db/repos/gentoo/media-gfx/displaycal-py3/displaycal-py3-*.ebuild
-  - find /var/db/repos/gentoo/media-gfx/displaycal-py3/ -type f -name "displaycal-py3-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *layers-qt
