@@ -16499,10 +16499,6 @@ packages:
   - atom: "sys-apps/systemd-pilot"
     accept_keywords: "~amd64"
     use: "fzf image libnotify pulseaudio sixel streaming"
-  prepare:
-  # push python 3.14
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{11,12,13}/PYTHON_COMPAT=( python3_{11,12,13,14}/' /var/db/repos/mocaccino-overlay/sys-apps/systemd-pilot/systemd-pilot-*.ebuild
-  - find /var/db/repos/mocaccino-overlay/sys-apps/systemd-pilot/ -type f -name "systemd-pilot-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-jeepney
