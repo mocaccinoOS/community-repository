@@ -11506,7 +11506,7 @@ packages:
     accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-util/itstool
-  - gui-libs/libadwaita;ACCEPT_KEYWORDS="~amd64"
+  - gui-libs/libadwaita
   requires:
   - <<: *layers-gnome-common
   build_requires:
@@ -18900,8 +18900,8 @@ packages:
   - atom: "net-wireless/meshtasticd"
     accept_keywords: "~amd64"
   inner_build_reqs:
-  - dev-python/ajsonrpc;ACCEPT_KEYWORDS=="~amd64"
-  - dev-embedded/platformio;ACCEPT_KEYWORDS=="~amd64"
+  - dev-python/ajsonrpc;ACCEPT_KEYWORDS="~amd64"
+  - dev-embedded/platformio;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-X
   - <<: *apps-i2c-tools
@@ -21179,7 +21179,7 @@ packages:
 
 - category: "apps"
   name: "stellarium"
-  version: "26.1"
+  version: "26.1+1"
   uri:
   - https://stellarium.org/
   license: "GPL-2+ SGI-B-2.0 LGPL-2.1 GPL-3 FDL-1.3"
@@ -21730,15 +21730,13 @@ packages:
     name: "freeipmi"
     version: ">=0"
   atoms:
+  # https://bugs.gentoo.org/973037
+  - atom: "dev-libs/libgpiod"
+    use: "-python"
   - atom: "sys-libs/freeipmi"
     use: "without-root nagios"
   - atom: "sys-power/nut"
     use: "cgi doc gpio i2c ipmi man modbus monitor python selinux serial snmp split-usr ssl systemd usb xml zeroconf # tcpd https://bugs.gentoo.org/920259"
-  prepare:
-  # https://bugs.gentoo.org/973037
-  - sed -i -e ':a;N;$!ba; /PYTHON_COMPAT=( python3_{11..14} )/!s/\(EAPI=[^\n]*\)/\1\n\nPYTHON_COMPAT=( python3_{11..14} )/' /var/db/repos/gentoo/dev-libs/libgpiod/libgpiod-*.ebuild  
-  - sed -i -e '/^inherit / { /python-single-r1/! s/$/ python-single-r1/ }' /var/db/repos/gentoo/dev-libs/libgpiod/libgpiod-*.ebuild
-  - find /var/db/repos/gentoo/dev-libs/libgpiod/ -type f -name "libgpiod-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - acct-group/nut
   - acct-user/nut
