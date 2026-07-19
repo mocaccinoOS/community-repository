@@ -277,7 +277,7 @@ stubs:
 ### libs refs ###
 ################################################################################################################################################################
 
-- &libs-apparmor
+- &apps-apparmor
   category: "apps"
   name: "apparmor"
   version: ">=0"
@@ -8405,7 +8405,7 @@ packages:
   - acct-user/lxc
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-apparmor
+  - <<: *apps-apparmor
   - category: "entity"
     name: "lxc"
     version: ">=0"
@@ -9665,7 +9665,7 @@ packages:
 
 - category: "apps"
   name: "piper"
-  version: "0.9+1"
+  version: "0.9+2"
   uri:
   - https://github.com/libratbag/piper
   license: "GPL-2"
@@ -9841,7 +9841,7 @@ packages:
   - dev-go/go-md2man
   requires:
   - <<: *layers-sys-fs
-  - <<: *libs-apparmor
+  - <<: *apps-apparmor
   build_requires:
   - <<: *layers-sys-fs
 
@@ -11227,9 +11227,10 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.15+17"
+  version: "5.15.15+18"
   uri:
   - https://ulauncher.io
+  - https://github.com/Ulauncher/Ulauncher/
   license: "GPL-3"
   description: "Feature rich application Launcher for Linux"
   labels:
@@ -15086,7 +15087,7 @@ packages:
 - &apps-net-snmp
   category: "apps"
   name: "net-snmp"
-  version: "5.9.5.2+2"
+  version: "5.9.5.2+3"
   uri:
   - https://www.net-snmp.org
   license: "HPND BSD GPL-2"
@@ -15446,19 +15447,18 @@ packages:
 - &apps-oversteer
   category: "apps"
   name: "oversteer"
-  version: "0.8.2+4"
+  version: "0.8.3"
   uri:
   - https://github.com/berarma/oversteer
-  license: "GPL-3.0"
+  license: "GPL-3"
   description: "Steering Wheel Manager for Linux"
   labels:
     appstream.id: "io.github.berarma.Oversteer"
     emerge.jobs: "1"
     emerge.packages: >-
       games-util/oversteer
-  # switch to edgets ?
   overlays:
-  - enable: "ace"
+  - enable: "guru"
   provides:
   - category: "games-util"
     name: "oversteer"
@@ -15466,15 +15466,12 @@ packages:
   atoms:
   - atom: "games-util/oversteer"
     accept_keywords: "~amd64"
-    license: "GPL-3.0"
   inner_build_reqs:
   - dev-python/python-distutils-extra
   requires:
   - <<: *layers-sci-libs
-  - <<: *libs-xsimd
   build_requires:
-  - <<: *buildbase-sci-libs
-  requires_final_images: true
+  - <<: *layers-sci-libs
 
 - category: "apps"
   name: "pcem"
@@ -15503,7 +15500,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.14.0"
+  version: "1.14.0+1"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   - https://gitlab.mister-muffin.de/josch/img2pdf
@@ -15964,7 +15961,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.7.0"
+  version: "3.7.0+1"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -18773,7 +18770,7 @@ packages:
 
 - category: "apps"
   name: "lutris"
-  version: "0.5.22-r1"
+  version: "0.5.22-r1+1"
   uri:
   - https://lutris.net
   license: "GPL-3+ CC0-1.0"
@@ -22125,12 +22122,12 @@ packages:
 
 - category: "apps"
   name: "logitech-linux-rpm-led"
-  version: "0.5"
+  version: "1.3.4"
   uri:
   - https://github.com/IvanVojtko/logitech-linux-rpm-led
   - https://github.com/apmorton/pyhidapi
   - https://github.com/pygobject/pgi
-  license: "GPL-3.0 LGPL 2.1+ MIT"
+  license: "GPL-3.0 MIT"
   description: |
     Enable RPM LED indicator on Logitech G29 steering wheel in Linux
     hidapi bindings in ctypes
@@ -22140,6 +22137,8 @@ packages:
     emerge.packages: >-
       dev-python/hid
       dev-python/pgi
+  overlays:
+  - enable: "vimproved"
   provides:
   - category: "games-util"
     name: "logitech-linux-rpm-led"
@@ -22147,27 +22146,29 @@ packages:
   - category: "dev-python"
     name: "hid"
     version: ">=0"
-  - category: "dev-python"
-    name: "pgi"
-    version: ">=0"
+  # - category: "dev-python"
+  #   name: "pgi"
+  #   version: ">=0"
   atoms:
-  - atom: "dev-python/pgi"
-    license: "LGPL 2.1+"
+  - atom: "dev-python/hid"
+    accept_keywords: "~amd64"
+  # - atom: "dev-python/pgi"
+  #   license: "LGPL 2.1+"
   prepare:
-  # dev-python/hid
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/dev-python
-  - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
+  # # dev-python/hid
+  # - emerge -1 app-eselect/eselect-repository
+  # - eselect repository create local
+  # - mkdir -p /var/db/repos/local/dev-python
+  # - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
+  # - chown -R portage:portage /var/db/repos/local
+  # - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
   # dev-python/pgi
-  - emerge -1 app-eselect/eselect-repository
-  - eselect repository create local
-  - mkdir -p /var/db/repos/local/dev-python
-  - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
-  - chown -R portage:portage /var/db/repos/local
-  - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
+  # - emerge -1 app-eselect/eselect-repository
+  # - eselect repository create local
+  # - mkdir -p /var/db/repos/local/dev-python
+  # - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
+  # - chown -R portage:portage /var/db/repos/local
+  # - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
   # logitech-linux-rpm-led
   - git clone https://github.com/IvanVojtko/logitech-linux-rpm-led.git
   setup:
@@ -22452,7 +22453,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "26.05+1"
+  version: "26.07"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
