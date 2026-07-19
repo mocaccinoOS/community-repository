@@ -11248,9 +11248,6 @@ packages:
   - category: "dev-python"
     name: "websocket-client"
     version: ">=0"
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
   - category: "dev-python"
     name: "rapidfuzz"
     version: ">=0"
@@ -15471,7 +15468,8 @@ packages:
   requires:
   - <<: *layers-sci-libs
   build_requires:
-  - <<: *layers-sci-libs
+  - <<: *buildbase-sci-libs
+  requires_final_images: true
 
 - category: "apps"
   name: "pcem"
@@ -22126,7 +22124,7 @@ packages:
   uri:
   - https://github.com/IvanVojtko/logitech-linux-rpm-led
   - https://github.com/apmorton/pyhidapi
-  - https://github.com/pygobject/pgi
+  # - https://github.com/pygobject/pgi
   license: "GPL-3.0 MIT"
   description: |
     Enable RPM LED indicator on Logitech G29 steering wheel in Linux
@@ -22136,7 +22134,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/hid
-      dev-python/pgi
+    # dev-python/pgi
   overlays:
   - enable: "vimproved"
   provides:
@@ -22453,7 +22451,7 @@ packages:
 - &libs-ocio-oiio
   category: "libs"
   name: "ocio-oiio"
-  version: "26.07"
+  version: "26.07+1"
   uri:
   - https://opencolorio.org
   - https://sites.google.com/site/openimageio/
