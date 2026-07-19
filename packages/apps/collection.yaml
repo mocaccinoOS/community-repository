@@ -1111,7 +1111,7 @@ packages:
 - &libs-botan
   category: "libs"
   name: "botan"
-  version: "3.11.1+1"
+  version: "3.11.1+2"
   uri:
   - https://botan.randombit.net
   license: "BSD-2"
@@ -1124,12 +1124,11 @@ packages:
   - category: "dev-libs"
     name: "botan"
     version: ">=0"
-  - category: "sec-keys"
-    name: "openpgp-keys-botan"
-    version: ">=0"
   atoms:
   - atom: "dev-libs/botan"
     use: "boost tools bzip2 lzma python sqlite static-libs verify-sig zlib"
+  inner_build_reqs:
+  - sec-keys/openpgp-keys-botan
   requires:
   - <<: *layers-sys-fs
   build_requires:
