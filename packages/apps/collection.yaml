@@ -22966,6 +22966,7 @@ packages:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
   - find /var/db/repos/gentoo/media-gfx/blender/ -type f -name "blender-*.ebuild" -exec ebuild {} manifest \;
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
+  - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/20\.9\/22\.9\/" src\/cmake\/externalpackages.cmake || die\n' -e '}' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
   - find /var/db/repos/gentoo/media-libs/osl/ -type f -name "osl-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-admin/chrpath
