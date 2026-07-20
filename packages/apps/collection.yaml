@@ -3203,7 +3203,7 @@ packages:
 - &libs-pyqt5
   category: "libs"
   name: "pyqt5"
-  version: "5.15.11+1"
+  version: "5.15.11+2"
   uri:
   - https://www.qt.io/
   - https://invent.kde.org/qt/qt/qttools
@@ -3235,7 +3235,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "dev-python/pyqt5"
-    use: "dbus declarative gui help multimedia network opengl printsupport sql ssl svg webchannel webkit webengine websockets widgets x11extras xmlpatterns"
+    use: "dbus declarative gui help multimedia network opengl printsupport python_targets_python3_14 sql ssl svg webchannel webkit webengine websockets widgets x11extras xmlpatterns"
     accept_keywords: "~amd64"
     unmask: true
   - atom: "dev-python/pyqt5-sip"
@@ -22889,15 +22889,6 @@ packages:
     emerge.packages: >-
       media-gfx/blender
   provides:
-  - category: "media-gfx"
-    name: "blender"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "alembic"
-    version: ">=0"
-  - category: "media-libs"
-    name: "embree"
-    version: ">=0"
   - category: "dev-cpp"
     name: "gflags"
     version: ">=0"
@@ -22911,7 +22902,19 @@ packages:
     name: "miniz"
     version: ">=0"
   - category: "dev-python"
+    name: "cattrs"
+    version: ">=0"
+  - category: "dev-python"
     name: "zstandard"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "alembic"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "blender"
+    version: ">=0"
+  - category: "media-libs"
+    name: "embree"
     version: ">=0"
   - category: "media-libs"
     name: "lib3ds"
@@ -22936,6 +22939,12 @@ packages:
     version: ">=0"
   - category: "media-gfx"
     name: "renderdoc"
+    version: ">=0"
+  - category: "sci-mathematics"
+    name: "clipper2"
+    version: ">=0"
+  - category: "sci-mathematics"
+    name: "manifold"
     version: ">=0"
   - category: "sci-physics"
     name: "bullet"
@@ -22965,9 +22974,14 @@ packages:
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/media-gfx/blender/blender-*.ebuild
   - find /var/db/repos/gentoo/media-gfx/blender/ -type f -name "blender-*.ebuild" -exec ebuild {} manifest \;
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/dev-lang/ispc/ispc-*.ebuild
+  - find /var/db/repos/gentoo/dev-lang/ispc/ -type f -name "ispc-*.ebuild" -exec ebuild {} manifest \;  
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
   - sed -i -e '/src_prepare()/{:a; N; /cmake_src_prepare/!ba; a\\tsed -i -e "s\/20\.9\/22\.9\/" src\/cmake\/externalpackages.cmake || die\n' -e '}' /var/db/repos/gentoo/media-libs/osl/osl-*.ebuild
   - find /var/db/repos/gentoo/media-libs/osl/ -type f -name "osl-*.ebuild" -exec ebuild {} manifest \;
+  # push python 3.14
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{11..13}/PYTHON_COMPAT=( python3_{11..14}/' /var/db/repos/gentoo/media-libs/oidn/oidn-*.ebuild
+  - find /var/db/repos/gentoo/media-libs/oidn/ -type f -name "oidn-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-admin/chrpath
   - dev-debug/valgrind
@@ -22976,6 +22990,7 @@ packages:
   - <<: *libs-libspnav
   - <<: *libs-libharu
   - <<: *libs-ocio-oiio
+  - <<: *libs-typing-extensions
   - <<: *apps-hip
   build_requires:
   - <<: *layers-qt
