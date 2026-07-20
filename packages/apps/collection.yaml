@@ -22112,7 +22112,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/hid
-    # dev-python/pgi
   overlays:
   - enable: "vimproved"
   provides:
@@ -22122,33 +22121,12 @@ packages:
   - category: "dev-python"
     name: "hid"
     version: ">=0"
-  # - category: "dev-python"
-  #   name: "pgi"
-  #   version: ">=0"
   atoms:
   - atom: "dev-python/hid"
     accept_keywords: "~amd64"
-  # - atom: "dev-python/pgi"
-  #   license: "LGPL 2.1+"
   prepare:
-  # # dev-python/hid
-  # - emerge -1 app-eselect/eselect-repository
-  # - eselect repository create local
-  # - mkdir -p /var/db/repos/local/dev-python
-  # - cp -r tree/dev-python/hid /var/db/repos/local/dev-python
-  # - chown -R portage:portage /var/db/repos/local
-  # - ebuild /var/db/repos/local/dev-python/hid/hid-1.0.6.ebuild manifest
-  # dev-python/pgi
-  # - emerge -1 app-eselect/eselect-repository
-  # - eselect repository create local
-  # - mkdir -p /var/db/repos/local/dev-python
-  # - cp -r tree/dev-python/pgi /var/db/repos/local/dev-python
-  # - chown -R portage:portage /var/db/repos/local
-  # - ebuild /var/db/repos/local/dev-python/pgi/pgi-0.0.11.2.ebuild manifest
-  # logitech-linux-rpm-led
   - git clone https://github.com/IvanVojtko/logitech-linux-rpm-led.git
   setup:
-  # logitech-linux-rpm-led
   - mkdir -p /opt/logitech-linux-rpm-led
   - cp -r logitech-linux-rpm-led/games /opt/logitech-linux-rpm-led
   - cp -r logitech-linux-rpm-led/icons /opt/logitech-linux-rpm-led

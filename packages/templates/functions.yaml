@@ -203,7 +203,7 @@
 {{- if .portage_env }}
 - |
   set -x; \
-  echo -e "{{ ( .portage_env | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf;
+  echo -e "{{ ( .portage_env | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf
 {{- end }}
 
 {{- if .atoms }}
