@@ -46,15 +46,6 @@ stubs:
   name: "qt"
   version: ">=0"
 
-- &layers-qt5
-  category: "layers"
-  name: "kde-kf5"
-  version: ">=0"
-- &buildbase-qt5
-  category: "buildbase"
-  name: "kde-kf5"
-  version: ">=0"
-
 - &layers-kde-common
   category: "layers"
   name: "kde-common"
@@ -3200,62 +3191,62 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-pyqt5
-  category: "libs"
-  name: "pyqt5"
-  version: "5.15.11+2"
-  uri:
-  - https://www.qt.io/
-  - https://invent.kde.org/qt/qt/qttools
-  - https://community.kde.org/Qt5PatchCollection
-  - https://www.riverbankcomputing.com/software/pyqt/
-  license: "FDL-1.3 GPL-3"
-  description: "Python bindings for the Qt framework"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyqt5
-  overlays:
-  - enable: "khoverlay"
-  provides:
-  - category: "dev-python"
-    name: "pyqt5"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyqt5-sip"
-    version: ">=0"
-  - category: "dev-qt"
-    name: "qthelp"
-    version: ">=0"
-  - category: "dev-qt"
-    name: "qtwebsockets"
-    version: ">=0"
-  - category: "dev-qt"
-    name: "qtxmlpatterns"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/pyqt5"
-    use: "dbus declarative gui help multimedia network opengl printsupport python_targets_python3_14 sql ssl svg webchannel webkit webengine websockets widgets x11extras xmlpatterns"
-    accept_keywords: "~amd64"
-    unmask: true
-  - atom: "dev-python/pyqt5-sip"
-    accept_keywords: "~amd64"
-    unmask: true
-  - atom: "dev-qt/qthelp"
-    accept_keywords: "~amd64"
-    unmask: true
-  - atom: "dev-qt/qtwebsockets"
-    use: "qml ssl"
-    accept_keywords: "~amd64"
-    unmask: true
-  - atom: "dev-qt/qtxmlpatterns"
-    use: "qml"
-    accept_keywords: "~amd64"
-    unmask: true
-  requires:
-  - <<: *layers-qt5
-  build_requires:
-  - <<: *layers-qt5
+# - &libs-pyqt5
+#   category: "libs"
+#   name: "pyqt5"
+#   version: "5.15.11+2"
+#   uri:
+#   - https://www.qt.io/
+#   - https://invent.kde.org/qt/qt/qttools
+#   - https://community.kde.org/Qt5PatchCollection
+#   - https://www.riverbankcomputing.com/software/pyqt/
+#   license: "FDL-1.3 GPL-3"
+#   description: "Python bindings for the Qt framework"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-python/pyqt5
+#   overlays:
+#   - enable: "khoverlay"
+#   provides:
+#   - category: "dev-python"
+#     name: "pyqt5"
+#     version: ">=0"
+#   - category: "dev-python"
+#     name: "pyqt5-sip"
+#     version: ">=0"
+#   - category: "dev-qt"
+#     name: "qthelp"
+#     version: ">=0"
+#   - category: "dev-qt"
+#     name: "qtwebsockets"
+#     version: ">=0"
+#   - category: "dev-qt"
+#     name: "qtxmlpatterns"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-python/pyqt5"
+#     use: "dbus declarative gui help multimedia network opengl printsupport python_targets_python3_14 sql ssl svg webchannel webkit webengine websockets widgets x11extras xmlpatterns"
+#     accept_keywords: "~amd64"
+#     unmask: true
+#   - atom: "dev-python/pyqt5-sip"
+#     accept_keywords: "~amd64"
+#     unmask: true
+#   - atom: "dev-qt/qthelp"
+#     accept_keywords: "~amd64"
+#     unmask: true
+#   - atom: "dev-qt/qtwebsockets"
+#     use: "qml ssl"
+#     accept_keywords: "~amd64"
+#     unmask: true
+#   - atom: "dev-qt/qtxmlpatterns"
+#     use: "qml"
+#     accept_keywords: "~amd64"
+#     unmask: true
+#   requires:
+#   - <<: *layers-qt5
+#   build_requires:
+#   - <<: *layers-qt5
 
 - &libs-python-dotenv
   category: "libs"
@@ -5103,7 +5094,7 @@ packages:
 - &apps-cmake-gui
   category: "apps"
   name: "cmake-gui"
-  version: "4.3.3-r1"
+  version: "4.3.3-r1+1"
   uri:
   - https://cmake.org/
   - https://github.com/google/cppdap
@@ -5201,28 +5192,28 @@ packages:
   - <<: *layers-qt
 
 # QT only, moved to overlays, 2.0.0-beta1 migrating to QT6
-- category: "apps"
-  name: "cool-retro-term"
-  version: "1.2.0+1"
-  uri:
-  - https://github.com/Swordfish90/cool-retro-term
-  license: "GPL-3 GPL-2"
-  description: "A good looking terminal emulator which mimics the old cathode display"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      x11-terms/cool-retro-term
-  provides:
-    - category: "x11-terms"
-      name: "cool-retro-term"
-      version: ">=0"
-  atoms:
-  - atom: "x11-terms/cool-retro-term"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt5
-  build_requires:
-  - <<: *layers-qt5
+# - category: "apps"
+#   name: "cool-retro-term"
+#   version: "1.2.0+1"
+#   uri:
+#   - https://github.com/Swordfish90/cool-retro-term
+#   license: "GPL-3 GPL-2"
+#   description: "A good looking terminal emulator which mimics the old cathode display"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       x11-terms/cool-retro-term
+#   provides:
+#     - category: "x11-terms"
+#       name: "cool-retro-term"
+#       version: ">=0"
+#   atoms:
+#   - atom: "x11-terms/cool-retro-term"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt5
+#   build_requires:
+#   - <<: *layers-qt5
 
 - category: "apps"
   name: "corectrl"
@@ -5445,33 +5436,33 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-designer
-  category: "apps"
-  name: "designer"
-  version: "5.15.18-r1+1"
-  uri:
-  - https://www.qt.io/
-  license: "GPL-2 GPL-3 LGPL-3 FDL-1.3"
-  description: "WYSIWYG tool for designing and building graphical user interfaces with QtWidgets"
-  labels:
-    appstream.id: "org.qt.designer"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-qt/designer:5
-  overlays:
-  - enable: "Miezhiko"
-  provides:
-  - category: "dev-qt"
-    name: "designer"
-    version: ">=0"
-  atoms:
-  - atom: "dev-qt/designer"
-    use: "declarative"
-    unmask: true
-  requires:
-  - <<: *layers-qt5
-  build_requires:
-  - <<: *layers-qt5
+# - &apps-designer
+#   category: "apps"
+#   name: "designer"
+#   version: "5.15.18-r1+1"
+#   uri:
+#   - https://www.qt.io/
+#   license: "GPL-2 GPL-3 LGPL-3 FDL-1.3"
+#   description: "WYSIWYG tool for designing and building graphical user interfaces with QtWidgets"
+#   labels:
+#     appstream.id: "org.qt.designer"
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       dev-qt/designer:5
+#   overlays:
+#   - enable: "Miezhiko"
+#   provides:
+#   - category: "dev-qt"
+#     name: "designer"
+#     version: ">=0"
+#   atoms:
+#   - atom: "dev-qt/designer"
+#     use: "declarative"
+#     unmask: true
+#   requires:
+#   - <<: *layers-qt5
+#   build_requires:
+#   - <<: *layers-qt5
 
 - category: "apps"
   name: "dfu-util"
@@ -8255,38 +8246,37 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-# QT6 version in preparation
-- &apps-leocad
-  category: "apps"
-  name: "leocad"
-  version: "25.09-r1"
-  uri:
-  - http://www.leocad.org
-  license: "GPL-2"
-  description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
-  labels:
-    appstream.id: "org.leocad.LeoCAD"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-gfx/leocad
-  overlays:
-  - enable: "anard"
-  provides:
-  - category: "media-gfx"
-    name: "leocad"
-    version: ">=0"
-  atoms:
-  - atom: "media-gfx/leocad"
-    accept_keywords: "~amd64"
-  prepare:
-  - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-  - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-  - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
-  - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
-  requires:
-  - <<: *layers-qt5
-  build_requires:
-  - <<: *layers-qt5
+# - &apps-leocad
+#   category: "apps"
+#   name: "leocad"
+#   version: "25.09-r1"
+#   uri:
+#   - http://www.leocad.org
+#   license: "GPL-2"
+#   description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
+#   labels:
+#     appstream.id: "org.leocad.LeoCAD"
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-gfx/leocad
+#   overlays:
+#   - enable: "anard"
+#   provides:
+#   - category: "media-gfx"
+#     name: "leocad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-gfx/leocad"
+#     accept_keywords: "~amd64"
+#   prepare:
+#   - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+#   - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+#   - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
+#   - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
+#   requires:
+#   - <<: *layers-qt5
+#   build_requires:
+#   - <<: *layers-qt5
 
 # - category: "apps"
 #   name: "libpff"
@@ -10125,29 +10115,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-qjoypad
-  category: "apps"
-  name: "qjoypad"
-  version: "4.3.1+1"
-  uri:
-  - https://github.com/panzi/qjoypad
-  license: "GPL-2"
-  description: "Translate gamepad/joystick input into key strokes/mouse actions in X"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-util/qjoypad
-  provides:
-  - category: "games-util"
-    name: "qjoypad"
-    version: ">=0"
-  atoms:
-  - atom: "games-util/qjoypad"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-qt
-  build_requires:
-  - <<: *layers-qt
+# QT5
+# - &apps-qjoypad
+#   category: "apps"
+#   name: "qjoypad"
+#   version: "4.3.1+1"
+#   uri:
+#   - https://github.com/panzi/qjoypad
+#   license: "GPL-2"
+#   description: "Translate gamepad/joystick input into key strokes/mouse actions in X"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-util/qjoypad
+#   provides:
+#   - category: "games-util"
+#     name: "qjoypad"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-util/qjoypad"
+#     accept_keywords: "~amd64"
+#   requires:
+#   - <<: *layers-qt
+#   build_requires:
+#   - <<: *layers-qt
 
 # Some plugins (if used) may need optional extra dependencies/USE.
 # This list provides associations with Gentoo's packages (if exists)
@@ -11183,7 +11174,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.2+1"
+  version: "0.36.2+2"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -11541,7 +11532,7 @@ packages:
 - &apps-waybar
   category: "apps"
   name: "waybar"
-  version: "0.14.0"
+  version: "0.14.0+1"
   uri:
   - https://github.com/Alexays/Waybar
   license: "MIT"
@@ -16343,7 +16334,7 @@ packages:
 - &apps-smplayer
   category: "apps"
   name: "smplayer"
-  version: "25.6.0_p20250903-r1"
+  version: "25.6.0_p20250903-r1+1"
   uri:
   - https://www.smplayer.eu/
   license: "GPL-2+ BSD-2"
@@ -16644,7 +16635,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.9.11"
+  version: "1.9.11+1"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -18841,40 +18832,40 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-megasync
-  category: "apps"
-  name: "megasync"
-  version: "6.2.2.0"
-  uri:
-  - https://mega.io
-  - https://github.com/meganz/MEGAsync
-  license: "MEGA"
-  description: "The official Qt-based program for syncing your MEGA account in your PC"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-misc/megasync
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "net-misc"
-    name: "megasync"
-    version: ">=0"
-  atoms:
-  - atom: "net-misc/megasync"
-    use: "mediainfo thumbnail # dolphin nautilus nemo thunar"
-    accept_keywords: "~amd64"
-    license: "MEGA"
-    unmask: true
-  requires:
-  - <<: *layers-qt5
-  - <<: *libs-freeimage
-  - <<: *libs-libmediainfo
-  build_requires:
-  - <<: *layers-qt5
-  # - <<: *buildbase-gnome
-  # - <<: *buildbase-plasma
-  # requires_final_images: true
+# - &apps-megasync
+#   category: "apps"
+#   name: "megasync"
+#   version: "6.2.2.0"
+#   uri:
+#   - https://mega.io
+#   - https://github.com/meganz/MEGAsync
+#   license: "MEGA"
+#   description: "The official Qt-based program for syncing your MEGA account in your PC"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       net-misc/megasync
+#   overlays:
+#   - enable: "guru"
+#   provides:
+#   - category: "net-misc"
+#     name: "megasync"
+#     version: ">=0"
+#   atoms:
+#   - atom: "net-misc/megasync"
+#     use: "mediainfo thumbnail # dolphin nautilus nemo thunar"
+#     accept_keywords: "~amd64"
+#     license: "MEGA"
+#     unmask: true
+#   requires:
+#   - <<: *layers-qt5
+#   - <<: *libs-freeimage
+#   - <<: *libs-libmediainfo
+#   build_requires:
+#   - <<: *layers-qt5
+#   # - <<: *buildbase-gnome
+#   # - <<: *buildbase-plasma
+#   # requires_final_images: true
 
 - &apps-meshtasticd
   category: "apps"
@@ -20457,42 +20448,43 @@ packages:
   - <<: *layerbase-cdemu
   requires_final_images: true
 
-- category: "apps"
-  name: "goneovim"
-  version: "0.6.17+2"
-  uri:
-  - https://github.com/akiyosi/goneovim
-  license: "MIT"
-  description: "A Neovim GUI written in Go, using a Qt binding for Go"
-  labels:
-    emerge.jobs: "1"
-  prepare:
-  - |
-    version=0.6.17; \
-    wget https://github.com/akiyosi/goneovim/archive/refs/tags/v$version.tar.gz && \
-    wget https://github.com/akiyosi/goneovim/releases/download/v$version/goneovim-v$version-linux-x86_64.tar.bz2  && \
-    mkdir data && \
-    tar -C data -xf goneovim-v$version-linux-x86_64.tar.bz2 --strip-components=1 && \
-    tar -C data -xf v$version.tar.gz --strip-components=1 goneovim-$version/cmd
-  setup:
-  - |
-    mkdir -p -m 755 /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
-    cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
-    sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
-    sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
-    cp data/goneovim /usr/bin && \
-    mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
-    cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
-  requires:
-  - <<: *layers-X
-  - <<: *apps-neovim
-    skip: true
-  - <<: *libs-tiff-compat
-    skip: true
-  build_requires:
-  - <<: *layers-X
+# QT5
+# - category: "apps"
+#   name: "goneovim"
+#   version: "0.6.17+2"
+#   uri:
+#   - https://github.com/akiyosi/goneovim
+#   license: "MIT"
+#   description: "A Neovim GUI written in Go, using a Qt binding for Go"
+#   labels:
+#     emerge.jobs: "1"
+#   prepare:
+#   - |
+#     version=0.6.17; \
+#     wget https://github.com/akiyosi/goneovim/archive/refs/tags/v$version.tar.gz && \
+#     wget https://github.com/akiyosi/goneovim/releases/download/v$version/goneovim-v$version-linux-x86_64.tar.bz2  && \
+#     mkdir data && \
+#     tar -C data -xf goneovim-v$version-linux-x86_64.tar.bz2 --strip-components=1 && \
+#     tar -C data -xf v$version.tar.gz --strip-components=1 goneovim-$version/cmd
+#   setup:
+#   - |
+#     mkdir -p -m 755 /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.ico /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.svg /usr/share/pixmaps && \
+#     cp data/cmd/goneovim/goneovim.desktop /usr/share/applications && \
+#     sed -i 's/Exec=.*/Exec=goneovim %F/' /usr/share/applications/goneovim.desktop && \
+#     sed -i 's/Icon=.*/Icon=\/usr\/share\/pixmaps\/goneovim.ico/' /usr/share/applications/goneovim.desktop && \
+#     cp data/goneovim /usr/bin && \
+#     mkdir -p -m 755 /usr/share/nvim/runtime/doc && \
+#     cp data/runtime/doc/goneovim.txt /usr/share/nvim/runtime/doc
+#   requires:
+#   - <<: *layers-X
+#   - <<: *apps-neovim
+#     skip: true
+#   - <<: *libs-tiff-compat
+#     skip: true
+#   build_requires:
+#   - <<: *layers-X
 
 # - category: "apps"
 #   name: "goneovim"
@@ -20747,7 +20739,6 @@ packages:
   description: |
     Desktop Planetarium
     Cross-platform Sextractor and Astrometry.net-Based internal astrometric solver
-    3D data visualization library for the Qt5 framework
     Astronomical World Coordinate System transformations library
   labels:
     appstream.id: "org.kde.kstars.desktop"
@@ -21121,7 +21112,7 @@ packages:
 - &apps-RcloneBrowser
   category: "apps"
   name: "RcloneBrowser"
-  version: "1.8.0"
+  version: "1.8.0+1"
   uri:
   - https://github.com/kapitainsky/RcloneBrowser
   license: "MIT"
@@ -22197,48 +22188,48 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-- category: "apps"
-  name: "museseq"
-  version: "4.2.1+9"
-  uri:
-  - https://github.com/muse-sequencer/muse
-  license: "GPL-2"
-  description: "The Linux (midi) MUSic Editor (a sequencer)"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      =media-sound/museseq-4.2.1
-  overlays:
-  - enable: "proaudio-gentoo"
-  provides:
-  - category: "media-sound"
-    name: "museseq"
-    version: ">=0"
-  atoms:
-  - atom: "media-sound/museseq"
-    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-  prepare:
-  # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-  # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-  - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-  - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules
-  requires:
-  - <<: *layers-qt
-  - <<: *layers-qt5
-  - <<: *apps-fluidsynth
-  - <<: *apps-lash
-  - <<: *libs-dssi
-  - <<: *libs-ladspa-sdk
-  - <<: *libs-liblo
-  - <<: *libs-liblrdf
-  - <<: *libs-lilv
-  - <<: *libs-rtaudio
-  - <<: *libs-rubberband
-  build_requires:
-  # - <<: *layers-kde-common
-  - <<: *layers-qt5
+# - category: "apps"
+#   name: "museseq"
+#   version: "4.2.1+9"
+#   uri:
+#   - https://github.com/muse-sequencer/muse
+#   license: "GPL-2"
+#   description: "The Linux (midi) MUSic Editor (a sequencer)"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       =media-sound/museseq-4.2.1
+#   overlays:
+#   - enable: "proaudio-gentoo"
+#   provides:
+#   - category: "media-sound"
+#     name: "museseq"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-sound/museseq"
+#     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
+#   prepare:
+#   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+#   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+#   - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+#   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
+#   inner_build_reqs:
+#   - kde-frameworks/extra-cmake-modules
+#   requires:
+#   - <<: *layers-qt
+#   - <<: *layers-qt5
+#   - <<: *apps-fluidsynth
+#   - <<: *apps-lash
+#   - <<: *libs-dssi
+#   - <<: *libs-ladspa-sdk
+#   - <<: *libs-liblo
+#   - <<: *libs-liblrdf
+#   - <<: *libs-lilv
+#   - <<: *libs-rtaudio
+#   - <<: *libs-rubberband
+#   build_requires:
+#   # - <<: *layers-kde-common
+#   - <<: *layers-qt5
 
 - category: "apps"
   name: "mypaint"
