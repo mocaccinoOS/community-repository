@@ -113,6 +113,15 @@ stubs:
 #   name: "ruby"
 #   version: ">=0"
 
+- &layers-qt5
+  category: "layers"
+  name: "qt5"
+  version: ">=0"
+- &buildbase-qt5
+  category: "buildbase"
+  name: "qt5"
+  version: ">=0"
+
 - &layers-latex
   category: "layers"
   name: "latex"
@@ -6147,7 +6156,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "145-148+1"
+  version: "142-145-148"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6155,6 +6164,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      media-video/ffmpeg-chromium:142
       media-video/ffmpeg-chromium:145
       media-video/ffmpeg-chromium:148
   provides:
@@ -9131,6 +9141,9 @@ packages:
   - category: "dev-util"
     name: "opencode-bin"
     version: ">=0"
+  atoms:
+  - atom: "dev-util/opencode-bin"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -10006,6 +10019,28 @@ packages:
   - category: "entity"
     name: "qbittorrent"
     version: ">=0"
+  build_requires:
+  - <<: *layers-qt
+
+- &apps-qdirstat
+  category: "apps"
+  name: "qdirstat"
+  version: "2.0"
+  uri:
+  - https://github.com/shundhammer/qdirstat
+  license: "GPL-2"
+  description: "Qt-based directory statistics"
+  labels:
+    appstream.id: "io.github.shundhammer.qdirstat"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      sys-apps/qdirstat
+  provides:
+  - category: "sys-apps"
+    name: "qdirstat"
+    version: ">=0"
+  requires:
+  - <<: *layers-qt
   build_requires:
   - <<: *layers-qt
 
@@ -15386,7 +15421,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "133.0.5932.60"
+  version: "133.0.5932.60+1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -20074,7 +20109,7 @@ packages:
 - &libs-sdl
   category: "libs"
   name: "sdl"
-  version: "26.07"
+  version: "26.07+1"
   uri:
   - http://www.ferzkopp.net/joomla/content/view/19/14/
   - https://www.libsdl.org/projects/SDL_image/
@@ -20130,8 +20165,8 @@ packages:
   prepare:
   - media-sound/mpg123-base;USE="sdl"
   optrequires:
-  # - <<: *apps-fluidsynth
-  - <<: *apps-timidity
+  - <<: *apps-fluidsynth
+  # - <<: *apps-timidity
   requires:
   - <<: *layers-X
   - <<: *libs-libmikmod
@@ -20197,6 +20232,53 @@ packages:
 ################################################################################################################################################################
 ### dep 3 apps ###
 ################################################################################################################################################################
+
+- category: "apps"
+  name: "86Box"
+  version: "6.0"
+  uri:
+  - https://github.com/86Box/86Box
+  - https://fna-xna.github.io/
+  - https://sigrok.org/wiki/Libserialport
+  license: "GPL-2+ ZLIB LGPL-3"
+  description: |
+    Emulator of x86-based machines based on PCem
+    Accuracy-focused XAudio reimplementation for open platforms
+    Cross platform serial port access library
+  labels:
+    appstream.id: "net._86box._86Box"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/86Box
+  provides:
+  - category: "app-emulation"
+    name: "faudio"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "86Box"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libserialport"
+    version: ">=0"
+  atoms:
+  - atom: "app-emulation/faudio"
+    use: "sdl3 # dumpvoices"
+  - atom: "app-emulation/86Box"
+    use: "fluidsynth munt openal qt6 threads # discord experimental new-dynarec vde vnc"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-qemu
+  - <<: *apps-fluidsynth
+  - <<: *libs-libsdl3
+  - <<: *libs-munt-mt32emu
+  - <<: *libs-rtmidi
+  build_requires:
+  - <<: *buildbase-qt
+  - <<: *buildbase-qemu
+  requires_final_images: true
 
 - &apps-antimicrox 
   category: "apps"
@@ -21207,82 +21289,35 @@ packages:
 
 # See https://bugs.gentoo.org/955672
 # Need: sed -i 's/Requires: tremor/Requires: vorbisidec/' /usr/lib64/pkgconfig/SDL2_mixer.pc
-# - category: "apps"
-#   name: "wesnoth"
-#   version: "1.18.5"
-#   uri:
-#   - https://www.wesnoth.org
-#   license: "GPL-2+ CC-BY-SA-4.0"
-#   description: "Battle for Wesnoth - A fantasy turn-based strategy game"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-strategy/wesnoth
-#   provides:
-#   - category: "games-strategy"
-#     name: "wesnoth"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-strategy/wesnoth"
-#     accept_keywords: "~amd64"
-#   prepare:
-#   - acct-group/wesnoth
-#   - acct-user/wesnoth
-#   requires:
-#   - category: "entity"
-#     name: "wesnoth"
-#     version: ">=0"
-#   - <<: *layers-X
-#   - <<: *libs-sdl2
-#   build_requires:
-#   - <<: *layers-X
-
 - category: "apps"
-  name: "86Box"
-  version: "6.0"
+  name: "wesnoth"
+  version: "1.18.5"
   uri:
-  - https://github.com/86Box/86Box
-  - https://fna-xna.github.io/
-  - https://sigrok.org/wiki/Libserialport
-  license: "GPL-2+ ZLIB LGPL-3"
-  description: |
-    Emulator of x86-based machines based on PCem
-    Accuracy-focused XAudio reimplementation for open platforms
-    Cross platform serial port access library
+  - https://www.wesnoth.org
+  license: "GPL-2+ CC-BY-SA-4.0"
+  description: "Battle for Wesnoth - A fantasy turn-based strategy game"
   labels:
-    appstream.id: "net._86box._86Box"
     emerge.jobs: "1"
     emerge.packages: >-
-      app-emulation/86Box
+      games-strategy/wesnoth
   provides:
-  - category: "app-emulation"
-    name: "faudio"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "86Box"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libserialport"
+  - category: "games-strategy"
+    name: "wesnoth"
     version: ">=0"
   atoms:
-  - atom: "app-emulation/faudio"
-    use: "sdl3 # dumpvoices"
-  - atom: "app-emulation/86Box"
-    use: "fluidsynth munt openal qt6 threads # discord experimental new-dynarec vde vnc"
+  - atom: "games-strategy/wesnoth"
     accept_keywords: "~amd64"
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules
+  prepare:
+  - acct-group/wesnoth
+  - acct-user/wesnoth
   requires:
-  - <<: *layers-qt
-  - <<: *layers-qemu
-  - <<: *apps-fluidsynth
-  - <<: *libs-libsdl3
-  - <<: *libs-munt-mt32emu
-  - <<: *libs-rtmidi
+  - category: "entity"
+    name: "wesnoth"
+    version: ">=0"
+  - <<: *layers-X
+  - <<: *libs-sdl2
   build_requires:
-  - <<: *buildbase-qt
-  - <<: *buildbase-qemu
-  requires_final_images: true
+  - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 4 libs ###
@@ -22188,48 +22223,48 @@ packages:
   - <<: *layerbase-latex
   requires_final_images: true
 
-# - category: "apps"
-#   name: "museseq"
-#   version: "4.2.1+9"
-#   uri:
-#   - https://github.com/muse-sequencer/muse
-#   license: "GPL-2"
-#   description: "The Linux (midi) MUSic Editor (a sequencer)"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       =media-sound/museseq-4.2.1
-#   overlays:
-#   - enable: "proaudio-gentoo"
-#   provides:
-#   - category: "media-sound"
-#     name: "museseq"
-#     version: ">=0"
-#   atoms:
-#   - atom: "media-sound/museseq"
-#     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
-#   prepare:
-#   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-#   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-#   - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
-#   - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
-#   inner_build_reqs:
-#   - kde-frameworks/extra-cmake-modules
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *layers-qt5
-#   - <<: *apps-fluidsynth
-#   - <<: *apps-lash
-#   - <<: *libs-dssi
-#   - <<: *libs-ladspa-sdk
-#   - <<: *libs-liblo
-#   - <<: *libs-liblrdf
-#   - <<: *libs-lilv
-#   - <<: *libs-rtaudio
-#   - <<: *libs-rubberband
-#   build_requires:
-#   # - <<: *layers-kde-common
-#   - <<: *layers-qt5
+- category: "apps"
+  name: "museseq"
+  version: "4.2.1+10"
+  uri:
+  - https://github.com/muse-sequencer/muse
+  license: "GPL-2"
+  description: "The Linux (midi) MUSic Editor (a sequencer)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =media-sound/museseq-4.2.1
+  overlays:
+  - enable: "proaudio-gentoo"
+  provides:
+  - category: "media-sound"
+    name: "museseq"
+    version: ">=0"
+  atoms:
+  - atom: "media-sound/museseq"
+    use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
+  prepare:
+  # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+  # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+  - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\//echo skip rm \"${ED}\/usr\/share\/doc\//' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
+  - ebuild /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild manifest
+  inner_build_reqs:
+  - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-qt
+  - <<: *layers-qt5
+  - <<: *apps-fluidsynth
+  - <<: *apps-lash
+  - <<: *libs-dssi
+  - <<: *libs-ladspa-sdk
+  - <<: *libs-liblo
+  - <<: *libs-liblrdf
+  - <<: *libs-lilv
+  - <<: *libs-rtaudio
+  - <<: *libs-rubberband
+  build_requires:
+  # - <<: *layers-kde-common
+  - <<: *layers-qt5
 
 - category: "apps"
   name: "mypaint"
