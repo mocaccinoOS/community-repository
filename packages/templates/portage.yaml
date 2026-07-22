@@ -1,0 +1,8 @@
+
+################################################################################
+## community.portage_select_fastest_binhost ###
+################################################################################
+
+{{ define "community.portage_select_fastest_binhost" }}
+- if [ -f /usr/local/sbin/mocaccino-select-fastest-binhost.sh ]; then bash /usr/local/sbin/mocaccino-select-fastest-binhost.sh; else echo "binhost selection script not present in this layer, skipping"; fi
+{{end}}

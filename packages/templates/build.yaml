@@ -69,6 +69,8 @@ prelude:
   {{- include "community.package_setup" .Values }}
 {{- end }}
 
+{{ template "community.portage_select_fastest_binhost" }}
+
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
