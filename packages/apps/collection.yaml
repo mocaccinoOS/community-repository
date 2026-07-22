@@ -20157,7 +20157,7 @@ packages:
   - atom: "media-libs/sdl-image"
     use: "gif jpeg png tiff webp"
   - atom: "media-libs/sdl-mixer"
-    use: "midi mod wav flac mad mikmod modplug mp3 mpg123 smpeg timidity vorbis # bug # playtools fluidsynth"
+    use: "midi mod wav flac fluidsynth mad mikmod modplug mp3 mpg123 smpeg vorbis # bug # playtools timidity"
   - atom: "media-libs/sdl-sound"
     use: "flac mikmod modplug mp3 mpeg speex vorbis"
   - atom: "media-libs/sdl-ttf"
@@ -21287,37 +21287,37 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-# See https://bugs.gentoo.org/955672
-# Need: sed -i 's/Requires: tremor/Requires: vorbisidec/' /usr/lib64/pkgconfig/SDL2_mixer.pc
-- category: "apps"
-  name: "wesnoth"
-  version: "1.18.5"
-  uri:
-  - https://www.wesnoth.org
-  license: "GPL-2+ CC-BY-SA-4.0"
-  description: "Battle for Wesnoth - A fantasy turn-based strategy game"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/wesnoth
-  provides:
-  - category: "games-strategy"
-    name: "wesnoth"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/wesnoth"
-    accept_keywords: "~amd64"
-  prepare:
-  - acct-group/wesnoth
-  - acct-user/wesnoth
-  requires:
-  - category: "entity"
-    name: "wesnoth"
-    version: ">=0"
-  - <<: *layers-X
-  - <<: *libs-sdl2
-  build_requires:
-  - <<: *layers-X
+# # See https://bugs.gentoo.org/955672
+# # Need: sed -i 's/Requires: tremor/Requires: vorbisidec/' /usr/lib64/pkgconfig/SDL2_mixer.pc
+# - category: "apps"
+#   name: "wesnoth"
+#   version: "1.18.5"
+#   uri:
+#   - https://www.wesnoth.org
+#   license: "GPL-2+ CC-BY-SA-4.0"
+#   description: "Battle for Wesnoth - A fantasy turn-based strategy game"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/wesnoth
+#   provides:
+#   - category: "games-strategy"
+#     name: "wesnoth"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/wesnoth"
+#     accept_keywords: "~amd64"
+#   prepare:
+#   - acct-group/wesnoth
+#   - acct-user/wesnoth
+#   requires:
+#   - category: "entity"
+#     name: "wesnoth"
+#     version: ">=0"
+#   - <<: *layers-X
+#   - <<: *libs-sdl2
+#   build_requires:
+#   - <<: *layers-X
 
 ################################################################################################################################################################
 ### dep 4 libs ###
@@ -22233,7 +22233,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =media-sound/museseq-4.2.1
+      media-sound/museseq
   overlays:
   - enable: "proaudio-gentoo"
   provides:
@@ -22243,6 +22243,7 @@ packages:
   atoms:
   - atom: "media-sound/museseq"
     use: "dssi fluidsynth lash lv2 liblo lrdf osc -python rtaudio rubberband # vst"
+    accept_keywords: "~amd64"
   prepare:
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
   # - sed -i -e 's/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\.bz2\"/rm \"${ED}\/usr\/share\/doc\/${P}\/vam\/COPYING\"/' /var/db/repos/proaudio-gentoo/media-sound/museseq/museseq-4.2.1.ebuild
@@ -22251,7 +22252,6 @@ packages:
   inner_build_reqs:
   - kde-frameworks/extra-cmake-modules
   requires:
-  - <<: *layers-qt
   - <<: *layers-qt5
   - <<: *apps-fluidsynth
   - <<: *apps-lash
@@ -22263,7 +22263,6 @@ packages:
   - <<: *libs-rtaudio
   - <<: *libs-rubberband
   build_requires:
-  # - <<: *layers-kde-common
   - <<: *layers-qt5
 
 - category: "apps"
