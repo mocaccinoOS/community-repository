@@ -1,0 +1,34 @@
+--- a/src/muse/mplugins/CMakeLists.txt
++++ b/src/muse/mplugins/CMakeLists.txt
+@@ -1,13 +1,3 @@
+-QT5_WRAP_CPP ( mplugins_mocs
+-      midifilterimpl.h
+-      miditransform.h
+-      midiitransform.h
+-      mittranspose.h
+-      mrconfig.h
+-      ${experimental_hdrs}
+-      )
+-
+-##
+ ## UI files
+ ##
+ file (GLOB mplugins_ui_files
+@@ -19,6 +9,17 @@
+       )
+ QT5_WRAP_UI ( mplugins_uis ${mplugins_ui_files} )
+ 
++QT5_WRAP_CPP ( mplugins_mocs
++      midifilterimpl.h
++      miditransform.h
++      midiitransform.h
++      mittranspose.h
++      mrconfig.h
++      ${experimental_hdrs}
++      DEPENDS ${mplugins_uis}
++      )
++
++##
+ ## List of source files to compile
+ ##
+ file (GLOB mplugins_source_files
