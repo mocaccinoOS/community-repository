@@ -1177,7 +1177,7 @@ packages:
 - &def-qt5
   category: "layers"
   name: "qt5"
-  version: "5.15.18"
+  version: "5.15.18+1"
   uri:
   - https://www.qt.io/
   - https://invent.kde.org/qt/qt/qttools
@@ -1217,73 +1217,6 @@ packages:
   overlays:
   - enable: "khoverlay"
   provides:
-  - category: "app-text"
-    name: "poppler"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "linguist-tools"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtconcurrent"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtcore"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtdbus"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtdeclarative"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtgraphicaleffects"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtgui"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtmultimedia"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtnetwork"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtopengl"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtprintsupport"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtquickcontrols"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtquickcontrols2"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtsql"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtsvg"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qttest"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qttranslations"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtwayland"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtwidgets"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtx11extras"
-    version: '>=0'
-  - category: "dev-qt"
-    name: "qtxml"
-    version: '>=0'
-  # pyqt5
   - category: "dev-python"
     name: "pyqt5"
     version: ">=0"
@@ -1291,38 +1224,94 @@ packages:
     name: "pyqt5-sip"
     version: ">=0"
   - category: "dev-qt"
+    name: "designer"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "linguist-tools"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtconcurrent"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtcore"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtdbus"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtdeclarative"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtgraphicaleffects"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtgui"
+    version: ">=0"
+  - category: "dev-qt"
     name: "qthelp"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtmultimedia"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtnetwork"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtopengl"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtprintsupport"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtquickcontrols"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtquickcontrols2"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtsql"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtsvg"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qttest"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qttranslations"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtwayland"
     version: ">=0"
   - category: "dev-qt"
     name: "qtwebsockets"
     version: ">=0"
   - category: "dev-qt"
+    name: "qtwidgets"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtx11extras"
+    version: ">=0"
+  - category: "dev-qt"
+    name: "qtxml"
+    version: ">=0"
+  - category: "dev-qt"
     name: "qtxmlpatterns"
     version: ">=0"
   atoms:
-  - atom: "app-text/poppler"
-    use: "qt5 -qt6"
-  - atom: "app-crypt/qca"
-    use: "qt5 -qt6"
   - atom: "dev-python/pyqt5"
     use: "dbus declarative gui help multimedia network opengl printsupport sql ssl svg webchannel webkit webengine websockets widgets x11extras xmlpatterns"
     accept_keywords: "~amd64"
+  - atom: "dev-python/pyqt5-sip"
+    accept_keywords: "~amd64"
+    unmask: true  
   - atom: "dev-qt/designer"
     use: "declarative"
     accept_keywords: "~amd64"
-  - atom: "dev-python/pyqt5-sip"
-    accept_keywords: "~amd64"
-    unmask: true
   - atom: "dev-qt/linguist-tools:5"
     use: "qml"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/positioning:5"
-    use: "qml"
-    accept_keywords: "~amd64"
-  - atom: "dev-qt/qt3d:5"
-    use: "qml"
-    accept_keywords: "~amd64"
   - atom: "dev-qt/qtconcurrent:5"
     accept_keywords: "~amd64"
     unmask: true
@@ -1332,18 +1321,15 @@ packages:
   - atom: "dev-qt/qtdbus:5"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtcharts:5"
-    use: "qml"
-    accept_keywords: "~amd64"
   - atom: "dev-qt/qtdeclarative:5"
     use: "jit localstorage widgets vulkan"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtgui:5"
-    use: "accessibility egl eglfs ibus jpeg libinput png udev vulkan"
+  - atom: "dev-qt/qtgraphicaleffects:5"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtgraphicaleffects:5"
+  - atom: "dev-qt/qtgui:5"
+    use: "accessibility egl eglfs ibus jpeg libinput png udev vulkan"
     accept_keywords: "~amd64"
     unmask: true
   - atom: "dev-qt/qthelp"
@@ -1371,12 +1357,6 @@ packages:
     use: "widgets"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtscript:5"
-    use: "scripttools"
-    accept_keywords: "~amd64"
-  - atom: "dev-qt/qtsensors:5"
-    use: "qml"
-    accept_keywords: "~amd64"
   - atom: "dev-qt/qtsql:5"
     use: "mysql"
     accept_keywords: "~amd64"
@@ -1390,23 +1370,15 @@ packages:
   - atom: "dev-qt/qttranslations:5"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtvirtualkeyboard:5"
-    use: "spell"
-  - atom: "dev-qt/qtwidgets:5"
-    accept_keywords: "~amd64"
-    unmask: true
   - atom: "dev-qt/qtwayland:5"
     use: "vulkan"
     accept_keywords: "~amd64"
     unmask: true
-  - atom: "dev-qt/qtwebchannel:5"
-    use: "qml"
-    accept_keywords: "~amd64"
-  - atom: "dev-qt/qtwebengine:5"
-    use: "bindist system-icu widgets -system-ffmpeg"
-    accept_keywords: "~amd64"
   - atom: "dev-qt/qtwebsockets"
     use: "qml ssl"
+    accept_keywords: "~amd64"
+    unmask: true
+  - atom: "dev-qt/qtwidgets:5"
     accept_keywords: "~amd64"
     unmask: true
   - atom: "dev-qt/qtx11extras:5"
@@ -1418,57 +1390,35 @@ packages:
   - atom: "dev-qt/qtxmlpatterns:5"
     use: "qml"
     accept_keywords: "~amd64"
+  # - atom: "dev-qt/positioning:5"
+  #   use: "qml"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qt3d:5"
+  #   use: "qml"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qtcharts:5"
+  #   use: "qml"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qtscript:5"
+  #   use: "scripttools"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qtsensors:5"
+  #   use: "qml"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qtvirtualkeyboard:5"
+  #   use: "spell"
+  # - atom: "dev-qt/qtwebchannel:5"
+  #   use: "qml"
+  #   accept_keywords: "~amd64"
+  # - atom: "dev-qt/qtwebengine:5"
+  #   use: "bindist system-icu widgets -system-ffmpeg"
+  #   accept_keywords: "~amd64"
   portage_env: |
     USE="qt5 -qt6"
-  # mask: |
-  #   kde-frameworks/*:6
-  excludes:
-  # Poppler split. Only ship Qt module
-  - ^/usr/bin/pdfattach
-  - ^/usr/bin/pdfdetach
-  - ^/usr/bin/pdffonts
-  - ^/usr/bin/pdfimages
-  - ^/usr/bin/pdfinfo
-  - ^/usr/bin/pdfseparate
-  - ^/usr/bin/pdfsig
-  - ^/usr/bin/pdftocairo
-  - ^/usr/bin/pdftohtml
-  - ^/usr/bin/pdftoppm
-  - ^/usr/bin/pdftops
-  - ^/usr/bin/pdftotext
-  - ^/usr/bin/pdfunite
-  - ^/usr/lib64/girepository-1.0/Poppler-0.18.typelib
-  - ^/usr/lib64/libpoppler-cpp.*
-  - ^/usr/lib64/libpoppler-glib.*
-  - ^/usr/lib64/libpoppler.so.*
-  - ^/usr/lib64/pkgconfig/poppler-cpp.pc
-  - ^/usr/lib64/pkgconfig/poppler-glib.pc
-  - ^/usr/lib64/pkgconfig/poppler.pc
-  - ^/usr/share/doc/poppler.*
-  - ^/usr/share/gir-1.0/Poppler-0.18.gir
-  - ^/usr/share/locale/ca/LC_MESSAGES/pdfsig.mo
-  - ^/usr/share/man/man1/pdfattach.1.bz2
-  - ^/usr/share/man/man1/pdfdetach.1.bz2
-  - ^/usr/share/man/man1/pdffonts.1.bz2
-  - ^/usr/share/man/man1/pdfimages.1.bz2
-  - ^/usr/share/man/man1/pdfinfo.1.bz2
-  - ^/usr/share/man/man1/pdfseparate.1.bz2
-  - ^/usr/share/man/man1/pdfsig.1.bz2
-  - ^/usr/share/man/man1/pdftocairo.1.bz2
-  - ^/usr/share/man/man1/pdftohtml.1.bz2
-  - ^/usr/share/man/man1/pdftoppm.1.bz2
-  - ^/usr/share/man/man1/pdftops.1.bz2
-  - ^/usr/share/man/man1/pdftotext.1.bz2
-  - ^/usr/share/man/man1/pdfunite.1.bz2
-  # Qt6 module is already in layers/qt
-  - ^/usr/lib64/libpoppler-qt6.so
-  - ^/usr/lib64/pkgconfig/poppler-qt6.pc
-  - ^/usr/lib64/libpoppler-qt6.so.3.8.0
-  - ^/usr/lib64/libpoppler-qt6.so.3
   requires:
-  - <<: *layers-X
+  - <<: *layers-qt
   build_requires:
-  - <<: *buildbase-X
+  - <<: *buildbase-qt
   requires_final_images: true
 
 - <<: *def-qt5
