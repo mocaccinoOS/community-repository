@@ -583,7 +583,7 @@
 
 {{- define "community.select_fastest_binhost" }}
 
-  {{- if template "community.should_select_fastest_binhost" . }}
+  {{- if ( include "community.should_select_fastest_binhost" . ) }}
     {{- template "community.portage_select_fastest_binhost" }}
   {{- end }}
 
