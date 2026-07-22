@@ -47,6 +47,8 @@ prelude:
 {{- end */}}
 {{/* end debug */}}
 
+{{ template "community.select_fastest_binhost" . }}
+
 {{- $prereqs := include "community.prereqs" ( list .Values $packages "" ) }}
 - |
 {{ ( include "community.merge_shell_commands" $prereqs ) | indent 2 }}
@@ -68,8 +70,6 @@ prelude:
 
   {{- include "community.package_setup" .Values }}
 {{- end }}
-
-{{ template "community.portage_select_fastest_binhost" }}
 
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}

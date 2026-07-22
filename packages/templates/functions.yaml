@@ -534,8 +534,7 @@
 
 {{- $atom := . }}
 
-{{- $value := ( index $atom "usepkg_exclude" ) }}
-{{- if $value }}
+{{- if ( index $atom "usepkg_exclude" ) }}
 {{- $usepkg_exclude = trim ( printf "%s %s" $usepkg_exclude ( trim $atom.atom ) ) }}
 {{- end }}
 
@@ -554,6 +553,39 @@
 {{/*- rm -rf /etc/portage/gnupg || true*/}}
 - rm -rf /var/cache/binpkgs /var/cache/binhost 2>/dev/null || true
 - etc-update -q --automode -5
+
+{{- end }}
+
+################################################################################
+## community.should_select_fastest_binhost ###
+################################################################################
+
+{{- define "community.should_select_fastest_binhost" }}
+  {{- $result := "" }}
+  {{- $atoms := (index . "atoms") }}
+  
+  {{- if not $atoms }}
+    {{- $result = "true" }}
+  {{- else }}
+    {{- range $atoms }}
+      {{- if not (index . "usepkg_exclude") }}
+        {{- $result = "true" }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  
+  {{- $result }}
+{{- end }}
+
+################################################################################
+## community.select_fastest_binhost ###
+################################################################################
+
+{{- define "community.select_fastest_binhost" }}
+
+  {{- if template "community.should_select_fastest_binhost" . }}
+    {{- template "community.portage_select_fastest_binhost" }}
+  {{- end }}
 
 {{- end }}
 
