@@ -3600,6 +3600,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdbus-cpp
+  category: "libs"
+  name: "sdbus-cpp"
+  version: "2.3.1"
+  uri:
+  - https://github.com/Kistler-Group/sdbus-cpp
+  license: "LGPL-2.1+ Nokia-Qt-LGPL-Exception-1.1"
+  description: "High-level C++ D-Bus library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/sdbus-c++
+  provides:
+  - category: "dev-cpp"
+    name: "sdbus-c++"
+    version: ">=0"
+  atoms:
+  - atom: "dev-cpp/sdbus-c++"
+    accept_keywords: "~amd64"
+    use: "systemd"
+  inner_build_reqs:
+  - dev-build/cmake
+  - dev-build/meson
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -3735,6 +3763,27 @@ packages:
   provides:
   - category: "dev-perl"
     name: "TermReadKey"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-tomlplusplus
+  category: "libs"
+  name: "tomlplusplus"
+  version: "3.4.0"
+  uri:
+  - https://github.com/marzer/tomlplusplus
+  license: "MIT"
+  description: "TOML config file parser and serializer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tomlplusplus
+  provides:
+  - category: "dev-cpp"
+    name: "tomlplusplus"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -15408,6 +15457,54 @@ packages:
   - <<: *apps-brightnessctl
   build_requires:
   - <<: *layers-qt
+
+- &apps-noctalia5
+  category: "apps"
+  name: "noctalia5"
+  version: "5.0.0_beta3"
+  uri:
+  - https://noctalia.dev
+  license: "MIT"
+  description: "A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =gui-apps/noctalia-5.0.0_beta3
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "noctalia"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/noctalia"
+    accept_keywords: "**"
+  requires:
+  #- <<: *layers-X
+  - <<: *layers-qt
+  #- <<: *libs-md4c # included in qt?
+  - <<: *libs-nlohmann_json
+  - <<: *libs-sdbus-cpp
+  - <<: *libs-tomlplusplus
+  - <<: *libs-stb
+  build_requires:
+  #- <<: *layers-X
+  - <<: *layers-qt
+  #- <<: *libs-nlohmann_json
+  #- <<: *libs-sdbus-cpp
+  #- <<: *libs-tomlplusplus
+  #- <<: *libs-stb
+  includes:
+  - /usr$
+  - /usr/bin$
+  - /usr/bin/noctalia$
+  - /usr/share$
+  - /usr/share/applications$
+  - /usr/share/applications/dev.noctalia.Noctalia.desktop$
+  - /usr/share/doc$
+  - /usr/share/doc/noctalia.*
+  - /usr/share/noctalia$
+  - /usr/share/noctalia/.*
 
 - category: "apps"
   name: "nwipe"
