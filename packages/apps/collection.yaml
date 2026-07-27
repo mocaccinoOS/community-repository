@@ -15507,6 +15507,35 @@ packages:
   - /usr/share/noctalia/.*
 
 - category: "apps"
+  name: "noctalia-greeter"
+  version: "1.0.0"
+  uri:
+  - https://noctalia.dev
+  license: "MIT"
+  description: "A minimal login greeter for greetd that matches Noctalia Shell"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-apps/noctalia-greeter
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "noctalia-greeter"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/noctalia-greeter"
+    accept_keywords: "~amd64"
+  optrequires:
+  - <<: *apps-noctalia5
+  requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+
+- category: "apps"
   name: "nwipe"
   version: "0.41"
   uri:
