@@ -7533,33 +7533,6 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
-  name: "obsidian"
-  version: "1.12.7"
-  uri:
-  - https://obsidian.md/
-  license: "Obsidian-EULA"
-  description: "A powerful knowledge base on top of a local folder of plain text Markdown files"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-office/obsidian
-  overlays:
-  - enable: "guru"
-  provides:
-  - category: "app-office"
-    name: "obsidian"
-    version: ">=0"
-  atoms:
-  - atom: "app-office/obsidian"
-    license: Obsidian-EULA
-    accept_keywords: "~amd64"
-    use: "appindicator wayland"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
   name: "mangowm"
   version: "0.15.4"
   uri:
@@ -9264,6 +9237,33 @@ packages:
     portage_env: "MAKEOPTS=\"-j1\""
   inner_build_reqs:
   - x11-misc/gccmakedep x11-misc/xorg-cf-files x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "obsidian"
+  version: "1.12.7"
+  uri:
+  - https://obsidian.md/
+  license: "Obsidian-EULA"
+  description: "A powerful knowledge base on top of a local folder of plain text Markdown files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/obsidian
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-office"
+    name: "obsidian"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/obsidian"
+    license: Obsidian-EULA
+    accept_keywords: "~amd64"
+    use: "appindicator wayland"
   requires:
   - <<: *layers-X
   build_requires:
