@@ -7567,6 +7567,31 @@ packages:
   - <<: *layers-wlroots
 
 - category: "apps"
+  name: "wev"
+  version: "1.1.0"
+  uri:
+  - https://git.sr.ht/~sircmpwn/wev
+  license: "MIT"
+  description: "Wayland event viewer"
+  labels:
+    emerge/jobs: "3"
+    emerge.packages: >-
+      gui-apps/wev
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "wev"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/wev"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-wlroots
+
+- category: "apps"
   name: "waynergy"
   version: "0.0.17"
   uri:
