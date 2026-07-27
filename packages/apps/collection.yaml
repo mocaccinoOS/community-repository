@@ -10530,6 +10530,29 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- category: "apps"
+  name: "skanlite"
+  version: "26.04.3"
+  uri:
+  - https://apps.kde.org/alligator/
+  license: "|| ( GPL-2 GPL-3 ) handbook? ( FDL-1.2+ )"
+  description: "Simple image scanning application based on libksane and KDE Frameworks"
+  labels:
+    appstream.id: "org.kde.skanlite"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-misc/skanlite
+  provides:
+  - category: "kde-misc"
+    name: "skanlite"
+    version: ">=0"
+  # inner_build_reqs:
+  # - kde-frameworks/extra-cmake-modules
+  requires:
+  - <<: *layers-kde-common
+  build_requires:
+  - <<: *layers-kde-common
+
 # Needs >=net-fs/samba-4.15.9-r1 cups
 # Figure it out later
 # - category: "apps"
