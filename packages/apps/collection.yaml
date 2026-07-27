@@ -3065,6 +3065,27 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-libretls
+  category: "libs"
+  name: "libretls"
+  version: "3.8.1"
+  uri:
+  - https://git.causal.agency/libretls/about/
+  license: "ISC"
+  description: "Port of libtls from LibreSSL to OpenSSL"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libretls
+  provides:
+  - category: "dev-libs"
+    name: "libretls"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-ossp-uuid
   category: "libs"
   name: "ossp-uuid"
@@ -7435,6 +7456,52 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &apps-wl-clipboard
+  category: "apps"
+  name: "wl-clipboard"
+  version: "2.3.0"
+  uri:
+  - https://github.com/bugaevc/wl-clipboard
+  license: "GPL-3"
+  description: "Wayland clipboard utilities"
+  labels:
+    emerge/jobs: "3"
+    emerge.packages: >-
+      gui-apps/wl-clipboard
+  provides:
+  - category: "gui-apps"
+    name: "wl-clipboard"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/wl-clipboard"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-wlroots
+
+- category: "apps"
+  name: "waynergy"
+  version: "0.0.17"
+  uri:
+  - https://github.com/r-c-f/waynergy
+  license: "MIT"
+  description: "An implementation of a synergy client for wayland compositors"
+  labels:
+    emerge.jobs: "1"
+  prepare:
+  - git clone https://github.com/r-c-f/waynergy
+  - cd waynergy && git checkout 63b4313883dfc2f6cb89f061ef3681dff814b812 && meson --prefix=/usr build && ninja -C build
+  setup:
+  - cd waynergy && ninja -C build install
+  requires:
+  - <<: *layers-wlroots
+  - <<: *libs-libretls
+  - <<: *apps-wl-clipboard
+  build_requires:
+  - <<: *layers-X
+  - <<: *libs-libretls
 
 - category: "apps"
   name: "inxi"
