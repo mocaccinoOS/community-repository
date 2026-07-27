@@ -7458,6 +7458,32 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "input-leap"
+  version: "3.0.3"
+  uri:
+  - https://github.com/input-leap/input-leap
+  license: "GPL-2"
+  description: "Share a mouse and keyboard between computers (fork of Barrier)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-apps/input-leap
+  provides:
+  - category: "gui-apps"
+    name: "input-leap"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/input-leap"
+    accept_keywords: "~amd64"
+    use: "wayland X"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-X
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "obsidian"
   version: "1.12.7"
   uri:
