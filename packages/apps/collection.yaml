@@ -364,6 +364,15 @@ stubs:
   - atom: "media-libs/raptor"
     use: "curl json unicode"
 
+- &libs-tomlplusplus
+  category: "libs"
+  name: "tomlplusplus"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tomlplusplus
+
 - &libs-yyjson
   category: "libs"
   name: "yyjson"
@@ -15230,9 +15239,6 @@ packages:
     emerge.packages: >-
       media-video/obs-studio
   provides:
-  - category: "dev-cpp"
-    name: "websocketpp"
-    version: ">=0"
   - category: "dev-libs"
     name: "qr-code-generator"
     version: ">=0"
@@ -15706,7 +15712,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "18.4+2"
+  version: "18.4+3"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"

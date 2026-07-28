@@ -423,6 +423,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-tomlplusplus
+  category: "libs"
+  name: "tomlplusplus"
+  version: "3.4.0"
+  uri:
+  - https://github.com/marzer/tomlplusplus
+  license: "MIT"
+  description: "TOML config file parser and serializer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tomlplusplus
+  provides:
+  - category: "dev-cpp"
+    name: "tomlplusplus"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-yyjson
   category: "libs"
   name: "yyjson"
@@ -1798,7 +1819,7 @@ packages:
 - &def-hyprland
   category: "layers"
   name: "hyprland"
-  version: "0.56.1"
+  version: "0.56.1+1"
   uri:
   - https://github.com/hyprwm/Hyprland
   license: "MIT"
@@ -1806,7 +1827,6 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-cpp/tomlplusplus::gentoo
       dev-libs/hyprgraphics::hyproverlay
       dev-libs/hyprlang::hyproverlay
       dev-libs/libliftoff::gentoo
@@ -1827,9 +1847,6 @@ packages:
   provides:
   - category: "dev-cpp"
     name: "sdbus-c++"
-    version: ">=0"
-  - category: "dev-cpp"
-    name: "tomlplusplus"
     version: ">=0"
   - category: "dev-libs"
     name: "hyprgraphics"
@@ -1917,9 +1934,58 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-iniparser
+  - <<: *libs-tomlplusplus
   - <<: *libs-udis86
   build_requires:
   - <<: *layers-X
+
+
+- &def-wayfire
+  category: "layers"
+  name: "wayfire"
+  version: "0.10.1+18"
+  uri:
+    - https://github.com/WayfireWM/wayfire
+  license: "MIT"
+  description: "Compiz like 3D wayland compositor"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-apps/gtkgreet
+      gui-apps/wayland-logout
+      gui-apps/wcm
+      gui-apps/wf-shell
+      gui-libs/wf-config
+      gui-wm/wayfire
+  provides:
+  - category: "gui-apps"
+    name: "gtkgreet"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "wayland-logout"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "wcm"
+    version: ">=0"
+  - category: "gui-apps"
+    name: "wf-shell"
+    version: ">=0"
+  - category: "gui-libs"
+    name: "wf-config"
+    version: ">=0"
+  - category: "gui-wm"
+    name: "wayfire"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/gtkgreet"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  - <<: *apps-grim
+  - <<: *libs-nlohmann_json
+  - <<: *libs-yyjson
+  build_requires:
+  - <<: *layers-wlroots
 
 
 - &def-kde-pim
@@ -2118,54 +2184,6 @@ packages:
   - <<: *libs-qgpgme
   build_requires:
   - <<: *layers-plasma
-  
-
-- &def-wayfire
-  category: "layers"
-  name: "wayfire"
-  version: "0.10.1+18"
-  uri:
-    - https://github.com/WayfireWM/wayfire
-  license: "MIT"
-  description: "Compiz like 3D wayland compositor"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      gui-apps/gtkgreet
-      gui-apps/wayland-logout
-      gui-apps/wcm
-      gui-apps/wf-shell
-      gui-libs/wf-config
-      gui-wm/wayfire
-  provides:
-  - category: "gui-apps"
-    name: "gtkgreet"
-    version: ">=0"
-  - category: "gui-apps"
-    name: "wayland-logout"
-    version: ">=0"
-  - category: "gui-apps"
-    name: "wcm"
-    version: ">=0"
-  - category: "gui-apps"
-    name: "wf-shell"
-    version: ">=0"
-  - category: "gui-libs"
-    name: "wf-config"
-    version: ">=0"
-  - category: "gui-wm"
-    name: "wayfire"
-    version: ">=0"
-  atoms:
-  - atom: "gui-apps/gtkgreet"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-wlroots
-  - <<: *apps-grim
-  - <<: *libs-nlohmann_json
-  - <<: *libs-yyjson
-  build_requires:
-  - <<: *layers-wlroots
 
 
 - &def-ghc
