@@ -13490,7 +13490,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "26.07+1"
+  version: "26.07+2"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -13505,7 +13505,7 @@ packages:
     emerge.packages: >-
       app-containers/docker-cli
       app-containers/docker-compose
-      app-containers/docker-buildx
+    # app-containers/docker-buildx
   provides:
   - category: "app-containers"
     name: "docker-cli"
@@ -13513,9 +13513,9 @@ packages:
   - category: "app-containers"
     name: "docker-compose"
     version: '>=0'
-  - category: "app-containers"
-    name: "docker-buildx"
-    version: '>=0'
+  # - category: "app-containers"
+  #   name: "docker-buildx"
+  #   version: '>=0'
   excludes:
   - ^/usr/bin/docker$
   inner_build_requires:
