@@ -1206,7 +1206,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "150.0.7871.128"
+  version: "150.0.7871.181"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -3877,7 +3877,7 @@ packages:
 - &libs-volk
   category: "libs"
   name: "volk"
-  version: "3.2.0"
+  version: "3.3.0"
   uri:
   - http://libvolk.org
   license: "GPL-3"
@@ -4265,7 +4265,7 @@ packages:
 
 - category: "apps"
   name: "android-studio"
-  version: "2026.1.2.10"
+  version: "2026.1.2.11"
   uri:
   - https://developer.android.com/studio
   license: "Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5 EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT MPL-1.1 MPL-2.0 NPL-1.1 OFL-1.1 ZLIB"
@@ -4814,7 +4814,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.92.141"
+  version: "1.92.144"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -6533,7 +6533,7 @@ packages:
 - &apps-freerdp-server
   category: "apps"
   name: "freerdp-server"
-  version: "3.27.1"
+  version: "3.29.0"
   uri:
   - https://www.freerdp.com/
   license: "Apache-2.0"
@@ -6652,7 +6652,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.51.0"
+  version: "0.52.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -6995,7 +6995,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.26.3"
+  version: "1.26.4"
   uri:
   - https://go.dev
   license: "BSD"
@@ -7018,7 +7018,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "150.0.7871.128"
+  version: "150.0.7871.181"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -8208,7 +8208,7 @@ packages:
 
 - category: "apps"
   name: "latte-dock-ng"
-  version: "1.2.28"
+  version: "1.2.30"
   uri:
   - https://github.com/ruizhi-lab/latte-dock-ng
   license: "GPL-2+ GPL-3+ LGPL-2+ || ( LGPL-2.1 LGPL-3 )"
@@ -8233,7 +8233,7 @@ packages:
 
 - category: "apps"
   name: "lego"
-  version: "5.2.2"
+  version: "5.3.1"
   uri:
   - https://github.com/go-acme/lego/
   license: "MIT Apache-2.0 BSD-2 BSD ISC MPL-2.0"
@@ -8993,27 +8993,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &apps-numactl
-  category: "apps"
-  name: "numactl"
-  version: "2.0.19"
-  uri:
-  - https://github.com/numactl/numactl
-  license: "GPL-2"
-  description: "Utilities and libraries for NUMA systems"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      sys-process/numactl
-  provides:
-  - category: "sys-process"
-    name: "numactl"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &apps-nx
   category: "apps"
   name: "nx"
@@ -9126,7 +9105,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.18.4"
+  version: "1.18.8"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -11057,7 +11036,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.12.0_p15018+1"
+  version: "140.13.0_p15019"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -11232,7 +11211,7 @@ packages:
 - &apps-ufw
   category: "apps"
   name: "ufw"
-  version: "0.36.2+2"
+  version: "0.36.2+3"
   uri:
   - https://launchpad.net/ufw
   license: "GPL-3"
@@ -11245,6 +11224,9 @@ packages:
   - category: "net-firewall"
     name: "ufw"
     version: ">=0"
+  atoms:
+  - atom: "net-firewall/ufw"
+    usepkg_exclude: true
   excludes:
   - ^/usr/share/locale/ur/LC_MESSAGES/Linux-PAM.mo
   requires:
@@ -11514,7 +11496,7 @@ packages:
 
 - category: "apps"
   name: "wacomtablet"
-  version: "6.6.6"
+  version: "6.6.6-r1"
   uri:
   - https://apps.kde.org/wacomtablet/
   - https://userbase.kde.org/Wacomtablet
@@ -12659,7 +12641,7 @@ packages:
 - &libs-libsdl3
   category: "libs"
   name: "libsdl3"
-  version: "3.4.10"
+  version: "3.4.12"
   uri:
   - https://www.libsdl.org/
   license: "ZLIB"
@@ -13187,7 +13169,7 @@ packages:
 - &apps-cava
   category: "apps"
   name: "cava"
-  version: "0.10.7"
+  version: "1.0.0"
   uri:
   - http://cdrdao.sourceforge.net
   license: "MIT Unlicense"
@@ -13499,7 +13481,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "26.06"
+  version: "26.07"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -13933,7 +13915,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "12.3.0"
+  version: "12.3.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -14054,7 +14036,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.1.4"
+  version: "1.1.5"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -15234,7 +15216,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "32.1.2+2"
+  version: "32.2.0"
   uri:
   - https://obsproject.com
   - https://simd-everywhere.github.io/blog/
@@ -15724,7 +15706,7 @@ packages:
 - &apps-postgresql
   category: "apps"
   name: "postgresql"
-  version: "18.4+1"
+  version: "18.4+2"
   uri:
   - https://www.postgresql.org
   license: "POSTGRESQL GPL-2"
@@ -15749,7 +15731,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-ossp-uuid
-  - <<: *apps-numactl
   - category: "entity"
     name: "postgres"
     version: ">=0"
@@ -15786,7 +15767,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "11.1"
+  version: "11.3"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -16941,7 +16922,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.13"
+  version: "11.14"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -20200,7 +20181,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "26.07+1"
+  version: "26.07+2"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -22364,7 +22345,7 @@ packages:
 
 - category: "apps"
   name: "vdr"
-  version: "2.7.9"
+  version: "2.8.2"
   uri:
   - http://www.tvdr.de/
   - http://www.escape-edv.de/endriss/vdr/
@@ -22770,7 +22751,6 @@ packages:
 #   - dev-build/rocm-cmake;ACCEPT_KEYWORDS="~amd64"
 #   requires:
 #   - <<: *layers-qt
-#   - <<: *apps-numactl
 #   build_requires:
 #   - <<: *layers-qt
 
