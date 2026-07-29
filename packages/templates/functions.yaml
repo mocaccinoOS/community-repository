@@ -206,8 +206,9 @@
   echo -e "{{ ( .portage_env | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.conf
 {{- end }}
 
+{{- $package := . }}
 {{- range ( "mask unmask" | splitList " " ) }}
-{{- if . }}
+{{- if ( index $package . ) }}
 - |
   set -x; \
   echo -e "{{ ( . | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.{{ . }}
