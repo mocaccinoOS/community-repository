@@ -519,22 +519,25 @@ packages:
 
 - category: "utils"
   name: "system-tools"
-  version: "0.4"
+  version: "0.5"
   uri:
   - https://github.com/mocaccinoOS/community-repository
   license: "MIT"
   description: |
-    Luet based tools to:
-    - Upgrade in a loop while dependency solver errors appear
+    Luet based scripts to:
+    - List dropped packages that are still installed
     - Check for missing deps and recommend packages to (re)install in order to fix them
+    - Upgrade in a loop while dependency solver errors appear
   labels:
     emerge.jobs: "1"
   setup:
   - |
-    wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/loopup.sh -O /usr/bin/loopup.sh; \
-    chmod +x /usr/bin/loopup.sh; \
+    wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/find-ghost-packages.sh -O /usr/bin/find-ghost-packages.sh; \
+    chmod +x /usr/bin/find-ghost-packages.sh
     wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/libtest-luet.sh -O /usr/bin/libtest-luet.sh; \
     chmod +x /usr/bin/libtest-luet.sh
+    wget https://raw.githubusercontent.com/mocaccinoOS/community-repository/main/scripts/loopup.sh -O /usr/bin/loopup.sh; \
+    chmod +x /usr/bin/loopup.sh; \
   requires:
   - <<: *system-luet
   build_requires:

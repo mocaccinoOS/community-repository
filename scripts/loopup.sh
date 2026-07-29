@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# if [[ $(id -u) -ne 0 ]] ; then
-#     echo -e "Must run as \e[5;31;1mroot\e[0m!"
-#     exit 1
-# fi
+if [[ $(id -u) -ne 0 ]] ; then
+    echo -e "Must run as \e[5;31;1mroot\e[0m!"
+    exit 1
+fi
 
 # set -x
 
