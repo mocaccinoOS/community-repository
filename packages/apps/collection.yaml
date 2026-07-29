@@ -21590,6 +21590,10 @@ packages:
     accept_keywords: "~amd64"
   - atom: "net-wireless/gr-osmosdr"
     use: "rtlsdr"
+  prepare:
+  # push python 3.14
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{12..13}/PYTHON_COMPAT=( python3_{12..14}/' /var/db/repos/gentoo/net-wireless/gr-osmosdr/gr-osmosdr-*.ebuild
+  - find /var/db/repos/gentoo/net-wireless/gr-osmosdr/ -type f -name "gr-osmosdr-*.ebuild" -exec ebuild {} manifest \;
   requires:
   - <<: *apps-gnuradio
   - <<: *libs-rtl-sdr
