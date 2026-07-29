@@ -207,9 +207,11 @@
 {{- end }}
 
 {{- range ( "mask unmask" | splitList " " ) }}
+{{- if . }}
 - |
   set -x; \
   echo -e "{{ ( . | replace "\n" "\\n" | replace "$" "\\$" | replace "\"" "\\\"" ) }}" >> /etc/portage/env/{{ $filename }}.{{ . }}
+{{- end }}
 {{- end }}
 
 {{- if .atoms }}
