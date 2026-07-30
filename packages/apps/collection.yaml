@@ -2554,6 +2554,27 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-libretls
+  category: "libs"
+  name: "libretls"
+  version: "3.8.1"
+  uri:
+  - https://git.causal.agency/libretls/about/
+  license: "ISC"
+  description: "Port of libtls from LibreSSL to OpenSSL"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libretls
+  provides:
+  - category: "dev-libs"
+    name: "libretls"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-libsfml
   category: "libs"
   name: "libsfml"
@@ -3591,6 +3612,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdbus-cpp
+  category: "libs"
+  name: "sdbus-cpp"
+  version: "2.3.1"
+  uri:
+  - https://github.com/Kistler-Group/sdbus-cpp
+  license: "LGPL-2.1+ Nokia-Qt-LGPL-Exception-1.1"
+  description: "High-level C++ D-Bus library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/sdbus-c++
+  provides:
+  - category: "dev-cpp"
+    name: "sdbus-c++"
+    version: ">=0"
+  atoms:
+  - atom: "dev-cpp/sdbus-c++"
+    accept_keywords: "~amd64"
+    use: "systemd"
+  inner_build_reqs:
+  - dev-build/cmake
+  - dev-build/meson
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -3726,6 +3775,27 @@ packages:
   provides:
   - category: "dev-perl"
     name: "TermReadKey"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- &libs-tomlplusplus
+  category: "libs"
+  name: "tomlplusplus"
+  version: "3.4.0"
+  uri:
+  - https://github.com/marzer/tomlplusplus
+  license: "MIT"
+  description: "TOML config file parser and serializer"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/tomlplusplus
+  provides:
+  - category: "dev-cpp"
+    name: "tomlplusplus"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -5452,6 +5522,9 @@ packages:
   - category: "dev-lang"
     name: "deno-bin"
     version: ">=0"
+  atoms:
+  - atom: "dev-lang/deno-bin"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -7446,6 +7519,32 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "input-leap"
+  version: "3.0.3"
+  uri:
+  - https://github.com/input-leap/input-leap
+  license: "GPL-2"
+  description: "Share a mouse and keyboard between computers (fork of Barrier)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-apps/input-leap
+  provides:
+  - category: "gui-apps"
+    name: "input-leap"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/input-leap"
+    accept_keywords: "~amd64"
+    use: "wayland X"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-X
+  - <<: *layers-gnome-common
+
+- category: "apps"
   name: "inxi"
   version: "3.3.40.1"
   uri:
@@ -8528,6 +8627,38 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
+  name: "mangowm"
+  version: "0.15.4"
+  uri:
+  - https://github.com/mangowm/mango
+  license: "CC0-1.0 GPL-3+ MIT"
+  description: "wayland compositor based on wlroots and scenefx(dwl but no suckless)"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-wm/mangowm
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-wm"
+    name: "mangowm"
+    version: ">=0"
+  atoms:
+  - atom: "gui-wm/mangowm"
+    accept_keywords: "~amd64"
+    use: "X"
+  - atom: "gui-libs/scenefx"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+  - <<: *libs-cJSON
+  build_requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+  - <<: *libs-cJSON
+
+- category: "apps"
   name: "marble"
   version: "26.04.3"
   uri:
@@ -9026,6 +9157,33 @@ packages:
     portage_env: "MAKEOPTS=\"-j1\""
   inner_build_reqs:
   - x11-misc/gccmakedep x11-misc/xorg-cf-files x11-misc/imake
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
+  name: "obsidian"
+  version: "1.12.7"
+  uri:
+  - https://obsidian.md/
+  license: "Obsidian-EULA"
+  description: "A powerful knowledge base on top of a local folder of plain text Markdown files"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-office/obsidian
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "app-office"
+    name: "obsidian"
+    version: ">=0"
+  atoms:
+  - atom: "app-office/obsidian"
+    license: Obsidian-EULA
+    accept_keywords: "~amd64"
+    use: "appindicator wayland"
   requires:
   - <<: *layers-X
   build_requires:
@@ -10734,7 +10892,8 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- category: "apps"
+- &apps-task
+  category: "apps"
   name: "task"
   version: "3.4.2+2"
   uri:
@@ -11655,6 +11814,31 @@ packages:
   - <<: *layers-sys-fs
 
 - category: "apps"
+  name: "wev"
+  version: "1.1.0"
+  uri:
+  - https://git.sr.ht/~sircmpwn/wev
+  license: "MIT"
+  description: "Wayland event viewer"
+  labels:
+    emerge/jobs: "3"
+    emerge.packages: >-
+      gui-apps/wev
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "wev"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/wev"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-wlroots
+
+- category: "apps"
   name: "wezterm"
   version: "20260616.002039"
   uri:
@@ -11743,6 +11927,30 @@ packages:
     version: ">=0"
   build_requires:
   - <<: *layers-qt
+
+- &apps-wl-clipboard
+  category: "apps"
+  name: "wl-clipboard"
+  version: "2.3.0"
+  uri:
+  - https://github.com/bugaevc/wl-clipboard
+  license: "GPL-3"
+  description: "Wayland clipboard utilities"
+  labels:
+    emerge/jobs: "3"
+    emerge.packages: >-
+      gui-apps/wl-clipboard
+  provides:
+  - category: "gui-apps"
+    name: "wl-clipboard"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/wl-clipboard"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-wlroots
 
 - category: "apps"
   name: "woeusb-ng"
@@ -12109,6 +12317,26 @@ packages:
   provides:
   - category: "app-shells"
     name: "zsh"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
+- category: "apps"
+  name: "zsync"
+  version: "0.6.2-r5"
+  uri:
+  - http://zsync.moria.org.uk/
+  license: "Artistic-2"
+  description: "Partial/differential file download client over HTTP using the rsync algorithm"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      net-misc/zsync
+  provides:
+  - category: "apps"
+    name: "zsync"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -12732,6 +12960,32 @@ packages:
   - <<: *libs-uhd
   build_requires:
   - <<: *layers-sys-fs
+
+- &libs-tasklib
+  category: "libs"
+  name: "tasklib"
+  version: "2.5.1"
+  uri:
+  - https://github.com/GothenburgBitFactory/tasklib
+  license: "BSD"
+  description: "A Python library for interacting with taskwarrior databases"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      dev-python/tasklib
+  provides:
+  - category: "dev-python"
+    name: "tasklib"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/tasklib"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-task
+    skip: true
+  build_requires:
+  - <<: *buildbase-sys-fs
 
 # may be included in its referring package
 - &libs-tiff-compat
@@ -15171,6 +15425,83 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-noctalia5
+  category: "apps"
+  name: "noctalia5"
+  version: "5.0.0_beta3"
+  uri:
+  - https://noctalia.dev
+  license: "MIT"
+  description: "A lightweight Wayland shell and bar built directly on Wayland + OpenGL ES"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      =gui-apps/noctalia-5.0.0_beta3
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "noctalia"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/noctalia"
+    accept_keywords: "**"
+  requires:
+  #- <<: *layers-X
+  - <<: *layers-qt
+  #- <<: *libs-md4c # included in qt?
+  - <<: *libs-nlohmann_json
+  - <<: *libs-sdbus-cpp
+  - <<: *libs-tomlplusplus
+  - <<: *libs-stb
+  build_requires:
+  #- <<: *layers-X
+  - <<: *layers-qt
+  #- <<: *libs-nlohmann_json
+  #- <<: *libs-sdbus-cpp
+  #- <<: *libs-tomlplusplus
+  #- <<: *libs-stb
+  includes:
+  - /usr$
+  - /usr/bin$
+  - /usr/bin/noctalia$
+  - /usr/share$
+  - /usr/share/applications$
+  - /usr/share/applications/dev.noctalia.Noctalia.desktop$
+  - /usr/share/doc$
+  - /usr/share/doc/noctalia.*
+  - /usr/share/noctalia$
+  - /usr/share/noctalia/.*
+
+- category: "apps"
+  name: "noctalia-greeter"
+  version: "1.0.0"
+  uri:
+  - https://noctalia.dev
+  license: "MIT"
+  description: "A minimal login greeter for greetd that matches Noctalia Shell"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      gui-apps/noctalia-greeter
+  overlays:
+  - enable: "guru"
+  provides:
+  - category: "gui-apps"
+    name: "noctalia-greeter"
+    version: ">=0"
+  atoms:
+  - atom: "gui-apps/noctalia-greeter"
+    accept_keywords: "~amd64"
+  optrequires:
+  - <<: *apps-noctalia5
+  requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+  build_requires:
+  - <<: *layers-X
+  - <<: *layers-wlroots
+
 - category: "apps"
   name: "nwipe"
   version: "0.41"
@@ -16761,6 +17092,35 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
+  name: "vit"
+  version: "2.3.4"
+  uri:
+  - https://github.com/vit-project/vit
+  license: "MIT"
+  description: "A lightweight, fast, curses-based front end to Taskwarrior"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-misc/vit
+  provides:
+  - category: "app-misc"
+    name: "vit"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/vit"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/tasklib"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-tasklib
+    skip: true
+  - <<: *apps-task
+    skip: true
+  build_requires:
+  - <<: *buildbase-sys-fs
+
+- category: "apps"
   name: "vivaldi"
   version: "8.0.4033.50"
   uri:
@@ -17006,6 +17366,28 @@ packages:
   - <<: *buildbase-gnome-common
   - <<: *layerbase-perl-libs
   requires_final_images: true
+
+- category: "apps"
+  name: "waynergy"
+  version: "0.0.17"
+  uri:
+  - https://github.com/r-c-f/waynergy
+  license: "MIT"
+  description: "An implementation of a synergy client for wayland compositors"
+  labels:
+    emerge.jobs: "1"
+  prepare:
+  - git clone https://github.com/r-c-f/waynergy
+  - cd waynergy && git checkout 63b4313883dfc2f6cb89f061ef3681dff814b812 && meson --prefix=/usr build && ninja -C build
+  setup:
+  - cd waynergy && ninja -C build install
+  requires:
+  - <<: *layers-wlroots
+  - <<: *libs-libretls
+  - <<: *apps-wl-clipboard
+  build_requires:
+  - <<: *layers-X
+  - <<: *libs-libretls
 
 - &apps-wxhexeditor
   category: "apps"
@@ -19080,10 +19462,10 @@ packages:
 - &apps-neovim
   category: "apps"
   name: "neovim"
-  version: "0.11.7+1"
+  version: "0.12.3"
   uri:
   - https://neovim.io
-  license: "Apache-2.0 Boost-1.0 vim"
+  license: "Apache-2.0 vim"
   description: |
     Vim-fork focused on extensibility and agility
     Library for easy processing of keyboard entry from terminal-based programs
@@ -19124,6 +19506,7 @@ packages:
   atoms:
   - atom: "app-editors/neovim"
     use: "lto nvimpager tui"
+    accept_keywords: "~amd64"
   inner_build_reqs:
   - dev-lua/busted
   requires:
@@ -20312,6 +20695,63 @@ packages:
   - <<: *libs-sdl2
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "asusctl"
+  version: "6.1.10"
+  uri:
+  - https://asus-linux.org
+  license: "0BSD Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD BSD-2 Boost-1.0 ISC LicenseRef-UFL-1.0 MIT MPL-2.0 OFL-1.1 Unicode-DFS-2016 Unlicense ZLIB"
+  describe: "asusctl (asusd) is a utility for Linux to control many aspects of various ASUS laptops"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      sys-power/asusctl
+  overlays:
+  - enable: "zGentoo"
+  provides:
+  - category: "sys-power"
+    name: "asusctl"
+    version: ">=0"
+  - category: "sys-power"
+    name: "supergfxctl"
+    version: ">=0"
+  atoms:
+  - atom: "llvm-core/llvm:19"
+    accept_keywords: "~amd64"
+    unmask: true
+  - atom: "sys-power/asusctl"
+    accept_keywords: "~amd64"
+    use: "acpi gfx gui X llvm_slot_19"
+    license: "LicenseRef-UFL-1.0"
+  - atom: "sys-power/supergfxctl"
+    accept_keywords: "~amd64"
+    use: "acpi gfx gui X llvm_slot_19"
+    license: "LicenseRef-UFL-1.0"
+  env:
+  - LLVM_VERSION=19
+  - RUST_VERSION=1.85.0
+  portage_env: "USE=\"llvm_slot_19 -llvm_slot_20 -llvm_slot_21 -llvm_slot_22\""
+  inner_build_reqs:
+  #- virtual/linux-sources
+  #- llvm-core/clang:${LLVM_VERSION}
+  #- llvm-core/lld:${LLVM_VERSION}
+  #- llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
+  - dev-lang/rust-bin:${RUST_VERSION}
+  - sys-power/power-profiles-daemon
+  requires:
+  - <<: *layers-X
+  - <<: *libs-sdl2
+  build_requires:
+  - <<: *buildbase-X
+  - <<: *buildbase-mocaccino-lts-sources
+  - <<: *libs-sdl2
+  excludes:
+  - ^/etc/env.d/
+  - ^/etc/clang/
+  - ^/usr/lib/clang/19/
+  - ^/usr/lib/llvm/19/
+  - ^/usr/lib/modules/
 
 - category: "apps"
   name: "audacious"
