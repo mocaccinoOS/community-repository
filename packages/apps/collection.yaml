@@ -22629,7 +22629,8 @@ packages:
     use: "calf doc mda-lv2 zamaudio"
   - atom: "media-libs/lsp-plugins"
     use: "lv2 vst X # doc jack ladspa"
-    portage_env: "${LDFLAGS} -Wl,--no-gc-sections"
+    portage_env: |
+      LDFLAGS="${LDFLAGS} -Wl,--no-gc-sections"
   - atom: "media-plugins/zam-plugins"
     use: "jack opengl"
   inner_build_reqs:
