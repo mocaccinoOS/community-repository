@@ -20648,35 +20648,20 @@ packages:
     name: "supergfxctl"
     version: ">=0"
   atoms:
-  # - atom: "llvm-core/llvm:19"
-  #   accept_keywords: "~amd64"
-  #   unmask: true
   - atom: "sys-power/asusctl"
     accept_keywords: "~amd64"
     use: "acpi gfx gui X"
     license: "LicenseRef-UFL-1.0"
-    usepkg_exclude: true
   - atom: "sys-power/supergfxctl"
     accept_keywords: "~amd64"
     use: "acpi gfx gui X"
     license: "LicenseRef-UFL-1.0"
-    usepkg_exclude: true
-  # env:
-  # - LLVM_VERSION=22
-  # - RUST_VERSION=1.85.0
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   prepare:
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
-  # - sed -i -e 's/inherit llvm-r1/inherit llvm-r2/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
   - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
-  # - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} clean \;
   - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
-  #- virtual/linux-sources
-  #- llvm-core/clang:${LLVM_VERSION}
-  #- llvm-core/lld:${LLVM_VERSION}
-  #- llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
-  # - dev-lang/rust-bin:${RUST_VERSION}
   - dev-lang/rust-bin
   - sys-power/power-profiles-daemon
   requires:
@@ -20687,12 +20672,6 @@ packages:
   # - <<: *buildbase-X
   # - <<: *buildbase-mocaccino-lts-sources
   # requires_final_images: true
-  # excludes:
-  # - ^/etc/env.d/
-  # - ^/etc/clang/
-  # - ^/usr/lib/clang/19/
-  # - ^/usr/lib/llvm/19/
-  # - ^/usr/lib/modules/
 
 - category: "apps"
   name: "audacious"
