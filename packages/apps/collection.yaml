@@ -8616,6 +8616,9 @@ packages:
   overlays:
   - enable: "guru"
   provides:
+  - category: "gui-libs"
+    name: "scenefx"
+    version: ">=0"
   - category: "gui-wm"
     name: "mangowm"
     version: ">=0"
@@ -12934,7 +12937,7 @@ packages:
 - &libs-tasklib
   category: "libs"
   name: "tasklib"
-  version: "2.5.1"
+  version: "2.5.1+1"
   uri:
   - https://github.com/GothenburgBitFactory/tasklib
   license: "BSD"
@@ -12953,7 +12956,6 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-task
-    skip: true
   build_requires:
   - <<: *buildbase-sys-fs
 
@@ -17021,35 +17023,6 @@ packages:
   - <<: *layers-X
 
 - category: "apps"
-  name: "vit"
-  version: "2.3.4"
-  uri:
-  - https://github.com/vit-project/vit
-  license: "MIT"
-  description: "A lightweight, fast, curses-based front end to Taskwarrior"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-misc/vit
-  provides:
-  - category: "app-misc"
-    name: "vit"
-    version: ">=0"
-  atoms:
-  - atom: "app-misc/vit"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/tasklib"
-    accept_keywords: "~amd64"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-tasklib
-    skip: true
-  - <<: *apps-task
-    skip: true
-  build_requires:
-  - <<: *buildbase-sys-fs
-
-- category: "apps"
   name: "vivaldi"
   version: "8.0.4033.50"
   uri:
@@ -20140,6 +20113,30 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "vit"
+  version: "2.3.4+1"
+  uri:
+  - https://github.com/vit-project/vit
+  license: "MIT"
+  description: "A lightweight, fast, curses-based front end to Taskwarrior"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/vit
+  provides:
+  - category: "app-misc"
+    name: "vit"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/vit"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-tasklib
+  build_requires:
+  - <<: *buildbase-sys-fs
+
+- category: "apps"
   name: "x2goserver"
   version: "4.1.0.6+4"
   uri:
@@ -20661,8 +20658,8 @@ packages:
   - RUST_VERSION=1.85.0
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/sys-power/asusctl/asusctl-*.ebuild
-  - find /var/db/repos/gentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
+  - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   #- virtual/linux-sources
   #- llvm-core/clang:${LLVM_VERSION}
