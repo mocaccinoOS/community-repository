@@ -20688,7 +20688,9 @@ packages:
     license: "LicenseRef-UFL-1.0"
     usepkg_exclude: true
   env:
-  - ASUSCTL_VERSION="6.1.10"
+  - FEATURES="-network-sandbox"
+  # - ASUSCTL_VERSION="6.1.10"
+  # - SUPERGFXCTL_VERSION="4.0.5-r4"
   # - LLVM_VERSION=22
   # - RUST_VERSION=1.85.0
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
@@ -20706,7 +20708,7 @@ packages:
   - eselect repository create local
   - chown -R portage:portage /var/db/repos/local
   # fix cargo
-  - emerge -1 dev-util/pycargoebuild
+  # - emerge -1 app-portage/pycargoebuild
   # sys-power/supergfxctl
   - mkdir -p /var/db/repos/local/sys-power/supergfxctl
   - cp -r /var/db/repos/zGentoo/sys-power/supergfxctl/*.ebuild /var/db/repos/local/sys-power/supergfxctl/
@@ -20715,17 +20717,17 @@ packages:
   # # fix cargo
   # - sed -i -e '/vendor_${PN}_${_PV}.tar.xz/d' /var/db/repos/local/sys-power/supergfxctl/supergfxctl-*.ebuild
   # - sed -i -e '/unpack vendor_${PN}_${_PV%%_*}.tar.xz/d' /var/db/repos/local/sys-power/supergfxctl/supergfxctl-*.ebuild
-  - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/supergfxctl/supergfxctl-${ASUSCTL_VERSION}.ebuild
+  # - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/supergfxctl/supergfxctl-${SUPERGFXCTL_VERSION}.ebuild
   # sys-power/asusctl
   - mkdir -p /var/db/repos/local/sys-power/asusctl
-  # - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
-  - cp -r /var/db/repos/zGentoo/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild /var/db/repos/local/sys-power/asusctl/
+  - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
+  # - cp -r /var/db/repos/zGentoo/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild /var/db/repos/local/sys-power/asusctl/
   - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
   - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
   # # fix cargo
   # - sed -i -e '/vendor_${PN}_${_PV}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
   # - sed -i -e '/unpack vendor_${PN}_${_PV%%_*}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
-  - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild
+  # - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild
   # remove zGentoo
   - eselect repository remove zGentoo || layman -d zGentoo  
   # - rm -rf /var/cache/edb/dep/*
