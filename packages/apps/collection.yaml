@@ -20657,7 +20657,7 @@ packages:
   - <<: *layers-qt
 
 - category: "apps"
-  name: "asusctl"
+  name: "asusctl-lts"
   version: "6.1.10"
   uri:
   - https://asus-linux.org
@@ -20725,10 +20725,9 @@ packages:
   - <<: *layers-X
   - <<: *libs-sdl2
   build_requires:
-  - <<: *layers-X
-  # - <<: *buildbase-X
-  # - <<: *buildbase-mocaccino-lts-sources
-  # requires_final_images: true
+  - <<: *buildbase-mocaccino-lts-sources
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "audacious"
