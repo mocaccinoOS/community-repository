@@ -20663,13 +20663,25 @@ packages:
   # - RUST_VERSION=1.85.0
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   prepare:
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
-  - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
-  - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} clean \;
-  - rm -f /var/db/repos/zGentoo/sys-power/asusctl/Manifest
-  - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest --force \;
+  # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
+  # - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/zGentoo/sys-power/asusctl/asusctl-*.ebuild
+  # # - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} clean \;
+  # # - rm -f /var/db/repos/zGentoo/sys-power/asusctl/Manifest
+  # # - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest --force \;
+  # - find /var/db/repos/zGentoo/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
+  # # - rm -rf /var/cache/edb/dep/*
+  # # - egencache --update --repo=zGentoo
+  - emerge -1 app-eselect/eselect-repository
+  - eselect repository create local
+  - mkdir -p /var/db/repos/local/sys-power/asusctl
+  - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
+  - chown -R portage:portage /var/db/repos/local
+  - eselect repository remove zGentoo || layman -d zGentoo
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  - find /var/db/repos/local/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
   - rm -rf /var/cache/edb/dep/*
-  - egencache --update --repo=zGentoo
+  - egencache --update --repo=local
   inner_build_reqs:
   - dev-lang/rust-bin
   - sys-power/power-profiles-daemon
