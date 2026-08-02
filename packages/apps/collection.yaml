@@ -20705,10 +20705,17 @@ packages:
   - emerge -1 app-eselect/eselect-repository
   - eselect repository create local
   - chown -R portage:portage /var/db/repos/local
+  # fix cargo
+  - emerge -1 dev-util/pycargoebuild
   # sys-power/supergfxctl
   - mkdir -p /var/db/repos/local/sys-power/supergfxctl
   - cp -r /var/db/repos/zGentoo/sys-power/supergfxctl/*.ebuild /var/db/repos/local/sys-power/supergfxctl/
+  - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/local/sys-power/supergfxctl/supergfxctl-*.ebuild
   - find /var/db/repos/local/sys-power/supergfxctl/ -type f -name "supergfxctl-*.ebuild" -exec ebuild {} manifest \;
+  # # fix cargo
+  # - sed -i -e '/vendor_${PN}_${_PV}.tar.xz/d' /var/db/repos/local/sys-power/supergfxctl/supergfxctl-*.ebuild
+  # - sed -i -e '/unpack vendor_${PN}_${_PV%%_*}.tar.xz/d' /var/db/repos/local/sys-power/supergfxctl/supergfxctl-*.ebuild
+  - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/supergfxctl/supergfxctl-${ASUSCTL_VERSION}.ebuild
   # sys-power/asusctl
   - mkdir -p /var/db/repos/local/sys-power/asusctl
   # - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
@@ -20718,7 +20725,6 @@ packages:
   # # fix cargo
   # - sed -i -e '/vendor_${PN}_${_PV}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
   # - sed -i -e '/unpack vendor_${PN}_${_PV%%_*}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
-  - emerge -1 dev-util/pycargoebuild
   - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild
   # remove zGentoo
   - eselect repository remove zGentoo || layman -d zGentoo  
