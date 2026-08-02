@@ -9112,6 +9112,35 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-nvidia-cuda-toolkit
+  category: "apps"
+  name: "nvidia-cuda-toolkit"
+  version: "13.3.1"
+  uri:
+  - https://developer.nvidia.com/cuda-zone
+  license: "NVIDIA-CUDA"
+  description: "NVIDIA CUDA Toolkit (compiler and friends)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-util/nvidia-cuda-toolkit
+  overlays:
+  - enable: "stuff"
+  provides:
+  - category: "dev-util"
+    name: "nvidia-cuda-toolkit"
+    version: ">=0"
+  atoms:
+  - atom: "dev-util/nvidia-cuda-toolkit"
+    license: NVIDIA-CUDA
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-python/defusedxml
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-nx
   category: "apps"
   name: "nx"
