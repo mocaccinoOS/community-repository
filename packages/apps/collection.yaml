@@ -20687,7 +20687,8 @@ packages:
     use: "acpi gfx gui X"
     license: "LicenseRef-UFL-1.0"
     usepkg_exclude: true
-  # env:
+  env:
+  - ASUSCTL_VERSION="6.1.10"
   # - LLVM_VERSION=22
   # - RUST_VERSION=1.85.0
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
@@ -20704,16 +20705,21 @@ packages:
   - emerge -1 app-eselect/eselect-repository
   - eselect repository create local
   - chown -R portage:portage /var/db/repos/local
-  # sys-power/asusctl
-  - mkdir -p /var/db/repos/local/sys-power/asusctl
-  - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
-  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
-  - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
-  - find /var/db/repos/local/sys-power/asusctl/ -type f -name "asusctl-*.ebuild" -exec ebuild {} manifest \;
   # sys-power/supergfxctl
   - mkdir -p /var/db/repos/local/sys-power/supergfxctl
   - cp -r /var/db/repos/zGentoo/sys-power/supergfxctl/*.ebuild /var/db/repos/local/sys-power/supergfxctl/
   - find /var/db/repos/local/sys-power/supergfxctl/ -type f -name "supergfxctl-*.ebuild" -exec ebuild {} manifest \;
+  # sys-power/asusctl
+  - mkdir -p /var/db/repos/local/sys-power/asusctl
+  # - cp -r /var/db/repos/zGentoo/sys-power/asusctl/*.ebuild /var/db/repos/local/sys-power/asusctl/
+  - cp -r /var/db/repos/zGentoo/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild /var/db/repos/local/sys-power/asusctl/
+  - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  - sed -i -e 's/RUST_MAX_VER="1.85.0"/RUST_MAX_VER="1.97.1"/' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  # # fix cargo
+  # - sed -i -e '/vendor_${PN}_${_PV}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  # - sed -i -e '/unpack vendor_${PN}_${_PV%%_*}.tar.xz/d' /var/db/repos/local/sys-power/asusctl/asusctl-*.ebuild
+  - emerge -1 dev-util/pycargoebuild
+  - pycargoebuild --eapi 8 https://gitlab.com > /usr/local/portage/sys-power/asusctl/asusctl-${ASUSCTL_VERSION}.ebuild
   # remove zGentoo
   - eselect repository remove zGentoo || layman -d zGentoo  
   # - rm -rf /var/cache/edb/dep/*
@@ -20725,8 +20731,8 @@ packages:
   - <<: *layers-X
   - <<: *libs-sdl2
   build_requires:
-  - <<: *buildbase-mocaccino-lts-sources
   - <<: *buildbase-X
+  - <<: *buildbase-mocaccino-lts-sources
   requires_final_images: true
 
 - category: "apps"
