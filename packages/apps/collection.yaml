@@ -740,7 +740,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20260601"
+  version: "20260701"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -1069,7 +1069,7 @@ packages:
 - &libs-babl-gegl
   category: "libs"
   name: "babl-gegl"
-  version: "26.07"
+  version: "26.08"
   uri:
   - https://gegl.org/
   license: "GPL-3+ LGPL-3"
@@ -1218,7 +1218,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "150.0.7871.181+1"
+  version: "151.0.7922.108"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -1479,7 +1479,7 @@ packages:
 - &libs-ffmpeg-compat
   category: "libs"
   name: "ffmpeg-compat"
-  version: "7.1.5"
+  version: "8.1.2"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2+"
@@ -2257,7 +2257,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.4"
+  version: "1.9.6"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -3125,7 +3125,7 @@ packages:
 - &libs-oxygen-icons
   category: "libs"
   name: "oxygen-icons"
-  version: "6.2.0"
+  version: "6.27.0"
   uri:
   - https://develop.kde.org/frameworks/oxygen-icons/
   license: "LGPL-3"
@@ -3338,7 +3338,7 @@ packages:
 - &libs-python-protobuf
   category: "libs"
   name: "python-protobuf"
-  version: "7.34.2+1"
+  version: "7.35.1"
   uri:
   - https://protobuf.dev/
   license: "BSD"
@@ -3479,7 +3479,7 @@ packages:
 - &libs-regex
   category: "libs"
   name: "regex"
-  version: "2026.6.28"
+  version: "2026.7.10"
   uri:
   - https://github.com/mrabarnett/mrab-regex/
   license: "Apache-2.0"
@@ -4188,7 +4188,7 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.30"
+  version: "8.12.32"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
@@ -4327,7 +4327,7 @@ packages:
 
 - category: "apps"
   name: "android-studio"
-  version: "2026.1.3.7"
+  version: "2026.1.3.8"
   uri:
   - https://developer.android.com/studio
   license: "Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5 EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT MPL-1.1 MPL-2.0 NPL-1.1 OFL-1.1 ZLIB"
@@ -4751,7 +4751,7 @@ packages:
 
 - category: "apps"
   name: "bitwarden-desktop"
-  version: "2026.6.1"
+  version: "2026.7.0"
   uri:
   - https://bitwarden.com
   license: "GPL-3"
@@ -4876,7 +4876,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.93.129"
+  version: "1.93.136"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5041,7 +5041,7 @@ packages:
 
 - category: "apps"
   name: "cartridges"
-  version: "2.12.1-r1+1"
+  version: "2.13.1-r1"
   uri:
   - https://github.com/kra-mo/cartridges/
   license: "GPL-3+"
@@ -5109,7 +5109,7 @@ packages:
 - &apps-chafa
   category: "apps"
   name: "chafa"
-  version: "1.18.2"
+  version: "1.18.2+1"
   uri:
   - https://hpjansson.org/chafa/
   license: "LGPL-3+"
@@ -5134,7 +5134,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "1.5.2"
+  version: "1.5.3"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -5383,7 +5383,7 @@ packages:
 
 - category: "apps"
   name: "darktable"
-  version: "5.4.1"
+  version: "5.4.1+1"
   uri:
   - https://www.darktable.org/
   - https://gmic.eu/
@@ -5401,9 +5401,9 @@ packages:
   atoms:
   - atom: "media-gfx/darktable"
     use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k jpegxl nls opencl openexr tools webp # flickr gamepad geolocation gmic keyring graphicsmagick kwallet lto lua midi openmp"
-    portage_env: |
-      GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
-      CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
+    # portage_env: |
+    #   GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
+    #   CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
       CXXFLAGS="${CFLAGS}"
   inner_build_reqs:
   - dev-python/jsonschema
@@ -6218,7 +6218,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "142-145-148"
+  version: "150-152"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6226,9 +6226,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:142
-      media-video/ffmpeg-chromium:145
-      media-video/ffmpeg-chromium:148
+      media-video/ffmpeg-chromium:150
+      media-video/ffmpeg-chromium:152
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -6688,7 +6687,7 @@ packages:
 
 - category: "apps"
   name: "geeqie"
-  version: "2.6.1-r1+2"
+  version: "2.6.1-r1+3"
   uri:
   - http://www.geeqie.org
   license: "GPL-2"
@@ -6714,7 +6713,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.53.1"
+  version: "0.55.1"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -7080,7 +7079,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "150.0.7871.181+1"
+  version: "151.0.7922.108"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7451,7 +7450,7 @@ packages:
 
 - category: "apps"
   name: "impala"
-  version: "0.2.4"
+  version: "0.7.4"
   uri:
   - https://github.com/pythops/impala
   license: "GPL-3 LGPL-2.1 MIT MPL-2.0 Unicode-DFS-2016 ZLIB || ( Apache-2.0 Boost-1.0 )"
@@ -7617,7 +7616,7 @@ packages:
   
 - category: "apps"
   name: "jitsi-meet"
-  version: "2026.7.0"
+  version: "2026.8.0"
   uri:
   - https://github.com/jitsi/jitsi-meet-electron
   license: "Apache-2.0"
@@ -7728,7 +7727,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.7.1"
+  version: "3.7.6"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -8295,7 +8294,7 @@ packages:
 
 - category: "apps"
   name: "latte-dock-ng"
-  version: "1.2.36"
+  version: "1.2.38"
   uri:
   - https://github.com/ruizhi-lab/latte-dock-ng
   license: "GPL-2+ GPL-3+ LGPL-2+ || ( LGPL-2.1 LGPL-3 )"
@@ -8604,7 +8603,7 @@ packages:
 
 - category: "apps"
   name: "mangowm"
-  version: "0.15.6"
+  version: "0.16.0"
   uri:
   - https://github.com/mangowm/mango
   license: "CC0-1.0 GPL-3+ MIT"
@@ -9280,7 +9279,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.18.8"
+  version: "1.18.18"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -10054,6 +10053,43 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "proton-ge-custom-bin"
+  version: "11.5"
+  uri:
+  - https://github.com/GloriousEggroll/proton-ge-custom
+  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+  description: "A fancy custom distribution of Valves Proton with various patches"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/proton-ge-custom-bin
+  overlays:
+  - enable: "kzd"
+  provides:
+  - category: "app-emulation"
+    name: "proton-ge-custom-bin"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "vkd3d-proton"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libxml2-compat"
+    version: ">=0"
+  atoms:
+  - atom: "app-emulation/proton-ge-custom-bin"
+    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+    accept_keywords: "~amd64"
+  # prepare:
+  # - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
+  # - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
+  inner_build_reqs:
+  - dev-util/mingw64-toolchain
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- category: "apps"
   name: "putty"
   version: "0.84"
   uri:
@@ -10440,7 +10476,7 @@ packages:
 # unstable for python 3.14
 - category: "apps"
   name: "rawtherapee"
-  version: "5.13"
+  version: "5.13+1"
   uri:
   - https://www.rawtherapee.com
   license: "GPL-3"
@@ -12410,7 +12446,7 @@ packages:
 - &libs-build
   category: "libs"
   name: "build"
-  version: "1.5.0+1"
+  version: "1.5.1"
   uri:
   - https://pypi.org/project/build/
   - https://github.com/pypa/build/
@@ -13751,7 +13787,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "26.07+2"
+  version: "29.5.2"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -14028,7 +14064,7 @@ packages:
 
 - category: "apps"
   name: "fooyin"
-  version: "0.12.1"
+  version: "0.12.4"
   uri:
   - https://www.fooyin.org
   license: "GPL-3"
@@ -14180,7 +14216,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "12.3.1+1"
+  version: "12.4.0"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -14277,7 +14313,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.4.2"
+  version: "2.8.1"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14304,7 +14340,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.1.7"
+  version: "1.1.13"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14594,7 +14630,7 @@ packages:
 - &apps-keepassxc
   category: "apps"
   name: "keepassxc"
-  version: "2.8.0_pre20260629+1"
+  version: "2.8.0_pre20260629-r1"
   uri:
   - https://keepassxc.org/
   license: "BSD-2 LGPL-2.1 GPL-2 GPL-3"
@@ -15465,7 +15501,7 @@ packages:
 - &apps-nwjs
   category: "apps"
   name: "nwjs"
-  version: "0.108.0+1"
+  version: "0.114.0-r1"
   uri:
   - https://nwjs.io
   license: "MIT"
@@ -15697,7 +15733,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "133.0.5932.60+1"
+  version: "134.0.5954.46-r1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -15869,7 +15905,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.1.2+1"
+  version: "26.1.2-r1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16035,45 +16071,6 @@ packages:
   - <<: *libs-openssl-compat
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "proton-ge-custom-bin"
-  version: "11.3"
-  uri:
-  - https://github.com/GloriousEggroll/proton-ge-custom
-  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-  description: "A fancy custom distribution of Valves Proton with various patches"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-emulation/proton-ge-custom-bin
-  overlays:
-  - enable: "kzd"
-  provides:
-  - category: "app-emulation"
-    name: "proton-ge-custom-bin"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "vkd3d-proton"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libxml2-compat"
-    version: ">=0"
-  atoms:
-  - atom: "app-emulation/proton-ge-custom-bin"
-    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-    accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
-  # - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
-  inner_build_reqs:
-  - dev-util/mingw64-toolchain
-  requires:
-  - <<: *layers-X
-  - <<: *libs-ffmpeg-compat
-  - <<: *libs-openssl-compat
-  build_requires:
-  - <<: *layers-X
 
 - &apps-pstoedit
   category: "apps"
@@ -16392,7 +16389,7 @@ packages:
 
 - category: "apps"
   name: "rssguard"
-  version: "5.2.2"
+  version: "5.2.3"
   uri:
   - https://github.com/martinrotter/rssguard
   license: "GPL-2+ AGPL-3+ BSD GPL-3+ MIT"
@@ -16945,7 +16942,7 @@ packages:
 
 - category: "apps"
   name: "upplay"
-  version: "1.9.11+1"
+  version: "1.9.12"
   uri:
   - http://www.lesbonscomptes.com/upplay
   - https://github.com/sailfishos/qtmpris
@@ -17029,7 +17026,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "8.0.4033.50"
+  version: "8.1.4087.61-r1"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -17115,7 +17112,7 @@ packages:
 - &apps-waydroid-gapps
   category: "apps"
   name: "waydroid-gapps"
-  version: "1.6.2+3"
+  version: "1.6.3"
   uri:
   - https://waydro.id
   - https://sourceforge.net/projects/waydroid/files/images
@@ -17193,7 +17190,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.14+1"
+  version: "11.15"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -18088,7 +18085,7 @@ packages:
 - &apps-emacs
   category: "apps"
   name: "emacs"
-  version: "30.2-r3"
+  version: "30.2-r5"
   uri:
   - https://www.gnu.org/software/emacs
   - https://savannah.nongnu.org/projects/m17n
@@ -18153,7 +18150,7 @@ packages:
 
 - category: "apps"
   name: "fastfetch"
-  version: "2.63.1"
+  version: "2.65.2"
   uri:
   - https://github.com/fastfetch-cli/fastfetch
   license: "MIT"
@@ -18315,7 +18312,7 @@ packages:
 
 - category: "apps"
   name: "fotocx"
-  version: "26.2-r1"
+  version: "26.2-r1+1"
   uri:
   - https://kornelix.net/fotocx/fotocx.html
   license: "GPL-3+ LGPL-2.1+"
@@ -18499,7 +18496,7 @@ packages:
 - &apps-helix
   category: "apps"
   name: "helix"
-  version: "25.07.1+3"
+  version: "25.07.1+4"
   uri:
   - https://helix-editor.com/
   license: "MPL-2.0 Apache-2.0 BSD Boost-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
@@ -18519,7 +18516,6 @@ packages:
   requires:
   - <<: *apps-luajit
   - <<: *libs-libutf8proc
-  - <<: *libs-tree-sitter
   build_requires:
   - <<: *buildbase-X
 
@@ -19453,7 +19449,7 @@ packages:
 
 - category: "apps"
   name: "noctalia-greeter"
-  version: "1.1.0+1"
+  version: "1.2.1"
   uri:
   - https://noctalia.dev
   license: "MIT"
@@ -19848,7 +19844,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.74.2"
+  version: "1.74.4"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -19916,7 +19912,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.7.3+2"
+  version: "1.7.3-r1"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -20535,7 +20531,7 @@ packages:
 - &libs-sdl2
   category: "libs"
   name: "sdl2"
-  version: "26.07+2"
+  version: "26.07+3"
   uri:
   - https://www.libsdl.org/projects/SDL_image/
   - https://www.libsdl.org/projects/SDL_mixer/
@@ -21586,7 +21582,7 @@ packages:
 - &apps-ppsspp
   category: "apps"
   name: "ppsspp"
-  version: "1.20.4-r1+1"
+  version: "1.20.4-r1+2"
   uri:
   - https://www.ppsspp.org/
   - https://github.com/hrydgard/ppsspp/
@@ -21607,7 +21603,6 @@ packages:
   requires:
   - <<: *layers-X
   - <<: *libs-sdl2
-  - <<: *libs-ffmpeg-compat
   build_requires:
   - <<: *layers-X
 
@@ -21666,7 +21661,7 @@ packages:
 - &apps-sauerbraten
   category: "apps"
   name: "sauerbraten"
-  version: "2020.12.29"
+  version: "2020.12.29+1"
   uri:
   - http://sauerbraten.org
   license: "ZLIB freedist"
@@ -22074,7 +22069,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.1.0_pre20260124"
+  version: "1.1.0_pre20260124+1"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3 MIT Unicode-3.0 || ( Apache-2.0 Boost-1.0 )"
@@ -22512,7 +22507,7 @@ packages:
 - &apps-gimp
   category: "apps"
   name: "gimp"
-  version: "3.2.4"
+  version: "3.2.4+1"
   uri:
   - https://www.gimp.org/
   - http://liquidrescale.wikidot.com/
@@ -23202,7 +23197,7 @@ packages:
 
 - category: "apps"
   name: "krita"
-  version: "6.0.3-r1+1"
+  version: "6.0.3-r1+2"
   uri:
   - https://apps.kde.org/krita/
   - https://krita.org/en/
