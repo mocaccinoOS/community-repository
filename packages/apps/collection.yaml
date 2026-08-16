@@ -5134,7 +5134,7 @@ packages:
 - &apps-clamav
   category: "apps"
   name: "clamav"
-  version: "1.5.3"
+  version: "1.5.3+1"
   uri:
   - https://www.clamav.net
   license: "GPL-2"
@@ -5154,6 +5154,7 @@ packages:
   inner_build_reqs:
   - acct-group/clamav
   - acct-user/clamav
+  - dev-libs/check
   requires:
   - <<: *layers-X
   - category: "entity"
@@ -5400,11 +5401,7 @@ packages:
     version: ">=0"
   atoms:
   - atom: "media-gfx/darktable"
-    use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k jpegxl nls opencl openexr tools webp # flickr gamepad geolocation gmic keyring graphicsmagick kwallet lto lua midi openmp"
-    # portage_env: |
-    #   GRAPHITE="-floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block"
-    #   CFLAGS="-O2 -march=x86-64 -msse -msse2 -msse3 ${GRAPHITE}"
-    #   CXXFLAGS="${CFLAGS}"
+    use: "avif colord cpu_flags_x86_avx cpu_flags_x86_sse3 cups doc gphoto2 heif jpeg2k jpegxl opencl openexr tools webp # gamepad geolocation keyring graphicsmagick kwallet lto lua midi openmp wayland X"
   inner_build_reqs:
   - dev-python/jsonschema
   requires:
@@ -6235,6 +6232,7 @@ packages:
   atoms:
   - atom: "media-video/ffmpeg-chromium"
     use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 # nvenc"
+    accept_keywords: "~amd64"
   requires:
   - <<: *layers-X
   build_requires:
@@ -10051,43 +10049,6 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "proton-ge-custom-bin"
-  version: "11.5"
-  uri:
-  - https://github.com/GloriousEggroll/proton-ge-custom
-  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-  description: "A fancy custom distribution of Valves Proton with various patches"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-emulation/proton-ge-custom-bin
-  overlays:
-  - enable: "kzd"
-  provides:
-  - category: "app-emulation"
-    name: "proton-ge-custom-bin"
-    version: ">=0"
-  - category: "app-emulation"
-    name: "vkd3d-proton"
-    version: ">=0"
-  - category: "dev-libs"
-    name: "libxml2-compat"
-    version: ">=0"
-  atoms:
-  - atom: "app-emulation/proton-ge-custom-bin"
-    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
-    accept_keywords: "~amd64"
-  # prepare:
-  # - sed -i -e 's/<media-libs\/libtheora-.*\[/media-libs\/libtheora\[/' /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/proton-ge-custom-bin-*.ebuild
-  # - find /var/db/repos/kzd/app-emulation/proton-ge-custom-bin/ -type f -name "proton-ge-custom-bin-*.ebuild" -exec ebuild {} manifest \;
-  inner_build_reqs:
-  - dev-util/mingw64-toolchain
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "putty"
@@ -15501,7 +15462,7 @@ packages:
 - &apps-nwjs
   category: "apps"
   name: "nwjs"
-  version: "0.114.0-r1"
+  version: "0.114.0-r1+1"
   uri:
   - https://nwjs.io
   license: "MIT"
@@ -15733,7 +15694,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "134.0.5954.46-r1"
+  version: "134.0.5954.46-r1+1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -16071,6 +16032,42 @@ packages:
   - <<: *libs-openssl-compat
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "proton-ge-custom-bin"
+  version: "11.3"
+  uri:
+  - https://github.com/GloriousEggroll/proton-ge-custom
+  license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+  description: "A fancy custom distribution of Valves Proton with various patches"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/proton-ge-custom-bin
+  overlays:
+  - enable: "kzd"
+  provides:
+  - category: "app-emulation"
+    name: "proton-ge-custom-bin"
+    version: ">=0"
+  - category: "app-emulation"
+    name: "vkd3d-proton"
+    version: ">=0"
+  - category: "dev-libs"
+    name: "libxml2-compat"
+    version: ">=0"
+  atoms:
+  - atom: "app-emulation/proton-ge-custom-bin"
+    license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
+    accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-util/mingw64-toolchain
+  requires:
+  - <<: *layers-X
+  - <<: *libs-ffmpeg-compat
+  - <<: *libs-openssl-compat
+  build_requires:
+  - <<: *layers-X
 
 - &apps-pstoedit
   category: "apps"
@@ -17026,7 +17023,7 @@ packages:
 
 - category: "apps"
   name: "vivaldi"
-  version: "8.1.4087.61-r1"
+  version: "8.1.4087.61-r1+1"
   uri:
   - https://vivaldi.com/
   license: "Vivaldi"
@@ -17133,9 +17130,6 @@ packages:
     version: ">=0"
   - category: "app-containers"
     name: "waydroid-images"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyclip"
     version: ">=0"
   - category: "dev-python"
     name: "gbinder"
@@ -21679,6 +21673,8 @@ packages:
   - atom: "games-fps/sauerbraten"
     accept_keywords: "~amd64"
     license: "freedist"
+  inner_build_reqs:
+  - acct-group/sauerbraten
   requires:
   - category: "entity"
     name: "sauerbraten"
