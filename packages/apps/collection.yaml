@@ -11898,6 +11898,30 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &apps-wimlib
+  category: "apps"
+  name: "wimlib"
+  version: "1.14.4-r1"
+  uri:
+  - https://wimlib.net
+  license: "|| ( GPL-3+ LGPL-3+ ) MIT"
+  description: "The open source Windows Imaging (WIM) library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-arch/wimlib
+  provides:
+  - category: "app-arch"
+    name: "wimlib"
+    version: ">=0"
+  atoms:
+  - atom: "app-arch/wimlib"
+    use: "fuse iso ntfs yasm"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+  
 - category: "apps"
   name: "wireshark"
   version: "4.6.7"
