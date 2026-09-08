@@ -5535,6 +5535,37 @@ packages:
 #   build_requires:
 #   - <<: *layers-qt5
 
+- &apps-deskflow
+  category: "apps"
+  name: "deskflow"
+  version: "1.26.0"
+  uri:
+  - https://github.com/deskflow/deskflow
+  license: "GPL-2"
+  description: "Share a mouse and keyboard between computers (FOSS version of Synergy)"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-apps/deskflow
+  atoms:
+  - atom: "gui-apps/deskflow"
+    use: "X"
+  provides:
+  - category: "gui-apps"
+    name: "deskflow"
+    version: ">=0"
+  requires:
+  # for dev-libs/libportal
+  # - <<: *layers-qt
+  - <<: *layers-gnome-common
+  - <<: *layers-qt
+  build_requires:
+  # for dev-libs/libportal
+  # - <<: *layers-qt
+  - <<: *buildbase-gnome-common
+  - <<: *buildbase-qt
+  requires_final_images: true
+
 - category: "apps"
   name: "dfu-util"
   version: "0.11"
@@ -7494,31 +7525,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-# - category: "apps"
-#   name: "input-leap"
-#   version: "3.0.3"
-#   uri:
-#   - https://github.com/input-leap/input-leap
-#   license: "GPL-2"
-#   description: "Share a mouse and keyboard between computers (fork of Barrier)"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       gui-apps/input-leap
-#   provides:
-#   - category: "gui-apps"
-#     name: "input-leap"
-#     version: ">=0"
-#   atoms:
-#   - atom: "gui-apps/input-leap"
-#     accept_keywords: "~amd64"
-#     use: "gui wayland X"
-#   requires:
-#   # due to layers/gnome-common, but for gui it needs layers/qt
-#   - <<: *layers-gnome-common
-#   build_requires:
-#   - <<: *layers-gnome-common
 
 - category: "apps"
   name: "inxi"
