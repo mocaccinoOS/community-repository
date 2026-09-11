@@ -740,7 +740,7 @@ packages:
 - &fonts-noto-extra
   <<: *fonts
   name: "noto-extra"
-  version: "20260701"
+  version: "20260801"
   uri:
   - https://fonts.google.com/noto
   license: "OFL-1.1"
@@ -933,7 +933,7 @@ packages:
 
 - <<: *fonts
   name: "symbols-nerd-font"
-  version: "3.4.0"
+  version: "3.5.1"
   uri:
   - https://www.nerdfonts.com/
   license: "MIT"
@@ -1365,7 +1365,7 @@ packages:
 - &libs-cpp-httplib
   category: "libs"
   name: "cpp-httplib"
-  version: "0.38.0+1"
+  version: "0.51.0"
   uri:
   - https://github.com/yhirose/cpp-httplib/
   license: "MIT"
@@ -1410,7 +1410,7 @@ packages:
 - &libs-cssselect
   category: "libs"
   name: "cssselect"
-  version: "1.4.0+1"
+  version: "1.5.0"
   uri:
   - https://cssselect.readthedocs.io/en/latest/
   license: "BSD"
@@ -1452,7 +1452,7 @@ packages:
 - &libs-feedparser
   category: "libs"
   name: "feedparser"
-  version: "6.0.12+2"
+  version: "6.0.14"
   uri:
   - https://github.com/kurtmckee/feedparser/
   - https://pypi.org/project/sgmllib3k/
@@ -2898,7 +2898,7 @@ packages:
 - &libs-markdown
   category: "libs"
   name: "markdown"
-  version: "3.10.2+1"
+  version: "3.10.3"
   uri:
   - https://python-markdown.github.io/
   license: "BSD"
@@ -4191,7 +4191,7 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.34"
+  version: "8.12.36"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
@@ -4330,7 +4330,7 @@ packages:
 
 - category: "apps"
   name: "android-studio"
-  version: "2026.1.3.8"
+  version: "2026.1.4.7"
   uri:
   - https://developer.android.com/studio
   license: "Apache-2.0 android BSD BSD-2 CDDL-1.1 CPL-0.5 EPL-1.0 GPL-2 GPL-2+ JDOM IJG LGPL-2.1 MIT MPL-1.1 MPL-2.0 NPL-1.1 OFL-1.1 ZLIB"
@@ -4754,7 +4754,7 @@ packages:
 
 - category: "apps"
   name: "bitwarden-desktop"
-  version: "2026.7.0"
+  version: "2026.8.0"
   uri:
   - https://bitwarden.com
   license: "GPL-3"
@@ -5538,7 +5538,7 @@ packages:
 - &apps-deskflow
   category: "apps"
   name: "deskflow"
-  version: "1.26.0"
+  version: "1.26.0+1"
   uri:
   - https://github.com/deskflow/deskflow
   license: "GPL-2"
@@ -5555,16 +5555,9 @@ packages:
     name: "deskflow"
     version: ">=0"
   requires:
-  # for dev-libs/libportal
-  # - <<: *layers-qt
-  - <<: *layers-gnome-common
   - <<: *layers-qt
   build_requires:
-  # for dev-libs/libportal
-  # - <<: *layers-qt
-  - <<: *buildbase-gnome-common
-  - <<: *buildbase-qt
-  requires_final_images: true
+  - <<: *layers-qt
 
 - category: "apps"
   name: "dfu-util"
@@ -6249,7 +6242,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "150-152"
+  version: "142-152"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6257,7 +6250,7 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:150
+      media-video/ffmpeg-chromium:142
       media-video/ffmpeg-chromium:152
   provides:
   - category: "media-video"
@@ -6626,7 +6619,7 @@ packages:
 - &apps-freerdp-server
   category: "apps"
   name: "freerdp-server"
-  version: "3.29.0+1"
+  version: "3.31.1"
   uri:
   - https://www.freerdp.com/
   license: "Apache-2.0"
@@ -6745,7 +6738,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.58.0"
+  version: "0.59.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -7088,7 +7081,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.26.4+1"
+  version: "1.26.5"
   uri:
   - https://go.dev
   license: "BSD"
@@ -7135,7 +7128,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "5.15.3"
+  version: "6.0.1"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -7329,7 +7322,7 @@ packages:
 
 - category: "apps"
   name: "htop"
-  version: "3.5.1"
+  version: "3.5.3"
   uri:
   - https://htop.dev
   license: "BSD GPL-2+"
@@ -7734,7 +7727,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.7.6"
+  version: "3.7.9"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -7821,7 +7814,7 @@ packages:
 
 - category: "apps"
   name: "kdiff3"
-  version: "1.12.4"
+  version: "1.12.6"
   uri:
   - https://apps.kde.org/kdiff3
   license: "GPL-2"
@@ -7980,7 +7973,7 @@ packages:
 
 - category: "apps"
   name: "kitty"
-  version: "0.47.4"
+  version: "0.48.2"
   uri:
   - https://sw.kovidgoyal.net/kitty
   license: "GPL-3 ZLIB Apache-2.0 BSD BSD-2 MIT MPL-2.0"
@@ -8610,7 +8603,7 @@ packages:
 
 - category: "apps"
   name: "mangowm"
-  version: "0.16.1"
+  version: "0.16.3"
   uri:
   - https://github.com/mangowm/mango
   license: "CC0-1.0 GPL-3+ MIT"
@@ -8787,7 +8780,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.20"
+  version: "15.0.21"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -8986,7 +8979,7 @@ packages:
 - &apps-nmap
   category: "apps"
   name: "nmap"
-  version: "7.99+1"
+  version: "7.991"
   uri:
   - https://nmap.org/
   license: "NPSL GPL-2"
@@ -9286,7 +9279,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.18.29"
+  version: "1.18.30"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9988,7 +9981,7 @@ packages:
 
 - category: "apps"
   name: "podman-compose"
-  version: "1.6.0+2"
+  version: "1.6.0+3"
   uri:
   - https://github.com/containers/podman-compose
   license: "GPL-2"
@@ -10816,7 +10809,7 @@ packages:
 
 - category: "apps"
   name: "stress-ng"
-  version: "0.21.03"
+  version: "0.21.04"
   uri:
   - https://github.com/ColinIanKing/stress-ng
   license: "GPL-2+"
@@ -11566,7 +11559,7 @@ packages:
 - &apps-vesktop
   category: "apps"
   name: "vesktop"
-  version: "1.6.6"
+  version: "1.6.7"
   uri:
   - https://github.com/Vencord/Vesktop
   license: "GPL-3"
@@ -13576,7 +13569,7 @@ packages:
 
 - category: "apps"
   name: "chezmoi"
-  version: "2.71.1"
+  version: "2.72.1"
   uri:
   - https://www.chezmoi.io/
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
@@ -14058,7 +14051,7 @@ packages:
 
 - category: "apps"
   name: "fooyin"
-  version: "0.12.5"
+  version: "0.12.6"
   uri:
   - https://www.fooyin.org
   license: "GPL-3"
@@ -14307,7 +14300,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.9.1"
+  version: "2.12.2"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14334,7 +14327,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.1.17"
+  version: "1.2.0"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14684,7 +14677,7 @@ packages:
 
 - category: "apps"
   name: "kid3"
-  version: "3.10.0+1"
+  version: "3.10.1"
   uri:
   - https://kid3.kde.org
   license: "GPL-2+"
@@ -14785,7 +14778,7 @@ packages:
 
 - category: "apps"
   name: "ktorrent"
-  version: "26.04.3"
+  version: "26.04.3-r1"
   uri:
   - https://apps.kde.org/ktorrent
   license: "GPL-2"
@@ -14978,7 +14971,7 @@ packages:
 - &apps-mangohud
   category: "apps"
   name: "mangohud"
-  version: "0.8.3"
+  version: "0.8.4"
   uri:
   - https://github.com/flightlessmango/MangoHud
   license: "MIT"
@@ -15429,7 +15422,7 @@ packages:
 - &apps-noctalia
   category: "apps"
   name: "noctalia"
-  version: "4.7.7-r1+3"
+  version: "5.0.1"
   uri:
   - https://noctalia.dev
   license: "MIT"
@@ -15437,14 +15430,15 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      gui-apps/noctalia::mocaccino-overlay gui-apps/noctalia-qs
+      gui-apps/noctalia gui-apps/noctalia-qs
+    # gui-apps/noctalia::mocaccino-overlay gui-apps/noctalia-qs
   overlays:
   - enable: "guru"
-  - enable: "mocaccino-overlay"
+  # - enable: "mocaccino-overlay"
   provides:
-  - category: "dev-cpp"
-    name: "cli11"
-    version: ">=0"
+  # - category: "dev-cpp"
+  #   name: "cli11"
+  #   version: ">=0"
   - category: "gui-apps"
     name: "noctalia"
     version: ">=0"
@@ -15460,10 +15454,10 @@ packages:
   requires:
   - <<: *layers-qt
   # not in noctalia 5 ?
-  - <<: *apps-brightnessctl
+  # - <<: *apps-brightnessctl
   # noctalia 5
-  # - <<: *libs-nlohmann_json
-  # - <<: *libs-tomlplusplus
+  - <<: *libs-nlohmann_json
+  - <<: *libs-tomlplusplus
   # - <<: *libs-sdbus-cpp
   # - <<: *libs-stb
   build_requires:
@@ -15687,7 +15681,7 @@ packages:
 
 - category: "apps"
   name: "openrgb"
-  version: "1.0_rc2+2"
+  version: "1.0_rc3_p1"
   uri:
   - https://openrgb.org
   license: "GPL-2"
@@ -16770,7 +16764,7 @@ packages:
 
 - category: "apps"
   name: "strawberry"
-  version: "1.2.19"
+  version: "1.2.25"
   uri:
   - https://www.strawberrymusicplayer.org/
   license: "GPL-3"
@@ -16908,7 +16902,7 @@ packages:
 - &apps-tor
   category: "apps"
   name: "tor"
-  version: "0.4.9.11+1"
+  version: "0.4.9.12"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -17218,7 +17212,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.16"
+  version: "11.17"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -17400,7 +17394,7 @@ packages:
 
 - category: "apps"
   name: "zsnes"
-  version: "2.2.3"
+  version: "2.3.0"
   uri:
   - https://github.com/xyproto/zsnes
   license: "GPL-2"
@@ -19477,7 +19471,7 @@ packages:
 
 - category: "apps"
   name: "noctalia-greeter"
-  version: "1.2.1"
+  version: "1.3.1"
   uri:
   - https://noctalia.dev
   license: "MIT"
@@ -19872,7 +19866,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.74.4"
+  version: "1.75.0"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -20689,7 +20683,7 @@ packages:
 
 - category: "apps"
   name: "asusctl"
-  version: "6.4.0+1"
+  version: "6.4.0+2"
   uri:
   - https://asus-linux.org
   - https://github.com/OpenGamingCollective/asusctl
@@ -20716,15 +20710,11 @@ packages:
   portage_env: "USE=\"-llvm_slot_19 -llvm_slot_20 -llvm_slot_21 llvm_slot_22\""
   inner_build_reqs:
   - dev-lang/rust-bin:1.95.0
-  # Currently in layers/kde-common
-  - sys-power/power-profiles-daemon
   # for sys-power/acpi_call
   - dev-util/pahole
   - virtual/linux-sources
   requires:
-  # - <<: *layers-X
-  # needed by sys-power/power-profiles-daemon
-  - <<: *layers-kde-common
+  - <<: *layers-X
   - <<: *libs-sdl2
   build_requires:
   - <<: *buildbase-X
@@ -21917,7 +21907,7 @@ packages:
 - &apps-graphviz
   category: "apps"
   name: "graphviz"
-  version: "14.1.3+1"
+  version: "15.1.0"
   uri:
   - https://www.graphviz.org/
   - http://argtable.sourceforge.net/
@@ -22056,7 +22046,7 @@ packages:
 - &apps-hedgewars
   category: "apps"
   name: "hedgewars"
-  version: "1.1.0_pre20260124+1"
+  version: "1.1.0_pre20260814"
   uri:
   - https://www.hedgewars.org/
   license: "GPL-2 Apache-2.0 FDL-1.3 MIT Unicode-3.0 || ( Apache-2.0 Boost-1.0 )"
