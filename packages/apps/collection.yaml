@@ -3615,6 +3615,34 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-sdbus-cpp
+  category: "libs"
+  name: "sdbus-cpp"
+  version: "2.3.1"
+  uri:
+  - https://github.com/Kistler-Group/sdbus-cpp
+  license: "LGPL-2.1+ Nokia-Qt-LGPL-Exception-1.1"
+  description: "High-level C++ D-Bus library"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/sdbus-c++
+  provides:
+  - category: "dev-cpp"
+    name: "sdbus-c++"
+    version: ">=0"
+  atoms:
+  - atom: "dev-cpp/sdbus-c++"
+    accept_keywords: "~amd64"
+    use: "systemd"
+  inner_build_reqs:
+  - dev-build/cmake
+  - dev-build/meson
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-send2trash
   category: "libs"
   name: "send2trash"
@@ -9891,7 +9919,7 @@ packages:
 - &apps-podman
   category: "apps"
   name: "podman"
-  version: "5.8.2"
+  version: "5.8.2+1"
   uri:
   - https://github.com/containers/podman/
   license: "Apache-2.0 BSD BSD-2 CC-BY-SA-4.0 ISC MIT MPL-2.0"
@@ -15417,6 +15445,7 @@ packages:
   requires:
   - <<: *layers-qt
   - <<: *libs-nlohmann_json
+  - <<: *libs-sdbus-cpp
   - <<: *libs-tomlplusplus
   build_requires:
   - <<: *layers-qt
@@ -17382,7 +17411,7 @@ packages:
 - &libs-indilib
   category: "libs"
   name: "indilib"
-  version: "2.2.3.1"
+  version: "2.2.3.1+1"
   uri:
   - https://www.indilib.org/
   - http://libnova.sourceforge.net/
