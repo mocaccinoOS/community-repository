@@ -1469,7 +1469,7 @@ packages:
     name: "feedparser"
     version: ">=0"
   - category: "dev-python"
-    name: "sgmllib3k"
+    name: "feedparser-sgmllib"
     version: ">=0"
   requires:
   - <<: *layers-system-x
@@ -3614,35 +3614,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-# # needed by noctalia 5
-# - &libs-sdbus-cpp
-#   category: "libs"
-#   name: "sdbus-cpp"
-#   version: "2.3.1"
-#   uri:
-#   - https://github.com/Kistler-Group/sdbus-cpp
-#   license: "LGPL-2.1+ Nokia-Qt-LGPL-Exception-1.1"
-#   description: "High-level C++ D-Bus library"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-cpp/sdbus-c++
-#   provides:
-#   - category: "dev-cpp"
-#     name: "sdbus-c++"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-cpp/sdbus-c++"
-#     accept_keywords: "~amd64"
-#     use: "systemd"
-#   inner_build_reqs:
-#   - dev-build/cmake
-#   - dev-build/meson
-#   requires:
-#   - <<: *layers-system-x
-#   build_requires:
-#   - <<: *layers-system-x
 
 - &libs-send2trash
   category: "libs"
@@ -14792,6 +14763,9 @@ packages:
   - category: "net-p2p"
     name: "ktorrent"
     version: ">=0"
+  - category: "dev-libs"
+    name: "libmaxminddb"
+    version: ">=0"
   requires:
   - <<: *layers-kde-common
   - <<: *libs-libktorrent
@@ -15430,36 +15404,20 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      gui-apps/noctalia gui-apps/noctalia-qs
-    # gui-apps/noctalia::mocaccino-overlay gui-apps/noctalia-qs
+      gui-apps/noctalia
   overlays:
   - enable: "guru"
-  # - enable: "mocaccino-overlay"
   provides:
-  # - category: "dev-cpp"
-  #   name: "cli11"
-  #   version: ">=0"
   - category: "gui-apps"
     name: "noctalia"
-    version: ">=0"
-  - category: "gui-apps"
-    name: "noctalia-qs"
     version: ">=0"
   atoms:
   - atom: "gui-apps/noctalia"
     accept_keywords: "~amd64"
-  - atom: "gui-apps/noctalia-qs"
-    accept_keywords: "~amd64"
-    use: "-crash-handler"
   requires:
   - <<: *layers-qt
-  # not in noctalia 5 ?
-  # - <<: *apps-brightnessctl
-  # noctalia 5
   - <<: *libs-nlohmann_json
   - <<: *libs-tomlplusplus
-  # - <<: *libs-sdbus-cpp
-  # - <<: *libs-stb
   build_requires:
   - <<: *layers-qt
 
@@ -19491,9 +19449,6 @@ packages:
     accept_keywords: "~amd64"
   optrequires:
   - <<: *apps-noctalia
-  # - <<: *apps-noctalia5
-  - <<: *libs-nlohmann_json
-  - <<: *libs-tomlplusplus
   - <<: *libs-stb
   requires:
   - <<: *layers-wlroots
