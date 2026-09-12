@@ -364,6 +364,22 @@ stubs:
   - atom: "media-libs/raptor"
     use: "curl json unicode"
 
+- &libs-sdbus-cpp
+  category: "libs"
+  name: "sdbus-cpp"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-cpp/sdbus-c++
+  atoms:
+  - atom: "dev-cpp/sdbus-c++"
+    accept_keywords: "~amd64"
+    use: "systemd"
+  inner_build_reqs:
+  - dev-build/cmake
+  - dev-build/meson
+
 - &libs-tomlplusplus
   category: "libs"
   name: "tomlplusplus"
@@ -3614,34 +3630,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-sdbus-cpp
-  category: "libs"
-  name: "sdbus-cpp"
-  version: "2.3.1"
-  uri:
-  - https://github.com/Kistler-Group/sdbus-cpp
-  license: "LGPL-2.1+ Nokia-Qt-LGPL-Exception-1.1"
-  description: "High-level C++ D-Bus library"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-cpp/sdbus-c++
-  provides:
-  - category: "dev-cpp"
-    name: "sdbus-c++"
-    version: ">=0"
-  atoms:
-  - atom: "dev-cpp/sdbus-c++"
-    accept_keywords: "~amd64"
-    use: "systemd"
-  inner_build_reqs:
-  - dev-build/cmake
-  - dev-build/meson
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-send2trash
   category: "libs"
