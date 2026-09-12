@@ -9915,6 +9915,7 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
+      dev-libs/blake3
       app-containers/podman
   provides:
   - category: "app-containers"
@@ -9947,8 +9948,11 @@ packages:
   - category: "app-containers"
     name: "containers-storaget"
     version: ">=0"
+  - category: "dev-libs"
+    name: "blake3"
+    version: ">=0"
   - category: "net-misc"
-    name: passtt"
+    name: "passtt"
     version: ">=0"
   - category: "sys-fs"
     name: "fuse-overlayfst"
@@ -9956,8 +9960,6 @@ packages:
   atoms:
   - atom: "app-containers/podman"
     use: "apparmor seccomp systemd"
-  - atom: "app-containers/crun"
-    usepkg_exclude: true
   inner_build_requires:
   - <<: *apps-go
   inner_build_reqs:
