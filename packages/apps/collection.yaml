@@ -9933,7 +9933,7 @@ packages:
     name: "containers-imaget"
     version: ">=0"
   - category: "app-containers"
-    name: "crunt"
+    name: "crun"
     version: ">=0"
   - category: "app-containers"
     name: "netavarkt"
@@ -9956,10 +9956,10 @@ packages:
   atoms:
   - atom: "app-containers/podman"
     use: "apparmor seccomp systemd"
+  - atom: "app-containers/crun"
+    usepkg_exclude: true
   inner_build_requires:
   - <<: *apps-go
-  prepare:
-  - emerge --deselect dev-libs/blake3
   inner_build_reqs:
   - dev-go/go-md2man
   requires:
