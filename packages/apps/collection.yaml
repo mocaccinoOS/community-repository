@@ -1018,28 +1018,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &libs-svt-av1
-  category: "libs"
-  name: "svt-av1"
-  version: "4.0.1"
-  uri:
-  - https://gitlab.com/AOMediaCodec/SVT-AV1
-  license: "BSD-2 Apache-2.0 BSD ISC LGPL-2.1+ MIT"
-  description: |
-    Scalable Video Technology for AV1 (SVT-AV1 Encoder)
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/svt-av1
-  provides:
-  - category: "media-libs"
-    name: "svt-av1"
-    version: ">=0"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
-
 - &libs-appdirs
   category: "libs"
   name: "appdirs"
@@ -1135,6 +1113,27 @@ packages:
   - <<: *layers-java
   build_requires:
   - <<: *layers-java
+
+- &libs-blake3
+  category: "libs"
+  name: "blake3"
+  version: "1.8.5"
+  uri:
+  - https://github.com/BLAKE3-team/BLAKE3
+  license: "|| ( CC0-1.0 Apache-2.0 )"
+  description: "A fast cryptographic hash function"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/blake3
+  provides:
+  - category: "dev-libs"
+    name: "blake3"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-botan
   category: "libs"
@@ -3719,6 +3718,28 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
+
+- &libs-svt-av1
+  category: "libs"
+  name: "svt-av1"
+  version: "4.0.1"
+  uri:
+  - https://gitlab.com/AOMediaCodec/SVT-AV1
+  license: "BSD-2 Apache-2.0 BSD ISC LGPL-2.1+ MIT"
+  description: |
+    Scalable Video Technology for AV1 (SVT-AV1 Encoder)
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      media-libs/svt-av1
+  provides:
+  - category: "media-libs"
+    name: "svt-av1"
+    version: ">=0"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
 
 - &libs-tbb
   category: "libs"
@@ -9907,7 +9928,7 @@ packages:
 - &apps-podman
   category: "apps"
   name: "podman"
-  version: "5.8.2+4"
+  version: "5.8.2+5"
   uri:
   - https://github.com/containers/podman/
   license: "Apache-2.0 BSD BSD-2 CC-BY-SA-4.0 ISC MIT MPL-2.0"
@@ -9915,7 +9936,6 @@ packages:
   labels:
     emerge.jobs: "3"
     emerge.packages: >-
-      dev-libs/blake3
       app-containers/podman
   provides:
   - category: "app-containers"
@@ -9948,9 +9968,6 @@ packages:
   - category: "app-containers"
     name: "containers-storaget"
     version: ">=0"
-  - category: "dev-libs"
-    name: "blake3"
-    version: ">=0"
   - category: "net-misc"
     name: "passtt"
     version: ">=0"
@@ -9967,6 +9984,7 @@ packages:
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-apparmor
+  - <<: *libs-blake3
   build_requires:
   - <<: *layers-sys-fs
 
