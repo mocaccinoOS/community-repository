@@ -9907,7 +9907,7 @@ packages:
 - &apps-podman
   category: "apps"
   name: "podman"
-  version: "5.8.2+1"
+  version: "5.8.2+2"
   uri:
   - https://github.com/containers/podman/
   license: "Apache-2.0 BSD BSD-2 CC-BY-SA-4.0 ISC MIT MPL-2.0"
@@ -9958,6 +9958,8 @@ packages:
     use: "apparmor seccomp systemd"
   inner_build_requires:
   - <<: *apps-go
+  prepare:
+  - emerge --deselect dev-libs/blake3
   inner_build_reqs:
   - dev-go/go-md2man
   requires:
