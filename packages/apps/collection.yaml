@@ -5174,6 +5174,31 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-cloudflare-warp
+  category: "apps"
+  name: "cloudflare-warp"
+  version: "2026.7.1377.0"
+  uri:
+  - https://1.1.1.1
+  license: "all-rights-reserved"
+  description: "Cloudflare Warp Client"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      net-vpn/cloudflare-warp
+  provides:
+  - category: "net-vpn"
+    name: "cloudflare-warp"
+    version: ">=0"
+  atoms:
+  - atom: "net-vpn/cloudflare-warp"
+    accept_keywords: "~amd64"
+    license: "all-rights-reserved"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-cmake-gui
   category: "apps"
   name: "cmake-gui"
