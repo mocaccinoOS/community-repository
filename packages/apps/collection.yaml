@@ -11641,6 +11641,31 @@ packages:
   - <<: *layers-gnome-common
 
 - category: "apps"
+  name: "vm-curator"
+  version: "1.4.0+1"
+  uri:
+  - https://github.com/mroboff/vm-curator
+  license: "MIT"
+  description: "Fast Rust TUI for managing QEMU/KVM virtual machines"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-emulation/vm-curator
+  overlays:
+  - enable: "mocaccino-overlay"
+  provides:
+  - category: "app-emulation"
+    name: "vm-curator"
+    version: ">=0"
+  atoms:
+  - atom: "app-emulation/vm-curator"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qemu
+  build_requires:
+  - <<: *layers-qemu
+
+- category: "apps"
   name: "vscodium"
   version: "1.126.04524"
   uri:
