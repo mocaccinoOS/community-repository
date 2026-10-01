@@ -19708,9 +19708,10 @@ packages:
   inner_build_requires:
   - <<: *apps-go
   - <<: *apps-mage
-  - <<: *development-gcc
   requires:
   - <<: *layers-X
+  # for telio which needs libclang
+  - <<: *development-gcc
   build_requires:
   - <<: *layers-X
 
