@@ -19597,6 +19597,9 @@ packages:
   description: "NordVPN Linux client"
   labels:
     emerge.jobs: "1"
+  env:
+  - LLVM_VERSION="22"
+  - LIBCLANG_PATH="/usr/lib/llvm/22/lib64"
   ready:
   - |
     sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
@@ -19703,7 +19706,7 @@ packages:
   - ^/root/
   inner_build_reqs:
   # - dev-lang/rust-bin
-  - llvm-core/clang:22
+  - llvm-core/clang:${LLVM_VERSION}
   - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
   - dev-go/go-licenses;ACCEPT_KEYWORDS="~amd64"
   inner_build_requires:
@@ -19712,7 +19715,7 @@ packages:
   requires:
   - <<: *layers-X
   # for telio which needs libclang
-  - <<: *development-gcc
+  # - <<: *development-gcc
   build_requires:
   - <<: *layers-X
 
