@@ -389,6 +389,15 @@ stubs:
     emerge.packages: >-
       dev-cpp/tomlplusplus
 
+- &libs-udis86
+  category: "libs"
+  name: "udis86"
+  version: ">=0"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/udis86
+
 - &libs-yyjson
   category: "libs"
   name: "yyjson"
@@ -443,15 +452,6 @@ stubs:
   category: "apps"
   name: "grub"
   version: ">=0"
-
-- &libs-udis86
-  category: "libs"
-  name: "udis86"
-  version: ">=0"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-libs/udis86
 
 - &apps-vim
   category: "apps"
@@ -19713,7 +19713,8 @@ packages:
   # for telio which needs libclang
   - <<: *development-gcc
   build_requires:
-  - <<: *layers-X
+  - <<: *buildbase-X
+  requires_final_images: true
 
 - category: "apps"
   name: "nushell"
