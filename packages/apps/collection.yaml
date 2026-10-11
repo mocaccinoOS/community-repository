@@ -5141,6 +5141,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &apps-claude-desktop
+  category: "apps"
+  name: "claude-desktop"
+  version: "2.31226.1"
+  uri:
+  - https://claude.com/download
+  license: "Anthropic"
+  description: "Desktop application for Claude.ai"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-misc/claude-desktop
+  overlays:
+  - enable: "gentoo-zh"
+  provides:
+  - category: "app-misc"
+    name: "claude-desktop"
+    version: ">=0"
+  atoms:
+  - atom: "app-misc/claude-desktop"
+    accept_keywords: "~amd64"
+    license: "Anthropic"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 # unstable for python 3.14
 - &apps-clamav
   category: "apps"
