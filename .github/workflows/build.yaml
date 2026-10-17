@@ -72,35 +72,35 @@ jobs:
     - uses: actions/checkout@v6
     - name: Validate
       run: |
-        # Log jobs status
-        # gh run view ${{ github.run_id }} --json jobs | jq .
+        fetch_conclusions() {
+          for i in 1 2 3 4 5; do
+            if out=$(gh api \
+                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=30" \
+                --paginate \
+                --jq '.jobs[] | select(.name | contains("Set 0 / build (")) | .conclusion'); then
+              echo "$out"; return 0
+            fi
+            echo "jobs fetch failed (attempt $i)" >&2
+            sleep $((i * 15))
+          done
+          return 1
+        }
 
-        # echo "success-count=$(gh run view ${{ github.run_id }} --json jobs \
-        #   --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')" >> $GITHUB_OUTPUT
-
-        SUCCESS_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
-          --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="success")] | length')
-        # echo "success-count=$SUCCESS_COUNT" >> $GITHUB_OUTPUT
-
-        FAILURE_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
-          --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="failure")] | length')
-        # echo "failed-count=$FAILURE_COUNT" >> $GITHUB_OUTPUT
-
-        CANCELLED_COUNT=$(gh run view ${{ github.run_id }} --json jobs \
-          --jq '[.jobs[] | select(.name | contains("Set 0 / build (")) | select(.conclusion=="cancelled")] | length')
-        # echo "failed-count=$CANCELLED_COUNT" >> $GITHUB_OUTPUT
+        CONCLUSIONS=$(fetch_conclusions)
+        SUCCESS_COUNT=$(grep -c '^success$' <<< "$CONCLUSIONS" || true)
+        FAILURE_COUNT=$(grep -c '^failure$' <<< "$CONCLUSIONS" || true)
+        CANCELLED_COUNT=$(grep -c '^cancelled$' <<< "$CONCLUSIONS" || true)
 
         if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
           echo "Started manually."
         elif [ "$SUCCESS_COUNT" -gt 0 ]; then
           echo "Found $SUCCESS_COUNT successful runs."
-        elif [ "$SUCCESS_COUNT" -eq 0 -a "$FAILURE_COUNT" -eq 0 -a "$CANCELLED_COUNT" -eq 0 ]; then
+        elif [ "$SUCCESS_COUNT" -eq 0 ] && [ "$FAILURE_COUNT" -eq 0 ] && [ "$CANCELLED_COUNT" -eq 0 ]; then
           echo "Found no successful runs, no failed runs and no cancelled runs."
         else
           echo "::error::Found no successful runs."
           exit 1
         fi
-
     - name: Release space from worker ♻
       run: |
         echo "Listing top largest packages"
