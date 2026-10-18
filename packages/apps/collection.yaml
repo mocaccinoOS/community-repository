@@ -4713,7 +4713,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.27"
+  version: "9.20.26"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4721,16 +4721,18 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      =net-dns/bind-9.20.27
+      net-dns/bind
   provides:
   - category: "net-dns"
     name: "bind"
     version: ">=0"
   atoms:
   - atom: "net-dns/bind"
-    use: "caps dlz doc gssapi idn xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux verify-sig"
+    use: "caps dlz doc gssapi idn verify-sig xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux"
   inner_build_reqs:
   - dev-python/sphinx
+  - acct-group/named
+  - acct-user/named
   requires:
   - <<: *layers-sys-fs
   - category: "entity"
@@ -14245,7 +14247,7 @@ packages:
 - &apps-ghostty
   category: "apps"
   name: "ghostty"
-  version: "1.3.1+1"
+  version: "1.3.1+2"
   uri:
   - https://ghostty.org
   license: "MIT"
@@ -14262,7 +14264,7 @@ packages:
     name: "ghostty-terminfo"
     version: ">=0"
   inner_build_reqs:
-  - dev-lang/zig-bin
+  - dev-lang/zig-bin:0.15
   requires:
   - <<: *layers-gnome-common
   - <<: *libs-oniguruma
@@ -19078,6 +19080,8 @@ packages:
   # - dev-db/postgresql
   - dev-perl/Archive-Zip
   - dev-util/cppunit
+  - acct-group/libreoffice
+  - acct-user/libreoffice
   inner_build_requires:
   - <<: *apps-ant
   requires:
@@ -20263,6 +20267,8 @@ packages:
     use: "verify-provenance"
     accept_keywords: "~amd64"
   - atom: "dev-python/pyuca"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/qstylizer"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-qt
