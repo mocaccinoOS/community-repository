@@ -5495,7 +5495,7 @@ packages:
 - &apps-dcraw
   category: "apps"
   name: "dcraw"
-  version: "9.28.0-r5+1"
+  version: "9.28.0-r5+2"
   uri:
   - https://www.cybercom.net/~dcoffin/dcraw
   license: "GPL-2"
@@ -5511,6 +5511,8 @@ packages:
   atoms:
   - atom: "media-gfx/dcraw"
     use: "nls jpeg lcms"
+  inner_build_reqs:
+  - app-text/po4a
   requires:
   - <<: *layers-X
   build_requires:
@@ -22051,7 +22053,7 @@ packages:
 
 - category: "apps"
   name: "wesnoth"
-  version: "1.18.6+1"
+  version: "1.18.6+2"
   uri:
   - https://www.wesnoth.org
   license: "GPL-2+ CC-BY-SA-4.0"
@@ -22067,7 +22069,8 @@ packages:
   atoms:
   - atom: "games-strategy/wesnoth"
     accept_keywords: "~amd64"
-  prepare:
+  inner_build_reqs:
+  - app-text/po4a
   - acct-group/wesnoth
   - acct-user/wesnoth
   requires:
