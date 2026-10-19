@@ -399,6 +399,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &libs-gtk4-layer-shell
+  category: "libs"
+  name: "gtk4-layer-shell"
+  version: "1.3.0"
+  uri:
+  - https://github.com/wmww/gtk4-layer-shell
+  license: "MIT"
+  description: "A library for using the Layer Shell Wayland protocol with GTK4"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      gui-libs/gtk4-layer-shell
+  provides:
+  - category: "gui-libs"
+    name: "gtk4-layer-shell"
+    version: ">=0"
+  atoms
+  - atom: "gui-libs/gtk4-layer-shell"
+    use: "introspection"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &libs-raptor
   category: "libs"
   name: "raptor"
@@ -1970,7 +1994,7 @@ packages:
 - &def-wayfire
   category: "layers"
   name: "wayfire"
-  version: "0.10.1-19"
+  version: "0.10.1-20"
   uri:
     - https://github.com/WayfireWM/wayfire
   license: "MIT"
@@ -1987,9 +2011,6 @@ packages:
   provides:
   - category: "gui-apps"
     name: "gtkgreet"
-    version: ">=0"
-  - category: "gui-libs"
-    name: "gtk4-layer-shell"
     version: ">=0"
   - category: "gui-apps"
     name: "wayland-logout"
@@ -2009,11 +2030,10 @@ packages:
   atoms:
   - atom: "gui-apps/gtkgreet"
     accept_keywords: "~amd64"
-  - atom: "gui-libs/gtk4-layer-shell"
-    use: "introspection"
   requires:
   - <<: *layers-wlroots
   - <<: *apps-grim
+  - <<: *libs-gtk4-layer-shell
   - <<: *libs-nlohmann_json
   - <<: *libs-yyjson
   build_requires:
