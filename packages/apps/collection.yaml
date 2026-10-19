@@ -12611,35 +12611,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-czmq
-  category: "libs"
-  name: "czmq"
-  version: "4.2.1+3"
-  uri:
-  - http://czmq.zeromq.org
-  license: "MPL-2.0"
-  description: "High-level C Binding for ZeroMQ"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      net-libs/czmq
-  provides:
-  - category: "net-libs"
-    name: "czmq"
-    version: ">=0"
-  atoms:
-  - atom: "net-libs/czmq"
-    use: "drafts"
-  inner_build_reqs:
-  - app-text/asciidoc
-  - app-text/xmlto
-  - net-libs/zeromq
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-zeromq
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-dssi
   category: "libs"
   name: "dssi"
