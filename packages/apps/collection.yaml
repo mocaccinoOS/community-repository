@@ -1245,7 +1245,7 @@ packages:
 - &libs-chrome-binary-plugins
   category: "libs"
   name: "chrome-binary-plugins"
-  version: "155.0.8059.39"
+  version: "156.0.8078.47"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -2074,29 +2074,29 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-leptonica
-  category: "libs"
-  name: "leptonica"
-  version: "1.87.0"
-  uri:
-  - http://www.leptonica.org/
-  license: "Apache-2.0"
-  description: "C library for image processing and analysis"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      media-libs/leptonica
-  provides:
-  - category: "media-libs"
-    name: "leptonica"
-    version: ">=0"
-  atoms:
-  - atom: "media-libs/leptonica"
-    use: "gif jpeg jpeg2k png tiff utils webp zlib"
-  requires:
-  - <<: *layers-X
-  build_requires:
-  - <<: *layers-X
+# - &libs-leptonica
+#   category: "libs"
+#   name: "leptonica"
+#   version: "1.87.0"
+#   uri:
+#   - http://www.leptonica.org/
+#   license: "Apache-2.0"
+#   description: "C library for image processing and analysis"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       media-libs/leptonica
+#   provides:
+#   - category: "media-libs"
+#     name: "leptonica"
+#     version: ">=0"
+#   atoms:
+#   - atom: "media-libs/leptonica"
+#     use: "gif jpeg jpeg2k png tiff utils webp zlib"
+#   requires:
+#   - <<: *layers-X
+#   build_requires:
+#   - <<: *layers-X
 
 - &libs-libbs2b
   category: "libs"
@@ -2492,7 +2492,7 @@ packages:
 - &libs-libmirage
   category: "libs"
   name: "libmirage"
-  version: "3.3.2-r1+1"
+  version: "3.3.3"
   uri:
   - https://cdemu.sourceforge.io
   license: "GPL-2+"
@@ -3244,7 +3244,7 @@ packages:
 - &libs-pyproject-hooks
   category: "libs"
   name: "pyproject-hooks"
-  version: "1.2.0+2"
+  version: "1.3.0"
   uri:
   - https://pypi.org/project/pyproject_hooks/
   license: "MIT"
@@ -3509,7 +3509,7 @@ packages:
 - &libs-regex
   category: "libs"
   name: "regex"
-  version: "2026.9.3"
+  version: "2026.9.10"
   uri:
   - https://github.com/mrabarnett/mrab-regex/
   license: "Apache-2.0"
@@ -4214,7 +4214,7 @@ packages:
 
 - category: "apps"
   name: "1password"
-  version: "8.12.40"
+  version: "8.12.42"
   uri:
   - https://1password.com
   license: "all-rights-reserved"
@@ -4415,7 +4415,7 @@ packages:
 - &apps-ant
   category: "apps"
   name: "ant"
-  version: "1.10.15-r1"
+  version: "1.10.15-r2"
   uri:
   - https://ant.apache.org/
   license: "Apache-2.0"
@@ -4728,7 +4728,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.26"
+  version: "9.20.29"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4904,7 +4904,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.97.57"
+  version: "1.97.59-r1"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5161,7 +5161,7 @@ packages:
 - &apps-claude-desktop
   category: "apps"
   name: "claude-desktop"
-  version: "2.37337.1"
+  version: "3.6556.1"
   uri:
   - https://claude.com/download
   license: "Anthropic"
@@ -5222,7 +5222,7 @@ packages:
 - &apps-cloudflare-warp
   category: "apps"
   name: "cloudflare-warp"
-  version: "2026.8.2100.0"
+  version: "2026.8.2110.0"
   uri:
   - https://1.1.1.1
   license: "all-rights-reserved"
@@ -6327,7 +6327,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "152-153"
+  version: "152-154"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6335,8 +6335,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      media-video/ffmpeg-chromium:153
       media-video/ffmpeg-chromium:152
+      media-video/ffmpeg-chromium:154
   provides:
   - category: "media-video"
     name: "ffmpeg-chromium"
@@ -6823,7 +6823,7 @@ packages:
 
 - category: "apps"
   name: "gemini-cli"
-  version: "0.64.0"
+  version: "0.65.0"
   uri:
   - https://github.com/google-gemini/gemini-cli
   license: "Apache-2.0"
@@ -7166,7 +7166,7 @@ packages:
 - &apps-go
   category: "apps"
   name: "go"
-  version: "1.27.1"
+  version: "1.27.3"
   uri:
   - https://go.dev
   license: "BSD"
@@ -7189,7 +7189,7 @@ packages:
 
 - category: "apps"
   name: "google-chrome"
-  version: "155.0.8059.39"
+  version: "156.0.8078.47"
   uri:
   - https://www.google.com/chrome
   license: "google-chrome"
@@ -7213,7 +7213,7 @@ packages:
   
 - category: "apps"
   name: "gpu-screen-recorder"
-  version: "6.1.3"
+  version: "6.1.4"
   uri:
   - https://git.dec05eba.com/gpu-screen-recorder/about
   license: "GPL-3"
@@ -7812,7 +7812,7 @@ packages:
 
 - category: "apps"
   name: "joplin-desktop"
-  version: "3.7.12"
+  version: "3.7.18"
   uri:
   - https://joplinapp.org
   license: "AGPL-3+"
@@ -8113,6 +8113,33 @@ packages:
   - <<: *layers-kde-common
 
 - category: "apps"
+  name: "koko"
+  version: "26.08.2"
+  uri:
+  - https://apps.kde.org/koko/
+  - https://userbase.kde.org/Photos
+  license: "GPL-2+ FDL-1.2"
+  description: "Image viewer by KDE"
+  labels:
+    appstream.id: "org.kde.koko.desktop"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      kde-apps/koko
+  overlays:
+  - enable: "val-vgms"
+  provides:
+  - category: "kde-apps"
+    name: "koko"
+    version: ">=0"
+  atoms:
+  - atom: "kde-apps/koko"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-plasma
+  build_requires:
+  - <<: *layers-plasma
+
+- category: "apps"
   name: "kompare"
   version: "26.04.3"
   uri:
@@ -8379,7 +8406,7 @@ packages:
 
 - category: "apps"
   name: "latte-dock-ng"
-  version: "1.2.59"
+  version: "1.2.62"
   uri:
   - https://github.com/ruizhi-lab/latte-dock-ng
   license: "GPL-2+ GPL-3+ LGPL-2+ || ( LGPL-2.1 LGPL-3 )"
@@ -8589,7 +8616,7 @@ packages:
 - &apps-linuxtv-utils
   category: "apps"
   name: "linuxtv-utils"
-  version: "0.6"
+  version: "26.10"
   uri:
   - https://www.linuxtv.org/
   - https://git.linuxtv.org/v4l-utils.git
@@ -8688,7 +8715,7 @@ packages:
 
 - category: "apps"
   name: "mangowm"
-  version: "0.18.0"
+  version: "0.18.2"
   uri:
   - https://github.com/mangowm/mango
   license: "CC0-1.0 GPL-3+ MIT"
@@ -9363,7 +9390,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.19.0"
+  version: "1.19.3"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -10466,7 +10493,7 @@ packages:
 # for future reference)
 - category: "apps"
   name: "qt-creator"
-  version: "20.0.1+1"
+  version: "20.0.2"
   uri:
   - https://www.qt.io/product/development-tools
   license: "GPL-3"
@@ -10673,7 +10700,7 @@ packages:
 
 - category: "apps"
   name: "rustdesk"
-  version: "1.5.0+2"
+  version: "1.5.0-r2"
   uri:
   - https://rustdesk.com/
   license: "AGPL-3 Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 CDLA-Permissive-2.0 GPL-3+ IJG ISC MIT MIT-0 MPL-2.0 Unicode-DFS-2016 Unlicense WTFPL-2 ZLIB"
@@ -11298,7 +11325,7 @@ packages:
 
 - category: "apps"
   name: "torbrowser"
-  version: "140.17.0_p15025"
+  version: "140.17.0_p15026"
   uri:
   - https://www.torproject.org
   license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -11403,7 +11430,7 @@ packages:
 
 - category: "apps"
   name: "tuba"
-  version: "0.11.0"
+  version: "0.11.1"
   uri:
   - https://github.com/GeopJr/Tuba
   license: "GPL-3 CC-BY-SA-4.0"
@@ -11498,7 +11525,7 @@ packages:
 
 - category: "apps"
   name: "ulauncher"
-  version: "5.15.15+19"
+  version: "5.15.15+20"
   uri:
   - https://ulauncher.io
   - https://github.com/Ulauncher/Ulauncher/
@@ -11718,7 +11745,7 @@ packages:
 
 - category: "apps"
   name: "vscodium"
-  version: "1.135.06055"
+  version: "1.140.06880"
   uri:
   - https://vscodium.com/
   license: "Apache-2.0 BSD BSD-1 BSD-2 BSD-4 CC-BY-4.0 ISC LGPL-2.1+ MIT MPL-2.0 openssl PYTHON TextMate-bundle Unlicense UoI-NCSA W3C"
@@ -13204,45 +13231,45 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-# - category: "apps"
-#   name: "0ad"
-#   version: "0.28.0-r1+1"
-#   uri:
-#   - https://play0ad.com/
-#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-#   description: "A free, real-time strategy game"
-#   labels:
-#     appstream.id: "com.play0ad.zeroad"
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       games-strategy/0ad
-#   provides:
-#   - category: "games-strategy"
-#     name: "0ad"
-#     version: ">=0"
-#   - category: "net-libs"
-#     name: "gloox"
-#     version: ">=0"
-#   atoms:
-#   - atom: "games-strategy/0ad"
-#     use: "lobby editor nvtt pch verify-sig"
-#     accept_keywords: "~amd64"
-#   - atom: "net-libs/gloox"
-#     use: "gnutls idn ssl zlib"
-#     accept_keywords: "~amd64"
-#   env:
-#   - USE="lua_targets_lua5-3"
-#   inner_build_reqs:
-#   - app-crypt/minisign
-#   - dev-lua/luasocket
-#   - dev-util/premake:5
-#   requires:
-#   - <<: *layers-gnome-common
-#   #  Required by the editor
-#   - <<: *libs-wxGTK
-#   - <<: *libs-enet
-#   build_requires:
-#   - <<: *layers-gnome-common
+- category: "apps"
+  name: "0ad"
+  version: "0.28.0-r1+1"
+  uri:
+  - https://play0ad.com/
+  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+  description: "A free, real-time strategy game"
+  labels:
+    appstream.id: "com.play0ad.zeroad"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      games-strategy/0ad
+  provides:
+  - category: "games-strategy"
+    name: "0ad"
+    version: ">=0"
+  - category: "net-libs"
+    name: "gloox"
+    version: ">=0"
+  atoms:
+  - atom: "games-strategy/0ad"
+    use: "lobby editor nvtt pch verify-sig"
+    accept_keywords: "~amd64"
+  - atom: "net-libs/gloox"
+    use: "gnutls idn ssl zlib"
+    accept_keywords: "~amd64"
+  env:
+  - USE="lua_targets_lua5-3"
+  inner_build_reqs:
+  - app-crypt/minisign
+  - dev-lua/luasocket
+  - dev-util/premake:5
+  requires:
+  - <<: *layers-gnome-common
+  #  Required by the editor
+  - <<: *libs-wxGTK
+  - <<: *libs-enet
+  build_requires:
+  - <<: *layers-gnome-common
 
 - &apps-abiword
   category: "apps"
@@ -13635,7 +13662,7 @@ packages:
 
 - category: "apps"
   name: "cfg-update"
-  version: "1.8.11+1"
+  version: "1.11.0"
   uri:
   - https://github.com/rich0/cfg-update
   license: 'GPL-2'
@@ -13689,7 +13716,7 @@ packages:
 
 - category: "apps"
   name: "chezmoi"
-  version: "2.72.1"
+  version: "2.73.1"
   uri:
   - https://www.chezmoi.io/
   license: "BSD BSD-2 MIT Apache-2.0 MPL-2.0"
@@ -13871,7 +13898,7 @@ packages:
 - &apps-delve
   category: "apps"
   name: "delve"
-  version: "1.27.1"
+  version: "1.27.2"
   uri:
   - https://github.com/go-delve/delve
   license: "MIT BSD BSD-2 Apache-2.0"
@@ -14324,7 +14351,7 @@ packages:
 
 - category: "apps"
   name: "gitkraken"
-  version: "12.6.0"
+  version: "12.6.1"
   uri:
   - https://www.gitkraken.com
   license: "EULA"
@@ -14421,7 +14448,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.23.1"
+  version: "2.24.0"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14448,7 +14475,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.3.5"
+  version: "1.4.2"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -15575,7 +15602,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.41"
+  version: "0.43.1"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -15832,7 +15859,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "137.0.6036.39"
+  version: "138.0.6044.24"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -16004,7 +16031,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.1.2-r1"
+  version: "26.2.1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16173,7 +16200,7 @@ packages:
 
 - category: "apps"
   name: "proton-ge-custom-bin"
-  version: "11.9"
+  version: "11.11"
   uri:
   - https://github.com/GloriousEggroll/proton-ge-custom
   license: "BSD LGPL zlib MIT MPL OFL Proton GPL MSPL"
@@ -16588,7 +16615,7 @@ packages:
 
 - category: "apps"
   name: "snapper-gui"
-  version: "220626+15"
+  version: "220626-r1"
   uri:
   - https://github.com/ricardomv/snapper-gui
   license: "GPL-2+"
@@ -16943,36 +16970,36 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-tesseract
-  category: "apps"
-  name: "tesseract"
-  version: "5.5.3"
-  uri:
-  - https://github.com/tesseract-ocr
-  license: "Apache-2.0"
-  description: "An OCR Engine, originally developed at HP, now open source"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/tessdata_best
-      app-text/tesseract
-  provides:
-  - category: "app-text"
-    name: "tesseract"
-    version: ">=0"
-  - category: "app-text"
-    name: "tessdata_best"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/tesseract"
-    use: "float32 jpeg opencl openmp png tiff training webp"
-  inner_build_reqs:
-  - app-text/asciidoc
-  requires:
-  - <<: *layers-X
-  - <<: *libs-leptonica
-  build_requires:
-  - <<: *layers-X
+# - &apps-tesseract
+#   category: "apps"
+#   name: "tesseract"
+#   version: "5.5.3"
+#   uri:
+#   - https://github.com/tesseract-ocr
+#   license: "Apache-2.0"
+#   description: "An OCR Engine, originally developed at HP, now open source"
+#   labels:
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       app-text/tessdata_best
+#       app-text/tesseract
+#   provides:
+#   - category: "app-text"
+#     name: "tesseract"
+#     version: ">=0"
+#   - category: "app-text"
+#     name: "tessdata_best"
+#     version: ">=0"
+#   atoms:
+#   - atom: "app-text/tesseract"
+#     use: "float32 jpeg opencl openmp png tiff training webp"
+#   inner_build_reqs:
+#   - app-text/asciidoc
+#   requires:
+#   - <<: *layers-X
+#   - <<: *libs-leptonica
+#   build_requires:
+#   - <<: *layers-X
 
 - &apps-tigervnc
   category: "apps"
@@ -17322,7 +17349,7 @@ packages:
 
 - category: "apps"
   name: "wine-staging"
-  version: "11.19"
+  version: "11.20"
   uri:
   - https://www.winehq.org/
   - https://github.com/bobwya/wine-desktop-common
@@ -19014,7 +19041,7 @@ packages:
 - &apps-libreoffice
   category: "apps"
   name: "libreoffice"
-  version: "25.2.7.2-r1+11"
+  version: "25.2.7.2-r1+12"
   uri:
   - https://www.libreoffice.org
   - https://github.com/Numbertext/libnumbertext
@@ -19587,7 +19614,7 @@ packages:
 
 - category: "apps"
   name: "noctalia-greeter"
-  version: "1.6.0"
+  version: "1.7.0"
   uri:
   - https://noctalia.dev
   license: "MIT"
@@ -19986,7 +20013,7 @@ packages:
 - &apps-rclone
   category: "apps"
   name: "rclone"
-  version: "1.75.0"
+  version: "1.75.1"
   uri:
   - https://rclone.org/
   license: "Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0"
@@ -20054,7 +20081,7 @@ packages:
 
 - category: "apps"
   name: "scribus"
-  version: "1.7.3-r1"
+  version: "1.7.4_pre20260918"
   uri:
   - https://www.scribus.net/
   license: "GPL-2"
@@ -20081,233 +20108,233 @@ packages:
   - <<: *layerbase-office-common
   requires_final_images: true
 
-# - category: "apps"
-#   name: "spyder"
-#   version: "6.1.7"
-#   uri:
-#   - https://www.spyder-ide.org/
-#   - https://github.com/aio-libs/aiohttp/
-#   - https://github.com/ronf/asyncssh/
-#   - https://github.com/diff-match-patch-python/diff-match-patch/
-#   - https://github.com/chaimleib/intervaltree/
-#   - https://github.com/ipython/ipython-pygments-lexers/
-#   - https://github.com/jamesturk/jellyfish/
-#   - https://github.com/jaraco/keyring/
-#   - https://pypi.org/project/markdown-it-py/
-#   - https://nbconvert.readthedocs.io/
-#   - https://numpydoc.readthedocs.io/en/latest/
-#   - https://github.com/pypa/packaging/
-#   - https://pexpect.readthedocs.io/
-#   - https://github.com/ipython/pickleshare/
-#   - https://github.com/PyGithub/PyGithub/
-#   - https://zeromq.org/languages/python/
-#   - https://github.com/ColinDuquesnoy/QDarkStyleSheet/
-#   - https://github.com/blambright/qstylizer/
-#   - https://github.com/spyder-ide/qtawesome/
-#   - https://rtree.readthedocs.io/
-#   - https://www.sphinx-doc.org/
-#   - https://github.com/spyder-ide/spyder-kernels/
-#   - https://github.com/pyapp-kit/superqt/
-#   - https://github.com/life4/textdistance/
-#   - https://github.com/spyder-ide/three-merge/
-#   - https://github.com/gorakhargosh/watchdog/
-#   - https://github.com/aio-libs/yarl/
-#   - https://github.com/cookiecutter/cookiecutter
-#   - https://pypi.org/project/pylint-venv/
-#   - https://github.com/spyder-ide/pyls-spyder
-#   - https://github.com/python-lsp/python-lsp-black/
-#   - https://github.com/python-lsp/python-lsp-ruff/
-#   - https://github.com/jtauber/pyuca
-#   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Unicode-3.0 Boost-1.0 BSD BSD-2 CC-BY-4.0 EPL-2.0 GPL-2+ LGPL-3 LGPL-3+ MIT OFL-1.1 PSF-2"
-#   description: "The Scientific Python Development Environment"
-#   labels:
-#     emerge.jobs: "1"
-#     emerge.packages: >-
-#       dev-python/spyder
-#     description: |
-#       Fast GPU-based terminal emulator
-#       HTTP client/server for asyncio
-#       Asynchronous SSHv2 client and server library
-#       Diff, match and patch algorithms for plain text
-#       Editable interval tree data structure for Python 2 and 3
-#       Pygments lexers for syntax-highlighting IPython code and sessions
-#       Python module for doing approximate and phonetic matching of strings
-#       Provides access to the system keyring service
-#       Python port of markdown-it, Markdown parser
-#       Converting Jupyter Notebooks
-#       Sphinx extension to support docstrings in Numpy format
-#       Core utilities for Python packages
-#       Python module for spawning child apps and responding to expected patterns
-#       A small 'shelve' like datastore with concurrency support
-#       Python library to access the Github API v3
-#       Lightweight and super-fast messaging library built on top of the ZeroMQ library
-#       A dark style sheet for QtWidgets application
-#       Stylesheet Generator for PyQt6/PySide2
-#       Enables iconic fonts such as Font Awesome in PyQt
-#       Qt-based console for Jupyter with support for rich media output
-#       R-Tree spatial index for Python GIS
-#       Python documentation generator
-#       Kernels used by spyder on its ipython console
-#       Missing widgets and components for PyQt/PySide
-#       Compute distance between the two texts
-#       Simple Python library to perform a 3-way merge between strings
-#       Python API and shell utilities to monitor file system events
-#       Yet another URL library
-#       Command-line utility to create projects from cookiecutters (project templates)
-#       Init-hook to use the same Pylint with different virtual environments
-#       Spyder extensions for the python language server
-#       Black plugin for the Python LSP Server
-#       Ruff linting plugin for the Python LSP Server
-#       Python implementation of the Unicode Collation Algorithm
-#   provides:
-#   - name: "spyder"
-#     category: "dev-python"
-#     version: ">=0"
-#   - name: "aiohttp"
-#     category: "dev-python"
-#     version: ">=0"
-#   - name: "asyncssh"
-#     category: "dev-python"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "diff-match-patch"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "intervaltree"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "ipython-pygments-lexers"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "jellyfish"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "keyring"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "markdown-it-py"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "nbconvert"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "numpydoc"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "packaging"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pexpect"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pickleshare"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pygithub"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pylint-venv"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyls-spyder"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "python-lsp-black"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "python-lsp-ruff"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyuca"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "pyzmq"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "qdarkstyle"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "qstylizer"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "qtawesome"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "qtconsole"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "rtree"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "sphinx"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "spyder-kernels"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "superqt"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "textdistance"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "three-merge"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "watchdog"
-#     version: ">=0"
-#   - category: "dev-python"
-#     name: "yarl"
-#     version: ">=0"
-#   - category: "dev-util"
-#     name: "cookiecutter"
-#     version: ">=0"
-#   - category: "net-libs"
-#     name: "pyzmq"
-#     version: ">=0"
-#   atoms:
-#   - atom: "dev-python/spyder"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/aiohttp"
-#     use: "native-extensions verify-provenance"
-#   - atom: "dev-python/ipython-pygments-lexers"
-#     use: "verify-provenance"
-#   - atom:  "dev-python/lsprotocol"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/python-lsp-server"
-#     use: "all-plugins"
-#   - atom: "dev-python/packaging"
-#     use: "verify-provenance"
-#   - atom: "dev-python/pyzmq"
-#     use: "drafts"
-#   - atom: "dev-python/rtree"
-#     use: "verify-provenance"
-#   - atom: "dev-python/spyder-kernels"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/superqt"
-#     use: "verify-provenance"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/yarl"
-#     use: "native-extensions verify-provenance"
-#   - atom: "dev-python/pylint-venv"
-#     use: "verify-provenance"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/python-lsp-ruff"
-#     use: "verify-provenance"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/pyuca"
-#     accept_keywords: "~amd64"
-#   - atom: "dev-python/qstylizer"
-#     accept_keywords: "~amd64"
-#   - atom: "net-libs/pyzmq"
-#     use: "drafts"
-#   requires:
-#   - <<: *layers-qt
-#   - <<: *libs-jsonschema
-#   - <<: *libs-qtpy
-#   - <<: *libs-zeromq
-#   build_requires:
-#   - <<: *layers-qt
+- category: "apps"
+  name: "spyder"
+  version: "6.1.7"
+  uri:
+  - https://www.spyder-ide.org/
+  - https://github.com/aio-libs/aiohttp/
+  - https://github.com/ronf/asyncssh/
+  - https://github.com/diff-match-patch-python/diff-match-patch/
+  - https://github.com/chaimleib/intervaltree/
+  - https://github.com/ipython/ipython-pygments-lexers/
+  - https://github.com/jamesturk/jellyfish/
+  - https://github.com/jaraco/keyring/
+  - https://pypi.org/project/markdown-it-py/
+  - https://nbconvert.readthedocs.io/
+  - https://numpydoc.readthedocs.io/en/latest/
+  - https://github.com/pypa/packaging/
+  - https://pexpect.readthedocs.io/
+  - https://github.com/ipython/pickleshare/
+  - https://github.com/PyGithub/PyGithub/
+  - https://zeromq.org/languages/python/
+  - https://github.com/ColinDuquesnoy/QDarkStyleSheet/
+  - https://github.com/blambright/qstylizer/
+  - https://github.com/spyder-ide/qtawesome/
+  - https://rtree.readthedocs.io/
+  - https://www.sphinx-doc.org/
+  - https://github.com/spyder-ide/spyder-kernels/
+  - https://github.com/pyapp-kit/superqt/
+  - https://github.com/life4/textdistance/
+  - https://github.com/spyder-ide/three-merge/
+  - https://github.com/gorakhargosh/watchdog/
+  - https://github.com/aio-libs/yarl/
+  - https://github.com/cookiecutter/cookiecutter
+  - https://pypi.org/project/pylint-venv/
+  - https://github.com/spyder-ide/pyls-spyder
+  - https://github.com/python-lsp/python-lsp-black/
+  - https://github.com/python-lsp/python-lsp-ruff/
+  - https://github.com/jtauber/pyuca
+  license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Unicode-3.0 Boost-1.0 BSD BSD-2 CC-BY-4.0 EPL-2.0 GPL-2+ LGPL-3 LGPL-3+ MIT OFL-1.1 PSF-2"
+  description: "The Scientific Python Development Environment"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/spyder
+    description: |
+      Fast GPU-based terminal emulator
+      HTTP client/server for asyncio
+      Asynchronous SSHv2 client and server library
+      Diff, match and patch algorithms for plain text
+      Editable interval tree data structure for Python 2 and 3
+      Pygments lexers for syntax-highlighting IPython code and sessions
+      Python module for doing approximate and phonetic matching of strings
+      Provides access to the system keyring service
+      Python port of markdown-it, Markdown parser
+      Converting Jupyter Notebooks
+      Sphinx extension to support docstrings in Numpy format
+      Core utilities for Python packages
+      Python module for spawning child apps and responding to expected patterns
+      A small 'shelve' like datastore with concurrency support
+      Python library to access the Github API v3
+      Lightweight and super-fast messaging library built on top of the ZeroMQ library
+      A dark style sheet for QtWidgets application
+      Stylesheet Generator for PyQt6/PySide2
+      Enables iconic fonts such as Font Awesome in PyQt
+      Qt-based console for Jupyter with support for rich media output
+      R-Tree spatial index for Python GIS
+      Python documentation generator
+      Kernels used by spyder on its ipython console
+      Missing widgets and components for PyQt/PySide
+      Compute distance between the two texts
+      Simple Python library to perform a 3-way merge between strings
+      Python API and shell utilities to monitor file system events
+      Yet another URL library
+      Command-line utility to create projects from cookiecutters (project templates)
+      Init-hook to use the same Pylint with different virtual environments
+      Spyder extensions for the python language server
+      Black plugin for the Python LSP Server
+      Ruff linting plugin for the Python LSP Server
+      Python implementation of the Unicode Collation Algorithm
+  provides:
+  - name: "spyder"
+    category: "dev-python"
+    version: ">=0"
+  - name: "aiohttp"
+    category: "dev-python"
+    version: ">=0"
+  - name: "asyncssh"
+    category: "dev-python"
+    version: ">=0"
+  - category: "dev-python"
+    name: "diff-match-patch"
+    version: ">=0"
+  - category: "dev-python"
+    name: "intervaltree"
+    version: ">=0"
+  - category: "dev-python"
+    name: "ipython-pygments-lexers"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jellyfish"
+    version: ">=0"
+  - category: "dev-python"
+    name: "keyring"
+    version: ">=0"
+  - category: "dev-python"
+    name: "markdown-it-py"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nbconvert"
+    version: ">=0"
+  - category: "dev-python"
+    name: "numpydoc"
+    version: ">=0"
+  - category: "dev-python"
+    name: "packaging"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pexpect"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pickleshare"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pygithub"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pylint-venv"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyls-spyder"
+    version: ">=0"
+  - category: "dev-python"
+    name: "python-lsp-black"
+    version: ">=0"
+  - category: "dev-python"
+    name: "python-lsp-ruff"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyuca"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pyzmq"
+    version: ">=0"
+  - category: "dev-python"
+    name: "qdarkstyle"
+    version: ">=0"
+  - category: "dev-python"
+    name: "qstylizer"
+    version: ">=0"
+  - category: "dev-python"
+    name: "qtawesome"
+    version: ">=0"
+  - category: "dev-python"
+    name: "qtconsole"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rtree"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinx"
+    version: ">=0"
+  - category: "dev-python"
+    name: "spyder-kernels"
+    version: ">=0"
+  - category: "dev-python"
+    name: "superqt"
+    version: ">=0"
+  - category: "dev-python"
+    name: "textdistance"
+    version: ">=0"
+  - category: "dev-python"
+    name: "three-merge"
+    version: ">=0"
+  - category: "dev-python"
+    name: "watchdog"
+    version: ">=0"
+  - category: "dev-python"
+    name: "yarl"
+    version: ">=0"
+  - category: "dev-util"
+    name: "cookiecutter"
+    version: ">=0"
+  - category: "net-libs"
+    name: "pyzmq"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/spyder"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/aiohttp"
+    use: "native-extensions verify-provenance"
+  - atom: "dev-python/ipython-pygments-lexers"
+    use: "verify-provenance"
+  - atom:  "dev-python/lsprotocol"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/python-lsp-server"
+    use: "all-plugins"
+  - atom: "dev-python/packaging"
+    use: "verify-provenance"
+  - atom: "dev-python/pyzmq"
+    use: "drafts"
+  - atom: "dev-python/rtree"
+    use: "verify-provenance"
+  - atom: "dev-python/spyder-kernels"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/superqt"
+    use: "verify-provenance"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/yarl"
+    use: "native-extensions verify-provenance"
+  - atom: "dev-python/pylint-venv"
+    use: "verify-provenance"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/python-lsp-ruff"
+    use: "verify-provenance"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/pyuca"
+    accept_keywords: "~amd64"
+  - atom: "dev-python/qstylizer"
+    accept_keywords: "~amd64"
+  - atom: "net-libs/pyzmq"
+    use: "drafts"
+  requires:
+  - <<: *layers-qt
+  - <<: *libs-jsonschema
+  - <<: *libs-qtpy
+  - <<: *libs-zeromq
+  build_requires:
+  - <<: *layers-qt
 
 - category: "apps"
   name: "sqlitebrowser"
@@ -20716,7 +20743,7 @@ packages:
 
 - category: "apps"
   name: "yazi"
-  version: "26.1.22"
+  version: "26.9.1"
   uri:
   - https://yazi-rs.github.io
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 UoI-NCSA Unicode-3.0 ZLIB"
@@ -21155,7 +21182,7 @@ packages:
 
 - category: "apps"
   name: "calligra"
-  version: "26.08.1"
+  version: "26.08.1+1"
   uri:
   - https://calligra.org/
   license: "GPL-2"
@@ -21513,7 +21540,7 @@ packages:
 - &apps-inkscape
   category: "apps"
   name: "inkscape"
-  version: "1.4.4+1"
+  version: "1.4.4-r1"
   uri:
   - https://inkscape.org/
   - https://launchpad.net/pylockfile/
@@ -22053,7 +22080,7 @@ packages:
 
 - category: "apps"
   name: "wesnoth"
-  version: "1.18.6+2"
+  version: "1.19.19"
   uri:
   - https://www.wesnoth.org
   license: "GPL-2+ CC-BY-SA-4.0"
@@ -22938,7 +22965,7 @@ packages:
 - &apps-lyx
   category: "apps"
   name: "lyx"
-  version: "2.5.2"
+  version: "2.5.3"
   uri:
   - https://www.lyx.org/
   - https://www.gnu.org/software/unrtf/unrtf.html
