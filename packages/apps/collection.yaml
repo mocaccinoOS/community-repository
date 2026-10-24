@@ -4744,6 +4744,8 @@ packages:
   atoms:
   - atom: "net-dns/bind"
     use: "caps dlz doc gssapi idn verify-sig xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux"
+  - atom: "dev-python/alabaster"
+    usepkg_exclude: true
   inner_build_reqs:
   - dev-python/sphinx
   - acct-group/named
@@ -6327,7 +6329,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "152-154"
+  version: "152-153-154"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6336,6 +6338,7 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/ffmpeg-chromium:152
+      media-video/ffmpeg-chromium:153
       media-video/ffmpeg-chromium:154
   provides:
   - category: "media-video"
@@ -8131,8 +8134,13 @@ packages:
   - category: "kde-apps"
     name: "koko"
     version: ">=0"
+  - category: "dev-libs"
+    name: "kirigami-app-components"
+    version: ">=0"
   atoms:
   - atom: "kde-apps/koko"
+    accept_keywords: "~amd64"
+  - atom: "dev-libs/kirigami-app-components"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-plasma
@@ -8613,36 +8621,27 @@ packages:
   build_requires:
   - <<: *layers-qt
 
-- &apps-linuxtv-utils
+- &apps-dtv-scan-tables
   category: "apps"
-  name: "linuxtv-utils"
-  version: "26.10"
+  name: "dtv-scan-tables"
+  version: "0_p20220430"
   uri:
   - https://www.linuxtv.org/
   - https://git.linuxtv.org/v4l-utils.git
-  license: "GPL-2 GPL-2+ LGPL-2.1+"
-  description: |
-    Small utils for DVB to scan, zap, view signal strength
-    Separate utilities ebuild from upstream v4l-utils package
+  license: "GPL-2 LGPL-2.1"
+  description: "Digital TV scan tables in v3 and v5 format"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       media-tv/dtv-scan-tables
-      media-tv/linuxtv-dvb-apps
   provides:
-  - category: "media-tv"
-    name: "linuxtv-dvb-apps"
-    version: ">=0"
   - category: "media-tv"
     name: "dtv-scan-tables"
     version: ">=0"
-  atoms:
-  - atom: "media-tv/linuxtv-dvb-apps"
-    use: "usb # alevt"
   requires:
-  - <<: *layers-qt
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-qt
+  - <<: *layers-X
 
 - &apps-lshw
   category: "apps"
@@ -13233,7 +13232,7 @@ packages:
 
 - category: "apps"
   name: "0ad"
-  version: "0.28.0-r1+1"
+  version: "0.28.0-r1+2"
   uri:
   - https://play0ad.com/
   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
@@ -13259,6 +13258,10 @@ packages:
     accept_keywords: "~amd64"
   env:
   - USE="lua_targets_lua5-3"
+  # prepare:
+  # push python 3.14
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{12,13,14}/PYTHON_COMPAT=( python3_{14}/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
+  - find /var/db/repos/gentoo/games-strategy/0ad/ -type f -name "0ad-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-crypt/minisign
   - dev-lua/luasocket
@@ -15602,7 +15605,7 @@ packages:
 
 - category: "apps"
   name: "nwipe"
-  version: "0.43.1"
+  version: "0.43.1+1"
   uri:
   - https://github.com/martijnvanbrummelen/nwipe/
   license: "GPL-2"
@@ -15619,10 +15622,10 @@ packages:
   - atom: "app-crypt/nwipe"
     accept_keywords: "~amd64"
   requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
   - <<: *libs-libconfig
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
 
 - &apps-nwjs
   category: "apps"
@@ -15859,7 +15862,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "138.0.6044.24"
+  version: "138.0.6044.24+1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -20330,6 +20333,7 @@ packages:
     use: "drafts"
   requires:
   - <<: *layers-qt
+  - <<: *fonts-fontawesome
   - <<: *libs-jsonschema
   - <<: *libs-qtpy
   - <<: *libs-zeromq
@@ -20743,7 +20747,7 @@ packages:
 
 - category: "apps"
   name: "yazi"
-  version: "26.9.1"
+  version: "26.1.22"
   uri:
   - https://yazi-rs.github.io
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 UoI-NCSA Unicode-3.0 ZLIB"
