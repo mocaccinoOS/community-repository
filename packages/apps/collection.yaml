@@ -11265,6 +11265,88 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-sphinx
+  category: "apps"
+  name: "sphinx"
+  version: "9.1.0-r1"
+  uri:
+  - https://github.com/sphinx-doc/alabaster/
+  - https://babel.pocoo.org/
+  - https://github.com/shibukawa/imagesize_py/
+  - https://github.com/AA-Turner/roman-numerals/
+  - https://snowballstem.org/
+  - https://www.sphinx-doc.org/
+  license: "0BSD BSD BSD-2 CC0-1.0 MIT"
+  description: |
+    A configurable sidebar-enabled Sphinx theme
+    Collection of tools for internationalizing Python applications
+    Pure Python module for getting image size from png/jpeg/jpeg2000/gif files
+    Manipulate roman numerals
+    Stemmer algorithms generated from Snowball algorithms
+    Python documentation generator
+    Sphinx extension which outputs Apple help book
+    Sphinx extension which outputs Devhelp documents
+    Sphinx extension which outputs HTML help book
+    Sphinx extension which renders display math in HTML via JavaScript
+    Sphinx extension which outputs QtHelp documents
+    Sphinx extension which outputs outputs serialized HTML files
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/sphinx
+  provides:
+  - category: "dev-python"
+    name: "alabaster"
+    version: ">=0"
+  - category: "dev-python"
+    name: "babel"
+    version: ">=0"
+  - category: "dev-python"
+    name: "imagesize"
+    version: ">=0"
+  - category: "dev-python"
+    name: "roman-numerals"
+    version: ">=0"
+  - category: "dev-python"
+    name: "snowballstemmer"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinx"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-applehelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-devhelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-htmlhelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-jsmath"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-qthelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-serializinghtml"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  atoms:
+  # - atom: "dev-python/sphinx"
+  #   use: "# doc: apps-graphviz (build time only)  # latex: layers-latex"
+  # - atom: "dev-python/babel"
+  #   use: "verify-provenance"
+  # - atom: "dev-python/roman-numerals"
+  #   use: "verify-provenance"
+  # - atom: "dev-python/snowballstemmer"
+  #   use: "verify-provenance"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - category: "apps"
   name: "st"
   version: "0.9.3"
