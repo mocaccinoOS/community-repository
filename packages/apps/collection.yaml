@@ -1006,6 +1006,27 @@ packages:
 ### dep 0 libs ###
 ################################################################################################################################################################
 
+- &libs-alabaster
+  category: "libs"
+  name: "alabaster"
+  version: "1.0.0"
+  uri:
+  - https://github.com/sphinx-doc/alabaster/
+  license: "BSD"
+  description: "A configurable sidebar-enabled Sphinx theme"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/alabaster
+  provides:
+  - category: "dev-python"
+    name: "alabaster"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-analitza
   category: "libs"
   name: "analitza"
@@ -2284,7 +2305,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.7"
+  version: "1.9.7+1"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -2299,16 +2320,13 @@ packages:
   - category: "dev-libs"
     name: "libgit2"
     version: ">=0"
-  - category: "net-libs"
-    name: "llhttp"
-    version: ">=0"
   atoms:
   - atom: "dev-libs/libgit2"
     use: "gssapi ssh threads"
   requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
   build_requires:
-  - <<: *layers-sys-fs
+  - <<: *layers-X
 
 - &libs-libgpiod
   category: "libs"
@@ -3874,6 +3892,28 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-truststore
+  category: "libs"
+  name: "truststore"
+  version: "0.10.4"
+  uri:
+  - https://github.com/sethmlarson/truststore/
+  license: "MIT"
+  description: |
+    Verify certificates using native system trust stores
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/truststore
+  provides:
+  - category: "dev-python"
+    name: "truststore"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-typing-extensions
   category: "libs"
   name: "typing-extensions"
@@ -4728,7 +4768,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.29"
+  version: "9.20.26"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4744,8 +4784,6 @@ packages:
   atoms:
   - atom: "net-dns/bind"
     use: "caps dlz doc gssapi idn verify-sig xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux"
-  - atom: "dev-python/alabaster"
-    usepkg_exclude: true
   inner_build_reqs:
   - dev-python/sphinx
   - acct-group/named
@@ -8131,16 +8169,21 @@ packages:
   overlays:
   - enable: "val-vgms"
   provides:
+  - category: "dev-libs"
+    name: "kirigami-app-components"
+    version: ">=0"
   - category: "kde-apps"
     name: "koko"
     version: ">=0"
-  - category: "dev-libs"
-    name: "kirigami-app-components"
+  - category: "kde-apps"
+    name: "thumbnailers"
     version: ">=0"
   atoms:
   - atom: "kde-apps/koko"
     accept_keywords: "~amd64"
   - atom: "dev-libs/kirigami-app-components"
+    accept_keywords: "~amd64"
+  - atom: "kde-apps/thumbnailers"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-plasma
@@ -16034,7 +16077,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.2.1"
+  version: "26.2.1+1"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16074,9 +16117,6 @@ packages:
     name: "tomli-w"
     version: ">=0"
   - category: "dev-python"
-    name: "truststore"
-    version: ">=0"
-  - category: "dev-python"
     name: "uc-micro-py"
     version: ">=0"
   requires:
@@ -16084,6 +16124,7 @@ packages:
   - <<: *libs-cachecontrol
   - <<: *libs-colorama
   - <<: *libs-pyproject-hooks
+  - <<: *libs-truststore
   - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-sys-fs
@@ -16874,6 +16915,63 @@ packages:
   - <<: *layers-gnome-common
   build_requires:
   - <<: *layers-gnome-common
+
+- &apps-sphinx
+  category: "apps"
+  name: "sphinx"
+  version: "9.1.0-r1"
+  uri:
+  - https://www.sphinx-doc.org/
+  license: "BSD-2"
+  description: "Python documentation generator"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/sphinx
+  provides:
+  - category: "dev-python"
+    name: "babel"
+    version: ">=0"
+  - category: "dev-python"
+    name: "imagesize"
+    version: ">=0"
+  - category: "dev-python"
+    name: "roman-numerals"
+    version: ">=0"
+  - category: "dev-python"
+    name: "snowballstemmer"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinx"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-applehelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-devhelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-htmlhelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-jsmath"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-qthelp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sphinxcontrib-serializinghtml"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  # atoms:
+  # - atom: "dev-python/sphinx"
+  #   use: "# doc: apps-graphviz (build time only)  # latex: layers-latex"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-alabaster
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "spotify-player"
@@ -20110,235 +20208,6 @@ packages:
   - <<: *buildbase-qt
   - <<: *layerbase-office-common
   requires_final_images: true
-
-- category: "apps"
-  name: "spyder"
-  version: "6.1.7"
-  uri:
-  - https://www.spyder-ide.org/
-  - https://github.com/aio-libs/aiohttp/
-  - https://github.com/ronf/asyncssh/
-  - https://github.com/diff-match-patch-python/diff-match-patch/
-  - https://github.com/chaimleib/intervaltree/
-  - https://github.com/ipython/ipython-pygments-lexers/
-  - https://github.com/jamesturk/jellyfish/
-  - https://github.com/jaraco/keyring/
-  - https://pypi.org/project/markdown-it-py/
-  - https://nbconvert.readthedocs.io/
-  - https://numpydoc.readthedocs.io/en/latest/
-  - https://github.com/pypa/packaging/
-  - https://pexpect.readthedocs.io/
-  - https://github.com/ipython/pickleshare/
-  - https://github.com/PyGithub/PyGithub/
-  - https://zeromq.org/languages/python/
-  - https://github.com/ColinDuquesnoy/QDarkStyleSheet/
-  - https://github.com/blambright/qstylizer/
-  - https://github.com/spyder-ide/qtawesome/
-  - https://rtree.readthedocs.io/
-  - https://www.sphinx-doc.org/
-  - https://github.com/spyder-ide/spyder-kernels/
-  - https://github.com/pyapp-kit/superqt/
-  - https://github.com/life4/textdistance/
-  - https://github.com/spyder-ide/three-merge/
-  - https://github.com/gorakhargosh/watchdog/
-  - https://github.com/aio-libs/yarl/
-  - https://github.com/cookiecutter/cookiecutter
-  - https://pypi.org/project/pylint-venv/
-  - https://github.com/spyder-ide/pyls-spyder
-  - https://github.com/python-lsp/python-lsp-black/
-  - https://github.com/python-lsp/python-lsp-ruff/
-  - https://github.com/jtauber/pyuca
-  license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions Unicode-3.0 Boost-1.0 BSD BSD-2 CC-BY-4.0 EPL-2.0 GPL-2+ LGPL-3 LGPL-3+ MIT OFL-1.1 PSF-2"
-  description: "The Scientific Python Development Environment"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/spyder
-    description: |
-      Fast GPU-based terminal emulator
-      HTTP client/server for asyncio
-      Asynchronous SSHv2 client and server library
-      Diff, match and patch algorithms for plain text
-      Editable interval tree data structure for Python 2 and 3
-      Pygments lexers for syntax-highlighting IPython code and sessions
-      Python module for doing approximate and phonetic matching of strings
-      Provides access to the system keyring service
-      Python port of markdown-it, Markdown parser
-      Converting Jupyter Notebooks
-      Sphinx extension to support docstrings in Numpy format
-      Core utilities for Python packages
-      Python module for spawning child apps and responding to expected patterns
-      A small 'shelve' like datastore with concurrency support
-      Python library to access the Github API v3
-      Lightweight and super-fast messaging library built on top of the ZeroMQ library
-      A dark style sheet for QtWidgets application
-      Stylesheet Generator for PyQt6/PySide2
-      Enables iconic fonts such as Font Awesome in PyQt
-      Qt-based console for Jupyter with support for rich media output
-      R-Tree spatial index for Python GIS
-      Python documentation generator
-      Kernels used by spyder on its ipython console
-      Missing widgets and components for PyQt/PySide
-      Compute distance between the two texts
-      Simple Python library to perform a 3-way merge between strings
-      Python API and shell utilities to monitor file system events
-      Yet another URL library
-      Command-line utility to create projects from cookiecutters (project templates)
-      Init-hook to use the same Pylint with different virtual environments
-      Spyder extensions for the python language server
-      Black plugin for the Python LSP Server
-      Ruff linting plugin for the Python LSP Server
-      Python implementation of the Unicode Collation Algorithm
-  provides:
-  - name: "spyder"
-    category: "dev-python"
-    version: ">=0"
-  - name: "aiohttp"
-    category: "dev-python"
-    version: ">=0"
-  - name: "asyncssh"
-    category: "dev-python"
-    version: ">=0"
-  - category: "dev-python"
-    name: "diff-match-patch"
-    version: ">=0"
-  - category: "dev-python"
-    name: "intervaltree"
-    version: ">=0"
-  - category: "dev-python"
-    name: "ipython-pygments-lexers"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jellyfish"
-    version: ">=0"
-  - category: "dev-python"
-    name: "keyring"
-    version: ">=0"
-  - category: "dev-python"
-    name: "markdown-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nbconvert"
-    version: ">=0"
-  - category: "dev-python"
-    name: "numpydoc"
-    version: ">=0"
-  - category: "dev-python"
-    name: "packaging"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pexpect"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pickleshare"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pygithub"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pylint-venv"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyls-spyder"
-    version: ">=0"
-  - category: "dev-python"
-    name: "python-lsp-black"
-    version: ">=0"
-  - category: "dev-python"
-    name: "python-lsp-ruff"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyuca"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pyzmq"
-    version: ">=0"
-  - category: "dev-python"
-    name: "qdarkstyle"
-    version: ">=0"
-  - category: "dev-python"
-    name: "qstylizer"
-    version: ">=0"
-  - category: "dev-python"
-    name: "qtawesome"
-    version: ">=0"
-  - category: "dev-python"
-    name: "qtconsole"
-    version: ">=0"
-  - category: "dev-python"
-    name: "rtree"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinx"
-    version: ">=0"
-  - category: "dev-python"
-    name: "spyder-kernels"
-    version: ">=0"
-  - category: "dev-python"
-    name: "superqt"
-    version: ">=0"
-  - category: "dev-python"
-    name: "textdistance"
-    version: ">=0"
-  - category: "dev-python"
-    name: "three-merge"
-    version: ">=0"
-  - category: "dev-python"
-    name: "watchdog"
-    version: ">=0"
-  - category: "dev-python"
-    name: "yarl"
-    version: ">=0"
-  - category: "dev-util"
-    name: "cookiecutter"
-    version: ">=0"
-  - category: "net-libs"
-    name: "pyzmq"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/spyder"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/aiohttp"
-    use: "native-extensions verify-provenance"
-  - atom: "dev-python/ipython-pygments-lexers"
-    use: "verify-provenance"
-  - atom:  "dev-python/lsprotocol"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/python-lsp-server"
-    use: "all-plugins"
-  - atom: "dev-python/packaging"
-    use: "verify-provenance"
-  - atom: "dev-python/pyzmq"
-    use: "drafts"
-  - atom: "dev-python/rtree"
-    use: "verify-provenance"
-  - atom: "dev-python/spyder-kernels"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/superqt"
-    use: "verify-provenance"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/yarl"
-    use: "native-extensions verify-provenance"
-  - atom: "dev-python/pylint-venv"
-    use: "verify-provenance"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/python-lsp-ruff"
-    use: "verify-provenance"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/pyuca"
-    accept_keywords: "~amd64"
-  - atom: "dev-python/qstylizer"
-    accept_keywords: "~amd64"
-  - atom: "net-libs/pyzmq"
-    use: "drafts"
-  requires:
-  - <<: *layers-qt
-  - <<: *fonts-fontawesome
-  - <<: *libs-jsonschema
-  - <<: *libs-qtpy
-  - <<: *libs-zeromq
-  build_requires:
-  - <<: *layers-qt
 
 - category: "apps"
   name: "sqlitebrowser"
