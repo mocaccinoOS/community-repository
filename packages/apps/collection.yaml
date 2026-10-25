@@ -3262,7 +3262,29 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-      
+
+- &libs-pynacl
+  category: "libs"
+  name: "pynacl"
+  version: "1.6.2"
+  uri:
+  - https://github.com/pyca/pynacl/
+  license: "Apache-2.0"
+  description: |
+    Python binding to the Networking and Cryptography (NaCl) library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pynacl
+  provides:
+  - category: "dev-python"
+    name: "pynacl"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-pyproject-hooks
   category: "libs"
   name: "pyproject-hooks"
@@ -14865,14 +14887,16 @@ packages:
 - &apps-keyring
   category: "apps"
   name: "keyring"
-  version: "25.7.0"
+  version: "25.7.0+1"
   uri:
   - https://github.com/jaraco/jaraco.classes/
   - https://github.com/jaraco/keyring/
+  - https://github.com/mitya57/secretstorage/
   license: "MIT PSF-2"
   description: |
     Classes used by other projects by developer jaraco
-    Provides access to the system keyring service"
+    Provides access to the system keyring service
+    Python bindings to FreeDesktop.org Secret Service API
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
@@ -14884,6 +14908,14 @@ packages:
   - category: "dev-python"
     name: "keyring"
     version: ">=0"
+  - category: "dev-python"
+    name: "secretstorage"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/secretstorage"
+    use: "verify-provenance"
+  inner_build_reqs:
+  - dev-python/sphinx
   requires:
   - <<: *layers-system-x
   - <<: *libs-jeepney
@@ -17016,7 +17048,7 @@ packages:
   - <<: *libs-libgpod
   build_requires:
   - <<: *layers-kde-common
-    
+
 - category: "apps"
   name: "systemd-pilot"
   version: "3.0+9"
@@ -17034,12 +17066,6 @@ packages:
   - category: "dev-python"
     name: "paramiko"
     version: ">=0"
-  - category: "dev-python"
-    name: "pynacl"
-    version: ">=0"
-  - category: "dev-python"
-    name: "secretstorage"
-    version: ">=0"
   - category: "sys-apps"
     name: "systemd-pilot"
     version: ">=0"
@@ -17050,6 +17076,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-keyring
+  - <<: *libs-pynacl
   build_requires:
   - <<: *layers-gnome-common
 
