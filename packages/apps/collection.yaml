@@ -2035,7 +2035,7 @@ packages:
 - &libs-jeepney
   category: "libs"
   name: "jeepney"
-  version: "0.9.0+3"
+  version: "0.9.0+4"
   uri:
   - https://gitlab.com/takluyver/jeepney/
   license: "MIT"
@@ -2051,10 +2051,12 @@ packages:
   atoms:
   - atom: "dev-python/jeepney"
     use: "verify-provenance"
+  inner_build_reqs:
+  - dev-python/sphinx
   requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-system-x
+  - <<: *layers-sys-fs
 
 - &libs-kdsingleapplication
   category: "libs"
@@ -2300,6 +2302,34 @@ packages:
     use: "X"
   - atom: "media-libs/libgii"
     use: "X"
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
+- &libs-libgit2
+  category: "libs"
+  name: "libgit2"
+  version: "1.9.7+2"
+  uri:
+  - https://libgit2.org/
+  license: "GPL-2-with-linking-exception MIT"
+  description: |
+    A linkable library for Git
+    Port of http_parser to llparse
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-libs/libgit2
+  provides:
+  - category: "dev-libs"
+    name: "libgit2"
+    version: ">=0"
+  atoms:
+  - atom: "dev-libs/libgit2"
+    use: "gssapi ssh threads"
+  prepare:
+  - emerge -C dev-libs/libgit2
   requires:
   - <<: *layers-X
   build_requires:
