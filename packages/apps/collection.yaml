@@ -8260,7 +8260,7 @@ packages:
   - atom: "kde-apps/thumbnailers"
     accept_keywords: "~amd64"
   inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules::gentoo
+  - kde-frameworks/extra-cmake-modules;ACCEPT_KEYWORDS="~amd64"
   requires:
   - <<: *layers-plasma
   build_requires:
@@ -12186,6 +12186,7 @@ packages:
   - <<: *fonts-jetbrains-mono
   # - <<: *fonts-noto-extra
   - <<: *fonts-roboto
+  - <<: *libs-libgit2
   build_requires:
   - <<: *layers-X
   
@@ -13728,13 +13729,10 @@ packages:
     license: "MPL-2.0"
     use: "X"
   requires:
-  # - <<: *layers-sys-fs
-  # due to libgit2
-  - <<: *layers-X
+  - <<: *layers-sys-fs
+  - <<: *libs-libgit2
   build_requires:
-  # - <<: *layers-sys-fs
-  # due to libgit2
-  - <<: *layers-X
+  - <<: *layers-sys-fs
 
 - category: "apps"
   name: "cairo-dock"
@@ -15809,6 +15807,30 @@ packages:
   - <<: *libs-tomlplusplus
   build_requires:
   - <<: *layers-qt
+
+- category: "apps"
+  name: "nushell"
+  version: "0.115.1"
+  uri:
+  - https://www.nushell.sh
+  license: "MIT 0BSD Apache-2.0 BSD Boost-1.0 CC-PD CC0-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
+  description: "A new type of shell, written in Rust"
+  labels:
+    emerge.jobs: "3"
+    emerge.packages: >-
+      app-shells/nushell
+  provides:
+  - category: "app-shells"
+    name: "nushell"
+    version: ">=0"
+  atoms:
+  - atom: "app-shells/nushell"
+    use: "X mcp plugins system-clipboard"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-libgit2
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "nwipe"
@@ -18195,14 +18217,11 @@ packages:
     name: "bat"
     version: ">=0"
   requires:
-  # - <<: *layers-sys-fs
-  # due to libgit2
-  - <<: *layers-X
+  - <<: *layers-sys-fs
+  - <<: *libs-libgit2
   - <<: *libs-oniguruma
   build_requires:
-  # - <<: *layers-sys-fs
-  # due to libgit2
-  - <<: *layers-X
+  - <<: *layers-sys-fs
 
 - &apps-brother-dcp1610w-bin-brscan4
   category: "apps"
@@ -18780,6 +18799,7 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-eselect-ctags
+  - <<: *libs-libgit2
   - <<: *libs-gtk-spell
   build_requires:
   - <<: *layers-gnome-common
@@ -20060,29 +20080,6 @@ packages:
   - <<: *layers-X
   # for telio which needs libclang
   # - <<: *development-gcc
-  build_requires:
-  - <<: *layers-X
-
-- category: "apps"
-  name: "nushell"
-  version: "0.115.1"
-  uri:
-  - https://www.nushell.sh
-  license: "MIT 0BSD Apache-2.0 BSD Boost-1.0 CC-PD CC0-1.0 ISC MIT MPL-2.0 MPL-2.0 Unicode-DFS-2016 ZLIB"
-  description: "A new type of shell, written in Rust"
-  labels:
-    emerge.jobs: "3"
-    emerge.packages: >-
-      app-shells/nushell
-  provides:
-  - category: "app-shells"
-    name: "nushell"
-    version: ">=0"
-  atoms:
-  - atom: "app-shells/nushell"
-    use: "X mcp plugins system-clipboard"
-  requires:
-  - <<: *layers-X
   build_requires:
   - <<: *layers-X
 
