@@ -2035,7 +2035,7 @@ packages:
 - &libs-jeepney
   category: "libs"
   name: "jeepney"
-  version: "0.9.0+4"
+  version: "0.9.0+5"
   uri:
   - https://gitlab.com/takluyver/jeepney/
   license: "MIT"
@@ -2056,7 +2056,8 @@ packages:
   requires:
   - <<: *layers-sys-fs
   build_requires:
-  - <<: *layers-sys-fs
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
 
 - &libs-kdsingleapplication
   category: "libs"
@@ -8227,44 +8228,44 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- category: "apps"
-  name: "koko"
-  version: "26.08.2"
-  uri:
-  - https://apps.kde.org/koko/
-  - https://userbase.kde.org/Photos
-  license: "GPL-2+ FDL-1.2"
-  description: "Image viewer by KDE"
-  labels:
-    appstream.id: "org.kde.koko.desktop"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      kde-apps/koko
-  overlays:
-  - enable: "val-vgms"
-  provides:
-  - category: "dev-libs"
-    name: "kirigami-app-components"
-    version: ">=0"
-  - category: "kde-apps"
-    name: "koko"
-    version: ">=0"
-  - category: "kde-apps"
-    name: "thumbnailers"
-    version: ">=0"
-  atoms:
-  - atom: "kde-apps/koko"
-    accept_keywords: "~amd64"
-  - atom: "dev-libs/kirigami-app-components"
-    accept_keywords: "~amd64"
-  - atom: "kde-apps/thumbnailers"
-    accept_keywords: "~amd64"
-  inner_build_reqs:
-  - kde-frameworks/extra-cmake-modules;ACCEPT_KEYWORDS="~amd64"
-  requires:
-  - <<: *layers-plasma
-  build_requires:
-  - <<: *layers-plasma
+# - category: "apps"
+#   name: "koko"
+#   version: "26.08.2"
+#   uri:
+#   - https://apps.kde.org/koko/
+#   - https://userbase.kde.org/Photos
+#   license: "GPL-2+ FDL-1.2"
+#   description: "Image viewer by KDE"
+#   labels:
+#     appstream.id: "org.kde.koko.desktop"
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       kde-apps/koko
+#   overlays:
+#   - enable: "val-vgms"
+#   provides:
+#   - category: "dev-libs"
+#     name: "kirigami-app-components"
+#     version: ">=0"
+#   - category: "kde-apps"
+#     name: "koko"
+#     version: ">=0"
+#   - category: "kde-apps"
+#     name: "thumbnailers"
+#     version: ">=0"
+#   atoms:
+#   - atom: "kde-apps/koko"
+#     accept_keywords: "~amd64"
+#   - atom: "dev-libs/kirigami-app-components"
+#     accept_keywords: "~amd64"
+#   - atom: "kde-apps/thumbnailers"
+#     accept_keywords: "~amd64"
+#   inner_build_reqs:
+#   - kde-frameworks/extra-cmake-modules::val-vgms;ACCEPT_KEYWORDS="~amd64"
+#   requires:
+#   - <<: *layers-plasma
+#   build_requires:
+#   - <<: *layers-plasma
 
 - category: "apps"
   name: "kompare"
