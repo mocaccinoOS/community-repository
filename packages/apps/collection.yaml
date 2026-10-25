@@ -13287,49 +13287,46 @@ packages:
 ### dep 1 apps ###
 ################################################################################################################################################################
 
-- category: "apps"
-  name: "0ad"
-  version: "0.28.0-r1+3"
-  uri:
-  - https://play0ad.com/
-  license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
-  description: "A free, real-time strategy game"
-  labels:
-    appstream.id: "com.play0ad.zeroad"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      games-strategy/0ad
-  provides:
-  - category: "games-strategy"
-    name: "0ad"
-    version: ">=0"
-  - category: "net-libs"
-    name: "gloox"
-    version: ">=0"
-  atoms:
-  - atom: "games-strategy/0ad"
-    use: "lobby editor nvtt pch verify-sig"
-    accept_keywords: "~amd64"
-  - atom: "net-libs/gloox"
-    use: "gnutls idn ssl zlib"
-    accept_keywords: "~amd64"
-  env:
-  - USE="lua_targets_lua5-3"
-  prepare:
-  # push python 3.14
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{12,13,14}/PYTHON_COMPAT=( python3_14/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
-  - find /var/db/repos/gentoo/games-strategy/0ad/ -type f -name "0ad-*.ebuild" -exec ebuild {} manifest \;
-  inner_build_reqs:
-  - app-crypt/minisign
-  - dev-lua/luasocket
-  - dev-util/premake:5
-  requires:
-  - <<: *layers-gnome-common
-  #  Required by the editor
-  - <<: *libs-wxGTK
-  - <<: *libs-enet
-  build_requires:
-  - <<: *layers-gnome-common
+# depends on spidermonkey 128
+# - category: "apps"
+#   name: "0ad"
+#   version: "0.28.0-r1+3"
+#   uri:
+#   - https://play0ad.com/
+#   license: "BitstreamVera CC-BY-SA-3.0 GPL-2 LGPL-2.1 LPPL-1.3c MIT ZLIB"
+#   description: "A free, real-time strategy game"
+#   labels:
+#     appstream.id: "com.play0ad.zeroad"
+#     emerge.jobs: "1"
+#     emerge.packages: >-
+#       games-strategy/0ad
+#   provides:
+#   - category: "games-strategy"
+#     name: "0ad"
+#     version: ">=0"
+#   - category: "net-libs"
+#     name: "gloox"
+#     version: ">=0"
+#   atoms:
+#   - atom: "games-strategy/0ad"
+#     use: "lobby editor nvtt pch verify-sig"
+#     accept_keywords: "~amd64"
+#   - atom: "net-libs/gloox"
+#     use: "gnutls idn ssl zlib"
+#     accept_keywords: "~amd64"
+#   env:
+#   - USE="lua_targets_lua5-3"
+#   inner_build_reqs:
+#   - app-crypt/minisign
+#   - dev-lua/luasocket
+#   - dev-util/premake:5
+#   requires:
+#   - <<: *layers-gnome-common
+#   #  Required by the editor
+#   - <<: *libs-wxGTK
+#   - <<: *libs-enet
+#   build_requires:
+#   - <<: *layers-gnome-common
 
 - &apps-abiword
   category: "apps"
