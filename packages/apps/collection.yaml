@@ -1467,7 +1467,7 @@ packages:
     appstream.id: "com.calibre_ebook.calibre"
     emerge.jobs: "1"
     emerge.packages: >-
-      app-text/dnspython
+      dev-python/dnspython
   provides:
   - category: "dev-python"
     name: "dnspython"
@@ -4026,6 +4026,30 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
+
+- &libs-wcwidth
+  category: "libs"
+  name: "wcwidth"
+  version: "0.9.1"
+  uri:
+  - https://pypi.org/project/wcwidth/
+  license: "MIT"
+  description: "Measures number of Terminal column cells of wide-character codes"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/wcwidth
+  provides:
+  - category: "dev-python"
+    name: "wcwidth"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/wcwidth"
+    use: "native-extensions"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-websocketpp
   category: "libs"
@@ -14843,14 +14867,20 @@ packages:
   name: "keyring"
   version: "25.7.0"
   uri:
+  - https://github.com/jaraco/jaraco.classes/
   - https://github.com/jaraco/keyring/
-  license: "PSF-2"
-  description: "Provides access to the system keyring service"
+  license: "MIT PSF-2"
+  description: |
+    Classes used by other projects by developer jaraco
+    Provides access to the system keyring service"
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/keyring
   provides:
+  - category: "dev-python"
+    name: "jaraco-classes"
+    version: ">=0"
   - category: "dev-python"
     name: "keyring"
     version: ">=0"
@@ -17001,9 +17031,6 @@ packages:
   overlays:
   - enable: "mocaccino-overlay"
   provides:
-  - category: "dev-python"
-    name: "jaraco-classes"
-    version: ">=0"
   - category: "dev-python"
     name: "paramiko"
     version: ">=0"
@@ -20436,15 +20463,13 @@ packages:
   - category: "dev-python"
     name: "urwid"
     version: ">=0"
-  - category: "dev-python"
-    name: "wcwidth"
-    version: ">=0"
   atoms:
   - atom: "app-misc/vit"
     accept_keywords: "~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-tasklib
+  - <<: *libs-wcwidth
   build_requires:
   - <<: *buildbase-sys-fs
 
