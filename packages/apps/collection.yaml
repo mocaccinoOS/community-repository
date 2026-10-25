@@ -1464,7 +1464,6 @@ packages:
   license: "ISC"
   description: "DNS toolkit for Python"
   labels:
-    appstream.id: "com.calibre_ebook.calibre"
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/dnspython
@@ -13344,7 +13343,7 @@ packages:
   - USE="lua_targets_lua5-3"
   prepare:
   # push python 3.14
-  - sed -i -e 's/PYTHON_COMPAT=( python3_{12,13,14}/PYTHON_COMPAT=( python3_{14}/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
+  - sed -i -e 's/PYTHON_COMPAT=( python3_{12,13,14}/PYTHON_COMPAT=( python3_14/' /var/db/repos/gentoo/games-strategy/0ad/0ad-*.ebuild
   - find /var/db/repos/gentoo/games-strategy/0ad/ -type f -name "0ad-*.ebuild" -exec ebuild {} manifest \;
   inner_build_reqs:
   - app-crypt/minisign
@@ -16520,7 +16519,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.7.0+1"
+  version: "3.7.0+2"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -17051,7 +17050,7 @@ packages:
 
 - category: "apps"
   name: "systemd-pilot"
-  version: "3.0+9"
+  version: "3.0+10"
   uri:
   - https://github.com/mfat/systemd-pilot
   license: "GPL-3+"
@@ -17225,14 +17224,17 @@ packages:
     emerge.packages: >-
       dev-python/levenshtein
   provides:
-  - category: "net-misc"
-    name: "ulauncher"
+  - category: "dev-cpp"
+    name: "rapidfuzz-cpp"
     version: ">=0"
   - category: "dev-python"
     name: "levenshtein"
     version: ">=0"
   - category: "dev-python"
     name: "rapidfuzz"
+    version: ">=0"
+  - category: "net-misc"
+    name: "ulauncher"
     version: ">=0"
   ready:
   - |
@@ -20474,7 +20476,7 @@ packages:
 
 - category: "apps"
   name: "vit"
-  version: "2.3.4+1"
+  version: "2.3.4+2"
   uri:
   - https://github.com/vit-project/vit
   license: "MIT"
