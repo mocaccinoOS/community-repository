@@ -11368,12 +11368,12 @@ packages:
   atoms:
   # - atom: "dev-python/sphinx"
   #   use: "# doc: apps-graphviz (build time only)  # latex: layers-latex"
-  # - atom: "dev-python/babel"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/roman-numerals"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/snowballstemmer"
-  #   use: "verify-provenance"
+  - atom: "dev-python/babel"
+    use: "verify-provenance"
+  - atom: "dev-python/roman-numerals"
+    use: "verify-provenance"
+  - atom: "dev-python/snowballstemmer"
+    use: "verify-provenance"
   requires:
   - <<: *layers-X
   build_requires:
@@ -22131,6 +22131,37 @@ packages:
 ################################################################################################################################################################
 ### dep 4 libs ###
 ################################################################################################################################################################
+
+- &libs-anyio
+  category: "libs"
+  name: "anyio"
+  version: "4.15.1"
+  uri:
+  - https://github.com/agronholm/anyio/
+  license: "MIT"
+  description: |
+    Compatibility layer for multiple asynchronous event loop implementations
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/anyio
+  provides:
+  - category: "dev-python"
+    name: "anyio"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  atoms:
+  - atom: "dev-python/anyio"
+    use: "verify-provenance"
+  inner_build_requires:
+  - <<: *apps-sphinx
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-truststore
+  - <<: *libs-typing-extensions
+  build_requires:
+  - <<: *layers-system-x
 
 - &libs-mlt
   category: "libs"
