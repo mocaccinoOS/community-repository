@@ -2312,7 +2312,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.7+2"
+  version: "1.9.7+3"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -2331,7 +2331,7 @@ packages:
   - atom: "dev-libs/libgit2"
     use: "gssapi ssh threads"
   prepare:
-  - emerge -C dev-libs/libgit2
+  - emerge -C dev-libs/libgit2 net-libs/llhttp
   requires:
   - <<: *layers-X
   build_requires:
