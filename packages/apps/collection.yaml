@@ -19065,6 +19065,30 @@ packages:
   build_requires:
   - <<: *layers-qt
 
+- &apps-jupyter-core
+  category: "apps"
+  name: "jupyter-core"
+  version: "5.9.1"
+  uri:
+  - https://jupyter.org/
+  license: "BSD"
+  description: |
+    Core common functionality of Jupyter projects
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/jupyter-core
+  provides:
+  - category: "dev-python"
+    name: "jupyter-core"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-traitlets
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - category: "apps"
   name: "k3b"
   version: "26.04.3"
