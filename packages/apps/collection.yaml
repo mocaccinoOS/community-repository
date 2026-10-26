@@ -22161,7 +22161,8 @@ packages:
   - <<: *libs-truststore
   - <<: *libs-typing-extensions
   build_requires:
-  - <<: *layers-system-x
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
 
 - &libs-mlt
   category: "libs"
