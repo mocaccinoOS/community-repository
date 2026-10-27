@@ -13270,6 +13270,35 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-pyzmq
+  category: "libs"
+  name: "pyzmq"
+  version: "27.2.0"
+  uri:
+  - https://zeromq.org/languages/python/
+  license: "LGPL-3"
+  description: |
+    Lightweight and super-fast messaging library built on top of the ZeroMQ library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pyzmq
+  provides:
+  - category: "dev-python"
+    name: "pyzmq"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/pyzmq"
+    use: "drafts"
+  inner_build_reqs:
+  - dev-python/tornado
+  - dev-python/scikit-build-core
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-zeromq
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-libsdl3
   category: "libs"
   name: "libsdl3"
