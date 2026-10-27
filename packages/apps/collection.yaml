@@ -2952,7 +2952,7 @@ packages:
 - &libs-markdown
   category: "libs"
   name: "markdown"
-  version: "3.10.3"
+  version: "3.11"
   uri:
   - https://python-markdown.github.io/
   license: "BSD"
@@ -4099,33 +4099,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-python-deprecated
-  category: "libs"
-  name: "python-deprecated"
-  version: "1.3.1+1"
-  uri:
-  - https://github.com/laurent-laporte-pro//deprecated/
-  - https://github.com/GrahamDumpleton/wrapt/
-  license: "BSD MIT"
-  description: |
-    Module for decorators, wrappers and monkey patching
-    Python @deprecated decorator to deprecate old API
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/deprecated
-  provides:
-  - category: "dev-python"
-    name: "deprecated"
-    version: ">=0"
-  - category: "dev-python"
-    name: "wrapt"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-quazip
   category: "libs"
   name: "quazip"
@@ -4669,7 +4642,7 @@ packages:
 
 - category: "apps"
   name: "atop"
-  version: "2.12.1+1"
+  version: "2.13.0"
   uri:
   - https://www.atoptool.nl
   license: "GPL-2"
@@ -4844,7 +4817,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.26"
+  version: "9.20.30"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -5020,7 +4993,7 @@ packages:
 
 - category: "apps"
   name: "brave"
-  version: "1.97.59-r1"
+  version: "1.98.60"
   uri:
   - https://brave.com
   license: "MPL-2.0"
@@ -5277,7 +5250,7 @@ packages:
 - &apps-claude-desktop
   category: "apps"
   name: "claude-desktop"
-  version: "3.6556.1"
+  version: "3.6556.2"
   uri:
   - https://claude.com/download
   license: "Anthropic"
@@ -5687,7 +5660,7 @@ packages:
 
 - category: "apps"
   name: "deno-bin"
-  version: "2.8.3"
+  version: "2.9.8"
   uri:
   - https://deno.com/
   license: "MIT Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC MIT MPL-2.0 openssl Unicode-3.0 Unicode-DFS-2016 ZLIB"
@@ -6443,7 +6416,7 @@ packages:
 - &apps-ffmpeg-chromium
   category: "libs"
   name: "ffmpeg-chromium"
-  version: "152-153-154"
+  version: "152-154"
   uri:
   - https://ffmpeg.org/
   license: "GPL-2 LGPL-2.1"
@@ -6452,7 +6425,6 @@ packages:
     emerge.jobs: "1"
     emerge.packages: >-
       media-video/ffmpeg-chromium:152
-      media-video/ffmpeg-chromium:153
       media-video/ffmpeg-chromium:154
   provides:
   - category: "media-video"
@@ -6844,7 +6816,7 @@ packages:
 
 - category: "apps"
   name: "fzf"
-  version: "0.74.3"
+  version: "0.74.4"
   uri:
   - https://github.com/junegunn/fzf
   license: "MIT BSD-with-disclosure"
@@ -8175,7 +8147,7 @@ packages:
 
 - category: "apps"
   name: "kitty"
-  version: "0.48.2"
+  version: "0.49.2"
   uri:
   - https://sw.kovidgoyal.net/kitty
   license: "GPL-3 ZLIB Apache-2.0 BSD BSD-2 MIT MPL-2.0"
@@ -8835,7 +8807,7 @@ packages:
 
 - category: "apps"
   name: "mangowm"
-  version: "0.18.2"
+  version: "0.18.3"
   uri:
   - https://github.com/mangowm/mango
   license: "CC0-1.0 GPL-3+ MIT"
@@ -9012,7 +8984,7 @@ packages:
 - &apps-mullvad-browser-bin
   category: "apps"
   name: "mullvad-browser-bin"
-  version: "15.0.25"
+  version: "15.0.26"
   uri:
   - https://github.com/mullvad/mullvad-browser/
   - https://mullvad.net/
@@ -9510,7 +9482,7 @@ packages:
 
 - category: "apps"
   name: "opencode-bin"
-  version: "1.19.3"
+  version: "1.19.4"
   uri:
   - https://opencode.ai
   license: "MIT"
@@ -9977,6 +9949,45 @@ packages:
   - <<: *buildbase-haskell
   requires_final_images: true
 
+- category: "apps"
+  name: "pdfarranger"
+  version: "1.14.0+2"
+  uri:
+  - https://github.com/jeromerobert/pdfarranger
+  - https://gitlab.mister-muffin.de/josch/img2pdf
+  - https://github.com/pikepdf/pikepdf/
+  - https://pypi.org/project/pikepdf/
+  license: "GPL-3 LGPL-3+"
+  description: |
+    Merge or split pdfs; rearrange, rotate, crop pages
+    Losslessly convert raster images to PDF
+    Python library to work with pdf files based on qpdf
+  labels:
+    appstream.id: "com.github.jeromerobert.pdfarranger"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/pdfarranger
+      media-gfx/img2pdf
+  provides:
+  - category: "app-text"
+    name: "pdfarranger"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "img2pdf"
+    version: ">=0"
+  - category: "media-libs"
+    name: "icc-profiles-openicc"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pikepdf"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-python/setuptools_scm_git_archive
+  requires:
+  - <<: *layers-X
+  build_requires:
+  - <<: *layers-X
+
 - &apps-peek
   category: "apps"
   name: "peek"
@@ -10312,7 +10323,7 @@ packages:
 - &apps-pycodestyle
   category: "apps"
   name: "pycodestyle"
-  version: "2.14.0+1"
+  version: "2.15.0"
   uri:
   - https://pycodestyle.pycqa.org/en/latest/
   - https://github.com/PyCQA/pycodestyle/
@@ -12085,7 +12096,7 @@ packages:
 - &apps-websocket-client
   category: "apps"
   name: "websocket-client"
-  version: "5.15.15+21"
+  version: "1.9.2"
   uri:
   - https://github.com/websocket-client/websocket-client/
   license: "Apache-2.0"
@@ -13257,7 +13268,7 @@ packages:
 - &libs-libsdl3
   category: "libs"
   name: "libsdl3"
-  version: "3.4.16"
+  version: "3.4.18"
   uri:
   - https://www.libsdl.org/
   license: "ZLIB"
@@ -13609,7 +13620,7 @@ packages:
 - &apps-batik
   category: "apps"
   name: "batik"
-  version: "1.18-r2+5"
+  version: "1.18-r3"
   uri:
   - https://xmlgraphics.apache.org/batik/
   - https://commons.apache.org/proper/commons-bcel/
@@ -14149,7 +14160,7 @@ packages:
 - &apps-docker-tools
   category: "apps"
   name: "docker-tools"
-  version: "29.8.0"
+  version: "29.8.1"
   uri:
   - https://www.docker.com/
   - https://github.com/docker/compose
@@ -14426,7 +14437,7 @@ packages:
 
 - category: "apps"
   name: "fooyin"
-  version: "0.13.1"
+  version: "0.14.1"
   uri:
   - https://www.fooyin.org
   license: "GPL-3"
@@ -14676,7 +14687,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity"
-  version: "2.24.0"
+  version: "2.26.0"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -14703,7 +14714,7 @@ packages:
 
 - category: "apps"
   name: "google-antigravity-cli"
-  version: "1.4.2"
+  version: "1.4.7"
   uri:
   - https://antigravity.google/
   license: "all-rights-reserved"
@@ -15942,7 +15953,7 @@ packages:
 
 - category: "apps"
   name: "obs-studio"
-  version: "32.2.2"
+  version: "33.0.0"
   uri:
   - https://obsproject.com
   - https://simd-everywhere.github.io/blog/
@@ -16149,7 +16160,7 @@ packages:
 
 - category: "apps"
   name: "opera"
-  version: "138.0.6044.24+1"
+  version: "138.0.6044.24-r1"
   uri:
   - https://www.opera.com/
   license: "OPERA-2018"
@@ -16227,46 +16238,6 @@ packages:
   - <<: *libs-wxGTK
   build_requires:
   - <<: *layers-gnome-common
-
-- category: "apps"
-  name: "pdfarranger"
-  version: "1.14.0+1"
-  uri:
-  - https://github.com/jeromerobert/pdfarranger
-  - https://gitlab.mister-muffin.de/josch/img2pdf
-  - https://github.com/pikepdf/pikepdf/
-  - https://pypi.org/project/pikepdf/
-  license: "GPL-3 LGPL-3+"
-  description: |
-    Merge or split pdfs; rearrange, rotate, crop pages
-    Losslessly convert raster images to PDF
-    Python library to work with pdf files based on qpdf
-  labels:
-    appstream.id: "com.github.jeromerobert.pdfarranger"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/pdfarranger
-      media-gfx/img2pdf
-  provides:
-  - category: "app-text"
-    name: "pdfarranger"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "img2pdf"
-    version: ">=0"
-  - category: "media-libs"
-    name: "icc-profiles-openicc"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pikepdf"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-python/setuptools_scm_git_archive
-  requires:
-  - <<: *layers-X
-  - <<: *libs-python-deprecated
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "pdftk"
@@ -17314,7 +17285,7 @@ packages:
 - &apps-tor
   category: "apps"
   name: "tor"
-  version: "0.4.9.13"
+  version: "0.4.9.14"
   uri:
   - https://www.torproject.org
   license: "BSD GPL-2"
@@ -18325,13 +18296,13 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
-
+  
 - category: "apps"
   name: "calibre"
-  version: "8.9.0+7"
+  version: "8.9.0+8"
   uri:
   - https://calibre-ebook.com/
-  license: "GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 BSD MIT Old-MIT Apache-2.0 public-domain || ( Artistic GPL-1+ ) CC-BY-3.0 OFL-1.1 PSF-2"
+  license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
   description: "Ebook management application"
   labels:
     appstream.id: "com.calibre_ebook.calibre"
@@ -18344,6 +18315,9 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "apsw"
+    version: ">=0"
+  - category: "dev-python"
+    name: "deprecated"
     version: ">=0"
   - category: "dev-python"
     name: "html2text"
@@ -18376,6 +18350,9 @@ packages:
     name: "unrardll"
     version: ">=0"
   - category: "dev-python"
+    name: "wrapt"
+    version: ">=0"
+  - category: "dev-python"
     name: "xxhash"
     version: ">=0"
   atoms:
@@ -18399,7 +18376,6 @@ packages:
   - <<: *libs-mathjax
   - <<: *libs-python-msgpack
   - <<: *libs-regex
-  - <<: *libs-python-deprecated
   build_requires:
   - <<: *layers-qt
 
@@ -18737,7 +18713,7 @@ packages:
 - &apps-fop
   category: "apps"
   name: "fop"
-  version: "2.10-r2+2"
+  version: "2.10-r3"
   uri:
   - https://xmlgraphics.apache.org/fop/
   - https://www.bouncycastle.org/download/bouncy-castle-java/
@@ -20842,7 +20818,7 @@ packages:
 
 - category: "apps"
   name: "yazi"
-  version: "26.1.22"
+  version: "26.9.1"
   uri:
   - https://yazi-rs.github.io
   license: "Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 UoI-NCSA Unicode-3.0 ZLIB"
@@ -22930,7 +22906,7 @@ packages:
 - &apps-doxygen
   category: "apps"
   name: "doxygen"
-  version: "1.16.1+3"
+  version: "1.16.1+4"
   uri:
   - http://www.doxygen.org
   license: "GPL-2"
