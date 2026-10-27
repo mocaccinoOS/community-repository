@@ -2000,7 +2000,7 @@ packages:
 - &libs-java-commons
   category: "apps"
   name: "java-commons"
-  version: "26.03"
+  version: "26.10"
   uri:
   - https://commons.apache.org/proper/commons-io/
   - https://commons.apache.org/proper/commons-lang/
@@ -2011,6 +2011,8 @@ packages:
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
+      dev-java/commons-io
+      dev-java/commons-lang
       dev-java/commons-io:1
       dev-java/commons-lang:3.6
   provides:
@@ -4817,7 +4819,7 @@ packages:
 - &apps-bind
   category: "apps"
   name: "bind"
-  version: "9.20.30"
+  version: "9.20.30+1"
   uri:
   - https://www.isc.org/bind/
   license: "MPL-2.0"
@@ -4835,6 +4837,7 @@ packages:
     use: "caps dlz doc gssapi idn verify-sig xml zlib # berkdb dnsrps dnstap doh fixed-rrset geoip geoip2 jemalloc json ldap lmdb mysql odbc postgres python selinux"
   inner_build_reqs:
   - dev-python/sphinx
+  - sec-keys/openpgp-keys-isc
   - acct-group/named
   - acct-user/named
   requires:
@@ -8147,7 +8150,7 @@ packages:
 
 - category: "apps"
   name: "kitty"
-  version: "0.49.2"
+  version: "0.49.2+1"
   uri:
   - https://sw.kovidgoyal.net/kitty
   license: "GPL-3 ZLIB Apache-2.0 BSD BSD-2 MIT MPL-2.0"
@@ -8170,6 +8173,7 @@ packages:
   inner_build_reqs:
   - dev-lang/go
   - dev-libs/simde
+  - dev-util/shader-slang
   - media-fonts/symbols-nerd-font
   requires:
   - <<: *layers-X
@@ -9951,7 +9955,7 @@ packages:
 
 - category: "apps"
   name: "pdfarranger"
-  version: "1.14.0+2"
+  version: "1.14.0+3"
   uri:
   - https://github.com/jeromerobert/pdfarranger
   - https://gitlab.mister-muffin.de/josch/img2pdf
@@ -9982,6 +9986,7 @@ packages:
     name: "pikepdf"
     version: ">=0"
   inner_build_reqs:
+  - dev-python/nanobind
   - dev-python/setuptools_scm_git_archive
   requires:
   - <<: *layers-X
@@ -13620,7 +13625,7 @@ packages:
 - &apps-batik
   category: "apps"
   name: "batik"
-  version: "1.18-r3"
+  version: "1.18-r3+1"
   uri:
   - https://xmlgraphics.apache.org/batik/
   - https://commons.apache.org/proper/commons-bcel/
@@ -20837,6 +20842,8 @@ packages:
   atoms:
   - atom: "app-misc/yazi"
     accept_keywords: "~amd64"
+  inner_build_reqs:
+  - dev-libs/jemalloc;ACCEPT_KEYWORDS:"~amd64"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-oniguruma
