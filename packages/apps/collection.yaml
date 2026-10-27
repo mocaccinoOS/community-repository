@@ -18008,7 +18008,35 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
-    
+
+- &libs-tornado
+  category: "libs"
+  name: "tornado"
+  version: "6.5.10"
+  uri:
+  - https://www.tornadoweb.org/
+  license: "BSD"
+  description: |
+    Python web framework and asynchronous networking library
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/tornado
+  provides:
+  - category: "dev-python"
+    name: "tornado"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  # atoms:
+  # - atom: "dev-python/tornado"
+  #   use: "verify-provenance"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-twisted
+  build_requires:
+  - <<: *layers-X
+
 - &libs-xine-lib
   category: "libs"
   name: "xine-lib"
