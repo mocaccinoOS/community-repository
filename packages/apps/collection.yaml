@@ -21140,6 +21140,33 @@ packages:
   build_requires:
   - <<: *layers-X
 
+- &libs-terminado
+  category: "libs"
+  name: "terminado"
+  version: "0.18.1"
+  uri:
+  - https://github.com/jupyter/terminado/
+  license: "BSD-2"
+  description: |
+    Terminals served to term.js using Tornado websockets
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/terminado
+  provides:
+  - category: "dev-python"
+    name: "terminado"
+    version: ">=0"
+  inner_build_requires:
+  - <<: *apps-sphinx
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-ptyprocess
+  - <<: *libs-tornado
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 
 ################################################################################################################################################################
 ### dep 3 apps ###
