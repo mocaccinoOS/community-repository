@@ -21714,6 +21714,36 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-jupyter-client
+  category: "apps"
+  name: "jupyter-client"
+  version: "8.10.0"
+  uri:
+  - https://jupyter.org/
+  license: "BSD"
+  description: |
+    Jupyter protocol implementation and client libraries
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/jupyter-client
+  provides:
+  - category: "dev-python"
+    name: "jupyter-client"
+    version: ">=0"
+  inner_build_requires:
+  - <<: *libs-anyio
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-pyzmq
+  - <<: *libs-tornado
+  - <<: *libs-traitlets
+  - <<: *libs-typing-extensions
+  - <<: *apps-jupyter-core
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
