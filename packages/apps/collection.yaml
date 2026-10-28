@@ -3270,6 +3270,28 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+- &libs-ptyprocess
+  category: "libs"
+  name: "ptyprocess"
+  version: "0.7.0-r2"
+  uri:
+  - https://github.com/pexpect/ptyprocess/
+  license: "ISC"
+  description: |
+    Run a subprocess in a pseudo terminal
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/ptyprocess
+  provides:
+  - category: "dev-python"
+    name: "ptyprocess"
+    version: ">=0"
+  requires:
+  - <<: *layers-system-x
+  build_requires:
+  - <<: *layers-system-x
+
 - &libs-pynacl
   category: "libs"
   name: "pynacl"
