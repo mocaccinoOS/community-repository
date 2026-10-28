@@ -22374,33 +22374,6 @@ packages:
   build_requires:
   - <<: *layers-kde-common
 
-- &apps-nbformat
-  category: "apps"
-  name: "nbformat"
-  version: "5.11.1"
-  uri:
-  - https://jupyter.org/
-  license: "BSD"
-  description: |
-    Reference implementation of the Jupyter Notebook format
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/nbformat
-  provides:
-  - category: "dev-python"
-    name: "nbformat"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-python/hatch-nodejs-version
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-jsonschema
-  - <<: *libs-traitlets
-  - <<: *apps-jupyter-core
-  build_requires:
-  - <<: *layers-X
-
 - &libs-pygame
   category: "libs"
   name: "pygame"
@@ -22629,6 +22602,33 @@ packages:
   - <<: *libs-rtl-sdr
   build_requires:
   - <<: *apps-gnuradio
+
+- &apps-nbformat
+  category: "apps"
+  name: "nbformat"
+  version: "5.11.1"
+  uri:
+  - https://jupyter.org/
+  license: "BSD"
+  description: |
+    Reference implementation of the Jupyter Notebook format
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/nbformat
+  provides:
+  - category: "dev-python"
+    name: "nbformat"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-python/hatch-nodejs-version
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-jsonschema
+  - <<: *libs-traitlets
+  - <<: *apps-jupyter-core
+  build_requires:
+  - <<: *layers-X
 
 - &apps-sdrpp
   category: "apps"
@@ -23332,7 +23332,67 @@ packages:
   - <<: *apps-mypaint-brushes
   build_requires:
   - <<: *layers-X
-  
+
+- &apps-nbconvert
+  category: "apps"
+  name: "nbconvert"
+  version: "7.17.1"
+  uri:
+  - https://github.com/mozilla/bleach/
+  - https://github.com/tiran/defusedxml/
+  - https://pypi.org/project/jupyterlab-pygments/
+  - https://github.com/lepture/mistune/
+  - https://nbclient.readthedocs.io/en/latest/
+  - https://nbconvert.readthedocs.io/
+  license: "Apache-2.0 BSD PSF-2"
+  description: |
+    An easy whitelist-based HTML-sanitizing tool
+    XML bomb protection for Python stdlib modules, an xml serialiser
+    Pygments theme making use of JupyterLab CSS variables
+    The fastest markdown parser in pure Python
+    A client library for executing Jupyter notebooks
+    Converting Jupyter Notebooks
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/nbconvert
+  provides:
+  - category: "dev-python"
+    name: "bleach"
+    version: ">=0"
+  - category: "dev-python"
+    name: "defusedxml"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jupyterlab-pygments"
+    version: ">=0"
+  - category: "dev-python"
+    name: "mistune"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nbclient"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nbconvert"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  atoms:
+  - atom: "dev-python/defusedxml"
+    use: "examples"
+  # - atom: "dev-python/mistune"
+  #   use: "verify-provenance"
+  requires:
+  - <<: *layers-X
+  - <<: *libs-beautifulsoup4
+  - <<: *libs-traitlets
+  - <<: *apps-jupyter-client
+  - <<: *apps-jupyter-core
+  - <<: *apps-nbformat
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - category: "apps"
   name: "plantuml"
   version: "1.2026.1+8"
