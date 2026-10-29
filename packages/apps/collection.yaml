@@ -1471,6 +1471,9 @@ packages:
   - category: "dev-python"
     name: "dnspython"
     version: ">=0"
+  atoms:
+  - atom: "dev-python/dnspython"
+    use: "examples"
   requires:
   - <<: *layers-system-x
   build_requires:
@@ -23375,6 +23378,12 @@ packages:
   - category: "dev-python"
     name: "nbconvert"
     version: ">=0"
+  - category: "dev-python"
+    name: "pandocfilters"
+    version: ">=0"
+  - category: "dev-python"
+    name: "tinycss2"
+    version: ">=0"
   portage_env: |
     USE="verify-provenance"
   atoms:
@@ -23849,6 +23858,86 @@ packages:
 #   - <<: *layers-qt
 #   build_requires:
 #   - <<: *layers-qt
+
+- &apps-jupyter-server
+  category: "apps"
+  name: "jupyter-server"
+  version: "2.21.1"
+  uri:
+  - https://github.com/hynek/argon2-cffi/
+  - https://github.com/hynek/argon2-cffi-bindings/
+  - https://jupyter.org/
+  - https://github.com/prometheus/client_python/
+  - https://github.com/madzak/python-json-logger/
+  license: "MIT"
+  description: |
+    CFFI bindings to the Argon2 password hashing library
+    Low-level CFFI bindings for the Argon2 password hashing library
+    Jupyter Event System library
+    Core services, APIs, and REST endpoints to Jupyter web applications
+    A Jupyter Server Extension Providing Terminals
+    Python client for the Prometheus monitoring system
+    Standard python logging to output log data as json objects
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/jupyter-server
+  provides:
+  - category: "dev-python"
+    name: "argon2-cffi"
+    version: ">=0"
+  - category: "dev-python"
+    name: "argon2-cffi-bindings"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jupyter-events"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jupyter-server"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jupyter-server-terminals"
+    version: ">=0"
+  - category: "dev-python"
+    name: "prometheus-client"
+    version: ">=0"
+  - category: "dev-python"
+    name: "python-json-logger"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  atoms:
+  # - atom: "dev-python/argon2-cffi"
+  #   use: "verify-provenance"
+  # - atom: "dev-python/freezegun"
+  #   use: "verify-provenance"
+  inner_build_reqs:
+  - dev-python/freezegun
+  - dev-python/hatch-fancy-pypi-readme
+  - dev-python/hatch-jupyter-builder
+  - dev-python/pypi-attestations
+  - dev-python/rich
+  - dev-python/scikit-build-core
+  - dev-python/tzdata
+  inner_build_requires:
+  - <<: *libs-anyio
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-jsonschema
+  - <<: *libs-anyio
+  - <<: *libs-pyzmq
+  - <<: *libs-send2trash
+  - <<: *libs-terminado
+  - <<: *libs-tornado
+  - <<: *libs-traitlets
+  - <<: *libs-twisted
+  - <<: *apps-jupyter-client
+  - <<: *apps-jupyter-core
+  - <<: *apps-nbconvert
+  - <<: *apps-nbformat
+  - <<: *apps-websocket-client
+  build_requires:
+  - <<: *layers-X
 
 - category: "apps"
   name: "krita"
