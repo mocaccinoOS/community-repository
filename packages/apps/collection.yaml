@@ -13266,6 +13266,35 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-pexpect
+  category: "libs"
+  name: "pexpect"
+  version: "4.9.0"
+  uri:
+  - https://pexpect.readthedocs.io/
+  license: "MIT"
+  description: |
+    Python module for spawning child apps and responding to expected patterns
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/pexpect
+  provides:
+  - category: "dev-python"
+    name: "pexpect"
+    version: ">=0"
+  inner_build_requires:
+  - <<: *apps-sphinx
+  atoms:
+  - atom: "dev-python/pexpect"
+    use: "examples"
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-ptyprocess
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &libs-pychromecast
   category: "libs"
   name: "pychromecast"
