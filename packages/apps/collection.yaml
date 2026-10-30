@@ -17985,6 +17985,32 @@ packages:
   # - <<: *layers-java
   - <<: *layers-X
 
+- &libs-matplotlib-inline
+  category: "libs"
+  name: "matplotlib-inline"
+  version: "0.2.2"
+  uri:
+  - https://github.com/ipython/matplotlib-inline/
+  license: "BSD"
+  description: |
+    Inline Matplotlib backend for Jupyter
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/matplotlib-inline
+  provides:
+  - category: "dev-python"
+    name: "matplotlib-inline"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-python/matplotlib
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-traitlets
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &libs-openvdb
   category: "libs"
   name: "openvdb"
