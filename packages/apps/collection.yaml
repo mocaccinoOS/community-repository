@@ -22383,6 +22383,45 @@ packages:
 ### dep 4 libs ###
 ################################################################################################################################################################
 
+- &libs-ipykernel
+  category: "libs"
+  name: "ipykernel"
+  version: "7.2.0"
+  uri:
+  - https://github.com/ipython/comm/
+  - https://github.com/ipython/ipykernel/
+  - https://github.com/erdewit/nest_asyncio/
+  license: "BSD BSD-2"
+  description: |
+    Jupyter Python Comm implementation, for usage in ipykernel, xeus-python
+    IPython Kernel for Jupyter
+    Patch asyncio to allow nested event loops
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/ipykernel
+  provides:
+  - category: "dev-python"
+    name: "comm"
+    version: ">=0"
+  - category: "dev-python"
+    name: "ipykernel"
+    version: ">=0"
+  - category: "dev-python"
+    name: "nest-asyncio"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-matplotlib-inline
+  - <<: *libs-pyzmq
+  - <<: *libs-tornado
+  - <<: *libs-traitlets
+  - <<: *apps-jupyter-client
+  - <<: *apps-jupyter-core
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &libs-mlt
   category: "libs"
   name: "mlt"
