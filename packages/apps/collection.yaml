@@ -18031,6 +18031,9 @@ packages:
   - category: "dev-python"
     name: "matplotlib-inline"
     version: ">=0"
+  atoms:
+  - atom: "virtual/imagemagick-tools"
+    use: "jpeg"
   inner_build_reqs:
   - dev-python/matplotlib
   requires:
@@ -21815,6 +21818,33 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
+- &apps-jupyter-builder
+  category: "apps"
+  name: "notebook"
+  version: "1.2.3"
+  uri:
+  - https://jupyter.org/
+  license: "Apache-2.0 BSD MIT ISC"
+  description: |
+    Jupyter Interactive Notebook
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/notebook
+  provides:
+  - category: "dev-python"
+    name: "notebook"
+    version: ">=0"
+  inner_build_reqs:
+  - dev-python/jinja2-time
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *apps-jupyter-core
+  - <<: *libs-traitlets
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &apps-jupyter-client
   category: "apps"
   name: "jupyter-client"
@@ -22382,45 +22412,6 @@ packages:
 ################################################################################################################################################################
 ### dep 4 libs ###
 ################################################################################################################################################################
-
-- &libs-ipykernel
-  category: "libs"
-  name: "ipykernel"
-  version: "7.2.0"
-  uri:
-  - https://github.com/ipython/comm/
-  - https://github.com/ipython/ipykernel/
-  - https://github.com/erdewit/nest_asyncio/
-  license: "BSD BSD-2"
-  description: |
-    Jupyter Python Comm implementation, for usage in ipykernel, xeus-python
-    IPython Kernel for Jupyter
-    Patch asyncio to allow nested event loops
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/ipykernel
-  provides:
-  - category: "dev-python"
-    name: "comm"
-    version: ">=0"
-  - category: "dev-python"
-    name: "ipykernel"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nest-asyncio"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-matplotlib-inline
-  - <<: *libs-pyzmq
-  - <<: *libs-tornado
-  - <<: *libs-traitlets
-  - <<: *apps-jupyter-client
-  - <<: *apps-jupyter-core
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
 
 - &libs-mlt
   category: "libs"
