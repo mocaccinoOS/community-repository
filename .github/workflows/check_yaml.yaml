@@ -20,7 +20,8 @@ jobs:
         uses: reviewdog/action-yamllint@v1
         with:
           github_token: ${{ secrets.github_token }}
-          path: "**/*.yaml"
           fail_on_error: true
       - name: yamlfmt
         uses: aimir/action-yamlfmt@v1.0.0
+        with:
+          path: "**/*.yaml"
