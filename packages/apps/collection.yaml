@@ -2980,18 +2980,42 @@ packages:
   name: "markdown-it-py"
   version: "4.2.0"
   uri:
+  - https://github.com/tsutsu3/linkify-it-py/
   - https://pypi.org/project/markdown-it-py/
+  - https://pypi.org/project/mdurl/
+  - https://github.com/tsutsu3/uc.micro-py/
   license: "MIT"
   description: |
+    Links recognition library with full unicode support
     Python port of markdown-it, Markdown parser
+    Markdown URL utilities
+    Micro subset of unicode data files for linkify-it-py projects
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
       dev-python/markdown-it-py
   provides:
   - category: "dev-python"
+    name: "linkify-it-py"
+    version: ">=0"
+  - category: "dev-python"
     name: "markdown-it-py"
     version: ">=0"
+  - category: "dev-python"
+    name: "mdur"
+    version: ">=0"
+  - category: "dev-python"
+    name: "uc-micro-py"
+    version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  # atoms:
+  # - atom: "dev-python/linkify-it-py"
+  #   use: "verify-provenance"
+  # - atom: "dev-python/uc-micro-py"
+  #   use: "verify-provenance"
+  inner_build_reqs:
+  - dev-python/pypi-attestations
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -16438,9 +16462,6 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "tomli-w"
-    version: ">=0"
-  - category: "dev-python"
-    name: "uc-micro-py"
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
