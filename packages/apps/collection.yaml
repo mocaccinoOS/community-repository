@@ -21820,23 +21820,21 @@ packages:
 
 - &apps-jupyter-builder
   category: "apps"
-  name: "notebook"
+  name: "jupyter-builder"
   version: "1.2.3"
   uri:
   - https://jupyter.org/
   license: "Apache-2.0 BSD MIT ISC"
   description: |
-    Jupyter Interactive Notebook
+    JupyterLab build tools
   labels:
     emerge.jobs: "1"
     emerge.packages: >-
-      dev-python/notebook
+      dev-python/jupyter-builder
   provides:
   - category: "dev-python"
-    name: "notebook"
+    name: "jupyter-builder"
     version: ">=0"
-  inner_build_reqs:
-  - dev-python/jinja2-time
   requires:
   - <<: *layers-sys-fs
   - <<: *apps-jupyter-core
