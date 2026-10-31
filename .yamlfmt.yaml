@@ -1,0 +1,23 @@
+gitignore_excludes: true
+match_type: doublestar
+# Format all yaml files
+include:
+  - "**/*.yaml"
+# Exclude luet files that are go templates
+exclude:
+  - "packages/**/templates/*"
+  - "packages/**/build.yaml"
+  - "packages/**/finalize.yaml"
+
+continue_on_error: true
+
+formatter:
+  type: basic
+  indent: 2
+  max_line_length: 80
+  line_ending: lf
+  retain_line_breaks: true
+  trim_trailing_whitespace: true
+  force_quote_style: double
+  force_array_style: block
+  drop_merge_tag: true
