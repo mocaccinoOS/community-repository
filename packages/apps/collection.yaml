@@ -18015,6 +18015,51 @@ packages:
 ################################################################################################################################################################
 ### dep 2 libs ###
 ################################################################################################################################################################
+  
+- &libs-httpx
+  category: "libs"
+  name: "httpx"
+  version: "0.28.1-r1"
+  uri:
+  - https://h11.readthedocs.io/en/latest/
+  - https://www.encode.io/httpcore/
+  - https://www.python-httpx.org/
+  - https://github.com/python-trio/sniffio/
+  license: "Apache-2.0 BSD MIT"
+  description: |
+    A pure-Python implementation of HTTP/1.1 inspired by hyper-h2
+    A minimal low-level HTTP client
+    Fully-featured HTTP client which provides sync and async APIs
+    Sniff out which async library your code is running under
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/httpx
+  provides:
+  - category: "dev-python"
+    name: "h11"
+    version: ">=0"
+  - category: "dev-python"
+    name: "httpcore"
+    version: ">=0"
+  - category: "dev-python"
+    name: "httpx"
+    version: ">=0"
+  - category: "dev-python"
+    name: "sniffio"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/httpx"
+    use: "cli"
+  inner_build_reqs:
+  - dev-python/hatch-fancy-pypi-readme
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-anyio
+  - <<: *libs-rich
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
 
 - &libs-indilib
   category: "libs"
