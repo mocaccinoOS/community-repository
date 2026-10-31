@@ -2293,7 +2293,7 @@ packages:
 - &libs-libgit2
   category: "libs"
   name: "libgit2"
-  version: "1.9.7+3"
+  version: "1.9.7+4"
   uri:
   - https://libgit2.org/
   license: "GPL-2-with-linking-exception MIT"
@@ -2307,6 +2307,9 @@ packages:
   provides:
   - category: "dev-libs"
     name: "libgit2"
+    version: ">=0"
+  - category: "net-libs"
+    name: "llhttp"
     version: ">=0"
   atoms:
   - atom: "dev-libs/libgit2"
@@ -2951,53 +2954,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-markdown-it-py
-  category: "libs"
-  name: "markdown-it-py"
-  version: "4.2.0"
-  uri:
-  - https://github.com/tsutsu3/linkify-it-py/
-  - https://pypi.org/project/markdown-it-py/
-  - https://pypi.org/project/mdurl/
-  - https://github.com/tsutsu3/uc.micro-py/
-  license: "MIT"
-  description: |
-    Links recognition library with full unicode support
-    Python port of markdown-it, Markdown parser
-    Markdown URL utilities
-    Micro subset of unicode data files for linkify-it-py projects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/markdown-it-py
-  provides:
-  - category: "dev-python"
-    name: "linkify-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "markdown-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mdur"
-    version: ">=0"
-  - category: "dev-python"
-    name: "uc-micro-py"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # - atom: "dev-python/linkify-it-py"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/uc-micro-py"
-  #   use: "verify-provenance"
-  inner_build_reqs:
-  - dev-python/pypi-attestations
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
 - &libs-mathjax
   category: "libs"
   name: "mathjax"
@@ -3295,50 +3251,6 @@ packages:
   - <<: *layers-system-x
   build_requires:
   - <<: *layers-system-x
-
-- &libs-ptyprocess
-  category: "libs"
-  name: "ptyprocess"
-  version: "0.7.0-r2"
-  uri:
-  - https://github.com/pexpect/ptyprocess/
-  license: "ISC"
-  description: |
-    Run a subprocess in a pseudo terminal
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/ptyprocess
-  provides:
-  - category: "dev-python"
-    name: "ptyprocess"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-pynacl
-  category: "libs"
-  name: "pynacl"
-  version: "1.6.2"
-  uri:
-  - https://github.com/pyca/pynacl/
-  license: "Apache-2.0"
-  description: |
-    Python binding to the Networking and Cryptography (NaCl) library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pynacl
-  provides:
-  - category: "dev-python"
-    name: "pynacl"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  - <<: *layers-sys-fs
 
 - &libs-pyproject-hooks
   category: "libs"
@@ -3973,28 +3885,6 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
-- &libs-truststore
-  category: "libs"
-  name: "truststore"
-  version: "0.10.4"
-  uri:
-  - https://github.com/sethmlarson/truststore/
-  license: "MIT"
-  description: |
-    Verify certificates using native system trust stores
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/truststore
-  provides:
-  - category: "dev-python"
-    name: "truststore"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-typing-extensions
   category: "libs"
   name: "typing-extensions"
@@ -4103,30 +3993,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &libs-wcwidth
-  category: "libs"
-  name: "wcwidth"
-  version: "0.9.1"
-  uri:
-  - https://pypi.org/project/wcwidth/
-  license: "MIT"
-  description: "Measures number of Terminal column cells of wide-character codes"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/wcwidth
-  provides:
-  - category: "dev-python"
-    name: "wcwidth"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/wcwidth"
-    use: "native-extensions"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - &libs-websocketpp
   category: "libs"
@@ -4304,27 +4170,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-zipp
-  category: "libs"
-  name: "zipp"
-  version: "4.1.0"
-  uri:
-  - https://github.com/jaraco/zipp/
-  license: "MIT"
-  description: "Backport of pathlib-compatible object wrapper for zip files"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/zipp
-  provides:
-  - category: "dev-python"
-    name: "zipp"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-zxcvbn-c
   category: "libs"
   name: "zxcvbn-c"
@@ -4350,40 +4195,6 @@ packages:
 ################################################################################################################################################################
 ### dep 0 apps ###
 ################################################################################################################################################################
-
-- &apps-babel
-  category: "apps"
-  name: "babel"
-  version: "2.18.0+1"
-  uri:
-  - https://babel.pocoo.org/
-  license: "BSD"
-  description: |
-    Collection of tools for internationalizing Python applications
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/babel
-  provides:
-  - category: "dev-python"
-    name: "babel"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # - atom: "dev-python/freezegun"
-  #   use: "verify-provenance"
-  inner_build_reqs:
-  - dev-python/pypi-attestations
-  - dev-python/freezegun
-  - dev-python/sphinx
-  prepare:
-  - emerge -C dev-python/babel
-  requires:
-  - <<: *layers-sys-fs
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
 
 - category: "apps"
   name: "1password"
@@ -11741,6 +11552,64 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
+
+- category: "apps"
+  name: "ulauncher"
+  version: "5.15.15+22"
+  uri:
+  - https://ulauncher.io
+  - https://github.com/Ulauncher/Ulauncher/
+  license: "GPL-3"
+  description: "Feature rich application Launcher for Linux"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/levenshtein
+      dev-python/websocket-client
+  provides:
+  - category: "dev-cpp"
+    name: "rapidfuzz-cpp"
+    version: ">=0"
+  - category: "dev-python"
+    name: "levenshtein"
+    version: ">=0"
+  - category: "dev-python"
+    name: "rapidfuzz"
+    version: ">=0"
+  - category: "dev-python"
+    name: "websocket-client"
+    version: ">=0"
+  - category: "net-misc"
+    name: "ulauncher"
+    version: ">=0"
+  ready:
+  - |
+    git clone https://github.com/Ulauncher/Ulauncher.git && \
+    cd Ulauncher && \
+    git fetch --all --tags && \
+    git checkout tags/5.15.15 && \
+    export PYTHONHASHSEED=0 && \
+    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
+    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
+    python setup.py build
+  completion:
+  - |
+    cd Ulauncher && \
+    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
+    cd ../build && \
+    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
+    find . -type d -name __pycache__ | xargs rm -rf && \
+    cp -r usr /
+  inner_build_reqs:
+  - dev-python/python-distutils-extra
+  - dev-python/scikit-build-core
+  - dev-python/meson-python
+  - dev-cpp/taskflow
+  requires:
+  - <<: *layers-gnome-common
+  build_requires:
+  - <<: *layers-gnome-common
+
 - &apps-usbmuxd
   category: "apps"
   name: "usbmuxd"
@@ -12097,27 +11966,6 @@ packages:
   - <<: *layers-X
   build_requires:
   - <<: *layers-X
-
-- &apps-websocket-client
-  category: "apps"
-  name: "websocket-client"
-  version: "1.9.2"
-  uri:
-  - https://github.com/websocket-client/websocket-client/
-  license: "Apache-2.0"
-  description: "WebSocket client for python with hybi13 support"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/websocket-client
-  provides:
-  - category: "dev-python"
-    name: "websocket-client"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
 
 - category: "apps"
   name: "weechat"
@@ -13263,60 +13111,6 @@ packages:
   build_requires:
   - <<: *layers-X
 
-- &libs-pyzmq
-  category: "libs"
-  name: "pyzmq"
-  version: "27.2.0"
-  uri:
-  - https://zeromq.org/languages/python/
-  license: "LGPL-3"
-  description: |
-    Lightweight and super-fast messaging library built on top of the ZeroMQ library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pyzmq
-  provides:
-  - category: "dev-python"
-    name: "pyzmq"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/pyzmq"
-    use: "drafts"
-  inner_build_reqs:
-  - dev-python/tornado
-  - dev-python/scikit-build-core
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-zeromq
-  build_requires:
-  - <<: *layers-system-x
-
-- &libs-rich
-  category: "libs"
-  name: "rich"
-  version: "15.0.0"
-  uri:
-  - https://github.com/Textualize/rich/
-  license: "MIT"
-  description: |
-    Python library for rendering rich text, tables, etc. to the terminal
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/rich
-  provides:
-  - category: "dev-python"
-    name: "rich"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-colorama
-  - <<: *libs-markdown-it-py
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
 - &libs-rubberband
   category: "libs"
   name: "rubberband"
@@ -14429,7 +14223,6 @@ packages:
       name: "fcft"
       version: ">=0"
   inner_build_reqs:
-  - app-text/scdoc
   - dev-libs/tllist
   requires:
   - <<: *layers-X
@@ -15037,44 +14830,6 @@ packages:
   - <<: *libs-zxcvbn-c
   build_requires:
   - <<: *layers-qt
-
-- &apps-keyring
-  category: "apps"
-  name: "keyring"
-  version: "25.7.0+1"
-  uri:
-  - https://github.com/jaraco/jaraco.classes/
-  - https://github.com/jaraco/keyring/
-  - https://github.com/mitya57/secretstorage/
-  license: "MIT PSF-2"
-  description: |
-    Classes used by other projects by developer jaraco
-    Provides access to the system keyring service
-    Python bindings to FreeDesktop.org Secret Service API
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/keyring
-  provides:
-  - category: "dev-python"
-    name: "jaraco-classes"
-    version: ">=0"
-  - category: "dev-python"
-    name: "keyring"
-    version: ">=0"
-  - category: "dev-python"
-    name: "secretstorage"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/secretstorage"
-    use: "verify-provenance"
-  inner_build_reqs:
-  - dev-python/sphinx
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-jeepney
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "kget"
@@ -16294,7 +16049,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.2.1+3"
+  version: "26.2.1+4"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16316,6 +16071,9 @@ packages:
     name: "linkify-it-py"
     version: ">=0"
   - category: "dev-python"
+    name: "markdown-it-py"
+    version: ">=0"
+  - category: "dev-python"
     name: "mdurl"
     version: ">=0"
   - category: "dev-python"
@@ -16325,16 +16083,22 @@ packages:
     name: "resolvelib"
     version: ">=0"
   - category: "dev-python"
+    name: "rich"
+    version: ">=0"
+  - category: "dev-python"
     name: "tomli-w"
+    version: ">=0"
+  - category: "dev-python"
+    name: "truststore"
+    version: ">=0"
+  - category: "dev-python"
+    name: "uc-micro-py"
     version: ">=0"
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-cachecontrol
   - <<: *libs-colorama
-  - <<: *libs-markdown-it-py
   - <<: *libs-pyproject-hooks
-  - <<: *libs-rich
-  - <<: *libs-truststore
   - <<: *libs-typing-extensions
   build_requires:
   - <<: *layers-sys-fs
@@ -16651,7 +16415,7 @@ packages:
 
 - category: "apps"
   name: "qutebrowser"
-  version: "3.7.0+2"
+  version: "3.7.0+3"
   uri:
   - https://www.qutebrowser.org
   license: "GPL-3+"
@@ -16664,6 +16428,9 @@ packages:
   provides:
   - category: "www-client"
     name: "qutebrowser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "zipp"
     version: ">=0"
   - category: "dev-python"
     name: "adblock"
@@ -16679,7 +16446,6 @@ packages:
   - <<: *libs-beautifulsoup4
   - <<: *libs-colorama
   - <<: *libs-chrome-binary-plugins
-  - <<: *libs-zipp
   build_requires:
   - <<: *layers-qt
 
@@ -17124,87 +16890,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-sphinx
-  category: "apps"
-  name: "sphinx"
-  version: "9.1.0-r1+1"
-  uri:
-  - https://github.com/sphinx-doc/alabaster/
-  - https://github.com/shibukawa/imagesize_py/
-  - https://github.com/AA-Turner/roman-numerals/
-  - https://snowballstem.org/
-  - https://www.sphinx-doc.org/
-  license: "0BSD BSD BSD-2 CC0-1.0 MIT"
-  description: |
-    A configurable sidebar-enabled Sphinx theme
-    Pure Python module for getting image size from png/jpeg/jpeg2000/gif files
-    Manipulate roman numerals
-    Stemmer algorithms generated from Snowball algorithms
-    Python documentation generator
-    Sphinx extension which outputs Apple help book
-    Sphinx extension which outputs Devhelp documents
-    Sphinx extension which outputs HTML help book
-    Sphinx extension which renders display math in HTML via JavaScript
-    Sphinx extension which outputs QtHelp documents
-    Sphinx extension which outputs outputs serialized HTML files
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/sphinx
-  provides:
-  - category: "dev-python"
-    name: "alabaster"
-    version: ">=0"
-  - category: "dev-python"
-    name: "imagesize"
-    version: ">=0"
-  - category: "dev-python"
-    name: "roman-numerals"
-    version: ">=0"
-  - category: "dev-python"
-    name: "snowballstemmer"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinx"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-applehelp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-devhelp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-htmlhelp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-jsmath"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-qthelp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sphinxcontrib-serializinghtml"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # # - atom: "dev-python/sphinx"
-  # #   use: "# doc: apps-graphviz (build time only)  # latex: layers-latex"
-  # - atom: "dev-python/babel"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/roman-numerals"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/snowballstemmer"
-  #   use: "verify-provenance"
-  unmerge:
-  - dev-python/babel
-  requires:
-  - <<: *layers-X
-  - <<: *apps-babel
-    skip: true
-  build_requires:
-  - <<: *layers-X
-
 - category: "apps"
   name: "spotify-player"
   version: "0.23.0+1"
@@ -17263,7 +16948,7 @@ packages:
 
 - category: "apps"
   name: "systemd-pilot"
-  version: "3.0+10"
+  version: "3.0+11"
   uri:
   - https://github.com/mfat/systemd-pilot
   license: "GPL-3+"
@@ -17276,7 +16961,19 @@ packages:
   - enable: "mocaccino-overlay"
   provides:
   - category: "dev-python"
+    name: "jaraco-classes"
+    version: ">=0"
+  - category: "dev-python"
+    name: "keyring"
+    version: ">=0"
+  - category: "dev-python"
     name: "paramiko"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pynacl"
+    version: ">=0"
+  - category: "dev-python"
+    name: "secretstorage"
     version: ">=0"
   - category: "sys-apps"
     name: "systemd-pilot"
@@ -17287,8 +16984,7 @@ packages:
     use: "fzf image libnotify pulseaudio sixel streaming"
   requires:
   - <<: *layers-gnome-common
-  - <<: *apps-keyring
-  - <<: *libs-pynacl
+  - <<: *libs-jeepney
   build_requires:
   - <<: *layers-gnome-common
 
@@ -17423,60 +17119,6 @@ packages:
   - <<: *libs-mbedtls
   build_requires:
   - <<: *layers-X
-
-- category: "apps"
-  name: "ulauncher"
-  version: "5.15.15+21"
-  uri:
-  - https://ulauncher.io
-  - https://github.com/Ulauncher/Ulauncher/
-  license: "GPL-3"
-  description: "Feature rich application Launcher for Linux"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/levenshtein
-  provides:
-  - category: "dev-cpp"
-    name: "rapidfuzz-cpp"
-    version: ">=0"
-  - category: "dev-python"
-    name: "levenshtein"
-    version: ">=0"
-  - category: "dev-python"
-    name: "rapidfuzz"
-    version: ">=0"
-  - category: "net-misc"
-    name: "ulauncher"
-    version: ">=0"
-  ready:
-  - |
-    git clone https://github.com/Ulauncher/Ulauncher.git && \
-    cd Ulauncher && \
-    git fetch --all --tags && \
-    git checkout tags/5.15.15 && \
-    export PYTHONHASHSEED=0 && \
-    find . -type f -name "*.py" -exec sed -i "s/('WebKit2', '4.0')/('WebKit2', '4.1')/g" {} + && \
-    sed -i -e 's/%VERSION%/5.15.15/' setup.py && \
-    python setup.py build
-  completion:
-  - |
-    cd Ulauncher && \
-    env PATH=$(getconf PATH) python setup.py install --root=../build --optimize=1 --skip-build && \
-    cd ../build && \
-    rm -rf usr/share/build/preferences/{no*,src,bow*,gul*,pack*} && \
-    find . -type d -name __pycache__ | xargs rm -rf && \
-    cp -r usr /
-  inner_build_reqs:
-  - dev-python/python-distutils-extra
-  - dev-python/scikit-build-core
-  - dev-python/meson-python
-  - dev-cpp/taskflow
-  requires:
-  - <<: *layers-gnome-common
-  - <<: *apps-websocket-client
-  build_requires:
-  - <<: *layers-gnome-common
 
 - category: "apps"
   name: "upplay"
@@ -17937,38 +17579,6 @@ packages:
 ### dep 2 libs ###
 ################################################################################################################################################################
 
-- &libs-anyio
-  category: "libs"
-  name: "anyio"
-  version: "4.15.1"
-  uri:
-  - https://github.com/agronholm/anyio/
-  license: "MIT"
-  description: |
-    Compatibility layer for multiple asynchronous event loop implementations
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/anyio
-  provides:
-  - category: "dev-python"
-    name: "anyio"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # - atom: "dev-python/anyio"
-  #   use: "verify-provenance"
-  inner_build_requires:
-  - <<: *apps-sphinx
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-truststore
-  - <<: *libs-typing-extensions
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
 - &libs-indilib
   category: "libs"
   name: "indilib"
@@ -18082,88 +17692,6 @@ packages:
   - <<: *libs-glfw
   build_requires:
   - <<: *layers-qt
-
-- &libs-pexpect
-  category: "libs"
-  name: "pexpect"
-  version: "4.9.0"
-  uri:
-  - https://pexpect.readthedocs.io/
-  license: "MIT"
-  description: |
-    Python module for spawning child apps and responding to expected patterns
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/pexpect
-  provides:
-  - category: "dev-python"
-    name: "pexpect"
-    version: ">=0"
-  inner_build_requires:
-  - <<: *apps-sphinx
-  atoms:
-  - atom: "dev-python/pexpect"
-    use: "examples"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-ptyprocess
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
-- &libs-tornado
-  category: "libs"
-  name: "tornado"
-  version: "6.5.10"
-  uri:
-  - https://www.tornadoweb.org/
-  license: "BSD"
-  description: |
-    Python web framework and asynchronous networking library
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/tornado
-  provides:
-  - category: "dev-python"
-    name: "tornado"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # - atom: "dev-python/tornado"
-  #   use: "verify-provenance"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-twisted
-  build_requires:
-  - <<: *layers-X
-
-- &libs-traitlets
-  category: "libs"
-  name: "traitlets"
-  version: "5.16.1+1"
-  uri:
-  - https://github.com/ipython/traitlets/
-  license: "BSD"
-  description: |
-    A configuration system for Python applications
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/traitlets
-  provides:
-  - category: "dev-python"
-    name: "traitlets"
-    version: ">=0"
-  inner_build_requires:
-  - <<: *apps-sphinx  
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
 
 - &libs-xine-lib
   category: "libs"
@@ -18486,6 +18014,90 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
+  
+- category: "apps"
+  name: "calibre"
+  version: "8.9.0+9"
+  uri:
+  - https://calibre-ebook.com/
+  license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
+  description: "Ebook management application"
+  labels:
+    appstream.id: "com.calibre_ebook.calibre"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/calibre
+  provides:
+  - category: "app-text"
+    name: "calibre"
+    version: ">=0"
+  - category: "dev-python"
+    name: "apsw"
+    version: ">=0"
+  - category: "dev-python"
+    name: "deprecated"
+    version: ">=0"
+  - category: "dev-python"
+    name: "dnspython"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html2text"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html5-parser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jaconv"
+    version: ">=0"
+  - category: "dev-python"
+    name: "lxml-html-clean"
+    version: ">=0"
+  - category: "dev-python"
+    name: "mechanize"
+    version: ">=0"
+  - category: "dev-python"
+    name: "netifaces"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "optipng"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pykakasi"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pychm"
+    version: ">=0"
+  - category: "dev-python"
+    name: "unrardll"
+    version: ">=0"
+  - category: "dev-python"
+    name: "wrapt"
+    version: ">=0"
+  - category: "dev-python"
+    name: "xxhash"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/calibre"
+    use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
+  inner_build_reqs:
+  - dev-lang/rapydscript-ng
+  - dev-python/PyQt-builder
+  - sec-keys/openpgp-keys-kovidgoyal
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-usbmuxd
+  - <<: *apps-podofo
+  - <<: *libs-beautifulsoup4
+  - <<: *libs-css-parser
+  - <<: *libs-feedparser
+  - <<: *libs-fonttools
+  - <<: *libs-jeepney
+  - <<: *libs-markdown
+  - <<: *libs-mathjax
+  - <<: *libs-python-msgpack
+  - <<: *libs-regex
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-cantor
   category: "apps"
@@ -18941,8 +18553,8 @@ packages:
   requires:
   - <<: *layers-gnome-common
   - <<: *apps-eselect-ctags
-  - <<: *libs-libgit2
   - <<: *libs-gtk-spell
+  - <<: *libs-libgit2
   build_requires:
   - <<: *layers-gnome-common
 
@@ -19148,30 +18760,6 @@ packages:
   - <<: *apps-net-snmp
   build_requires:
   - <<: *layers-qt
-
-- &apps-jupyter-core
-  category: "apps"
-  name: "jupyter-core"
-  version: "5.9.1"
-  uri:
-  - https://jupyter.org/
-  license: "BSD"
-  description: |
-    Core common functionality of Jupyter projects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/jupyter-core
-  provides:
-  - category: "dev-python"
-    name: "jupyter-core"
-    version: ">=0"
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-traitlets
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
 
 - category: "apps"
   name: "k3b"
@@ -20727,7 +20315,7 @@ packages:
 
 - category: "apps"
   name: "vit"
-  version: "2.3.4+3"
+  version: "2.3.4+4"
   uri:
   - https://github.com/vit-project/vit
   license: "MIT"
@@ -20743,6 +20331,9 @@ packages:
   - category: "dev-python"
     name: "urwid"
     version: ">=0"
+  - category: "dev-python"
+    name: "wcwidth"
+    version: ">=0"
   atoms:
   - atom: "app-misc/vit"
     accept_keywords: "~amd64"
@@ -20750,7 +20341,6 @@ packages:
   - <<: *layers-sys-fs
   - <<: *libs-tasklib
   - <<: *libs-typing-extensions
-  - <<: *libs-wcwidth
   build_requires:
   - <<: *buildbase-sys-fs
 
@@ -21042,80 +20632,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &libs-httpx
-  category: "libs"
-  name: "httpx"
-  version: "0.28.1-r1"
-  uri:
-  - https://h11.readthedocs.io/en/latest/
-  - https://www.encode.io/httpcore/
-  - https://www.python-httpx.org/
-  - https://github.com/python-trio/sniffio/
-  license: "Apache-2.0 BSD MIT"
-  description: |
-    A pure-Python implementation of HTTP/1.1 inspired by hyper-h2
-    A minimal low-level HTTP client
-    Fully-featured HTTP client which provides sync and async APIs
-    Sniff out which async library your code is running under
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/httpx
-  provides:
-  - category: "dev-python"
-    name: "h11"
-    version: ">=0"
-  - category: "dev-python"
-    name: "httpcore"
-    version: ">=0"
-  - category: "dev-python"
-    name: "httpx"
-    version: ">=0"
-  - category: "dev-python"
-    name: "sniffio"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/httpx"
-    use: "cli"
-  inner_build_reqs:
-  - dev-python/hatch-fancy-pypi-readme
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-anyio
-  - <<: *libs-rich
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
-- &libs-matplotlib-inline
-  category: "libs"
-  name: "matplotlib-inline"
-  version: "0.2.2"
-  uri:
-  - https://github.com/ipython/matplotlib-inline/
-  license: "BSD"
-  description: |
-    Inline Matplotlib backend for Jupyter
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/matplotlib-inline
-  provides:
-  - category: "dev-python"
-    name: "matplotlib-inline"
-    version: ">=0"
-  atoms:
-  - atom: "virtual/imagemagick-tools"
-    use: "jpeg"
-  inner_build_reqs:
-  - dev-python/matplotlib
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-traitlets
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
 - &libs-sdl
   category: "libs"
   name: "sdl"
@@ -21236,33 +20752,6 @@ packages:
   requires:
   - <<: *layers-X
   build_requires:
-  - <<: *layers-X
-
-- &libs-terminado
-  category: "libs"
-  name: "terminado"
-  version: "0.18.1"
-  uri:
-  - https://github.com/jupyter/terminado/
-  license: "BSD-2"
-  description: |
-    Terminals served to term.js using Tornado websockets
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/terminado
-  provides:
-  - category: "dev-python"
-    name: "terminado"
-    version: ">=0"
-  inner_build_requires:
-  - <<: *apps-sphinx
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-ptyprocess
-  - <<: *libs-tornado
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
   - <<: *layers-X
 
 
@@ -21855,31 +21344,6 @@ packages:
   build_requires:
   - <<: *layers-gnome-common
 
-- &apps-jupyter-builder
-  category: "apps"
-  name: "jupyter-builder"
-  version: "1.2.3"
-  uri:
-  - https://jupyter.org/
-  license: "Apache-2.0 BSD MIT ISC"
-  description: |
-    JupyterLab build tools
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/jupyter-builder
-  provides:
-  - category: "dev-python"
-    name: "jupyter-builder"
-    version: ">=0"
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *apps-jupyter-core
-  - <<: *libs-traitlets
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
 - &apps-kcdemu
   category: "apps"
   name: "kcdemu"
@@ -22418,38 +21882,6 @@ packages:
 ### dep 4 libs ###
 ################################################################################################################################################################
 
-- &libs-dnspython
-  category: "apps"
-  name: "dnspython"
-  version: "2.8.0+2"
-  uri:
-  - https://www.dnspython.org/
-  license: "ISC"
-  description: "DNS toolkit for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/dnspython
-  provides:
-  - category: "dev-python"
-    name: "dnspython"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/dnspython"
-    use: "dnssec examples https # quic"
-  portage_env: |
-    USE="verify-provenance"
-  # atoms:
-  # - atom: "dev-python/dnspython"
-  #   use: "verify-provenance"
-  prepare:
-  - emerge -C dev-python/dnspython
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-httpx
-  build_requires:
-  - <<: *layers-sys-fs
-
 - &libs-mlt
   category: "libs"
   name: "mlt"
@@ -22721,63 +22153,6 @@ packages:
   - <<: *libs-rtl-sdr
   build_requires:
   - <<: *apps-gnuradio
-
-- &apps-jupyter-client
-  category: "apps"
-  name: "jupyter-client"
-  version: "8.10.0"
-  uri:
-  - https://jupyter.org/
-  license: "BSD"
-  description: |
-    Jupyter protocol implementation and client libraries
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/jupyter-client
-  provides:
-  - category: "dev-python"
-    name: "jupyter-client"
-    version: ">=0"
-  inner_build_requires:
-  - <<: *libs-anyio
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-pyzmq
-  - <<: *libs-tornado
-  - <<: *libs-traitlets
-  - <<: *libs-typing-extensions
-  - <<: *apps-jupyter-core
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
-  - <<: *layers-X
-
-- &apps-nbformat
-  category: "apps"
-  name: "nbformat"
-  version: "5.11.1"
-  uri:
-  - https://jupyter.org/
-  license: "BSD"
-  description: |
-    Reference implementation of the Jupyter Notebook format
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/nbformat
-  provides:
-  - category: "dev-python"
-    name: "nbformat"
-    version: ">=0"
-  inner_build_reqs:
-  - dev-python/hatch-nodejs-version
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-jsonschema
-  - <<: *libs-traitlets
-  - <<: *apps-jupyter-core
-  build_requires:
-  - <<: *layers-X
 
 - &apps-sdrpp
   category: "apps"
@@ -23151,88 +22526,6 @@ packages:
   - <<: *buildbase-gnome-common
   requires_final_images: true
 
-- category: "apps"
-  name: "calibre"
-  version: "8.9.0+8"
-  uri:
-  - https://calibre-ebook.com/
-  license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
-  description: "Ebook management application"
-  labels:
-    appstream.id: "com.calibre_ebook.calibre"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/calibre
-  provides:
-  - category: "app-text"
-    name: "calibre"
-    version: ">=0"
-  - category: "dev-python"
-    name: "apsw"
-    version: ">=0"
-  - category: "dev-python"
-    name: "deprecated"
-    version: ">=0"
-  - category: "dev-python"
-    name: "html2text"
-    version: ">=0"
-  - category: "dev-python"
-    name: "html5-parser"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jaconv"
-    version: ">=0"
-  - category: "dev-python"
-    name: "lxml-html-clean"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mechanize"
-    version: ">=0"
-  - category: "dev-python"
-    name: "netifaces"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "optipng"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pykakasi"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pychm"
-    version: ">=0"
-  - category: "dev-python"
-    name: "unrardll"
-    version: ">=0"
-  - category: "dev-python"
-    name: "wrapt"
-    version: ">=0"
-  - category: "dev-python"
-    name: "xxhash"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/calibre"
-    use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
-  inner_build_reqs:
-  - dev-lang/rapydscript-ng
-  - dev-python/PyQt-builder
-  - sec-keys/openpgp-keys-kovidgoyal
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-usbmuxd
-  - <<: *apps-podofo
-  - <<: *libs-beautifulsoup4
-  - <<: *libs-css-parser
-  - <<: *libs-dnspython
-  - <<: *libs-feedparser
-  - <<: *libs-fonttools
-  - <<: *libs-jeepney
-  - <<: *libs-markdown
-  - <<: *libs-mathjax
-  - <<: *libs-python-msgpack
-  - <<: *libs-regex
-  build_requires:
-  - <<: *layers-qt
-
 - &apps-conky
   category: "apps"
   name: "conky"
@@ -23562,72 +22855,6 @@ packages:
   - <<: *libs-libmypaint
   - <<: *apps-mypaint-brushes
   build_requires:
-  - <<: *layers-X
-
-- &apps-nbconvert
-  category: "apps"
-  name: "nbconvert"
-  version: "7.17.1"
-  uri:
-  - https://github.com/mozilla/bleach/
-  - https://github.com/tiran/defusedxml/
-  - https://pypi.org/project/jupyterlab-pygments/
-  - https://github.com/lepture/mistune/
-  - https://nbclient.readthedocs.io/en/latest/
-  - https://nbconvert.readthedocs.io/
-  license: "Apache-2.0 BSD PSF-2"
-  description: |
-    An easy whitelist-based HTML-sanitizing tool
-    XML bomb protection for Python stdlib modules, an xml serialiser
-    Pygments theme making use of JupyterLab CSS variables
-    The fastest markdown parser in pure Python
-    A client library for executing Jupyter notebooks
-    Converting Jupyter Notebooks
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/nbconvert
-  provides:
-  - category: "dev-python"
-    name: "bleach"
-    version: ">=0"
-  - category: "dev-python"
-    name: "defusedxml"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jupyterlab-pygments"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mistune"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nbclient"
-    version: ">=0"
-  - category: "dev-python"
-    name: "nbconvert"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pandocfilters"
-    version: ">=0"
-  - category: "dev-python"
-    name: "tinycss2"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  atoms:
-  - atom: "dev-python/defusedxml"
-    use: "examples"
-  # - atom: "dev-python/mistune"
-  #   use: "verify-provenance"
-  requires:
-  - <<: *layers-X
-  - <<: *libs-beautifulsoup4
-  - <<: *libs-traitlets
-  - <<: *apps-jupyter-client
-  - <<: *apps-jupyter-core
-  - <<: *apps-nbformat
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
   - <<: *layers-X
 
 - category: "apps"
@@ -24086,86 +23313,6 @@ packages:
 #   - <<: *layers-qt
 #   build_requires:
 #   - <<: *layers-qt
-
-- &apps-jupyter-server
-  category: "apps"
-  name: "jupyter-server"
-  version: "2.21.1"
-  uri:
-  - https://github.com/hynek/argon2-cffi/
-  - https://github.com/hynek/argon2-cffi-bindings/
-  - https://jupyter.org/
-  - https://github.com/prometheus/client_python/
-  - https://github.com/madzak/python-json-logger/
-  license: "MIT"
-  description: |
-    CFFI bindings to the Argon2 password hashing library
-    Low-level CFFI bindings for the Argon2 password hashing library
-    Jupyter Event System library
-    Core services, APIs, and REST endpoints to Jupyter web applications
-    A Jupyter Server Extension Providing Terminals
-    Python client for the Prometheus monitoring system
-    Standard python logging to output log data as json objects
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/jupyter-server
-  provides:
-  - category: "dev-python"
-    name: "argon2-cffi"
-    version: ">=0"
-  - category: "dev-python"
-    name: "argon2-cffi-bindings"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jupyter-events"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jupyter-server"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jupyter-server-terminals"
-    version: ">=0"
-  - category: "dev-python"
-    name: "prometheus-client"
-    version: ">=0"
-  - category: "dev-python"
-    name: "python-json-logger"
-    version: ">=0"
-  portage_env: |
-    USE="verify-provenance"
-  atoms:
-  # - atom: "dev-python/argon2-cffi"
-  #   use: "verify-provenance"
-  # - atom: "dev-python/freezegun"
-  #   use: "verify-provenance"
-  inner_build_reqs:
-  - dev-python/freezegun
-  - dev-python/hatch-fancy-pypi-readme
-  - dev-python/hatch-jupyter-builder
-  - dev-python/pypi-attestations
-  - dev-python/rich
-  - dev-python/scikit-build-core
-  - dev-python/tzdata
-  inner_build_requires:
-  - <<: *libs-anyio
-  requires:
-  - <<: *layers-sys-fs
-  - <<: *libs-jsonschema
-  - <<: *libs-anyio
-  - <<: *libs-pyzmq
-  - <<: *libs-send2trash
-  - <<: *libs-terminado
-  - <<: *libs-tornado
-  - <<: *libs-traitlets
-  - <<: *libs-twisted
-  - <<: *apps-jupyter-client
-  - <<: *apps-jupyter-core
-  - <<: *apps-nbconvert
-  - <<: *apps-nbformat
-  - <<: *apps-websocket-client
-  build_requires:
-  - <<: *layers-X
 
 - category: "apps"
   name: "krita"
