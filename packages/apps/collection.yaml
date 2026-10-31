@@ -2975,6 +2975,29 @@ packages:
   build_requires:
   - <<: *layers-sys-fs
 
+- &libs-markdown-it-py
+  category: "libs"
+  name: "markdown-it-py"
+  version: "4.2.0"
+  uri:
+  - https://pypi.org/project/markdown-it-py/
+  license: "MIT"
+  description: |
+    Python port of markdown-it, Markdown parser
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/markdown-it-py
+  provides:
+  - category: "dev-python"
+    name: "markdown-it-py"
+    version: ">=0"
+  requires:
+  - <<: *layers-sys-fs
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
 - &libs-mathjax
   category: "libs"
   name: "mathjax"
@@ -16380,7 +16403,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.2.1+1"
+  version: "26.2.1+2"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16400,9 +16423,6 @@ packages:
     version: ">=0"
   - category: "dev-python"
     name: "linkify-it-py"
-    version: ">=0"
-  - category: "dev-python"
-    name: "markdown-it-py"
     version: ">=0"
   - category: "dev-python"
     name: "mdurl"
@@ -16426,6 +16446,7 @@ packages:
   - <<: *layers-sys-fs
   - <<: *libs-cachecontrol
   - <<: *libs-colorama
+  - <<: *libs-markdown-it-py
   - <<: *libs-pyproject-hooks
   - <<: *libs-truststore
   - <<: *libs-typing-extensions
