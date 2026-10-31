@@ -1455,30 +1455,6 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- &libs-dnspython
-  category: "apps"
-  name: "dnspython"
-  version: "2.8.0"
-  uri:
-  - https://www.dnspython.org/
-  license: "ISC"
-  description: "DNS toolkit for Python"
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/dnspython
-  provides:
-  - category: "dev-python"
-    name: "dnspython"
-    version: ">=0"
-  atoms:
-  - atom: "dev-python/dnspython"
-    use: "examples"
-  requires:
-  - <<: *layers-system-x
-  build_requires:
-  - <<: *layers-system-x
-
 - &libs-enet
   category: "libs"
   name: "enet"
@@ -18553,88 +18529,6 @@ packages:
   - <<: *libs-libglade
   build_requires:
   - <<: *layers-X
-  
-- category: "apps"
-  name: "calibre"
-  version: "8.9.0+8"
-  uri:
-  - https://calibre-ebook.com/
-  license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
-  description: "Ebook management application"
-  labels:
-    appstream.id: "com.calibre_ebook.calibre"
-    emerge.jobs: "1"
-    emerge.packages: >-
-      app-text/calibre
-  provides:
-  - category: "app-text"
-    name: "calibre"
-    version: ">=0"
-  - category: "dev-python"
-    name: "apsw"
-    version: ">=0"
-  - category: "dev-python"
-    name: "deprecated"
-    version: ">=0"
-  - category: "dev-python"
-    name: "html2text"
-    version: ">=0"
-  - category: "dev-python"
-    name: "html5-parser"
-    version: ">=0"
-  - category: "dev-python"
-    name: "jaconv"
-    version: ">=0"
-  - category: "dev-python"
-    name: "lxml-html-clean"
-    version: ">=0"
-  - category: "dev-python"
-    name: "mechanize"
-    version: ">=0"
-  - category: "dev-python"
-    name: "netifaces"
-    version: ">=0"
-  - category: "media-gfx"
-    name: "optipng"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pykakasi"
-    version: ">=0"
-  - category: "dev-python"
-    name: "pychm"
-    version: ">=0"
-  - category: "dev-python"
-    name: "unrardll"
-    version: ">=0"
-  - category: "dev-python"
-    name: "wrapt"
-    version: ">=0"
-  - category: "dev-python"
-    name: "xxhash"
-    version: ">=0"
-  atoms:
-  - atom: "app-text/calibre"
-    use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
-  inner_build_reqs:
-  - dev-lang/rapydscript-ng
-  - dev-python/PyQt-builder
-  - sec-keys/openpgp-keys-kovidgoyal
-  requires:
-  - <<: *layers-qt
-  - <<: *apps-usbmuxd
-  - <<: *apps-podofo
-  - <<: *libs-beautifulsoup4
-  - <<: *libs-css-parser
-  - <<: *libs-dnspython
-  - <<: *libs-feedparser
-  - <<: *libs-fonttools
-  - <<: *libs-jeepney
-  - <<: *libs-markdown
-  - <<: *libs-mathjax
-  - <<: *libs-python-msgpack
-  - <<: *libs-regex
-  build_requires:
-  - <<: *layers-qt
 
 - &apps-cantor
   category: "apps"
@@ -21164,6 +21058,36 @@ packages:
 ### dep 3 libs ###
 ################################################################################################################################################################
 
+- &libs-dnspython
+  category: "apps"
+  name: "dnspython"
+  version: "2.8.0+1"
+  uri:
+  - https://www.dnspython.org/
+  license: "ISC"
+  description: "DNS toolkit for Python"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/dnspython
+  provides:
+  - category: "dev-python"
+    name: "dnspython"
+    version: ">=0"
+  atoms:
+  - atom: "dev-python/dnspython"
+    use: "dnssec examples https # quic"
+  portage_env: |
+    USE="verify-provenance"
+  # atoms:
+  # - atom: "dev-python/dnspython"
+  #   use: "verify-provenance"
+  requires:
+  - <<: *layers-sys-fs
+  - <<: *libs-httpx
+  build_requires:
+  - <<: *layers-sys-fs
+
 - &libs-farstream
   category: "libs"
   name: "farstream"
@@ -22619,6 +22543,88 @@ packages:
 ################################################################################################################################################################
 ### dep 4 apps ###
 ################################################################################################################################################################
+
+- category: "apps"
+  name: "calibre"
+  version: "8.9.0+8"
+  uri:
+  - https://calibre-ebook.com/
+  license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
+  description: "Ebook management application"
+  labels:
+    appstream.id: "com.calibre_ebook.calibre"
+    emerge.jobs: "1"
+    emerge.packages: >-
+      app-text/calibre
+  provides:
+  - category: "app-text"
+    name: "calibre"
+    version: ">=0"
+  - category: "dev-python"
+    name: "apsw"
+    version: ">=0"
+  - category: "dev-python"
+    name: "deprecated"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html2text"
+    version: ">=0"
+  - category: "dev-python"
+    name: "html5-parser"
+    version: ">=0"
+  - category: "dev-python"
+    name: "jaconv"
+    version: ">=0"
+  - category: "dev-python"
+    name: "lxml-html-clean"
+    version: ">=0"
+  - category: "dev-python"
+    name: "mechanize"
+    version: ">=0"
+  - category: "dev-python"
+    name: "netifaces"
+    version: ">=0"
+  - category: "media-gfx"
+    name: "optipng"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pykakasi"
+    version: ">=0"
+  - category: "dev-python"
+    name: "pychm"
+    version: ">=0"
+  - category: "dev-python"
+    name: "unrardll"
+    version: ">=0"
+  - category: "dev-python"
+    name: "wrapt"
+    version: ">=0"
+  - category: "dev-python"
+    name: "xxhash"
+    version: ">=0"
+  atoms:
+  - atom: "app-text/calibre"
+    use: "font-subsetting ios system-mathjax test udisks unrar verify-sig # speech"
+  inner_build_reqs:
+  - dev-lang/rapydscript-ng
+  - dev-python/PyQt-builder
+  - sec-keys/openpgp-keys-kovidgoyal
+  requires:
+  - <<: *layers-qt
+  - <<: *apps-usbmuxd
+  - <<: *apps-podofo
+  - <<: *libs-beautifulsoup4
+  - <<: *libs-css-parser
+  - <<: *libs-dnspython
+  - <<: *libs-feedparser
+  - <<: *libs-fonttools
+  - <<: *libs-jeepney
+  - <<: *libs-markdown
+  - <<: *libs-mathjax
+  - <<: *libs-python-msgpack
+  - <<: *libs-regex
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-cmus
   category: "apps"
