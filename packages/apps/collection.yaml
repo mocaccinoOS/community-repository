@@ -1548,7 +1548,7 @@ packages:
   atoms:
   - atom: "x11-libs/fltk"
     license: "FLTK LGPL-2"
-    use: "cairo examples games opengl threads xft xinerama" # +X +cairo +dbus doc examples opengl static-libs test wayland
+    use: "cairo examples games opengl threads xft xinerama # +X +cairo +dbus doc examples opengl static-libs test wayland"
   requires:
   - <<: *layers-X
   build_requires:
@@ -4365,9 +4365,18 @@ packages:
     emerge.packages: >-
       dev-python/babel
   provides:
-    category: "dev-python"
+  - category: "dev-python"
     name: "babel"
     version: ">=0"
+  portage_env: |
+    USE="verify-provenance"
+  # atoms:
+  # - atom: "dev-python/freezegun"
+  #   use: "verify-provenance"
+  inner_build_reqs:
+  - dev-python/pypi-attestations
+  - dev-python/freezegun
+  - dev-python/sphinx
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -14419,7 +14428,6 @@ packages:
       version: ">=0"
   inner_build_reqs:
   - app-text/scdoc
-  inner_build_reqs:
   - dev-libs/tllist
   requires:
   - <<: *layers-X
@@ -17188,9 +17196,12 @@ packages:
   #   use: "verify-provenance"
   # - atom: "dev-python/snowballstemmer"
   #   use: "verify-provenance"
+  unmerge:
+  - dev-python/babel
   requires:
   - <<: *layers-X
   - <<: *apps-babel
+    skip: true
   build_requires:
   - <<: *layers-X
 
@@ -18021,35 +18032,6 @@ packages:
   # - <<: *apps-mono
   build_requires:
   # - <<: *layers-java
-  - <<: *layers-X
-
-- &libs-matplotlib-inline
-  category: "libs"
-  name: "matplotlib-inline"
-  version: "0.2.2"
-  uri:
-  - https://github.com/ipython/matplotlib-inline/
-  license: "BSD"
-  description: |
-    Inline Matplotlib backend for Jupyter
-  labels:
-    emerge.jobs: "1"
-    emerge.packages: >-
-      dev-python/matplotlib-inline
-  provides:
-  - category: "dev-python"
-    name: "matplotlib-inline"
-    version: ">=0"
-  atoms:
-  - atom: "virtual/imagemagick-tools"
-    use: "jpeg"
-  inner_build_reqs:
-  - dev-python/matplotlib
-  requires:
-  - <<: *layers-system-x
-  - <<: *libs-traitlets
-  build_requires:
-  # for dev-python/sphinx that needs media-libs/tiff jpeg
   - <<: *layers-X
 
 - &libs-openvdb
@@ -21101,6 +21083,35 @@ packages:
   - <<: *layers-sys-fs
   - <<: *libs-anyio
   - <<: *libs-rich
+  build_requires:
+  # for dev-python/sphinx that needs media-libs/tiff jpeg
+  - <<: *layers-X
+
+- &libs-matplotlib-inline
+  category: "libs"
+  name: "matplotlib-inline"
+  version: "0.2.2"
+  uri:
+  - https://github.com/ipython/matplotlib-inline/
+  license: "BSD"
+  description: |
+    Inline Matplotlib backend for Jupyter
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      dev-python/matplotlib-inline
+  provides:
+  - category: "dev-python"
+    name: "matplotlib-inline"
+    version: ">=0"
+  atoms:
+  - atom: "virtual/imagemagick-tools"
+    use: "jpeg"
+  inner_build_reqs:
+  - dev-python/matplotlib
+  requires:
+  - <<: *layers-system-x
+  - <<: *libs-traitlets
   build_requires:
   # for dev-python/sphinx that needs media-libs/tiff jpeg
   - <<: *layers-X
