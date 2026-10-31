@@ -4354,7 +4354,7 @@ packages:
 - &apps-babel
   category: "apps"
   name: "babel"
-  version: "2.18.0"
+  version: "2.18.0+1"
   uri:
   - https://babel.pocoo.org/
   license: "BSD"
@@ -4377,6 +4377,8 @@ packages:
   - dev-python/pypi-attestations
   - dev-python/freezegun
   - dev-python/sphinx
+  prepare:
+  - emerge -C dev-python/babel
   requires:
   - <<: *layers-sys-fs
   build_requires:
@@ -16292,7 +16294,7 @@ packages:
 - &apps-pip
   category: "apps"
   name: "pip"
-  version: "26.2.1+2"
+  version: "26.2.1+3"
   uri:
   - https://pip.pypa.io/en/stable/
   - https://pypi.org/project/pip/
@@ -16323,9 +16325,6 @@ packages:
     name: "resolvelib"
     version: ">=0"
   - category: "dev-python"
-    name: "rich"
-    version: ">=0"
-  - category: "dev-python"
     name: "tomli-w"
     version: ">=0"
   requires:
@@ -16334,6 +16333,7 @@ packages:
   - <<: *libs-colorama
   - <<: *libs-markdown-it-py
   - <<: *libs-pyproject-hooks
+  - <<: *libs-rich
   - <<: *libs-truststore
   - <<: *libs-typing-extensions
   build_requires:
@@ -22421,7 +22421,7 @@ packages:
 - &libs-dnspython
   category: "apps"
   name: "dnspython"
-  version: "2.8.0+1"
+  version: "2.8.0+2"
   uri:
   - https://www.dnspython.org/
   license: "ISC"
@@ -22442,6 +22442,8 @@ packages:
   # atoms:
   # - atom: "dev-python/dnspython"
   #   use: "verify-provenance"
+  prepare:
+  - emerge -C dev-python/dnspython
   requires:
   - <<: *layers-sys-fs
   - <<: *libs-httpx
