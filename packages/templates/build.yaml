@@ -71,6 +71,9 @@ prelude:
   {{- include "community.package_setup" .Values }}
 {{- end }}
 
+{{/*The following must be at the end of the prelude stage*/}}
+{{ template "community.pkglist_begin" . }}
+
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
@@ -90,6 +93,9 @@ steps:
 {{/* end debug */}}
 
 {{- end }}
+
+{{/*The following must be at the end of the steps stage*/}}
+{{ template "community.pkglist_end" . }}
 
 {{- if .Values.package_dir }}
 package_dir: {{ .Values.package_dir }}
