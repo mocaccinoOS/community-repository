@@ -7410,7 +7410,8 @@ packages:
   build_requires:
   - <<: *layers-system-x
 
-- category: "apps"
+- &apps-httrack
+  category: "apps"
   name: "httrack"
   version: "3.49.5+2"
   uri:
@@ -14678,6 +14679,31 @@ packages:
   - <<: *libs-gtk2
   build_requires:
   - <<: *layers-gnome-common
+
+- category: "apps"
+  name: "httraqt"
+  version: "1.4.11"
+  uri:
+  - https://httraqt.sourceforge.net
+  license: "GPL-3"
+  description: "Graphical user interface for HTTrack library, developed in C++ and based on Qt"
+  labels:
+    emerge.jobs: "1"
+    emerge.packages: >-
+      www-misc/httraqt
+  overlays:
+  - enable: "nest"
+  provides:
+  - category: "www-misc"
+    name: "httraqt"
+    version: ">=0"
+  atoms:
+  - atom: "www-misc/httraqt"
+    accept_keywords: "~amd64"
+  requires:
+  - <<: *layers-qt
+  build_requires:
+  - <<: *layers-qt
 
 - &apps-iodbc
   category: "apps"
