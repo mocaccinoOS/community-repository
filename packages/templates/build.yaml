@@ -77,6 +77,9 @@ prelude:
 steps:
 {{- include "community.emerge_atom" ( list .Values $packages "" true ) }}
 
+{{/*The following must be at the end of the steps stage*/}}
+{{- template "community.pkglist_end" . }}
+
 {{- include "community.includes_excludes" ( list .Values .Values.category ) }}
 
 {{/* debug */}}
@@ -87,17 +90,8 @@ steps:
 
 {{- include "community.subpackages" .Values }}
 
-{{/*The following must be at the end of the steps stage*/}}
-{{- template "community.pkglist_end" . }}
-
-{{/* debug */}}
-{{/*- if eq .Values.name "blender" }}
-{{- include "community.dump" ( printf "debug:\n%s\nend debug" ( .Values | toYaml ) ) }}
-{{- include "community.dump" ( printf "debug:\n%s\nend debug" ( include "community.subpackages" .Values ) ) }}
-{{- end */}}
-{{/* end debug */}}
-
 {{- end }}
+{{/* "community.build" end */}}
 
 {{- if .Values.package_dir }}
 package_dir: {{ .Values.package_dir }}
