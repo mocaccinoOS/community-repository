@@ -6,11 +6,11 @@ on:
       build-sets:
         type: string
         required: true
-        description: 'Stringified JSON object listing target build sets'
+        description: "Stringified JSON object listing target build sets"
       set-id:
         type: string
         required: true
-        description: 'Target build set id'
+        description: "Target build set id"
     secrets:
       QUAY_ROBOT_USERNAME:
         required: true
@@ -30,103 +30,103 @@ jobs:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       CURRENT_PACKAGE: ${{ matrix.category }}/${{ matrix.name }}@${{ matrix.version }}
       PULL_REPOSITORY: quay.io/mocaccino/desktop
-    #runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
     runs-on: [self-hosted, x64]
     steps:
-    - uses: actions/checkout@v6
-    # - name: Info
-    #   run: |
-    #     lscpu
-    - name: Release space from worker ♻
-      if: always()
-      run: |
-        sudo rm -rf build || true
-        sudo rm -rf bin || true
-        sudo rm /usr/bin/luet || true
-        sudo rm -Rf /etc/luet/ || true
-        sudo rm -Rf /var/tmp/luet || true
-        sudo rm -Rf /var/luet || true
-        sudo docker system prune -f -a --volumes || true
-    - name: Release space from worker ♻
-      run: |
-        echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        head -n 30 <<< "${pkgs}"
-        echo
-        df -h
-        echo
-        sudo apt-get remove -y '^llvm-.*|^libllvm.*' || true
-        sudo apt-get remove --auto-remove android-sdk-platform-tools || true
-        sudo apt-get purge --auto-remove android-sdk-platform-tools || true
-        sudo rm -rf /usr/local/lib/android
-        sudo apt-get remove -y '^dotnet-.*|^aspnetcore-.*' || true
-        sudo rm -rf /usr/share/dotnet
-        sudo apt-get remove -y '^mono-.*' || true
-        sudo apt-get remove -y '^ghc-.*' || true
-        sudo apt-get remove -y '.*jdk.*|.*jre.*' || true
-        sudo apt-get remove -y 'php.*' || true
-        sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild || true
-        sudo apt-get remove -y '^google-.*' || true
-        sudo apt-get remove -y azure-cli || true
-        sudo apt-get remove -y '^mongo.*-.*|^postgresql-.*|^mysql-.*|^mssql-.*' || true
-        sudo apt-get remove -y '^gfortran-.*' || true
-        sudo apt-get remove -y 'microsoft-edge-.*' || true
-        sudo apt-get remove -y 'firefox.*' || true
-        sudo apt-get autoremove -y
-        sudo apt-get clean
-        echo
-        echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        head -n 30 <<< "${pkgs}"
-        echo
-        sudo rm -rfv build || true
-        echo "Finding the Current Storage Location" 
-        docker info -f '{{ .DockerRootDir }}'
-        echo
-        df -h
-    - run: |
-        git fetch --prune --unshallow
-        sudo chmod 666 /var/run/docker.sock
-    # - run: |
-    #     # sudo service docker stop || true
-    #     # cd /var/run/docker/libcontainerd || true
-    #     # sudo rm -rf containerd/* || true
-    #     # sudo rm -f docker-containerd.pid || true
-    #     # sudo service docker start
+      - uses: actions/checkout@v6
+      # - name: Info
+      #   run: |
+      #     lscpu
+      - name: Release space from worker ♻
+        if: always()
+        run: |
+          sudo rm -rf build || true
+          sudo rm -rf bin || true
+          sudo rm /usr/bin/luet || true
+          sudo rm -Rf /etc/luet/ || true
+          sudo rm -Rf /var/tmp/luet || true
+          sudo rm -Rf /var/luet || true
+          sudo docker system prune -f -a --volumes || true
+      - name: Release space from worker ♻
+        run: |
+          echo "Listing top largest packages"
+          pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
+          head -n 30 <<< "${pkgs}"
+          echo
+          df -h
+          echo
+          sudo apt-get remove -y '^llvm-.*|^libllvm.*' || true
+          sudo apt-get remove --auto-remove android-sdk-platform-tools || true
+          sudo apt-get purge --auto-remove android-sdk-platform-tools || true
+          sudo rm -rf /usr/local/lib/android
+          sudo apt-get remove -y '^dotnet-.*|^aspnetcore-.*' || true
+          sudo rm -rf /usr/share/dotnet
+          sudo apt-get remove -y '^mono-.*' || true
+          sudo apt-get remove -y '^ghc-.*' || true
+          sudo apt-get remove -y '.*jdk.*|.*jre.*' || true
+          sudo apt-get remove -y 'php.*' || true
+          sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild || true
+          sudo apt-get remove -y '^google-.*' || true
+          sudo apt-get remove -y azure-cli || true
+          sudo apt-get remove -y '^mongo.*-.*|^postgresql-.*|^mysql-.*|^mssql-.*' || true
+          sudo apt-get remove -y '^gfortran-.*' || true
+          sudo apt-get remove -y 'microsoft-edge-.*' || true
+          sudo apt-get remove -y 'firefox.*' || true
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          echo
+          echo "Listing top largest packages"
+          pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
+          head -n 30 <<< "${pkgs}"
+          echo
+          sudo rm -rfv build || true
+          echo "Finding the Current Storage Location"
+          docker info -f '{{ .DockerRootDir }}'
+          echo
+          df -h
+      - run: |
+          git fetch --prune --unshallow
+          sudo chmod 666 /var/run/docker.sock
+      # - run: |
+      #     # sudo service docker stop || true
+      #     # cd /var/run/docker/libcontainerd || true
+      #     # sudo rm -rf containerd/* || true
+      #     # sudo rm -f docker-containerd.pid || true
+      #     # sudo service docker start
 
-    - name: Login to Quay Registry
-      run: |
-        echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
+      - name: Login to Quay Registry
+        run: |
+          echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
 
-    - name: Install deps 🔧
-      run: |
-        curl https://luet.io/install.sh | sudo sh
-    - name: Install Go
-      uses: actions/setup-go@v6
-      with:
-        go-version: '^1.16'
-        cache: false
-    - name: Install CI plugins
-      run: |
-        sudo cp -rfv .github/plugins/* /usr/bin/
-    - name: Build packages 🔧
-      run: |
-        export LUET_NOLOCK=true
-        sudo -E luet install -y repository/mocaccino-desktop
-        # sudo -E luet install -y repository/mocaccino-desktop-stable
-        sudo -E luet install -y repository/mocaccino-os-commons
-        sudo -E luet install -y repository/mocaccino-extra-stable
-        export PATH=$PATH:/usr/local/go/bin
-        mkdir build || true
-        pushd ./.github
-        go build -o build
-        popd
-        sudo -E ./.github/build
-        ls -liah $PWD/build
-        sudo chmod -R 777 $PWD/build
-    - uses: actions/upload-artifact@v7
-      if: success() || failure()
-      with:
-        name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
-        path: |
-          build/
+      - name: Install deps 🔧
+        run: |
+          curl https://luet.io/install.sh | sudo sh
+      - name: Install Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "^1.16"
+          cache: false
+      - name: Install CI plugins
+        run: |
+          sudo cp -rfv .github/plugins/* /usr/bin/
+      - name: Build packages 🔧
+        run: |
+          export LUET_NOLOCK=true
+          sudo -E luet install -y repository/mocaccino-desktop
+          # sudo -E luet install -y repository/mocaccino-desktop-stable
+          sudo -E luet install -y repository/mocaccino-os-commons
+          sudo -E luet install -y repository/mocaccino-extra-stable
+          export PATH=$PATH:/usr/local/go/bin
+          mkdir build || true
+          pushd ./.github
+          go build -o build
+          popd
+          sudo -E ./.github/build
+          ls -liah $PWD/build
+          sudo chmod -R 777 $PWD/build
+      - uses: actions/upload-artifact@v7
+        if: success() || failure()
+        with:
+          name: ${{ matrix.category }}-${{ matrix.name }}-${{ matrix.version }}.zip
+          path: |
+            build/
