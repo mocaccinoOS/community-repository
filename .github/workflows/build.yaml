@@ -2,10 +2,9 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-
   generate-matrix-sets:
     name: Generate matrix sets for build
     runs-on: ubuntu-latest
@@ -22,18 +21,18 @@ jobs:
         id: set-matrix-sets
         run: |
           PACKAGES=""
-          PKG_LIST=$(luet tree pkglist --tree packages -o json | jq '{"packages":[.packages[] | select(.path != "")]}') 
+          PKG_LIST=$(luet tree pkglist --tree packages -o json | jq '{"packages":[.packages[] | select(.path != "")]}')
           for i in $(echo "$PKG_LIST" | jq -rc '.packages[]'); do
               PACKAGE_PATH=$(echo "$i" | jq -r ".path")
               PACKAGE_NAME=$(echo "$i" | jq -r ".name")
               PACKAGE_CATEGORY=$(echo "$i" | jq -r ".category")
               PACKAGE_VERSION=$(echo "$i" | jq -r ".version")
               PACKAGE_VERSION=${PACKAGE_VERSION//\+/\-}
-              PACKAGE=$PACKAGE_NAME-$PACKAGE_CATEGORY-$PACKAGE_VERSION              
+              PACKAGE=$PACKAGE_NAME-$PACKAGE_CATEGORY-$PACKAGE_VERSION
               if ! luet util image-exist "quay.io/mocaccino/mocaccino-community:$PACKAGE"; then
                   PACKAGES="${PACKAGES}${PACKAGES:+,}$i"
               fi
-          done          
+          done
           PACKAGES="{\"packages\":[${PACKAGES}]}"
           echo "matrix-sets=$(jq -rc '[.packages | _nwise(256)]' <<< ${PACKAGES})" >> $GITHUB_OUTPUT
 
@@ -69,133 +68,133 @@ jobs:
       EVENT_NAME: ${{ github.event_name }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v6
-    - name: Validate
-      run: |
-        fetch_conclusions() {
-          for i in 1 2 3 4 5; do
-            if out=$(gh api \
-                "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=30" \
-                --paginate \
-                --jq '.jobs[] | select(.name | contains("Set 0 / build (")) | .conclusion'); then
-              echo "$out"; return 0
-            fi
-            echo "jobs fetch failed (attempt $i)" >&2
-            sleep $((i * 15))
-          done
-          return 1
-        }
+      - uses: actions/checkout@v6
+      - name: Validate
+        run: |
+          fetch_conclusions() {
+            for i in 1 2 3 4 5; do
+              if out=$(gh api \
+                  "repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/jobs?per_page=30" \
+                  --paginate \
+                  --jq '.jobs[] | select(.name | contains("Set 0 / build (")) | .conclusion'); then
+                echo "$out"; return 0
+              fi
+              echo "jobs fetch failed (attempt $i)" >&2
+              sleep $((i * 15))
+            done
+            return 1
+          }
 
-        CONCLUSIONS=$(fetch_conclusions)
-        SUCCESS_COUNT=$(grep -c '^success$' <<< "$CONCLUSIONS" || true)
-        FAILURE_COUNT=$(grep -c '^failure$' <<< "$CONCLUSIONS" || true)
-        CANCELLED_COUNT=$(grep -c '^cancelled$' <<< "$CONCLUSIONS" || true)
+          CONCLUSIONS=$(fetch_conclusions)
+          SUCCESS_COUNT=$(grep -c '^success$' <<< "$CONCLUSIONS" || true)
+          FAILURE_COUNT=$(grep -c '^failure$' <<< "$CONCLUSIONS" || true)
+          CANCELLED_COUNT=$(grep -c '^cancelled$' <<< "$CONCLUSIONS" || true)
 
-        if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
-          echo "Started manually."
-        elif [ "$SUCCESS_COUNT" -gt 0 ]; then
-          echo "Found $SUCCESS_COUNT successful runs."
-        elif [ "$SUCCESS_COUNT" -eq 0 ] && [ "$FAILURE_COUNT" -eq 0 ] && [ "$CANCELLED_COUNT" -eq 0 ]; then
-          echo "Found no successful runs, no failed runs and no cancelled runs."
-        else
-          echo "::error::Found no successful runs."
-          exit 1
-        fi
-    - name: Release space from worker ♻
-      run: |
-        echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        head -n 30 <<< "${pkgs}"
-        echo
-        df -h
-        echo
-        sudo apt-get remove -y '^llvm-.*|^libllvm.*' || true
-        sudo apt-get remove --auto-remove android-sdk-platform-tools || true
-        sudo apt-get purge --auto-remove android-sdk-platform-tools || true
-        sudo rm -rf /usr/local/lib/android
-        sudo apt-get remove -y '^dotnet-.*|^aspnetcore-.*' || true
-        sudo rm -rf /usr/share/dotnet
-        sudo apt-get remove -y '^mono-.*' || true
-        sudo apt-get remove -y '^ghc-.*' || true
-        sudo apt-get remove -y '.*jdk.*|.*jre.*' || true
-        sudo apt-get remove -y 'php.*' || true
-        sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild || true
-        sudo apt-get remove -y '^google-.*' || true
-        sudo apt-get remove -y azure-cli || true
-        sudo apt-get remove -y '^mongo.*-.*|^postgresql-.*|^mysql-.*|^mssql-.*' || true
-        sudo apt-get remove -y '^gfortran-.*' || true
-        sudo apt-get remove -y 'microsoft-edge-.*' || true
-        sudo apt-get remove -y 'firefox.*' || true
-        sudo apt-get autoremove -y
-        sudo apt-get clean
-        echo
-        echo "Listing top largest packages"
-        pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
-        head -n 30 <<< "${pkgs}"
-        echo
-        echo "Finding the Current Storage Location"
-        docker info -f '{{ .DockerRootDir }}'
-        echo
-        df -h
-    - run: |
-        git fetch --prune --unshallow
-    - name: Login to Quay Registry
-      run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            echo "Started manually."
+          elif [ "$SUCCESS_COUNT" -gt 0 ]; then
+            echo "Found $SUCCESS_COUNT successful runs."
+          elif [ "$SUCCESS_COUNT" -eq 0 ] && [ "$FAILURE_COUNT" -eq 0 ] && [ "$CANCELLED_COUNT" -eq 0 ]; then
+            echo "Found no successful runs, no failed runs and no cancelled runs."
+          else
+            echo "::error::Found no successful runs."
+            exit 1
+          fi
+      - name: Release space from worker ♻
+        run: |
+          echo "Listing top largest packages"
+          pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
+          head -n 30 <<< "${pkgs}"
+          echo
+          df -h
+          echo
+          sudo apt-get remove -y '^llvm-.*|^libllvm.*' || true
+          sudo apt-get remove --auto-remove android-sdk-platform-tools || true
+          sudo apt-get purge --auto-remove android-sdk-platform-tools || true
+          sudo rm -rf /usr/local/lib/android
+          sudo apt-get remove -y '^dotnet-.*|^aspnetcore-.*' || true
+          sudo rm -rf /usr/share/dotnet
+          sudo apt-get remove -y '^mono-.*' || true
+          sudo apt-get remove -y '^ghc-.*' || true
+          sudo apt-get remove -y '.*jdk.*|.*jre.*' || true
+          sudo apt-get remove -y 'php.*' || true
+          sudo apt-get remove -y hhvm powershell firefox monodoc-manual msbuild || true
+          sudo apt-get remove -y '^google-.*' || true
+          sudo apt-get remove -y azure-cli || true
+          sudo apt-get remove -y '^mongo.*-.*|^postgresql-.*|^mysql-.*|^mssql-.*' || true
+          sudo apt-get remove -y '^gfortran-.*' || true
+          sudo apt-get remove -y 'microsoft-edge-.*' || true
+          sudo apt-get remove -y 'firefox.*' || true
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          echo
+          echo "Listing top largest packages"
+          pkgs=$(dpkg-query -Wf '${Installed-Size}\t${Package}\t${Status}\n' | awk '$NF == "installed"{print $1 "\t" $2}' | sort -nr)
+          head -n 30 <<< "${pkgs}"
+          echo
+          echo "Finding the Current Storage Location"
+          docker info -f '{{ .DockerRootDir }}'
+          echo
+          df -h
+      - run: |
+          git fetch --prune --unshallow
+      - name: Login to Quay Registry
+        run: echo ${{ secrets.QUAY_ROBOT_PASSWORD }} | docker login -u ${{ secrets.QUAY_ROBOT_USERNAME }} --password-stdin quay.io
 
-    - name: Install deps 🔧
-      run: |
-        curl https://luet.io/install.sh | sudo sh
-    - name: Install Go
-      uses: actions/setup-go@v6
-      with:
-        go-version: '^1.16'
-        cache: false
+      - name: Install deps 🔧
+        run: |
+          curl https://luet.io/install.sh | sudo sh
+      - name: Install Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "^1.16"
+          cache: false
 
-    - name: Download all workflow run artifacts
-      uses: actions/download-artifact@v8
-      with:
-        pattern: '*'
-        merge-multiple: true
-        path: build/
-    - name: Merge artifacts 🔧
-      run: |
-        # if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi 
-        mkdir build || true
-        # for i in $(ls | grep zip); do
-        #   cp -rfv $i/* build
-        # done
-        ls -liah
-        ls -liah build
-    - name: Fetch metadata of packages 🔧
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      run: |
-        ls -liah
-        export PATH=$PATH:/usr/local/go/bin
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v8
+        with:
+          pattern: "*"
+          merge-multiple: true
+          path: build/
+      - name: Merge artifacts 🔧
+        run: |
+          # if [ ! -f *.zip ] ; then echo "No artifacts to create a new repo." ; exit 1 ; fi
+          mkdir build || true
+          # for i in $(ls | grep zip); do
+          #   cp -rfv $i/* build
+          # done
+          ls -liah
+          ls -liah build
+      - name: Fetch metadata of packages 🔧
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          ls -liah
+          export PATH=$PATH:/usr/local/go/bin
 
-        pushd ./.github
-        go build -o build
-        popd
-        sudo -E ./.github/build
-        ls -liah $PWD/build
-        sudo chmod -R 777 $PWD/build
+          pushd ./.github
+          go build -o build
+          popd
+          sudo -E ./.github/build
+          ls -liah $PWD/build
+          sudo chmod -R 777 $PWD/build
 
-    - name: Create repo 🔧
-      if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-      run: |
-        sudo -E luet create-repo \
-          --push-images \
-          --type docker \
-          --output $FINAL_REPO \
-          --name "mocaccino-community" \
-          --packages ${PWD}/build \
-          --tree ${PWD}/packages
+      - name: Create repo 🔧
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        run: |
+          sudo -E luet create-repo \
+            --push-images \
+            --type docker \
+            --output $FINAL_REPO \
+            --name "mocaccino-community" \
+            --packages ${PWD}/build \
+            --tree ${PWD}/packages
 
-    # - name: Deploy GH Pages 🚀
-    #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-    #   uses: JamesIves/github-pages-deploy-action@v4.4.1
-    #   with:
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    #     branch: gh-pages # The branch the action should deploy to.
-    #     folder: build # The folder the action should deploy.
-    #     clean: true # Automatically remove deleted files from the deploy branch
-    #     single-commit: true
+      # - name: Deploy GH Pages 🚀
+      #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      #   uses: JamesIves/github-pages-deploy-action@v4.4.1
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     branch: gh-pages # The branch the action should deploy to.
+      #     folder: build # The folder the action should deploy.
+      #     clean: true # Automatically remove deleted files from the deploy branch
+      #     single-commit: true
