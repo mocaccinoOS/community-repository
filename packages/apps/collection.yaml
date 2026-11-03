@@ -6328,6 +6328,7 @@ packages:
       - atom: "media-video/ffmpeg-chromium"
         use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 # nvenc"
         accept_keywords: "~amd64"
+        usepkg_exclude: true
     requires:
       - <<: *layers-X
     build_requires:
@@ -21960,7 +21961,7 @@ packages:
       - atom: "dev-python/pygame"
         use: "midi opengl X"
     inner_build_reqs:
-    - app-arch/dpkg
+      - app-arch/dpkg
     requires:
       - <<: *layers-X
       - <<: *libs-sdl2
@@ -22598,12 +22599,12 @@ packages:
         version: ">=0"
     atoms:
       - atom: "net-p2p/deluge"
-        use: "console webinterface gui libnotify sound"
+        use: "console webinterface gui libnotify # sound"
     inner_build_reqs:
       - acct-group/deluge
       - acct-user/deluge
-    optrequires:
-      - <<: *libs-pygame
+    # optrequires:
+    #   - <<: *libs-pygame
     requires:
       - <<: *layers-X
       - category: "entity"
