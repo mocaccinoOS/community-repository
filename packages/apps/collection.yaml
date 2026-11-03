@@ -6327,8 +6327,11 @@ packages:
     atoms:
       - atom: "media-video/ffmpeg-chromium"
         use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 # nvenc"
-        accept_keywords: "~amd64"
-        usepkg_exclude: true
+    prepare:
+      # temporary fix due to currently corrupted source
+      # the used source is from the latest Gentoo official ebuild
+      - sed -i -e 's/SRC_URI=.*/SRC_URI="https:\/\/deps.gentoo.zip\/media-video\/${P}.tar.xz"/' /var/db/repos/gentoo/media-video/ffmpeg-chromium/ffmpeg-chromium-155.0.8059.85.ebuild
+      - find /var/db/repos/gentoo/media-video/ffmpeg-chromium/ -type f -name "ffmpeg-chromium-155.0.8059.85.ebuild" -exec ebuild {} manifest \;
     requires:
       - <<: *layers-X
     build_requires:
