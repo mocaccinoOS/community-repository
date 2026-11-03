@@ -9398,10 +9398,11 @@ packages:
       - <<: *layers-system-x
     build_requires:
       - <<: *layers-system-x
+
   - &apps-pandoc
     category: "apps"
     name: "pandoc-cli"
-    version: "3.10+1"
+    version: "3.10+2"
     uri:
       - https://pandoc.org
     license: "GPL-2+"
@@ -11369,9 +11370,9 @@ packages:
       - atom: "www-client/torbrowser"
         accept_keywords: "~amd64"
     env:
-      # LLVM_VERSION=22 not supported
-      - LLVM_VERSION=21
-    portage_env: "USE=\"-llvm_slot_20 llvm_slot_21 -llvm_slot_22\""
+      - LLVM_VERSION=22
+    portage_env: |
+      USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22 -llvm_slot_23"
       # prepare:
       # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
       # - find /var/db/repos/torbrowser/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
@@ -11384,13 +11385,9 @@ packages:
       - net-libs/nodejs
       - virtual/freedesktop-icon-theme
     requires:
-      # - <<: *layers-X
-      # for llvm 21
-      - <<: *layers-gnome-common
+      - <<: *layers-X
     build_requires:
-      # - <<: *layers-X
-      # for llvm 21
-      - <<: *layers-gnome-common
+      - <<: *layers-X
 
   - &apps-trash-cli
     category: "apps"
@@ -21962,6 +21959,8 @@ packages:
     atoms:
       - atom: "dev-python/pygame"
         use: "midi opengl X"
+    inner_build_reqs:
+    - app-arch/dpkg
     requires:
       - <<: *layers-X
       - <<: *libs-sdl2
