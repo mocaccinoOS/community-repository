@@ -377,7 +377,7 @@ stubs:
     atoms:
       - atom: "dev-cpp/sdbus-c++"
         accept_keywords: "~amd64"
-        use: "systemd"
+        use: "elogind systemd"
     inner_build_reqs:
       - dev-build/cmake
       - dev-build/meson
@@ -3792,6 +3792,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
   - &libs-TermReadKey
     category: "libs"
     name: "TermReadKey"
@@ -5049,6 +5050,33 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
+  - category: "apps"
+    name: "carapace"
+    version: "1.7.3"
+    uri:
+      - https://carapace.sh/
+    license: "MIT"
+    description: "Multi-shell multi-command argument completer"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-shells/carapace
+    overlays:
+      - enable: "guru"
+    provides:
+      - category: "app-shells"
+        name: "carapace"
+        version: ">=0"
+    atoms:
+      - atom: "app-shells/carapace"
+        accept_keywords: "~amd64"
+    inner_build_reqs:
+      - dev-lang/go
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
 
   - category: "apps"
     name: "cartridges"
@@ -6549,6 +6577,26 @@ packages:
     build_requires:
       - <<: *layers-gnome-common
 
+  - category: "apps"
+    name: "foremost"
+    version: "1.5.7-r4"
+    uri:
+      - https://foremost.sourceforge.net/
+    license: "public-domain"
+    description: "Console program to recover files based on their headers and footers"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-forensics/foremost
+    provides:
+      - category: "app-forensics"
+        name: "foremost"
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
   - &apps-fontforge
     category: "apps"
     name: "fontforge"
@@ -7193,6 +7241,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
   - category: "apps"
     name: "gpu-screen-recorder"
     version: "6.1.4"
@@ -7681,6 +7730,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-java
+
   - category: "apps"
     name: "jitsi-meet"
     version: "2026.10.0"
@@ -8449,6 +8499,26 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
+  - category: "apps"
+    name: "lesspipe"
+    version: "2.13"
+    uri:
+      - https://github.com/wofr06/lesspipe
+    license: "GPL-2"
+    description: "Preprocessor for less"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-text/lesspipe
+    provides:
+      - category: "app-text"
+        name: "lesspipe"
+        version: ">=0"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
+
   # - &apps-leocad
   #   category: "apps"
   #   name: "leocad"
@@ -8675,6 +8745,27 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
+  - &apps-lynx
+    category: "apps"
+    name: "lynx"
+    version: "2.9.2"
+    uri:
+      - https://lynx.invisible-island.net/
+    license: "GPL-2"
+    description: "An excellent console-based web browser with ssl support"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        www-client/lynx
+    provides:
+      - category: "www-client"
+        name: lynx
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
   - category: "apps"
     name: "mandelbulber"
     version: "2.33+1"
@@ -8874,6 +8965,29 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
+  - category: "apps"
+    name: "mswatch"
+    version: "1.2.0-r1"
+    uri:
+      - http://mswatch.sourceforge.net/
+    license: "GPL-2"
+    description: "A utility to watch mailstores for changes and initiate mailbox syncs"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-mail/mswatch
+    provides:
+      - category: "net-mail"
+        name: "mswatch"
+        version: ">=0"
+    atoms:
+      - atom: "net-mail/mswatch"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
 
   - &apps-mullvad-browser-bin
     category: "apps"
@@ -9387,6 +9501,31 @@ packages:
         dev-util/opencode-bin
     overlays:
       - enable: "gentoo-zh"
+    provides:
+      - category: "dev-util"
+        name: "opencode-bin"
+        version: ">=0"
+    atoms:
+      - atom: "dev-util/opencode-bin"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
+  - category: "apps"
+    name: "opencode-bin-1"
+    version: "1.19.5"
+    uri:
+      - https://opencode.ai
+    license: "MIT"
+    description: "The open source AI coding agent"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        =dev-util/opencode-bin-1.19.5
+    overlays:
+      - enable: "guru"
     provides:
       - category: "dev-util"
         name: "opencode-bin"
@@ -10215,6 +10354,31 @@ packages:
     build_requires:
       - <<: *layers-X
 
+  - category: "apps"
+    name: "pwsh"
+    version: "7.6.3"
+    uri:
+      - https://github.com/PowerShell/PowerShell/
+    license: "MIT"
+    description: "Cross-platform automation and configuration tool"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-shells/pwsh
+    provides:
+      - category: "app-shells"
+        name: "carapace"
+        version: ">=0"
+    atoms:
+      - atom: "app-shells/carapace"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-sys-fs
+      - <<: *apps-dotnet-runtime-nugets-10
+    build_requires:
+      - <<: *layers-sys-fs
+      - <<: *apps-dotnet-runtime-nugets-10
+
   - &apps-pycodestyle
     category: "apps"
     name: "pycodestyle"
@@ -10919,6 +11083,28 @@ packages:
   #   - <<: *layers-X
 
   - category: "apps"
+    name: "spamassassin"
+    version: "4.0.2"
+    uri:
+      - https://spamassassin.apache.org/
+    license: "Apache-2.0 GPL-2"
+    description: "An extensible mail filter which can identify and tag spam"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        mail-filter/spamassassin
+    provides:
+      - category: "mail-filter"
+        name: "spamassassin"
+        version: ">=0"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *buildbase-X
+      - <<: *layers-latex
+    requires_final_images: true
+
+  - category: "apps"
     name: "sqlitestudio"
     version: "4.0.0_pre20251207+3"
     uri:
@@ -11150,6 +11336,26 @@ packages:
       - <<: *layers-gnome
     build_requires:
       - <<: *layers-gnome
+
+  - category: "apps"
+    name: "t-prot"
+    version: "3.4"
+    uri:
+      - https://www.escape.de/~tolot/mutt/
+    license: "BSD-4"
+    description: "TOFU protection - display filter for RFC822 messages"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-mail/t-prot
+    provides:
+      - category: "net-mail"
+        name: "t-prot"
+        version: ">=0"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
 
   - category: "apps"
     name: "screen"
@@ -11836,6 +12042,32 @@ packages:
       - <<: *layers-system-x
 
   - category: "apps"
+    name: "w3m"
+    version: "0.5.6"
+    uri:
+      - https://git.sr.ht/~rkta/w3m
+    license: "w3m"
+    description: "Text based WWW browser, supports tables and frames"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        www-client/w3m
+    provides:
+      - category: "www-client"
+        name: "w3m"
+        version: ">=0"
+    atoms:
+      - atom: "www-client/w3m"
+        use: "fbcon gpm imlib lynxkeymap nls nntp unicode X xface"
+        license: "w3m"
+    prepare:
+      - emerge --unmerge www-client/w3m
+    requires:
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
+
+  - category: "apps"
     name: "wacomtablet"
     version: "6.7.5"
     uri:
@@ -12048,6 +12280,7 @@ packages:
       - <<: *libs-libgit2
     build_requires:
       - <<: *layers-X
+
   - &apps-wgetpaste
     category: "apps"
     name: "wgetpaste"
@@ -12092,6 +12325,7 @@ packages:
       - <<: *layers-sys-fs
     build_requires:
       - <<: *layers-sys-fs
+
   - category: "apps"
     name: "wireshark"
     version: "4.6.9"
@@ -12260,6 +12494,32 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
+  - category: "apps"
+    name: "xdg-desktop-portal-wlr"
+    version: "0.8.2"
+    uri:
+      - https://github.com/emersion/xdg-desktop-portal-wlr
+    license: "MIT"
+    description: "xdg-desktop-portal backend for wlroots"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        gui-libs/xdg-desktop-portal-wlr
+    provides:
+      - category: "gui-libs"
+        name: "xdg-desktop-portal-wlr"
+        version: ">=0"
+    atoms:
+      - atom: "gui-libs/xdg-desktop-portal-wlr"
+        accept_keywords: "~amd64"
+        use: "elogind systemd"
+    requires:
+      - <<: *layers-X
+      - <<: *layers-wlroots
+    build_requires:
+      - <<: *layers-X
+      - <<: *layers-wlroots
 
   - &apps-xli
     category: "apps"
@@ -12496,6 +12756,38 @@ packages:
       - dev-python/sphinx
     requires:
       - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
+
+  - category: "apps"
+    name: "zathura-pdf-mupdf"
+    version: "0.4.4"
+    uri:
+      - https://pwmt.org/projects/zathura-pdf-mupdf/
+    license: "ZLIB"
+    description: |
+      PDF support for zathura using the mupdf PDF rendering library
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-text/zathura-pdf-mupdf
+    provides:
+      - category: "app-text"
+        name: "zathura-pdf-mupdf"
+        version: ">=0"
+      - category: "app-text"
+        name: "mupdf"
+        version: ">=0"
+    atoms:
+      - atom: "app-text/zathura"
+        use: "synctex doc magic seccomp sqlite"
+      - atom: "dev-libs/girara"
+        use: "libnotify"
+    inner_build_reqs:
+      - dev-libs/check
+      - dev-python/sphinx
+    requires:
+      - <<: *apps-zathura
     build_requires:
       - <<: *layers-X
 
@@ -15554,6 +15846,31 @@ packages:
     build_requires:
       - <<: *layers-X
 
+  - category: "apps"
+    name: "cloudflare-warp"
+    version: "2026.6.880"
+    uri:
+      - https://1.1.1.1
+    license: "all-rights-reserved"
+    description: "Cloudflare Warp Client"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-vpn/cloudflare-warp
+    provides:
+      - category: "net-vpn"
+        name: "cloudflare-warp"
+        version: ">=0"
+    atoms:
+      - atom: "net-vpn/cloudflare-warp"
+        accept_keywords: "~amd64"
+        use: "gui"
+        license: "all-rights-reserved"
+    requires:
+      - <<: *layers-gnome-common
+    build_requires:
+      - <<: *buildbase-gnome-common
+
   - &apps-nbfc-qt
     category: "apps"
     name: "nbfc-qt"
@@ -17760,6 +18077,28 @@ packages:
 ### dep 2 apps ###
 ################################################################################################################################################################
 
+  - &apps-abook
+    category: "apps"
+    name: "abook"
+    version: "0.6.1-r4"
+    uri:
+      - http://abook.sourceforge.net/
+    license: "GPL-2"
+    description: "Abook is a text-based addressbook program designed to use with mutt
+      mail client"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-misc/abook
+    provides:
+      - category: "app-misc"
+        name: "abook"
+        version: ">=0"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
+
   - category: "apps"
     name: "amsynth"
     version: "1.13.4"
@@ -18032,6 +18371,31 @@ packages:
       - <<: *libs-libglade
     build_requires:
       - <<: *layers-X
+
+  - &apps-calcurse
+    category: "apps"
+    name: "calcurse"
+    version: "4.8.2"
+    uri:
+      - https://calcurse.org/
+    license: "BSD-2"
+    description: "A text-based calendar and scheduling application"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-office/calcurse
+    provides:
+      - category: "app-office"
+        name: "calcurse"
+        version: ">=0"
+    atoms:
+      - atom: "app-office/calcurse"
+        use: "caldav"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
+
   - category: "apps"
     name: "calibre"
     version: "8.9.0+9"
@@ -18694,6 +19058,7 @@ packages:
       - <<: *apps-mangohud
     build_requires:
       - <<: *kernel-modules-nvidia-drivers-lts
+
   - &apps-helix
     category: "apps"
     name: "helix"
@@ -18776,6 +19141,30 @@ packages:
       - <<: *apps-net-snmp
     build_requires:
       - <<: *layers-qt
+
+  - &apps-isync
+    category: "apps"
+    name: "isync"
+    version: "1.5.1"
+    uri:
+      - https://isync.sourceforge.io/
+    license: "GPL-2"
+    description: "MailDir mailbox synchronizer"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-mail/isync
+    provides:
+      - category: "net-mail"
+        name: "isync"
+        version: ">=0"
+    atoms:
+      - atom: "net-mail/isync"
+        use: "berkdb sasl ssl zlib"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
 
   - category: "apps"
     name: "k3b"
@@ -19565,6 +19954,7 @@ packages:
       - dev-perl/Module-Install
     build_requires:
       - <<: *layers-perl-libs
+
   - &apps-neovim
     category: "apps"
     name: "neovim"
@@ -19851,6 +20241,44 @@ packages:
       # - <<: *development-gcc
     build_requires:
       - <<: *layers-X
+
+  - &apps-notmuch
+    category: "apps"
+    name: "notmuch"
+    version: "0.40-r2"
+    uri:
+      - https://notmuchmail.org/
+    license: "GPL-3"
+    description: "Thread-based e-mail indexer, supporting quick search and tagging"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-mail/notmuch
+    provides:
+      - category: "net-mail"
+        name: "notmuch"
+        version: ">=0"
+    atoms:
+      - atom: "net-mail/notmuch"
+        use: "-mutt -nmbug python"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-sys-fs
+      # FIXME: For xapian?
+      - <<: *layers-kde-common
+      # FIXME: For gmime?
+      - <<: *layers-gnome-common
+    optional_requires:
+      - <<: *apps-emacs
+    build_requires:
+      # - <<: *buildbase-sys-fs
+      # for dev-python/sphinx that needs media-libs/tiff jpeg
+      - <<: *buildbase-X
+        # For gmime?
+      - <<: *buildbase-gnome-common
+      # For xapian?
+      - <<: *buildbase-kde-common
+    requires_final_images: true
 
   - &apps-openra
     category: "apps"
@@ -21524,6 +21952,63 @@ packages:
     build_requires:
       - <<: *layers-X
 
+  - &apps-msmtp
+    category: "apps"
+    name: "msmtp"
+    version: "1.8.32"
+    uri:
+      - https://marlam.de/msmtp/
+    license: "GPL-3+"
+    description: "An SMTP client and SMTP plugin for mail user agents such as Mutt"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        mail-mta/msmtp
+    provides:
+      - category: "mail-mta"
+        name: "msmtp"
+        version: ">=0"
+    atoms:
+      - atom: "mail-mta/msmtp"
+        use: "daemon -keyring -mta"
+    requires:
+      - <<: *layers-sys-fs
+      - category: "entity"
+        name: "msmtpd"
+        version: ">=0"
+    build_requires:
+      - <<: *layers-sys-fs
+
+  - &apps-neomutt
+    category: "apps"
+    name: "neomutt"
+    version: "20260616"
+    uri:
+      - https://neomutt.org/
+    license: "GPL-2"
+    description: "A small but very powerful text-based mail client"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        mail-client/neomutt
+    provides:
+      - category: "mail-client"
+        name: "neomutt"
+        version: ">=0"
+    atoms:
+      - atom: "mail-client/neomutt"
+        use: "autocrypt berkdb doc gdbm -gnutls gpgme kyotocabinet lmdb lz4 nls notmuch
+          qdbm zlib zstd tokyocabinet sasl"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *apps-notmuch
+      - <<: *libs-qgpgme
+      - <<: *layers-sys-fs
+    build_requires:
+      # for dev-python/sphinx that needs media-libs/tiff jpeg
+      - <<: *buildbase-X
+    requires_final_images: true
+
   - category: "apps"
     name: "neovide"
     version: "0.16.2"
@@ -21647,6 +22132,63 @@ packages:
       - <<: *layerbase-perl-libs
       - <<: *layerbase-latex
       - <<: *buildbase-sci-libs
+    requires_final_images: true
+
+  - &apps-pam-gnupg
+    category: "apps"
+    name: "pam-gnupg"
+    version: "0.4-r1"
+    uri:
+      - https://github.com/cruegge/pam-gnupg
+    license: "GPL-3"
+    description: "Unlock GnuPG keys on login"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        sys-auth/pam-gnupg
+    overlays:
+      - enable: "guru"
+    provides:
+      - category: "sys-auth"
+        name: "pam-gnupg"
+        version: ">=0"
+    atoms:
+      - atom: "sys-auth/pam-gnupg"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
+
+  - &apps-pass
+    category: "apps"
+    name: "pass"
+    version: "1.7.4-r5"
+    uri:
+      - https://www.passwordstore.org/
+    license: "GPL-2+"
+    description: "Stores, retrieves, generates, and synchronizes passwords securely"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-admin/pass
+    provides:
+      - category: "app-admin"
+        name: "pass"
+        version: ">=0"
+    atoms:
+      - atom: "app-admin/pass"
+        use: "git wayland X -emacs dmenu importers"
+    requires:
+      - <<: *layers-X
+      - <<: *apps-xclip
+    optional_requires:
+      # - <<: *layers-i3
+      - <<: *layers-gnome-common
+      - <<: *apps-pam-gnupg
+    build_requires:
+      # - <<: *layers-i3
+      - <<: *buildbase-gnome-common
     requires_final_images: true
 
   - &apps-pidgin
@@ -22847,6 +23389,38 @@ packages:
       - <<: *libs-rubberband
     build_requires:
       - <<: *layers-qt5
+
+  - category: "apps"
+    name: "mutt-wizard"
+    version: "3.3.1"
+    uri:
+      - https://github.com/LukeSmithxyz/mutt-wizard
+    license: "GPL-3"
+    description: "A system for automatically configuring neomutt and isync"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        mail-client/mutt-wizard
+    provides:
+      - category: "mail-client"
+        name: "mutt-wizard"
+        version: ">=0"
+    atoms:
+      - atom: "mail-client/neomutt"
+        use: "sasl"
+    requires:
+      - <<: *apps-pass
+      - <<: *apps-neomutt
+      - <<: *apps-msmtp
+      - <<: *apps-isync
+      - <<: *apps-abook
+      # Optional?
+      - <<: *apps-lynx
+      - <<: *apps-notmuch
+    build_requires:
+      # for dev-python/sphinx that needs media-libs/tiff jpeg
+      - <<: *buildbase-X
+    requires_final_images: true
 
   - category: "apps"
     name: "mypaint"
