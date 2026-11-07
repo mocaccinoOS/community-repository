@@ -6878,13 +6878,12 @@ packages:
 
   - category: "apps"
     name: "github-cli"
-    version: "2.102.0"
+    version: "2.102.0+1"
     uri:
       - https://github.com/cli/cli
     license: "MIT Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0 Unlicense"
     description: "GitHub CLI"
     labels:
-      appstream.id: "io.github.gitqlient.gitqlient"
       emerge.jobs: "1"
       emerge.packages: >-
         dev-util/github-cli
@@ -6892,6 +6891,8 @@ packages:
       - category: "dev-util"
         name: "github-cli"
         version: ">=0"
+    inner_build_reqs:
+      - dev-lang/go
     requires:
       - <<: *layers-system-x
     build_requires:
@@ -6923,6 +6924,28 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+      
+  - category: "apps"
+    name: "gitlab-cli"
+    version: "1.119.0"
+    uri:
+      - https://gitlab.com/gitlab-org/cli
+    license: "MIT"
+    description: "The official gitlab command line interface"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-util/gitlab-cli
+    provides:
+      - category: "dev-util"
+        name: "gitlab-cli"
+        version: ">=0"
+    inner_build_reqs:
+    - dev-lang/go
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
 
   - category: "apps"
     name: "gitqlient"
