@@ -2,8 +2,6 @@ name: YAML Formatting
 
 on:
   push:
-    branches:
-      - main
   pull_request:
     types:
       - opened
@@ -19,7 +17,7 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v4
       - name: "Yamllint"
-        uses: karancode/yamllint-github-action@v2
+        uses: karancode/yamllint-github-action@v2.1.1
         with:
           yamllint_comment: true
         env:
