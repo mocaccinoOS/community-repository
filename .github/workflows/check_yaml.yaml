@@ -12,12 +12,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
+  yamllint:
+    name: "Yamllint"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: yamllint
-        uses: reviewdog/action-yamllint@v1
+      - name: "Checkout"
+        uses: actions/checkout@v4
+      - name: "Yamllint"
+        uses: karancode/yamllint-github-action@v2
         with:
-          github_token: ${{ secrets.github_token }}
-          fail_on_error: true
+          yamllint_comment: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
