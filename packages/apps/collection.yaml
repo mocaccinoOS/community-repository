@@ -3818,6 +3818,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
   - &libs-TermReadKey
     category: "libs"
     name: "TermReadKey"
@@ -6924,7 +6925,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
-      
+
   - category: "apps"
     name: "gitlab-cli"
     version: "1.119.0"
@@ -6941,7 +6942,7 @@ packages:
         name: "gitlab-cli"
         version: ">=0"
     inner_build_reqs:
-    - dev-lang/go
+      - dev-lang/go
     requires:
       - <<: *layers-system-x
     build_requires:
@@ -7290,6 +7291,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+
   - category: "apps"
     name: "gpu-screen-recorder"
     version: "6.1.4"
@@ -7778,6 +7780,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-java
+
   - category: "apps"
     name: "jitsi-meet"
     version: "2026.10.0"
@@ -9496,6 +9499,36 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
+  - &apps-oversteer
+    category: "apps"
+    name: "oversteer"
+    version: "0.8.3"
+    uri:
+      - https://github.com/berarma/oversteer
+    license: "GPL-3"
+    description: "Steering Wheel Manager for Linux"
+    labels:
+      appstream.id: "io.github.berarma.Oversteer"
+      emerge.jobs: "1"
+      emerge.packages: >-
+        games-util/oversteer
+    overlays:
+      - enable: "guru"
+    provides:
+      - category: "games-util"
+        name: "oversteer"
+        version: ">=0"
+    atoms:
+      - atom: "games-util/oversteer"
+        accept_keywords: "~amd64"
+    inner_build_reqs:
+      - dev-python/python-distutils-extra
+    requires:
+      - <<: *layers-sci-libs
+    build_requires:
+      - <<: *buildbase-sci-libs
+    requires_final_images: true
+
   - &apps-pandoc
     category: "apps"
     name: "pandoc-cli"
@@ -10893,6 +10926,58 @@ packages:
     build_requires:
       - <<: *layers-sys-fs
 
+  - category: "apps"
+    name: "screen"
+    version: "4.9.1-r2"
+    uri:
+      - https://www.gnu.org/software/screen
+    license: "GPL-3+"
+    description: "screen manager with VT100/ANSI terminal emulation"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-misc/screen
+    provides:
+      - category: "app-misc"
+        name: "screen"
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
+  # guru version requires media-plugins/gst-plugins-meta +vorbis and thus +ogg
+  - category: "apps"
+    name: "shortwave"
+    version: "4.0.1"
+    uri:
+      - https://gitlab.gnome.org/World/Shortwave.git
+    license: "GPL-3"
+    description: "An internet radio player"
+    labels:
+      appstream.id: "de.haeckerfelix.Shortwave"
+      emerge.jobs: "1"
+      #   emerge.packages: >-
+      #     media-sound/shortwave
+      # provides:
+      # - category: "media-sound"
+      #   name: "shortwave"
+      #   version: ">=0"
+      # atoms:
+      # - atom: "media-sound/shortwave"
+      #   accept_keywords: "~amd64"
+      # overlays:
+      # - enable: "guru"
+    prepare:
+      - git clone https://gitlab.gnome.org/World/Shortwave.git
+      - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
+    setup:
+      - cd Shortwave && ninja -C build install
+    requires:
+      - <<: *layers-gnome-common
+    build_requires:
+      - <<: *layers-gnome-common
+
   - &apps-simple-scan
     category: "apps"
     name: "simple-scan"
@@ -11015,6 +11100,27 @@ packages:
   #   build_requires:
   #   - <<: *layers-X
 
+  - &apps-sqlcipher
+    category: "apps"
+    name: "sqlcipher"
+    version: "4.6.1"
+    uri:
+      - https://www.zetetic.net/sqlcipher
+    license: "BSD"
+    description: "Full Database Encryption for SQLite"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-db/sqlcipher
+    provides:
+      - category: "dev-db"
+        name: "sqlcipher"
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
   - category: "apps"
     name: "sqlitestudio"
     version: "4.0.0_pre20251207+3"
@@ -11043,6 +11149,29 @@ packages:
       - <<: *layers-qt
     build_requires:
       - <<: *layers-qt
+
+  - category: "apps"
+    name: "st"
+    version: "0.9.3"
+    uri:
+      - https://st.suckless.org
+    license: "MIT-with-advertising"
+    description: "Simple terminal implementation for X"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        x11-terms/st
+    provides:
+      - category: "x11-terms"
+        name: "st"
+        version: ">=0"
+      - category: "x11-terms"
+        name: "st-terminfo"
+        version: ">=0"
+    requires:
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
 
   - category: "apps"
     name: "stress-ng"
@@ -11088,27 +11217,6 @@ packages:
     build_requires:
       - <<: *layers-kde-common
 
-  - &apps-sqlcipher
-    category: "apps"
-    name: "sqlcipher"
-    version: "4.6.1"
-    uri:
-      - https://www.zetetic.net/sqlcipher
-    license: "BSD"
-    description: "Full Database Encryption for SQLite"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        dev-db/sqlcipher
-    provides:
-      - category: "dev-db"
-        name: "sqlcipher"
-        version: ">=0"
-    requires:
-      - <<: *layers-system-x
-    build_requires:
-      - <<: *layers-system-x
-
   - category: "apps"
     name: "supercollider"
     version: "3.14.1-r1+2"
@@ -11132,6 +11240,54 @@ packages:
       - <<: *layers-qt
     build_requires:
       - <<: *layers-qt
+
+  - category: "apps"
+    name: "sweeper"
+    version: "26.04.3"
+    uri:
+      - https://apps.kde.org/sweeper/
+    license: "GPL-3"
+    description: "Privacy settings widget to clean unwanted traces on the system"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        kde-apps/sweeper
+    provides:
+      - category: "kde-apps"
+        name: "sweeper"
+        version: ">=0"
+    atoms:
+      - atom: "kde-apps/sweeper"
+        use: "handbook"
+    inner_build_reqs:
+      - kde-frameworks/extra-cmake-modules
+    requires:
+      - <<: *layers-kde-common
+    build_requires:
+      - <<: *layers-kde-common
+
+  - category: "apps"
+    name: "systemdgenie"
+    version: "0.100.0_pre20260624+1"
+    uri:
+      - https://invent.kde.org/system/systemdgenie
+    license: "GPL-2+"
+    description: "Systemd managment utility"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-admin/systemdgenie
+    provides:
+      - category: "app-admin"
+        name: "systemdgenie"
+        version: ">=0"
+    atoms:
+      - atom: "app-admin/systemdgenie"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-kde-common
+    build_requires:
+      - <<: *layers-kde-common
 
   - &apps-task
     category: "apps"
@@ -11247,129 +11403,6 @@ packages:
       - <<: *layers-gnome
     build_requires:
       - <<: *layers-gnome
-
-  - category: "apps"
-    name: "screen"
-    version: "4.9.1-r2"
-    uri:
-      - https://www.gnu.org/software/screen
-    license: "GPL-3+"
-    description: "screen manager with VT100/ANSI terminal emulation"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        app-misc/screen
-    provides:
-      - category: "app-misc"
-        name: "screen"
-        version: ">=0"
-    requires:
-      - <<: *layers-system-x
-    build_requires:
-      - <<: *layers-system-x
-
-  # guru version requires media-plugins/gst-plugins-meta +vorbis and thus +ogg
-  - category: "apps"
-    name: "shortwave"
-    version: "4.0.1"
-    uri:
-      - https://gitlab.gnome.org/World/Shortwave.git
-    license: "GPL-3"
-    description: "An internet radio player"
-    labels:
-      appstream.id: "de.haeckerfelix.Shortwave"
-      emerge.jobs: "1"
-      #   emerge.packages: >-
-      #     media-sound/shortwave
-      # provides:
-      # - category: "media-sound"
-      #   name: "shortwave"
-      #   version: ">=0"
-      # atoms:
-      # - atom: "media-sound/shortwave"
-      #   accept_keywords: "~amd64"
-      # overlays:
-      # - enable: "guru"
-    prepare:
-      - git clone https://gitlab.gnome.org/World/Shortwave.git
-      - cd Shortwave && git checkout 2559162b360736f42f6195cd73ea0222b34af7a7 && meson --prefix=/usr build && ninja -C build
-    setup:
-      - cd Shortwave && ninja -C build install
-    requires:
-      - <<: *layers-gnome-common
-    build_requires:
-      - <<: *layers-gnome-common
-
-  - category: "apps"
-    name: "st"
-    version: "0.9.3"
-    uri:
-      - https://st.suckless.org
-    license: "MIT-with-advertising"
-    description: "Simple terminal implementation for X"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        x11-terms/st
-    provides:
-      - category: "x11-terms"
-        name: "st"
-        version: ">=0"
-      - category: "x11-terms"
-        name: "st-terminfo"
-        version: ">=0"
-    requires:
-      - <<: *layers-X
-    build_requires:
-      - <<: *layers-X
-
-  - category: "apps"
-    name: "sweeper"
-    version: "26.04.3"
-    uri:
-      - https://apps.kde.org/sweeper/
-    license: "GPL-3"
-    description: "Privacy settings widget to clean unwanted traces on the system"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        kde-apps/sweeper
-    provides:
-      - category: "kde-apps"
-        name: "sweeper"
-        version: ">=0"
-    atoms:
-      - atom: "kde-apps/sweeper"
-        use: "handbook"
-    inner_build_reqs:
-      - kde-frameworks/extra-cmake-modules
-    requires:
-      - <<: *layers-kde-common
-    build_requires:
-      - <<: *layers-kde-common
-
-  - category: "apps"
-    name: "systemdgenie"
-    version: "0.100.0_pre20260624+1"
-    uri:
-      - https://invent.kde.org/system/systemdgenie
-    license: "GPL-2+"
-    description: "Systemd managment utility"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        app-admin/systemdgenie
-    provides:
-      - category: "app-admin"
-        name: "systemdgenie"
-        version: ">=0"
-    atoms:
-      - atom: "app-admin/systemdgenie"
-        accept_keywords: "~amd64"
-    requires:
-      - <<: *layers-kde-common
-    build_requires:
-      - <<: *layers-kde-common
 
   - category: "apps"
     name: "testdisk"
@@ -12145,6 +12178,7 @@ packages:
       - <<: *libs-libgit2
     build_requires:
       - <<: *layers-X
+
   - &apps-wgetpaste
     category: "apps"
     name: "wgetpaste"
@@ -12189,6 +12223,7 @@ packages:
       - <<: *layers-sys-fs
     build_requires:
       - <<: *layers-sys-fs
+
   - category: "apps"
     name: "wireshark"
     version: "4.6.9"
@@ -16056,36 +16091,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  - &apps-oversteer
-    category: "apps"
-    name: "oversteer"
-    version: "0.8.3"
-    uri:
-      - https://github.com/berarma/oversteer
-    license: "GPL-3"
-    description: "Steering Wheel Manager for Linux"
-    labels:
-      appstream.id: "io.github.berarma.Oversteer"
-      emerge.jobs: "1"
-      emerge.packages: >-
-        games-util/oversteer
-    overlays:
-      - enable: "guru"
-    provides:
-      - category: "games-util"
-        name: "oversteer"
-        version: ">=0"
-    atoms:
-      - atom: "games-util/oversteer"
-        accept_keywords: "~amd64"
-    inner_build_reqs:
-      - dev-python/python-distutils-extra
-    requires:
-      - <<: *layers-sci-libs
-    build_requires:
-      - <<: *buildbase-sci-libs
-    requires_final_images: true
-
   - category: "apps"
     name: "pcem"
     version: "17_p20241210-r2+1"
@@ -18129,6 +18134,7 @@ packages:
       - <<: *libs-libglade
     build_requires:
       - <<: *layers-X
+
   - category: "apps"
     name: "calibre"
     version: "8.9.0+9"
@@ -18791,6 +18797,7 @@ packages:
       - <<: *apps-mangohud
     build_requires:
       - <<: *kernel-modules-nvidia-drivers-lts
+
   - &apps-helix
     category: "apps"
     name: "helix"
@@ -19662,6 +19669,7 @@ packages:
       - dev-perl/Module-Install
     build_requires:
       - <<: *layers-perl-libs
+
   - &apps-neovim
     category: "apps"
     name: "neovim"
