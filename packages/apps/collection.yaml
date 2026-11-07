@@ -1502,6 +1502,32 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
+  - &libs-ffmpeg-chromium
+    category: "libs"
+    name: "ffmpeg-chromium"
+    version: "152-154"
+    uri:
+      - https://ffmpeg.org/
+    license: "GPL-2 LGPL-2.1"
+    description: "FFmpeg built specifically for codec support in Chromium-based browsers"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        media-video/ffmpeg-chromium:152
+        media-video/ffmpeg-chromium:154
+    provides:
+      - category: "media-video"
+        name: "ffmpeg-chromium"
+        version: ">=0"
+    atoms:
+      - atom: "media-video/ffmpeg-chromium"
+        use: "cpudetection gpl mmal threads vaapi vdpau vulkan cpu_flags_x86_mmx cpu_flags_x86_mmxext cpu_flags_x86_sse cpu_flags_x86_sse2 # nvenc"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
+
   - &libs-ffmpeg-compat
     category: "libs"
     name: "ffmpeg-compat"
@@ -6849,6 +6875,54 @@ packages:
       - <<: *layers-kde-common
     build_requires:
       - <<: *layers-kde-common
+
+  - category: "apps"
+    name: "github-cli"
+    version: "2.102.0"
+    uri:
+      - https://github.com/cli/cli
+    license: "MIT Apache-2.0 BSD BSD-2 ISC MIT MPL-2.0 Unlicense"
+    description: "GitHub CLI"
+    labels:
+      appstream.id: "io.github.gitqlient.gitqlient"
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-util/github-cli
+    provides:
+      - category: "dev-util"
+        name: "github-cli"
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
+  - category: "apps"
+    name: "github-desktop"
+    version: "3.4.13"
+    uri:
+      - https://github.com/shiftkey/desktop
+    license: "MIT BSD BSD-2 BSD-4 AFL-2.1 Apache-2.0 Ms-PL GPL-2 LGPL-2.1 APSL-2 unRAR OFL CC-BY-SA-3.0 MPL-2.0 android public-domain all-rights-reserved"
+    description: "Linux fork of GitHub Desktop"
+    labels:
+      appstream.id: "io.github.shiftey.Desktop"
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-vcs/github-desktop
+    overlays:
+      - enable: "bentoo"
+    provides:
+      - category: "dev-vcs"
+        name: "github-desktop"
+        version: ">=0"
+    atoms:
+      - atom: "dev-vcs/github-desktop"
+        license: "unRAR android all-rights-reserved"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
 
   - category: "apps"
     name: "gitqlient"
@@ -15722,7 +15796,7 @@ packages:
         use: "sdk ffmpeg-chromium"
     requires:
       - <<: *layers-X
-      - <<: *apps-ffmpeg-chromium
+      - <<: *libs-ffmpeg-chromium
     build_requires:
       - <<: *layers-X
 
@@ -15955,7 +16029,7 @@ packages:
         use: "ffmpeg-chromium # qt6"
     requires:
       - <<: *layers-X
-      - <<: *apps-ffmpeg-chromium
+      - <<: *libs-ffmpeg-chromium
     build_requires:
       - <<: *layers-X
 
@@ -17245,7 +17319,7 @@ packages:
     requires:
       - <<: *layers-X
       - <<: *libs-chrome-binary-plugins
-      - <<: *apps-ffmpeg-chromium
+      - <<: *libs-ffmpeg-chromium
     build_requires:
       - <<: *layers-X
 
