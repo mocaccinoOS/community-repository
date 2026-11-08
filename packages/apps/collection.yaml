@@ -11391,7 +11391,7 @@ packages:
 
   - category: "apps"
     name: "spamassassin"
-    version: "4.0.2+2"
+    version: "4.0.2+3"
     uri:
       - https://spamassassin.apache.org/
     license: "Apache-2.0 GPL-2"
@@ -11448,9 +11448,6 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "Digest-BubbleBabble"
-        version: ">=0"
-      - category: "dev-perl"
-        name: "Digest-SHA1"
         version: ">=0"
       - category: "dev-perl"
         name: "Email-Abstract"
@@ -11595,12 +11592,9 @@ packages:
       - acct-user/spamd
       - sec-keys/openpgp-keys-spamassassin
     requires:
-      - <<: *layers-perl-libs
       - <<: *layers-latex
     build_requires:
-      - <<: *buildbase-perl-libs
-      - <<: *layerbase-latex
-    requires_final_images: true
+      - <<: *layers-latex
 
   - &apps-sqlcipher
     category: "apps"
@@ -20216,7 +20210,7 @@ packages:
   - &apps-nagios
     category: "apps"
     name: "nagios"
-    version: "4.5.13"
+    version: "4.5.13+1"
     uri:
       - https://www.nagios.org/
       - https://www.monitoring-plugins.org/
@@ -20226,7 +20220,6 @@ packages:
       - https://metacpan.org/release/Monitoring-Plugin
       - https://metacpan.org/release/Crypt-DES
       - https://metacpan.org/release/Crypt-Rijndael
-      - https://metacpan.org/release/Digest-SHA1
       - https://metacpan.org/release/Net-SNMP
     license: "metapackage"
     description: |
@@ -20241,7 +20234,6 @@ packages:
       A SNMP Perl Module
       Perl DES encryption module
       Crypt::CBC compliant Rijndael encryption module
-      NIST SHA message digest algorithm
     labels:
       emerge.jobs: "1"
       emerge.packages: >-
@@ -20256,9 +20248,6 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "Crypt-Rijndael"
-        version: ">=0"
-      - category: "dev-perl"
-        name: "Digest-SHA1"
         version: ">=0"
       - category: "dev-perl"
         name: "Monitoring-Plugin"
@@ -20692,6 +20681,9 @@ packages:
       emerge.packages: >-
         app-shells/pwsh
     provides:
+      - category: "app-eselect"
+        name: "eselect-pwsh"
+        version: ">=0"
       - category: "app-shells"
         name: "pwsh"
         version: ">=0"
