@@ -1264,7 +1264,7 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
-        
+
   - &libs-cJSON
     category: "libs"
     name: "cJSON"
@@ -11391,7 +11391,7 @@ packages:
 
   - category: "apps"
     name: "spamassassin"
-    version: "4.0.2+1"
+    version: "4.0.2+2"
     uri:
       - https://spamassassin.apache.org/
     license: "Apache-2.0 GPL-2"
@@ -11588,11 +11588,12 @@ packages:
         name: "spamassassin"
         version: ">=0"
     atoms:
-    - atom: "mail-filter/spamassassin"
-      use: "ssl verify-sig # berkdb cron ipv6 ldap mysql postgres qmail sqlite"
+      - atom: "mail-filter/spamassassin"
+        use: "ssl verify-sig # berkdb cron ipv6 ldap mysql postgres qmail sqlite"
     inner_build_reqs:
-    - acct-group/spamd
-    - acct-user/spamd
+      - acct-group/spamd
+      - acct-user/spamd
+      - sec-keys/openpgp-keys-spamassassin
     requires:
       - <<: *layers-perl-libs
       - <<: *layers-latex
@@ -20678,7 +20679,7 @@ packages:
 
   - category: "apps"
     name: "pwsh"
-    version: "7.6.3"
+    version: "7.6.3+1"
     uri:
       - https://github.com/PowerShell/PowerShell/
       - https://github.com/PowerShell/PowerShell-Native/
