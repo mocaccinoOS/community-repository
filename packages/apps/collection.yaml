@@ -1264,6 +1264,48 @@ packages:
       - <<: *layers-X
     build_requires:
       - <<: *layers-X
+        
+  - &libs-cJSON
+    category: "libs"
+    name: "cJSON"
+    version: "1.7.19"
+    uri:
+      - https://github.com/DaveGamble/cJSON
+    license: "MIT"
+    description: "Ultralightweight JSON parser in ANSI C"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-libs/cJSON
+    provides:
+      - category: "dev-libs"
+        name: "cJSON"
+        version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
+  # - &libs-codec2
+  #   category: "libs"
+  #   name: "codec2"
+  #   version: "1.2.0"
+  #   uri:
+  #   - https://freedv.org
+  #   license: "LGPL-2.1"
+  #   description: "Low bit rate speech codec"
+  #   labels:
+  #     emerge.jobs: "1"
+  #     emerge.packages: >-
+  #       media-libs/codec2
+  #   provides:
+  #   - category: "media-libs"
+  #     name: "codec2"
+  #     version: ">=0"
+  #   requires:
+  #   - <<: *layers-system-x
+  #   build_requires:
+  #   - <<: *layers-system-x
 
   # - &libs-coin
   #   category: "libs"
@@ -1322,27 +1364,6 @@ packages:
   #   build_requires:
   #   - <<: *layers-system-x
 
-  # - &libs-codec2
-  #   category: "libs"
-  #   name: "codec2"
-  #   version: "1.2.0"
-  #   uri:
-  #   - https://freedv.org
-  #   license: "LGPL-2.1"
-  #   description: "Low bit rate speech codec"
-  #   labels:
-  #     emerge.jobs: "1"
-  #     emerge.packages: >-
-  #       media-libs/codec2
-  #   provides:
-  #   - category: "media-libs"
-  #     name: "codec2"
-  #     version: ">=0"
-  #   requires:
-  #   - <<: *layers-system-x
-  #   build_requires:
-  #   - <<: *layers-system-x
-
   - &libs-colorama
     category: "libs"
     name: "colorama"
@@ -1367,21 +1388,21 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
-  - &libs-cJSON
+  - &libs-compface
     category: "libs"
-    name: "cJSON"
-    version: "1.7.19"
+    name: "compface"
+    version: "1.5.2-r1"
     uri:
-      - https://github.com/DaveGamble/cJSON
+      - https://www.xemacs.org/Download/optLibs.html
     license: "MIT"
-    description: "Ultralightweight JSON parser in ANSI C"
+    description: "Utilities and library to convert to/from X-Face format"
     labels:
       emerge.jobs: "1"
       emerge.packages: >-
-        dev-libs/cJSON
+        media-libs/compface
     provides:
-      - category: "dev-libs"
-        name: "cJSON"
+      - category: "media-libs"
+        name: "compface"
         version: ">=0"
     requires:
       - <<: *layers-system-x
@@ -2895,7 +2916,7 @@ packages:
   - &libs-lttng-ust
     category: "libs"
     name: "lttng-ust"
-    version: "2.12.9+1"
+    version: "2.12.10"
     uri:
       - https://lttng.org
     license: "GPL-2"
@@ -4282,6 +4303,9 @@ packages:
       - category: "app-misc"
         name: "abook"
         version: ">=0"
+      - category: "dev-libs"
+        name: "libvformat"
+        version: ">=0"
     requires:
       - <<: *layers-sys-fs
     build_requires:
@@ -5115,6 +5139,9 @@ packages:
       - category: "app-office"
         name: "calcurse"
         version: ">=0"
+      - category: "dev-python"
+        name: "httplib2"
+        version: ">=0"
     atoms:
       - atom: "app-office/calcurse"
         use: "caldav"
@@ -5937,7 +5964,7 @@ packages:
   - &apps-dotnet-runtime-nugets-10
     category: "apps"
     name: "dotnet-runtime-nugets-10"
-    version: "10.0.3"
+    version: "10.0.11"
     uri:
       - https://dotnet.microsoft.com/
     license: "MIT"
@@ -5947,13 +5974,13 @@ packages:
       emerge.jobs: "1"
       emerge.packages: >-
         ~dev-dotnet/dotnet-runtime-nugets-6.0.36
-        ~dev-dotnet/dotnet-runtime-nugets-8.0.24
-        ~dev-dotnet/dotnet-runtime-nugets-9.0.13
-        dev-dotnet/dotnet-runtime-nugets:10.0.3
+        ~dev-dotnet/dotnet-runtime-nugets-8.0.30
+        ~dev-dotnet/dotnet-runtime-nugets-9.0.19
+        dev-dotnet/dotnet-runtime-nugets:10.0.11
     provides:
       - category: "dev-dotnet"
         name: "dotnet-runtime-nugets"
-        version: "10.0.3"
+        version: "10.0.11"
     requires:
       - <<: *layers-sys-fs
       - <<: *apps-dotnet-runtime-nugets-7
@@ -9152,6 +9179,9 @@ packages:
     atoms:
       - atom: "mail-mta/msmtp"
         use: "daemon -keyring -mta"
+    inner_build_reqs:
+    - acct-group/msmtpd
+    - acct-user/msmtpd
     requires:
       - <<: *layers-sys-fs
       - category: "entity"
@@ -10604,30 +10634,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  - category: "apps"
-    name: "pwsh"
-    version: "7.6.3"
-    uri:
-      - https://github.com/PowerShell/PowerShell/
-    license: "MIT"
-    description: "Cross-platform automation and configuration tool"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        app-shells/pwsh
-    provides:
-      - category: "app-shells"
-        name: "carapace"
-        version: ">=0"
-    atoms:
-      - atom: "app-shells/carapace"
-        accept_keywords: "~amd64"
-    requires:
-      - <<: *layers-sys-fs
-      - <<: *apps-dotnet-runtime-nugets-10
-    build_requires:
-      - <<: *layers-sys-fs
-
   - &apps-pycodestyle
     category: "apps"
     name: "pycodestyle"
@@ -11385,7 +11391,7 @@ packages:
 
   - category: "apps"
     name: "spamassassin"
-    version: "4.0.2"
+    version: "4.0.2+1"
     uri:
       - https://spamassassin.apache.org/
     license: "Apache-2.0 GPL-2"
@@ -11395,13 +11401,203 @@ packages:
       emerge.packages: >-
         mail-filter/spamassassin
     provides:
+      - category: "dev-perl"
+        name: "Archive-Zip"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "B-Hooks-OP-Check"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "bareword-filehandles"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "BSD-Resource"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Class-Tiny"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Crypt-OpenSSL-Bignum"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Crypt-OpenSSL-Guess"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Crypt-OpenSSL-RSA"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Crypt-OpenSSL-Random"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "CryptX"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "DBIx-Simple"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Data-Dumper-Concise"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Data-IEEE754"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Data-Printer"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Data-Validate-IP"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Digest-BubbleBabble"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Digest-SHA1"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Abstract"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Address-XS"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Date-Format"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME-ContentType"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME-Encodings"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MessageID"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Sender"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Simple"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Encode-Detect"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "GeoIP2"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "indirect"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "IO-Multiplex"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "IO-String"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MIME-Types"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Mail-AuthenticationResults"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Mail-DKIM"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Mail-DMARC"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Mail-SPF"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MaxMind-DB-Common"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MaxMind-DB-Reader"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Module-Pluggable"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MooX-StrictConstructor"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MooX-Types-MooseLike"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "multidimensional"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-CIDR-Lite"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-DNS"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-DNS-Resolver-Programmable"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-DNS-SEC"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-IDN-Encode"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-IMAP-Simple"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-IP"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-LibIDN2"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-Patricia"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-SMTPS"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Net-Server"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "NetAddr-IP"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Path-Tiny"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Pod-Parser"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Scope-Guard"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "strictures"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Test-File-ShareDir"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Throwable"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Unicode-UTF8"
+        version: ">=0"
       - category: "mail-filter"
         name: "spamassassin"
         version: ">=0"
+    atoms:
+    - atom: "mail-filter/spamassassin"
+      use: "ssl verify-sig # berkdb cron ipv6 ldap mysql postgres qmail sqlite"
+    inner_build_reqs:
+    - acct-group/spamd
+    - acct-user/spamd
     requires:
-      - <<: *layers-sys-fs
+      - <<: *layers-perl-libs
+      - <<: *layers-latex
     build_requires:
-      - <<: *buildbase-X
+      - <<: *buildbase-perl-libs
       - <<: *layerbase-latex
     requires_final_images: true
 
@@ -11865,7 +12061,8 @@ packages:
     build_requires:
       - <<: *layers-sys-fs
 
-  - category: "apps"
+  - &apps-tree
+    category: "apps"
     name: "tree"
     version: "2.2.1"
     uri:
@@ -12289,32 +12486,6 @@ packages:
       - <<: *layers-system-x
     build_requires:
       - <<: *layers-system-x
-
-  - category: "apps"
-    name: "w3m"
-    version: "0.5.6"
-    uri:
-      - https://git.sr.ht/~rkta/w3m
-    license: "w3m"
-    description: "Text based WWW browser, supports tables and frames"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        www-client/w3m
-    provides:
-      - category: "www-client"
-        name: "w3m"
-        version: ">=0"
-    atoms:
-      - atom: "www-client/w3m"
-        use: "fbcon gpm imlib lynxkeymap nls nntp unicode X xface"
-        license: "w3m"
-    prepare:
-      - emerge --unmerge www-client/w3m
-    requires:
-      - <<: *layers-X
-    build_requires:
-      - <<: *layers-X
 
   - category: "apps"
     name: "wacomtablet"
@@ -13020,12 +13191,18 @@ packages:
         app-text/zathura-pdf-mupdf
     provides:
       - category: "app-text"
-        name: "zathura-pdf-mupdf"
-        version: ">=0"
-      - category: "app-text"
         name: "mupdf"
         version: ">=0"
-    atoms:
+      - category: "app-text"
+        name: "zathura-pdf-mupdf"
+        version: ">=0"
+      - category: "dev-lang"
+        name: "mujs"
+        version: ">=0"
+      - category: "dev-libs"
+        name: "gumbo"
+        version: ">=0"
+      atoms:
       - atom: "app-text/zathura"
         use: "synctex doc magic seccomp sqlite"
       - atom: "dev-libs/girara"
@@ -14578,7 +14755,7 @@ packages:
   - &apps-dotnet-10
     category: "apps"
     name: "dotnet-sdk-10"
-    version: "10.0.103"
+    version: "10.0.111"
     uri:
       - https://dotnet.microsoft.com/
     license: "MIT"
@@ -16501,7 +16678,7 @@ packages:
   - &apps-pass
     category: "apps"
     name: "pass"
-    version: "1.7.4-r5"
+    version: "1.7.4-r5+1"
     uri:
       - https://www.passwordstore.org/
     license: "GPL-2+"
@@ -16514,15 +16691,19 @@ packages:
       - category: "app-admin"
         name: "pass"
         version: ">=0"
+      - category: "x11-misc"
+        name: "dmenu"
+        version: ">=0"
     atoms:
       - atom: "app-admin/pass"
         use: "git wayland X -emacs dmenu importers"
     optional_requires:
-      # - <<: *layers-i3
       - <<: *apps-pam-gnupg
     requires:
+      # - <<: *layers-i3
       - <<: *layers-X
       - <<: *apps-xclip
+      - <<: *apps-tree
     build_requires:
       # - <<: *layers-i3
       - <<: *layers-gnome-common
@@ -17809,6 +17990,34 @@ packages:
       - <<: *layers-X
       - <<: *apps-tk
       - <<: *apps-lash
+    build_requires:
+      - <<: *layers-X
+
+  - category: "apps"
+    name: "w3m"
+    version: "0.5.6+1"
+    uri:
+      - https://git.sr.ht/~rkta/w3m
+    license: "w3m"
+    description: "Text based WWW browser, supports tables and frames"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        www-client/w3m
+    provides:
+      - category: "www-client"
+        name: "w3m"
+        version: ">=0"
+    atoms:
+      - atom: "www-client/w3m"
+        use: "fbcon gpm imlib lynxkeymap nls nntp unicode X xface"
+        license: "w3m"
+    prepare:
+      - emerge --unmerge www-client/w3m
+    requires:
+      - <<: *layers-X
+      - <<: *libs-compface
+      - <<: *libs-gpm
     build_requires:
       - <<: *layers-X
 
@@ -20468,6 +20677,38 @@ packages:
       - <<: *layers-X
 
   - category: "apps"
+    name: "pwsh"
+    version: "7.6.3"
+    uri:
+      - https://github.com/PowerShell/PowerShell/
+      - https://github.com/PowerShell/PowerShell-Native/
+    license: "MIT"
+    description: |
+      Cross-platform automation and configuration tool
+      Functionality missing from .NET Core via system calls
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-shells/pwsh
+    provides:
+      - category: "app-shells"
+        name: "pwsh"
+        version: ">=0"
+      - category: "dev-libs"
+        name: "libpsl-native"
+        version: ">=0"
+    atoms:
+      - atom: "app-shells/carapace"
+        accept_keywords: "~amd64"
+    inner_build_reqs:
+      - dev-dotnet/csharp-gentoodotnetinfo
+    requires:
+      - <<: *layers-sys-fs
+      - <<: *apps-dotnet-10
+    build_requires:
+      - <<: *layers-sys-fs
+
+  - category: "apps"
     name: "q4wine"
     version: "1.4.2"
     uri:
@@ -20964,9 +21205,6 @@ packages:
       - category: "app-xemacs"
         name: "apel"
         version: ">=0"
-      - category: "media-libs"
-        name: "compface"
-        version: ">=0"
       - category: "x11-libs"
         name: "neXtaw"
         version: ">=0"
@@ -20997,10 +21235,11 @@ packages:
       - <<: *layers-X
       - <<: *apps-eselect-emacs
       # - <<: *apps-postgresql
-      - <<: *libs-nas
+      - <<: *libs-compface
       - <<: *libs-gpm
       - <<: *libs-libXaw3d
       - <<: *libs-motif
+      - <<: *libs-nas
     build_requires:
       - <<: *layers-X
 
@@ -22125,7 +22364,7 @@ packages:
   - &apps-notmuch
     category: "apps"
     name: "notmuch"
-    version: "0.40-r2"
+    version: "0.40-r2+1"
     uri:
       - https://notmuchmail.org/
     license: "GPL-3"
@@ -22142,8 +22381,9 @@ packages:
       - atom: "net-mail/notmuch"
         use: "-mutt -nmbug python"
         accept_keywords: "~amd64"
+    inner_build_reqs:
+      - dev-python/sphinx
     requires:
-      - <<: *layers-sys-fs
       # FIXME: For xapian?
       - <<: *layers-kde-common
       # FIXME: For gmime?
@@ -22151,10 +22391,7 @@ packages:
     optional_requires:
       - <<: *apps-emacs
     build_requires:
-      # - <<: *buildbase-sys-fs
-      # for dev-python/sphinx that needs media-libs/tiff jpeg
-      - <<: *buildbase-X
-        # For gmime?
+      # For gmime?
       - <<: *buildbase-gnome-common
       # For xapian?
       - <<: *buildbase-kde-common
@@ -22753,7 +22990,7 @@ packages:
   - &apps-neomutt
     category: "apps"
     name: "neomutt"
-    version: "20260616"
+    version: "20260616+1"
     uri:
       - https://neomutt.org/
     license: "GPL-2"
@@ -22766,18 +23003,26 @@ packages:
       - category: "mail-client"
         name: "neomutt"
         version: ">=0"
+      - category: "dev-db"
+        name: "kyotocabinet"
+        version: ">=0"
+      - category: "dev-db"
+        name: "qdbm"
+        version: ">=0"
+      - category: "dev-db"
+        name: "tokyocabinet"
+        version: ">=0"
     atoms:
       - atom: "mail-client/neomutt"
-        use: "autocrypt berkdb doc gdbm -gnutls gpgme kyotocabinet lmdb lz4 nls notmuch
-          qdbm zlib zstd tokyocabinet sasl"
+        use: "autocrypt berkdb doc gdbm -gnutls gpgme kyotocabinet lmdb lz4 nls notmuch qdbm zlib zstd tokyocabinet sasl"
         accept_keywords: "~amd64"
     requires:
       - <<: *apps-notmuch
       - <<: *libs-qgpgme
-      - <<: *layers-sys-fs
+      - <<: *apps-tk
     build_requires:
       # for dev-python/sphinx that needs media-libs/tiff jpeg
-      - <<: *layers-X
+      - <<: *layers-qt
 
   - &apps-sdrpp
     category: "apps"
@@ -23458,7 +23703,7 @@ packages:
 
   - category: "apps"
     name: "mutt-wizard"
-    version: "3.3.1"
+    version: "3.3.1+1"
     uri:
       - https://github.com/LukeSmithxyz/mutt-wizard
     license: "GPL-3"
@@ -23475,7 +23720,7 @@ packages:
       - atom: "mail-client/neomutt"
         use: "sasl"
     requires:
-      - <<: *layers-X
+      - <<: *layers-qt
       - <<: *apps-pass
       - <<: *apps-neomutt
       - <<: *apps-msmtp
@@ -23486,7 +23731,7 @@ packages:
       - <<: *apps-notmuch
     build_requires:
       # for dev-python/sphinx that needs media-libs/tiff jpeg
-      - <<: *layers-X
+      - <<: *layers-qt
 
   - category: "apps"
     name: "mypaint"
