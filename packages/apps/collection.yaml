@@ -5268,6 +5268,34 @@ packages:
     build_requires:
       - <<: *layers-X
 
+  - &apps-claude-code
+    category: "apps"
+    name: "claude-code"
+    version: "2.1.312"
+    uri:
+      - https://claude.com/product/claude-code
+    license: "all-rights-reserved"
+    description: "Claude Code - an agentic coding tool by Anthropic"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-util/claude-code
+    provides:
+      - category: "dev-util"
+        name: "claude-code"
+        version: ">=0"
+    inner_build_reqs:
+      - sys-apps/ripgrep   
+    atoms:
+      - atom: "dev-util/claude-code"
+        accept_keywords: "~amd64"
+        license: "all-rights-reserved"
+    requires:
+      - <<: *apps-ripgrep
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
+
   - &apps-claude-desktop
     category: "apps"
     name: "claude-desktop"
