@@ -14566,13 +14566,13 @@ packages:
       - sys-apps/ripgrep   
     atoms:
       - atom: "dev-util/claude-code"
-        accept_keywords: "~amd64"
+        use: "cpu_flags_x86_avx cpu_flags_x86_avx2"
         license: "all-rights-reserved"
     requires:
       - <<: *apps-ripgrep
-      - <<: *layers-X
+      - <<: *layers-sys-fs
     build_requires:
-      - <<: *layers-X
+      - <<: *layers-sys-fs
 
   - &apps-cpu-x
     category: "apps"
