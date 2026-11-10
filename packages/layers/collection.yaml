@@ -1020,13 +1020,13 @@ packages:
         name: "Digest-SHA1"
         version: ">=0"
       - category: "dev-perl"
-        name: "Email-Abstract"
-        version: ">=0"
-      - category: "dev-perl"
         name: "File-Copy-Recursive"
         version: ">=0"
       - category: "dev-perl"
         name: "File-ReadBackwards"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "File-Remove"
         version: ">=0"
       - category: "dev-perl"
         name: "Gtk3-ImageView"
@@ -1120,6 +1120,7 @@ packages:
     uri:
       - https://metacpan.org/release/B-Hooks-OP-Check
       - https://metacpan.org/release/bareword-filehandles
+      - https://metacpan.org/release/Email-Abstract
       - https://metacpan.org/release/Email-Address-XS
       - https://metacpan.org/release/Email-Date-Format
       - https://metacpan.org/release/Email-MIME
@@ -1135,10 +1136,12 @@ packages:
       - https://metacpan.org/release/multidimensional
       - https://metacpan.org/release/Pod-Parser
       - https://metacpan.org/release/strictures
+      - https://metacpan.org/release/Throwable
     license: "metapackage"
     description: |
       Wrap OP check callbacks
       Disables bareword filehandles
+      Unified interface to mail representations
       Parse and format RFC 2822 email addresses and groups
       Produce RFC 822 date strings
       Easy MIME message parsing
@@ -1154,6 +1157,7 @@ packages:
       Disables multidimensional array emulation
       POD filters and translators
       Turn on strict and make most warnings fatal
+      A role for classes that can be thrown
     labels:
       emerge.jobs: "1"
       emerge.packages: >-
@@ -1180,6 +1184,9 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "bareword-filehandles"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Abstract"
         version: ">=0"
       - category: "dev-perl"
         name: "Email-Address-XS"
@@ -1225,6 +1232,12 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "strictures"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Throwable"
+        version: ">=0"
+      - category: "virtual"
+        name: "perl-if"
         version: ">=0"
     requires:
       - <<: *layers-perl-libs
