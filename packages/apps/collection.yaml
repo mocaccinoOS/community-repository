@@ -11432,9 +11432,6 @@ packages:
         mail-filter/spamassassin
     provides:
       - category: "dev-perl"
-        name: "Archive-Zip"
-        version: ">=0"
-      - category: "dev-perl"
         name: "BSD-Resource"
         version: ">=0"
       - category: "dev-perl"
@@ -11540,19 +11537,10 @@ packages:
         name: "NetAddr-IP"
         version: ">=0"
       - category: "dev-perl"
-        name: "Path-Tiny"
-        version: ">=0"
-      - category: "dev-perl"
         name: "Scope-Guard"
         version: ">=0"
       - category: "dev-perl"
         name: "Test-File-ShareDir"
-        version: ">=0"
-      - category: "dev-perl"
-        name: "Throwable"
-        version: ">=0"
-      - category: "dev-perl"
-        name: "Unicode-UTF8"
         version: ">=0"
       - category: "mail-filter"
         name: "spamassassin"
@@ -16716,7 +16704,7 @@ packages:
   - &apps-pass
     category: "apps"
     name: "pass"
-    version: "1.7.4-r5+1"
+    version: "1.7.4-r5+2"
     uri:
       - https://www.passwordstore.org/
     license: "GPL-2+"
@@ -16734,7 +16722,7 @@ packages:
         version: ">=0"
     atoms:
       - atom: "app-admin/pass"
-        use: "git wayland X -emacs dmenu importers"
+        use: "git wayland X -emacs -dmenu importers"
     optional_requires:
       - <<: *apps-pam-gnupg
     requires:
