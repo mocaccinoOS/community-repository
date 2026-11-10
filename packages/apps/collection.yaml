@@ -199,6 +199,19 @@ stubs:
     name: "perl-libs"
     version: ">=0"
 
+  - &layers-perl-email-libs
+    category: "layers"
+    name: "perl-email-libs"
+    version: ">=0"
+  # - &layerbase-perl-email-libs
+  #   category: "layerbase"
+  #   name: "perl-email-libs"
+  #   version: ">=0"
+  # - &buildbase-perl-email-libs
+  #   category: "buildbase"
+  #   name: "perl-email-libs"
+  #   version: ">=0"
+
   - &apps-cdemu
     category: "apps"
     name: "cdemu"
@@ -6179,7 +6192,7 @@ packages:
       # - <<: *apps-vlc
     build_requires:
       - <<: *layers-kde-common
-    
+
   - category: "apps"
     name: "Email-Outlook-Message"
     version: "0.921+4"
