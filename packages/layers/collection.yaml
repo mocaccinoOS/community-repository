@@ -911,7 +911,7 @@ packages:
   # dev-perl/File-Copy-Recursive      apps/shutter, spamassassin
   # dev-perl/File-ReadBackwards       apps/x2goserver
   # dev-perl/Gtk3-ImageView           shutter
-  # dev-perl/IO-String                dev-perl/Email-Outlook-Message, layers/latex, spamassassin
+  # dev-perl/IO-String                layers/latex, dev-perl/Email-Outlook-Message, spamassassin
   # dev-perl/JSON-MaybeXS             nagios-plugin-check_lm_sensors, spamassassin
   # dev-perl/libxml-perl              shutter
   # dev-perl/Math-Calc-Units          Monitoring-Plugin
@@ -920,7 +920,6 @@ packages:
   # dev-perl/Number-Bytes-Human       shutter
   # dev-perl/Pango                    shutter
   # dev-perl/Params-Validate          Monitoring-Plugin, layers/latex, spamassassin
-  # dev-perl/Pod-Parser               Email-Outlook-Message, spamassassin
   # dev-perl/Proc-ProcessTable        shutter
   # dev-perl/Proc-Simple              shutter
   # dev-perl/Sort-Naturally           shutter
@@ -931,7 +930,7 @@ packages:
   - &def-perl-libs
     category: "layers"
     name: "perl-libs"
-    version: "26.11+2"
+    version: "26.11+3"
     uri:
       - https://metacpan.org/release/Carp-Always
       - https://metacpan.org/release/Class-Accessor
@@ -984,7 +983,6 @@ packages:
         dev-perl/Number-Bytes-Human
         dev-perl/Pango
         dev-perl/Params-Validate
-        dev-perl/Pod-Parser
         dev-perl/Proc-ProcessTable
         dev-perl/Proc-Simple
         dev-perl/Sort-Naturally
@@ -1007,6 +1005,9 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "Digest-SHA1"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Abstract"
         version: ">=0"
       - category: "dev-perl"
         name: "File-Copy-Recursive"
@@ -1043,9 +1044,6 @@ packages:
         version: ">=0"
       - category: "dev-perl"
         name: "Params-Validate"
-        version: ">=0"
-      - category: "dev-perl"
-        name: "Pod-Parser"
         version: ">=0"
       - category: "dev-perl"
         name: "Proc-ProcessTable"
@@ -1100,6 +1098,134 @@ packages:
     category: "buildbase"
     unpack: true
     hidden: true
+
+
+  - &def-perl-email-libs
+    category: "layers"
+    name: "perl-email-libs"
+    version: "26.11"
+    uri:
+      - https://metacpan.org/release/B-Hooks-OP-Check
+      - https://metacpan.org/release/bareword-filehandles
+      - https://metacpan.org/release/Email-Address-XS
+      - https://metacpan.org/release/Email-Date-Format
+      - https://metacpan.org/release/Email-MIME
+      - https://metacpan.org/release/Email-MIME-ContentType
+      - https://metacpan.org/release/Email-MIME-Encodings
+      - https://metacpan.org/release/Email-MessageID
+      - https://metacpan.org/release/Email-Sender
+      - https://metacpan.org/release/Email-Simple
+      - https://metacpan.org/release/indirect
+      - https://metacpan.org/release/MIME-Types
+      - https://metacpan.org/release/Module-Pluggable
+      - https://metacpan.org/release/MooX-Types-MooseLike
+      - https://metacpan.org/release/multidimensional
+      - https://metacpan.org/release/Pod-Parser
+      - https://metacpan.org/release/strictures
+    license: "metapackage"
+    description: |
+      Wrap OP check callbacks
+      Disables bareword filehandles
+      Parse and format RFC 2822 email addresses and groups
+      Produce RFC 822 date strings
+      Easy MIME message parsing
+      Parse a MIME Content-Type Header or Content-Disposition Header
+      A unified interface to MIME encoding and decoding
+      Generate world unique message-ids
+      A library for sending email
+      Simple parsing of RFC2822 message format and headers
+      Lexically warn about using the indirect method call syntax
+      Definition of MIME types
+      Automatically give your module the ability to have plugins
+      Some Moosish types and a type builder
+      Disables multidimensional array emulation
+      POD filters and translators
+      Turn on strict and make most warnings fatal
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-perl/B-Hooks-OP-Check
+        dev-perl/bareword-filehandles
+        dev-perl/Email-Address-XS
+        dev-perl/Email-Date-Format
+        dev-perl/Email-MIME
+        dev-perl/Email-MIME-ContentType
+        dev-perl/Email-MIME-Encodings
+        dev-perl/Email-MessageID
+        dev-perl/Email-Sender
+        dev-perl/Email-Simple
+        dev-perl/indirect
+        dev-perl/MIME-Types
+        dev-perl/Module-Pluggable
+        dev-perl/MooX-Types-MooseLike
+        dev-perl/multidimensional
+        dev-perl/Pod-Parser
+        dev-perl/strictures
+    provides:
+      - category: "dev-perl"
+        name: "B-Hooks-OP-Check"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "bareword-filehandles"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Address-XS"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Date-Format"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME-ContentType"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MIME-Encodings"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-MessageID"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Sender"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Email-Simple"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "indirect"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MIME-Types"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Module-Pluggable"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "MooX-Types-MooseLike"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "multidimensional"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "Pod-Parser"
+        version: ">=0"
+      - category: "dev-perl"
+        name: "strictures"
+        version: ">=0"
+    requires:
+      - <<: *layers-perl-libs
+    build_requires:
+      - <<: *layers-perl-libs
+
+  # - <<: *def-perl-email-libs
+  #   category: "layerbase"
+  #   hidden: true
+  # 
+  # - <<: *def-perl-email-libs
+  #   category: "buildbase"
+  #   unpack: true
+  #   hidden: true
 
 
   - &def-ruby
