@@ -7,7 +7,7 @@ on:
 jobs:
   generate-matrix-sets:
     name: Generate matrix sets for build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     outputs:
       matrix-sets: ${{ steps.set-matrix-sets.outputs.matrix-sets }}
     steps:
@@ -66,7 +66,7 @@ jobs:
       FINAL_REPO: quay.io/mocaccino/mocaccino-community
       GH_TOKEN: ${{ github.token }}
       EVENT_NAME: ${{ github.event_name }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - name: Validate
