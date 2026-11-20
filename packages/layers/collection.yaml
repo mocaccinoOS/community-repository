@@ -242,7 +242,8 @@ stubs:
       # gcc 15
       # https://bugs.gentoo.org/944767
       # https://github.com/openlink/iODBC/pull/112/commits
-        portage_env: "CFLAGS=\"${CFLAGS} -std=c17\""
+        portage_env: |
+          CFLAGS="${CFLAGS} -std=c17"
     prepare:
       - cp -r tree/dev-db/libiodbc /var/db/repos/gentoo/dev-db
       - sed -i -e '/PATCHES=(/{:a; n; /^)$/!ba; s//\t"${FILESDIR}"\/libiodbc-3.52.15-r1-112.patch\n&/; }' /var/db/repos/gentoo/dev-db/libiodbc/libiodbc-*.ebuild
@@ -1237,7 +1238,8 @@ packages:
       - category: "virtual"
         name: "rubygems"
         version: ">=0"
-    portage_env: "USE=\"-ruby_targets_ruby31 -ruby_targets_ruby32 ruby_targets_ruby33\""
+    portage_env: |
+      USE="-ruby_targets_ruby31 -ruby_targets_ruby32 ruby_targets_ruby33"
     prepare:
       - sed -i -e 's/RUBY_TARGETS="ruby31"/RUBY_TARGETS="ruby33"/' /etc/portage/make.conf
     inner_build_reqs:
@@ -2278,7 +2280,8 @@ packages:
         accept_keywords: "~amd64"
       - atom: "app-admin/haskell-updater"
         accept_keywords: "~amd64"
-    portage_env: "MAKEOPTS=\"-l0.45\""
+    portage_env: |
+      MAKEOPTS="-l0.45"
     prepare:
       - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/gentoo/dev-lang/ghc/ghc-*.ebuild
       - find /var/db/repos/gentoo/dev-lang/ghc/ -type f -name "ghc-*.ebuild" -exec ebuild {} manifest \;
@@ -3214,7 +3217,8 @@ packages:
     # portage_env: |
     #   MAKEOPTS="-j5 -l0.9"
     #   USE="hscolour"
-    portage_env: "USE=\"hscolour\""
+    portage_env: |
+      USE="hscolour"
     inner_build_reqs:
       - app-text/dos2unix
     requires:
