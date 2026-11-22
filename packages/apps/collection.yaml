@@ -16033,6 +16033,33 @@ packages:
     build_requires:
       - <<: *layers-gnome-common
 
+  - category: "libs"
+    name: "meshy"
+    version: "26.11"
+    uri:
+      - https://codeberg.org/sesivany/meshy
+    license: "GPL-3+"
+    description: "GTK4/libadwaita client for MeshCore"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-wireless/meshy
+    overlays:
+      - enable: "mocaccino-overlay"
+    provides:
+      - category: "net-wireless"
+        name: "meshy"
+        version: ">=0"
+    atoms:
+      - atom: "net-libs/meshy"
+        use: "qr"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-gnome-common
+      - <<: *libs-python-msgpack
+    build_requires:
+      - <<: *layers-gnome-common
+
   - category: "apps"
     name: "milkytracker"
     version: "1.05.01-r1"
