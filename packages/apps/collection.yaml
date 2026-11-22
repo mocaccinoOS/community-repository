@@ -19286,7 +19286,9 @@ packages:
         accept_keywords: "~amd64"
         use: "qrcode"
     prepare:
-      - sed -i -e '/^SRC_URI="/,/^"/c\SRC_URI="\n\thttps://github.com{PV}/${P}.tar.gz\n\tverify-sig? ( https://github.com{PV}/${P}.tar.gz.asc )\n"' /var/db/repos/guru/net-p2p/feather/feather-*.ebuild
+      # https://github.com/feather-wallet/feather/releases/download/2.9.1/feather-2.9.1.tar.gz
+      # https://github.com/feather-wallet/feather/releases/download/2.9.1/feather-2.9.1.tar.gz.asc
+      - sed -i -e '/^SRC_URI="/,/^"/c\SRC_URI="\n\thttps://github.com/feather-wallet/${PN}/releases/download/${PV}/${P}.tar.gz\n\tverify-sig? ( https://github.com/feather-wallet/${PN}/releases/download/${PV}/${P}.tar.gz.asc )\n"' /var/db/repos/guru/net-p2p/feather/feather-*.ebuild
       - find /var/db/repos/guru/net-p2p/feather/ -type f -name "feather-*.ebuild" -exec ebuild {} manifest \;
     inner_build_reqs:
       - dev-util/bc-ur;ACCEPT_KEYWORDS="~amd64"
