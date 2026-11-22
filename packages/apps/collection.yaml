@@ -1968,7 +1968,6 @@ packages:
   #   build_requires:
   #   - <<: *layers-system-x
 
-  # should be in desktop repo
   - &libs-id3lib
     category: "libs"
     name: "id3lib"
@@ -4136,7 +4135,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  # unstable for python 3.14
   - &libs-volk
     category: "libs"
     name: "volk"
@@ -4153,9 +4151,6 @@ packages:
       - category: "sci-libs"
         name: "volk"
         version: ">=0"
-    atoms:
-      - atom: "sci-libs/volk"
-        accept_keywords: "~amd64"
     requires:
       - <<: *layers-X
     build_requires:
@@ -5006,7 +5001,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  # unstable for python 3.14
   - category: "apps"
     name: "bleachbit"
     version: "6.0.0"
@@ -5023,9 +5017,6 @@ packages:
       - category: "sys-apps"
         name: "bleachbit"
         version: ">=0"
-    atoms:
-      - atom: "sys-apps/bleachbit"
-        accept_keywords: "~amd64"
     inner_build_reqs:
       - dev-python/mock
     requires:
@@ -5446,7 +5437,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  # unstable for python 3.14
   - &apps-clamav
     category: "apps"
     name: "clamav"
@@ -5467,7 +5457,6 @@ packages:
       - atom: "app-antivirus/clamav"
         use: "clamonacc clamapp systemd"
         license: "unRAR"
-        accept_keywords: "~amd64"
     inner_build_reqs:
       - acct-group/clamav
       - acct-user/clamav
@@ -8721,37 +8710,37 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
-  # - &apps-leocad
-  #   category: "apps"
-  #   name: "leocad"
-  #   version: "25.09-r1"
-  #   uri:
-  #   - http://www.leocad.org
-  #   license: "GPL-2"
-  #   description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
-  #   labels:
-  #     appstream.id: "org.leocad.LeoCAD"
-  #     emerge.jobs: "1"
-  #     emerge.packages: >-
-  #       media-gfx/leocad
-  #   overlays:
-  #   - enable: "anard"
-  #   provides:
-  #   - category: "media-gfx"
-  #     name: "leocad"
-  #     version: ">=0"
-  #   atoms:
-  #   - atom: "media-gfx/leocad"
-  #     accept_keywords: "~amd64"
-  #   prepare:
-  #   - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-  #   - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-  #   - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
-  #   - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
-  #   requires:
-  #   - <<: *layers-qt5
-  #   build_requires:
-  #   - <<: *layers-qt5
+  - &apps-leocad
+    category: "apps"
+    name: "leocad"
+    version: "26.09-r1"
+    uri:
+    - http://www.leocad.org
+    license: "GPL-2"
+    description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
+    labels:
+      appstream.id: "org.leocad.LeoCAD"
+      emerge.jobs: "1"
+      emerge.packages: >-
+        media-gfx/leocad
+    overlays:
+    - enable: "anard"
+    provides:
+    - category: "media-gfx"
+      name: "leocad"
+      version: ">=0"
+    atoms:
+    - atom: "media-gfx/leocad"
+      accept_keywords: "~amd64"
+    # prepare:
+    # - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+    # - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+    # - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
+    # - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
+    requires:
+    - <<: *layers-qt
+    build_requires:
+    - <<: *layers-qt
 
   - category: "apps"
     name: "lesspipe"
@@ -11017,7 +11006,6 @@ packages:
     build_requires:
       - <<: *layers-qt
 
-  # unstable for python 3.14
   - category: "apps"
     name: "rawtherapee"
     version: "5.13+1"
@@ -11040,7 +11028,6 @@ packages:
     atoms:
       - atom: "media-gfx/rawtherapee"
         use: "jpegxl openmp # tcmalloc"
-        accept_keywords: "~amd64"
       - atom: "media-libs/libiptcdata"
         use: "nls -python"
     requires:
@@ -11593,10 +11580,6 @@ packages:
       - atom: "dev-db/sqlitestudio"
         accept_keywords: "~amd64"
         use: "cli cups python"
-    prepare:
-      # push python 3.14
-      - sed -i -e 's/PYTHON_COMPAT=( python3_{11..13}/PYTHON_COMPAT=( python3_{11..14}/' /var/db/repos/gentoo/dev-db/sqlitestudio/sqlitestudio-*.ebuild
-      - find /var/db/repos/gentoo/dev-db/sqlitestudio/ -type f -name "sqlitestudio-*.ebuild" -exec ebuild {} manifest \;
     requires:
       - <<: *layers-qt
     build_requires:
@@ -23123,10 +23106,6 @@ packages:
       - atom: "net-wireless/gr-osmosdr"
         use: "rtlsdr"
         accept_keywords: "~amd64"
-    prepare:
-      # push python 3.14
-      - sed -i -e 's/PYTHON_COMPAT=( python3_{12..13}/PYTHON_COMPAT=( python3_{12..14}/' /var/db/repos/gentoo/net-wireless/gr-osmosdr/gr-osmosdr-*.ebuild
-      - find /var/db/repos/gentoo/net-wireless/gr-osmosdr/ -type f -name "gr-osmosdr-*.ebuild" -exec ebuild {} manifest \;
     requires:
       - <<: *apps-gnuradio
       - <<: *libs-rtl-sdr
