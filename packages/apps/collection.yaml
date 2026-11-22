@@ -13154,6 +13154,30 @@ packages:
     build_requires:
       - <<: *apps-zathura
 
+  - &apps-zbar
+    category: "apps"
+    name: "zbar"
+    version: "0.23.93-r3"
+    uri:
+      - https://github.com/mchehab/zbar
+    license: "LGPL-2.1"
+    description: "Library and tools for reading barcodes from images or video"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        media-gfx/zbar
+    provides:
+      - category: "media-gfx"
+        name: "zbar"
+        version: ">=0"
+    atoms:
+      - atom: "media-gfx/zbar"
+        use: "jpeg nls v4l"
+    requires:
+      - <<: *layers-X
+    build_requires:
+      - <<: *layers-X
+
   - category: "apps"
     name: "zsh"
     version: "5.9.2"
@@ -13342,7 +13366,6 @@ packages:
         use: "drafts"
     inner_build_reqs:
       - app-text/asciidoc
-      - app-text/xmlto
       - net-libs/zeromq
     requires:
       - <<: *layers-sys-fs
@@ -16033,7 +16056,7 @@ packages:
     build_requires:
       - <<: *layers-gnome-common
 
-  - category: "libs"
+  - category: "apps"
     name: "meshy"
     version: "26.11"
     uri:
@@ -16057,6 +16080,7 @@ packages:
     requires:
       - <<: *layers-gnome-common
       - <<: *libs-python-msgpack
+      - <<: *apps-zbar
     build_requires:
       - <<: *layers-gnome-common
 
@@ -19188,17 +19212,12 @@ packages:
       - category: "dev-libs"
         name: "polyseed"
         version: ">=0"
-      - category: "media-gfx"
-        name: "zbar"
-        version: ">=0"
       - category: "net-p2p"
         name: "feather"
         version: ">=0"
     atoms:
       - atom: "dev-libs/polyseed"
         accept_keywords: "~amd64"
-      - atom: "media-gfx/zbar"
-        use: "v4l"
       - atom: "net-p2p/feather"
         accept_keywords: "~amd64"
         use: "qrcode"
@@ -19209,6 +19228,7 @@ packages:
       - <<: *layers-qt
       - <<: *libs-czmq
       - <<: *apps-tor
+      - <<: *apps-zbar
     build_requires:
       - <<: *layers-qt
 
