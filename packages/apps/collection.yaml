@@ -8715,7 +8715,7 @@ packages:
     name: "leocad"
     version: "26.09-r1"
     uri:
-    - http://www.leocad.org
+      - http://www.leocad.org
     license: "GPL-2"
     description: "LeoCAD is a CAD program that uses bricks similar to those found in many toys."
     labels:
@@ -8724,23 +8724,23 @@ packages:
       emerge.packages: >-
         media-gfx/leocad
     overlays:
-    - enable: "anard"
+      - enable: "anard"
     provides:
-    - category: "media-gfx"
-      name: "leocad"
-      version: ">=0"
+      - category: "media-gfx"
+        name: "leocad"
+        version: ">=0"
     atoms:
-    - atom: "media-gfx/leocad"
-      accept_keywords: "~amd64"
+      - atom: "media-gfx/leocad"
+        accept_keywords: "~amd64"
     # prepare:
-    # - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-    # - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-    # - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
-    # - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
+    #   - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+    #   - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+    #   - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
+    #   - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
     requires:
-    - <<: *layers-qt
+      - <<: *layers-qt
     build_requires:
-    - <<: *layers-qt
+      - <<: *layers-qt
 
   - category: "apps"
     name: "lesspipe"
