@@ -13673,49 +13673,52 @@ packages:
         dev-python/jsonschema
     provides:
       - category: "dev-python"
-        name: "jsonschema"
+        name: "arrow"
         version: ">=0"
       - category: "dev-python"
         name: "fqdn"
         version: ">=0"
       - category: "dev-python"
-        name: "jsonpointer"
-        version: ">=0"
-      - category: "dev-python"
-        name: "rfc3986-validator"
-        version: ">=0"
-      - category: "dev-python"
-        name: "uri-template"
-        version: ">=0"
-      - category: "dev-python"
-        name: "strict-rfc3339"
-        version: ">=0"
-      - category: "dev-python"
-        name: "arrow"
-        version: ">=0"
-      - category: "dev-python"
         name: "isoduration"
         version: ">=0"
       - category: "dev-python"
-        name: "rfc3339-validator"
+        name: "jsonpointer"
         version: ">=0"
       - category: "dev-python"
-        name: "rfc3987"
+        name: "jsonschema"
+        version: ">=0"
+      - category: "dev-python"
+        name: "jsonschema-specifications"
         version: ">=0"
       - category: "dev-python"
         name: "pdm-backend"
         version: ">=0"
       - category: "dev-python"
-        name: "rpds-py"
-        version: ">=0"
-      - category: "dev-python"
-        name: "webcolors"
-        version: ">=0"
-      - category: "dev-python"
         name: "referencing"
         version: ">=0"
       - category: "dev-python"
-        name: "jsonschema-specifications"
+        name: "rfc3339-validator"
+        version: ">=0"
+      - category: "dev-python"
+        name: "rfc3986-validator"
+        version: ">=0"
+      - category: "dev-python"
+        name: "rfc3987"
+        version: ">=0"
+      - category: "dev-python"
+        name: "rpds-py"
+        version: ">=0"
+      - category: "dev-python"
+        name: "strict-rfc3339"
+        version: ">=0"
+      - category: "dev-python"
+        name: "tzdata"
+        version: ">=0"
+      - category: "dev-python"
+        name: "uri-template"
+        version: ">=0"
+      - category: "dev-python"
+        name: "webcolors"
         version: ">=0"
     inner_build_reqs:
       - dev-util/maturin
@@ -19172,6 +19175,7 @@ packages:
       - atom: "net-p2p/feather"
         accept_keywords: "~amd64"
         use: "qrcode"
+        usepkg_exclude: true
     inner_build_reqs:
       - dev-util/bc-ur;ACCEPT_KEYWORDS="~amd64"
     requires:
@@ -20484,10 +20488,10 @@ packages:
     description: "NordVPN Linux client"
     labels:
       emerge.jobs: "1"
-    env:
-      - LLVM_VERSION="22"
-      - LIBCLANG_PATH="/usr/lib/llvm/22/lib64"
-      - BINDGEN_EXTRA_CLANG_ARGS="-isystem /usr/lib/clang/22/include"
+    # env:
+    #   - LLVM_VERSION="22"
+    #   - LIBCLANG_PATH="/usr/lib/llvm/22/lib64"
+    #   - BINDGEN_EXTRA_CLANG_ARGS="-isystem /usr/lib/clang/22/include"
     ready:
       - |
         sed -i -e "s/\(.*Running as root is not supported.*\)/\#\1/" /usr/bin/rustup-init-gentoo && \
@@ -20594,7 +20598,7 @@ packages:
       - ^/root/
     inner_build_reqs:
       # - dev-lang/rust-bin
-      - llvm-core/clang:${LLVM_VERSION}
+      # - llvm-core/clang:${LLVM_VERSION}
       - dev-util/rustup;ACCEPT_KEYWORDS="~amd64"
       - dev-go/go-licenses;ACCEPT_KEYWORDS="~amd64"
     inner_build_requires:
@@ -23776,7 +23780,7 @@ packages:
 
   - category: "apps"
     name: "plantuml"
-    version: "1.2026.1+8"
+    version: "1.2026.1+9"
     uri:
       - https://plantuml.com
     license: "GPL-3"
@@ -23800,16 +23804,19 @@ packages:
     # - sed -i -e 's/JAVA_GENTOO_CLASSPATH+="ant"/JAVA_GENTOO_CLASSPATH+=" ant"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
     # - sed -i -e '/src_install()/{:a; n; /^}$/!ba; s//\n\tjava-pkg_register-dependency ant,batik,fop\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
     # - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
-    completion:
-      - |
-        grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
-        ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
-        BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
-        FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
-        sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
-        grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
-        if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-        sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env
+    prepare:
+      - sed -i '/java-pkg-simple_src_install/a \tjar -uf "${ED}/usr/share/${PN}/lib/${PN}.jar" -C target/intermediate . || die' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+      - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
+    # completion:
+    #   - |
+    #     grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+    #     ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+    #     BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+    #     FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+    #     sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+    #     grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+    #     if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
+    #     sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env
     requires:
       - <<: *layers-qt
       - <<: *layers-java
