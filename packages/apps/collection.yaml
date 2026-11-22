@@ -8732,11 +8732,11 @@ packages:
     atoms:
       - atom: "media-gfx/leocad"
         accept_keywords: "~amd64"
-    # prepare:
-    #   - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
-    #   - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
-    #   - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
-    #   - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
+    prepare:
+      - sed -i -e 's/PARTS_URI="https:\/\/www.ldraw.org\/library\/updates\/"/PARTS_URI="https:\/\/library.ldraw.org\/library\/updates"/' /var/db/repos/anard/media-gfx/leocad/leocad-*.ebuild
+      - sed -i '/DIST library.bin/ d' /var/db/repos/anard/media-gfx/leocad/Manifest
+      - sed -i 's/ 1226 / 1229 /' /var/db/repos/anard/media-gfx/leocad/Manifest
+      - find /var/db/repos/anard/media-gfx/leocad/ -type f -name "leocad-*.ebuild" -exec ebuild {} manifest \;
     requires:
       - <<: *layers-qt
     build_requires:
@@ -9839,7 +9839,7 @@ packages:
   - &apps-pandoc
     category: "apps"
     name: "pandoc-cli"
-    version: "3.10+2"
+    version: "3.10+3"
     uri:
       - https://pandoc.org
     license: "GPL-2+"
@@ -16739,7 +16739,7 @@ packages:
 
   - category: "apps"
     name: "openrgb"
-    version: "1.0_rc3_p1"
+    version: "1.0_rc3_p1+1"
     uri:
       - https://openrgb.org
     license: "GPL-2"
