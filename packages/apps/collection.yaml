@@ -16070,7 +16070,7 @@ packages:
 
   - category: "apps"
     name: "meshcore-cli"
-    version: "1.6.6+1"
+    version: "1.6.6+2"
     uri:
       - https://github.com/meshcore-dev/meshcore-cli
     license: "BSD MIT"
@@ -16120,7 +16120,7 @@ packages:
       - atom: "dev-python/meshcore-cli"
         accept_keywords: "~amd64"
     inner_build_reqs:
-      - dev-libs/xerces-c
+      - dev-python/uv-build
     requires:
       - <<: *layers-sys-fs
       - <<: *libs-wcwidth
@@ -16141,10 +16141,20 @@ packages:
     overlays:
       - enable: "mocaccino-overlay"
     provides:
+      - category: "dev-python"
+        name: "pyzbar"
+        version: ">=0"
+      - category: "dev-python"
+        name: "segno"
+        version: ">=0"
       - category: "net-wireless"
         name: "meshy"
         version: ">=0"
     atoms:
+      - atom: "dev-python/pyzbar"
+        accept_keywords: "~amd64"
+      - atom: "dev-python/segno"
+        accept_keywords: "~amd64"
       - atom: "net-wireless/meshy"
         use: "qr"
         accept_keywords: "~amd64"
@@ -19292,6 +19302,9 @@ packages:
       - atom: "net-p2p/feather"
         accept_keywords: "~amd64"
         use: "qrcode"
+    prepare:
+      - sed -i -e '/^SRC_URI="/,/^"/c\SRC_URI="\n\thttps://github.com{PV}/${P}.tar.gz\n\tverify-sig? ( https://github.com{PV}/${P}.tar.gz.asc )\n"' /var/db/repos/guru/net-p2p/feather/feather-*.ebuild
+      - find /var/db/repos/guru/net-p2p/feather/ -type f -name "feather-*.ebuild" -exec ebuild {} manifest \;
     inner_build_reqs:
       - dev-util/bc-ur;ACCEPT_KEYWORDS="~amd64"
     requires:
@@ -23895,7 +23908,7 @@ packages:
 
   - category: "apps"
     name: "plantuml"
-    version: "1.2026.1+9"
+    version: "1.2026.1+10"
     uri:
       - https://plantuml.com
     license: "GPL-3"
