@@ -5071,7 +5071,7 @@ packages:
 
   - category: "apps"
     name: "brasero"
-    version: "3.12.4+1"
+    version: "3.12.4+2"
     uri:
       - https://wiki.gnome.org/Apps/Brasero
     license: "GPL-2+ CC-BY-SA-3.0"
@@ -5091,6 +5091,7 @@ packages:
     inner_build_reqs:
       - dev-util/itstool
       - dev-util/gtk-doc
+      - app-text/yelp-tools
     requires:
       - <<: *layers-gnome-common
     build_requires:
@@ -10504,7 +10505,7 @@ packages:
         app-containers/podman
     provides:
       - category: "app-containers"
-        name: "aardvark-dnst"
+        name: "aardvark-dns"
         version: ">=0"
       - category: "app-containers"
         name: "catatonit"
@@ -10513,31 +10514,25 @@ packages:
         name: "conmon"
         version: ">=0"
       - category: "app-containers"
-        name: "containers-common"
+        name: "container-libs"
         version: ">=0"
       - category: "app-containers"
-        name: "containers-imaget"
+        name: "containers-shortnames"
         version: ">=0"
       - category: "app-containers"
         name: "crun"
         version: ">=0"
       - category: "app-containers"
-        name: "netavarkt"
+        name: "netavark"
         version: ">=0"
       - category: "app-containers"
         name: "podman"
         version: ">=0"
-      - category: "app-containers"
-        name: "containers-shortnamest"
-        version: ">=0"
-      - category: "app-containers"
-        name: "containers-storaget"
-        version: ">=0"
       - category: "net-misc"
-        name: "passtt"
+        name: "passt"
         version: ">=0"
       - category: "sys-fs"
-        name: "fuse-overlayfst"
+        name: "fuse-overlayfs"
         version: ">=0"
     atoms:
       - atom: "app-containers/podman"
@@ -19927,8 +19922,6 @@ packages:
         usepkg_exclude: true
       - atom: "dev-libs/xmlsec"
         use: "gcrypt gnutls nss openssl"
-    portage_env: |
-      MAKEOPTS="-l0.9"
     inner_build_reqs:
       - *layers-java-packages
       # - dev-java/bsh
