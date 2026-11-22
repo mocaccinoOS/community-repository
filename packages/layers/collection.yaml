@@ -303,6 +303,27 @@ packages:
     build_requires:
       - <<: *layers-sys-fs
 
+  - &libs-kdsingleapplication
+    category: "libs"
+    name: "kdsingleapplication"
+    version: "1.2.1"
+    uri:
+      - https://github.com/KDAB/KDSingleApplication
+    license: "BSD MIT"
+    description: "KDAB's helper class for single-instance policy applications"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-libs/kdsingleapplication
+    provides:
+      - category: "dev-libs"
+        name: "kdsingleapplication"
+        version: ">=0"
+    requires:
+      - <<: *layers-qt
+    build_requires:
+      - <<: *layers-qt
+
   - &libs-kmime
     category: "libs"
     name: "kmime"
@@ -2056,7 +2077,7 @@ packages:
   - &def-kde-pim
     category: "layers"
     name: "kde-pim"
-    version: "26.04.3+5"
+    version: "26.04.3+6"
     uri:
       - https://community.kde.org/KDE_PIM
     license: "GPL-2+ LGPL-2.1+"
@@ -2244,6 +2265,7 @@ packages:
       - media-video/mpv;USE="libmpv"
     requires:
       - <<: *layers-plasma
+      - <<: *libs-kdsingleapplication
       - <<: *libs-kmime
       - <<: *apps-mpv
       - <<: *libs-qgpgme

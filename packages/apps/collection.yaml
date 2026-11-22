@@ -306,6 +306,15 @@ stubs:
       emerge.packages: >-
         dev-libs/iniparser
 
+  - &libs-kdsingleapplication
+    category: "libs"
+    name: "kdsingleapplication"
+    version: ">=0"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-libs/kdsingleapplication
+
   - &libs-kmime
     category: "libs"
     name: "kmime"
@@ -2089,27 +2098,6 @@ packages:
       # for dev-python/sphinx that needs media-libs/tiff jpeg
       - <<: *layers-X
 
-  - &libs-kdsingleapplication
-    category: "libs"
-    name: "kdsingleapplication"
-    version: "1.2.1"
-    uri:
-      - https://github.com/KDAB/KDSingleApplication
-    license: "BSD MIT"
-    description: "KDAB's helper class for single-instance policy applications"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        dev-libs/kdsingleapplication
-    provides:
-      - category: "dev-libs"
-        name: "kdsingleapplication"
-        version: ">=0"
-    requires:
-      - <<: *layers-qt
-    build_requires:
-      - <<: *layers-qt
-
   - &libs-ladspa-sdk
     category: "libs"
     name: "ladspa-sdk"
@@ -2551,7 +2539,7 @@ packages:
   - &libs-libmirage
     category: "libs"
     name: "libmirage"
-    version: "3.3.3"
+    version: "3.3.3+1"
     uri:
       - https://cdemu.sourceforge.io
     license: "GPL-2+"
@@ -4254,6 +4242,30 @@ packages:
       - category: "dev-python"
         name: "vdf"
         version: ">=0"
+    requires:
+      - <<: *layers-system-x
+    build_requires:
+      - <<: *layers-system-x
+
+  - &libs-wcwidth
+    category: "libs"
+    name: "wcwidth"
+    version: "0.9.3"
+    uri:
+      - https://pypi.org/project/wcwidth/
+    license: "MIT"
+    description: "Measures number of Terminal column cells of wide-character codes"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-python/wcwidth
+    provides:
+      - category: "dev-python"
+        name: "wcwidth"
+        version: ">=0"
+    atoms:
+      - atom: "dev-python/wcwidth"
+        use: "native-extensions verify-provenance"
     requires:
       - <<: *layers-system-x
     build_requires:
@@ -6815,7 +6827,7 @@ packages:
 
   - category: "apps"
     name: "freeoffice"
-    version: "1238"
+    version: "1238+1"
     uri:
       - https://www.freeoffice.com
     license: "SoftMaker"
@@ -12687,7 +12699,7 @@ packages:
 
   - category: "apps"
     name: "wireshark"
-    version: "4.6.9"
+    version: "4.6.9+1"
     uri:
       - https://www.wireshark.org
     license: "LGPL-3"
@@ -16057,6 +16069,65 @@ packages:
       - <<: *layers-gnome-common
 
   - category: "apps"
+    name: "meshcore-cli"
+    version: "1.6.6+1"
+    uri:
+      - https://github.com/meshcore-dev/meshcore-cli
+    license: "BSD MIT"
+    description: "CLI interface to MeshCore companion app over BLE, TCP or Serial"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-python/bleak::mocaccino-overlay
+        dev-python/dbus-fast
+        dev-python/meshcore::mocaccino-overlay
+        dev-python/meshcore-cli::mocaccino-overlay
+        dev-python/pycayennelpp::mocaccino-overlay
+        dev-python/pyserial-asyncio-fast::mocaccino-overlay
+    overlays:
+      - enable: "mocaccino-overlay"
+    provides:
+      - category: "dev-python"
+        name: "bleak"
+        version: '>=0'
+      - category: "dev-python"
+        name: "dbus-fast"
+        version: '>=0'
+      - category: "dev-python"
+        name: "prompt-toolkit"
+        version: '>=0'
+      - category: "dev-python"
+        name: "pyserial-asyncio-fast"
+        version: '>=0'
+      - category: "dev-python"
+        name: "pycayennelpp"
+        version: '>=0'
+      - category: "dev-python"
+        name: "meshcore"
+        version: '>=0'
+      - category: "dev-python"
+        name: "meshcore-cli"
+        version: '>=0'
+    atoms:
+      - atom: "dev-python/bleak"
+        accept_keywords: "~amd64"
+      - atom: "dev-python/pyserial-asyncio-fast"
+        accept_keywords: "~amd64"
+      - atom: "dev-python/pycayennelpp"
+        accept_keywords: "~amd64"
+      - atom: "dev-python/meshcore"
+        accept_keywords: "~amd64"
+      - atom: "dev-python/meshcore-cli"
+        accept_keywords: "~amd64"
+    inner_build_reqs:
+      - dev-libs/xerces-c
+    requires:
+      - <<: *layers-sys-fs
+      - <<: *libs-wcwidth
+    build_requires:
+      - <<: *layers-sys-fs
+
+  - category: "apps"
     name: "meshy"
     version: "26.11"
     uri:
@@ -16074,7 +16145,7 @@ packages:
         name: "meshy"
         version: ">=0"
     atoms:
-      - atom: "net-libs/meshy"
+      - atom: "net-wireless/meshy"
         use: "qr"
         accept_keywords: "~amd64"
     requires:
@@ -18849,7 +18920,7 @@ packages:
 
   - category: "apps"
     name: "calibre"
-    version: "8.9.0+9"
+    version: "8.9.0+10"
     uri:
       - https://calibre-ebook.com/
     license: "Apache-2.0 Artistic BSD CC-BY-3.0 GPL-1+ GPL-3+ GPL-3 GPL-2+ GPL-2 GPL-1+ LGPL-3+ LGPL-2.1+ LGPL-2.1 MIT Old-MIT OFL-1.1 PSF-2 public-domain"
@@ -21169,7 +21240,7 @@ packages:
 
   - category: "apps"
     name: "vit"
-    version: "2.3.5"
+    version: "2.3.5+1"
     uri:
       - https://github.com/vit-project/vit
     license: "MIT"
@@ -21185,9 +21256,6 @@ packages:
       - category: "dev-python"
         name: "urwid"
         version: ">=0"
-      - category: "dev-python"
-        name: "wcwidth"
-        version: ">=0"
     atoms:
       - atom: "app-misc/vit"
         accept_keywords: "~amd64"
@@ -21195,6 +21263,7 @@ packages:
       - <<: *layers-sys-fs
       - <<: *libs-tasklib
       - <<: *libs-typing-extensions
+      - <<: *libs-wcwidth
     build_requires:
       - <<: *buildbase-sys-fs
 
@@ -23850,19 +23919,19 @@ packages:
     # - sed -i -e 's/JAVA_GENTOO_CLASSPATH+="ant"/JAVA_GENTOO_CLASSPATH+=" ant"/' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
     # - sed -i -e '/src_install()/{:a; n; /^}$/!ba; s//\n\tjava-pkg_register-dependency ant,batik,fop\n&/; }' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
     # - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
-    prepare:
-      - sed -i '/java-pkg-simple_src_install/a \tjar -uf "${ED}/usr/share/${PN}/lib/${PN}.jar" -C target/intermediate . || die' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
-      - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
-    # completion:
-    #   - |
-    #     grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
-    #     ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
-    #     BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
-    #     FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
-    #     sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
-    #     grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
-    #     if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
-    #     sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env
+    # prepare:
+    #   - sed -i '/java-pkg-simple_src_install/a \tjar -uf "${ED}/usr/share/${PN}/lib/${PN}.jar" -C target/intermediate . || die' /var/db/repos/gentoo/media-gfx/plantuml/plantuml-*.ebuild
+    #   - find /var/db/repos/gentoo/media-gfx/plantuml/ -type f -name "plantuml-*.ebuild" -exec ebuild {} manifest \;
+    completion:
+      - |
+        grep -q "CLASSPATH=" /usr/share/plantuml/package.env || echo "CLASSPATH=\"\"" >> /usr/share/plantuml/package.env; \
+        ANT=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/ant/package.env); \
+        BATIK=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/batik/package.env); \
+        FOP=$(sed -n 's/^CLASSPATH\="\(.*\)"/\1/p' /usr/share/fop/package.env); \
+        sed -i "s|^CLASSPATH\=\"\(.*\)\"|CLASSPATH=\"\1:$ANT:$BATIK:$FOP\"|" /usr/share/plantuml/package.env; \
+        grep -q "DEPEND=" /usr/share/plantuml/package.env || echo "DEPEND=\"\"" >> /usr/share/plantuml/package.env; \
+        if [ -n "$DEPEND" ]; then DEPEND="$DEPEND:"; fi; \
+        sed -i "s|^DEPEND\=\"\(.*\)\"|DEPEND=\"\1ant:batik:fop\"|" /usr/share/plantuml/package.env
     requires:
       - <<: *layers-qt
       - <<: *layers-java
