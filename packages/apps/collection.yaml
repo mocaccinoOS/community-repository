@@ -2606,6 +2606,30 @@ packages:
     build_requires:
       - <<: *layers-X
 
+  - &libs-libportal-qt
+    category: "libs"
+    name: "libportal-qt"
+    version: "0.9.1"
+    uri:
+      - https://github.com/flatpak/libportal
+    license: "LGPL-3"
+    description: "Flatpak portal library"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-libs/libportal
+    provides:
+      - category: "dev-libs"
+        name: "libportal"
+        version: ">=0"
+    atoms:
+      - atom: "dev-libs/libportal"
+        use: "qt6"
+    requires:
+      - <<: *layers-qt
+    build_requires:
+      - <<: *layers-qt
+
   - &libs-libprojectm
     category: "libs"
     name: "libprojectm"
@@ -24171,7 +24195,7 @@ packages:
   - &apps-easyeffects
     category: "apps"
     name: "easyeffects"
-    version: "8.3.0+1"
+    version: "8.3.0+2"
     uri:
       - https://github.com/wwmm/easyeffects
       - https://github.com/hoene/libmysofa
@@ -24238,6 +24262,8 @@ packages:
       - <<: *libs-ladspa-sdk
       - <<: *libs-libbs2b
       - <<: *libs-libebur128
+      - <<: *libs-liblo
+      - <<: *libs-libportal-qt
       - <<: *libs-libsoundtouch
       - <<: *libs-lilv
       - <<: *libs-rnnoise
