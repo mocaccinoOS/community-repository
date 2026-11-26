@@ -11531,6 +11531,9 @@ packages:
       - category: "mail-filter"
         name: "spamassassin"
         version: ">=0"
+      - category: "virtual"
+        name: "perl-Socket"
+        version: ">=0"
     atoms:
       - atom: "mail-filter/spamassassin"
         use: "ssl verify-sig # berkdb cron ipv6 ldap mysql postgres qmail sqlite"
@@ -11941,7 +11944,7 @@ packages:
 
   - category: "apps"
     name: "torbrowser"
-    version: "153.8.0_p16003"
+    version: "153.8.0_p16003+1"
     uri:
       - https://www.torproject.org
     license: "BSD CC-BY-3.0 MPL-2.0 GPL-2 LGPL-2.1"
@@ -11959,18 +11962,19 @@ packages:
     atoms:
       - atom: "www-client/torbrowser"
         accept_keywords: "~amd64"
-    env:
-      - LLVM_VERSION=22
-    portage_env: |
-      USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22 -llvm_slot_23"
-      # prepare:
-      # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
-      # - find /var/db/repos/torbrowser/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
+    # env:
+    #   - LLVM_VERSION=22
+    # portage_env: |
+    #   USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22 -llvm_slot_23"
+    #   # prepare:
+    #   # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
+    #   # - find /var/db/repos/torbrowser/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
     inner_build_reqs:
       - dev-build/autoconf:2.1
       # - llvm-core/clang:${LLVM_VERSION}
-      - llvm-core/lld:${LLVM_VERSION}
-      - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
+      # - llvm-core/lld:${LLVM_VERSION}
+      # - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
+      - =dev-lang/rust-bin-1.98.1
       - dev-util/cbindgen
       - net-libs/nodejs
       - virtual/freedesktop-icon-theme
@@ -14089,7 +14093,7 @@ packages:
   - &apps-batik
     category: "apps"
     name: "batik"
-    version: "1.20"
+    version: "1.20+1"
     uri:
       - https://xmlgraphics.apache.org/batik/
       - https://commons.apache.org/proper/commons-bcel/
@@ -14126,34 +14130,13 @@ packages:
         name: "batik"
         version: ">=0"
       - category: "dev-java"
-        name: "bcel"
-        version: ">=0"
-      - category: "dev-java"
         name: "commons-logging"
-        version: ">=0"
-      - category: "dev-java"
-        name: "jacl"
-        version: ">=0"
-      - category: "dev-java"
-        name: "javacup"
         version: ">=0"
       - category: "dev-java"
         name: "slf4j-api"
         version: ">=0"
       - category: "dev-java"
-        name: "xalan"
-        version: ">=0"
-      - category: "dev-java"
-        name: "xalan-serializer"
-        version: ">=0"
-      - category: "dev-java"
-        name: "xerces"
-        version: ">=0"
-      - category: "dev-java"
         name: "xml-commons-external"
-        version: ">=0"
-      - category: "dev-java"
-        name: "xml-commons-resolver"
         version: ">=0"
       - category: "dev-java"
         name: "xmlgraphics-commons"
@@ -14179,6 +14162,7 @@ packages:
       - sec-keys/openpgp-keys-apache-commons
       - sec-keys/openpgp-keys-apache-xalan-j
       - sec-keys/openpgp-keys-apache-xerces-j
+      - sec-keys/openpgp-keys-apache-xmlgraphics
       - sec-keys/openpgp-keys-apache-xmlgraphics-commons
       - sec-keys/openpgp-keys-apache-xmlgraphics-batik
     requires:
@@ -15969,7 +15953,7 @@ packages:
   - &apps-markdown
     category: "apps"
     name: "marknote"
-    version: "1.6.0-r1"
+    version: "1.6.0-r1+1"
     uri:
       - https://apps.kde.org/marknote/
     license: "GPL-2+"
@@ -15992,6 +15976,7 @@ packages:
     requires:
       - <<: *layers-kde-common
       - <<: *libs-analitza
+      - <<: *libs-kmime
     build_requires:
       - <<: *layers-kde-common
 
@@ -19357,13 +19342,16 @@ packages:
         dev-java/fop
     provides:
       - category: "dev-java"
-        name: "fop"
-        version: ">=0"
-      - category: "dev-java"
         name: "bcpkix"
         version: ">=0"
       - category: "dev-java"
+        name: "bcutil"
+        version: ">=0"
+      - category: "dev-java"
         name: "fontbox"
+        version: ">=0"
+      - category: "dev-java"
+        name: "fop"
         version: ">=0"
       - category: "dev-java"
         name: "pdfbox"
@@ -19386,6 +19374,7 @@ packages:
     inner_build_reqs:
       - app-alternatives/gpg
       - app-portage/gemato
+      - dev-java/xalan
       - sec-keys/openpgp-keys-apache-xmlgraphics-fop
       - sec-keys/openpgp-keys-apache-pdfbox
     requires:
@@ -24226,7 +24215,7 @@ packages:
       - dev-util/itstool
       - dev-util/lv2lint
     requires:
-      - <<: *layers-gnome
+      - <<: *layers-qt
       - <<: *libs-nlohmann_json
       - <<: *libs-tbb
       - <<: *libs-ladspa-sdk
@@ -24238,7 +24227,7 @@ packages:
       - <<: *libs-rnnoise
       - <<: *apps-calf
     build_requires:
-      - <<: *layers-gnome
+      - <<: *layers-qt
 
   # - &apps-gmic
   #   category: "apps"
