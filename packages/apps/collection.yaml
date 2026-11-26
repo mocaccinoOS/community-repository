@@ -11962,18 +11962,18 @@ packages:
     atoms:
       - atom: "www-client/torbrowser"
         accept_keywords: "~amd64"
-    # env:
-    #   - LLVM_VERSION=22
-    # portage_env: |
-    #   USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22 -llvm_slot_23"
+    env:
+      - LLVM_VERSION=22
+    portage_env: |
+      USE="-llvm_slot_20 -llvm_slot_21 llvm_slot_22 -llvm_slot_23"
     #   # prepare:
     #   # - sed -i -e 's/LLVM_COMPAT=( .* )/LLVM_COMPAT=( 22 )/' /var/db/repos/torbrowser/www-client/torbrowser/torbrowser-*.ebuild
     #   # - find /var/db/repos/torbrowser/www-client/torbrowser/ -type f -name "torbrowser-*.ebuild" -exec ebuild {} manifest \;
     inner_build_reqs:
       - dev-build/autoconf:2.1
       # - llvm-core/clang:${LLVM_VERSION}
-      # - llvm-core/lld:${LLVM_VERSION}
-      # - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
+      - llvm-core/lld:${LLVM_VERSION}
+      - llvm-core/lld-toolchain-symlinks:${LLVM_VERSION}
       - =dev-lang/rust-bin-1.98.1
       - dev-util/cbindgen
       - net-libs/nodejs
@@ -24174,11 +24174,13 @@ packages:
     version: "8.3.0"
     uri:
       - https://github.com/wwmm/easyeffects
+      - https://github.com/hoene/libmysofa
       - https://lsp-plug.in
       - https://www.zamaudio.com/
-    license: "GPL-3 LGPL-3 GPL-2+ MIT"
+    license: "BSD GPL-3 LGPL-3 GPL-2+ MIT"
     description: |
       Limiter, auto volume and many other plugins for PipeWire applications
+      Library for reading AES SOFA (Spatially Oriented Format for Acoustics) files
       Linux Studio Plugins
       LV2 port of the MDA plugins by Paul Kellett
       Collection of LV2/LADSPA/VST/JACK audio plugins for high quality processing
@@ -24189,6 +24191,9 @@ packages:
     provides:
       - category: "media-sound"
         name: "easyeffects"
+        version: ">=0"
+      - category: "media-libs"
+        name: "libmysofa"
         version: ">=0"
       - category: "media-libs"
         name: "lsp-plugins"
@@ -24212,14 +24217,13 @@ packages:
       - atom: "media-plugins/zam-plugins"
         use: "jack opengl"
     inner_build_reqs:
-      - dev-util/itstool
       - dev-util/lv2lint
+      - kde-frameworks/extra-cmake-modules
     requires:
-      - <<: *layers-qt
+      - <<: *layers-kde-common
       - <<: *libs-nlohmann_json
       - <<: *libs-tbb
       - <<: *libs-ladspa-sdk
-      - <<: *libs-liblo
       - <<: *libs-libbs2b
       - <<: *libs-libebur128
       - <<: *libs-libsoundtouch
@@ -24227,7 +24231,7 @@ packages:
       - <<: *libs-rnnoise
       - <<: *apps-calf
     build_requires:
-      - <<: *layers-qt
+      - <<: *layers-kde-common
 
   # - &apps-gmic
   #   category: "apps"
