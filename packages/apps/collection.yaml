@@ -24171,7 +24171,7 @@ packages:
   - &apps-easyeffects
     category: "apps"
     name: "easyeffects"
-    version: "8.3.0"
+    version: "8.3.0+1"
     uri:
       - https://github.com/wwmm/easyeffects
       - https://github.com/hoene/libmysofa
@@ -24188,10 +24188,13 @@ packages:
       emerge.jobs: "1"
       emerge.packages: >-
         media-sound/easyeffects
+        media-libs/lsp-plugins
+        media-plugins/mda-lv2
+        media-plugins/zam-plugins
+        media-sound/deep-filter
+    overlays:
+      - enable: "guru"
     provides:
-      - category: "media-sound"
-        name: "easyeffects"
-        version: ">=0"
       - category: "media-libs"
         name: "libmysofa"
         version: ">=0"
@@ -24207,15 +24210,24 @@ packages:
       - category: "media-plugins"
         name: "zam-plugins"
         version: ">=0"
+      - category: "media-sound"
+        name: "deep-filter"
+        version: ">=0"
+      - category: "media-sound"
+        name: "easyeffects"
+        version: ">=0"
     atoms:
-      - atom: "media-sound/easyeffects"
-        use: "calf doc mda-lv2 zamaudio"
       - atom: "media-libs/lsp-plugins"
         use: "lv2 vst X # doc jack ladspa"
         portage_env: |
           LDFLAGS="${LDFLAGS} -Wl,--no-gc-sections"
       - atom: "media-plugins/zam-plugins"
         use: "jack opengl"
+      - atom: "media-sound/deep-filter"
+        use: "ladspa"
+        accept_keywords: "~amd64"
+      - atom: "media-sound/easyeffects"
+        use: "calf doc mda-lv2 zamaudio"
     inner_build_reqs:
       - dev-util/lv2lint
       - kde-frameworks/extra-cmake-modules
