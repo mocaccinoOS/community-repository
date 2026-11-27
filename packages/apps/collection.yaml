@@ -14301,6 +14301,8 @@ packages:
       - category: "x11-plugins"
         name: "cairo-dock-plugins"
         version: ">=0"
+    prepare:
+      - ln -sf "$(ls /usr/bin/valac-* | sort -V | tail -n1)" /usr/bin/valac
     atoms:
       - atom: "x11-misc/cairo-dock"
         use: "crypt xcomposite desktop_manager"
@@ -14308,8 +14310,6 @@ packages:
       - atom: "x11-plugins/cairo-dock-plugins"
         use: "alsa exif gmenu terminal vala xgamma xklavier # gnote webkit xfce twitter indicator3 mail"
         accept_keywords: "~amd64"
-        portage_env: |
-          EXTRA_ECMAKE="-DVALAC_EXE=/usr/bin/valac-0.56"
     requires:
       - <<: *layers-gnome-common
     build_requires:
