@@ -14283,7 +14283,7 @@ packages:
 
   - category: "apps"
     name: "cairo-dock"
-    version: "3.5.1+1"
+    version: "3.5.1+2"
     uri:
       - http://www.glx-dock.org
     license: "GPL-3"
@@ -14292,22 +14292,22 @@ packages:
       emerge.jobs: "1"
       emerge.packages: >-
         x11-misc/cairo-dock
-    # x11-plugins/cairo-dock-plugins
+        x11-plugins/cairo-dock-plugins
     overlays:
       - enable: "pingwho-overlay"
     provides:
       - category: "x11-misc"
         name: "cairo-dock"
         version: ">=0"
-      # - category: "x11-plugins"
-      #   name: "cairo-dock-plugins"
-      #   version: ">=0"
+      - category: "x11-plugins"
+        name: "cairo-dock-plugins"
+        version: ">=0"
     atoms:
       - atom: "x11-misc/cairo-dock"
         use: "crypt xcomposite desktop_manager"
         accept_keywords: "~amd64"
       - atom: "x11-plugins/cairo-dock-plugins"
-        use: "alsa exif terminal vala xgamma xklavier # gmenu kde gnote webkit xfce twitter indicator3 mail zeitgeist"
+        use: "alsa exif gmenu terminal vala xgamma xklavier # gnote webkit xfce twitter indicator3 mail"
         accept_keywords: "~amd64"
     requires:
       - <<: *layers-gnome-common
