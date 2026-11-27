@@ -14308,6 +14308,8 @@ packages:
       - atom: "x11-plugins/cairo-dock-plugins"
         use: "alsa exif gmenu terminal vala xgamma xklavier # gnote webkit xfce twitter indicator3 mail"
         accept_keywords: "~amd64"
+        portage_env: |
+          EXTRA_ECMAKE="-DVALAC_EXE=/usr/bin/valac-0.56"
     requires:
       - <<: *layers-gnome-common
     build_requires:
