@@ -2606,30 +2606,6 @@ packages:
     build_requires:
       - <<: *layers-X
 
-  - &libs-libportal-qt
-    category: "libs"
-    name: "libportal-qt"
-    version: "0.9.1"
-    uri:
-      - https://github.com/flatpak/libportal
-    license: "LGPL-3"
-    description: "Flatpak portal library"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        dev-libs/libportal
-    provides:
-      - category: "dev-libs"
-        name: "libportal"
-        version: ">=0"
-    atoms:
-      - atom: "dev-libs/libportal"
-        use: "qt6"
-    requires:
-      - <<: *layers-qt
-    build_requires:
-      - <<: *layers-qt
-
   - &libs-libprojectm
     category: "libs"
     name: "libprojectm"
@@ -24195,7 +24171,7 @@ packages:
   - &apps-easyeffects
     category: "apps"
     name: "easyeffects"
-    version: "8.3.0+2"
+    version: "8.3.0+3"
     uri:
       - https://github.com/wwmm/easyeffects
       - https://github.com/hoene/libmysofa
@@ -24252,6 +24228,9 @@ packages:
         accept_keywords: "~amd64"
       - atom: "media-sound/easyeffects"
         use: "calf doc mda-lv2 zamaudio"
+    prepare:
+      - sed -i -e '/dev-libs\/libportal/d' /var/db/repos/gentoo/media-sound/easyeffects/easyeffects-*.ebuild
+      - find /var/db/repos/gentoo/media-sound/easyeffects/ -type f -name "easyeffects-*.ebuild" -exec ebuild {} manifest \;
     inner_build_reqs:
       - dev-util/lv2lint
       - kde-frameworks/extra-cmake-modules
@@ -24263,7 +24242,6 @@ packages:
       - <<: *libs-libbs2b
       - <<: *libs-libebur128
       - <<: *libs-liblo
-      - <<: *libs-libportal-qt
       - <<: *libs-libsoundtouch
       - <<: *libs-lilv
       - <<: *libs-rnnoise
