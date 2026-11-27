@@ -8300,6 +8300,31 @@ packages:
       - <<: *layers-kde-common
 
   - category: "apps"
+    name: "kimi-code"
+    version: "2.7.2"
+    uri:
+      - https://github.com/MoonshotAI/kimi-code
+    license: "MIT"
+    description: "Kimi Code CLI, Moonshot AI's command-line coding agent"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        dev-util/kimi-code-bin
+    overlays:
+      - enable: "guru"
+    provides:
+      - category: "dev-util"
+        name: "kimi-code-bin"
+        version: ">=0"
+    atoms:
+      - atom: "dev-util/kimi-code-bin"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-sys-fs
+    build_requires:
+      - <<: *layers-sys-fs
+
+  - category: "apps"
     name: "kitty"
     version: "0.49.2+1"
     uri:
