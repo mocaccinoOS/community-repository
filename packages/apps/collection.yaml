@@ -5668,6 +5668,33 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
+  - &apps-cursor
+    category: "apps"
+    name: "cursor"
+    version: "3.32.10"
+    uri:
+      - https://cursor.com/
+    license: "cursor"
+    description: "Cursor App - AI-first coding environment"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        app-editors/cursor
+    overlays:
+      - enable: "gentoo-zh"
+    provides:
+      - category: "app-editors"
+        name: "cursor"
+        version: ">=0"
+    atoms:
+      - atom: "app-editors/cursor"
+        license: "cursor"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-gnome-common
+    build_requires:
+      - <<: *layers-gnome-common
+
   - category: "apps"
     name: "curses-hexedit"
     version: "0.9.7-r1+1"
