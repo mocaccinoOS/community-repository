@@ -15838,6 +15838,40 @@ packages:
     build_requires:
       - <<: *layers-kde-common
 
+  - &apps-ladybird
+    category: "apps"
+    name: "ladybird"
+    version: "2026.48.0"
+    uri:
+      - https://ladybird.org/
+      - https://github.com/LadybirdBrowser/ladybird
+    license: "BSD-2"
+    description: "Truly independent web browser (alpha)"
+    labels:
+      appstream.id: "org.ladybird.Ladybird"
+      emerge.jobs: "1"
+      emerge.packages: >-
+        www-client/ladybird
+    overlays:
+      - enable: "waffle-builds"
+    provides:
+      - category: "www-client"
+        name: "ladybird"
+        version: ">=0"
+      - category: "media-libs"
+        name: "skia"
+        version: ">=0"
+    atoms:
+      - atom: "www-client/ladybird"
+        accept_keywords: "~amd64"
+      - atom: "media-libs/skia"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-qt
+      - <<: *libs-libsdl3
+    build_requires:
+      - <<: *layers-qt
+
   - &apps-lash
     category: "apps"
     name: "lash"
