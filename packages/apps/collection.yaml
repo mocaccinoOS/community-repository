@@ -15854,6 +15854,7 @@ packages:
         www-client/ladybird
     overlays:
       - enable: "waffle-builds"
+      - enable: "guru"
     provides:
       - category: "www-client"
         name: "ladybird"
@@ -15864,6 +15865,12 @@ packages:
       - category: "dev-libs"
         name: "angle"
         version: ">=0"
+      - category: "dev-cpp"
+        name: "cpptrace"
+        version: ">=0"
+      - category: "dev-libs"
+        name: "zmij"
+        version: ">=0"
     atoms:
       - atom: "www-client/ladybird"
         accept_keywords: "~amd64"
@@ -15871,6 +15878,12 @@ packages:
         accept_keywords: "~amd64"
       - atom: "dev-libs/angle"
         accept_keywords: "~amd64"
+      - atom: "dev-cpp/cpptrace"
+        accept_keywords: "~amd64"
+      - atom: "dev-libs/zmij"
+        accept_keywords: "~amd64"
+    inner_build_reqs:
+      - media-libs/VulkanMemoryAllocator;ACCEPT_KEYWORDS="~amd64"
     requires:
       - <<: *layers-qt
       - <<: *libs-libsdl3
