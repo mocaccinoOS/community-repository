@@ -5696,32 +5696,6 @@ packages:
     build_requires:
       - <<: *layers-system-x
 
-  - category: "apps"
-    name: "curseforge"
-    version: "1.321.1_p39714"
-    uri:
-      - https://www.curseforge.com/
-    license: "Overwolf Apache-2.0 BSD BSD-2 GPL-2 LGPL-2+ LGPL-2.1 MPL-2.0 MIT"
-    description: "The CurseForge Electron App"
-    labels:
-      emerge.jobs: "1"
-      emerge.packages: >-
-        games-util/curseforge
-    overlays:
-      - enable: "guru"
-    provides:
-      - category: "games-util"
-        name: "curseforge"
-        version: ">=0"
-    atoms:
-      - atom: "games-util/curseforge"
-        license: "Overwolf"
-        accept_keywords: "~amd64"
-    requires:
-      - <<: *layers-gnome-common
-    build_requires:
-      - <<: *layers-gnome-common
-
   - &apps-cursor
     category: "apps"
     name: "cursor"
