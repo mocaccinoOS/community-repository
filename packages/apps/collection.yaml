@@ -13208,6 +13208,34 @@ packages:
       - <<: *layers-X
 
   - category: "apps"
+    name: "zoitechat"
+    version: "2.19.1"
+    uri:
+      - https://zoitechat.org
+    license: "GPL-2 MIT"
+    description: "GTK+ IRC client that's a fork of HexChat"
+    labels:
+      emerge.jobs: "1"
+      emerge.packages: >-
+        net-irc/zoitechat
+    provides:
+      - category: "net-irc"
+        name: "zoitechat"
+        version: ">=0"
+      - category: "net-misc"
+        name: "publicsuffix-db"
+        version: ">=0"
+    atoms:
+      - atom: "net-irc/zoitechat"
+        accept_keywords: "~amd64"
+      - atom: "net-misc/publicsuffix-db"
+        accept_keywords: "~amd64"
+    requires:
+      - <<: *layers-gnome-common
+    build_requires:
+      - <<: *layers-gnome-common
+
+  - category: "apps"
     name: "zsh"
     version: "5.9.2"
     uri:
