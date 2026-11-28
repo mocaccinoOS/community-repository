@@ -15865,66 +15865,70 @@ packages:
     build_requires:
       - <<: *layers-kde-common
 
-  - &apps-ladybird
-    category: "apps"
-    name: "ladybird"
-    version: "2026.48.0"
-    uri:
-      - https://ladybird.org/
-      - https://github.com/LadybirdBrowser/ladybird
-    license: "BSD-2"
-    description: "Truly independent web browser (alpha)"
-    labels:
-      appstream.id: "org.ladybird.Ladybird"
-      emerge.jobs: "1"
-      emerge.packages: >-
-        www-client/ladybird
-    overlays:
-      - enable: "waffle-builds"
-      - enable: "guru"
-    provides:
-      - category: "www-client"
-        name: "ladybird"
-        version: ">=0"
-      - category: "media-libs"
-        name: "skia"
-        version: ">=0"
-      - category: "dev-libs"
-        name: "angle"
-        version: ">=0"
-      - category: "dev-cpp"
-        name: "cpptrace"
-        version: ">=0"
-      - category: "dev-libs"
-        name: "zmij"
-        version: ">=0"
-      - category: "dev-libs"
-        name: "libdwarf"
-        version: ">=0"
-    atoms:
-      - atom: "www-client/ladybird"
-        accept_keywords: "~amd64"
-        portage_env: |
-          MAKEOPTS="-j12"
-      - atom: "media-libs/skia"
-        accept_keywords: "~amd64"
-      - atom: "dev-libs/angle"
-        accept_keywords: "~amd64"
-      - atom: "dev-cpp/cpptrace"
-        accept_keywords: "~amd64"
-      - atom: "dev-libs/zmij"
-        accept_keywords: "~amd64"
-      - atom: "dev-libs/libdwarf"
-        accept_keywords: "~amd64"
-    inner_build_reqs:
-      - dev-build/gn
-      - dev-cpp/fast_float
-      - media-libs/VulkanMemoryAllocator;ACCEPT_KEYWORDS="~amd64"
-    requires:
-      - <<: *layers-qt
-      - <<: *libs-libsdl3
-    build_requires:
-      - <<: *layers-qt
+# Disabled: Ladybird is alpha software and currently fails to link
+# libexec/ladybird/MediaServer during emerge www-client/ladybird (2026.48.0)
+# due to an undefined reference to `ladybird_gfx_process_note_crate_copy`
+# from `ladybird_gfx_register_rust_crate_copy` in `liblibgfx_rust.a`.
+  # - &apps-ladybird
+  #   category: "apps"
+  #   name: "ladybird"
+  #   version: "2026.48.0"
+  #   uri:
+  #     - https://ladybird.org/
+  #     - https://github.com/LadybirdBrowser/ladybird
+  #   license: "BSD-2"
+  #   description: "Truly independent web browser (alpha)"
+  #   labels:
+  #     appstream.id: "org.ladybird.Ladybird"
+  #     emerge.jobs: "1"
+  #     emerge.packages: >-
+  #       www-client/ladybird
+  #   overlays:
+  #     - enable: "waffle-builds"
+  #     - enable: "guru"
+  #   provides:
+  #     - category: "www-client"
+  #       name: "ladybird"
+  #       version: ">=0"
+  #     - category: "media-libs"
+  #       name: "skia"
+  #       version: ">=0"
+  #     - category: "dev-libs"
+  #       name: "angle"
+  #       version: ">=0"
+  #     - category: "dev-cpp"
+  #       name: "cpptrace"
+  #       version: ">=0"
+  #     - category: "dev-libs"
+  #       name: "zmij"
+  #       version: ">=0"
+  #     - category: "dev-libs"
+  #       name: "libdwarf"
+  #       version: ">=0"
+  #   atoms:
+  #     - atom: "www-client/ladybird"
+  #       accept_keywords: "~amd64"
+  #       portage_env: |
+  #         MAKEOPTS="-j12"
+  #     - atom: "media-libs/skia"
+  #       accept_keywords: "~amd64"
+  #     - atom: "dev-libs/angle"
+  #       accept_keywords: "~amd64"
+  #     - atom: "dev-cpp/cpptrace"
+  #       accept_keywords: "~amd64"
+  #     - atom: "dev-libs/zmij"
+  #       accept_keywords: "~amd64"
+  #     - atom: "dev-libs/libdwarf"
+  #       accept_keywords: "~amd64"
+  #   inner_build_reqs:
+  #     - dev-build/gn
+  #     - dev-cpp/fast_float
+  #     - media-libs/VulkanMemoryAllocator;ACCEPT_KEYWORDS="~amd64"
+  #   requires:
+  #     - <<: *layers-qt
+  #     - <<: *libs-libsdl3
+  #   build_requires:
+  #     - <<: *layers-qt
 
   - &apps-lash
     category: "apps"
